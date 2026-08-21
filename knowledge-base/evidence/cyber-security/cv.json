@@ -1,0 +1,169 @@
+{
+  "source_id": "cv",
+  "name": "CV / Resume Analysis - Cyber Security",
+  "description": "Signals extracted from the user's CV/resume to evidence Cyber Security skills.",
+  "extraction_rules": {
+    "description": "How to extract and weight information from CV content.",
+    "sections": [
+      {
+        "section": "skills_list",
+        "description": "Explicit list of technologies and tools mentioned in skills section.",
+        "base_strength": 0.3
+      },
+      {
+        "section": "work_experience",
+        "description": "Job descriptions and responsibilities.",
+        "base_strength": 0.5,
+        "quality_indicators": [
+          "Quantifiable outcomes",
+          "Action verbs"
+        ]
+      },
+      {
+        "section": "projects",
+        "description": "Personal or academic projects.",
+        "base_strength": 0.4
+      },
+      {
+        "section": "education",
+        "description": "Relevant courses, degrees.",
+        "base_strength": 0.2
+      },
+      {
+        "section": "certifications",
+        "description": "Professional certifications.",
+        "base_strength": 0.2,
+        "recognized_certifications": {
+          "networking": [
+            "CCNA",
+            "Network+"
+          ],
+          "security_general": [
+            "Security+",
+            "CISSP",
+            "CISM"
+          ],
+          "offensive": [
+            "OSCP",
+            "CEH",
+            "PNPT"
+          ],
+          "defensive": [
+            "BTL1",
+            "CySA+"
+          ],
+          "compliance": [
+            "CISA",
+            "CRISC"
+          ]
+        }
+      }
+    ]
+  },
+  "signal_mapping": {
+    "description": "How CV mentions map to skill evidence using COMPOSITE KEYS.",
+    "patterns": [
+      {
+        "pattern": "Mentions configuring Palo Alto or Fortinet firewalls in production",
+        "maps_to": [
+          "cs_networking.firewalls"
+        ],
+        "strength_modifier": 1.0
+      },
+      {
+        "pattern": "Describes leading a SOC2 or ISO27001 audit",
+        "maps_to": [
+          "cs_frameworks_compliance.soc2",
+          "cs_frameworks_compliance.iso27001",
+          "cs_frameworks_compliance.compliance_automation"
+        ],
+        "strength_modifier": 1.2
+      },
+      {
+        "pattern": "Has OSCP certification",
+        "maps_to": [
+          "cs_security_tools.nmap",
+          "cs_security_tools.metasploit",
+          "cs_security_tools.burp_suite",
+          "cs_threats_and_attacks.priv_escalation"
+        ],
+        "strength_modifier": 1.0
+      },
+      {
+        "pattern": "Implemented Zero Trust architecture",
+        "maps_to": [
+          "cs_security_fundamentals.zero_trust",
+          "cs_networking.zero_trust"
+        ],
+        "strength_modifier": 1.2
+      },
+      {
+        "pattern": "Led Incident Response Team",
+        "maps_to": [
+          "cs_incident_response_forensics.ir_containment",
+          "cs_incident_response_forensics.ir_preparation"
+        ],
+        "strength_modifier": 1.0
+      },
+      {
+        "pattern": "Managed GCP Security and VPC Controls",
+        "maps_to": [
+          "cs_cloud_security.gcp_security"
+        ],
+        "strength_modifier": 0.8
+      },
+      {
+        "pattern": "GDPR or CCPA compliance audits",
+        "maps_to": [
+          "cs_frameworks_compliance.data_privacy"
+        ],
+        "strength_modifier": 0.8
+      },
+      {
+        "pattern": "Reverse engineered malware",
+        "maps_to": [
+          "cs_incident_response_forensics.reverse_engineering"
+        ],
+        "strength_modifier": 0.8
+      },
+      {
+        "pattern": "Mitigated DDoS attacks via Akamai/Cloudflare",
+        "maps_to": [
+          "cs_networking.ddos_mitigation"
+        ],
+        "strength_modifier": 0.8
+      },
+      {
+        "pattern": "Deployed Snort or Suricata",
+        "maps_to": [
+          "cs_networking.ids_ips"
+        ],
+        "strength_modifier": 0.8
+      },
+      {
+        "pattern": "Architected VLANs and DMZs",
+        "maps_to": [
+          "cs_networking.network_segmentation"
+        ],
+        "strength_modifier": 0.8
+      },
+      {
+        "pattern": "Wrote PowerShell automation scripts",
+        "maps_to": [
+          "cs_programming_scripting.powershell"
+        ],
+        "strength_modifier": 0.8
+      },
+      {
+        "pattern": "Deployed EDR solutions",
+        "maps_to": [
+          "cs_security_tools.edr"
+        ],
+        "strength_modifier": 0.8
+      }
+    ]
+  },
+  "important_notes": [
+    "CV data is self-reported and inherently unreliable as standalone evidence"
+  ]
+}

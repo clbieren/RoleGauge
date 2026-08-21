@@ -1,0 +1,178 @@
+{
+  "skill_id": "cs_threats_and_attacks",
+  "name": "Threats and Attacks",
+  "category": "threats",
+  "description": "Knowledge of various attack vectors, OWASP Top 10, and malware types.",
+  "subskills": [
+    {
+      "id": "social_engineering",
+      "name": "Social Engineering",
+      "description": "Phishing, vishing, smishing.",
+      "keywords": [
+        "Phishing",
+        "Vishing",
+        "Whaling",
+        "Baiting"
+      ]
+    },
+    {
+      "id": "malware_types",
+      "name": "Malware Types",
+      "description": "Ransomware, trojans, worms.",
+      "keywords": [
+        "Ransomware",
+        "Trojan",
+        "Worm",
+        "Rootkit",
+        "Spyware"
+      ]
+    },
+    {
+      "id": "spoofing",
+      "name": "Spoofing",
+      "description": "IP, ARP, DNS spoofing.",
+      "keywords": [
+        "ARP Spoofing",
+        "DNS Spoofing",
+        "IP Spoofing"
+      ]
+    },
+    {
+      "id": "owasp_top_10",
+      "name": "OWASP Top 10",
+      "description": "Standard web app vulnerabilities.",
+      "keywords": [
+        "OWASP",
+        "Injection",
+        "Broken Authentication",
+        "Sensitive Data Exposure"
+      ]
+    },
+    {
+      "id": "sql_injection",
+      "name": "SQL Injection",
+      "description": "Database injection attacks.",
+      "keywords": [
+        "SQLi",
+        "Blind SQLi",
+        "Time-based SQLi"
+      ]
+    },
+    {
+      "id": "xss_csrf",
+      "name": "XSS & CSRF",
+      "description": "Cross-site scripting and request forgery.",
+      "keywords": [
+        "XSS",
+        "CSRF",
+        "Reflected XSS",
+        "Stored XSS"
+      ]
+    },
+    {
+      "id": "dos_ddos",
+      "name": "DoS/DDoS/MITM",
+      "description": "Denial of service and interception.",
+      "keywords": [
+        "DDoS",
+        "Botnet",
+        "MITM",
+        "Amplification Attack"
+      ]
+    },
+    {
+      "id": "buffer_overflow",
+      "name": "Buffer Overflow",
+      "description": "Memory corruption attacks.",
+      "keywords": [
+        "Buffer Overflow",
+        "Stack Smashing",
+        "Heap Spraying"
+      ]
+    },
+    {
+      "id": "priv_escalation",
+      "name": "Privilege Escalation",
+      "description": "Gaining higher privileges.",
+      "keywords": [
+        "Privilege Escalation",
+        "Vertical Escalation",
+        "Horizontal Escalation"
+      ]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "Input validation or parameterized queries",
+        "detection": "content_analysis",
+        "pattern": "execute_prepared|xss_clean|htmlentities",
+        "strength": 0.6,
+        "maps_to": [
+          "cs_threats_and_attacks.sql_injection",
+          "cs_threats_and_attacks.xss_csrf"
+        ]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "Penetration testing or bug bounty",
+        "strength": 0.8,
+        "maps_to": [
+          "cs_threats_and_attacks.owasp_top_10",
+          "cs_threats_and_attacks.priv_escalation"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Web Application Security",
+        "strength": 0.4,
+        "maps_to": [
+          "cs_threats_and_attacks.owasp_top_10",
+          "cs_threats_and_attacks.xss_csrf"
+        ]
+      }
+    ],
+    "assessment": [
+      {
+        "signal": "Can perform advanced privilege escalation",
+        "strength": 1.0,
+        "maps_to": [
+          "cs_threats_and_attacks.priv_escalation",
+          "cs_threats_and_attacks.buffer_overflow",
+          "cs_threats_and_attacks.dos_ddos"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "social_engineering",
+        "malware_types",
+        "spoofing"
+      ],
+      "description": "Understands common attack vectors."
+    },
+    "mid": {
+      "expected_subskills": [
+        "owasp_top_10",
+        "sql_injection",
+        "xss_csrf"
+      ],
+      "description": "Can identify and mitigate web vulnerabilities."
+    },
+    "senior": {
+      "expected_subskills": [
+        "dos_ddos",
+        "buffer_overflow",
+        "priv_escalation"
+      ],
+      "description": "Understands complex systemic and memory-based attacks.",
+      "additional_expectations": [
+        "Can reverse-engineer simple buffer overflows."
+      ]
+    }
+  }
+}

@@ -1,0 +1,110 @@
+{
+  "role_id": "devops_engineer",
+  "level": "mid",
+  "title": "Mid-Level DevOps Engineer",
+  "description": "Mid-level DevOps position focused on designing and maintaining infrastructure, CI/CD pipelines, container orchestration, and observability. Expected to work independently, mentor juniors, and make architectural decisions.",
+  "experience_range": "2-5 years",
+  "skills": [
+    {
+      "skill_id": "linux",
+      "importance": 0.9,
+      "rationale": "Advanced Linux skills including service management, performance tuning, and troubleshooting"
+    },
+    {
+      "skill_id": "docker",
+      "importance": 0.9,
+      "rationale": "Production-grade containerization including multi-stage builds, security hardening, and registry management"
+    },
+    {
+      "skill_id": "kubernetes",
+      "importance": 0.9,
+      "rationale": "Kubernetes is central to mid-level DevOps; expected to manage deployments, services, storage, and RBAC"
+    },
+    {
+      "skill_id": "cicd",
+      "importance": 0.9,
+      "rationale": "Designing and optimizing CI/CD pipelines with deployment strategies and security gates"
+    },
+    {
+      "skill_id": "terraform",
+      "importance": 0.85,
+      "rationale": "IaC is expected at mid-level; modules, state management, and environment separation"
+    },
+    {
+      "skill_id": "cloud_platforms",
+      "importance": 0.85,
+      "rationale": "Deep knowledge of cloud services including networking, IAM, and managed services"
+    },
+    {
+      "skill_id": "scripting",
+      "importance": 0.8,
+      "rationale": "Advanced scripting with error handling, API interaction, and tool development"
+    },
+    {
+      "skill_id": "networking",
+      "importance": 0.8,
+      "rationale": "Load balancing, reverse proxy, SSL/TLS, and cloud networking design"
+    },
+    {
+      "skill_id": "monitoring_observability",
+      "importance": 0.8,
+      "rationale": "Setting up monitoring stacks, alerting, and implementing observability practices"
+    },
+    {
+      "skill_id": "git",
+      "importance": 0.75,
+      "rationale": "Collaboration workflows, release management, and automation hooks"
+    },
+    {
+      "skill_id": "ansible",
+      "importance": 0.7,
+      "rationale": "Configuration management with roles, templates, and vault is commonly expected"
+    },
+    {
+      "skill_id": "security_devsecops",
+      "importance": 0.7,
+      "rationale": "Integrating security scanning, container hardening, and vulnerability management"
+    },
+    {
+      "skill_id": "gitops",
+      "importance": 0.55,
+      "rationale": "Growing expectation; ArgoCD/Flux setup and GitOps workflows"
+    }
+  ],
+  "scoring": {
+    "method": "weighted_average",
+    "description": "Each skill score is multiplied by its importance weight. Final score is the sum of weighted scores divided by sum of weights.",
+    "thresholds": {
+      "not_ready": {
+        "min": 0.0,
+        "max": 0.3,
+        "label": "Not Ready",
+        "description": "Significant gaps; still at junior level"
+      },
+      "developing": {
+        "min": 0.3,
+        "max": 0.5,
+        "label": "Developing",
+        "description": "Some mid-level skills emerging, needs more depth"
+      },
+      "approaching": {
+        "min": 0.5,
+        "max": 0.7,
+        "label": "Approaching Ready",
+        "description": "Most mid-level competencies present, some areas need deepening"
+      },
+      "ready": {
+        "min": 0.7,
+        "max": 0.85,
+        "label": "Ready",
+        "description": "Meets expectations for mid-level position"
+      },
+      "exceeds": {
+        "min": 0.85,
+        "max": 1.0,
+        "label": "Exceeds Expectations",
+        "description": "Exceeds mid-level; approaching senior capabilities"
+      }
+    }
+  }
+}

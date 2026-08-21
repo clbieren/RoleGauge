@@ -1,0 +1,304 @@
+{
+  "skill_id": "networking",
+  "name": "Networking",
+  "category": "fundamentals",
+  "description": "Understanding network protocols, DNS, HTTP/HTTPS, SSH, firewalls, load balancing, reverse proxies, SSL/TLS, and cloud networking concepts.",
+  "subskills": [
+    {
+      "id": "tcp_ip_model",
+      "name": "TCP/IP & OSI Model",
+      "description": "Understanding network layers, TCP vs UDP, IP addressing, subnetting, and CIDR notation.",
+      "keywords": [
+        "tcp",
+        "udp",
+        "ip",
+        "subnet",
+        "cidr",
+        "ipv4",
+        "ipv6",
+        "osi",
+        "layer"
+      ]
+    },
+    {
+      "id": "dns",
+      "name": "DNS (Domain Name System)",
+      "description": "DNS record types, resolution process, TTL, nameservers, and troubleshooting.",
+      "keywords": [
+        "dns",
+        "A record",
+        "AAAA",
+        "CNAME",
+        "MX",
+        "TXT",
+        "NS",
+        "TTL",
+        "nslookup",
+        "dig",
+        "nameserver"
+      ]
+    },
+    {
+      "id": "http_https",
+      "name": "HTTP/HTTPS Protocols",
+      "description": "HTTP methods, status codes, headers, REST APIs, and HTTPS/TLS handshake.",
+      "keywords": [
+        "http",
+        "https",
+        "GET",
+        "POST",
+        "PUT",
+        "DELETE",
+        "status code",
+        "header",
+        "REST",
+        "API",
+        "curl"
+      ]
+    },
+    {
+      "id": "ssh_protocol",
+      "name": "SSH Protocol",
+      "description": "Secure shell access, key-based authentication, port forwarding, and tunneling.",
+      "keywords": [
+        "ssh",
+        "ssh-keygen",
+        "port forwarding",
+        "tunnel",
+        "bastion",
+        "jump host"
+      ]
+    },
+    {
+      "id": "firewalls_security_groups",
+      "name": "Firewalls & Security Groups",
+      "description": "Ingress/egress rules, iptables, nftables, ufw, and cloud security groups.",
+      "keywords": [
+        "iptables",
+        "nftables",
+        "ufw",
+        "firewalld",
+        "security group",
+        "ingress",
+        "egress",
+        "stateful",
+        "stateless"
+      ]
+    },
+    {
+      "id": "load_balancing",
+      "name": "Load Balancing",
+      "description": "Layer 4 vs Layer 7 load balancing, algorithms, health checks, and high availability.",
+      "keywords": [
+        "load balancer",
+        "round robin",
+        "least connections",
+        "health check",
+        "L4",
+        "L7",
+        "ALB",
+        "NLB",
+        "ELB",
+        "HAProxy"
+      ]
+    },
+    {
+      "id": "reverse_proxy",
+      "name": "Reverse Proxy",
+      "description": "Nginx/HAProxy as reverse proxy, SSL termination, caching, and traffic routing.",
+      "keywords": [
+        "nginx",
+        "haproxy",
+        "reverse proxy",
+        "upstream",
+        "proxy_pass",
+        "ssl termination",
+        "caching"
+      ]
+    },
+    {
+      "id": "ssl_tls",
+      "name": "SSL/TLS & Certificates",
+      "description": "TLS handshake, certificate management, Let's Encrypt, and mutual TLS.",
+      "keywords": [
+        "ssl",
+        "tls",
+        "certificate",
+        "lets encrypt",
+        "certbot",
+        "openssl",
+        "ca",
+        "mutual tls",
+        "mtls",
+        "x509"
+      ]
+    },
+    {
+      "id": "network_troubleshooting",
+      "name": "Network Troubleshooting",
+      "description": "Using diagnostic tools to identify and resolve connectivity issues.",
+      "keywords": [
+        "ping",
+        "traceroute",
+        "netstat",
+        "ss",
+        "tcpdump",
+        "wireshark",
+        "nmap",
+        "curl",
+        "dig",
+        "mtr"
+      ]
+    },
+    {
+      "id": "cloud_networking",
+      "name": "Cloud & Container Networking",
+      "description": "VPC design, subnets, NAT gateways, route tables, CNI, and service discovery.",
+      "keywords": [
+        "vpc",
+        "subnet",
+        "nat gateway",
+        "route table",
+        "peering",
+        "cni",
+        "service mesh",
+        "service discovery"
+      ]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "Nginx or HAProxy configuration files present",
+        "detection": "file_presence",
+        "pattern": "nginx.conf|haproxy.cfg|sites-available|sites-enabled",
+        "strength": 0.7,
+        "maps_to": [
+          "networking.reverse_proxy",
+          "networking.load_balancing",
+          "networking.ssl_tls"
+        ]
+      },
+      {
+        "signal": "SSL/TLS certificate configuration or Let's Encrypt setup",
+        "detection": "content_analysis",
+        "pattern": "certbot|letsencrypt|ssl_certificate|ssl_certificate_key",
+        "strength": 0.7,
+        "maps_to": [
+          "networking.ssl_tls"
+        ]
+      },
+      {
+        "signal": "Firewall rules or security group definitions in IaC",
+        "detection": "content_analysis",
+        "pattern": "iptables|ufw|security_group|ingress|egress|firewall",
+        "strength": 0.6,
+        "maps_to": [
+          "networking.firewalls_security_groups"
+        ]
+      },
+      {
+        "signal": "VPC or network infrastructure in Terraform/CloudFormation",
+        "detection": "content_analysis",
+        "pattern": "aws_vpc|aws_subnet|aws_security_group|azurerm_virtual_network|google_compute_network",
+        "strength": 0.7,
+        "maps_to": [
+          "networking.cloud_networking"
+        ]
+      },
+      {
+        "signal": "DNS configuration in IaC (Route53, CloudDNS, etc.)",
+        "detection": "content_analysis",
+        "pattern": "aws_route53|google_dns|azurerm_dns|cloudflare_record",
+        "strength": 0.6,
+        "maps_to": [
+          "networking.dns"
+        ]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "Networking or network administration mentioned",
+        "strength": 0.3,
+        "maps_to": [
+          "networking.tcp_ip_model"
+        ]
+      },
+      {
+        "signal": "Specific tools mentioned (Nginx, HAProxy, load balancer)",
+        "strength": 0.4,
+        "maps_to": [
+          "networking.reverse_proxy",
+          "networking.load_balancing"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Networking-related certifications (CCNA, CompTIA Network+)",
+        "strength": 0.2,
+        "maps_to": [
+          "networking.tcp_ip_model",
+          "networking.dns"
+        ]
+      }
+    ],
+    "assessment": [
+      {
+        "signal": "Can explain DNS resolution process and record types",
+        "strength": 1.0,
+        "maps_to": [
+          "networking.dns"
+        ]
+      },
+      {
+        "signal": "Can configure a reverse proxy with SSL termination",
+        "strength": 1.0,
+        "maps_to": [
+          "networking.reverse_proxy",
+          "networking.ssl_tls"
+        ]
+      },
+      {
+        "signal": "Can troubleshoot network connectivity issues using CLI tools",
+        "strength": 1.0,
+        "maps_to": [
+          "networking.network_troubleshooting"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "tcp_ip_model",
+        "dns",
+        "http_https",
+        "ssh_protocol",
+        "network_troubleshooting"
+      ],
+      "description": "Understands TCP/IP basics, DNS, HTTP/HTTPS, SSH, and can troubleshoot basic connectivity issues."
+    },
+    "mid": {
+      "expected_subskills": [
+        "firewalls_security_groups",
+        "load_balancing",
+        "reverse_proxy",
+        "ssl_tls"
+      ],
+      "description": "Can configure firewalls, set up load balancers and reverse proxies, and manage SSL/TLS certificates."
+    },
+    "senior": {
+      "expected_subskills": [
+        "cloud_networking"
+      ],
+      "description": "Can design complex cloud network architectures, implement service meshes, and optimize network performance at scale.",
+      "additional_expectations": [
+        "zero_trust",
+        "service_mesh",
+        "network_policy",
+        "multi_cloud_networking"
+      ]
+    }
+  }
+}

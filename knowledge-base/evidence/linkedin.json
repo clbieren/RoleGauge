@@ -1,0 +1,122 @@
+{
+  "source_id": "linkedin",
+  "name": "LinkedIn Profile Analysis",
+  "description": "Signals extracted from LinkedIn profiles to evidence DevOps skills. LinkedIn provides professional context, endorsements, and career trajectory data.",
+  "extraction_rules": {
+    "sections": [
+      {
+        "section": "headline_summary",
+        "description": "Profile headline and summary/about section.",
+        "base_strength": 0.2,
+        "notes": "Self-described; provides intent and self-assessment context."
+      },
+      {
+        "section": "experience",
+        "description": "Work experience entries with job titles, companies, and descriptions.",
+        "base_strength": 0.4,
+        "notes": "Similar to CV work experience but often more concise. Look for DevOps-related job titles and descriptions.",
+        "quality_indicators": [
+          "DevOps-related job titles (DevOps Engineer, SRE, Platform Engineer, Cloud Engineer)",
+          "Duration in DevOps roles",
+          "Company size and industry (enterprise vs startup)",
+          "Specific technology mentions in descriptions"
+        ]
+      },
+      {
+        "section": "skills_endorsements",
+        "description": "Skills listed with endorsement counts from connections.",
+        "base_strength": 0.15,
+        "notes": "Endorsements have very low evidential value \u00e2\u20ac\u201d they can be exchanged socially. However, the skill list provides self-reported skill claims."
+      },
+      {
+        "section": "certifications",
+        "description": "Professional certifications with issuing organizations.",
+        "base_strength": 0.2,
+        "notes": "Same as CV certifications \u00e2\u20ac\u201d theoretical knowledge indicator, not practical proof."
+      },
+      {
+        "section": "projects",
+        "description": "Projects section with descriptions and links.",
+        "base_strength": 0.3,
+        "notes": "Provides additional project context. Links to GitHub or live demos increase strength."
+      },
+      {
+        "section": "recommendations",
+        "description": "Written recommendations from colleagues or managers.",
+        "base_strength": 0.3,
+        "notes": "Third-party validation of skills, but often generic. Look for specific technical skill mentions."
+      },
+      {
+        "section": "posts_articles",
+        "description": "Technical posts and articles published on LinkedIn.",
+        "base_strength": 0.3,
+        "notes": "Indicates thought leadership and depth of knowledge in specific areas."
+      }
+    ]
+  },
+  "signal_mapping": {
+    "description": "How LinkedIn mentions map to skill evidence using COMPOSITE KEYS ({skill_id}.{subskill_id}). AI should use these patterns.",
+    "patterns": [
+      {
+        "pattern": "LinkedIn skills endorsement for 'Docker' or 'Containerization'",
+        "maps_to": [
+          "docker.container_lifecycle"
+        ],
+        "strength_modifier": 0.33
+      },
+      {
+        "pattern": "LinkedIn skills endorsement for 'Kubernetes'",
+        "maps_to": [
+          "kubernetes.deployments_replicasets"
+        ],
+        "strength_modifier": 0.33
+      },
+      {
+        "pattern": "Job experience explicitly describing building CI/CD pipelines",
+        "maps_to": [
+          "cicd.pipeline_as_code",
+          "cicd.build_stage"
+        ],
+        "strength_modifier": 1.0
+      },
+      {
+        "pattern": "Job experience mentioning AWS/Azure/GCP infrastructure management",
+        "maps_to": [
+          "cloud_platforms.cli_sdk",
+          "cloud_platforms.iam"
+        ],
+        "strength_modifier": 1.0
+      },
+      {
+        "pattern": "Detailed project description outlining Terraform infrastructure as code",
+        "maps_to": [
+          "terraform.state_management",
+          "terraform.tf_modules"
+        ],
+        "strength_modifier": 1.0
+      },
+      {
+        "pattern": "Cloud Cost Optimization",
+        "maps_to": [
+          "cloud_platforms.cost_management"
+        ],
+        "strength_modifier": 0.8
+      },
+      {
+        "pattern": "SLA/SLO/SLI Management",
+        "maps_to": [
+          "monitoring_observability.sla_slo_sli"
+        ],
+        "strength_modifier": 0.8
+      }
+    ]
+  },
+  "important_notes": [
+    "ALL extracted signals MUST be mapped to COMPOSITE KEYS ({skill_id}.{subskill_id})",
+    "LinkedIn data supplements but should not override GitHub or assessment evidence",
+    "Endorsements have near-zero evidential value on their own",
+    "Job titles can be inflated \u00e2\u20ac\u201d cross-reference with actual responsibilities described",
+    "Career trajectory (progression from junior to mid to senior roles) provides context",
+    "Look for technical content creation (posts, articles) as evidence of deep understanding"
+  ]
+}

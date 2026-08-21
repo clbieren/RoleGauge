@@ -1,0 +1,271 @@
+{
+  "source_id": "assessment",
+  "name": "Adaptive Technical Assessment - Cyber Security",
+  "description": "Adaptive technical questions to verify skills.",
+  "trigger_conditions": {
+    "rules": [
+      "When a subskill has status 'not_yet_evidenced'",
+      "When a subskill has status 'insufficient_evidence'"
+    ]
+  },
+  "question_types": [
+    {
+      "type": "conceptual",
+      "strength": 0.6
+    },
+    {
+      "type": "scenario",
+      "strength": 0.8
+    },
+    {
+      "type": "practical_task",
+      "strength": 1.0
+    }
+  ],
+  "adaptive_logic": {
+    "rules": [
+      "Start with a conceptual question",
+      "Escalate to a scenario question"
+    ]
+  },
+  "sample_questions_by_composite_key": {
+    "cs_networking.firewalls": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "Troubleshoot connection to port 443.",
+        "expected_answer_keywords": [
+          "traffic logs",
+          "security policy"
+        ]
+      }
+    ],
+    "cs_cloud_security.serverless_security": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "How do you secure an AWS Lambda function accessing RDS?",
+        "expected_answer_keywords": [
+          "IAM Role",
+          "VPC",
+          "Security Group",
+          "Secrets Manager"
+        ]
+      }
+    ],
+    "cs_cryptography.digital_signatures": [
+      {
+        "level": "mid",
+        "type": "conceptual",
+        "question": "Explain how digital signatures provide non-repudiation.",
+        "expected_answer_keywords": [
+          "hashing",
+          "private key",
+          "public key verification",
+          "integrity",
+          "non-repudiation"
+        ]
+      }
+    ],
+    "cs_operating_systems.pam_config": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "How do you enforce MFA using PAM?",
+        "expected_answer_keywords": [
+          "pam.d",
+          "required",
+          "sufficient",
+          "pam_google_authenticator",
+          "sshd_config"
+        ]
+      }
+    ],
+    "cs_operating_systems.user_management": [
+      {
+        "level": "junior",
+        "type": "conceptual",
+        "question": "Explain the difference between user and group permissions.",
+        "expected_answer_keywords": [
+          "uid",
+          "gid",
+          "file ownership",
+          "sudoers",
+          "least privilege"
+        ]
+      }
+    ],
+    "cs_programming_scripting.api_security": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "How do you secure a REST API?",
+        "expected_answer_keywords": [
+          "jwt",
+          "oauth2",
+          "rate limiting",
+          "input validation",
+          "tls"
+        ]
+      }
+    ],
+    "cs_programming_scripting.js_security": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "How do you prevent DOM XSS?",
+        "expected_answer_keywords": [
+          "content security policy",
+          "csp",
+          "input sanitization",
+          "escape",
+          "innertext vs innerhtml"
+        ]
+      }
+    ],
+    "cs_cloud_security.cloud_models": [
+      {
+        "level": "mid",
+        "type": "conceptual",
+        "question": "What is the difference between Public, Private, and Hybrid clouds?",
+        "expected_answer_keywords": [
+          "multi-tenant",
+          "single-tenant",
+          "on-premise",
+          "scalability",
+          "capex vs opex"
+        ]
+      }
+    ],
+    "cs_cryptography.asymmetric_enc": [
+      {
+        "level": "mid",
+        "type": "conceptual",
+        "question": "Explain how RSA encryption works conceptually.",
+        "expected_answer_keywords": [
+          "public key",
+          "private key",
+          "prime factorization",
+          "key exchange",
+          "computational hardness"
+        ]
+      }
+    ],
+    "cs_cryptography.post_quantum": [
+      {
+        "level": "mid",
+        "type": "conceptual",
+        "question": "What is the threat of quantum computing to modern cryptography?",
+        "expected_answer_keywords": [
+          "shor's algorithm",
+          "lattice-based",
+          "kyber",
+          "qkd",
+          "larger key sizes"
+        ]
+      }
+    ],
+    "cs_incident_response_forensics.chain_of_custody": [
+      {
+        "level": "mid",
+        "type": "conceptual",
+        "question": "Describe the chain of custody procedure for a seized hard drive.",
+        "expected_answer_keywords": [
+          "evidence log",
+          "hashes",
+          "secure storage",
+          "tamper-evident",
+          "documentation"
+        ]
+      }
+    ],
+    "cs_operating_systems.malware_analysis": [
+      {
+        "level": "mid",
+        "type": "conceptual",
+        "question": "What is the difference between static and dynamic malware analysis?",
+        "expected_answer_keywords": [
+          "reverse engineering",
+          "sandboxing",
+          "execution",
+          "code analysis",
+          "behavioral"
+        ]
+      }
+    ],
+    "cs_security_fundamentals.cia_triad": [
+      {
+        "level": "mid",
+        "type": "conceptual",
+        "question": "Define Confidentiality, Integrity, and Availability.",
+        "expected_answer_keywords": [
+          "confidentiality",
+          "integrity",
+          "availability",
+          "unauthorized access",
+          "uptime"
+        ]
+      }
+    ],
+    "cs_security_fundamentals.risk_concepts": [
+      {
+        "level": "mid",
+        "type": "conceptual",
+        "question": "Explain the relationship between risk, threat, and vulnerability.",
+        "expected_answer_keywords": [
+          "likelihood",
+          "impact",
+          "vulnerability exploitation",
+          "asset value",
+          "mitigation"
+        ]
+      }
+    ],
+    "cs_threats_and_attacks.malware_types": [
+      {
+        "level": "mid",
+        "type": "conceptual",
+        "question": "What is the difference between a worm and a virus?",
+        "expected_answer_keywords": [
+          "self-replicating",
+          "network propagation",
+          "file execution",
+          "payload",
+          "standalone"
+        ]
+      }
+    ],
+    "cs_threats_and_attacks.social_engineering": [
+      {
+        "level": "mid",
+        "type": "conceptual",
+        "question": "Give an example of a spear-phishing attack.",
+        "expected_answer_keywords": [
+          "targeted",
+          "specific individual",
+          "reconnaissance",
+          "trust",
+          "deception"
+        ]
+      }
+    ],
+    "cs_threats_and_attacks.spoofing": [
+      {
+        "level": "mid",
+        "type": "conceptual",
+        "question": "How does ARP spoofing work?",
+        "expected_answer_keywords": [
+          "mac address",
+          "ip address",
+          "gratuitous arp",
+          "mitm",
+          "layer 2"
+        ]
+      }
+    ]
+  },
+  "scoring_rules_reference": {
+    "source": "knowledge-base/scoring/engine.json",
+    "description": "Scoring rules for assessment are defined in engine.json"
+  }
+}

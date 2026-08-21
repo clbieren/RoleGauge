@@ -1,0 +1,100 @@
+{
+  "role_id": "cyber_security",
+  "level": "mid",
+  "title": "Cyber Security Engineer",
+  "description": "Mid-level position requiring hands-on implementation across multiple domains.",
+  "experience_range": "3-5 years",
+  "skills": [
+    {
+      "skill_id": "cs_networking",
+      "importance": 0.85,
+      "rationale": "Configuring VPNs and firewalls"
+    },
+    {
+      "skill_id": "cs_operating_systems",
+      "importance": 0.85,
+      "rationale": "Advanced hardening"
+    },
+    {
+      "skill_id": "cs_security_tools",
+      "importance": 0.9,
+      "rationale": "Proficient use of SIEM"
+    },
+    {
+      "skill_id": "cs_security_fundamentals",
+      "importance": 0.8,
+      "rationale": "Applying defense in depth"
+    },
+    {
+      "skill_id": "cs_threats_and_attacks",
+      "importance": 0.85,
+      "rationale": "Identifying vulnerabilities"
+    },
+    {
+      "skill_id": "cs_incident_response_forensics",
+      "importance": 0.8,
+      "rationale": "Triaging and using forensic tools"
+    },
+    {
+      "skill_id": "cs_hardening_defense",
+      "importance": 0.85,
+      "rationale": "Managing endpoint defenses"
+    },
+    {
+      "skill_id": "cs_cloud_security",
+      "importance": 0.8,
+      "rationale": "Securing cloud environments"
+    },
+    {
+      "skill_id": "cs_programming_scripting",
+      "importance": 0.75,
+      "rationale": "Writing Python tools"
+    },
+    {
+      "skill_id": "cs_cryptography",
+      "importance": 0.75,
+      "rationale": "Managing certificates"
+    },
+    {
+      "skill_id": "cs_frameworks_compliance",
+      "importance": 0.7,
+      "rationale": "Conducting threat models"
+    }
+  ],
+  "scoring": {
+    "method": "weighted_average",
+    "description": "Each skill score is multiplied by its importance weight. Final score is sum divided by sum of weights.",
+    "thresholds": {
+      "not_ready": {
+        "min": 0.0,
+        "max": 0.4,
+        "label": "Not Ready",
+        "description": "Significant gaps in mid-level skills"
+      },
+      "developing": {
+        "min": 0.4,
+        "max": 0.6,
+        "label": "Developing",
+        "description": "Growing into mid-level role"
+      },
+      "approaching": {
+        "min": 0.6,
+        "max": 0.75,
+        "label": "Approaching Ready",
+        "description": "Almost fully capable"
+      },
+      "ready": {
+        "min": 0.75,
+        "max": 0.9,
+        "label": "Ready",
+        "description": "Solid mid-level performer"
+      },
+      "exceeds": {
+        "min": 0.9,
+        "max": 1.0,
+        "label": "Exceeds Expectations",
+        "description": "Ready for senior responsibilities"
+      }
+    }
+  }
+}

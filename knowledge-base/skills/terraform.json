@@ -1,0 +1,333 @@
+{
+  "skill_id": "terraform",
+  "name": "Terraform / Infrastructure as Code",
+  "category": "iac",
+  "description": "Infrastructure as Code using Terraform including providers, resources, modules, state management, workspaces, and CI/CD integration.",
+  "subskills": [
+    {
+      "id": "providers",
+      "name": "Providers",
+      "description": "Configuring cloud and service providers, version constraints, and provider-specific resources.",
+      "keywords": [
+        "provider",
+        "required_providers",
+        "aws",
+        "azurerm",
+        "google",
+        "hashicorp",
+        "provider version"
+      ]
+    },
+    {
+      "id": "resources",
+      "name": "Resources & Data Sources",
+      "description": "Declaring resources, data sources, resource dependencies, meta-arguments (count, for_each, lifecycle).",
+      "keywords": [
+        "resource",
+        "data",
+        "depends_on",
+        "count",
+        "for_each",
+        "lifecycle",
+        "create_before_destroy",
+        "prevent_destroy"
+      ]
+    },
+    {
+      "id": "variables_outputs",
+      "name": "Variables & Outputs",
+      "description": "Input variables, output values, variable types, validation, and tfvars files.",
+      "keywords": [
+        "variable",
+        "output",
+        "terraform.tfvars",
+        "var.",
+        "local.",
+        "type",
+        "default",
+        "validation",
+        "sensitive"
+      ]
+    },
+    {
+      "id": "tf_modules",
+      "name": "Modules",
+      "description": "Creating reusable modules, module sources, versioning, and Terraform Registry.",
+      "keywords": [
+        "module",
+        "source",
+        "version",
+        "terraform registry",
+        "modules/",
+        "module."
+      ]
+    },
+    {
+      "id": "state_management",
+      "name": "State Management",
+      "description": "Understanding state files, remote backends, state locking, state commands, and import.",
+      "keywords": [
+        "terraform.tfstate",
+        "backend",
+        "s3",
+        "dynamodb",
+        "state lock",
+        "terraform state",
+        "terraform import",
+        "remote state"
+      ]
+    },
+    {
+      "id": "workflow",
+      "name": "Terraform Workflow",
+      "description": "Init, validate, plan, apply, destroy cycle and drift detection.",
+      "keywords": [
+        "terraform init",
+        "terraform plan",
+        "terraform apply",
+        "terraform destroy",
+        "terraform validate",
+        "terraform fmt"
+      ]
+    },
+    {
+      "id": "workspaces",
+      "name": "Workspaces & Environments",
+      "description": "Managing multiple environments with workspaces or directory-based patterns.",
+      "keywords": [
+        "workspace",
+        "terraform workspace",
+        "environments",
+        "dev",
+        "staging",
+        "prod",
+        "terragrunt"
+      ]
+    },
+    {
+      "id": "expressions_functions",
+      "name": "Expressions & Functions",
+      "description": "HCL expressions, built-in functions, conditionals, and dynamic blocks.",
+      "keywords": [
+        "lookup",
+        "merge",
+        "concat",
+        "join",
+        "format",
+        "dynamic",
+        "conditional",
+        "ternary",
+        "try",
+        "can"
+      ]
+    },
+    {
+      "id": "cicd_integration",
+      "name": "CI/CD Integration",
+      "description": "Automating Terraform in pipelines with plan/apply gates, policy-as-code, and drift detection.",
+      "keywords": [
+        "terraform plan",
+        "terraform apply",
+        "github actions",
+        "gitlab ci",
+        "atlantis",
+        "sentinel",
+        "OPA",
+        "checkov"
+      ]
+    },
+    {
+      "id": "tf_security_best_practices",
+      "name": "Security Best Practices",
+      "description": "Secret management, least privilege, sensitive variables, and policy enforcement.",
+      "keywords": [
+        "sensitive",
+        "vault",
+        "secrets manager",
+        "least privilege",
+        "checkov",
+        "tfsec",
+        "terrascan"
+      ]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "Terraform files present (.tf extension)",
+        "detection": "file_extension",
+        "pattern": "*.tf",
+        "strength": 0.6,
+        "maps_to": [
+          "terraform.resources",
+          "terraform.workflow"
+        ]
+      },
+      {
+        "signal": "Terraform module structure (modules/ directory)",
+        "detection": "directory_presence",
+        "pattern": "modules/|terraform/modules/",
+        "strength": 0.8,
+        "maps_to": [
+          "terraform.tf_modules"
+        ]
+      },
+      {
+        "signal": "Remote backend configuration",
+        "detection": "content_analysis",
+        "pattern": "backend \"s3\"|backend \"gcs\"|backend \"azurerm\"|backend \"remote\"",
+        "strength": 0.7,
+        "maps_to": [
+          "terraform.state_management"
+        ]
+      },
+      {
+        "signal": "Variables and outputs files present",
+        "detection": "file_presence",
+        "pattern": "variables.tf|outputs.tf|terraform.tfvars",
+        "strength": 0.5,
+        "maps_to": [
+          "terraform.variables_outputs"
+        ]
+      },
+      {
+        "signal": "Terraform in CI/CD pipeline",
+        "detection": "content_analysis",
+        "pattern": "terraform plan|terraform apply|terraform init",
+        "strength": 0.7,
+        "maps_to": [
+          "terraform.cicd_integration",
+          "terraform.workflow"
+        ]
+      },
+      {
+        "signal": "Terraform provider blocks with version constraints",
+        "detection": "content_analysis",
+        "pattern": "required_providers|provider.*version",
+        "strength": 0.5,
+        "maps_to": [
+          "terraform.providers"
+        ]
+      },
+      {
+        "signal": "Workspace or environment separation patterns",
+        "detection": "content_analysis",
+        "pattern": "terraform workspace|environments/|env/",
+        "strength": 0.6,
+        "maps_to": [
+          "terraform.workspaces"
+        ]
+      },
+      {
+        "signal": "Policy-as-code tools (Checkov, tfsec, OPA)",
+        "detection": "content_analysis",
+        "pattern": "checkov|tfsec|terrascan|sentinel|opa",
+        "strength": 0.8,
+        "maps_to": [
+          "terraform.tf_security_best_practices",
+          "terraform.cicd_integration"
+        ]
+      },
+      {
+        "signal": ".terraform.lock.hcl present (dependency lock)",
+        "detection": "file_presence",
+        "pattern": ".terraform.lock.hcl",
+        "strength": 0.4,
+        "maps_to": [
+          "terraform.workflow"
+        ]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "Terraform or IaC mentioned in skills",
+        "strength": 0.3,
+        "maps_to": [
+          "terraform.workflow"
+        ]
+      },
+      {
+        "signal": "Infrastructure as Code experience described",
+        "strength": 0.5,
+        "maps_to": [
+          "terraform.resources",
+          "terraform.tf_modules"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Terraform or IaC in skills/endorsements",
+        "strength": 0.2,
+        "maps_to": [
+          "terraform.workflow"
+        ]
+      },
+      {
+        "signal": "HashiCorp certification (Terraform Associate)",
+        "strength": 0.2,
+        "maps_to": [
+          "terraform.workflow"
+        ]
+      }
+    ],
+    "assessment": [
+      {
+        "signal": "Can write Terraform to provision cloud resources from scratch",
+        "strength": 1.0,
+        "maps_to": [
+          "terraform.providers",
+          "terraform.resources",
+          "terraform.variables_outputs"
+        ]
+      },
+      {
+        "signal": "Can create and use a reusable Terraform module",
+        "strength": 1.0,
+        "maps_to": [
+          "terraform.tf_modules"
+        ]
+      },
+      {
+        "signal": "Can configure remote state with locking",
+        "strength": 1.0,
+        "maps_to": [
+          "terraform.state_management"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "providers",
+        "resources",
+        "variables_outputs",
+        "workflow"
+      ],
+      "description": "Can write basic Terraform configurations with providers, resources, variables, and execute the plan/apply workflow."
+    },
+    "mid": {
+      "expected_subskills": [
+        "tf_modules",
+        "state_management",
+        "workspaces",
+        "expressions_functions"
+      ],
+      "description": "Can create reusable modules, manage remote state, handle multiple environments, and use advanced HCL features."
+    },
+    "senior": {
+      "expected_subskills": [
+        "cicd_integration",
+        "tf_security_best_practices"
+      ],
+      "description": "Can design enterprise IaC strategies, integrate Terraform into CI/CD with policy gates, and implement security best practices.",
+      "additional_expectations": [
+        "terragrunt",
+        "multi_cloud_iac",
+        "state_migration",
+        "custom_providers"
+      ]
+    }
+  }
+}

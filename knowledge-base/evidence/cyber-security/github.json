@@ -1,0 +1,141 @@
+{
+  "source_id": "github",
+  "name": "GitHub Repository Analysis - Cyber Security",
+  "description": "Signals extracted from GitHub repositories to evidence Cyber Security skills.",
+  "preprocessing_pipeline": {
+    "description": "Steps the backend takes BEFORE sending any data to AI for analysis.",
+    "steps": [
+      {
+        "step": 1,
+        "name": "repository_metadata",
+        "description": "Collect basic repository information via GitHub API.",
+        "data_points": [
+          "repository name and description",
+          "primary language"
+        ]
+      },
+      {
+        "step": 2,
+        "name": "file_tree_scan",
+        "description": "Scan the repository file tree for Security-relevant files.",
+        "target_files": [
+          {
+            "pattern": "iptables.rules|openvpn.conf",
+            "skill": "cs_networking",
+            "priority": "high"
+          },
+          {
+            "pattern": "SELINUX=enforcing|auditd",
+            "skill": "cs_operating_systems",
+            "priority": "high"
+          },
+          {
+            "pattern": "ssl_certificate|ssl_protocols",
+            "skill": "cs_cryptography",
+            "priority": "high"
+          },
+          {
+            "pattern": "*.nse|*.pcap|*.yara|*.sig",
+            "skill": "cs_security_tools",
+            "priority": "medium"
+          },
+          {
+            "pattern": "SECURITY.md|threat-model.md",
+            "skill": "cs_frameworks_compliance",
+            "priority": "low"
+          },
+          {
+            "pattern": "*.tf|*.yml",
+            "skill": "cs_cloud_security",
+            "priority": "medium"
+          },
+          {
+            "pattern": "*.tf|*.yml",
+            "skill": "cs_cloud_security",
+            "priority": "high"
+          },
+          {
+            "pattern": "*.rules|snort.conf",
+            "skill": "cs_networking",
+            "priority": "high"
+          },
+          {
+            "pattern": "pam.d",
+            "skill": "cs_operating_systems",
+            "priority": "high"
+          },
+          {
+            "pattern": "*.ps1",
+            "skill": "cs_programming_scripting",
+            "priority": "medium"
+          }
+        ]
+      },
+      {
+        "step": 3,
+        "name": "dependency_extraction",
+        "description": "Extract dependencies to identify security tools.",
+        "relevant_dependencies": {
+          "cryptography": [
+            "cryptography",
+            "bcrypt",
+            "argon2"
+          ],
+          "security_tools": [
+            "bandit",
+            "brakeman",
+            "checkov",
+            "tfsec"
+          ],
+          "programming_scripting": [
+            "pwntools",
+            "scapy",
+            "impacket",
+            "requests"
+          ],
+          "cloud_security": [
+            "boto3",
+            "google-cloud-storage",
+            "azure-mgmt-security",
+            "aws-sdk"
+          ]
+        }
+      },
+      {
+        "step": 4,
+        "name": "readme_extraction",
+        "description": "Extract README.md content.",
+        "data_points": [
+          "architecture diagrams or threat models"
+        ]
+      },
+      {
+        "step": 5,
+        "name": "relevant_content_extraction",
+        "description": "Extract the file content for AI analysis.",
+        "rules": [
+          "Only extract files identified in step 2"
+        ]
+      },
+      {
+        "step": 6,
+        "name": "commit_analysis",
+        "description": "Analyze recent commit history for security patterns (patching, vulnerability fixing).",
+        "data_points": [
+          "commit frequency and recency",
+          "commit message patterns (e.g., 'patched CVE', 'fixed auth bypass', 'updated crypto', 'implemented MFA', 'fixed XSS', 'sanitized input')",
+          "files changed in security-related commits"
+        ],
+        "limit": "Last 100 commits or 6 months"
+      }
+    ]
+  },
+  "ai_analysis_instructions": {
+    "tasks": [
+      "Map identified files and patterns to specific subskills using COMPOSITE KEYS."
+    ],
+    "output_format": {
+      "composite_key_example": "cs_networking.firewalls"
+    }
+  }
+}

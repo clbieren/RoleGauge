@@ -1,0 +1,286 @@
+{
+  "source_id": "github",
+  "name": "GitHub Repository Analysis",
+  "description": "Signals extracted from GitHub repositories to evidence DevOps skills. The backend pre-processes repositories before sending relevant data to AI.",
+  "preprocessing_pipeline": {
+    "description": "Steps the backend takes BEFORE sending any data to AI for analysis.",
+    "steps": [
+      {
+        "step": 1,
+        "name": "repository_metadata",
+        "description": "Collect basic repository information via GitHub API.",
+        "data_points": [
+          "repository name and description",
+          "primary language and all languages used (with byte counts)",
+          "stars, forks, and contributor count",
+          "creation date and last push date",
+          "default branch and branch count",
+          "license type",
+          "topics/tags"
+        ]
+      },
+      {
+        "step": 2,
+        "name": "file_tree_scan",
+        "description": "Scan the repository file tree for DevOps-relevant files and directories.",
+        "target_files": [
+          {
+            "pattern": "Dockerfile|*.Dockerfile",
+            "skill": "docker",
+            "priority": "high"
+          },
+          {
+            "pattern": "docker-compose.yml|docker-compose.yaml|compose.yml",
+            "skill": "docker",
+            "priority": "high"
+          },
+          {
+            "pattern": ".dockerignore",
+            "skill": "docker",
+            "priority": "medium"
+          },
+          {
+            "pattern": ".github/workflows/*.yml",
+            "skill": "cicd",
+            "priority": "high"
+          },
+          {
+            "pattern": "Jenkinsfile",
+            "skill": "cicd",
+            "priority": "high"
+          },
+          {
+            "pattern": ".gitlab-ci.yml",
+            "skill": "cicd",
+            "priority": "high"
+          },
+          {
+            "pattern": "*.tf",
+            "skill": "terraform",
+            "priority": "high"
+          },
+          {
+            "pattern": "*.tfvars|terraform.tfvars",
+            "skill": "terraform",
+            "priority": "medium"
+          },
+          {
+            "pattern": "ansible.cfg|playbook.yml|site.yml",
+            "skill": "ansible",
+            "priority": "high"
+          },
+          {
+            "pattern": "roles/*/tasks/main.yml",
+            "skill": "ansible",
+            "priority": "high"
+          },
+          {
+            "pattern": "*.j2",
+            "skill": "ansible",
+            "priority": "medium"
+          },
+          {
+            "pattern": "Chart.yaml|values.yaml",
+            "skill": "kubernetes",
+            "priority": "high"
+          },
+          {
+            "pattern": "kustomization.yaml",
+            "skill": "kubernetes",
+            "priority": "high"
+          },
+          {
+            "pattern": "k8s/|kubernetes/|manifests/|deploy/",
+            "skill": "kubernetes",
+            "priority": "high"
+          },
+          {
+            "pattern": "prometheus.yml|prometheus.yaml",
+            "skill": "monitoring_observability",
+            "priority": "high"
+          },
+          {
+            "pattern": "*dashboard*.json",
+            "skill": "monitoring_observability",
+            "priority": "medium"
+          },
+          {
+            "pattern": "*.sh",
+            "skill": "scripting",
+            "priority": "medium"
+          },
+          {
+            "pattern": "*.py",
+            "skill": "scripting",
+            "priority": "medium"
+          },
+          {
+            "pattern": ".gitignore",
+            "skill": "git",
+            "priority": "low"
+          },
+          {
+            "pattern": ".pre-commit-config.yaml|.husky/",
+            "skill": "git",
+            "priority": "medium"
+          },
+          {
+            "pattern": "nginx.conf|haproxy.cfg",
+            "skill": "networking",
+            "priority": "high"
+          },
+          {
+            "pattern": "SECURITY.md|.github/dependabot.yml|renovate.json",
+            "skill": "security_devsecops",
+            "priority": "medium"
+          },
+          {
+            "pattern": "aws_ec2.yml|inventory*.py",
+            "skill": "ansible",
+            "priority": "high"
+          },
+          {
+            "pattern": "*StatefulSet*|*DaemonSet*",
+            "skill": "kubernetes",
+            "priority": "high"
+          },
+          {
+            "pattern": "*.tf",
+            "skill": "terraform",
+            "priority": "high"
+          },
+          {
+            "pattern": "lvcreate|vgcreate",
+            "skill": "linux",
+            "priority": "medium"
+          }
+        ]
+      },
+      {
+        "step": 3,
+        "name": "dependency_extraction",
+        "description": "Extract dependencies from package manager files to identify tools and libraries used.",
+        "target_files": [
+          {
+            "file": "package.json",
+            "ecosystem": "nodejs"
+          },
+          {
+            "file": "requirements.txt|Pipfile|pyproject.toml",
+            "ecosystem": "python"
+          },
+          {
+            "file": "go.mod|go.sum",
+            "ecosystem": "golang"
+          },
+          {
+            "file": "pom.xml|build.gradle",
+            "ecosystem": "java"
+          },
+          {
+            "file": "Gemfile",
+            "ecosystem": "ruby"
+          },
+          {
+            "file": "Cargo.toml",
+            "ecosystem": "rust"
+          }
+        ],
+        "relevant_dependencies": {
+          "docker": [
+            "dockerode",
+            "docker-compose",
+            "testcontainers"
+          ],
+          "kubernetes": [
+            "@kubernetes/client-node",
+            "kubernetes",
+            "client-go",
+            "helm"
+          ],
+          "monitoring": [
+            "prom-client",
+            "opentelemetry",
+            "prometheus_client",
+            "winston",
+            "bunyan",
+            "logrus",
+            "zap"
+          ],
+          "cicd": [
+            "jest",
+            "pytest",
+            "mocha",
+            "junit",
+            "eslint",
+            "prettier"
+          ],
+          "cloud": [
+            "aws-sdk",
+            "boto3",
+            "azure-sdk",
+            "@google-cloud",
+            "pulumi"
+          ]
+        }
+      },
+      {
+        "step": 4,
+        "name": "readme_extraction",
+        "description": "Extract README.md content for project description, architecture, and technology mentions.",
+        "data_points": [
+          "project description and purpose",
+          "architecture diagrams or descriptions",
+          "technology stack mentions",
+          "deployment instructions",
+          "prerequisites and setup steps"
+        ]
+      },
+      {
+        "step": 5,
+        "name": "relevant_content_extraction",
+        "description": "For each identified DevOps-relevant file, extract the file content for AI analysis.",
+        "rules": [
+          "Only extract files identified in step 2 as relevant",
+          "For large files (>500 lines), extract only the first 200 lines and key sections",
+          "Never send entire application source code (*.js, *.java, *.go) unless it contains DevOps patterns",
+          "Prioritize configuration files over application code",
+          "Include directory structure listing (tree command output) for context"
+        ]
+      },
+      {
+        "step": 6,
+        "name": "commit_analysis",
+        "description": "Analyze recent commit history for DevOps patterns and contribution quality.",
+        "data_points": [
+          "commit frequency and recency",
+          "commit message patterns (conventional commits, descriptive messages)",
+          "files changed in commits (focus on DevOps-related changes)",
+          "branch and merge patterns"
+        ],
+        "limit": "Last 100 commits or 6 months, whichever is less"
+      }
+    ]
+  },
+  "ai_analysis_instructions": {
+    "description": "What AI should do with the preprocessed data.",
+    "tasks": [
+      "Map identified files and patterns to specific subskills from the skill definitions using COMPOSITE KEYS ({skill_id}.{subskill_id})",
+      "Assess the quality and complexity of DevOps configurations (basic vs. production-grade)",
+      "Identify evidence of best practices (security, optimization, documentation)",
+      "Flag subskills with 'not_yet_evidenced' or 'insufficient_evidence' (requires assessment)",
+      "Output structured Evidence JSON with composite keys ({skill_id}.{subskill_id}), status, and confidence per subskill"
+    ],
+    "output_format": {
+      "composite_key_example": "docker.container_security_best_practices",
+      "per_subskill": {
+        "status": "evidence_found | insufficient_evidence | not_yet_evidenced",
+        "confidence": "0.0 to 1.0",
+        "evidence_sources": [
+          "list of specific files or patterns that provide evidence"
+        ],
+        "quality_notes": "optional notes on quality/depth of evidence"
+      }
+    }
+  }
+}

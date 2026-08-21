@@ -1,0 +1,174 @@
+{
+  "skill_id": "cs_cloud_security",
+  "name": "Cloud Security",
+  "category": "cloud",
+  "description": "Securing cloud environments, SaaS/PaaS/IaaS, and Serverless.",
+  "subskills": [
+    {
+      "id": "cloud_concepts",
+      "name": "Cloud Security Concepts",
+      "description": "Shared responsibility model.",
+      "keywords": [
+        "Shared Responsibility Model",
+        "Cloud Security",
+        "Multi-tenant"
+      ]
+    },
+    {
+      "id": "cloud_models",
+      "name": "Cloud Models",
+      "description": "Private, Public, Hybrid.",
+      "keywords": [
+        "Private Cloud",
+        "Public Cloud",
+        "Hybrid Cloud"
+      ]
+    },
+    {
+      "id": "saas_paas_iaas",
+      "name": "SaaS/PaaS/IaaS",
+      "description": "Service models.",
+      "keywords": [
+        "SaaS",
+        "PaaS",
+        "IaaS"
+      ]
+    },
+    {
+      "id": "aws_security",
+      "name": "AWS Security",
+      "description": "AWS specific security.",
+      "keywords": [
+        "IAM",
+        "Security Groups",
+        "GuardDuty",
+        "CloudTrail"
+      ]
+    },
+    {
+      "id": "azure_security",
+      "name": "Azure Security",
+      "description": "Azure specific security.",
+      "keywords": [
+        "Azure AD",
+        "NSG",
+        "Azure Security Center"
+      ]
+    },
+    {
+      "id": "gcp_security",
+      "name": "GCP Security",
+      "description": "GCP specific security.",
+      "keywords": [
+        "Cloud IAM",
+        "VPC Service Controls",
+        "Security Command Center"
+      ]
+    },
+    {
+      "id": "iac_security",
+      "name": "IaC Security",
+      "description": "Securing Infrastructure as Code.",
+      "keywords": [
+        "Terraform security",
+        "cfn-nag",
+        "checkov",
+        "tfsec"
+      ]
+    },
+    {
+      "id": "serverless_security",
+      "name": "Serverless Security",
+      "description": "Securing Lambda/Functions.",
+      "keywords": [
+        "Serverless",
+        "AWS Lambda",
+        "Azure Functions"
+      ]
+    },
+    {
+      "id": "cspm",
+      "name": "CSPM",
+      "description": "Cloud Security Posture Management.",
+      "keywords": [
+        "CSPM",
+        "Prisma Cloud",
+        "Wiz",
+        "CWPP"
+      ]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "IaC security scanning in CI",
+        "detection": "content_analysis",
+        "pattern": "checkov|tfsec",
+        "strength": 0.8,
+        "maps_to": [
+          "cs_cloud_security.iac_security"
+        ]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "Managed AWS/Azure security",
+        "strength": 0.8,
+        "maps_to": [
+          "cs_cloud_security.aws_security",
+          "cs_cloud_security.azure_security"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Cloud Security",
+        "strength": 0.4,
+        "maps_to": [
+          "cs_cloud_security.cloud_concepts",
+          "cs_cloud_security.saas_paas_iaas"
+        ]
+      }
+    ],
+    "assessment": [
+      {
+        "signal": "Can design CSPM and Serverless security",
+        "strength": 1.0,
+        "maps_to": [
+          "cs_cloud_security.cspm",
+          "cs_cloud_security.serverless_security",
+          "cs_cloud_security.iac_security"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "cloud_concepts",
+        "cloud_models",
+        "saas_paas_iaas"
+      ],
+      "description": "Understands cloud service models and shared responsibility."
+    },
+    "mid": {
+      "expected_subskills": [
+        "aws_security",
+        "azure_security",
+        "gcp_security"
+      ],
+      "description": "Can secure major cloud provider environments."
+    },
+    "senior": {
+      "expected_subskills": [
+        "iac_security",
+        "serverless_security",
+        "cspm"
+      ],
+      "description": "Architects automated cloud security and posture management.",
+      "additional_expectations": [
+        "Can enforce security-as-code across a multi-cloud environment."
+      ]
+    }
+  }
+}

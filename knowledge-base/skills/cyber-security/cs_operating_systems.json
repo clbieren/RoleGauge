@@ -1,0 +1,160 @@
+{
+  "skill_id": "cs_operating_systems",
+  "name": "Operating Systems",
+  "category": "os_security",
+  "description": "Hardening, access control, and deep OS security mechanisms.",
+  "subskills": [
+    {
+      "id": "user_management",
+      "name": "User & Group Management",
+      "description": "Basic IAM on OS.",
+      "keywords": [
+        "/etc/passwd",
+        "groups",
+        "sudoers"
+      ]
+    },
+    {
+      "id": "auditing",
+      "name": "Auditing & Logging",
+      "description": "System event logging.",
+      "keywords": [
+        "auditd",
+        "syslog",
+        "journalctl"
+      ]
+    },
+    {
+      "id": "hardening",
+      "name": "OS Hardening",
+      "description": "Applying baselines.",
+      "keywords": [
+        "CIS benchmarks",
+        "STIGs",
+        "hardening"
+      ]
+    },
+    {
+      "id": "patch_management",
+      "name": "Patch Management",
+      "description": "Keeping systems updated securely.",
+      "keywords": [
+        "wsus",
+        "apt",
+        "yum",
+        "vulnerability patching"
+      ]
+    },
+    {
+      "id": "mac",
+      "name": "Mandatory Access Control",
+      "description": "Advanced access control systems.",
+      "keywords": [
+        "SELinux",
+        "AppArmor"
+      ]
+    },
+    {
+      "id": "pam_config",
+      "name": "PAM Configuration",
+      "description": "Pluggable Authentication Modules.",
+      "keywords": [
+        "PAM",
+        "authentication",
+        "LDAP integration"
+      ]
+    },
+    {
+      "id": "kernel_tuning",
+      "name": "Kernel Security Tuning",
+      "description": "Securing the OS kernel.",
+      "keywords": [
+        "sysctl",
+        "grub",
+        "ebpf",
+        "seccomp"
+      ]
+    },
+    {
+      "id": "malware_analysis",
+      "name": "Basic Malware Analysis",
+      "description": "Analyzing suspicious processes.",
+      "keywords": [
+        "strace",
+        "lsof",
+        "memory forensics"
+      ]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "Hardening scripts",
+        "detection": "content_analysis",
+        "pattern": "SELINUX=enforcing|auditd",
+        "strength": 0.8,
+        "maps_to": [
+          "cs_operating_systems.mac",
+          "cs_operating_systems.auditing"
+        ]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "Linux hardening experience",
+        "strength": 0.7,
+        "maps_to": [
+          "cs_operating_systems.hardening",
+          "cs_operating_systems.patch_management"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Linux Security endorsement",
+        "strength": 0.3,
+        "maps_to": [
+          "cs_operating_systems.hardening"
+        ]
+      }
+    ],
+    "assessment": [
+      {
+        "signal": "Can implement MAC and kernel tuning",
+        "strength": 1.0,
+        "maps_to": [
+          "cs_operating_systems.mac",
+          "cs_operating_systems.kernel_tuning"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "user_management",
+        "auditing"
+      ],
+      "description": "Can manage basic permissions and read logs."
+    },
+    "mid": {
+      "expected_subskills": [
+        "hardening",
+        "patch_management",
+        "mac"
+      ],
+      "description": "Can apply CIS benchmarks and manage SELinux/AppArmor."
+    },
+    "senior": {
+      "expected_subskills": [
+        "pam_config",
+        "kernel_tuning",
+        "malware_analysis"
+      ],
+      "description": "Deep understanding of kernel security and authentication.",
+      "additional_expectations": [
+        "Can analyze compromised systems and write custom PAM modules."
+      ]
+    }
+  }
+}

@@ -1,0 +1,399 @@
+{
+  "skill_id": "kubernetes",
+  "name": "Kubernetes",
+  "category": "orchestration",
+  "description": "Container orchestration including workload management, networking, configuration, security, scaling, and package management with Helm.",
+  "subskills": [
+    {
+      "id": "pods",
+      "name": "Pods",
+      "description": "Understanding pod lifecycle, multi-container pods, init containers, and sidecar patterns.",
+      "keywords": [
+        "pod",
+        "container",
+        "init container",
+        "sidecar",
+        "pod spec",
+        "restart policy",
+        "pod lifecycle"
+      ]
+    },
+    {
+      "id": "deployments_replicasets",
+      "name": "Deployments & ReplicaSets",
+      "description": "Managing stateless workloads with deployments, rolling updates, rollbacks, and scaling.",
+      "keywords": [
+        "deployment",
+        "replicaset",
+        "rolling update",
+        "rollback",
+        "replicas",
+        "strategy",
+        "kubectl rollout"
+      ]
+    },
+    {
+      "id": "services",
+      "name": "Services & Service Discovery",
+      "description": "ClusterIP, NodePort, LoadBalancer services, and internal DNS-based service discovery.",
+      "keywords": [
+        "service",
+        "ClusterIP",
+        "NodePort",
+        "LoadBalancer",
+        "selector",
+        "port",
+        "targetPort",
+        "kube-dns",
+        "CoreDNS"
+      ]
+    },
+    {
+      "id": "ingress",
+      "name": "Ingress & Traffic Management",
+      "description": "Ingress controllers, path-based routing, TLS termination, and hostname-based routing.",
+      "keywords": [
+        "ingress",
+        "IngressController",
+        "nginx-ingress",
+        "traefik",
+        "path",
+        "host",
+        "tls",
+        "annotations"
+      ]
+    },
+    {
+      "id": "configmaps_secrets",
+      "name": "ConfigMaps & Secrets",
+      "description": "Externalizing configuration and sensitive data from container images.",
+      "keywords": [
+        "configmap",
+        "secret",
+        "env",
+        "envFrom",
+        "volume mount",
+        "kubectl create configmap",
+        "kubectl create secret"
+      ]
+    },
+    {
+      "id": "namespaces",
+      "name": "Namespaces & Resource Organization",
+      "description": "Logical isolation, resource quotas, and limit ranges.",
+      "keywords": [
+        "namespace",
+        "resource quota",
+        "limit range",
+        "kubectl create namespace",
+        "default",
+        "kube-system"
+      ]
+    },
+    {
+      "id": "persistent_storage",
+      "name": "Persistent Storage (PV/PVC)",
+      "description": "Persistent Volumes, Persistent Volume Claims, Storage Classes, and dynamic provisioning.",
+      "keywords": [
+        "PersistentVolume",
+        "PersistentVolumeClaim",
+        "StorageClass",
+        "dynamic provisioning",
+        "accessModes",
+        "ReadWriteOnce"
+      ]
+    },
+    {
+      "id": "rbac",
+      "name": "RBAC & Security",
+      "description": "Role-Based Access Control, Roles, ClusterRoles, RoleBindings, ServiceAccounts, and security contexts.",
+      "keywords": [
+        "RBAC",
+        "Role",
+        "ClusterRole",
+        "RoleBinding",
+        "ClusterRoleBinding",
+        "ServiceAccount",
+        "securityContext"
+      ]
+    },
+    {
+      "id": "helm",
+      "name": "Helm Package Manager",
+      "description": "Installing, upgrading, creating Helm charts, values files, and chart repositories.",
+      "keywords": [
+        "helm",
+        "chart",
+        "values.yaml",
+        "helm install",
+        "helm upgrade",
+        "helm template",
+        "helm repo",
+        "Chart.yaml"
+      ]
+    },
+    {
+      "id": "resource_management",
+      "name": "Resource Requests & Limits",
+      "description": "CPU/memory requests and limits, QoS classes, and Horizontal Pod Autoscaler (HPA).",
+      "keywords": [
+        "resources",
+        "requests",
+        "limits",
+        "cpu",
+        "memory",
+        "HPA",
+        "autoscaler",
+        "QoS"
+      ]
+    },
+    {
+      "id": "health_probes",
+      "name": "Health Probes",
+      "description": "Liveness, readiness, and startup probes for container health management.",
+      "keywords": [
+        "livenessProbe",
+        "readinessProbe",
+        "startupProbe",
+        "httpGet",
+        "tcpSocket",
+        "exec"
+      ]
+    },
+    {
+      "id": "statefulsets_daemonsets",
+      "name": "StatefulSets & DaemonSets",
+      "description": "Managing stateful workloads and node-level daemons.",
+      "keywords": [
+        "StatefulSet",
+        "DaemonSet",
+        "headless service",
+        "ordinal",
+        "volumeClaimTemplates"
+      ]
+    },
+    {
+      "id": "operators_crds",
+      "name": "Operators & Custom Resources",
+      "description": "Extending Kubernetes with Custom Resource Definitions and operator pattern.",
+      "keywords": [
+        "CRD",
+        "CustomResourceDefinition",
+        "operator",
+        "controller",
+        "custom resource",
+        "operator-sdk"
+      ]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "Kubernetes YAML manifests present (kind: Deployment, Service, etc.)",
+        "detection": "content_analysis",
+        "pattern": "kind: (Deployment|Service|Pod|Ingress|ConfigMap|Secret|StatefulSet|DaemonSet)",
+        "strength": 0.7,
+        "maps_to": [
+          "kubernetes.deployments_replicasets",
+          "kubernetes.services",
+          "kubernetes.pods",
+          "kubernetes.ingress",
+          "kubernetes.configmaps_secrets"
+        ]
+      },
+      {
+        "signal": "Helm chart structure (Chart.yaml, values.yaml, templates/)",
+        "detection": "file_presence",
+        "pattern": "Chart.yaml|values.yaml|templates/",
+        "strength": 0.8,
+        "maps_to": [
+          "kubernetes.helm"
+        ]
+      },
+      {
+        "signal": "Kustomize configuration (kustomization.yaml)",
+        "detection": "file_presence",
+        "pattern": "kustomization.yaml|kustomization.yml",
+        "strength": 0.7,
+        "maps_to": [
+          "kubernetes.deployments_replicasets"
+        ]
+      },
+      {
+        "signal": "RBAC definitions (Role, ClusterRole, ServiceAccount)",
+        "detection": "content_analysis",
+        "pattern": "kind: (Role|ClusterRole|RoleBinding|ClusterRoleBinding|ServiceAccount)",
+        "strength": 0.8,
+        "maps_to": [
+          "kubernetes.rbac"
+        ]
+      },
+      {
+        "signal": "Resource requests and limits defined in manifests",
+        "detection": "content_analysis",
+        "pattern": "resources:\\s*(requests:|limits:)",
+        "strength": 0.7,
+        "maps_to": [
+          "kubernetes.resource_management"
+        ]
+      },
+      {
+        "signal": "Health probes defined (liveness, readiness)",
+        "detection": "content_analysis",
+        "pattern": "livenessProbe:|readinessProbe:|startupProbe:",
+        "strength": 0.7,
+        "maps_to": [
+          "kubernetes.health_probes"
+        ]
+      },
+      {
+        "signal": "Ingress resource with TLS and routing rules",
+        "detection": "content_analysis",
+        "pattern": "kind: Ingress.*tls:|kind: Ingress.*rules:",
+        "strength": 0.7,
+        "maps_to": [
+          "kubernetes.ingress"
+        ]
+      },
+      {
+        "signal": "PersistentVolumeClaim or StorageClass definitions",
+        "detection": "content_analysis",
+        "pattern": "kind: (PersistentVolumeClaim|PersistentVolume|StorageClass)",
+        "strength": 0.6,
+        "maps_to": [
+          "kubernetes.persistent_storage"
+        ]
+      },
+      {
+        "signal": "HPA (Horizontal Pod Autoscaler) configuration",
+        "detection": "content_analysis",
+        "pattern": "kind: HorizontalPodAutoscaler",
+        "strength": 0.8,
+        "maps_to": [
+          "kubernetes.resource_management"
+        ]
+      },
+      {
+        "signal": "CRD or operator definitions",
+        "detection": "content_analysis",
+        "pattern": "kind: CustomResourceDefinition|operator-sdk|controller-runtime",
+        "strength": 0.9,
+        "maps_to": [
+          "kubernetes.operators_crds"
+        ]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "Kubernetes or K8s mentioned in skills",
+        "strength": 0.3,
+        "maps_to": [
+          "kubernetes.pods",
+          "kubernetes.deployments_replicasets"
+        ]
+      },
+      {
+        "signal": "Kubernetes cluster management experience described",
+        "strength": 0.5,
+        "maps_to": [
+          "kubernetes.namespaces",
+          "kubernetes.rbac",
+          "kubernetes.resource_management"
+        ]
+      },
+      {
+        "signal": "Helm mentioned in skills or projects",
+        "strength": 0.4,
+        "maps_to": [
+          "kubernetes.helm"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Kubernetes or K8s in skills/endorsements",
+        "strength": 0.2,
+        "maps_to": [
+          "kubernetes.pods"
+        ]
+      },
+      {
+        "signal": "CKA/CKAD/CKS certification",
+        "strength": 0.2,
+        "maps_to": [
+          "kubernetes.pods"
+        ]
+      }
+    ],
+    "assessment": [
+      {
+        "signal": "Can deploy an application to Kubernetes with proper manifests",
+        "strength": 1.0,
+        "maps_to": [
+          "kubernetes.deployments_replicasets",
+          "kubernetes.services",
+          "kubernetes.configmaps_secrets"
+        ]
+      },
+      {
+        "signal": "Can configure Ingress with TLS for external access",
+        "strength": 1.0,
+        "maps_to": [
+          "kubernetes.ingress"
+        ]
+      },
+      {
+        "signal": "Can implement RBAC for a multi-tenant cluster",
+        "strength": 1.0,
+        "maps_to": [
+          "kubernetes.rbac",
+          "kubernetes.namespaces"
+        ]
+      },
+      {
+        "signal": "Can create and deploy a custom Helm chart",
+        "strength": 1.0,
+        "maps_to": [
+          "kubernetes.helm"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "pods",
+        "deployments_replicasets",
+        "services",
+        "configmaps_secrets",
+        "namespaces",
+        "health_probes"
+      ],
+      "description": "Can deploy applications using Deployments and Services, manage configuration with ConfigMaps/Secrets, and understand pod lifecycle."
+    },
+    "mid": {
+      "expected_subskills": [
+        "ingress",
+        "persistent_storage",
+        "rbac",
+        "helm",
+        "resource_management",
+        "statefulsets_daemonsets"
+      ],
+      "description": "Can configure Ingress, manage persistent storage, implement RBAC, deploy with Helm, and handle resource management."
+    },
+    "senior": {
+      "expected_subskills": [
+        "operators_crds"
+      ],
+      "description": "Can design and manage production clusters, build custom operators, implement advanced networking (service mesh), and optimize cluster performance.",
+      "additional_expectations": [
+        "cluster_design",
+        "multi_cluster",
+        "service_mesh",
+        "cost_optimization",
+        "disaster_recovery"
+      ]
+    }
+  }
+}

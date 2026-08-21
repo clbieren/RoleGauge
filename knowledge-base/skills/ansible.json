@@ -1,0 +1,284 @@
+{
+  "skill_id": "ansible",
+  "name": "Ansible / Configuration Management",
+  "category": "configuration_management",
+  "description": "Configuration management and automation using Ansible including playbooks, roles, inventory management, templates, vault, and dynamic inventory.",
+  "subskills": [
+    {
+      "id": "inventory",
+      "name": "Inventory Management",
+      "description": "Static and dynamic inventory files, host groups, group variables, and host variables.",
+      "keywords": [
+        "inventory",
+        "hosts",
+        "group_vars",
+        "host_vars",
+        "ini",
+        "yaml",
+        "children",
+        "all"
+      ]
+    },
+    {
+      "id": "playbooks",
+      "name": "Playbooks",
+      "description": "Writing YAML playbooks with plays, tasks, handlers, and variables.",
+      "keywords": [
+        "playbook",
+        "hosts:",
+        "tasks:",
+        "handlers:",
+        "become:",
+        "vars:",
+        "name:",
+        "notify:"
+      ]
+    },
+    {
+      "id": "roles",
+      "name": "Roles",
+      "description": "Organizing playbooks into reusable roles with standardized directory structure.",
+      "keywords": [
+        "role",
+        "roles/",
+        "tasks/main.yml",
+        "handlers/main.yml",
+        "templates/",
+        "vars/",
+        "meta/",
+        "defaults/"
+      ]
+    },
+    {
+      "id": "ansible_modules",
+      "name": "Modules",
+      "description": "Using built-in and custom modules for system administration tasks.",
+      "keywords": [
+        "module",
+        "apt",
+        "yum",
+        "copy",
+        "template",
+        "service",
+        "file",
+        "user",
+        "group",
+        "cron",
+        "git"
+      ]
+    },
+    {
+      "id": "templates",
+      "name": "Jinja2 Templates",
+      "description": "Dynamic configuration file generation using Jinja2 templating engine.",
+      "keywords": [
+        "template",
+        "jinja2",
+        "{{ }}",
+        "{% %}",
+        ".j2",
+        "filters",
+        "loops",
+        "conditionals"
+      ]
+    },
+    {
+      "id": "vault",
+      "name": "Ansible Vault",
+      "description": "Encrypting sensitive data (passwords, keys) within playbooks and variable files.",
+      "keywords": [
+        "ansible-vault",
+        "encrypt",
+        "decrypt",
+        "vault_password",
+        "vault-id",
+        "no_log"
+      ]
+    },
+    {
+      "id": "dynamic_inventory",
+      "name": "Dynamic Inventory",
+      "description": "Auto-generating inventory from cloud providers (AWS, Azure, GCP) or external sources.",
+      "keywords": [
+        "dynamic inventory",
+        "aws_ec2",
+        "azure_rm",
+        "gcp_compute",
+        "inventory plugin",
+        "script"
+      ]
+    },
+    {
+      "id": "idempotency",
+      "name": "Idempotency & Best Practices",
+      "description": "Writing idempotent tasks, check mode, diff mode, and testing strategies.",
+      "keywords": [
+        "idempotent",
+        "check mode",
+        "diff",
+        "--check",
+        "--diff",
+        "molecule",
+        "ansible-lint"
+      ]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "Ansible playbook files present",
+        "detection": "content_analysis",
+        "pattern": "hosts:.*tasks:|ansible.cfg|ansible.yml",
+        "strength": 0.7,
+        "maps_to": [
+          "ansible.playbooks"
+        ]
+      },
+      {
+        "signal": "Ansible role directory structure",
+        "detection": "directory_presence",
+        "pattern": "roles/*/tasks/main.yml",
+        "strength": 0.8,
+        "maps_to": [
+          "ansible.roles"
+        ]
+      },
+      {
+        "signal": "Jinja2 template files (.j2)",
+        "detection": "file_extension",
+        "pattern": "*.j2",
+        "strength": 0.6,
+        "maps_to": [
+          "ansible.templates"
+        ]
+      },
+      {
+        "signal": "Ansible inventory files",
+        "detection": "file_presence",
+        "pattern": "inventory|hosts|inventory.yml|inventory.ini",
+        "strength": 0.5,
+        "maps_to": [
+          "ansible.inventory"
+        ]
+      },
+      {
+        "signal": "Ansible Vault encrypted files",
+        "detection": "content_analysis",
+        "pattern": "\\$ANSIBLE_VAULT",
+        "strength": 0.8,
+        "maps_to": [
+          "ansible.vault"
+        ]
+      },
+      {
+        "signal": "ansible.cfg configuration file",
+        "detection": "file_presence",
+        "pattern": "ansible.cfg",
+        "strength": 0.5,
+        "maps_to": [
+          "ansible.playbooks"
+        ]
+      },
+      {
+        "signal": "group_vars or host_vars directories",
+        "detection": "directory_presence",
+        "pattern": "group_vars/|host_vars/",
+        "strength": 0.6,
+        "maps_to": [
+          "ansible.inventory"
+        ]
+      },
+      {
+        "signal": "Molecule testing configuration",
+        "detection": "file_presence",
+        "pattern": "molecule/|molecule.yml",
+        "strength": 0.8,
+        "maps_to": [
+          "ansible.idempotency"
+        ]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "Ansible mentioned in skills",
+        "strength": 0.3,
+        "maps_to": [
+          "ansible.playbooks"
+        ]
+      },
+      {
+        "signal": "Configuration management experience described",
+        "strength": 0.4,
+        "maps_to": [
+          "ansible.playbooks",
+          "ansible.roles"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Ansible in skills/endorsements",
+        "strength": 0.2,
+        "maps_to": [
+          "ansible.playbooks"
+        ]
+      }
+    ],
+    "assessment": [
+      {
+        "signal": "Can write an Ansible playbook to configure a server",
+        "strength": 1.0,
+        "maps_to": [
+          "ansible.playbooks",
+          "ansible.ansible_modules"
+        ]
+      },
+      {
+        "signal": "Can create reusable Ansible roles",
+        "strength": 1.0,
+        "maps_to": [
+          "ansible.roles",
+          "ansible.templates"
+        ]
+      },
+      {
+        "signal": "Can encrypt and manage secrets with Ansible Vault",
+        "strength": 1.0,
+        "maps_to": [
+          "ansible.vault"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "inventory",
+        "playbooks",
+        "ansible_modules"
+      ],
+      "description": "Can write basic playbooks, manage inventory, use common modules, and understand handlers."
+    },
+    "mid": {
+      "expected_subskills": [
+        "roles",
+        "templates",
+        "vault",
+        "idempotency"
+      ],
+      "description": "Can create reusable roles, use Jinja2 templates, encrypt secrets, and write robust error-handling logic."
+    },
+    "senior": {
+      "expected_subskills": [
+        "dynamic_inventory"
+      ],
+      "description": "Can design enterprise configuration management strategies, implement dynamic inventory, and integrate with CI/CD.",
+      "additional_expectations": [
+        "custom_modules",
+        "ansible_tower_awx",
+        "performance_tuning",
+        "testing_with_molecule"
+      ]
+    }
+  }
+}

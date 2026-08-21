@@ -1,0 +1,276 @@
+{
+  "skill_id": "scripting",
+  "name": "Scripting (Bash & Python)",
+  "category": "programming",
+  "description": "Automation scripting using Bash and Python for task automation, system administration, and DevOps workflows.",
+  "subskills": [
+    {
+      "id": "bash_fundamentals",
+      "name": "Bash Scripting Fundamentals",
+      "description": "Variables, control structures (if/else, loops), functions, exit codes, and script structure.",
+      "keywords": [
+        "bash",
+        "#!/bin/bash",
+        "if",
+        "then",
+        "fi",
+        "for",
+        "while",
+        "case",
+        "function",
+        "exit"
+      ]
+    },
+    {
+      "id": "text_processing",
+      "name": "Text Processing & Pipelines",
+      "description": "Using grep, sed, awk, and piping for data transformation and log analysis.",
+      "keywords": [
+        "grep",
+        "sed",
+        "awk",
+        "cut",
+        "sort",
+        "uniq",
+        "pipe",
+        "xargs",
+        "tee"
+      ]
+    },
+    {
+      "id": "python_fundamentals",
+      "name": "Python Scripting Fundamentals",
+      "description": "Python basics for automation: file I/O, string manipulation, modules, and error handling.",
+      "keywords": [
+        "python",
+        "import",
+        "def",
+        "class",
+        "try",
+        "except",
+        "with",
+        "open",
+        "os",
+        "sys",
+        "json"
+      ]
+    },
+    {
+      "id": "api_interaction",
+      "name": "API Interaction & HTTP Requests",
+      "description": "Using curl, wget, or Python requests library to interact with REST APIs.",
+      "keywords": [
+        "curl",
+        "wget",
+        "requests",
+        "urllib",
+        "json",
+        "api",
+        "rest",
+        "http"
+      ]
+    },
+    {
+      "id": "file_system_automation",
+      "name": "File System Automation",
+      "description": "Automating file operations: backup, cleanup, log rotation, and bulk processing.",
+      "keywords": [
+        "backup",
+        "rsync",
+        "logrotate",
+        "find",
+        "tar",
+        "cron",
+        "scheduled task"
+      ]
+    },
+    {
+      "id": "error_handling_logging",
+      "name": "Error Handling & Logging",
+      "description": "Robust error handling, exit codes, logging to files, and notification mechanisms.",
+      "keywords": [
+        "set -e",
+        "set -o pipefail",
+        "trap",
+        "exit code",
+        "$?",
+        "logger",
+        "logging"
+      ]
+    },
+    {
+      "id": "regex",
+      "name": "Regular Expressions",
+      "description": "Pattern matching for text extraction, validation, and transformation.",
+      "keywords": [
+        "regex",
+        "regexp",
+        "pattern",
+        "match",
+        "grep -E",
+        "re.match",
+        "re.search",
+        "re.findall"
+      ]
+    },
+    {
+      "id": "cli_tool_development",
+      "name": "Custom CLI Tool Development",
+      "description": "Building custom CLI utilities with argument parsing, subcommands, and structured output.",
+      "keywords": [
+        "argparse",
+        "click",
+        "typer",
+        "cobra",
+        "getopt",
+        "subcommand",
+        "cli",
+        "rich"
+      ]
+    },
+    {
+      "id": "script_testing_packaging",
+      "name": "Script Testing, Linting & Packaging",
+      "description": "Writing automated tests for scripts, static analysis/linting, and packaging for distribution.",
+      "keywords": [
+        "pytest",
+        "unittest",
+        "shellcheck",
+        "flake8",
+        "black",
+        "mypy",
+        "setuptools",
+        "poetry"
+      ]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "Bash scripts (.sh) with proper shebang and structure",
+        "detection": "file_extension_and_content",
+        "pattern": "*.sh with #!/bin/bash",
+        "strength": 0.6,
+        "maps_to": [
+          "scripting.bash_fundamentals"
+        ]
+      },
+      {
+        "signal": "Python scripts (.py) for automation tasks",
+        "detection": "file_extension",
+        "pattern": "*.py",
+        "strength": 0.5,
+        "maps_to": [
+          "scripting.python_fundamentals"
+        ]
+      },
+      {
+        "signal": "Error handling patterns (set -e, trap, try/except)",
+        "detection": "content_analysis",
+        "pattern": "set -e|set -o pipefail|trap|try:|except:",
+        "strength": 0.7,
+        "maps_to": [
+          "scripting.error_handling_logging"
+        ]
+      },
+      {
+        "signal": "API interaction code (requests, curl in scripts)",
+        "detection": "content_analysis",
+        "pattern": "import requests|curl|urllib|httpx",
+        "strength": 0.6,
+        "maps_to": [
+          "scripting.api_interaction"
+        ]
+      },
+      {
+        "signal": "Text processing with grep/sed/awk in scripts",
+        "detection": "content_analysis",
+        "pattern": "grep|sed|awk|cut.*\\|",
+        "strength": 0.5,
+        "maps_to": [
+          "scripting.text_processing"
+        ]
+      },
+      {
+        "signal": "ShellCheck or Pytest configuration/invocation",
+        "detection": "content_analysis",
+        "pattern": "shellcheck|pytest|flake8",
+        "strength": 0.8,
+        "maps_to": [
+          "scripting.script_testing_packaging"
+        ]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "Bash or Python scripting mentioned",
+        "strength": 0.3,
+        "maps_to": [
+          "scripting.bash_fundamentals",
+          "scripting.python_fundamentals"
+        ]
+      },
+      {
+        "signal": "Automation or scripting experience described",
+        "strength": 0.4,
+        "maps_to": [
+          "scripting.file_system_automation"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Bash or Python in skills/endorsements",
+        "strength": 0.2,
+        "maps_to": [
+          "scripting.bash_fundamentals",
+          "scripting.python_fundamentals"
+        ]
+      }
+    ],
+    "assessment": [
+      {
+        "signal": "Can write a Bash script to automate a system task",
+        "strength": 1.0,
+        "maps_to": [
+          "scripting.bash_fundamentals",
+          "scripting.file_system_automation"
+        ]
+      },
+      {
+        "signal": "Can write a Python script to interact with a REST API",
+        "strength": 1.0,
+        "maps_to": [
+          "scripting.python_fundamentals",
+          "scripting.api_interaction"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "bash_fundamentals",
+        "text_processing",
+        "python_fundamentals",
+        "file_system_automation"
+      ],
+      "description": "Can write basic Bash and Python scripts for task automation, text processing, and file management."
+    },
+    "mid": {
+      "expected_subskills": [
+        "api_interaction",
+        "error_handling_logging",
+        "regex"
+      ],
+      "description": "Can write robust scripts with error handling, API interaction, and complex text processing."
+    },
+    "senior": {
+      "expected_subskills": [
+        "cli_tool_development",
+        "script_testing_packaging"
+      ],
+      "description": "Can design and maintain complex automation frameworks, build custom CLI tools with argument parsing, test and package scripts for production distribution."
+    }
+  }
+}

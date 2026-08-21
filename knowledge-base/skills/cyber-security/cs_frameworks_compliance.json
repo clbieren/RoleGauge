@@ -1,0 +1,172 @@
+{
+  "skill_id": "cs_frameworks_compliance",
+  "name": "Frameworks & Compliance",
+  "category": "risk_compliance",
+  "description": "Governance, risk management, and compliance frameworks.",
+  "subskills": [
+    {
+      "id": "risk_assessment",
+      "name": "Risk Assessment",
+      "description": "Identifying risks.",
+      "keywords": [
+        "Risk Matrix",
+        "Likelihood",
+        "Impact"
+      ]
+    },
+    {
+      "id": "security_policies",
+      "name": "Security Policies",
+      "description": "Drafting policies.",
+      "keywords": [
+        "AUP",
+        "Password Policy",
+        "Incident Response Plan"
+      ]
+    },
+    {
+      "id": "iso27001",
+      "name": "ISO 27001 Basics",
+      "description": "ISMS framework.",
+      "keywords": [
+        "ISMS",
+        "ISO 27001",
+        "Statement of Applicability"
+      ]
+    },
+    {
+      "id": "threat_modeling",
+      "name": "Threat Modeling",
+      "description": "Designing secure systems.",
+      "keywords": [
+        "STRIDE",
+        "DREAD",
+        "PASTA"
+      ]
+    },
+    {
+      "id": "nist_csf",
+      "name": "NIST CSF",
+      "description": "NIST framework.",
+      "keywords": [
+        "NIST",
+        "Identify Protect Detect Respond Recover"
+      ]
+    },
+    {
+      "id": "data_privacy",
+      "name": "Data Privacy (GDPR/CCPA)",
+      "description": "Privacy regulations.",
+      "keywords": [
+        "GDPR",
+        "CCPA",
+        "DPIA",
+        "PII"
+      ]
+    },
+    {
+      "id": "soc2",
+      "name": "SOC 2",
+      "description": "Service Organization Control.",
+      "keywords": [
+        "SOC 2 Type II",
+        "Trust Services Criteria",
+        "AICPA"
+      ]
+    },
+    {
+      "id": "third_party_risk",
+      "name": "Third-Party Risk",
+      "description": "Vendor management.",
+      "keywords": [
+        "Vendor Assessment",
+        "TPRM",
+        "Supply Chain Risk"
+      ]
+    },
+    {
+      "id": "compliance_automation",
+      "name": "Compliance Automation",
+      "description": "Automating evidence collection.",
+      "keywords": [
+        "Vanta",
+        "Drata",
+        "Compliance as Code"
+      ]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "Policies in repo",
+        "detection": "file_presence",
+        "pattern": "SECURITY.md|threat-model",
+        "strength": 0.5,
+        "maps_to": [
+          "cs_frameworks_compliance.security_policies",
+          "cs_frameworks_compliance.threat_modeling"
+        ]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "Led audits",
+        "strength": 0.9,
+        "maps_to": [
+          "cs_frameworks_compliance.iso27001",
+          "cs_frameworks_compliance.soc2"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Compliance skills",
+        "strength": 0.4,
+        "maps_to": [
+          "cs_frameworks_compliance.risk_assessment",
+          "cs_frameworks_compliance.nist_csf"
+        ]
+      }
+    ],
+    "assessment": [
+      {
+        "signal": "Can build complete ISMS",
+        "strength": 1.0,
+        "maps_to": [
+          "cs_frameworks_compliance.iso27001",
+          "cs_frameworks_compliance.soc2",
+          "cs_frameworks_compliance.third_party_risk"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "risk_assessment",
+        "security_policies",
+        "iso27001"
+      ],
+      "description": "Understands basic risk concepts and policies."
+    },
+    "mid": {
+      "expected_subskills": [
+        "threat_modeling",
+        "nist_csf",
+        "data_privacy"
+      ],
+      "description": "Applies frameworks and models threats."
+    },
+    "senior": {
+      "expected_subskills": [
+        "soc2",
+        "third_party_risk",
+        "compliance_automation"
+      ],
+      "description": "Leads audit programs and automates compliance.",
+      "additional_expectations": [
+        "Successfully guided an organization through SOC2 Type II."
+      ]
+    }
+  }
+}

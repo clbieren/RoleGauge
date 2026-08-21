@@ -1,0 +1,167 @@
+{
+  "skill_id": "cs_security_fundamentals",
+  "name": "Security Fundamentals",
+  "category": "fundamentals",
+  "description": "Core cybersecurity concepts including CIA Triad, Defense in Depth, and Zero Trust.",
+  "subskills": [
+    {
+      "id": "cia_triad",
+      "name": "CIA Triad",
+      "description": "Confidentiality, Integrity, Availability.",
+      "keywords": [
+        "CIA",
+        "Confidentiality",
+        "Integrity",
+        "Availability"
+      ]
+    },
+    {
+      "id": "auth_vs_authz",
+      "name": "Auth vs AuthZ",
+      "description": "Authentication vs Authorization.",
+      "keywords": [
+        "Authentication",
+        "Authorization",
+        "RBAC",
+        "ABAC",
+        "OAuth",
+        "SAML"
+      ]
+    },
+    {
+      "id": "mfa_2fa",
+      "name": "MFA/2FA",
+      "description": "Multi-factor authentication concepts.",
+      "keywords": [
+        "MFA",
+        "2FA",
+        "TOTP",
+        "WebAuthn"
+      ]
+    },
+    {
+      "id": "defense_in_depth",
+      "name": "Defense in Depth",
+      "description": "Layered security approach.",
+      "keywords": [
+        "Defense in Depth",
+        "Layered Security",
+        "Onion model"
+      ]
+    },
+    {
+      "id": "risk_concepts",
+      "name": "Risk Concepts",
+      "description": "Understanding vulnerabilities and threats.",
+      "keywords": [
+        "Risk",
+        "Threat",
+        "Vulnerability",
+        "Exploit"
+      ]
+    },
+    {
+      "id": "isolation",
+      "name": "Isolation",
+      "description": "Separation of duties and resources.",
+      "keywords": [
+        "Isolation",
+        "Sandboxing",
+        "Separation of Duties"
+      ]
+    },
+    {
+      "id": "red_blue_purple",
+      "name": "Red/Blue/Purple Teams",
+      "description": "Security team methodologies.",
+      "keywords": [
+        "Red Team",
+        "Blue Team",
+        "Purple Team",
+        "Adversary emulation"
+      ]
+    },
+    {
+      "id": "zero_trust",
+      "name": "Zero Trust Concepts",
+      "description": "Never trust, always verify.",
+      "keywords": [
+        "Zero Trust",
+        "BeyondCorp",
+        "Continuous Verification"
+      ]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "MFA or Auth config",
+        "detection": "content_analysis",
+        "pattern": "mfa_required|oauth|saml",
+        "strength": 0.6,
+        "maps_to": [
+          "cs_security_fundamentals.auth_vs_authz",
+          "cs_security_fundamentals.mfa_2fa"
+        ]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "Implemented Zero Trust",
+        "strength": 0.8,
+        "maps_to": [
+          "cs_security_fundamentals.zero_trust",
+          "cs_security_fundamentals.defense_in_depth"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Red Teaming",
+        "strength": 0.4,
+        "maps_to": [
+          "cs_security_fundamentals.red_blue_purple"
+        ]
+      }
+    ],
+    "assessment": [
+      {
+        "signal": "Can architect Defense in Depth",
+        "strength": 1.0,
+        "maps_to": [
+          "cs_security_fundamentals.defense_in_depth",
+          "cs_security_fundamentals.zero_trust",
+          "cs_security_fundamentals.isolation"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "cia_triad",
+        "auth_vs_authz",
+        "mfa_2fa"
+      ],
+      "description": "Understands basic security principles."
+    },
+    "mid": {
+      "expected_subskills": [
+        "defense_in_depth",
+        "risk_concepts",
+        "isolation"
+      ],
+      "description": "Applies layered security principles."
+    },
+    "senior": {
+      "expected_subskills": [
+        "zero_trust",
+        "red_blue_purple"
+      ],
+      "description": "Architects modern trust models.",
+      "additional_expectations": [
+        "Can lead Purple Team exercises."
+      ]
+    }
+  }
+}

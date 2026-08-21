@@ -1,0 +1,176 @@
+{
+  "skill_id": "cs_hardening_defense",
+  "name": "Hardening & Defense",
+  "category": "operations",
+  "description": "Securing infrastructure through hardening, IDPs, and endpoint security.",
+  "subskills": [
+    {
+      "id": "os_hardening",
+      "name": "OS Hardening",
+      "description": "Applying security baselines.",
+      "keywords": [
+        "OS Hardening",
+        "CIS",
+        "STIG",
+        "GPO"
+      ]
+    },
+    {
+      "id": "acls",
+      "name": "ACLs",
+      "description": "Access Control Lists.",
+      "keywords": [
+        "ACL",
+        "Firewall Rules",
+        "Network ACLs"
+      ]
+    },
+    {
+      "id": "secure_protocols",
+      "name": "Secure Protocols",
+      "description": "Using SFTP, TLS over insecure ones.",
+      "keywords": [
+        "SFTP",
+        "SSH",
+        "TLS",
+        "HTTPS"
+      ]
+    },
+    {
+      "id": "ids_ips",
+      "name": "IDS/IPS Deployment",
+      "description": "Network intrusion systems.",
+      "keywords": [
+        "IDS",
+        "IPS",
+        "NIDS",
+        "HIDS"
+      ]
+    },
+    {
+      "id": "endpoint_security",
+      "name": "EDR/DLP/AV",
+      "description": "Endpoint defense.",
+      "keywords": [
+        "EDR",
+        "DLP",
+        "Antivirus",
+        "Antimalware"
+      ]
+    },
+    {
+      "id": "jump_servers",
+      "name": "Jump Servers & Bastion",
+      "description": "Secure administrative access.",
+      "keywords": [
+        "Jump Server",
+        "Bastion Host",
+        "PAM"
+      ]
+    },
+    {
+      "id": "honeypots",
+      "name": "Honeypots",
+      "description": "Deception technology.",
+      "keywords": [
+        "Honeypot",
+        "Honeynet",
+        "Tarpit"
+      ]
+    },
+    {
+      "id": "nac_mac",
+      "name": "NAC/MAC-based Control",
+      "description": "Network Access Control.",
+      "keywords": [
+        "NAC",
+        "802.1X",
+        "MAC Filtering"
+      ]
+    },
+    {
+      "id": "sinkholes",
+      "name": "DNS Sinkholing",
+      "description": "Redirecting malicious traffic.",
+      "keywords": [
+        "DNS Sinkhole",
+        "Pi-hole",
+        "Malware C2 blocking"
+      ]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "Bastion host or ACL IaC",
+        "detection": "content_analysis",
+        "pattern": "bastion|network_acl",
+        "strength": 0.7,
+        "maps_to": [
+          "cs_hardening_defense.jump_servers",
+          "cs_hardening_defense.acls"
+        ]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "Deployed EDR or NAC",
+        "strength": 0.8,
+        "maps_to": [
+          "cs_hardening_defense.endpoint_security",
+          "cs_hardening_defense.nac_mac"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Infrastructure Security",
+        "strength": 0.4,
+        "maps_to": [
+          "cs_hardening_defense.os_hardening",
+          "cs_hardening_defense.secure_protocols"
+        ]
+      }
+    ],
+    "assessment": [
+      {
+        "signal": "Can architect complex deception networks",
+        "strength": 1.0,
+        "maps_to": [
+          "cs_hardening_defense.honeypots",
+          "cs_hardening_defense.sinkholes",
+          "cs_hardening_defense.ids_ips"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "os_hardening",
+        "acls",
+        "secure_protocols"
+      ],
+      "description": "Can apply basic hardening and access controls."
+    },
+    "mid": {
+      "expected_subskills": [
+        "ids_ips",
+        "endpoint_security",
+        "jump_servers"
+      ],
+      "description": "Manages endpoint defenses and secure access points."
+    },
+    "senior": {
+      "expected_subskills": [
+        "honeypots",
+        "nac_mac",
+        "sinkholes"
+      ],
+      "description": "Implements advanced network defenses and deception.",
+      "additional_expectations": [
+        "Can design a comprehensive deception technology strategy."
+      ]
+    }
+  }
+}

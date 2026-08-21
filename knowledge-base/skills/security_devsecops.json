@@ -1,0 +1,296 @@
+{
+  "skill_id": "security_devsecops",
+  "name": "Security / DevSecOps",
+  "category": "security",
+  "description": "Integrating security into the DevOps lifecycle including SAST, DAST, container scanning, secrets management, compliance as code, and vulnerability management.",
+  "subskills": [
+    {
+      "id": "sast",
+      "name": "Static Application Security Testing (SAST)",
+      "description": "Scanning source code for vulnerabilities during development phase.",
+      "keywords": [
+        "SAST",
+        "SonarQube",
+        "Semgrep",
+        "CodeQL",
+        "Checkmarx",
+        "static analysis",
+        "code scanning"
+      ]
+    },
+    {
+      "id": "dast",
+      "name": "Dynamic Application Security Testing (DAST)",
+      "description": "Testing running applications for runtime vulnerabilities and security flaws.",
+      "keywords": [
+        "DAST",
+        "OWASP ZAP",
+        "Burp Suite",
+        "dynamic analysis",
+        "penetration test",
+        "runtime scanning"
+      ]
+    },
+    {
+      "id": "sca",
+      "name": "Software Composition Analysis (SCA)",
+      "description": "Scanning open-source dependencies for known vulnerabilities and license compliance.",
+      "keywords": [
+        "SCA",
+        "Snyk",
+        "Dependabot",
+        "OWASP Dependency-Check",
+        "CVE",
+        "vulnerability",
+        "dependency"
+      ]
+    },
+    {
+      "id": "container_scanning",
+      "name": "Container Image Scanning",
+      "description": "Scanning container images for OS and application vulnerabilities before deployment.",
+      "keywords": [
+        "Trivy",
+        "Aqua",
+        "Twistlock",
+        "container scan",
+        "image scan",
+        "vulnerability",
+        "CVE"
+      ]
+    },
+    {
+      "id": "secrets_management",
+      "name": "Secrets Management",
+      "description": "Centralized storage and secure injection of credentials, API keys, and certificates.",
+      "keywords": [
+        "Vault",
+        "HashiCorp Vault",
+        "AWS Secrets Manager",
+        "Azure Key Vault",
+        "sealed secrets",
+        "external secrets"
+      ]
+    },
+    {
+      "id": "iac_scanning",
+      "name": "IaC Security Scanning",
+      "description": "Scanning infrastructure code for misconfigurations and security risks.",
+      "keywords": [
+        "Checkov",
+        "tfsec",
+        "Terrascan",
+        "KICS",
+        "OPA",
+        "policy-as-code",
+        "misconfiguration"
+      ]
+    },
+    {
+      "id": "pipeline_security",
+      "name": "CI/CD Pipeline Security",
+      "description": "Embedding security gates in pipelines, OIDC, and preventing credential exposure.",
+      "keywords": [
+        "security gate",
+        "OIDC",
+        "pipeline security",
+        "credential",
+        "scan step",
+        "fail build",
+        "block deploy"
+      ]
+    },
+    {
+      "id": "compliance_as_code",
+      "name": "Compliance as Code",
+      "description": "Automating regulatory compliance checks (PCI DSS, SOC 2, HIPAA, GDPR).",
+      "keywords": [
+        "compliance",
+        "PCI DSS",
+        "SOC 2",
+        "HIPAA",
+        "GDPR",
+        "audit",
+        "policy",
+        "OPA",
+        "Sentinel"
+      ]
+    },
+    {
+      "id": "vulnerability_management",
+      "name": "Vulnerability Management",
+      "description": "Detecting, prioritizing, and remediating security vulnerabilities across the stack.",
+      "keywords": [
+        "vulnerability",
+        "CVE",
+        "CVSS",
+        "remediation",
+        "patching",
+        "risk assessment",
+        "vulnerability database"
+      ]
+    },
+    {
+      "id": "network_security",
+      "name": "Network Security",
+      "description": "Network policies, segmentation, zero trust, and mTLS implementation.",
+      "keywords": [
+        "network policy",
+        "zero trust",
+        "mTLS",
+        "segmentation",
+        "firewall",
+        "WAF",
+        "DDoS"
+      ]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "Security scanning tools in CI/CD pipeline",
+        "detection": "content_analysis",
+        "pattern": "trivy|snyk|sonarqube|codeql|semgrep|checkov|tfsec|owasp",
+        "strength": 0.8,
+        "maps_to": [
+          "security_devsecops.sast",
+          "security_devsecops.sca",
+          "security_devsecops.container_scanning",
+          "security_devsecops.iac_scanning"
+        ]
+      },
+      {
+        "signal": "Secrets management integration (Vault, External Secrets)",
+        "detection": "content_analysis",
+        "pattern": "vault|sealed-secret|external-secrets|aws-secrets-manager|azure-keyvault",
+        "strength": 0.8,
+        "maps_to": [
+          "security_devsecops.secrets_management"
+        ]
+      },
+      {
+        "signal": "Dependabot or Renovate configuration",
+        "detection": "file_presence",
+        "pattern": ".github/dependabot.yml|renovate.json|.renovaterc",
+        "strength": 0.6,
+        "maps_to": [
+          "security_devsecops.sca",
+          "security_devsecops.vulnerability_management"
+        ]
+      },
+      {
+        "signal": "Security-focused Dockerfile practices (non-root, minimal base)",
+        "detection": "content_analysis",
+        "pattern": "USER (?!root)|--no-new-privileges|cap_drop|read_only",
+        "strength": 0.7,
+        "maps_to": [
+          "security_devsecops.container_scanning"
+        ]
+      },
+      {
+        "signal": "Network policies in Kubernetes manifests",
+        "detection": "content_analysis",
+        "pattern": "kind: NetworkPolicy",
+        "strength": 0.8,
+        "maps_to": [
+          "security_devsecops.network_security"
+        ]
+      },
+      {
+        "signal": "SECURITY.md or security documentation",
+        "detection": "file_presence",
+        "pattern": "SECURITY.md|security/|.github/SECURITY.md",
+        "strength": 0.4,
+        "maps_to": [
+          "security_devsecops.vulnerability_management"
+        ]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "Security or DevSecOps mentioned in skills",
+        "strength": 0.3,
+        "maps_to": [
+          "security_devsecops.pipeline_security"
+        ]
+      },
+      {
+        "signal": "Security scanning or compliance experience described",
+        "strength": 0.5,
+        "maps_to": [
+          "security_devsecops.sast",
+          "security_devsecops.container_scanning",
+          "security_devsecops.compliance_as_code"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Security-related certifications (CompTIA Security+, CISSP)",
+        "strength": 0.2,
+        "maps_to": [
+          "security_devsecops.network_security"
+        ]
+      }
+    ],
+    "assessment": [
+      {
+        "signal": "Can integrate security scanning into a CI/CD pipeline",
+        "strength": 1.0,
+        "maps_to": [
+          "security_devsecops.pipeline_security",
+          "security_devsecops.sast",
+          "security_devsecops.container_scanning"
+        ]
+      },
+      {
+        "signal": "Can implement secrets management with Vault or equivalent",
+        "strength": 1.0,
+        "maps_to": [
+          "security_devsecops.secrets_management"
+        ]
+      },
+      {
+        "signal": "Can explain OWASP Top 10 and mitigation strategies",
+        "strength": 1.0,
+        "maps_to": [
+          "security_devsecops.dast",
+          "security_devsecops.vulnerability_management"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "sca",
+        "secrets_management",
+        "pipeline_security"
+      ],
+      "description": "Understands dependency scanning, basic secrets management, and can use security tools in pipelines."
+    },
+    "mid": {
+      "expected_subskills": [
+        "sast",
+        "dast",
+        "container_scanning",
+        "iac_scanning",
+        "vulnerability_management"
+      ],
+      "description": "Can implement comprehensive security scanning, container hardening, and vulnerability management."
+    },
+    "senior": {
+      "expected_subskills": [
+        "compliance_as_code",
+        "network_security"
+      ],
+      "description": "Can design enterprise security strategies, implement compliance automation, and build zero-trust architectures.",
+      "additional_expectations": [
+        "threat_modeling",
+        "security_architecture",
+        "incident_response",
+        "security_culture"
+      ]
+    }
+  }
+}

@@ -1,0 +1,261 @@
+{
+  "skill_id": "gitops",
+  "name": "GitOps",
+  "category": "deployment",
+  "description": "Managing infrastructure and application deployments through Git workflows using tools like ArgoCD and Flux CD for declarative, pull-based continuous delivery.",
+  "subskills": [
+    {
+      "id": "declarative_config",
+      "name": "Declarative Configuration",
+      "description": "Defining all infrastructure and application state as version-controlled code (YAML, Helm, Kustomize).",
+      "keywords": [
+        "declarative",
+        "desired state",
+        "YAML",
+        "Helm",
+        "Kustomize",
+        "manifest",
+        "version controlled"
+      ]
+    },
+    {
+      "id": "git_as_source_of_truth",
+      "name": "Git as Single Source of Truth",
+      "description": "Using Git repositories to store and version all configuration, providing full audit trails.",
+      "keywords": [
+        "source of truth",
+        "git",
+        "audit trail",
+        "commit history",
+        "pull request",
+        "change tracking"
+      ]
+    },
+    {
+      "id": "argocd",
+      "name": "ArgoCD",
+      "description": "Application-centric GitOps tool with web UI, sync policies, and multi-cluster management.",
+      "keywords": [
+        "ArgoCD",
+        "Application",
+        "AppProject",
+        "sync",
+        "sync policy",
+        "auto-sync",
+        "prune",
+        "self-heal"
+      ]
+    },
+    {
+      "id": "flux_cd",
+      "name": "Flux CD",
+      "description": "Kubernetes-native GitOps toolkit with modular controllers and CLI-first approach.",
+      "keywords": [
+        "Flux",
+        "FluxCD",
+        "GitRepository",
+        "Kustomization",
+        "HelmRelease",
+        "source-controller",
+        "kustomize-controller"
+      ]
+    },
+    {
+      "id": "sync_reconciliation",
+      "name": "Sync & Reconciliation",
+      "description": "Continuous reconciliation loop, drift detection, auto-sync, and manual sync strategies.",
+      "keywords": [
+        "reconciliation",
+        "sync",
+        "drift",
+        "auto-sync",
+        "manual sync",
+        "self-heal",
+        "prune"
+      ]
+    },
+    {
+      "id": "repo_structure",
+      "name": "Repository Structure & Promotion",
+      "description": "Separating app code from config, multi-environment promotion, and directory-based organization.",
+      "keywords": [
+        "repo structure",
+        "base/",
+        "overlays/",
+        "environments/",
+        "app-of-apps",
+        "promotion",
+        "staging",
+        "production"
+      ]
+    },
+    {
+      "id": "secrets_gitops",
+      "name": "Secrets in GitOps",
+      "description": "Managing secrets without storing plaintext in Git using Sealed Secrets, SOPS, or External Secrets.",
+      "keywords": [
+        "sealed secrets",
+        "SOPS",
+        "external secrets",
+        "bitnami sealed secrets",
+        "encrypt",
+        "kubeseal"
+      ]
+    },
+    {
+      "id": "progressive_delivery",
+      "name": "Progressive Delivery",
+      "description": "Canary deployments, blue-green, and A/B testing using Argo Rollouts or Flagger.",
+      "keywords": [
+        "Argo Rollouts",
+        "Flagger",
+        "canary",
+        "blue-green",
+        "analysis",
+        "progressive",
+        "rollout"
+      ]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "ArgoCD Application manifests",
+        "detection": "content_analysis",
+        "pattern": "kind: Application.*argocd|apiVersion: argoproj.io",
+        "strength": 0.9,
+        "maps_to": [
+          "gitops.argocd"
+        ]
+      },
+      {
+        "signal": "Flux CD resources (GitRepository, Kustomization, HelmRelease)",
+        "detection": "content_analysis",
+        "pattern": "kind: (GitRepository|Kustomization|HelmRelease).*source.toolkit.fluxcd.io|toolkit.fluxcd.io",
+        "strength": 0.9,
+        "maps_to": [
+          "gitops.flux_cd"
+        ]
+      },
+      {
+        "signal": "GitOps repository structure (base/, overlays/, environments/)",
+        "detection": "directory_presence",
+        "pattern": "base/|overlays/|environments/|apps/",
+        "strength": 0.6,
+        "maps_to": [
+          "gitops.repo_structure",
+          "gitops.declarative_config"
+        ]
+      },
+      {
+        "signal": "Sealed Secrets or SOPS configuration",
+        "detection": "content_analysis",
+        "pattern": "kind: SealedSecret|sops:|ENC\\[AES",
+        "strength": 0.8,
+        "maps_to": [
+          "gitops.secrets_gitops"
+        ]
+      },
+      {
+        "signal": "Argo Rollouts or Flagger resources",
+        "detection": "content_analysis",
+        "pattern": "kind: Rollout|kind: Canary.*flagger|apiVersion: argoproj.io/v1alpha1.*Rollout",
+        "strength": 0.9,
+        "maps_to": [
+          "gitops.progressive_delivery"
+        ]
+      },
+      {
+        "signal": "Kustomize overlays for multi-environment",
+        "detection": "file_presence",
+        "pattern": "kustomization.yaml|overlays/staging|overlays/production",
+        "strength": 0.7,
+        "maps_to": [
+          "gitops.repo_structure"
+        ]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "GitOps mentioned in skills or experience",
+        "strength": 0.4,
+        "maps_to": [
+          "gitops.git_as_source_of_truth"
+        ]
+      },
+      {
+        "signal": "ArgoCD or Flux CD mentioned",
+        "strength": 0.5,
+        "maps_to": [
+          "gitops.argocd",
+          "gitops.flux_cd"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "GitOps or ArgoCD/Flux in skills",
+        "strength": 0.3,
+        "maps_to": [
+          "gitops.git_as_source_of_truth"
+        ]
+      }
+    ],
+    "assessment": [
+      {
+        "signal": "Can set up ArgoCD or Flux to deploy from a Git repository",
+        "strength": 1.0,
+        "maps_to": [
+          "gitops.argocd",
+          "gitops.flux_cd",
+          "gitops.sync_reconciliation"
+        ]
+      },
+      {
+        "signal": "Can design a multi-environment GitOps repository structure",
+        "strength": 1.0,
+        "maps_to": [
+          "gitops.repo_structure"
+        ]
+      },
+      {
+        "signal": "Can implement sealed secrets for GitOps workflows",
+        "strength": 1.0,
+        "maps_to": [
+          "gitops.secrets_gitops"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "declarative_config",
+        "git_as_source_of_truth"
+      ],
+      "description": "Understands GitOps principles, declarative configuration, and using Git as the source of truth."
+    },
+    "mid": {
+      "expected_subskills": [
+        "argocd",
+        "sync_reconciliation",
+        "repo_structure",
+        "secrets_gitops"
+      ],
+      "description": "Can set up and manage ArgoCD/Flux, configure sync policies, and manage multi-environment deployments."
+    },
+    "senior": {
+      "expected_subskills": [
+        "flux_cd",
+        "progressive_delivery"
+      ],
+      "description": "Can design enterprise GitOps architectures, implement progressive delivery, and manage multi-cluster deployments.",
+      "additional_expectations": [
+        "fleet_management",
+        "multi_cluster_gitops",
+        "policy_as_code",
+        "disaster_recovery"
+      ]
+    }
+  }
+}

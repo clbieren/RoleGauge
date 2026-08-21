@@ -1,0 +1,218 @@
+{
+  "skill_id": "git",
+  "name": "Git & Version Control",
+  "category": "fundamentals",
+  "description": "Version control using Git including branching, merging, collaboration workflows, and hosting platforms (GitHub, GitLab).",
+  "subskills": [
+    {
+      "id": "basic_operations",
+      "name": "Basic Git Operations",
+      "description": "Init, clone, add, commit, push, pull, and status checking.",
+      "keywords": [
+        "git init",
+        "git clone",
+        "git add",
+        "git commit",
+        "git push",
+        "git pull",
+        "git status",
+        "git log"
+      ]
+    },
+    {
+      "id": "branching_merging",
+      "name": "Branching & Merging",
+      "description": "Creating branches, merging strategies, resolving conflicts, and rebasing.",
+      "keywords": [
+        "git branch",
+        "git checkout",
+        "git merge",
+        "git rebase",
+        "conflict",
+        "fast-forward",
+        "squash"
+      ]
+    },
+    {
+      "id": "collaboration_workflows",
+      "name": "Collaboration Workflows",
+      "description": "Pull requests, code reviews, Gitflow, trunk-based development, and forking.",
+      "keywords": [
+        "pull request",
+        "merge request",
+        "code review",
+        "gitflow",
+        "trunk-based",
+        "feature branch",
+        "fork"
+      ]
+    },
+    {
+      "id": "gitignore_config",
+      "name": "Git Configuration",
+      "description": "Gitignore patterns, global config, hooks, and repository settings.",
+      "keywords": [
+        ".gitignore",
+        ".gitattributes",
+        "git config",
+        "git hooks",
+        "pre-commit",
+        "pre-push"
+      ]
+    },
+    {
+      "id": "tagging_releases",
+      "name": "Tagging & Releases",
+      "description": "Semantic versioning, tag creation, and release management.",
+      "keywords": [
+        "git tag",
+        "semantic versioning",
+        "semver",
+        "release",
+        "annotated tag",
+        "lightweight tag"
+      ]
+    },
+    {
+      "id": "git_hooks_automation",
+      "name": "Git Hooks & Automation",
+      "description": "Pre-commit hooks, CI triggers, and automated quality gates.",
+      "keywords": [
+        "pre-commit",
+        "husky",
+        "lint-staged",
+        "git hooks",
+        "pre-push",
+        "commit-msg"
+      ]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "Multiple branches in repository",
+        "detection": "api_analysis",
+        "pattern": "branches > 1",
+        "strength": 0.4,
+        "maps_to": [
+          "git.branching_merging"
+        ]
+      },
+      {
+        "signal": ".gitignore file present and well-configured",
+        "detection": "file_presence",
+        "pattern": ".gitignore",
+        "strength": 0.3,
+        "maps_to": [
+          "git.gitignore_config"
+        ]
+      },
+      {
+        "signal": "Meaningful commit messages with conventional format",
+        "detection": "commit_analysis",
+        "pattern": "feat:|fix:|chore:|docs:|refactor:",
+        "strength": 0.6,
+        "maps_to": [
+          "git.basic_operations",
+          "git.collaboration_workflows"
+        ]
+      },
+      {
+        "signal": "Pull requests with reviews and discussions",
+        "detection": "api_analysis",
+        "pattern": "pull_requests > 0",
+        "strength": 0.7,
+        "maps_to": [
+          "git.collaboration_workflows"
+        ]
+      },
+      {
+        "signal": "Tags and releases present",
+        "detection": "api_analysis",
+        "pattern": "tags > 0 OR releases > 0",
+        "strength": 0.5,
+        "maps_to": [
+          "git.tagging_releases"
+        ]
+      },
+      {
+        "signal": "Pre-commit hooks or Husky configuration",
+        "detection": "file_presence",
+        "pattern": ".husky|.pre-commit-config.yaml",
+        "strength": 0.6,
+        "maps_to": [
+          "git.git_hooks_automation"
+        ]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "Git mentioned in skills",
+        "strength": 0.2,
+        "maps_to": [
+          "git.basic_operations"
+        ]
+      },
+      {
+        "signal": "GitHub/GitLab collaboration experience described",
+        "strength": 0.4,
+        "maps_to": [
+          "git.collaboration_workflows"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Git or GitHub in skills/endorsements",
+        "strength": 0.2,
+        "maps_to": [
+          "git.basic_operations"
+        ]
+      }
+    ],
+    "assessment": [
+      {
+        "signal": "Can resolve a merge conflict",
+        "strength": 1.0,
+        "maps_to": [
+          "git.branching_merging"
+        ]
+      },
+      {
+        "signal": "Can explain and implement a branching strategy",
+        "strength": 1.0,
+        "maps_to": [
+          "git.collaboration_workflows"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "basic_operations",
+        "branching_merging",
+        "gitignore_config"
+      ],
+      "description": "Can perform basic Git operations, create branches, merge, and resolve simple conflicts."
+    },
+    "mid": {
+      "expected_subskills": [
+        "collaboration_workflows",
+        "tagging_releases"
+      ],
+      "description": "Can implement collaboration workflows, investigate history, and manage releases."
+    },
+    "senior": {
+      "expected_subskills": [
+        "git_hooks_automation"
+      ],
+      "description": "Can design Git strategies for teams, implement automation hooks, and manage complex mono/multi-repo setups.",
+      "additional_expectations": [
+        "monorepo_management",
+        "git_internals",
+        "migration_strategies"
+      ]
+    }
+  }
+}

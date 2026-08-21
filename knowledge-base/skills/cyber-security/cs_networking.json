@@ -1,0 +1,166 @@
+{
+  "skill_id": "cs_networking",
+  "name": "Networking Fundamentals",
+  "category": "networking",
+  "description": "Deep understanding of network protocols, security devices, and architectural models.",
+  "subskills": [
+    {
+      "id": "tcp_ip",
+      "name": "TCP/IP & OSI",
+      "description": "Deep knowledge of packet structures and layers.",
+      "keywords": [
+        "TCP",
+        "UDP",
+        "OSI",
+        "IPv4",
+        "IPv6"
+      ]
+    },
+    {
+      "id": "packet_analysis",
+      "name": "Packet Analysis",
+      "description": "Analyzing raw network traffic.",
+      "keywords": [
+        "PCAP",
+        "Wireshark",
+        "tcpdump"
+      ]
+    },
+    {
+      "id": "firewalls",
+      "name": "Firewalls & NGFW",
+      "description": "Configuring L3-L7 firewalls.",
+      "keywords": [
+        "iptables",
+        "Palo Alto",
+        "Fortinet",
+        "pfSense"
+      ]
+    },
+    {
+      "id": "ids_ips",
+      "name": "IDS/IPS",
+      "description": "Intrusion detection and prevention.",
+      "keywords": [
+        "Snort",
+        "Suricata",
+        "Zeek"
+      ]
+    },
+    {
+      "id": "vpns",
+      "name": "VPNs & Tunnels",
+      "description": "Secure communications.",
+      "keywords": [
+        "IPSec",
+        "OpenVPN",
+        "WireGuard"
+      ]
+    },
+    {
+      "id": "network_segmentation",
+      "name": "Network Segmentation",
+      "description": "Isolating network zones.",
+      "keywords": [
+        "Microsegmentation",
+        "DMZ",
+        "VLAN hopping mitigation"
+      ]
+    },
+    {
+      "id": "zero_trust",
+      "name": "Zero Trust Architecture",
+      "description": "BeyondCorp and zero trust models.",
+      "keywords": [
+        "Zero Trust",
+        "ZTA",
+        "Identity-Aware Proxy"
+      ]
+    },
+    {
+      "id": "ddos_mitigation",
+      "name": "DDoS Mitigation",
+      "description": "Defending against volumetric attacks.",
+      "keywords": [
+        "Cloudflare",
+        "Akamai",
+        "BGP Anycast",
+        "Rate limiting"
+      ]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "Firewall or routing configs",
+        "detection": "file_presence",
+        "pattern": "iptables.rules|*.pcap",
+        "strength": 0.7,
+        "maps_to": [
+          "cs_networking.firewalls",
+          "cs_networking.packet_analysis"
+        ]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "Configured firewalls or VPNs",
+        "strength": 0.8,
+        "maps_to": [
+          "cs_networking.firewalls",
+          "cs_networking.vpns"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Network security skills",
+        "strength": 0.4,
+        "maps_to": [
+          "cs_networking.tcp_ip",
+          "cs_networking.firewalls"
+        ]
+      }
+    ],
+    "assessment": [
+      {
+        "signal": "Can design secure network architecture",
+        "strength": 1.0,
+        "maps_to": [
+          "cs_networking.tcp_ip",
+          "cs_networking.firewalls",
+          "cs_networking.vpns",
+          "cs_networking.zero_trust"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "tcp_ip",
+        "packet_analysis"
+      ],
+      "description": "Understands network protocols and can analyze basic traffic."
+    },
+    "mid": {
+      "expected_subskills": [
+        "firewalls",
+        "ids_ips",
+        "vpns"
+      ],
+      "description": "Can manage security boundaries and secure tunnels."
+    },
+    "senior": {
+      "expected_subskills": [
+        "network_segmentation",
+        "zero_trust",
+        "ddos_mitigation"
+      ],
+      "description": "Designs enterprise network security architectures.",
+      "additional_expectations": [
+        "Can architect a complete zero-trust migration."
+      ]
+    }
+  }
+}

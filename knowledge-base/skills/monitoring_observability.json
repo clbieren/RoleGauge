@@ -1,0 +1,297 @@
+{
+  "skill_id": "monitoring_observability",
+  "name": "Monitoring & Observability",
+  "category": "observability",
+  "description": "Implementing monitoring, logging, tracing, alerting, and dashboarding for system and application observability using tools like Prometheus, Grafana, and ELK stack.",
+  "subskills": [
+    {
+      "id": "metrics",
+      "name": "Metrics Collection & Management",
+      "description": "Collecting, storing, and querying time-series metrics data.",
+      "keywords": [
+        "metric",
+        "counter",
+        "gauge",
+        "histogram",
+        "time-series",
+        "scrape",
+        "pull-based",
+        "push-based"
+      ]
+    },
+    {
+      "id": "prometheus",
+      "name": "Prometheus",
+      "description": "Prometheus server, exporters, PromQL queries, recording rules, and scrape configuration.",
+      "keywords": [
+        "prometheus",
+        "promql",
+        "scrape_config",
+        "exporter",
+        "node_exporter",
+        "recording rule",
+        "alertmanager"
+      ]
+    },
+    {
+      "id": "grafana",
+      "name": "Grafana Dashboards",
+      "description": "Creating dashboards, panels, data source integration, and threshold-based alerting.",
+      "keywords": [
+        "grafana",
+        "dashboard",
+        "panel",
+        "data source",
+        "variable",
+        "template",
+        "annotation"
+      ]
+    },
+    {
+      "id": "logging",
+      "name": "Centralized Logging",
+      "description": "Log aggregation, structured logging, log shipping, and log analysis.",
+      "keywords": [
+        "logging",
+        "log",
+        "structured logging",
+        "json logging",
+        "log level",
+        "log aggregation",
+        "log rotation"
+      ]
+    },
+    {
+      "id": "elk_stack",
+      "name": "ELK/EFK Stack",
+      "description": "Elasticsearch, Logstash/Fluentd, Kibana for log ingestion, storage, and visualization.",
+      "keywords": [
+        "elasticsearch",
+        "logstash",
+        "kibana",
+        "fluentd",
+        "fluentbit",
+        "ELK",
+        "EFK",
+        "index",
+        "pipeline"
+      ]
+    },
+    {
+      "id": "tracing",
+      "name": "Distributed Tracing",
+      "description": "Tracing requests across microservices using Jaeger, Zipkin, or OpenTelemetry.",
+      "keywords": [
+        "tracing",
+        "trace",
+        "span",
+        "jaeger",
+        "zipkin",
+        "opentelemetry",
+        "otel",
+        "distributed tracing",
+        "trace id"
+      ]
+    },
+    {
+      "id": "alerting",
+      "name": "Alerting & Incident Response",
+      "description": "Setting up alerts, notification channels, escalation policies, and on-call management.",
+      "keywords": [
+        "alert",
+        "alertmanager",
+        "pagerduty",
+        "opsgenie",
+        "slack notification",
+        "escalation",
+        "on-call",
+        "runbook"
+      ]
+    },
+    {
+      "id": "instrumentation",
+      "name": "Application Instrumentation",
+      "description": "Adding monitoring libraries/SDKs to applications to emit metrics, logs, and traces.",
+      "keywords": [
+        "instrument",
+        "opentelemetry",
+        "prometheus client",
+        "statsd",
+        "custom metric",
+        "annotation",
+        "middleware"
+      ]
+    },
+    {
+      "id": "sla_slo_sli",
+      "name": "SLA/SLO/SLI",
+      "description": "Defining Service Level Agreements, Objectives, and Indicators for reliability measurement.",
+      "keywords": [
+        "SLA",
+        "SLO",
+        "SLI",
+        "error budget",
+        "uptime",
+        "availability",
+        "reliability",
+        "nine nines"
+      ]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "Prometheus configuration files (prometheus.yml)",
+        "detection": "file_presence",
+        "pattern": "prometheus.yml|prometheus.yaml|prometheus-config",
+        "strength": 0.8,
+        "maps_to": [
+          "monitoring_observability.prometheus",
+          "monitoring_observability.metrics"
+        ]
+      },
+      {
+        "signal": "Grafana dashboard JSON files",
+        "detection": "file_presence",
+        "pattern": "*dashboard*.json|grafana/",
+        "strength": 0.7,
+        "maps_to": [
+          "monitoring_observability.grafana"
+        ]
+      },
+      {
+        "signal": "ELK/EFK stack configuration",
+        "detection": "content_analysis",
+        "pattern": "elasticsearch|logstash|kibana|fluentd|fluentbit",
+        "strength": 0.7,
+        "maps_to": [
+          "monitoring_observability.elk_stack",
+          "monitoring_observability.logging"
+        ]
+      },
+      {
+        "signal": "AlertManager or alerting rules",
+        "detection": "content_analysis",
+        "pattern": "alertmanager|alert:|groups:|rules:",
+        "strength": 0.7,
+        "maps_to": [
+          "monitoring_observability.alerting"
+        ]
+      },
+      {
+        "signal": "OpenTelemetry or tracing SDK integration",
+        "detection": "content_analysis",
+        "pattern": "opentelemetry|jaeger|zipkin|tracing|@opentelemetry",
+        "strength": 0.7,
+        "maps_to": [
+          "monitoring_observability.tracing",
+          "monitoring_observability.instrumentation"
+        ]
+      },
+      {
+        "signal": "Monitoring-related Kubernetes resources (ServiceMonitor, etc.)",
+        "detection": "content_analysis",
+        "pattern": "ServiceMonitor|PodMonitor|PrometheusRule|GrafanaDashboard",
+        "strength": 0.8,
+        "maps_to": [
+          "monitoring_observability.prometheus",
+          "monitoring_observability.grafana"
+        ]
+      },
+      {
+        "signal": "Structured logging implementation",
+        "detection": "content_analysis",
+        "pattern": "winston|bunyan|logrus|zap|slog|structlog",
+        "strength": 0.5,
+        "maps_to": [
+          "monitoring_observability.logging"
+        ]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "Monitoring or observability mentioned in skills",
+        "strength": 0.3,
+        "maps_to": [
+          "monitoring_observability.metrics"
+        ]
+      },
+      {
+        "signal": "Specific tools mentioned (Prometheus, Grafana, ELK)",
+        "strength": 0.4,
+        "maps_to": [
+          "monitoring_observability.prometheus",
+          "monitoring_observability.grafana",
+          "monitoring_observability.elk_stack"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Monitoring/observability tools in skills",
+        "strength": 0.2,
+        "maps_to": [
+          "monitoring_observability.metrics"
+        ]
+      }
+    ],
+    "assessment": [
+      {
+        "signal": "Can set up Prometheus and create PromQL queries",
+        "strength": 1.0,
+        "maps_to": [
+          "monitoring_observability.prometheus",
+          "monitoring_observability.metrics"
+        ]
+      },
+      {
+        "signal": "Can create Grafana dashboards with meaningful metrics",
+        "strength": 1.0,
+        "maps_to": [
+          "monitoring_observability.grafana"
+        ]
+      },
+      {
+        "signal": "Can explain the three pillars of observability and their tools",
+        "strength": 1.0,
+        "maps_to": [
+          "monitoring_observability.metrics",
+          "monitoring_observability.logging",
+          "monitoring_observability.tracing"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "metrics",
+        "logging",
+        "grafana"
+      ],
+      "description": "Understands basic monitoring concepts, can read dashboards, and implement basic logging."
+    },
+    "mid": {
+      "expected_subskills": [
+        "prometheus",
+        "elk_stack",
+        "alerting",
+        "instrumentation"
+      ],
+      "description": "Can set up monitoring stacks, create custom alerts, instrument applications, and implement centralized logging."
+    },
+    "senior": {
+      "expected_subskills": [
+        "tracing",
+        "sla_slo_sli"
+      ],
+      "description": "Can design enterprise observability platforms, implement distributed tracing, and define SLO/SLI frameworks.",
+      "additional_expectations": [
+        "observability_strategy",
+        "capacity_planning",
+        "chaos_engineering",
+        "aiops"
+      ]
+    }
+  }
+}

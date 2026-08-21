@@ -1,0 +1,173 @@
+{
+  "skill_id": "cs_security_tools",
+  "name": "Security Tools",
+  "category": "security_tools",
+  "description": "Proficiency with offensive and defensive security tooling.",
+  "subskills": [
+    {
+      "id": "nmap",
+      "name": "Network Scanning (Nmap)",
+      "description": "Port scanning and discovery.",
+      "keywords": [
+        "nmap",
+        "masscan",
+        "port scanning"
+      ]
+    },
+    {
+      "id": "wireshark",
+      "name": "Traffic Analysis (Wireshark)",
+      "description": "Deep packet inspection.",
+      "keywords": [
+        "wireshark",
+        "tshark",
+        "pcap analysis"
+      ]
+    },
+    {
+      "id": "vuln_scanners",
+      "name": "Vulnerability Scanners",
+      "description": "Automated scanning.",
+      "keywords": [
+        "Nessus",
+        "OpenVAS",
+        "Qualys",
+        "Tenable"
+      ]
+    },
+    {
+      "id": "metasploit",
+      "name": "Exploitation Frameworks",
+      "description": "Using frameworks like Metasploit.",
+      "keywords": [
+        "Metasploit",
+        "MSFconsole",
+        "exploit"
+      ]
+    },
+    {
+      "id": "burp_suite",
+      "name": "Web Proxy (Burp Suite)",
+      "description": "Web app testing.",
+      "keywords": [
+        "Burp Suite",
+        "ZAP",
+        "web proxy"
+      ]
+    },
+    {
+      "id": "siem_basics",
+      "name": "SIEM Usage",
+      "description": "Querying logs.",
+      "keywords": [
+        "Splunk SPL",
+        "KQL",
+        "Elasticsearch queries"
+      ]
+    },
+    {
+      "id": "edr",
+      "name": "EDR/XDR",
+      "description": "Endpoint detection.",
+      "keywords": [
+        "CrowdStrike",
+        "Carbon Black",
+        "SentinelOne"
+      ]
+    },
+    {
+      "id": "siem_arch",
+      "name": "SIEM Architecture",
+      "description": "Designing log ingestion pipelines.",
+      "keywords": [
+        "Logstash",
+        "Fluentd",
+        "SIEM correlation rules"
+      ]
+    },
+    {
+      "id": "threat_hunting",
+      "name": "Threat Hunting",
+      "description": "Proactive threat detection.",
+      "keywords": [
+        "YARA",
+        "Sigma",
+        "MITRE ATT&CK",
+        "threat hunting"
+      ]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "Nmap scripts or YARA rules",
+        "detection": "file_presence",
+        "pattern": "*.nse|*.yara|*.sig",
+        "strength": 0.6,
+        "maps_to": [
+          "cs_security_tools.nmap",
+          "cs_security_tools.threat_hunting"
+        ]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "Managed SIEM deployments",
+        "strength": 0.9,
+        "maps_to": [
+          "cs_security_tools.siem_basics",
+          "cs_security_tools.siem_arch"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Tool endorsements",
+        "strength": 0.3,
+        "maps_to": [
+          "cs_security_tools.wireshark",
+          "cs_security_tools.vuln_scanners"
+        ]
+      }
+    ],
+    "assessment": [
+      {
+        "signal": "Can write complex YARA and correlation rules",
+        "strength": 1.0,
+        "maps_to": [
+          "cs_security_tools.siem_arch",
+          "cs_security_tools.threat_hunting"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "nmap",
+        "wireshark",
+        "vuln_scanners"
+      ],
+      "description": "Can run scans and analyze basic traffic."
+    },
+    "mid": {
+      "expected_subskills": [
+        "metasploit",
+        "burp_suite",
+        "siem_basics"
+      ],
+      "description": "Can perform basic web tests and query SIEMs."
+    },
+    "senior": {
+      "expected_subskills": [
+        "edr",
+        "siem_arch",
+        "threat_hunting"
+      ],
+      "description": "Architects logging pipelines and hunts threats.",
+      "additional_expectations": [
+        "Maps defenses to MITRE ATT&CK framework."
+      ]
+    }
+  }
+}

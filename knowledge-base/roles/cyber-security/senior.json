@@ -1,0 +1,100 @@
+{
+  "role_id": "cyber_security",
+  "level": "senior",
+  "title": "Senior Cyber Security Architect",
+  "description": "Senior-level position focused on architecture, zero-trust, enterprise compliance, and advanced threat hunting.",
+  "experience_range": "6+ years",
+  "skills": [
+    {
+      "skill_id": "cs_networking",
+      "importance": 0.9,
+      "rationale": "Designing zero-trust network segmentation"
+    },
+    {
+      "skill_id": "cs_operating_systems",
+      "importance": 0.8,
+      "rationale": "Enterprise IAM and kernel-level security"
+    },
+    {
+      "skill_id": "cs_security_tools",
+      "importance": 0.85,
+      "rationale": "Architecting SIEM solutions"
+    },
+    {
+      "skill_id": "cs_security_fundamentals",
+      "importance": 0.95,
+      "rationale": "Architecting zero trust models"
+    },
+    {
+      "skill_id": "cs_threats_and_attacks",
+      "importance": 0.8,
+      "rationale": "Understanding complex systemic attacks"
+    },
+    {
+      "skill_id": "cs_incident_response_forensics",
+      "importance": 0.9,
+      "rationale": "Leading major incident response"
+    },
+    {
+      "skill_id": "cs_hardening_defense",
+      "importance": 0.9,
+      "rationale": "Implementing advanced deception"
+    },
+    {
+      "skill_id": "cs_cloud_security",
+      "importance": 0.95,
+      "rationale": "Enforcing security as code across multi-cloud"
+    },
+    {
+      "skill_id": "cs_programming_scripting",
+      "importance": 0.8,
+      "rationale": "Developing advanced security tooling"
+    },
+    {
+      "skill_id": "cs_cryptography",
+      "importance": 0.85,
+      "rationale": "Enterprise key management"
+    },
+    {
+      "skill_id": "cs_frameworks_compliance",
+      "importance": 0.95,
+      "rationale": "Owning compliance programs"
+    }
+  ],
+  "scoring": {
+    "method": "weighted_average",
+    "description": "Each skill score is multiplied by its importance weight. Final score is sum divided by sum of weights.",
+    "thresholds": {
+      "not_ready": {
+        "min": 0.0,
+        "max": 0.5,
+        "label": "Not Ready",
+        "description": "Lacks architectural depth"
+      },
+      "developing": {
+        "min": 0.5,
+        "max": 0.7,
+        "label": "Developing",
+        "description": "Has some senior traits but needs broader impact"
+      },
+      "approaching": {
+        "min": 0.7,
+        "max": 0.85,
+        "label": "Approaching Ready",
+        "description": "Strong candidate with minor gaps"
+      },
+      "ready": {
+        "min": 0.85,
+        "max": 0.95,
+        "label": "Ready",
+        "description": "Meets senior expectations"
+      },
+      "exceeds": {
+        "min": 0.95,
+        "max": 1.0,
+        "label": "Exceeds Expectations",
+        "description": "Exceptional architectural mastery"
+      }
+    }
+  }
+}

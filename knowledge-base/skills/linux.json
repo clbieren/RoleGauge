@@ -1,0 +1,324 @@
+{
+  "skill_id": "linux",
+  "name": "Linux Fundamentals",
+  "category": "operating_systems",
+  "description": "Core Linux system administration skills including filesystem management, process control, user/permission management, package management, and service management.",
+  "subskills": [
+    {
+      "id": "basic_filesystem",
+      "name": "File System Management",
+      "description": "Understanding FHS, partitions, mounting, disk usage, and file system types (ext4, xfs, btrfs).",
+      "keywords": [
+        "mount",
+        "umount",
+        "df",
+        "du",
+        "fdisk",
+        "lsblk",
+        "mkfs",
+        "fstab",
+        "ext4",
+        "xfs"
+      ]
+    },
+    {
+      "id": "process_management",
+      "name": "Process Management",
+      "description": "Process lifecycle, signals, priorities, background/foreground tasks, and resource monitoring.",
+      "keywords": [
+        "ps",
+        "top",
+        "htop",
+        "kill",
+        "pkill",
+        "nice",
+        "renice",
+        "jobs",
+        "bg",
+        "fg",
+        "nohup",
+        "systemctl"
+      ]
+    },
+    {
+      "id": "user_permissions",
+      "name": "User & Permission Management",
+      "description": "User/group management, file ownership, rwx permissions, SUID/SGID, sticky bit, sudo configuration.",
+      "keywords": [
+        "chmod",
+        "chown",
+        "chgrp",
+        "useradd",
+        "usermod",
+        "userdel",
+        "groupadd",
+        "passwd",
+        "sudoers",
+        "visudo"
+      ]
+    },
+    {
+      "id": "package_management",
+      "name": "Package Management",
+      "description": "Installing, updating, removing packages using distribution-specific package managers.",
+      "keywords": [
+        "apt",
+        "apt-get",
+        "dpkg",
+        "yum",
+        "dnf",
+        "rpm",
+        "snap",
+        "flatpak",
+        "repository"
+      ]
+    },
+    {
+      "id": "systemd_services",
+      "name": "Systemd & Service Management",
+      "description": "Managing services, understanding unit files, boot process, targets, and journaling.",
+      "keywords": [
+        "systemctl",
+        "journalctl",
+        "systemd",
+        "unit file",
+        "service",
+        "timer",
+        "target",
+        "enable",
+        "disable"
+      ]
+    },
+    {
+      "id": "shell_basics",
+      "name": "Shell & CLI Proficiency",
+      "description": "Terminal navigation, piping, redirection, text processing, and environment variables.",
+      "keywords": [
+        "bash",
+        "zsh",
+        "pipe",
+        "redirect",
+        "grep",
+        "sed",
+        "awk",
+        "find",
+        "xargs",
+        "env",
+        "export",
+        "alias"
+      ]
+    },
+    {
+      "id": "file_operations",
+      "name": "File Operations & Text Processing",
+      "description": "File manipulation, searching, sorting, and text stream processing.",
+      "keywords": [
+        "cat",
+        "less",
+        "head",
+        "tail",
+        "sort",
+        "uniq",
+        "wc",
+        "cut",
+        "tr",
+        "diff",
+        "tar",
+        "gzip",
+        "zip"
+      ]
+    },
+    {
+      "id": "cron_scheduling",
+      "name": "Task Scheduling",
+      "description": "Automating recurring tasks with cron jobs and at commands.",
+      "keywords": [
+        "crontab",
+        "cron",
+        "at",
+        "anacron",
+        "systemd timer"
+      ]
+    },
+    {
+      "id": "ssh_remote",
+      "name": "SSH & Remote Access",
+      "description": "Secure remote access, key management, tunneling, and SCP/SFTP.",
+      "keywords": [
+        "ssh",
+        "ssh-keygen",
+        "ssh-copy-id",
+        "scp",
+        "sftp",
+        "ssh-agent",
+        "port forwarding",
+        "tunnel",
+        "authorized_keys"
+      ]
+    },
+    {
+      "id": "advanced_storage_lvm",
+      "name": "Advanced Storage & LVM Management",
+      "description": "Logical Volume Management (pv/vg/lv), RAID concepts, swap management, and disk quotas.",
+      "keywords": [
+        "lvm",
+        "pvcreate",
+        "vgcreate",
+        "lvcreate",
+        "raid",
+        "swap",
+        "mkswap",
+        "swapon",
+        "quota"
+      ]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "Shell scripts (.sh) present in repository",
+        "detection": "file_extension",
+        "pattern": "*.sh",
+        "strength": 0.4,
+        "maps_to": [
+          "linux.shell_basics"
+        ]
+      },
+      {
+        "signal": "Linux-specific commands used in scripts (systemctl, apt, chmod, etc.)",
+        "detection": "content_analysis",
+        "pattern": "systemctl|apt-get|chmod|chown|useradd|crontab",
+        "strength": 0.6,
+        "maps_to": [
+          "linux.systemd_services",
+          "linux.package_management",
+          "linux.user_permissions",
+          "linux.cron_scheduling"
+        ]
+      },
+      {
+        "signal": "SSH configuration files or key references",
+        "detection": "file_presence",
+        "pattern": ".ssh/config|authorized_keys|ssh_config",
+        "strength": 0.5,
+        "maps_to": [
+          "linux.ssh_remote"
+        ]
+      },
+      {
+        "signal": "Crontab or systemd timer configurations",
+        "detection": "file_presence",
+        "pattern": "crontab|*.timer",
+        "strength": 0.6,
+        "maps_to": [
+          "linux.cron_scheduling",
+          "linux.systemd_services"
+        ]
+      },
+      {
+        "signal": "Linux-based Dockerfile (FROM ubuntu, alpine, debian, centos)",
+        "detection": "content_analysis",
+        "pattern": "FROM (ubuntu|alpine|debian|centos|fedora|rhel)",
+        "strength": 0.3,
+        "maps_to": [
+          "linux.shell_basics",
+          "linux.package_management"
+        ]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "Linux mentioned in skills section",
+        "strength": 0.3,
+        "maps_to": [
+          "linux.shell_basics"
+        ]
+      },
+      {
+        "signal": "Linux system administration experience described",
+        "strength": 0.5,
+        "maps_to": [
+          "linux.process_management",
+          "linux.user_permissions",
+          "linux.systemd_services"
+        ]
+      },
+      {
+        "signal": "Specific Linux distribution mentioned (Ubuntu, CentOS, RHEL)",
+        "strength": 0.4,
+        "maps_to": [
+          "linux.package_management"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Linux or System Administration in job title/description",
+        "strength": 0.4,
+        "maps_to": [
+          "linux.process_management",
+          "linux.user_permissions",
+          "linux.systemd_services"
+        ]
+      },
+      {
+        "signal": "Linux-related endorsements or certifications (LPIC, RHCSA)",
+        "strength": 0.2,
+        "maps_to": [
+          "linux.shell_basics"
+        ]
+      }
+    ],
+    "assessment": [
+      {
+        "signal": "Can navigate filesystem and use basic CLI commands",
+        "strength": 1.0,
+        "maps_to": [
+          "linux.shell_basics",
+          "linux.file_operations"
+        ]
+      },
+      {
+        "signal": "Can manage users, groups, and file permissions",
+        "strength": 1.0,
+        "maps_to": [
+          "linux.user_permissions"
+        ]
+      },
+      {
+        "signal": "Can configure and troubleshoot systemd services",
+        "strength": 1.0,
+        "maps_to": [
+          "linux.systemd_services"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "shell_basics",
+        "file_operations",
+        "user_permissions",
+        "package_management",
+        "process_management",
+        "ssh_remote"
+      ],
+      "description": "Can navigate the CLI, manage files and permissions, install packages, monitor processes, and use SSH for remote access."
+    },
+    "mid": {
+      "expected_subskills": [
+        "systemd_services",
+        "cron_scheduling",
+        "basic_filesystem"
+      ],
+      "description": "Can manage services, automate tasks with cron, handle basic filesystem mounting and partition management."
+    },
+    "senior": {
+      "expected_subskills": [
+        "advanced_storage_lvm"
+      ],
+      "description": "Can design LVM/RAID storage strategies, optimize kernel/system performance, implement security hardening, and manage enterprise Linux infrastructure."
+    }
+  }
+}

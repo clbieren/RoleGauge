@@ -1,0 +1,160 @@
+{
+  "source_id": "cv",
+  "name": "CV / Resume Analysis",
+  "description": "Signals extracted from the user's CV/resume to evidence DevOps skills. CV data provides self-reported information that must be cross-validated with other sources.",
+  "extraction_rules": {
+    "description": "How to extract and weight information from CV content.",
+    "sections": [
+      {
+        "section": "skills_list",
+        "description": "Explicit list of technologies and tools mentioned in skills section.",
+        "base_strength": 0.3,
+        "notes": "Low strength because listing a skill doesn't prove proficiency. Must cross-reference with experience and projects."
+      },
+      {
+        "section": "work_experience",
+        "description": "Job descriptions and responsibilities mentioning DevOps activities.",
+        "base_strength": 0.5,
+        "notes": "Higher strength when specific actions and outcomes are described (e.g., 'built CI/CD pipeline that reduced deployment time by 50%').",
+        "quality_indicators": [
+          "Specific tools and technologies mentioned in context",
+          "Quantifiable outcomes (reduced X by Y%, managed N servers)",
+          "Action verbs indicating hands-on work (built, designed, implemented, automated, migrated)",
+          "Duration and recency of experience"
+        ]
+      },
+      {
+        "section": "projects",
+        "description": "Personal or academic projects demonstrating DevOps skills.",
+        "base_strength": 0.4,
+        "notes": "Higher strength if linked to GitHub repository or live demo. Cross-reference with GitHub analysis.",
+        "quality_indicators": [
+          "Technical depth of project description",
+          "Technologies used match claimed skills",
+          "Links to source code or live environments",
+          "Scale and complexity indicators"
+        ]
+      },
+      {
+        "section": "education",
+        "description": "Relevant courses, degrees, and academic background.",
+        "base_strength": 0.2,
+        "notes": "Provides context but doesn't directly evidence practical skill. Relevant for students."
+      },
+      {
+        "section": "certifications",
+        "description": "Professional certifications (AWS, CKA, Terraform, etc.).",
+        "base_strength": 0.2,
+        "notes": "Certifications alone are NOT evidence of practical skill. They indicate theoretical knowledge and should be cross-validated.",
+        "recognized_certifications": {
+          "cloud": [
+            "AWS Solutions Architect",
+            "AWS DevOps Engineer",
+            "Azure Administrator",
+            "Azure DevOps",
+            "GCP Professional DevOps"
+          ],
+          "kubernetes": [
+            "CKA (Certified Kubernetes Administrator)",
+            "CKAD (Certified Kubernetes Application Developer)",
+            "CKS (Certified Kubernetes Security Specialist)"
+          ],
+          "terraform": [
+            "HashiCorp Terraform Associate",
+            "HashiCorp Terraform Professional"
+          ],
+          "linux": [
+            "LPIC-1",
+            "LPIC-2",
+            "RHCSA",
+            "RHCE",
+            "CompTIA Linux+"
+          ],
+          "security": [
+            "CompTIA Security+",
+            "CISSP",
+            "CEH"
+          ]
+        }
+      }
+    ]
+  },
+  "signal_mapping": {
+    "description": "How CV mentions map to skill evidence using COMPOSITE KEYS ({skill_id}.{subskill_id}). AI should use these patterns.",
+    "patterns": [
+      {
+        "pattern": "Mentions Docker/containerization in work experience with specific activities",
+        "maps_to": [
+          "docker.dockerfile",
+          "docker.container_lifecycle"
+        ],
+        "strength_modifier": 1.0
+      },
+      {
+        "pattern": "Lists Docker in skills section only",
+        "maps_to": [
+          "docker.container_lifecycle"
+        ],
+        "strength_modifier": 0.5
+      },
+      {
+        "pattern": "Describes building CI/CD pipelines with quantifiable outcomes",
+        "maps_to": [
+          "cicd.pipeline_as_code",
+          "cicd.build_stage"
+        ],
+        "strength_modifier": 1.2
+      },
+      {
+        "pattern": "Mentions managing Kubernetes clusters in production",
+        "maps_to": [
+          "kubernetes.deployments_replicasets",
+          "kubernetes.namespaces"
+        ],
+        "strength_modifier": 1.0
+      },
+      {
+        "pattern": "Has AWS/Azure/GCP certification without project evidence",
+        "maps_to": [
+          "cloud_platforms.cli_sdk"
+        ],
+        "strength_modifier": 0.4
+      },
+      {
+        "pattern": "Managed Nexus or Artifactory",
+        "maps_to": [
+          "cicd.artifact_management"
+        ],
+        "strength_modifier": 0.8
+      },
+      {
+        "pattern": "Reduced AWS costs by X%",
+        "maps_to": [
+          "cloud_platforms.cost_management"
+        ],
+        "strength_modifier": 0.8
+      },
+      {
+        "pattern": "Managed RDS, Aurora, or DynamoDB",
+        "maps_to": [
+          "cloud_platforms.databases"
+        ],
+        "strength_modifier": 0.8
+      },
+      {
+        "pattern": "Implemented CloudWatch or Stackdriver alerting",
+        "maps_to": [
+          "cloud_platforms.monitoring_cloud"
+        ],
+        "strength_modifier": 0.8
+      }
+    ]
+  },
+  "important_notes": [
+    "CV data is self-reported and inherently unreliable as standalone evidence",
+    "Always cross-validate CV claims with GitHub and LinkedIn data",
+    "Certifications should NEVER be the sole evidence for a skill rating",
+    "Look for specificity and depth \u00e2\u20ac\u201d 'managed Docker containers' is weaker than 'implemented multi-stage Docker builds reducing image size by 60%'",
+    "Recency matters \u00e2\u20ac\u201d skills used 3+ years ago may not reflect current competency"
+  ]
+}

@@ -1,0 +1,409 @@
+{
+  "skill_id": "docker",
+  "name": "Docker & Containerization",
+  "category": "containerization",
+  "description": "Container technology including Dockerfile authoring, image management, container lifecycle, networking, storage, Docker Compose, and security best practices.",
+  "subskills": [
+    {
+      "id": "dockerfile",
+      "name": "Dockerfile Authoring",
+      "description": "Writing Dockerfiles with proper instructions (FROM, RUN, COPY, CMD, ENTRYPOINT), layer optimization, and .dockerignore.",
+      "keywords": [
+        "FROM",
+        "RUN",
+        "COPY",
+        "ADD",
+        "CMD",
+        "ENTRYPOINT",
+        "WORKDIR",
+        "EXPOSE",
+        "ENV",
+        "ARG",
+        ".dockerignore",
+        "Dockerfile"
+      ]
+    },
+    {
+      "id": "image_management",
+      "name": "Image Management",
+      "description": "Building, tagging, pulling, pushing images, base image selection, and image inspection.",
+      "keywords": [
+        "docker build",
+        "docker pull",
+        "docker push",
+        "docker tag",
+        "docker images",
+        "docker inspect",
+        "docker history"
+      ]
+    },
+    {
+      "id": "container_lifecycle",
+      "name": "Container Lifecycle Management",
+      "description": "Creating, starting, stopping, restarting, removing containers, exec, logs, and resource inspection.",
+      "keywords": [
+        "docker run",
+        "docker start",
+        "docker stop",
+        "docker rm",
+        "docker exec",
+        "docker logs",
+        "docker ps",
+        "docker inspect"
+      ]
+    },
+    {
+      "id": "volumes",
+      "name": "Volumes & Data Persistence",
+      "description": "Bind mounts, named volumes, volume drivers, and data backup/restore strategies.",
+      "keywords": [
+        "docker volume",
+        "bind mount",
+        "named volume",
+        "-v",
+        "--mount",
+        "volume create",
+        "volume inspect"
+      ]
+    },
+    {
+      "id": "container_networking",
+      "name": "Docker Networking",
+      "description": "Bridge, host, overlay networks, port mapping, container DNS, and network isolation.",
+      "keywords": [
+        "docker network",
+        "bridge",
+        "host",
+        "overlay",
+        "-p",
+        "--network",
+        "docker network create",
+        "container linking"
+      ]
+    },
+    {
+      "id": "docker_compose",
+      "name": "Docker Compose",
+      "description": "Multi-container application definition, service orchestration, environment management, and scaling.",
+      "keywords": [
+        "docker-compose",
+        "docker compose",
+        "docker-compose.yml",
+        "compose.yml",
+        "services",
+        "depends_on",
+        "volumes",
+        "networks",
+        "ports"
+      ]
+    },
+    {
+      "id": "registry",
+      "name": "Container Registry",
+      "description": "Working with Docker Hub, private registries (ECR, GCR, ACR), authentication, and image lifecycle.",
+      "keywords": [
+        "docker login",
+        "docker push",
+        "docker pull",
+        "ECR",
+        "GCR",
+        "ACR",
+        "Docker Hub",
+        "registry",
+        "private registry"
+      ]
+    },
+    {
+      "id": "multi_stage_builds",
+      "name": "Multi-Stage Builds",
+      "description": "Optimizing image size by separating build and runtime stages, cross-stage artifact copying.",
+      "keywords": [
+        "multi-stage",
+        "FROM ... AS",
+        "COPY --from",
+        "builder pattern",
+        "runtime stage",
+        "build stage"
+      ]
+    },
+    {
+      "id": "container_security_best_practices",
+      "name": "Container Security Best Practices",
+      "description": "Non-root users, minimal base images, vulnerability scanning, read-only filesystems, and capability restrictions.",
+      "keywords": [
+        "USER",
+        "non-root",
+        "alpine",
+        "distroless",
+        "scan",
+        "trivy",
+        "snyk",
+        "read-only",
+        "cap_drop",
+        "no-new-privileges",
+        "seccomp"
+      ]
+    },
+    {
+      "id": "health_checks",
+      "name": "Health Checks & Resource Limits",
+      "description": "Container health checks, memory/CPU limits, and restart policies.",
+      "keywords": [
+        "HEALTHCHECK",
+        "healthcheck",
+        "--memory",
+        "--cpus",
+        "restart policy",
+        "resources",
+        "limits"
+      ]
+    },
+    {
+      "id": "supply_chain_security",
+      "name": "Container Supply Chain Security",
+      "description": "Container image signing, SBOM generation, image provenance, and attestation verification.",
+      "keywords": [
+        "cosign",
+        "sbom",
+        "syft",
+        "grype",
+        "provenance",
+        "slsa",
+        "attestation",
+        "image signing"
+      ]
+    },
+    {
+      "id": "container_performance_optimization",
+      "name": "Container Performance & Build Optimization",
+      "description": "BuildKit cache mounts, cgroups v2 resource limits, daemonless builds, and layer caching strategies.",
+      "keywords": [
+        "buildkit",
+        "cgroups",
+        "cache-from",
+        "layer optimization",
+        "podman",
+        "buildah",
+        "cache mount"
+      ]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "Dockerfile present in repository root or subdirectory",
+        "detection": "file_presence",
+        "pattern": "Dockerfile|*.Dockerfile|dockerfile",
+        "strength": 0.5,
+        "maps_to": [
+          "docker.dockerfile"
+        ]
+      },
+      {
+        "signal": "Multi-stage build pattern (FROM ... AS ...)",
+        "detection": "content_analysis",
+        "pattern": "FROM .* AS ",
+        "strength": 0.8,
+        "maps_to": [
+          "docker.multi_stage_builds",
+          "docker.dockerfile"
+        ]
+      },
+      {
+        "signal": "Docker Compose file present",
+        "detection": "file_presence",
+        "pattern": "docker-compose.yml|docker-compose.yaml|compose.yml|compose.yaml",
+        "strength": 0.6,
+        "maps_to": [
+          "docker.docker_compose"
+        ]
+      },
+      {
+        "signal": "Docker Compose with multiple services defined",
+        "detection": "content_analysis",
+        "pattern": "services:.*\\n.*image:|services:.*\\n.*build:",
+        "strength": 0.7,
+        "maps_to": [
+          "docker.docker_compose",
+          "docker.container_networking"
+        ]
+      },
+      {
+        "signal": "Volume definitions in Compose or Dockerfile",
+        "detection": "content_analysis",
+        "pattern": "VOLUME|volumes:",
+        "strength": 0.5,
+        "maps_to": [
+          "docker.volumes"
+        ]
+      },
+      {
+        "signal": "Non-root USER instruction in Dockerfile",
+        "detection": "content_analysis",
+        "pattern": "USER (?!root)",
+        "strength": 0.8,
+        "maps_to": [
+          "docker.container_security_best_practices"
+        ]
+      },
+      {
+        "signal": "Minimal base image usage (alpine, distroless, scratch)",
+        "detection": "content_analysis",
+        "pattern": "FROM .*(alpine|distroless|scratch)",
+        "strength": 0.7,
+        "maps_to": [
+          "docker.container_security_best_practices",
+          "docker.image_management"
+        ]
+      },
+      {
+        "signal": ".dockerignore file present",
+        "detection": "file_presence",
+        "pattern": ".dockerignore",
+        "strength": 0.4,
+        "maps_to": [
+          "docker.dockerfile"
+        ]
+      },
+      {
+        "signal": "HEALTHCHECK instruction in Dockerfile",
+        "detection": "content_analysis",
+        "pattern": "HEALTHCHECK",
+        "strength": 0.7,
+        "maps_to": [
+          "docker.health_checks"
+        ]
+      },
+      {
+        "signal": "Container registry push/pull in CI/CD pipeline",
+        "detection": "content_analysis",
+        "pattern": "docker push|docker login|ecr get-login|gcloud auth configure-docker",
+        "strength": 0.6,
+        "maps_to": [
+          "docker.registry"
+        ]
+      },
+      {
+        "signal": "Docker network creation or custom network usage",
+        "detection": "content_analysis",
+        "pattern": "docker network create|--network|networks:",
+        "strength": 0.5,
+        "maps_to": [
+          "docker.container_networking"
+        ]
+      },
+      {
+        "signal": "Cosign image signing or SBOM generation in pipeline",
+        "detection": "content_analysis",
+        "pattern": "cosign sign|syft|grype|sbom",
+        "strength": 0.8,
+        "maps_to": [
+          "docker.supply_chain_security"
+        ]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "Docker mentioned in skills section",
+        "strength": 0.3,
+        "maps_to": [
+          "docker.container_lifecycle"
+        ]
+      },
+      {
+        "signal": "Containerization or Docker experience described in projects",
+        "strength": 0.5,
+        "maps_to": [
+          "docker.dockerfile",
+          "docker.docker_compose"
+        ]
+      },
+      {
+        "signal": "Docker Compose or multi-container architecture described",
+        "strength": 0.5,
+        "maps_to": [
+          "docker.docker_compose",
+          "docker.container_networking"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Docker in skills/endorsements",
+        "strength": 0.2,
+        "maps_to": [
+          "docker.container_lifecycle"
+        ]
+      },
+      {
+        "signal": "Container orchestration experience mentioned",
+        "strength": 0.3,
+        "maps_to": [
+          "docker.docker_compose"
+        ]
+      }
+    ],
+    "assessment": [
+      {
+        "signal": "Can write a production-ready Dockerfile from scratch",
+        "strength": 1.0,
+        "maps_to": [
+          "docker.dockerfile",
+          "docker.image_management"
+        ]
+      },
+      {
+        "signal": "Can set up a multi-service application with Docker Compose",
+        "strength": 1.0,
+        "maps_to": [
+          "docker.docker_compose",
+          "docker.container_networking",
+          "docker.volumes"
+        ]
+      },
+      {
+        "signal": "Can implement multi-stage builds for optimized images",
+        "strength": 1.0,
+        "maps_to": [
+          "docker.multi_stage_builds"
+        ]
+      },
+      {
+        "signal": "Can explain container security best practices and apply them",
+        "strength": 1.0,
+        "maps_to": [
+          "docker.container_security_best_practices"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "dockerfile",
+        "image_management",
+        "container_lifecycle",
+        "volumes",
+        "docker_compose"
+      ],
+      "description": "Can write basic Dockerfiles, manage container lifecycle, use volumes for persistence, and define multi-service apps with Docker Compose."
+    },
+    "mid": {
+      "expected_subskills": [
+        "multi_stage_builds",
+        "container_networking",
+        "registry",
+        "container_security_best_practices",
+        "health_checks"
+      ],
+      "description": "Can optimize images with multi-stage builds, configure custom networks, work with private registries, and implement security best practices."
+    },
+    "senior": {
+      "expected_subskills": [
+        "supply_chain_security",
+        "container_performance_optimization"
+      ],
+      "description": "Can design enterprise container strategies, implement image signing and SBOMs, optimize build performance, and enforce supply chain security."
+    }
+  }
+}

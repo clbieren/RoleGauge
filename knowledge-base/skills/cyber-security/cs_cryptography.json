@@ -1,0 +1,172 @@
+{
+  "skill_id": "cs_cryptography",
+  "name": "Cryptography",
+  "category": "cryptography",
+  "description": "Applied cryptography and key management.",
+  "subskills": [
+    {
+      "id": "symmetric_enc",
+      "name": "Symmetric Encryption",
+      "description": "Block and stream ciphers.",
+      "keywords": [
+        "AES",
+        "ChaCha20",
+        "DES"
+      ]
+    },
+    {
+      "id": "asymmetric_enc",
+      "name": "Asymmetric Encryption",
+      "description": "Public key cryptography.",
+      "keywords": [
+        "RSA",
+        "ECC",
+        "Diffie-Hellman"
+      ]
+    },
+    {
+      "id": "hashing",
+      "name": "Hashing Algorithms",
+      "description": "One-way functions.",
+      "keywords": [
+        "SHA-256",
+        "bcrypt",
+        "Argon2"
+      ]
+    },
+    {
+      "id": "digital_signatures",
+      "name": "Digital Signatures",
+      "description": "Non-repudiation.",
+      "keywords": [
+        "HMAC",
+        "DSA",
+        "signing"
+      ]
+    },
+    {
+      "id": "tls_ssl",
+      "name": "TLS/SSL",
+      "description": "Transit encryption.",
+      "keywords": [
+        "TLS 1.3",
+        "OpenSSL",
+        "cipher suites"
+      ]
+    },
+    {
+      "id": "pki",
+      "name": "PKI",
+      "description": "Public Key Infrastructure.",
+      "keywords": [
+        "X.509",
+        "CA",
+        "Let's Encrypt",
+        "CRL",
+        "OCSP"
+      ]
+    },
+    {
+      "id": "key_management",
+      "name": "Key Lifecycle Management",
+      "description": "Managing secrets.",
+      "keywords": [
+        "KMS",
+        "HashiCorp Vault",
+        "rotation"
+      ]
+    },
+    {
+      "id": "hsm",
+      "name": "Hardware Security Modules",
+      "description": "Physical key protection.",
+      "keywords": [
+        "HSM",
+        "TPM",
+        "YubiKey"
+      ]
+    },
+    {
+      "id": "post_quantum",
+      "name": "Post-Quantum Cryptography",
+      "description": "Future-proofing encryption.",
+      "keywords": [
+        "PQC",
+        "Lattice-based",
+        "Kyber"
+      ]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "TLS configs",
+        "detection": "content_analysis",
+        "pattern": "ssl_protocols TLSv1.2 TLSv1.3",
+        "strength": 0.8,
+        "maps_to": [
+          "cs_cryptography.tls_ssl"
+        ]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "PKI deployment",
+        "strength": 0.8,
+        "maps_to": [
+          "cs_cryptography.pki",
+          "cs_cryptography.key_management"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Cryptography",
+        "strength": 0.4,
+        "maps_to": [
+          "cs_cryptography.symmetric_enc",
+          "cs_cryptography.hashing"
+        ]
+      }
+    ],
+    "assessment": [
+      {
+        "signal": "Can design KMS architecture",
+        "strength": 1.0,
+        "maps_to": [
+          "cs_cryptography.key_management",
+          "cs_cryptography.hsm"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "symmetric_enc",
+        "asymmetric_enc",
+        "hashing"
+      ],
+      "description": "Understands core cryptographic concepts."
+    },
+    "mid": {
+      "expected_subskills": [
+        "digital_signatures",
+        "tls_ssl",
+        "pki"
+      ],
+      "description": "Can configure TLS and manage basic certificates."
+    },
+    "senior": {
+      "expected_subskills": [
+        "key_management",
+        "hsm",
+        "post_quantum"
+      ],
+      "description": "Architects enterprise key management systems.",
+      "additional_expectations": [
+        "Understands HSM operational requirements and PQC transitions."
+      ]
+    }
+  }
+}

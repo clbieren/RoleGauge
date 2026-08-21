@@ -1,0 +1,346 @@
+{
+  "skill_id": "cicd",
+  "name": "CI/CD Pipelines",
+  "category": "automation",
+  "description": "Continuous Integration and Continuous Deployment/Delivery pipelines including pipeline-as-code, build/test/deploy stages, artifact management, and deployment strategies.",
+  "subskills": [
+    {
+      "id": "pipeline_as_code",
+      "name": "Pipeline-as-Code",
+      "description": "Defining pipelines in version-controlled configuration files (YAML, Groovy/Jenkinsfile).",
+      "keywords": [
+        "pipeline",
+        "Jenkinsfile",
+        ".github/workflows",
+        ".gitlab-ci.yml",
+        "pipeline as code",
+        "YAML"
+      ]
+    },
+    {
+      "id": "github_actions",
+      "name": "GitHub Actions",
+      "description": "Workflows, jobs, steps, actions marketplace, reusable workflows, and self-hosted runners.",
+      "keywords": [
+        "github actions",
+        "workflow",
+        "jobs",
+        "steps",
+        "uses",
+        "runs-on",
+        "on:",
+        "workflow_dispatch",
+        "composite action"
+      ]
+    },
+    {
+      "id": "jenkins",
+      "name": "Jenkins",
+      "description": "Declarative/scripted pipelines, plugins, agents, shared libraries, and Jenkins administration.",
+      "keywords": [
+        "Jenkins",
+        "Jenkinsfile",
+        "pipeline",
+        "agent",
+        "stage",
+        "steps",
+        "post",
+        "shared library",
+        "plugin"
+      ]
+    },
+    {
+      "id": "gitlab_ci",
+      "name": "GitLab CI/CD",
+      "description": "GitLab CI configuration, stages, jobs, runners, and integration with GitLab features.",
+      "keywords": [
+        ".gitlab-ci.yml",
+        "stages",
+        "script",
+        "artifacts",
+        "cache",
+        "runner",
+        "only",
+        "rules",
+        "include"
+      ]
+    },
+    {
+      "id": "build_stage",
+      "name": "Build Stage",
+      "description": "Code compilation, dependency resolution, Docker image building, and artifact creation.",
+      "keywords": [
+        "build",
+        "compile",
+        "docker build",
+        "npm build",
+        "mvn package",
+        "go build",
+        "artifact"
+      ]
+    },
+    {
+      "id": "test_automation",
+      "name": "Test Automation in Pipelines",
+      "description": "Integrating unit tests, integration tests, linting, and code quality checks into pipelines.",
+      "keywords": [
+        "test",
+        "unit test",
+        "integration test",
+        "lint",
+        "coverage",
+        "jest",
+        "pytest",
+        "junit",
+        "sonarqube"
+      ]
+    },
+    {
+      "id": "deployment_strategies",
+      "name": "Deployment Strategies",
+      "description": "Blue-green, canary, rolling updates, and feature flags for safe deployments.",
+      "keywords": [
+        "blue-green",
+        "canary",
+        "rolling update",
+        "feature flag",
+        "rollback",
+        "deployment strategy"
+      ]
+    },
+    {
+      "id": "artifact_management",
+      "name": "Artifact Management",
+      "description": "Storing, versioning, and distributing build outputs (Docker images, JARs, NPM packages).",
+      "keywords": [
+        "artifact",
+        "Nexus",
+        "Artifactory",
+        "npm registry",
+        "docker registry",
+        "versioning",
+        "immutable"
+      ]
+    },
+    {
+      "id": "secrets_in_pipelines",
+      "name": "Secrets & Security in Pipelines",
+      "description": "Managing credentials, environment variables, OIDC federation, and security scanning in CI/CD.",
+      "keywords": [
+        "secrets",
+        "environment variable",
+        "OIDC",
+        "vault",
+        "GitHub Secrets",
+        "masked variable",
+        "credential"
+      ]
+    },
+    {
+      "id": "pipeline_optimization",
+      "name": "Pipeline Optimization",
+      "description": "Caching, parallelization, conditional execution, and reducing pipeline execution time.",
+      "keywords": [
+        "cache",
+        "parallel",
+        "matrix",
+        "conditional",
+        "skip",
+        "concurrency",
+        "timeout"
+      ]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "GitHub Actions workflow files present",
+        "detection": "file_presence",
+        "pattern": ".github/workflows/*.yml|.github/workflows/*.yaml",
+        "strength": 0.7,
+        "maps_to": [
+          "cicd.pipeline_as_code",
+          "cicd.github_actions"
+        ]
+      },
+      {
+        "signal": "Jenkinsfile present",
+        "detection": "file_presence",
+        "pattern": "Jenkinsfile",
+        "strength": 0.7,
+        "maps_to": [
+          "cicd.pipeline_as_code",
+          "cicd.jenkins"
+        ]
+      },
+      {
+        "signal": "GitLab CI configuration file present",
+        "detection": "file_presence",
+        "pattern": ".gitlab-ci.yml",
+        "strength": 0.7,
+        "maps_to": [
+          "cicd.pipeline_as_code",
+          "cicd.gitlab_ci"
+        ]
+      },
+      {
+        "signal": "Test steps in CI pipeline configuration",
+        "detection": "content_analysis",
+        "pattern": "npm test|pytest|jest|mvn test|go test|make test",
+        "strength": 0.7,
+        "maps_to": [
+          "cicd.test_automation"
+        ]
+      },
+      {
+        "signal": "Deployment steps in CI pipeline",
+        "detection": "content_analysis",
+        "pattern": "deploy|kubectl apply|helm upgrade|terraform apply|aws deploy",
+        "strength": 0.7,
+        "maps_to": [
+          "cicd.deployment_strategies"
+        ]
+      },
+      {
+        "signal": "Caching configured in pipeline",
+        "detection": "content_analysis",
+        "pattern": "cache:|actions/cache|cache-from",
+        "strength": 0.6,
+        "maps_to": [
+          "cicd.pipeline_optimization"
+        ]
+      },
+      {
+        "signal": "Matrix or parallel strategy in pipeline",
+        "detection": "content_analysis",
+        "pattern": "matrix:|strategy:|parallel:",
+        "strength": 0.7,
+        "maps_to": [
+          "cicd.pipeline_optimization"
+        ]
+      },
+      {
+        "signal": "Secrets used in pipeline (GitHub Secrets, masked vars)",
+        "detection": "content_analysis",
+        "pattern": "secrets\\.|\\$\\{\\{.*secrets|masked|CI_VARIABLE",
+        "strength": 0.6,
+        "maps_to": [
+          "cicd.secrets_in_pipelines"
+        ]
+      },
+      {
+        "signal": "Security scanning steps (SAST, container scan) in pipeline",
+        "detection": "content_analysis",
+        "pattern": "trivy|snyk|sonarqube|codeql|semgrep|sast",
+        "strength": 0.8,
+        "maps_to": [
+          "cicd.secrets_in_pipelines",
+          "cicd.test_automation"
+        ]
+      },
+      {
+        "signal": "Multi-environment deployment (staging/production)",
+        "detection": "content_analysis",
+        "pattern": "environment:|staging|production|deploy-prod|deploy-staging",
+        "strength": 0.7,
+        "maps_to": [
+          "cicd.deployment_strategies"
+        ]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "CI/CD mentioned in skills",
+        "strength": 0.3,
+        "maps_to": [
+          "cicd.pipeline_as_code"
+        ]
+      },
+      {
+        "signal": "Specific CI/CD tools mentioned (Jenkins, GitHub Actions, GitLab CI)",
+        "strength": 0.4,
+        "maps_to": [
+          "cicd.jenkins",
+          "cicd.github_actions",
+          "cicd.gitlab_ci"
+        ]
+      },
+      {
+        "signal": "Pipeline design or automation experience described",
+        "strength": 0.5,
+        "maps_to": [
+          "cicd.pipeline_as_code",
+          "cicd.test_automation",
+          "cicd.deployment_strategies"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "CI/CD or specific tools in skills/endorsements",
+        "strength": 0.2,
+        "maps_to": [
+          "cicd.pipeline_as_code"
+        ]
+      }
+    ],
+    "assessment": [
+      {
+        "signal": "Can design and implement a CI/CD pipeline from scratch",
+        "strength": 1.0,
+        "maps_to": [
+          "cicd.pipeline_as_code",
+          "cicd.build_stage",
+          "cicd.test_automation"
+        ]
+      },
+      {
+        "signal": "Can implement a blue-green or canary deployment",
+        "strength": 1.0,
+        "maps_to": [
+          "cicd.deployment_strategies"
+        ]
+      },
+      {
+        "signal": "Can explain and configure secrets management in pipelines",
+        "strength": 1.0,
+        "maps_to": [
+          "cicd.secrets_in_pipelines"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "pipeline_as_code",
+        "github_actions",
+        "build_stage",
+        "test_automation"
+      ],
+      "description": "Can create basic CI pipelines with build and test stages using at least one CI/CD tool."
+    },
+    "mid": {
+      "expected_subskills": [
+        "deployment_strategies",
+        "secrets_in_pipelines",
+        "artifact_management",
+        "pipeline_optimization"
+      ],
+      "description": "Can implement deployment strategies, manage secrets securely, handle artifact lifecycle, and optimize pipeline performance."
+    },
+    "senior": {
+      "expected_subskills": [
+        "jenkins",
+        "gitlab_ci"
+      ],
+      "description": "Can design enterprise CI/CD architectures, implement advanced deployment patterns, and establish CI/CD standards across teams.",
+      "additional_expectations": [
+        "dora_metrics",
+        "pipeline_security",
+        "shared_libraries",
+        "multi_platform"
+      ]
+    }
+  }
+}

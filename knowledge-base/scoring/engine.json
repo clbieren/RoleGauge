@@ -1,0 +1,209 @@
+{
+  "engine_version": "1.2.0",
+  "description": "Defines the exact mathematical algorithms for transforming raw evidence into subskill confidence, skill scores, and role readiness. Single source of truth for numeric scoring.",
+  "single_source_of_truth_hierarchy": {
+    "evidence_base_strengths": "Section base_strength values are authoritatively defined in cv.json and linkedin.json. Engine.json references them dynamically.",
+    "subskill_definitions": "Subskills and composite keys are authoritatively defined in skills/*.json.",
+    "role_importance_weights": "Skill importance weights and readiness thresholds are authoritatively defined in roles/**/*.json.",
+    "scoring_logic": "This file (engine.json) is the sole authority for mathematical aggregation formulas, ceilings, and denominator isolation rules."
+  },
+  "step_1_evidence_to_subskill_confidence": {
+    "description": "Transforms multi-source evidence signals into a single subskill confidence score (0.0 to 1.0).",
+    "formula_definition": "confidence = min(max_primary_signal + sum(secondary_signals × diminishing_factor), source_type_ceiling)",
+    "rules": {
+      "primary_signal": "The single highest effective_strength signal across all valid sources.",
+      "secondary_signals": "All remaining signals for this subskill, weighted by diminishing_factor (0.10).",
+      "diminishing_factor": 0.1,
+      "source_type_ceilings": {
+        "description": "Hard cap on maximum achievable subskill confidence based on the strongest evidence source present.",
+        "categories": {
+          "assessment_present": 1.0,
+          "github_present": 1.0,
+          "verified_work_experience": 0.5,
+          "self_reported_skills_and_summary": 0.3,
+          "certifications_only": 0.2
+        },
+        "trigger_conditions": {
+          "assessment_present": "Requires at least one assessment signal with effective_strength >= 0.5. Weak signals do not unlock this ceiling.",
+          "github_present": "Requires at least one github signal with effective_strength >= 0.5. Weak github signals (e.g., trivial .gitignore files) do not unlock this ceiling and will default to the self_reported_skills_and_summary ceiling."
+        }
+      },
+      "section_to_ceiling_mapping_table": {
+        "description": "Complete, exhaustive mapping of every CV and LinkedIn section to its corresponding source_type_ceiling category.",
+        "mappings": [
+          {
+            "source": "github",
+            "section": "all_code_and_manifests",
+            "ceiling_category": "github_present",
+            "max_cap": 1.0
+          },
+          {
+            "source": "assessment",
+            "section": "all_question_types",
+            "ceiling_category": "assessment_present",
+            "max_cap": 1.0
+          },
+          {
+            "source": "cv",
+            "section": "work_experience",
+            "ceiling_category": "verified_work_experience",
+            "max_cap": 0.5
+          },
+          {
+            "source": "cv",
+            "section": "projects",
+            "ceiling_category": "verified_work_experience",
+            "max_cap": 0.5
+          },
+          {
+            "source": "linkedin",
+            "section": "experience",
+            "ceiling_category": "verified_work_experience",
+            "max_cap": 0.5
+          },
+          {
+            "source": "linkedin",
+            "section": "projects",
+            "ceiling_category": "verified_work_experience",
+            "max_cap": 0.5
+          },
+          {
+            "source": "linkedin",
+            "section": "recommendations",
+            "ceiling_category": "verified_work_experience",
+            "max_cap": 0.5
+          },
+          {
+            "source": "cv",
+            "section": "skills_list",
+            "ceiling_category": "self_reported_skills_and_summary",
+            "max_cap": 0.3
+          },
+          {
+            "source": "cv",
+            "section": "education",
+            "ceiling_category": "self_reported_skills_and_summary",
+            "max_cap": 0.3
+          },
+          {
+            "source": "linkedin",
+            "section": "headline_summary",
+            "ceiling_category": "self_reported_skills_and_summary",
+            "max_cap": 0.3
+          },
+          {
+            "source": "linkedin",
+            "section": "skills_endorsements",
+            "ceiling_category": "self_reported_skills_and_summary",
+            "max_cap": 0.3
+          },
+          {
+            "source": "linkedin",
+            "section": "posts_articles",
+            "ceiling_category": "self_reported_skills_and_summary",
+            "max_cap": 0.3
+          },
+          {
+            "source": "cv",
+            "section": "certifications",
+            "ceiling_category": "certifications_only",
+            "max_cap": 0.2
+          },
+          {
+            "source": "linkedin",
+            "section": "certifications",
+            "ceiling_category": "certifications_only",
+            "max_cap": 0.2
+          }
+        ]
+      },
+      "assessment_scoring_and_override_rules": {
+        "description": "Rules for direct verification via assessment.",
+        "correct_answer": {
+          "practical_task": 1.0,
+          "scenario": 0.8,
+          "conceptual": 0.6
+        },
+        "partial_answer": {
+          "practical_task": 0.5,
+          "scenario": 0.4,
+          "conceptual": 0.3,
+          "notes": "Partial credit is blended into the confidence calculation as a signal of strength equal to the partial weight."
+        },
+        "incorrect_answer": {
+          "all_types": 0.0,
+          "status": "verified_gap",
+          "confidence_hard_cap": 0.0,
+          "notes": "If a candidate attempts an assessment question for a subskill and answers incorrectly, confidence is HARD SET to 0.00 (verified gap). No residual score from CV or LinkedIn is retained. This ALSO strictly applies to GitHub evidence: assessment is the final arbiter of truth in this system. A candidate may have copied code or used templates without understanding them; failing an assessment proves a lack of conceptual grasp, which supersedes repository contents."
+        }
+      }
+    },
+    "worked_example": {
+      "scenario": "User has 2 CV skills_list entries (base_strength 0.3, modifier 0.5 -> effective 0.15) and 3 LinkedIn endorsements (base_strength 0.15, modifier 0.33 -> effective 0.05) for docker.dockerfile, but NO GitHub code and NO Assessment.",
+      "calculation": [
+        "Primary signal = 0.15 (from CV skills_list)",
+        "Secondary sum = 1 × (0.15 × 0.10) + 3 × (0.05 × 0.10) = 0.015 + 0.015 = 0.030",
+        "Raw sum = 0.15 + 0.030 = 0.180",
+        "Ceiling category for CV skills_list & LinkedIn endorsements = 'self_reported_skills_and_summary' (0.30)",
+        "Final confidence = min(0.180, 0.30) = 0.180"
+      ]
+    }
+  },
+  "step_2_subskill_to_skill_score": {
+    "description": "Aggregates composite key subskill confidences ({skill_id}.{subskill_id}) into a skill score for a target role level.",
+    "subskill_categorization_by_level": {
+      "expected_subskills": "Subskills assigned to the target level or lower levels. These form the REQUIRED baseline. Included in denominator.",
+      "bonus_subskills": "Subskills assigned to higher levels than the target level. Excluded from denominator. Only add bonus points if present."
+    },
+    "formula": {
+      "base_score": "base_score = sum(confidence_i × weight_i) / sum(weight_i)  [for all expected_subskills]",
+      "bonus_score": "bonus_score = sum(confidence_j × 0.15)  [for higher_level subskills with confidence > 0.0]",
+      "final_skill_score": "skill_score = min(base_score + bonus_score, 1.0)"
+    },
+    "subskill_weights_in_base_score": {
+      "target_level_subskills": 1.0,
+      "lower_level_prerequisites": 0.8
+    },
+    "denominator_isolation_rule": {
+      "rule": "Higher-level (bonus) subskills MUST NEVER be included in the denominator sum(weight_i). An un-evidenced senior subskill (confidence = 0.0) contributes 0 to bonus_score and 0 to the denominator. It causes ZERO penalty when scoring a Junior or Mid candidate.",
+      "missing_expected_subskill_penalty": "If an EXPECTED subskill has status 'not_yet_evidenced' (confidence = 0.0), it contributes 0.0 to the numerator but its weight (1.0 or 0.8) REMAINS in the denominator, correctly lowering the candidate's base score."
+    }
+  },
+  "step_3_skill_to_role_readiness": {
+    "description": "Combines skill scores with role importance weights into a final Career Readiness Score (0.0 to 1.0).",
+    "formula": "readiness_score = sum(skill_score_i × importance_i) / sum(importance_i)",
+    "threshold_evaluation": {
+      "rule": "Readiness score is evaluated against role thresholds using INCLUSIVE min and EXCLUSIVE max bounds, except for the top tier which is inclusive on 1.0.",
+      "boundary_table": [
+        {
+          "tier": "not_ready",
+          "range": "0.00 <= score < 0.30"
+        },
+        {
+          "tier": "developing",
+          "range": "0.30 <= score < 0.50"
+        },
+        {
+          "tier": "approaching",
+          "range": "0.50 <= score < 0.70"
+        },
+        {
+          "tier": "ready",
+          "range": "0.70 <= score < 0.85"
+        },
+        {
+          "tier": "exceeds",
+          "range": "0.85 <= score <= 1.00"
+        }
+      ]
+    }
+  },
+  "composite_key_standard": {
+    "rule": "ALL references to subskills across ALL files (evidence source maps_to, skill definitions, AI outputs, scoring engine internals, API payloads) MUST use composite key format: '{skill_id}.{subskill_id}'. Bare subskill IDs are STRICTLY PROHIBITED."
+  },
+  "evidence_status_meanings": {
+    "evidence_found": "At least one valid signal detected. Subskill confidence > 0.0.",
+    "not_yet_evidenced": "No signals found from any scanned source. Confidence = 0.0. Does NOT mean the user lacks the skill; triggers adaptive assessment.",
+    "verified_gap": "Targeted assessment was attempted and candidate failed. Confidence hard-set to 0.00. Identifies explicit learning gap."
+  }
+}

@@ -1,0 +1,185 @@
+{
+  "skill_id": "cs_incident_response_forensics",
+  "name": "Incident Response & Forensics",
+  "category": "operations",
+  "description": "Managing security incidents and performing digital forensics.",
+  "subskills": [
+    {
+      "id": "ir_preparation",
+      "name": "IR Preparation",
+      "description": "Planning for incidents.",
+      "keywords": [
+        "IR Plan",
+        "Playbooks",
+        "Tabletop Exercise"
+      ]
+    },
+    {
+      "id": "forensics_basics",
+      "name": "Forensics Basics",
+      "description": "Principles of digital forensics.",
+      "keywords": [
+        "Digital Forensics",
+        "Disk Image",
+        "Hash Verification"
+      ]
+    },
+    {
+      "id": "chain_of_custody",
+      "name": "Chain of Custody",
+      "description": "Legal evidence handling.",
+      "keywords": [
+        "Chain of Custody",
+        "Evidence Preservation"
+      ]
+    },
+    {
+      "id": "ir_identification",
+      "name": "IR Identification",
+      "description": "Detecting incidents.",
+      "keywords": [
+        "Triage",
+        "IOCs",
+        "Alert Verification"
+      ]
+    },
+    {
+      "id": "forensic_tools",
+      "name": "Forensic Tools",
+      "description": "Using FTK Imager, Autopsy, WinHex.",
+      "keywords": [
+        "FTK Imager",
+        "Autopsy",
+        "WinHex",
+        "Sleuth Kit"
+      ]
+    },
+    {
+      "id": "root_cause_analysis",
+      "name": "Root Cause Analysis",
+      "description": "Finding the origin of an incident.",
+      "keywords": [
+        "RCA",
+        "Lessons Learned",
+        "Post-mortem"
+      ]
+    },
+    {
+      "id": "ir_containment",
+      "name": "IR Containment & Eradication",
+      "description": "Stopping the spread.",
+      "keywords": [
+        "Containment",
+        "Eradication",
+        "Quarantine"
+      ]
+    },
+    {
+      "id": "threat_hunting",
+      "name": "Threat Hunting",
+      "description": "Proactive searching for IOCs.",
+      "keywords": [
+        "Threat Hunting",
+        "Hypothesis-driven",
+        "Beaconing analysis"
+      ]
+    },
+    {
+      "id": "memory_analysis",
+      "name": "Memory Analysis",
+      "description": "Analyzing RAM dumps (distinct from static binary reverse engineering).",
+      "keywords": [
+        "Volatility",
+        "memdump",
+        "RAM forensics"
+      ]
+    },
+    {
+      "id": "reverse_engineering",
+      "name": "Reverse Engineering",
+      "description": "Decompiling and analyzing malicious binaries (static/dynamic analysis). Distinct from general 'malware_types' conceptual knowledge.",
+      "keywords": [
+        "Ghidra",
+        "IDA Pro",
+        "x64dbg",
+        "Radare2",
+        "Decompilation"
+      ]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "IR Playbooks or scripts",
+        "detection": "file_presence",
+        "pattern": "playbook|ir-script",
+        "strength": 0.6,
+        "maps_to": [
+          "cs_incident_response_forensics.ir_preparation",
+          "cs_incident_response_forensics.ir_identification"
+        ]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "Led incident response team",
+        "strength": 0.9,
+        "maps_to": [
+          "cs_incident_response_forensics.ir_containment",
+          "cs_incident_response_forensics.root_cause_analysis"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Digital Forensics",
+        "strength": 0.4,
+        "maps_to": [
+          "cs_incident_response_forensics.forensics_basics",
+          "cs_incident_response_forensics.forensic_tools"
+        ]
+      }
+    ],
+    "assessment": [
+      {
+        "signal": "Can perform complete memory analysis",
+        "strength": 1.0,
+        "maps_to": [
+          "cs_incident_response_forensics.memory_analysis",
+          "cs_incident_response_forensics.threat_hunting",
+          "cs_incident_response_forensics.forensic_tools"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "ir_preparation",
+        "forensics_basics",
+        "chain_of_custody"
+      ],
+      "description": "Understands IR processes and basic evidence handling."
+    },
+    "mid": {
+      "expected_subskills": [
+        "ir_identification",
+        "forensic_tools",
+        "root_cause_analysis"
+      ],
+      "description": "Can triage alerts and use forensic tools."
+    },
+    "senior": {
+      "expected_subskills": [
+        "ir_containment",
+        "threat_hunting",
+        "memory_analysis",
+        "reverse_engineering"
+      ],
+      "description": "Leads major incidents and performs deep memory forensics.",
+      "additional_expectations": [
+        "Can reverse-engineer in-memory malware artifacts."
+      ]
+    }
+  }
+}

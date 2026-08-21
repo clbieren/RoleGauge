@@ -1,0 +1,100 @@
+{
+  "role_id": "cyber_security",
+  "level": "junior",
+  "title": "Junior Cyber Security Analyst",
+  "description": "Entry-level security position focused on foundational concepts, OS security, and basic tool usage.",
+  "experience_range": "0-2 years",
+  "skills": [
+    {
+      "skill_id": "cs_networking",
+      "importance": 0.95,
+      "rationale": "Foundation for all security work"
+    },
+    {
+      "skill_id": "cs_operating_systems",
+      "importance": 0.9,
+      "rationale": "Daily interaction with OS permissions"
+    },
+    {
+      "skill_id": "cs_security_tools",
+      "importance": 0.85,
+      "rationale": "Must use basic scanners"
+    },
+    {
+      "skill_id": "cs_security_fundamentals",
+      "importance": 0.95,
+      "rationale": "CIA triad and basic concepts are critical"
+    },
+    {
+      "skill_id": "cs_threats_and_attacks",
+      "importance": 0.8,
+      "rationale": "Understanding how attacks work"
+    },
+    {
+      "skill_id": "cs_incident_response_forensics",
+      "importance": 0.6,
+      "rationale": "Awareness of incident processes"
+    },
+    {
+      "skill_id": "cs_hardening_defense",
+      "importance": 0.7,
+      "rationale": "Basic hardening knowledge"
+    },
+    {
+      "skill_id": "cs_cloud_security",
+      "importance": 0.6,
+      "rationale": "Cloud concepts awareness"
+    },
+    {
+      "skill_id": "cs_programming_scripting",
+      "importance": 0.6,
+      "rationale": "Basic shell scripting required"
+    },
+    {
+      "skill_id": "cs_cryptography",
+      "importance": 0.6,
+      "rationale": "Basic hashing/encryption concepts"
+    },
+    {
+      "skill_id": "cs_frameworks_compliance",
+      "importance": 0.5,
+      "rationale": "Awareness of policies"
+    }
+  ],
+  "scoring": {
+    "method": "weighted_average",
+    "description": "Each skill score is multiplied by its importance weight. Final score is sum divided by sum of weights.",
+    "thresholds": {
+      "not_ready": {
+        "min": 0.0,
+        "max": 0.3,
+        "label": "Not Ready",
+        "description": "Significant gaps in foundations"
+      },
+      "developing": {
+        "min": 0.3,
+        "max": 0.5,
+        "label": "Developing",
+        "description": "Some foundations, needs learning"
+      },
+      "approaching": {
+        "min": 0.5,
+        "max": 0.7,
+        "label": "Approaching Ready",
+        "description": "Most foundations present"
+      },
+      "ready": {
+        "min": 0.7,
+        "max": 0.85,
+        "label": "Ready",
+        "description": "Meets junior expectations"
+      },
+      "exceeds": {
+        "min": 0.85,
+        "max": 1.0,
+        "label": "Exceeds Expectations",
+        "description": "Exceeds junior expectations"
+      }
+    }
+  }
+}

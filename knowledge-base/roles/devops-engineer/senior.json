@@ -1,0 +1,110 @@
+{
+  "role_id": "devops_engineer",
+  "level": "senior",
+  "title": "Senior DevOps Engineer",
+  "description": "Senior DevOps position focused on architectural strategy, platform engineering, reliability at scale, security integration, and team mentorship. Expected to lead technical decisions, design enterprise-grade infrastructure, and drive DevOps culture.",
+  "experience_range": "5+ years",
+  "skills": [
+    {
+      "skill_id": "kubernetes",
+      "importance": 0.95,
+      "rationale": "Expert-level K8s including cluster design, operators, service mesh, and multi-cluster management"
+    },
+    {
+      "skill_id": "cloud_platforms",
+      "importance": 0.95,
+      "rationale": "Multi-cloud or deep single-cloud expertise, well-architected frameworks, and cost optimization"
+    },
+    {
+      "skill_id": "terraform",
+      "importance": 0.9,
+      "rationale": "Enterprise IaC strategy, custom modules, CI/CD integration, and policy-as-code"
+    },
+    {
+      "skill_id": "cicd",
+      "importance": 0.9,
+      "rationale": "Enterprise CI/CD architecture, advanced deployment patterns, DORA metrics, and pipeline security"
+    },
+    {
+      "skill_id": "linux",
+      "importance": 0.85,
+      "rationale": "Deep systems knowledge including kernel tuning, security hardening, and performance optimization"
+    },
+    {
+      "skill_id": "docker",
+      "importance": 0.85,
+      "rationale": "Enterprise container strategy, supply chain security, and orchestration integration"
+    },
+    {
+      "skill_id": "security_devsecops",
+      "importance": 0.85,
+      "rationale": "Security architecture, compliance automation, zero trust, and threat modeling"
+    },
+    {
+      "skill_id": "monitoring_observability",
+      "importance": 0.85,
+      "rationale": "Observability platform design, SLO/SLI frameworks, distributed tracing, and AIOps"
+    },
+    {
+      "skill_id": "networking",
+      "importance": 0.8,
+      "rationale": "Complex network architecture, service mesh, zero trust networking, and cloud networking"
+    },
+    {
+      "skill_id": "scripting",
+      "importance": 0.75,
+      "rationale": "Advanced automation frameworks, CLI tool development, and Golang for cloud-native tools"
+    },
+    {
+      "skill_id": "ansible",
+      "importance": 0.75,
+      "rationale": "Enterprise configuration management, dynamic inventory, and Ansible Tower/AWX"
+    },
+    {
+      "skill_id": "gitops",
+      "importance": 0.75,
+      "rationale": "Enterprise GitOps architecture, fleet management, and progressive delivery"
+    },
+    {
+      "skill_id": "git",
+      "importance": 0.7,
+      "rationale": "Git strategy design, monorepo management, and automation at scale"
+    }
+  ],
+  "scoring": {
+    "method": "weighted_average",
+    "description": "Each skill score is multiplied by its importance weight. Final score is the sum of weighted scores divided by sum of weights.",
+    "thresholds": {
+      "not_ready": {
+        "min": 0.0,
+        "max": 0.3,
+        "label": "Not Ready",
+        "description": "Not at senior level; needs significant growth"
+      },
+      "developing": {
+        "min": 0.3,
+        "max": 0.5,
+        "label": "Developing",
+        "description": "Some senior skills emerging, but needs more breadth and depth"
+      },
+      "approaching": {
+        "min": 0.5,
+        "max": 0.7,
+        "label": "Approaching Ready",
+        "description": "Strong technical skills, needs to develop leadership and architecture capabilities"
+      },
+      "ready": {
+        "min": 0.7,
+        "max": 0.85,
+        "label": "Ready",
+        "description": "Meets expectations for senior position"
+      },
+      "exceeds": {
+        "min": 0.85,
+        "max": 1.0,
+        "label": "Exceeds Expectations",
+        "description": "Principal/Staff level capabilities"
+      }
+    }
+  }
+}

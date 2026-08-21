@@ -1,0 +1,110 @@
+{
+  "role_id": "devops_engineer",
+  "level": "junior",
+  "title": "Junior DevOps Engineer",
+  "description": "Entry-level DevOps position focused on foundational Linux, containerization, CI/CD, and cloud skills. Expected to automate basic tasks, manage containers, and support CI/CD pipelines under guidance.",
+  "experience_range": "0-2 years",
+  "skills": [
+    {
+      "skill_id": "linux",
+      "importance": 0.95,
+      "rationale": "Foundation for all DevOps work; daily Linux usage is non-negotiable"
+    },
+    {
+      "skill_id": "git",
+      "importance": 0.9,
+      "rationale": "Version control is fundamental to all code and configuration management"
+    },
+    {
+      "skill_id": "docker",
+      "importance": 0.9,
+      "rationale": "Containerization is an industry standard; Dockerfile and Compose are daily tasks"
+    },
+    {
+      "skill_id": "scripting",
+      "importance": 0.85,
+      "rationale": "Bash/Python scripting for automation is a core daily activity"
+    },
+    {
+      "skill_id": "cicd",
+      "importance": 0.8,
+      "rationale": "Building and maintaining basic CI/CD pipelines is expected"
+    },
+    {
+      "skill_id": "networking",
+      "importance": 0.75,
+      "rationale": "Understanding DNS, HTTP, SSH, and basic troubleshooting is essential"
+    },
+    {
+      "skill_id": "cloud_platforms",
+      "importance": 0.7,
+      "rationale": "Familiarity with at least one cloud provider is increasingly required"
+    },
+    {
+      "skill_id": "terraform",
+      "importance": 0.6,
+      "rationale": "Basic IaC understanding is a strong differentiator for juniors"
+    },
+    {
+      "skill_id": "kubernetes",
+      "importance": 0.55,
+      "rationale": "Growing expectation but deep knowledge is mid-level; basic pod/deployment understanding helps"
+    },
+    {
+      "skill_id": "monitoring_observability",
+      "importance": 0.5,
+      "rationale": "Understanding basic monitoring concepts and reading dashboards"
+    },
+    {
+      "skill_id": "ansible",
+      "importance": 0.45,
+      "rationale": "Useful but not always required at junior level; varies by company"
+    },
+    {
+      "skill_id": "security_devsecops",
+      "importance": 0.4,
+      "rationale": "Awareness-level; understanding basics of secrets management and dependency scanning"
+    },
+    {
+      "skill_id": "gitops",
+      "importance": 0.25,
+      "rationale": "Aspirational for juniors; understanding concepts is enough"
+    }
+  ],
+  "scoring": {
+    "method": "weighted_average",
+    "description": "Each skill score is multiplied by its importance weight. Final score is the sum of weighted scores divided by sum of weights.",
+    "thresholds": {
+      "not_ready": {
+        "min": 0.0,
+        "max": 0.3,
+        "label": "Not Ready",
+        "description": "Significant gaps in foundational skills"
+      },
+      "developing": {
+        "min": 0.3,
+        "max": 0.5,
+        "label": "Developing",
+        "description": "Some foundations in place, needs focused learning"
+      },
+      "approaching": {
+        "min": 0.5,
+        "max": 0.7,
+        "label": "Approaching Ready",
+        "description": "Most foundational skills present, some gaps to fill"
+      },
+      "ready": {
+        "min": 0.7,
+        "max": 0.85,
+        "label": "Ready",
+        "description": "Meets expectations for junior-level position"
+      },
+      "exceeds": {
+        "min": 0.85,
+        "max": 1.0,
+        "label": "Exceeds Expectations",
+        "description": "Exceeds junior-level expectations; may be ready for mid-level"
+      }
+    }
+  }
+}

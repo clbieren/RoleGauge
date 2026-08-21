@@ -1,0 +1,323 @@
+{
+  "skill_id": "cloud_platforms",
+  "name": "Cloud Platforms (AWS / Azure / GCP)",
+  "category": "cloud",
+  "description": "Cloud computing services including compute, storage, networking, IAM, serverless, databases, and cloud-native architecture across major providers.",
+  "subskills": [
+    {
+      "id": "compute",
+      "name": "Compute Services",
+      "description": "Virtual machines, auto-scaling groups, instance types, and AMI/image management.",
+      "keywords": [
+        "EC2",
+        "VM",
+        "Azure VM",
+        "GCE",
+        "instance",
+        "auto scaling",
+        "AMI",
+        "launch template",
+        "spot instance"
+      ]
+    },
+    {
+      "id": "cloud_storage",
+      "name": "Storage Services",
+      "description": "Object storage, block storage, lifecycle policies, and backup strategies.",
+      "keywords": [
+        "S3",
+        "Blob Storage",
+        "GCS",
+        "EBS",
+        "Azure Disk",
+        "lifecycle policy",
+        "bucket",
+        "versioning"
+      ]
+    },
+    {
+      "id": "iam",
+      "name": "IAM & Access Management",
+      "description": "Identity and Access Management, roles, policies, least privilege, and service accounts.",
+      "keywords": [
+        "IAM",
+        "role",
+        "policy",
+        "permission",
+        "service account",
+        "least privilege",
+        "MFA",
+        "STS",
+        "assume role"
+      ]
+    },
+    {
+      "id": "vpc_networking",
+      "name": "VPC & Cloud Networking",
+      "description": "Virtual Private Cloud, subnets, route tables, NAT gateways, and peering.",
+      "keywords": [
+        "VPC",
+        "subnet",
+        "route table",
+        "NAT gateway",
+        "internet gateway",
+        "peering",
+        "security group",
+        "NACL"
+      ]
+    },
+    {
+      "id": "serverless",
+      "name": "Serverless Computing",
+      "description": "Function-as-a-Service, event-driven architecture, and API gateways.",
+      "keywords": [
+        "Lambda",
+        "Azure Functions",
+        "Cloud Functions",
+        "API Gateway",
+        "event-driven",
+        "trigger",
+        "serverless"
+      ]
+    },
+    {
+      "id": "databases",
+      "name": "Managed Database Services",
+      "description": "RDS, DynamoDB, Cosmos DB, Cloud SQL, and database management.",
+      "keywords": [
+        "RDS",
+        "DynamoDB",
+        "Cosmos DB",
+        "Cloud SQL",
+        "Aurora",
+        "ElastiCache",
+        "Redis",
+        "snapshot",
+        "replica"
+      ]
+    },
+    {
+      "id": "container_services",
+      "name": "Container & Orchestration Services",
+      "description": "ECS, EKS, AKS, GKE, and managed container platforms.",
+      "keywords": [
+        "ECS",
+        "EKS",
+        "AKS",
+        "GKE",
+        "Fargate",
+        "App Runner",
+        "Container Apps",
+        "Cloud Run"
+      ]
+    },
+    {
+      "id": "monitoring_cloud",
+      "name": "Cloud Monitoring & Logging",
+      "description": "CloudWatch, Azure Monitor, Cloud Logging, alarms, and log analytics.",
+      "keywords": [
+        "CloudWatch",
+        "Azure Monitor",
+        "Cloud Logging",
+        "Stackdriver",
+        "alarm",
+        "log group",
+        "metric",
+        "dashboard"
+      ]
+    },
+    {
+      "id": "cost_management",
+      "name": "Cost Management & FinOps",
+      "description": "Cost optimization, budgets, reserved instances, and right-sizing.",
+      "keywords": [
+        "cost",
+        "billing",
+        "budget",
+        "reserved instance",
+        "savings plan",
+        "right-sizing",
+        "FinOps",
+        "cost explorer"
+      ]
+    },
+    {
+      "id": "cli_sdk",
+      "name": "CLI & SDK Usage",
+      "description": "Using cloud CLI tools and SDKs for programmatic infrastructure management.",
+      "keywords": [
+        "aws cli",
+        "az cli",
+        "gcloud",
+        "boto3",
+        "aws-sdk",
+        "azure-sdk",
+        "cloud sdk"
+      ]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "AWS/Azure/GCP provider in Terraform configurations",
+        "detection": "content_analysis",
+        "pattern": "provider \"aws\"|provider \"azurerm\"|provider \"google\"",
+        "strength": 0.7,
+        "maps_to": [
+          "cloud_platforms.vpc_networking",
+          "cloud_platforms.compute",
+          "cloud_platforms.iam"
+        ]
+      },
+      {
+        "signal": "Cloud CLI commands in scripts or CI/CD",
+        "detection": "content_analysis",
+        "pattern": "aws |az |gcloud |boto3|aws-sdk",
+        "strength": 0.6,
+        "maps_to": [
+          "cloud_platforms.cli_sdk"
+        ]
+      },
+      {
+        "signal": "CloudFormation or ARM templates present",
+        "detection": "file_presence",
+        "pattern": "cloudformation|template.json|template.yaml|azuredeploy.json",
+        "strength": 0.7,
+        "maps_to": [
+          "cloud_platforms.compute",
+          "cloud_platforms.vpc_networking"
+        ]
+      },
+      {
+        "signal": "Cloud-specific resource definitions in IaC",
+        "detection": "content_analysis",
+        "pattern": "aws_instance|aws_s3|aws_lambda|azurerm_resource_group|google_compute_instance",
+        "strength": 0.7,
+        "maps_to": [
+          "cloud_platforms.compute",
+          "cloud_platforms.cloud_storage",
+          "cloud_platforms.serverless"
+        ]
+      },
+      {
+        "signal": "IAM role/policy definitions in IaC",
+        "detection": "content_analysis",
+        "pattern": "aws_iam_role|aws_iam_policy|azurerm_role_assignment|google_project_iam",
+        "strength": 0.8,
+        "maps_to": [
+          "cloud_platforms.iam"
+        ]
+      },
+      {
+        "signal": "Managed Kubernetes service usage (EKS/AKS/GKE)",
+        "detection": "content_analysis",
+        "pattern": "aws_eks|azurerm_kubernetes|google_container_cluster|eksctl",
+        "strength": 0.7,
+        "maps_to": [
+          "cloud_platforms.container_services"
+        ]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "AWS/Azure/GCP mentioned in skills",
+        "strength": 0.3,
+        "maps_to": [
+          "cloud_platforms.cli_sdk"
+        ]
+      },
+      {
+        "signal": "Cloud architecture or migration experience described",
+        "strength": 0.5,
+        "maps_to": [
+          "cloud_platforms.compute",
+          "cloud_platforms.vpc_networking",
+          "cloud_platforms.iam"
+        ]
+      },
+      {
+        "signal": "Specific cloud services mentioned (EC2, S3, Lambda, etc.)",
+        "strength": 0.4,
+        "maps_to": [
+          "cloud_platforms.compute",
+          "cloud_platforms.cloud_storage",
+          "cloud_platforms.serverless"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Cloud platform in skills/endorsements",
+        "strength": 0.2,
+        "maps_to": [
+          "cloud_platforms.cli_sdk"
+        ]
+      },
+      {
+        "signal": "AWS/Azure/GCP certifications",
+        "strength": 0.2,
+        "maps_to": [
+          "cloud_platforms.cli_sdk"
+        ]
+      }
+    ],
+    "assessment": [
+      {
+        "signal": "Can provision cloud infrastructure (VPC, compute, storage)",
+        "strength": 1.0,
+        "maps_to": [
+          "cloud_platforms.compute",
+          "cloud_platforms.cloud_storage",
+          "cloud_platforms.vpc_networking"
+        ]
+      },
+      {
+        "signal": "Can configure IAM with least privilege principles",
+        "strength": 1.0,
+        "maps_to": [
+          "cloud_platforms.iam"
+        ]
+      },
+      {
+        "signal": "Can deploy a managed Kubernetes cluster",
+        "strength": 1.0,
+        "maps_to": [
+          "cloud_platforms.container_services"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "compute",
+        "cloud_storage",
+        "iam",
+        "vpc_networking",
+        "cli_sdk"
+      ],
+      "description": "Can use basic cloud services (compute, storage, networking), understand IAM, and use CLI tools."
+    },
+    "mid": {
+      "expected_subskills": [
+        "serverless",
+        "databases",
+        "container_services",
+        "monitoring_cloud"
+      ],
+      "description": "Can work with serverless, managed databases, container services, and cloud monitoring."
+    },
+    "senior": {
+      "expected_subskills": [
+        "cost_management"
+      ],
+      "description": "Can design multi-region, highly available architectures, optimize costs, and implement cloud governance strategies.",
+      "additional_expectations": [
+        "multi_cloud",
+        "well_architected_framework",
+        "disaster_recovery",
+        "compliance"
+      ]
+    }
+  }
+}
