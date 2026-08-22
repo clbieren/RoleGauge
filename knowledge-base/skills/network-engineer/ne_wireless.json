@@ -1,0 +1,170 @@
+{
+  "skill_id": "ne_wireless",
+  "name": "Wireless Networking",
+  "category": "networking",
+  "description": "802.11 standards, WPA2/3, controllers, APs.",
+  "subskills": [
+    {
+      "id": "rf_principles",
+      "name": "RF Principles",
+      "description": "Frequencies, bands, interference.",
+      "keywords": [
+        "RF",
+        "2.4GHz",
+        "5GHz",
+        "Interference",
+        "Signal strength"
+      ]
+    },
+    {
+      "id": "standards_80211",
+      "name": "802.11 Standards",
+      "description": "a/b/g/n/ac/ax (WiFi 6).",
+      "keywords": [
+        "802.11ac",
+        "802.11ax",
+        "WiFi 6",
+        "MIMO"
+      ]
+    },
+    {
+      "id": "ap_modes",
+      "name": "AP Modes",
+      "description": "Autonomous, Lightweight (CAPWAP).",
+      "keywords": [
+        "Autonomous AP",
+        "Lightweight AP",
+        "CAPWAP",
+        "WLC"
+      ]
+    },
+    {
+      "id": "wireless_security",
+      "name": "Wireless Security",
+      "description": "WPA2, WPA3, 802.1X, EAP.",
+      "keywords": [
+        "WPA2",
+        "WPA3",
+        "802.1X",
+        "EAP-TLS"
+      ]
+    },
+    {
+      "id": "wlc_config",
+      "name": "WLC Configuration",
+      "description": "Cisco/Aruba wireless controller configuration.",
+      "keywords": [
+        "WLC",
+        "Wireless LAN Controller",
+        "SSID"
+      ]
+    },
+    {
+      "id": "roaming",
+      "name": "Roaming",
+      "description": "Client roaming, seamless transition.",
+      "keywords": [
+        "Roaming",
+        "Fast BSS transition",
+        "802.11r"
+      ]
+    },
+    {
+      "id": "site_survey",
+      "name": "Site Survey",
+      "description": "Predictive and active RF site surveys.",
+      "keywords": [
+        "Site survey",
+        "Ekahau",
+        "Heatmap"
+      ]
+    },
+    {
+      "id": "troubleshooting",
+      "name": "Wireless Troubleshooting",
+      "description": "Interference, co-channel interference.",
+      "keywords": [
+        "Co-channel interference",
+        "SNR",
+        "RSSI"
+      ]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "WLC config scripts",
+        "detection": "content_analysis",
+        "pattern": "config wlan|capwap",
+        "strength": 0.8,
+        "maps_to": [
+          "ne_wireless.wlc_config"
+        ]
+      },
+      {
+        "signal": "802.1X security configs",
+        "detection": "content_analysis",
+        "pattern": "dot1x system-auth-control",
+        "strength": 0.8,
+        "maps_to": [
+          "ne_wireless.wireless_security"
+        ]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "Wireless deployment, Ekahau surveys, roaming optimization",
+        "strength": 0.7,
+        "maps_to": [
+          "ne_wireless.wlc_config",
+          "ne_wireless.standards_80211",
+          "ne_wireless.site_survey",
+          "ne_wireless.roaming"
+        ]
+      },
+      {
+        "signal": "RF interference troubleshooting",
+        "strength": 0.6,
+        "maps_to": [
+          "ne_wireless.rf_principles",
+          "ne_wireless.troubleshooting",
+          "ne_wireless.ap_modes"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Wireless Networking endorsed",
+        "strength": 0.5,
+        "maps_to": [
+          "ne_wireless.wlc_config"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "rf_principles",
+        "standards_80211",
+        "ap_modes"
+      ],
+      "description": "Understands WiFi bands, standards, and AP types."
+    },
+    "mid": {
+      "expected_subskills": [
+        "wireless_security",
+        "troubleshooting"
+      ],
+      "description": "Can secure wireless networks and troubleshoot basic interference."
+    },
+    "senior": {
+      "expected_subskills": [
+        "wlc_config",
+        "roaming",
+        "site_survey"
+      ],
+      "description": "Can architect enterprise wireless networks and perform Ekahau surveys."
+    }
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "role_id": "network_engineer",
+  "level": "senior",
+  "title": "Senior Network Engineer",
+  "description": "Senior-level.",
+  "experience_range": "5+ years",
+  "skills": [
+    {
+      "skill_id": "ne_addressing_routing",
+      "importance": 0.95,
+      "rationale": "Core BGP/MPLS expected"
+    },
+    {
+      "skill_id": "ne_network_security",
+      "importance": 0.9,
+      "rationale": "Core VPN/IPSec design"
+    },
+    {
+      "skill_id": "ne_services_observability",
+      "importance": 0.9,
+      "rationale": "Core"
+    },
+    {
+      "skill_id": "ne_switching_lan",
+      "importance": 0.85,
+      "rationale": "Important"
+    },
+    {
+      "skill_id": "ne_wireless",
+      "importance": 0.8,
+      "rationale": "Important"
+    },
+    {
+      "skill_id": "ne_osi_tcpip",
+      "importance": 0.5,
+      "rationale": "Assumed mastered"
+    },
+    {
+      "skill_id": "ne_fundamentals",
+      "importance": 0.2,
+      "rationale": "Assumed mastered"
+    }
+  ],
+  "scoring": {
+    "method": "weighted_average",
+    "description": "Standard scoring",
+    "thresholds": {}
+  }
+}

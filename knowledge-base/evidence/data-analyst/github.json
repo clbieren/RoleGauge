@@ -1,0 +1,39 @@
+{
+  "source_id": "github",
+  "name": "GitHub Repository Analysis - Data Analyst",
+  "description": "Signals extracted from GitHub repositories to evidence Data Analyst skills.",
+  "preprocessing_pipeline": {
+    "steps": [
+      {
+        "step": 1,
+        "name": "file_tree_scan",
+        "target_files": [
+          {
+            "pattern": "*.ipynb|*.sql|*.R|*.py",
+            "skill": "all",
+            "priority": "high"
+          }
+        ]
+      },
+      {
+        "step": 2,
+        "name": "dependency_extraction",
+        "relevant_dependencies": {
+          "data_analysis": [
+            "pandas",
+            "numpy",
+            "scikit-learn",
+            "matplotlib",
+            "seaborn",
+            "sqlalchemy"
+          ]
+        }
+      }
+    ]
+  },
+  "ai_analysis_instructions": {
+    "tasks": [
+      "Map to composite keys"
+    ]
+  }
+}

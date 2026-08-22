@@ -1,0 +1,54 @@
+{
+  "role_id": "data_analyst",
+  "level": "junior",
+  "title": "Junior Data Analyst",
+  "description": "Entry-level.",
+  "experience_range": "0-2 years",
+  "skills": [
+    {
+      "skill_id": "da_sql",
+      "importance": 0.95,
+      "rationale": "Core"
+    },
+    {
+      "skill_id": "da_excel",
+      "importance": 0.9,
+      "rationale": "Core"
+    },
+    {
+      "skill_id": "da_data_visualization",
+      "importance": 0.85,
+      "rationale": "Important"
+    },
+    {
+      "skill_id": "da_data_cleaning",
+      "importance": 0.8,
+      "rationale": "Important"
+    },
+    {
+      "skill_id": "da_programming",
+      "importance": 0.6,
+      "rationale": "Good to have"
+    },
+    {
+      "skill_id": "da_data_collection",
+      "importance": 0.5,
+      "rationale": "Basic"
+    },
+    {
+      "skill_id": "da_statistical_analysis",
+      "importance": 0.4,
+      "rationale": "Basic"
+    },
+    {
+      "skill_id": "da_machine_learning",
+      "importance": 0.1,
+      "rationale": "Rarely needed"
+    }
+  ],
+  "scoring": {
+    "method": "weighted_average",
+    "description": "Standard scoring",
+    "thresholds": {}
+  }
+}

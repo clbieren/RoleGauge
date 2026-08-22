@@ -1,0 +1,177 @@
+{
+  "skill_id": "da_programming",
+  "name": "Programming for Data Analysis",
+  "category": "programming",
+  "description": "Python/R programming fundamentals and data manipulation libraries.",
+  "subskills": [
+    {
+      "id": "variables_types",
+      "name": "Variables & Types",
+      "description": "Understanding core data types (int, string, bool).",
+      "keywords": [
+        "Variables",
+        "Data Types",
+        "int",
+        "string",
+        "bool"
+      ]
+    },
+    {
+      "id": "loops_conditionals",
+      "name": "Loops & Conditionals",
+      "description": "Control flow using for, while, if, elif, else.",
+      "keywords": [
+        "for loop",
+        "while loop",
+        "if statement",
+        "control flow"
+      ]
+    },
+    {
+      "id": "functions",
+      "name": "Functions",
+      "description": "Writing reusable code blocks using def or lambda.",
+      "keywords": [
+        "def",
+        "function",
+        "lambda",
+        "return"
+      ]
+    },
+    {
+      "id": "pandas_basics",
+      "name": "Pandas Basics",
+      "description": "Data manipulation using pandas DataFrames and Series.",
+      "keywords": [
+        "pandas",
+        "DataFrame",
+        "Series",
+        "pd.merge",
+        "groupby"
+      ]
+    },
+    {
+      "id": "numpy_arrays",
+      "name": "Numpy Arrays",
+      "description": "Vectorized operations and linear algebra using NumPy.",
+      "keywords": [
+        "numpy",
+        "ndarray",
+        "vectorization",
+        "np.array"
+      ]
+    },
+    {
+      "id": "data_structures",
+      "name": "Data Structures",
+      "description": "Using lists, dictionaries, sets, and tuples efficiently.",
+      "keywords": [
+        "list",
+        "dictionary",
+        "set",
+        "tuple",
+        "hash map"
+      ]
+    },
+    {
+      "id": "code_optimization",
+      "name": "Code Optimization",
+      "description": "Writing memory-efficient and fast execution code (list comprehensions, generators).",
+      "keywords": [
+        "list comprehension",
+        "generator",
+        "yield",
+        "timeit",
+        "optimization"
+      ]
+    },
+    {
+      "id": "oop_concepts",
+      "name": "OOP Concepts",
+      "description": "Object-oriented programming principles (classes, inheritance, methods).",
+      "keywords": [
+        "class",
+        "object",
+        "inheritance",
+        "self",
+        "__init__"
+      ]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "Python Pandas usage",
+        "detection": "content_analysis",
+        "pattern": "import pandas as pd",
+        "strength": 0.8,
+        "maps_to": [
+          "da_programming.pandas_basics"
+        ]
+      },
+      {
+        "signal": "Python OOP usage",
+        "detection": "content_analysis",
+        "pattern": "class \\w+\\(.*\\):",
+        "strength": 0.7,
+        "maps_to": [
+          "da_programming.oop_concepts"
+        ]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "Python data analysis mentioned",
+        "strength": 0.6,
+        "maps_to": [
+          "da_programming.pandas_basics"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Python endorsed",
+        "strength": 0.5,
+        "maps_to": [
+          "da_programming.pandas_basics",
+          "da_programming.functions"
+        ]
+      }
+    ],
+    "assessment": [
+      {
+        "signal": "Can write an optimized pandas data transformation pipeline",
+        "strength": 1.0,
+        "maps_to": [
+          "da_programming.pandas_basics",
+          "da_programming.code_optimization"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "variables_types",
+        "loops_conditionals",
+        "functions"
+      ],
+      "description": "Can write basic scripts for data tasks."
+    },
+    "mid": {
+      "expected_subskills": [
+        "pandas_basics",
+        "numpy_arrays",
+        "data_structures"
+      ],
+      "description": "Can perform complex data manipulation and vectorized operations."
+    },
+    "senior": {
+      "expected_subskills": [
+        "code_optimization",
+        "oop_concepts"
+      ],
+      "description": "Can write production-ready, object-oriented, and optimized analysis code."
+    }
+  }
+}

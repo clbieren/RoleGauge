@@ -1,0 +1,38 @@
+{
+  "source_id": "github",
+  "name": "GitHub Repository Analysis - Network Engineer",
+  "description": "Global parsing rules. NOTE: Specific evidence mappings (regex patterns) are stored within individual skill files, NOT here. The validate_composite_keys.py script scans both to verify coverage. This prevents duplicating regexes across files.",
+  "preprocessing_pipeline": {
+    "steps": [
+      {
+        "step": 1,
+        "name": "file_tree_scan",
+        "target_files": [
+          {
+            "pattern": "*.cfg|*.conf|*.txt|*.yml",
+            "skill": "all",
+            "priority": "high"
+          }
+        ]
+      },
+      {
+        "step": 2,
+        "name": "dependency_extraction",
+        "relevant_dependencies": {
+          "network_automation": [
+            "netmiko",
+            "napalm",
+            "nornir",
+            "paramiko",
+            "ncclient"
+          ]
+        }
+      }
+    ]
+  },
+  "ai_analysis_instructions": {
+    "tasks": [
+      "Map to composite keys"
+    ]
+  }
+}

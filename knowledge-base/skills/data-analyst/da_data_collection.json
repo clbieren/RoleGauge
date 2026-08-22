@@ -1,0 +1,185 @@
+{
+  "skill_id": "da_data_collection",
+  "name": "Data Collection & Access",
+  "category": "data_engineering",
+  "description": "Focuses on connecting to APIs, databases, reading files (CSV/Excel), and web scraping.",
+  "subskills": [
+    {
+      "id": "csv_excel_reading",
+      "name": "Reading CSV/Excel files",
+      "description": "Loading flat files into memory using pandas, csv module, or openpyxl.",
+      "keywords": [
+        "read_csv",
+        "read_excel",
+        "openpyxl",
+        "csv.reader"
+      ]
+    },
+    {
+      "id": "basic_db_connections",
+      "name": "Database Connection Strings",
+      "description": "Connecting to SQL/NoSQL databases programmatically using drivers like psycopg2, pyodbc, or sqlalchemy.",
+      "keywords": [
+        "sqlalchemy",
+        "psycopg2",
+        "pyodbc",
+        "create_engine",
+        "pymongo"
+      ]
+    },
+    {
+      "id": "api_requests",
+      "name": "REST API Requests",
+      "description": "Fetching JSON/XML data from REST APIs using requests or urllib.",
+      "keywords": [
+        "requests.get",
+        "requests.post",
+        "urllib",
+        "json.loads",
+        "REST API"
+      ]
+    },
+    {
+      "id": "web_scraping",
+      "name": "Web Scraping",
+      "description": "Extracting unstructured data from HTML pages using BeautifulSoup, Scrapy, or Selenium.",
+      "keywords": [
+        "BeautifulSoup",
+        "Scrapy",
+        "Selenium",
+        "find_all",
+        "xpath"
+      ]
+    },
+    {
+      "id": "pagination_handling",
+      "name": "API Pagination Handling",
+      "description": "Looping through API pages (cursor or offset based) to collect full datasets.",
+      "keywords": [
+        "offset",
+        "limit",
+        "next_page",
+        "cursor",
+        "pagination"
+      ]
+    },
+    {
+      "id": "cloud_storage_access",
+      "name": "S3/GCS Access",
+      "description": "Programmatically reading/writing files from cloud object storage (AWS S3, Google Cloud Storage).",
+      "keywords": [
+        "boto3",
+        "google-cloud-storage",
+        "s3fs",
+        "blob storage"
+      ]
+    },
+    {
+      "id": "streaming_data",
+      "name": "Streaming Data APIs",
+      "description": "Connecting to WebSockets or streaming endpoints (e.g., Kafka, Twitter API).",
+      "keywords": [
+        "websocket",
+        "kafka",
+        "streaming",
+        "confluent_kafka"
+      ]
+    },
+    {
+      "id": "automated_etl_scripts",
+      "name": "Automated Data Pulls",
+      "description": "Scheduling scripts (cron, Airflow basics) to periodically fetch and dump data.",
+      "keywords": [
+        "cron",
+        "airflow",
+        "schedule",
+        "job",
+        "ETL script"
+      ]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "Python script using BeautifulSoup or Selenium",
+        "detection": "dependency_extraction",
+        "pattern": "bs4|beautifulsoup4|selenium",
+        "strength": 0.8,
+        "maps_to": [
+          "da_data_collection.web_scraping"
+        ]
+      },
+      {
+        "signal": "Python script connecting to databases via SQLAlchemy",
+        "detection": "content_analysis",
+        "pattern": "create_engine|sessionmaker",
+        "strength": 0.7,
+        "maps_to": [
+          "da_data_collection.basic_db_connections"
+        ]
+      },
+      {
+        "signal": "Python script interacting with S3 via boto3",
+        "detection": "content_analysis",
+        "pattern": "boto3\\.client\\('s3'\\)",
+        "strength": 0.9,
+        "maps_to": [
+          "da_data_collection.cloud_storage_access"
+        ]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "Experience building web scrapers",
+        "strength": 0.6,
+        "maps_to": [
+          "da_data_collection.web_scraping"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Web Scraping endorsed",
+        "strength": 0.4,
+        "maps_to": [
+          "da_data_collection.web_scraping"
+        ]
+      }
+    ],
+    "assessment": [
+      {
+        "signal": "Can write a script to paginate through a REST API to fetch all records",
+        "strength": 1.0,
+        "maps_to": [
+          "da_data_collection.pagination_handling",
+          "da_data_collection.api_requests"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "csv_excel_reading",
+        "basic_db_connections"
+      ],
+      "description": "Can connect to local/network databases and read standard flat files into analysis tools."
+    },
+    "mid": {
+      "expected_subskills": [
+        "api_requests",
+        "web_scraping",
+        "pagination_handling"
+      ],
+      "description": "Can extract data from the web using REST APIs and scraping, handling pagination and rate limits."
+    },
+    "senior": {
+      "expected_subskills": [
+        "cloud_storage_access",
+        "streaming_data",
+        "automated_etl_scripts"
+      ],
+      "description": "Can architect automated, scheduled scripts to pull from cloud storage or streaming APIs."
+    }
+  }
+}

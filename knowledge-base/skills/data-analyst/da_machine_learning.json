@@ -1,0 +1,184 @@
+{
+  "skill_id": "da_machine_learning",
+  "name": "Machine Learning & Big Data",
+  "category": "analysis",
+  "description": "ML concepts, model building, and Big Data processing frameworks.",
+  "subskills": [
+    {
+      "id": "concept_understanding",
+      "name": "ML Concepts",
+      "description": "Understanding supervised vs unsupervised, bias-variance tradeoff.",
+      "keywords": [
+        "Supervised Learning",
+        "Unsupervised Learning",
+        "Bias-Variance",
+        "Overfitting"
+      ]
+    },
+    {
+      "id": "train_test_split",
+      "name": "Train/Test Split",
+      "description": "Splitting data and cross-validation.",
+      "keywords": [
+        "train_test_split",
+        "Cross Validation",
+        "K-Fold"
+      ]
+    },
+    {
+      "id": "scikit_learn_basics",
+      "name": "Scikit-Learn Basics",
+      "description": "Using sklearn APIs (fit, predict, transform).",
+      "keywords": [
+        "sklearn",
+        "fit",
+        "predict",
+        "Pipeline"
+      ]
+    },
+    {
+      "id": "classification_models",
+      "name": "Classification Models",
+      "description": "Random Forests, XGBoost, Decision Trees.",
+      "keywords": [
+        "Random Forest",
+        "XGBoost",
+        "Decision Tree",
+        "Logistic Regression"
+      ]
+    },
+    {
+      "id": "clustering",
+      "name": "Clustering",
+      "description": "K-Means, DBSCAN, Hierarchical.",
+      "keywords": [
+        "K-Means",
+        "Clustering",
+        "DBSCAN"
+      ]
+    },
+    {
+      "id": "model_evaluation",
+      "name": "Model Evaluation",
+      "description": "Accuracy, Precision, Recall, F1, ROC-AUC.",
+      "keywords": [
+        "Precision",
+        "Recall",
+        "F1 Score",
+        "ROC",
+        "AUC",
+        "Confusion Matrix"
+      ]
+    },
+    {
+      "id": "big_data_hadoop",
+      "name": "Hadoop Ecosystem",
+      "description": "Processing large datasets using HDFS, MapReduce, Hive.",
+      "keywords": [
+        "Hadoop",
+        "HDFS",
+        "MapReduce",
+        "Hive",
+        "EMR"
+      ]
+    },
+    {
+      "id": "big_data_spark",
+      "name": "Apache Spark / PySpark",
+      "description": "Distributed data processing using Spark DataFrames.",
+      "keywords": [
+        "Spark",
+        "PySpark",
+        "RDD",
+        "Spark DataFrame"
+      ]
+    },
+    {
+      "id": "hyperparameter_tuning",
+      "name": "Hyperparameter Tuning",
+      "description": "GridSearchCV, RandomSearchCV.",
+      "keywords": [
+        "GridSearchCV",
+        "RandomizedSearchCV",
+        "Hyperopt"
+      ]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "Scikit-learn usage",
+        "detection": "dependency_extraction",
+        "pattern": "scikit-learn|sklearn",
+        "strength": 0.8,
+        "maps_to": [
+          "da_machine_learning.scikit_learn_basics"
+        ]
+      },
+      {
+        "signal": "PySpark usage",
+        "detection": "content_analysis",
+        "pattern": "from pyspark\\.sql import SparkSession",
+        "strength": 0.9,
+        "maps_to": [
+          "da_machine_learning.big_data_spark"
+        ]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "Machine learning projects or Big Data experience mentioned",
+        "strength": 0.6,
+        "maps_to": [
+          "da_machine_learning.classification_models",
+          "da_machine_learning.big_data_hadoop"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Spark/Hadoop or ML endorsed",
+        "strength": 0.6,
+        "maps_to": [
+          "da_machine_learning.big_data_spark",
+          "da_machine_learning.concept_understanding"
+        ]
+      }
+    ],
+    "assessment": [
+      {
+        "signal": "Can evaluate a classification model's performance on imbalanced data",
+        "strength": 1.0,
+        "maps_to": [
+          "da_machine_learning.model_evaluation"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "concept_understanding",
+        "train_test_split",
+        "scikit_learn_basics"
+      ],
+      "description": "Understands ML basics and can use scikit-learn APIs."
+    },
+    "mid": {
+      "expected_subskills": [
+        "classification_models",
+        "clustering",
+        "model_evaluation"
+      ],
+      "description": "Can build and evaluate standard classification and clustering models."
+    },
+    "senior": {
+      "expected_subskills": [
+        "big_data_hadoop",
+        "big_data_spark",
+        "hyperparameter_tuning"
+      ],
+      "description": "Can tune complex models and process massive datasets using distributed computing frameworks."
+    }
+  }
+}

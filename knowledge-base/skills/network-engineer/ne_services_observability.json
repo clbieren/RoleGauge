@@ -1,0 +1,188 @@
+{
+  "skill_id": "ne_services_observability",
+  "name": "Network Services & Observability",
+  "category": "networking",
+  "description": "DNS, DHCP, SNMP, NetFlow, and network automation tools.",
+  "subskills": [
+    {
+      "id": "dhcp",
+      "name": "DHCP",
+      "description": "DHCP pools, relays, IP helpers.",
+      "keywords": [
+        "ip dhcp pool",
+        "ip helper-address",
+        "DHCP relay"
+      ]
+    },
+    {
+      "id": "dns",
+      "name": "DNS",
+      "description": "A records, CNAME, DNS resolution.",
+      "keywords": [
+        "DNS",
+        "ip name-server",
+        "A record"
+      ]
+    },
+    {
+      "id": "ntp",
+      "name": "NTP",
+      "description": "Network Time Protocol.",
+      "keywords": [
+        "NTP",
+        "ntp server",
+        "ntp peer"
+      ]
+    },
+    {
+      "id": "snmp",
+      "name": "SNMP",
+      "description": "SNMPv2c, SNMPv3, traps.",
+      "keywords": [
+        "SNMP",
+        "snmp-server",
+        "SNMPv3",
+        "MIB",
+        "OID"
+      ]
+    },
+    {
+      "id": "netflow",
+      "name": "NetFlow / sFlow",
+      "description": "Traffic visibility.",
+      "keywords": [
+        "NetFlow",
+        "sFlow",
+        "ip flow ingress"
+      ]
+    },
+    {
+      "id": "syslog",
+      "name": "Syslog",
+      "description": "Logging levels, remote logging.",
+      "keywords": [
+        "Syslog",
+        "logging trap",
+        "logging host"
+      ]
+    },
+    {
+      "id": "automation_python",
+      "name": "Python Automation",
+      "description": "Netmiko, Napalm, Nornir.",
+      "keywords": [
+        "netmiko",
+        "napalm",
+        "nornir",
+        "paramiko"
+      ]
+    },
+    {
+      "id": "automation_ansible",
+      "name": "Ansible for Network",
+      "description": "Ansible ios_config, nxos_config modules.",
+      "keywords": [
+        "ios_config",
+        "nxos_config",
+        "ansible-playbook"
+      ]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "Python network automation",
+        "detection": "dependency_extraction",
+        "pattern": "netmiko|napalm|nornir",
+        "strength": 0.9,
+        "maps_to": [
+          "ne_services_observability.automation_python"
+        ]
+      },
+      {
+        "signal": "Ansible network modules",
+        "detection": "content_analysis",
+        "pattern": "ios_config:|nxos_config:",
+        "strength": 0.8,
+        "maps_to": [
+          "ne_services_observability.automation_ansible"
+        ]
+      },
+      {
+        "signal": "SNMP/Netflow config",
+        "detection": "content_analysis",
+        "pattern": "snmp-server|ip flow-export",
+        "strength": 0.8,
+        "maps_to": [
+          "ne_services_observability.snmp",
+          "ne_services_observability.netflow"
+        ]
+      },
+      {
+        "signal": "DHCP/DNS config",
+        "detection": "content_analysis",
+        "pattern": "ip dhcp pool|ip name-server",
+        "strength": 0.8,
+        "maps_to": [
+          "ne_services_observability.dhcp",
+          "ne_services_observability.dns",
+          "ne_services_observability.ntp",
+          "ne_services_observability.syslog"
+        ]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "Network automation experience with python/ansible",
+        "strength": 0.7,
+        "maps_to": [
+          "ne_services_observability.automation_python",
+          "ne_services_observability.automation_ansible"
+        ]
+      },
+      {
+        "signal": "Network monitoring rollout",
+        "strength": 0.6,
+        "maps_to": [
+          "ne_services_observability.snmp",
+          "ne_services_observability.netflow",
+          "ne_services_observability.syslog"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Network Automation endorsed",
+        "strength": 0.5,
+        "maps_to": [
+          "ne_services_observability.automation_python"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "dhcp",
+        "dns",
+        "ntp",
+        "syslog"
+      ],
+      "description": "Can configure basic IP services and logging."
+    },
+    "mid": {
+      "expected_subskills": [
+        "snmp",
+        "netflow"
+      ],
+      "description": "Can configure monitoring and flow tracking protocols."
+    },
+    "senior": {
+      "expected_subskills": [
+        "automation_python",
+        "automation_ansible"
+      ],
+      "description": "Can automate network provisioning and configuration using Python or Ansible."
+    }
+  }
+}

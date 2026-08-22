@@ -1,0 +1,835 @@
+{
+  "source_id": "assessment",
+  "name": "Adaptive Technical Assessment - Network Engineer",
+  "description": "Questions for Network Engineer skills. Fully hand-crafted for each specific technology.",
+  "sample_questions_by_composite_key": {
+    "ne_fundamentals.cabling": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "A link between two switches 300 meters apart is flapping. What type of SFP and cabling would you deploy to ensure a stable 10G connection?",
+        "expected_answer_keywords": [
+          "Single-mode fiber",
+          "Multi-mode fiber",
+          "SFP+",
+          "10GBASE-LR",
+          "10GBASE-SR",
+          "attenuation"
+        ]
+      }
+    ],
+    "ne_fundamentals.topologies": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "Compare a traditional three-tier network architecture with a spine-leaf topology. Why is spine-leaf preferred in modern data centers?",
+        "expected_answer_keywords": [
+          "East-West traffic",
+          "North-South traffic",
+          "Spine",
+          "Leaf",
+          "Latency",
+          "Scalability",
+          "ECMP"
+        ]
+      }
+    ],
+    "ne_fundamentals.media_access": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "Explain the difference between CSMA/CD and CSMA/CA, and identify which environments use them.",
+        "expected_answer_keywords": [
+          "Collision Detection",
+          "Collision Avoidance",
+          "Ethernet",
+          "Wireless",
+          "Half-duplex",
+          "Jam signal"
+        ]
+      }
+    ],
+    "ne_fundamentals.network_racks": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "You are provisioning a new switch in a rack. Explain what a 'U' (Rack Unit) is and how you would calculate power requirements for dual-PSU switches.",
+        "expected_answer_keywords": [
+          "Rack Unit",
+          "1.75 inches",
+          "PDU",
+          "Redundancy",
+          "A/B power feeds"
+        ]
+      }
+    ],
+    "ne_fundamentals.power_over_ethernet": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "A new WiFi 6 AP is connected to a switch port but fails to boot fully, showing a power warning. What IEEE standard does it likely require, and how do you check the PoE budget?",
+        "expected_answer_keywords": [
+          "802.3at",
+          "802.3bt",
+          "PoE+",
+          "LLDP power negotiation",
+          "show power inline"
+        ]
+      }
+    ],
+    "ne_fundamentals.wan_basics": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "You need to connect a remote branch office. Compare the use of a leased line versus Metro Ethernet in terms of encapsulation and handoff.",
+        "expected_answer_keywords": [
+          "Metro Ethernet",
+          "Leased line",
+          "Demarcation point",
+          "CPE",
+          "Ethernet handoff",
+          "VLAN tag"
+        ]
+      }
+    ],
+    "ne_fundamentals.data_centers": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "Design a Layer 3 routing fabric for a spine-leaf data center. Which routing protocol would you use for the underlay and why?",
+        "expected_answer_keywords": [
+          "eBGP",
+          "OSPF",
+          "Underlay",
+          "ECMP",
+          "Fast convergence",
+          "ASN per leaf"
+        ]
+      }
+    ],
+    "ne_fundamentals.cloud_connectivity": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "Explain the BGP peering requirements and VLAN dot1q tagging needed to establish an AWS Direct Connect or Azure ExpressRoute from an on-premise edge router.",
+        "expected_answer_keywords": [
+          "Direct Connect",
+          "ExpressRoute",
+          "eBGP",
+          "Private ASN",
+          "802.1Q",
+          "VNI"
+        ]
+      }
+    ],
+    "ne_osi_tcpip.osi_model": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "At which OSI layer does a MAC address operate, and at which layer does an IP address operate? How do they interact?",
+        "expected_answer_keywords": [
+          "Data Link Layer",
+          "Layer 2",
+          "Network Layer",
+          "Layer 3",
+          "ARP",
+          "Encapsulation"
+        ]
+      }
+    ],
+    "ne_osi_tcpip.tcp_ip_model": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "Map the OSI model to the 4-layer TCP/IP (DoD) model. Which OSI layers combine into the TCP/IP Application layer?",
+        "expected_answer_keywords": [
+          "Application",
+          "Presentation",
+          "Session",
+          "TCP/IP Application layer"
+        ]
+      }
+    ],
+    "ne_osi_tcpip.arp": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "A host wants to communicate with an IP on the same subnet but doesn't know the MAC address. Describe the ARP broadcast process.",
+        "expected_answer_keywords": [
+          "ARP Request",
+          "Broadcast MAC",
+          "FF:FF:FF:FF:FF:FF",
+          "ARP Reply",
+          "Unicast"
+        ]
+      }
+    ],
+    "ne_osi_tcpip.icmp": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "You execute a traceroute command. Explain how the TTL field in the IP header and ICMP Time Exceeded messages are used to discover the path.",
+        "expected_answer_keywords": [
+          "TTL",
+          "Time to Live",
+          "ICMP Time Exceeded",
+          "Type 11",
+          "Echo Request",
+          "Hop count"
+        ]
+      }
+    ],
+    "ne_osi_tcpip.tcp_vs_udp": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "During a file transfer, a router drops several packets due to congestion. Explain how TCP recovers from this compared to UDP.",
+        "expected_answer_keywords": [
+          "TCP Retransmission",
+          "Sequence numbers",
+          "Acknowledgments",
+          "ACK",
+          "Window sliding",
+          "UDP connectionless"
+        ]
+      }
+    ],
+    "ne_osi_tcpip.mtu_fragmentation": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "A GRE tunnel is dropping large packets. Explain Path MTU Discovery (PMTUD) and the role of the 'Don't Fragment' (DF) bit.",
+        "expected_answer_keywords": [
+          "PMTUD",
+          "ICMP Fragmentation Needed",
+          "Type 3 Code 4",
+          "DF bit",
+          "MSS adjustment",
+          "TCP Adjust-MSS"
+        ]
+      }
+    ],
+    "ne_osi_tcpip.packet_analysis": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "You capture a PCAP of a failing TCP connection. The client sends a SYN, the server replies with SYN-ACK, but the client sends an RST. What could cause this?",
+        "expected_answer_keywords": [
+          "Asymmetric routing",
+          "Stateful firewall",
+          "TCP RST",
+          "Out of state",
+          "Sequence number mismatch"
+        ]
+      }
+    ],
+    "ne_osi_tcpip.qos_dscp": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "Voice traffic is experiencing jitter. How would you configure DSCP marking and a strict priority queue (LLQ) to prioritize RTP packets?",
+        "expected_answer_keywords": [
+          "DSCP EF",
+          "Expedited Forwarding",
+          "LLQ",
+          "Strict priority",
+          "Class-map",
+          "Policy-map",
+          "RTP"
+        ]
+      }
+    ],
+    "ne_addressing_routing.ipv4_subnetting": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "Given the network 192.168.1.0/24, subnet it to provide exactly 30 usable host IPs per subnet. What is the new subnet mask and CIDR notation?",
+        "expected_answer_keywords": [
+          "/27",
+          "255.255.255.224",
+          "32 addresses",
+          "30 usable",
+          "Block size"
+        ]
+      }
+    ],
+    "ne_addressing_routing.ipv6_addressing": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "Explain how a host generates its own IPv6 address using SLAAC and the EUI-64 format.",
+        "expected_answer_keywords": [
+          "SLAAC",
+          "Stateless Address Autoconfiguration",
+          "Router Advertisement",
+          "NDP",
+          "MAC address",
+          "FFFE"
+        ]
+      }
+    ],
+    "ne_addressing_routing.static_routing": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "You need to configure a backup route to the internet that only becomes active if the primary link fails. How do you configure a floating static route?",
+        "expected_answer_keywords": [
+          "Administrative Distance",
+          "AD",
+          "ip route 0.0.0.0 0.0.0.0",
+          "Higher metric",
+          "Backup path"
+        ]
+      }
+    ],
+    "ne_addressing_routing.ospf": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "Two OSPF routers are stuck in the EXSTART state. What is the most common cause for this adjacency failure and how do you fix it?",
+        "expected_answer_keywords": [
+          "MTU mismatch",
+          "ip mtu",
+          "ip ospf mtu-ignore",
+          "Database Description",
+          "DBD packets"
+        ]
+      }
+    ],
+    "ne_addressing_routing.eigrp": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "An EIGRP route is stuck in the ACTIVE state. Explain the DUAL algorithm's process for querying neighbors and how to prevent SIA (Stuck in Active).",
+        "expected_answer_keywords": [
+          "DUAL",
+          "Feasible Successor",
+          "Query packet",
+          "SIA timer",
+          "EIGRP stub",
+          "Query boundary"
+        ]
+      }
+    ],
+    "ne_addressing_routing.bgp": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "You are receiving a BGP prefix from two different ISPs. How do you manipulate the Local Preference and AS-Path Prepending attributes to prefer ISP-A for outbound traffic and ISP-B for inbound?",
+        "expected_answer_keywords": [
+          "Local Preference",
+          "Outbound traffic",
+          "AS-Path Prepending",
+          "Inbound traffic",
+          "route-map",
+          "BGP best path selection"
+        ]
+      }
+    ],
+    "ne_addressing_routing.route_redistribution": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "When redistributing routes between OSPF and EIGRP, routing loops can occur. How do you use route tags and route-maps to prevent this?",
+        "expected_answer_keywords": [
+          "Route tagging",
+          "route-map",
+          "match tag",
+          "deny",
+          "Administrative Distance",
+          "Suboptimal routing"
+        ]
+      }
+    ],
+    "ne_addressing_routing.mpls": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "Explain the control plane and data plane operations of an MPLS L3VPN. What role do Route Distinguishers (RD) and Route Targets (RT) play?",
+        "expected_answer_keywords": [
+          "VRF",
+          "Route Distinguisher",
+          "RD",
+          "Route Target",
+          "RT",
+          "MP-BGP",
+          "Label Distribution Protocol",
+          "LDP",
+          "VPNv4"
+        ]
+      }
+    ],
+    "ne_switching_lan.vlans": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "A PC is connected to a switch port but cannot reach the gateway. The port shows 'up/up'. What commands would you use to verify the VLAN assignment and MAC address learning?",
+        "expected_answer_keywords": [
+          "show vlan brief",
+          "show mac address-table",
+          "switchport access vlan",
+          "show interface status"
+        ]
+      }
+    ],
+    "ne_switching_lan.trunking": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "You connect two switches, but VLANs are not passing between them. Explain how to check for Native VLAN mismatches and verify the 802.1Q trunk status.",
+        "expected_answer_keywords": [
+          "show interfaces trunk",
+          "switchport mode trunk",
+          "Native VLAN mismatch",
+          "CDP neighbor",
+          "encapsulation dot1q"
+        ]
+      }
+    ],
+    "ne_switching_lan.vtp": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "A new switch is added to the network, and suddenly all VLANs are deleted. Explain VTP revision numbers and how to prevent this.",
+        "expected_answer_keywords": [
+          "VTP revision number",
+          "VTP transparent mode",
+          "VTP domain",
+          "Higher revision",
+          "Configuration override"
+        ]
+      }
+    ],
+    "ne_switching_lan.inter_vlan_routing": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "Describe the configuration steps to implement 'Router on a Stick' for VLANs 10 and 20 using a single physical router interface.",
+        "expected_answer_keywords": [
+          "Subinterface",
+          "encapsulation dot1q 10",
+          "ip address",
+          "Default gateway",
+          "Trunk port"
+        ]
+      }
+    ],
+    "ne_switching_lan.stp": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "A user plugs an unmanaged switch into two wall jacks, creating a loop. How do you configure STP PortFast and BPDU Guard to mitigate this instantly?",
+        "expected_answer_keywords": [
+          "spanning-tree portfast",
+          "spanning-tree bpduguard enable",
+          "err-disable",
+          "Broadcast storm",
+          "Root bridge"
+        ]
+      }
+    ],
+    "ne_switching_lan.etherchannel": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "You configure an LACP Port-Channel between two switches, but it stays in a 'suspended' state. What parameters must match on the physical ports for EtherChannel to form?",
+        "expected_answer_keywords": [
+          "Speed",
+          "Duplex",
+          "Allowed VLANs",
+          "Native VLAN",
+          "channel-group mode active",
+          "show etherchannel summary"
+        ]
+      }
+    ],
+    "ne_switching_lan.layer2_security": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "An attacker is running a rogue DHCP server. Explain how DHCP Snooping and Dynamic ARP Inspection (DAI) work together to block this and protect the ARP cache.",
+        "expected_answer_keywords": [
+          "DHCP Snooping binding database",
+          "Trusted ports",
+          "Untrusted ports",
+          "DAI",
+          "ip arp inspection",
+          "Man-in-the-middle"
+        ]
+      }
+    ],
+    "ne_switching_lan.high_availability": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "You have two core switches acting as gateways using HSRP. If the active switch loses its uplink to the internet, how do you ensure the standby switch takes over the active role automatically?",
+        "expected_answer_keywords": [
+          "HSRP",
+          "Standby track",
+          "Tracking objects",
+          "Decrement priority",
+          "Preempt",
+          "Virtual IP"
+        ]
+      }
+    ],
+    "ne_wireless.rf_principles": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "A user complains about slow WiFi in an open office. You notice they are connected to 2.4GHz instead of 5GHz. Compare the propagation and interference characteristics of both bands.",
+        "expected_answer_keywords": [
+          "2.4GHz",
+          "5GHz",
+          "Attenuation",
+          "Non-overlapping channels",
+          "Microwave interference",
+          "Penetration"
+        ]
+      }
+    ],
+    "ne_wireless.standards_80211": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "Explain the key performance benefits of 802.11ax (WiFi 6) over 802.11ac, specifically focusing on handling high client density.",
+        "expected_answer_keywords": [
+          "OFDMA",
+          "BSS Coloring",
+          "Target Wake Time",
+          "TWT",
+          "MU-MIMO",
+          "Spatial streams"
+        ]
+      }
+    ],
+    "ne_wireless.ap_modes": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "What is the difference between an Autonomous AP and a Lightweight AP, and how does CAPWAP function in a controller-based architecture?",
+        "expected_answer_keywords": [
+          "WLC",
+          "CAPWAP tunnel",
+          "Split MAC architecture",
+          "Centralized management",
+          "Autonomous AP"
+        ]
+      }
+    ],
+    "ne_wireless.wireless_security": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "How does WPA3's SAE (Simultaneous Authentication of Equals) provide better security against offline dictionary attacks compared to WPA2's 4-way handshake?",
+        "expected_answer_keywords": [
+          "SAE",
+          "Dragonfly handshake",
+          "WPA3",
+          "Forward secrecy",
+          "Offline dictionary attack",
+          "4-way handshake"
+        ]
+      }
+    ],
+    "ne_wireless.troubleshooting": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "Two APs on the same floor are transmitting on Channel 1 at full power. Explain the impact of co-channel interference (CCI) and how it affects the CSMA/CA backoff timers.",
+        "expected_answer_keywords": [
+          "Co-channel interference",
+          "CCI",
+          "Clear Channel Assessment",
+          "CCA",
+          "Airtime contention",
+          "Noise floor"
+        ]
+      }
+    ],
+    "ne_wireless.wlc_config": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "You are configuring a new Cisco WLC for an enterprise. Explain how you map a WLAN (SSID) to a dynamic interface, and how that traffic is trunked to the core switch.",
+        "expected_answer_keywords": [
+          "Dynamic interface",
+          "WLAN ID",
+          "VLAN tagging",
+          "LAG",
+          "Link Aggregation",
+          "Distribution system port"
+        ]
+      }
+    ],
+    "ne_wireless.roaming": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "Voice over WiFi clients are dropping calls when walking between APs. Explain how 802.11r (Fast BSS Transition) and 802.11k optimize the roaming process.",
+        "expected_answer_keywords": [
+          "802.11r",
+          "Fast transition",
+          "FT",
+          "802.11k",
+          "Neighbor report",
+          "Authentication delay",
+          "PMK caching"
+        ]
+      }
+    ],
+    "ne_wireless.site_survey": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "When performing an active site survey with tools like Ekahau, what SNR (Signal-to-Noise Ratio) and RSSI thresholds are generally recommended for VoWLAN?",
+        "expected_answer_keywords": [
+          "RSSI",
+          "-65 dBm",
+          "-67 dBm",
+          "SNR",
+          "25 dB",
+          "Cell overlap",
+          "Secondary coverage"
+        ]
+      }
+    ],
+    "ne_network_security.acls": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "Write an extended Cisco IPv4 ACL command to block host 192.168.1.50 from reaching web server 10.0.0.5 on port 443, while allowing everything else.",
+        "expected_answer_keywords": [
+          "access-list",
+          "deny tcp host 192.168.1.50 host 10.0.0.5 eq 443",
+          "permit ip any any",
+          "implicit deny"
+        ]
+      }
+    ],
+    "ne_network_security.nat": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "Users on the inside network (10.0.0.0/24) cannot reach the internet. Detail the commands needed to configure NAT Overload (PAT) on the exit router interface.",
+        "expected_answer_keywords": [
+          "ip nat inside",
+          "ip nat outside",
+          "ip nat inside source list 1 interface GigabitEthernet0/0 overload",
+          "access-list 1 permit 10.0.0.0"
+        ]
+      }
+    ],
+    "ne_network_security.aaa": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "You want to centralize SSH login credentials for all routers. Explain the difference between RADIUS and TACACS+ in terms of protocol, encryption, and authorization separation.",
+        "expected_answer_keywords": [
+          "TACACS+",
+          "TCP",
+          "Full packet encryption",
+          "Command authorization",
+          "RADIUS",
+          "UDP",
+          "Password only encryption"
+        ]
+      }
+    ],
+    "ne_network_security.firewall_config": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "Traffic from a DMZ zone to an Internal zone is being blocked by a Palo Alto firewall. Where in the security policy would you look, and how does stateful inspection handle the return traffic?",
+        "expected_answer_keywords": [
+          "Security rule",
+          "Zone-based",
+          "DMZ to Internal",
+          "Stateful firewall",
+          "Connection table",
+          "Return traffic allowed automatically"
+        ]
+      }
+    ],
+    "ne_network_security.vpn_remote": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "Remote workers complain they cannot reach local network printers when connected to the corporate AnyConnect SSL VPN. Explain split-tunneling and how to configure it.",
+        "expected_answer_keywords": [
+          "Split tunneling",
+          "Tunnel-all",
+          "split-include",
+          "ACL",
+          "Routing table",
+          "VPN client"
+        ]
+      }
+    ],
+    "ne_network_security.vpn_ipsec": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "A Site-to-Site IPsec VPN is failing at Phase 1. What ISAKMP/IKE parameters must strictly match on both peers for Phase 1 to complete successfully?",
+        "expected_answer_keywords": [
+          "Pre-shared key",
+          "PSK",
+          "Encryption algorithm",
+          "Hashing algorithm",
+          "Diffie-Hellman group",
+          "DH group",
+          "Lifetime"
+        ]
+      }
+    ],
+    "ne_network_security.dmvpn": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "In a DMVPN Phase 3 deployment, spoke-to-spoke tunnels are not forming. Explain the role of NHRP resolution requests and what command enables NHS redirect on the hub.",
+        "expected_answer_keywords": [
+          "NHRP",
+          "Next Hop Resolution Protocol",
+          "mGRE",
+          "ip nhrp redirect",
+          "ip nhrp shortcut",
+          "Spoke-to-spoke"
+        ]
+      }
+    ],
+    "ne_network_security.macsec": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "You are deploying MACsec on an inter-switch fiber link. How does 802.1AE differ from IPsec in terms of the OSI layer it operates on, and what protocol manages the keys?",
+        "expected_answer_keywords": [
+          "Layer 2",
+          "Hop-by-hop encryption",
+          "MKA",
+          "MACsec Key Agreement",
+          "802.1X",
+          "IPsec is Layer 3"
+        ]
+      }
+    ],
+    "ne_services_observability.dhcp": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "Clients in VLAN 10 cannot get an IP address because the DHCP server is in VLAN 20. How do you resolve this at the routing boundary?",
+        "expected_answer_keywords": [
+          "ip helper-address",
+          "DHCP Relay",
+          "Broadcast to unicast",
+          "UDP port 67",
+          "SVI"
+        ]
+      }
+    ],
+    "ne_services_observability.dns": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "A router can ping 8.8.8.8 but cannot ping 'google.com'. What configuration command is missing to enable name resolution on the device?",
+        "expected_answer_keywords": [
+          "ip name-server",
+          "ip domain-lookup",
+          "DNS resolution"
+        ]
+      }
+    ],
+    "ne_services_observability.ntp": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "Logs on two switches show different timestamps for the same spanning-tree event. How do you synchronize them securely?",
+        "expected_answer_keywords": [
+          "NTP",
+          "ntp server",
+          "Stratum",
+          "NTP authentication",
+          "Clock sync"
+        ]
+      }
+    ],
+    "ne_services_observability.syslog": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "You want to send only critical alerts to a remote Syslog server, but keep debugging messages local. Explain syslog severity levels and how to configure this filtering.",
+        "expected_answer_keywords": [
+          "Severity levels",
+          "0 to 7",
+          "logging trap critical",
+          "logging buffered debugging",
+          "logging host"
+        ]
+      }
+    ],
+    "ne_services_observability.snmp": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "You are migrating from SNMPv2c to SNMPv3. What are the three primary security enhancements introduced in SNMPv3?",
+        "expected_answer_keywords": [
+          "Authentication",
+          "Encryption",
+          "Privacy",
+          "authPriv",
+          "HMAC",
+          "AES",
+          "Username"
+        ]
+      }
+    ],
+    "ne_services_observability.netflow": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "A network link is heavily congested, but SNMP only shows bandwidth utilization, not the source/destination IPs. How do you configure NetFlow to identify the top talkers?",
+        "expected_answer_keywords": [
+          "ip flow ingress",
+          "ip flow-export destination",
+          "Flow collector",
+          "Source IP",
+          "Destination IP",
+          "Port numbers"
+        ]
+      }
+    ],
+    "ne_services_observability.automation_python": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "You need to push a configuration change to 100 Cisco IOS devices. Compare writing a script using Netmiko vs Napalm for this specific task.",
+        "expected_answer_keywords": [
+          "Netmiko",
+          "CLI scraping",
+          "SSH",
+          "Napalm",
+          "Configuration replacement",
+          "Declarative",
+          "Rollback"
+        ]
+      }
+    ],
+    "ne_services_observability.automation_ansible": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "In an Ansible playbook targeting NX-OS switches, how does the 'nxos_config' module achieve idempotency when applying a list of commands?",
+        "expected_answer_keywords": [
+          "Idempotency",
+          "Gathering facts",
+          "Compare config",
+          "Only apply if changed",
+          "nxos_config"
+        ]
+      }
+    ]
+  },
+  "scoring_rules_reference": {
+    "source": "knowledge-base/scoring/engine.json",
+    "description": "Scoring rules for assessment are defined in engine.json"
+  }
+}

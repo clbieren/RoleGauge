@@ -1,0 +1,153 @@
+{
+  "skill_id": "ne_fundamentals",
+  "name": "Network Fundamentals",
+  "category": "networking",
+  "description": "Cabling, media types, network topologies, and basic physical layer concepts.",
+  "subskills": [
+    {
+      "id": "cabling",
+      "name": "Cabling Types",
+      "description": "UTP, STP, Fiber Optic cables.",
+      "keywords": [
+        "UTP",
+        "Fiber",
+        "Cat5e",
+        "Cat6",
+        "SFP"
+      ]
+    },
+    {
+      "id": "topologies",
+      "name": "Network Topologies",
+      "description": "Star, Mesh, Ring, Bus topologies.",
+      "keywords": [
+        "Star topology",
+        "Mesh topology",
+        "Ring topology"
+      ]
+    },
+    {
+      "id": "media_access",
+      "name": "Media Access Control",
+      "description": "CSMA/CD and CSMA/CA.",
+      "keywords": [
+        "CSMA/CD",
+        "CSMA/CA",
+        "Collision domain"
+      ]
+    },
+    {
+      "id": "power_over_ethernet",
+      "name": "PoE",
+      "description": "Understanding IEEE 802.3af/at/bt.",
+      "keywords": [
+        "PoE",
+        "Power over Ethernet",
+        "802.3af",
+        "802.3at"
+      ]
+    },
+    {
+      "id": "data_centers",
+      "name": "Data Center Architecture",
+      "description": "Spine-leaf, Three-tier architecture.",
+      "keywords": [
+        "Spine-leaf",
+        "Three-tier",
+        "Core",
+        "Distribution",
+        "Access"
+      ]
+    },
+    {
+      "id": "wan_basics",
+      "name": "WAN Basics",
+      "description": "Leased lines, DSL, Cable, Metro Ethernet.",
+      "keywords": [
+        "WAN",
+        "Metro Ethernet",
+        "Leased Line"
+      ]
+    },
+    {
+      "id": "cloud_connectivity",
+      "name": "Cloud Connectivity",
+      "description": "Direct Connect, ExpressRoute basics.",
+      "keywords": [
+        "Direct Connect",
+        "ExpressRoute",
+        "Cloud interconnect"
+      ]
+    },
+    {
+      "id": "network_racks",
+      "name": "Rack and Power",
+      "description": "UPS, PDUs, RU sizing.",
+      "keywords": [
+        "Rack unit",
+        "PDU",
+        "UPS",
+        "patch panel"
+      ]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "Mentions SFP modules or cabling specs in infra docs",
+        "detection": "content_analysis",
+        "pattern": "SFP\\+|10GBASE-T|Twinax",
+        "strength": 0.6,
+        "maps_to": [
+          "ne_fundamentals.cabling"
+        ]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "Physical network design, cabling, and rack installation",
+        "strength": 0.7,
+        "maps_to": [
+          "ne_fundamentals.cabling",
+          "ne_fundamentals.network_racks",
+          "ne_fundamentals.wan_basics"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Data Center infrastructure endorsed",
+        "strength": 0.5,
+        "maps_to": [
+          "ne_fundamentals.data_centers",
+          "ne_fundamentals.topologies"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "cabling",
+        "topologies",
+        "media_access",
+        "network_racks"
+      ],
+      "description": "Understands physical layers, cabling, and basic rack operations."
+    },
+    "mid": {
+      "expected_subskills": [
+        "power_over_ethernet",
+        "wan_basics"
+      ],
+      "description": "Can manage PoE budgets and basic WAN links."
+    },
+    "senior": {
+      "expected_subskills": [
+        "data_centers",
+        "cloud_connectivity"
+      ],
+      "description": "Designs scalable data center architectures and cloud interconnects."
+    }
+  }
+}

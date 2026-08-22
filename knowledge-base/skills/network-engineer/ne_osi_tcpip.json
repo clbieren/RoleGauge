@@ -1,0 +1,163 @@
+{
+  "skill_id": "ne_osi_tcpip",
+  "name": "OSI & TCP/IP Models",
+  "category": "networking",
+  "description": "Packet analysis, headers, and protocol encapsulation.",
+  "subskills": [
+    {
+      "id": "osi_model",
+      "name": "OSI Model",
+      "description": "All 7 layers.",
+      "keywords": [
+        "OSI Model",
+        "Application layer",
+        "Transport layer",
+        "Network layer",
+        "Data link layer"
+      ]
+    },
+    {
+      "id": "tcp_ip_model",
+      "name": "TCP/IP Model",
+      "description": "DoD model.",
+      "keywords": [
+        "TCP/IP",
+        "Internet layer"
+      ]
+    },
+    {
+      "id": "tcp_vs_udp",
+      "name": "TCP vs UDP",
+      "description": "Three-way handshake, windowing, multiplexing.",
+      "keywords": [
+        "TCP",
+        "UDP",
+        "Three-way handshake",
+        "Windowing",
+        "Connectionless"
+      ]
+    },
+    {
+      "id": "icmp",
+      "name": "ICMP",
+      "description": "Ping, traceroute mechanics.",
+      "keywords": [
+        "ICMP",
+        "Ping",
+        "Traceroute",
+        "Echo request"
+      ]
+    },
+    {
+      "id": "arp",
+      "name": "ARP",
+      "description": "Address Resolution Protocol.",
+      "keywords": [
+        "ARP",
+        "MAC address",
+        "Address Resolution Protocol"
+      ]
+    },
+    {
+      "id": "packet_analysis",
+      "name": "Packet Analysis",
+      "description": "Using Wireshark/tcpdump to read PCAPs.",
+      "keywords": [
+        "Wireshark",
+        "tcpdump",
+        "PCAP",
+        "packet capture"
+      ]
+    },
+    {
+      "id": "mtu_fragmentation",
+      "name": "MTU & Fragmentation",
+      "description": "Path MTU discovery, IP fragmentation.",
+      "keywords": [
+        "MTU",
+        "Fragmentation",
+        "PMTUD",
+        "DF bit"
+      ]
+    },
+    {
+      "id": "qos_dscp",
+      "name": "QoS & DSCP",
+      "description": "Traffic marking and queuing.",
+      "keywords": [
+        "QoS",
+        "DSCP",
+        "CoS",
+        "Traffic shaping"
+      ]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "Scripts invoking tcpdump",
+        "detection": "content_analysis",
+        "pattern": "tcpdump -i|pcap",
+        "strength": 0.8,
+        "maps_to": [
+          "ne_osi_tcpip.packet_analysis"
+        ]
+      },
+      {
+        "signal": "Scripts tuning MTU",
+        "detection": "content_analysis",
+        "pattern": "mtu 1500|mtu 9000",
+        "strength": 0.7,
+        "maps_to": [
+          "ne_osi_tcpip.mtu_fragmentation"
+        ]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "Protocol troubleshooting, Wireshark, QoS",
+        "strength": 0.7,
+        "maps_to": [
+          "ne_osi_tcpip.packet_analysis",
+          "ne_osi_tcpip.tcp_vs_udp",
+          "ne_osi_tcpip.qos_dscp"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "TCP/IP or Wireshark endorsed",
+        "strength": 0.5,
+        "maps_to": [
+          "ne_osi_tcpip.tcp_ip_model",
+          "ne_osi_tcpip.packet_analysis"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "osi_model",
+        "tcp_ip_model",
+        "arp",
+        "icmp"
+      ],
+      "description": "Understands layer separation, basic protocols, and ping mechanics."
+    },
+    "mid": {
+      "expected_subskills": [
+        "tcp_vs_udp",
+        "mtu_fragmentation"
+      ],
+      "description": "Deep understanding of transport layer mechanics and fragmentation."
+    },
+    "senior": {
+      "expected_subskills": [
+        "packet_analysis",
+        "qos_dscp"
+      ],
+      "description": "Can perform deep packet inspection and design QoS policies."
+    }
+  }
+}

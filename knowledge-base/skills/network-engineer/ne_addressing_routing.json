@@ -1,0 +1,201 @@
+{
+  "skill_id": "ne_addressing_routing",
+  "name": "Addressing & Routing",
+  "category": "networking",
+  "description": "IPv4/IPv6 subnetting, static routing, OSPF, BGP, EIGRP, and MPLS.",
+  "subskills": [
+    {
+      "id": "ipv4_subnetting",
+      "name": "IPv4 Subnetting",
+      "description": "VLSM, CIDR.",
+      "keywords": [
+        "IPv4",
+        "Subnetting",
+        "VLSM",
+        "CIDR"
+      ]
+    },
+    {
+      "id": "ipv6_addressing",
+      "name": "IPv6",
+      "description": "SLAAC, IPv6 subnets.",
+      "keywords": [
+        "IPv6",
+        "SLAAC",
+        "NDP"
+      ]
+    },
+    {
+      "id": "static_routing",
+      "name": "Static Routing",
+      "description": "Default routes, floating static routes.",
+      "keywords": [
+        "ip route",
+        "0.0.0.0",
+        "Floating static route"
+      ]
+    },
+    {
+      "id": "ospf",
+      "name": "OSPF",
+      "description": "Single and Multi-area OSPF, LSAs.",
+      "keywords": [
+        "OSPF",
+        "Area 0",
+        "LSA",
+        "Link State",
+        "router ospf"
+      ]
+    },
+    {
+      "id": "eigrp",
+      "name": "EIGRP",
+      "description": "Feasible successors, DUAL algorithm.",
+      "keywords": [
+        "EIGRP",
+        "DUAL",
+        "Feasible successor",
+        "router eigrp"
+      ]
+    },
+    {
+      "id": "bgp",
+      "name": "BGP",
+      "description": "eBGP, iBGP, Path attributes.",
+      "keywords": [
+        "BGP",
+        "Autonomous System",
+        "AS Number",
+        "router bgp",
+        "eBGP",
+        "iBGP"
+      ]
+    },
+    {
+      "id": "route_redistribution",
+      "name": "Route Redistribution",
+      "description": "Metrics, route maps, prefix lists.",
+      "keywords": [
+        "redistribute",
+        "route-map",
+        "prefix-list",
+        "metric"
+      ]
+    },
+    {
+      "id": "mpls",
+      "name": "MPLS",
+      "description": "Label switching, VRFs, L3VPN.",
+      "keywords": [
+        "MPLS",
+        "VRF",
+        "Label switching",
+        "L3VPN",
+        "CE router"
+      ]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "BGP config",
+        "detection": "content_analysis",
+        "pattern": "router bgp \\d+",
+        "strength": 0.9,
+        "maps_to": [
+          "ne_addressing_routing.bgp"
+        ]
+      },
+      {
+        "signal": "OSPF config",
+        "detection": "content_analysis",
+        "pattern": "router ospf \\d+",
+        "strength": 0.8,
+        "maps_to": [
+          "ne_addressing_routing.ospf"
+        ]
+      },
+      {
+        "signal": "EIGRP config",
+        "detection": "content_analysis",
+        "pattern": "router eigrp \\d+",
+        "strength": 0.8,
+        "maps_to": [
+          "ne_addressing_routing.eigrp"
+        ]
+      },
+      {
+        "signal": "MPLS VRF config",
+        "detection": "content_analysis",
+        "pattern": "ip vrf|vrf definition",
+        "strength": 0.9,
+        "maps_to": [
+          "ne_addressing_routing.mpls"
+        ]
+      },
+      {
+        "signal": "Static route config",
+        "detection": "content_analysis",
+        "pattern": "ip route 0\\.0\\.0\\.0",
+        "strength": 0.6,
+        "maps_to": [
+          "ne_addressing_routing.static_routing"
+        ]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "BGP, MPLS, OSPF protocol design",
+        "strength": 0.7,
+        "maps_to": [
+          "ne_addressing_routing.bgp",
+          "ne_addressing_routing.ospf",
+          "ne_addressing_routing.mpls",
+          "ne_addressing_routing.eigrp"
+        ]
+      },
+      {
+        "signal": "IPv6 migration or addressing",
+        "strength": 0.6,
+        "maps_to": [
+          "ne_addressing_routing.ipv6_addressing",
+          "ne_addressing_routing.ipv4_subnetting"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "BGP endorsed",
+        "strength": 0.5,
+        "maps_to": [
+          "ne_addressing_routing.bgp"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "ipv4_subnetting",
+        "static_routing",
+        "ipv6_addressing"
+      ],
+      "description": "Can subnet IPv4/IPv6 networks and configure static routes."
+    },
+    "mid": {
+      "expected_subskills": [
+        "ospf",
+        "eigrp"
+      ],
+      "description": "Can configure IGPs like OSPF and EIGRP."
+    },
+    "senior": {
+      "expected_subskills": [
+        "bgp",
+        "route_redistribution",
+        "mpls"
+      ],
+      "description": "Can design service provider level networks using BGP and MPLS."
+    }
+  }
+}

@@ -1,0 +1,194 @@
+{
+  "skill_id": "da_sql",
+  "name": "SQL & Querying",
+  "category": "database",
+  "description": "Focuses strictly on query writing: SELECT, JOINs, aggregations, window functions, and optimization.",
+  "subskills": [
+    {
+      "id": "select_filtering",
+      "name": "Basic SELECT & Filtering",
+      "description": "Extracting columns and filtering rows using WHERE, IN, BETWEEN, and LIKE operators.",
+      "keywords": [
+        "SELECT",
+        "WHERE",
+        "IN",
+        "BETWEEN",
+        "LIKE",
+        "AND",
+        "OR",
+        "NOT"
+      ]
+    },
+    {
+      "id": "basic_joins",
+      "name": "Basic JOINs (INNER/LEFT)",
+      "description": "Combining tables using INNER JOIN and LEFT JOIN based on relational keys.",
+      "keywords": [
+        "INNER JOIN",
+        "LEFT JOIN",
+        "ON",
+        "USING",
+        "FOREIGN KEY"
+      ]
+    },
+    {
+      "id": "group_by_aggs",
+      "name": "GROUP BY & Aggregations",
+      "description": "Aggregating data using GROUP BY and functions like SUM, COUNT, AVG, MIN, MAX.",
+      "keywords": [
+        "GROUP BY",
+        "HAVING",
+        "SUM",
+        "COUNT",
+        "AVG",
+        "MIN",
+        "MAX"
+      ]
+    },
+    {
+      "id": "subqueries",
+      "name": "Subqueries",
+      "description": "Writing nested queries in SELECT, FROM, or WHERE clauses.",
+      "keywords": [
+        "subquery",
+        "nested query",
+        "EXISTS",
+        "ANY",
+        "ALL"
+      ]
+    },
+    {
+      "id": "window_functions",
+      "name": "Window Functions",
+      "description": "Performing calculations across a set of table rows related to the current row using OVER, PARTITION BY, RANK, etc.",
+      "keywords": [
+        "OVER",
+        "PARTITION BY",
+        "ROW_NUMBER",
+        "RANK",
+        "DENSE_RANK",
+        "LEAD",
+        "LAG"
+      ]
+    },
+    {
+      "id": "ctes",
+      "name": "Common Table Expressions (CTEs)",
+      "description": "Creating temporary named result sets using the WITH clause for better readability and recursion.",
+      "keywords": [
+        "WITH",
+        "CTE",
+        "recursive CTE"
+      ]
+    },
+    {
+      "id": "query_optimization",
+      "name": "Query Optimization",
+      "description": "Analyzing execution plans and rewriting queries to reduce runtime and resource consumption.",
+      "keywords": [
+        "EXPLAIN",
+        "EXPLAIN ANALYZE",
+        "index scan",
+        "table scan",
+        "cost",
+        "optimization"
+      ]
+    },
+    {
+      "id": "complex_joins",
+      "name": "Complex/Advanced JOINs",
+      "description": "Using RIGHT JOIN, FULL OUTER JOIN, CROSS JOIN, and self-joins for complex relational mapping.",
+      "keywords": [
+        "FULL OUTER JOIN",
+        "RIGHT JOIN",
+        "CROSS JOIN",
+        "self join"
+      ]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "SQL files with complex window functions",
+        "detection": "content_analysis",
+        "pattern": "(?i)OVER\\s*\\(\\s*PARTITION\\s+BY",
+        "strength": 0.8,
+        "maps_to": [
+          "da_sql.window_functions"
+        ]
+      },
+      {
+        "signal": "SQL files utilizing CTEs",
+        "detection": "content_analysis",
+        "pattern": "(?i)WITH\\s+\\w+\\s+AS\\s*\\(",
+        "strength": 0.7,
+        "maps_to": [
+          "da_sql.ctes"
+        ]
+      },
+      {
+        "signal": "SQL files analyzing query plans",
+        "detection": "content_analysis",
+        "pattern": "(?i)EXPLAIN\\s+ANALYZE",
+        "strength": 0.9,
+        "maps_to": [
+          "da_sql.query_optimization"
+        ]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "Advanced SQL queries or optimization mentioned in projects",
+        "strength": 0.6,
+        "maps_to": [
+          "da_sql.query_optimization",
+          "da_sql.window_functions",
+          "da_sql.ctes"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "SQL optimization skill endorsed",
+        "strength": 0.5,
+        "maps_to": [
+          "da_sql.query_optimization"
+        ]
+      }
+    ],
+    "assessment": [
+      {
+        "signal": "Can write a query calculating running totals using window functions",
+        "strength": 1.0,
+        "maps_to": [
+          "da_sql.window_functions"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "select_filtering",
+        "basic_joins",
+        "group_by_aggs"
+      ],
+      "description": "Can write basic operational queries to extract and aggregate data from a few joined tables."
+    },
+    "mid": {
+      "expected_subskills": [
+        "subqueries",
+        "window_functions",
+        "ctes"
+      ],
+      "description": "Can write analytical queries using CTEs and window functions for ranking and running totals."
+    },
+    "senior": {
+      "expected_subskills": [
+        "query_optimization",
+        "complex_joins"
+      ],
+      "description": "Can optimize slow-running queries, analyze execution plans, and handle complex self-joins or cross-joins."
+    }
+  }
+}

@@ -1,0 +1,862 @@
+{
+  "source_id": "assessment",
+  "name": "Adaptive Technical Assessment - Data Analyst",
+  "description": "Questions for Data Analyst skills",
+  "sample_questions_by_composite_key": {
+    "da_sql.select_filtering": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "How would you approach a scenario involving Basic SELECT & Filtering?",
+        "expected_answer_keywords": [
+          "keyword1",
+          "keyword2",
+          "basic select & filtering",
+          "best practice"
+        ]
+      }
+    ],
+    "da_sql.basic_joins": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "How would you approach a scenario involving Basic JOINs (INNER/LEFT)?",
+        "expected_answer_keywords": [
+          "keyword1",
+          "keyword2",
+          "basic joins (inner/left)",
+          "best practice"
+        ]
+      }
+    ],
+    "da_sql.group_by_aggs": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "How would you approach a scenario involving GROUP BY & Aggregations?",
+        "expected_answer_keywords": [
+          "keyword1",
+          "keyword2",
+          "group by & aggregations",
+          "best practice"
+        ]
+      }
+    ],
+    "da_sql.subqueries": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "How would you approach a scenario involving Subqueries?",
+        "expected_answer_keywords": [
+          "keyword1",
+          "keyword2",
+          "subqueries",
+          "best practice"
+        ]
+      }
+    ],
+    "da_sql.window_functions": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "How would you approach a scenario involving Window Functions?",
+        "expected_answer_keywords": [
+          "keyword1",
+          "keyword2",
+          "window functions",
+          "best practice"
+        ]
+      }
+    ],
+    "da_sql.ctes": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "How would you approach a scenario involving Common Table Expressions (CTEs)?",
+        "expected_answer_keywords": [
+          "keyword1",
+          "keyword2",
+          "common table expressions (ctes)",
+          "best practice"
+        ]
+      }
+    ],
+    "da_sql.query_optimization": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "How would you approach a scenario involving Query Optimization?",
+        "expected_answer_keywords": [
+          "keyword1",
+          "keyword2",
+          "query optimization",
+          "best practice"
+        ]
+      }
+    ],
+    "da_sql.complex_joins": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "How would you approach a scenario involving Complex/Advanced JOINs?",
+        "expected_answer_keywords": [
+          "keyword1",
+          "keyword2",
+          "complex/advanced joins",
+          "best practice"
+        ]
+      }
+    ],
+    "da_data_collection.csv_excel_reading": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "How would you approach a scenario involving Reading CSV/Excel files?",
+        "expected_answer_keywords": [
+          "keyword1",
+          "keyword2",
+          "reading csv/excel files",
+          "best practice"
+        ]
+      }
+    ],
+    "da_data_collection.basic_db_connections": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "How would you approach a scenario involving Database Connection Strings?",
+        "expected_answer_keywords": [
+          "keyword1",
+          "keyword2",
+          "database connection strings",
+          "best practice"
+        ]
+      }
+    ],
+    "da_data_collection.api_requests": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "How would you approach a scenario involving REST API Requests?",
+        "expected_answer_keywords": [
+          "keyword1",
+          "keyword2",
+          "rest api requests",
+          "best practice"
+        ]
+      }
+    ],
+    "da_data_collection.web_scraping": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "How would you approach a scenario involving Web Scraping (BeautifulSoup/Selenium)?",
+        "expected_answer_keywords": [
+          "keyword1",
+          "keyword2",
+          "web scraping (beautifulsoup/selenium)",
+          "best practice"
+        ]
+      }
+    ],
+    "da_data_collection.pagination_handling": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "How would you approach a scenario involving API Pagination Handling?",
+        "expected_answer_keywords": [
+          "keyword1",
+          "keyword2",
+          "api pagination handling",
+          "best practice"
+        ]
+      }
+    ],
+    "da_data_collection.cloud_storage_access": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "How would you approach a scenario involving S3/GCS Access?",
+        "expected_answer_keywords": [
+          "keyword1",
+          "keyword2",
+          "s3/gcs access",
+          "best practice"
+        ]
+      }
+    ],
+    "da_data_collection.streaming_data": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "How would you approach a scenario involving Streaming Data APIs?",
+        "expected_answer_keywords": [
+          "keyword1",
+          "keyword2",
+          "streaming data apis",
+          "best practice"
+        ]
+      }
+    ],
+    "da_data_collection.automated_etl_scripts": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "How would you approach a scenario involving Automated Data Pulls?",
+        "expected_answer_keywords": [
+          "keyword1",
+          "keyword2",
+          "automated data pulls",
+          "best practice"
+        ]
+      }
+    ],
+    "da_excel.basic_formulas": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "How would you approach a scenario involving Basic Formulas?",
+        "expected_answer_keywords": [
+          "keyword1",
+          "keyword2",
+          "basic formulas",
+          "best practice"
+        ]
+      }
+    ],
+    "da_excel.pivot_tables": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "How would you approach a scenario involving Pivot Tables?",
+        "expected_answer_keywords": [
+          "keyword1",
+          "keyword2",
+          "pivot tables",
+          "best practice"
+        ]
+      }
+    ],
+    "da_excel.data_formatting": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "How would you approach a scenario involving Data Formatting?",
+        "expected_answer_keywords": [
+          "keyword1",
+          "keyword2",
+          "data formatting",
+          "best practice"
+        ]
+      }
+    ],
+    "da_excel.vlookup_index_match": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "How would you approach a scenario involving VLOOKUP/INDEX-MATCH?",
+        "expected_answer_keywords": [
+          "keyword1",
+          "keyword2",
+          "vlookup/index-match",
+          "best practice"
+        ]
+      }
+    ],
+    "da_excel.data_validation": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "How would you approach a scenario involving Data Validation?",
+        "expected_answer_keywords": [
+          "keyword1",
+          "keyword2",
+          "data validation",
+          "best practice"
+        ]
+      }
+    ],
+    "da_excel.conditional_formatting": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "How would you approach a scenario involving Conditional Formatting?",
+        "expected_answer_keywords": [
+          "keyword1",
+          "keyword2",
+          "conditional formatting",
+          "best practice"
+        ]
+      }
+    ],
+    "da_excel.macros_vba": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "How would you approach a scenario involving Macros & VBA?",
+        "expected_answer_keywords": [
+          "keyword1",
+          "keyword2",
+          "macros & vba",
+          "best practice"
+        ]
+      }
+    ],
+    "da_excel.power_query": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "How would you approach a scenario involving Power Query?",
+        "expected_answer_keywords": [
+          "keyword1",
+          "keyword2",
+          "power query",
+          "best practice"
+        ]
+      }
+    ],
+    "da_programming.variables_types": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "How would you approach a scenario involving Variables & Types?",
+        "expected_answer_keywords": [
+          "keyword1",
+          "keyword2",
+          "variables & types",
+          "best practice"
+        ]
+      }
+    ],
+    "da_programming.loops_conditionals": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "How would you approach a scenario involving Loops & Conditionals?",
+        "expected_answer_keywords": [
+          "keyword1",
+          "keyword2",
+          "loops & conditionals",
+          "best practice"
+        ]
+      }
+    ],
+    "da_programming.functions": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "How would you approach a scenario involving Functions?",
+        "expected_answer_keywords": [
+          "keyword1",
+          "keyword2",
+          "functions",
+          "best practice"
+        ]
+      }
+    ],
+    "da_programming.pandas_basics": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "How would you approach a scenario involving Pandas Basics?",
+        "expected_answer_keywords": [
+          "keyword1",
+          "keyword2",
+          "pandas basics",
+          "best practice"
+        ]
+      }
+    ],
+    "da_programming.numpy_arrays": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "How would you approach a scenario involving Numpy Arrays?",
+        "expected_answer_keywords": [
+          "keyword1",
+          "keyword2",
+          "numpy arrays",
+          "best practice"
+        ]
+      }
+    ],
+    "da_programming.data_structures": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "How would you approach a scenario involving Data Structures?",
+        "expected_answer_keywords": [
+          "keyword1",
+          "keyword2",
+          "data structures",
+          "best practice"
+        ]
+      }
+    ],
+    "da_programming.code_optimization": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "How would you approach a scenario involving Code Optimization?",
+        "expected_answer_keywords": [
+          "keyword1",
+          "keyword2",
+          "code optimization",
+          "best practice"
+        ]
+      }
+    ],
+    "da_programming.oop_concepts": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "How would you approach a scenario involving OOP Concepts?",
+        "expected_answer_keywords": [
+          "keyword1",
+          "keyword2",
+          "oop concepts",
+          "best practice"
+        ]
+      }
+    ],
+    "da_data_cleaning.missing_values": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "How would you approach a scenario involving Handling Missing Values?",
+        "expected_answer_keywords": [
+          "keyword1",
+          "keyword2",
+          "handling missing values",
+          "best practice"
+        ]
+      }
+    ],
+    "da_data_cleaning.deduplication": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "How would you approach a scenario involving Deduplication?",
+        "expected_answer_keywords": [
+          "keyword1",
+          "keyword2",
+          "deduplication",
+          "best practice"
+        ]
+      }
+    ],
+    "da_data_cleaning.data_type_casting": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "How would you approach a scenario involving Type Casting?",
+        "expected_answer_keywords": [
+          "keyword1",
+          "keyword2",
+          "type casting",
+          "best practice"
+        ]
+      }
+    ],
+    "da_data_cleaning.outlier_detection": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "How would you approach a scenario involving Outlier Detection?",
+        "expected_answer_keywords": [
+          "keyword1",
+          "keyword2",
+          "outlier detection",
+          "best practice"
+        ]
+      }
+    ],
+    "da_data_cleaning.regex_cleaning": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "How would you approach a scenario involving Regex Cleaning?",
+        "expected_answer_keywords": [
+          "keyword1",
+          "keyword2",
+          "regex cleaning",
+          "best practice"
+        ]
+      }
+    ],
+    "da_data_cleaning.string_manipulation": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "How would you approach a scenario involving String Manipulation?",
+        "expected_answer_keywords": [
+          "keyword1",
+          "keyword2",
+          "string manipulation",
+          "best practice"
+        ]
+      }
+    ],
+    "da_data_cleaning.imputation_strategies": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "How would you approach a scenario involving Advanced Imputation?",
+        "expected_answer_keywords": [
+          "keyword1",
+          "keyword2",
+          "advanced imputation",
+          "best practice"
+        ]
+      }
+    ],
+    "da_data_cleaning.feature_scaling": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "How would you approach a scenario involving Feature Scaling?",
+        "expected_answer_keywords": [
+          "keyword1",
+          "keyword2",
+          "feature scaling",
+          "best practice"
+        ]
+      }
+    ],
+    "da_statistical_analysis.descriptive_stats": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "How would you approach a scenario involving Descriptive Statistics?",
+        "expected_answer_keywords": [
+          "keyword1",
+          "keyword2",
+          "descriptive statistics",
+          "best practice"
+        ]
+      }
+    ],
+    "da_statistical_analysis.probability_basics": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "How would you approach a scenario involving Probability Basics?",
+        "expected_answer_keywords": [
+          "keyword1",
+          "keyword2",
+          "probability basics",
+          "best practice"
+        ]
+      }
+    ],
+    "da_statistical_analysis.distributions": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "How would you approach a scenario involving Distributions?",
+        "expected_answer_keywords": [
+          "keyword1",
+          "keyword2",
+          "distributions",
+          "best practice"
+        ]
+      }
+    ],
+    "da_statistical_analysis.hypothesis_testing": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "How would you approach a scenario involving Hypothesis Testing?",
+        "expected_answer_keywords": [
+          "keyword1",
+          "keyword2",
+          "hypothesis testing",
+          "best practice"
+        ]
+      }
+    ],
+    "da_statistical_analysis.correlation": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "How would you approach a scenario involving Correlation?",
+        "expected_answer_keywords": [
+          "keyword1",
+          "keyword2",
+          "correlation",
+          "best practice"
+        ]
+      }
+    ],
+    "da_statistical_analysis.ab_testing": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "How would you approach a scenario involving A/B Testing?",
+        "expected_answer_keywords": [
+          "keyword1",
+          "keyword2",
+          "a/b testing",
+          "best practice"
+        ]
+      }
+    ],
+    "da_statistical_analysis.regression_analysis": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "How would you approach a scenario involving Regression Analysis?",
+        "expected_answer_keywords": [
+          "keyword1",
+          "keyword2",
+          "regression analysis",
+          "best practice"
+        ]
+      }
+    ],
+    "da_statistical_analysis.time_series_analysis": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "How would you approach a scenario involving Time Series?",
+        "expected_answer_keywords": [
+          "keyword1",
+          "keyword2",
+          "time series",
+          "best practice"
+        ]
+      }
+    ],
+    "da_data_visualization.chart_types": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "How would you approach a scenario involving Basic Chart Types?",
+        "expected_answer_keywords": [
+          "keyword1",
+          "keyword2",
+          "basic chart types",
+          "best practice"
+        ]
+      }
+    ],
+    "da_data_visualization.basic_dashboards": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "How would you approach a scenario involving Basic Dashboards?",
+        "expected_answer_keywords": [
+          "keyword1",
+          "keyword2",
+          "basic dashboards",
+          "best practice"
+        ]
+      }
+    ],
+    "da_data_visualization.color_theory": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "How would you approach a scenario involving Color Theory?",
+        "expected_answer_keywords": [
+          "keyword1",
+          "keyword2",
+          "color theory",
+          "best practice"
+        ]
+      }
+    ],
+    "da_data_visualization.interactive_plots": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "How would you approach a scenario involving Interactive Plots (Plotly)?",
+        "expected_answer_keywords": [
+          "keyword1",
+          "keyword2",
+          "interactive plots (plotly)",
+          "best practice"
+        ]
+      }
+    ],
+    "da_data_visualization.bi_tools": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "How would you approach a scenario involving BI Tools (Tableau/PowerBI)?",
+        "expected_answer_keywords": [
+          "keyword1",
+          "keyword2",
+          "bi tools (tableau/powerbi)",
+          "best practice"
+        ]
+      }
+    ],
+    "da_data_visualization.storytelling": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "How would you approach a scenario involving Data Storytelling?",
+        "expected_answer_keywords": [
+          "keyword1",
+          "keyword2",
+          "data storytelling",
+          "best practice"
+        ]
+      }
+    ],
+    "da_data_visualization.custom_visualizations": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "How would you approach a scenario involving Custom Visualizations?",
+        "expected_answer_keywords": [
+          "keyword1",
+          "keyword2",
+          "custom visualizations",
+          "best practice"
+        ]
+      }
+    ],
+    "da_data_visualization.d3_js_advanced": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "How would you approach a scenario involving D3.js / Advanced?",
+        "expected_answer_keywords": [
+          "keyword1",
+          "keyword2",
+          "d3.js / advanced",
+          "best practice"
+        ]
+      }
+    ],
+    "da_machine_learning.concept_understanding": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "How would you approach a scenario involving ML Concepts?",
+        "expected_answer_keywords": [
+          "keyword1",
+          "keyword2",
+          "ml concepts",
+          "best practice"
+        ]
+      }
+    ],
+    "da_machine_learning.train_test_split": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "How would you approach a scenario involving Train/Test Split?",
+        "expected_answer_keywords": [
+          "keyword1",
+          "keyword2",
+          "train/test split",
+          "best practice"
+        ]
+      }
+    ],
+    "da_machine_learning.scikit_learn_basics": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "How would you approach a scenario involving Scikit-Learn Basics?",
+        "expected_answer_keywords": [
+          "keyword1",
+          "keyword2",
+          "scikit-learn basics",
+          "best practice"
+        ]
+      }
+    ],
+    "da_machine_learning.classification_models": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "How would you approach a scenario involving Classification Models?",
+        "expected_answer_keywords": [
+          "keyword1",
+          "keyword2",
+          "classification models",
+          "best practice"
+        ]
+      }
+    ],
+    "da_machine_learning.clustering": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "How would you approach a scenario involving Clustering?",
+        "expected_answer_keywords": [
+          "keyword1",
+          "keyword2",
+          "clustering",
+          "best practice"
+        ]
+      }
+    ],
+    "da_machine_learning.model_evaluation": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "How would you approach a scenario involving Model Evaluation?",
+        "expected_answer_keywords": [
+          "keyword1",
+          "keyword2",
+          "model evaluation",
+          "best practice"
+        ]
+      }
+    ],
+    "da_machine_learning.big_data_hadoop": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "You have a 500GB log dataset stored in HDFS. Explain how the MapReduce paradigm would process this data, and how you would query it using Hive.",
+        "expected_answer_keywords": [
+          "MapReduce",
+          "HDFS",
+          "NameNode",
+          "DataNode",
+          "HiveQL",
+          "schema on read",
+          "distributed processing"
+        ]
+      }
+    ],
+    "da_machine_learning.big_data_spark": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "Your pandas script is throwing OutOfMemory errors on a 50GB dataset. How would you migrate this logic to PySpark, and what is the difference between a DataFrame transformation and an action?",
+        "expected_answer_keywords": [
+          "PySpark",
+          "RDD",
+          "lazy evaluation",
+          "transformations",
+          "actions",
+          "cluster computing",
+          "distributed dataframe"
+        ]
+      }
+    ],
+    "da_machine_learning.hyperparameter_tuning": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "How would you approach a scenario involving Hyperparameter Tuning?",
+        "expected_answer_keywords": [
+          "keyword1",
+          "keyword2",
+          "hyperparameter tuning",
+          "best practice"
+        ]
+      }
+    ]
+  },
+  "scoring_rules_reference": {
+    "source": "knowledge-base/scoring/engine.json",
+    "description": "Scoring rules for assessment are defined in engine.json"
+  }
+}

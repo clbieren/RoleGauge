@@ -1,0 +1,173 @@
+{
+  "skill_id": "da_data_visualization",
+  "name": "Data Visualization",
+  "category": "analysis",
+  "description": "Visualizing data effectively and building dashboards.",
+  "subskills": [
+    {
+      "id": "chart_types",
+      "name": "Basic Chart Types",
+      "description": "Choosing appropriate charts (bar, line, scatter, pie) for the data.",
+      "keywords": [
+        "Bar Chart",
+        "Line Chart",
+        "Scatter Plot",
+        "Pie Chart",
+        "Histogram"
+      ]
+    },
+    {
+      "id": "basic_dashboards",
+      "name": "Basic Dashboards",
+      "description": "Creating simple dashboards in Excel or basic BI tools.",
+      "keywords": [
+        "Dashboard",
+        "Report",
+        "Visual Summary"
+      ]
+    },
+    {
+      "id": "color_theory",
+      "name": "Color Theory",
+      "description": "Applying color palettes effectively for accessibility and emphasis.",
+      "keywords": [
+        "Color Palette",
+        "Accessibility",
+        "Colorblind safe",
+        "Contrast"
+      ]
+    },
+    {
+      "id": "interactive_plots",
+      "name": "Interactive Plots (Plotly)",
+      "description": "Building interactive visualizations using libraries like Plotly or Bokeh.",
+      "keywords": [
+        "Plotly",
+        "Bokeh",
+        "Interactive Chart",
+        "Hover effects"
+      ]
+    },
+    {
+      "id": "bi_tools",
+      "name": "BI Tools (Tableau/PowerBI)",
+      "description": "Developing enterprise dashboards using Tableau, Power BI, Looker, etc.",
+      "keywords": [
+        "Tableau",
+        "Power BI",
+        "Looker",
+        "DAX",
+        "Calculated Field"
+      ]
+    },
+    {
+      "id": "storytelling",
+      "name": "Data Storytelling",
+      "description": "Structuring visual narratives to drive business decisions.",
+      "keywords": [
+        "Data Storytelling",
+        "Narrative",
+        "Business Impact",
+        "Insights"
+      ]
+    },
+    {
+      "id": "custom_visualizations",
+      "name": "Custom Visualizations",
+      "description": "Creating highly customized visuals beyond standard chart types.",
+      "keywords": [
+        "Custom Visuals",
+        "Sankey Diagram",
+        "Network Graph",
+        "Geospatial"
+      ]
+    },
+    {
+      "id": "d3_js_advanced",
+      "name": "D3.js / Advanced",
+      "description": "Programming bespoke, low-level web visualizations using D3.js.",
+      "keywords": [
+        "D3.js",
+        "SVG",
+        "Canvas",
+        "Web Visualization"
+      ]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "Python script using interactive visualization libraries",
+        "detection": "dependency_extraction",
+        "pattern": "plotly|bokeh|altair",
+        "strength": 0.8,
+        "maps_to": [
+          "da_data_visualization.interactive_plots"
+        ]
+      },
+      {
+        "signal": "Usage of D3.js",
+        "detection": "content_analysis",
+        "pattern": "d3\\.select|d3\\.scale",
+        "strength": 0.9,
+        "maps_to": [
+          "da_data_visualization.d3_js_advanced"
+        ]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "Experience with Tableau or Power BI",
+        "strength": 0.7,
+        "maps_to": [
+          "da_data_visualization.bi_tools"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Data Visualization or BI tools endorsed",
+        "strength": 0.5,
+        "maps_to": [
+          "da_data_visualization.bi_tools",
+          "da_data_visualization.chart_types"
+        ]
+      }
+    ],
+    "assessment": [
+      {
+        "signal": "Can design a dashboard layout selecting the correct chart types for KPIs",
+        "strength": 1.0,
+        "maps_to": [
+          "da_data_visualization.bi_tools",
+          "da_data_visualization.storytelling"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "chart_types",
+        "basic_dashboards",
+        "color_theory"
+      ],
+      "description": "Can produce standard charts and assemble basic reports."
+    },
+    "mid": {
+      "expected_subskills": [
+        "interactive_plots",
+        "bi_tools",
+        "storytelling"
+      ],
+      "description": "Can build interactive enterprise BI dashboards and tell a cohesive data story."
+    },
+    "senior": {
+      "expected_subskills": [
+        "custom_visualizations",
+        "d3_js_advanced"
+      ],
+      "description": "Can architect custom visualization solutions and bespoke visual components."
+    }
+  }
+}

@@ -1,0 +1,171 @@
+{
+  "skill_id": "da_data_cleaning",
+  "name": "Data Cleaning & Preprocessing",
+  "category": "data_engineering",
+  "description": "Cleaning messy data, handling outliers, and preparing for analysis.",
+  "subskills": [
+    {
+      "id": "missing_values",
+      "name": "Handling Missing Values",
+      "description": "Identifying and dropping/filling Null/NaN values.",
+      "keywords": [
+        "dropna",
+        "fillna",
+        "isnull",
+        "NaN",
+        "missing data"
+      ]
+    },
+    {
+      "id": "deduplication",
+      "name": "Deduplication",
+      "description": "Removing duplicate records.",
+      "keywords": [
+        "drop_duplicates",
+        "duplicated",
+        "unique"
+      ]
+    },
+    {
+      "id": "data_type_casting",
+      "name": "Type Casting",
+      "description": "Converting strings to dates, floats to ints, etc.",
+      "keywords": [
+        "astype",
+        "to_datetime",
+        "to_numeric",
+        "type casting"
+      ]
+    },
+    {
+      "id": "outlier_detection",
+      "name": "Outlier Detection",
+      "description": "Identifying anomalies using IQR or Z-score.",
+      "keywords": [
+        "outlier",
+        "IQR",
+        "Z-score",
+        "anomaly detection"
+      ]
+    },
+    {
+      "id": "regex_cleaning",
+      "name": "Regex Cleaning",
+      "description": "Using Regular Expressions for complex text extraction/cleaning.",
+      "keywords": [
+        "regex",
+        "re.sub",
+        "re.match",
+        "pattern matching"
+      ]
+    },
+    {
+      "id": "string_manipulation",
+      "name": "String Manipulation",
+      "description": "Cleaning text data (strip, lower, replace).",
+      "keywords": [
+        "str.strip",
+        "str.lower",
+        "str.replace",
+        "text cleaning"
+      ]
+    },
+    {
+      "id": "imputation_strategies",
+      "name": "Advanced Imputation",
+      "description": "Using KNN or regression for missing data imputation.",
+      "keywords": [
+        "KNN Imputer",
+        "SimpleImputer",
+        "Multivariate Imputation"
+      ]
+    },
+    {
+      "id": "feature_scaling",
+      "name": "Feature Scaling",
+      "description": "Standardizing or normalizing numeric features.",
+      "keywords": [
+        "StandardScaler",
+        "MinMaxScaler",
+        "Normalization",
+        "Standardization"
+      ]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "Pandas data cleaning methods",
+        "detection": "content_analysis",
+        "pattern": "\\.dropna\\(|\\.fillna\\(|\\.drop_duplicates\\(",
+        "strength": 0.8,
+        "maps_to": [
+          "da_data_cleaning.missing_values",
+          "da_data_cleaning.deduplication"
+        ]
+      },
+      {
+        "signal": "Usage of regex module",
+        "detection": "content_analysis",
+        "pattern": "import re\\n",
+        "strength": 0.7,
+        "maps_to": [
+          "da_data_cleaning.regex_cleaning"
+        ]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "Data cleaning/wrangling experience mentioned",
+        "strength": 0.6,
+        "maps_to": [
+          "da_data_cleaning.missing_values",
+          "da_data_cleaning.string_manipulation"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Data Wrangling endorsed",
+        "strength": 0.5,
+        "maps_to": [
+          "da_data_cleaning.missing_values"
+        ]
+      }
+    ],
+    "assessment": [
+      {
+        "signal": "Can design an imputation strategy for a dataset with 30% missing values",
+        "strength": 1.0,
+        "maps_to": [
+          "da_data_cleaning.imputation_strategies"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "missing_values",
+        "deduplication",
+        "data_type_casting"
+      ],
+      "description": "Can handle basic inconsistencies and nulls in standard datasets."
+    },
+    "mid": {
+      "expected_subskills": [
+        "outlier_detection",
+        "regex_cleaning",
+        "string_manipulation"
+      ],
+      "description": "Can clean unstructured text data and detect statistical outliers."
+    },
+    "senior": {
+      "expected_subskills": [
+        "imputation_strategies",
+        "feature_scaling"
+      ],
+      "description": "Can prepare datasets for ML models using advanced imputation and scaling."
+    }
+  }
+}

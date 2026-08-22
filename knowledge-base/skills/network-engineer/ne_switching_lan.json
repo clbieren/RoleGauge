@@ -1,0 +1,196 @@
+{
+  "skill_id": "ne_switching_lan",
+  "name": "Switching & LAN",
+  "category": "networking",
+  "description": "VLANs, STP, Trunking, EtherChannel.",
+  "subskills": [
+    {
+      "id": "vlans",
+      "name": "VLANs",
+      "description": "802.1Q, Access ports.",
+      "keywords": [
+        "VLAN",
+        "802.1Q",
+        "switchport mode access"
+      ]
+    },
+    {
+      "id": "trunking",
+      "name": "Trunking",
+      "description": "ISL, 802.1Q trunks, Native VLAN.",
+      "keywords": [
+        "Trunk",
+        "Native VLAN",
+        "switchport mode trunk"
+      ]
+    },
+    {
+      "id": "vtp",
+      "name": "VTP / DTP",
+      "description": "VLAN Trunking Protocol, Dynamic Trunking.",
+      "keywords": [
+        "VTP",
+        "DTP",
+        "Dynamic desirable"
+      ]
+    },
+    {
+      "id": "stp",
+      "name": "Spanning Tree Protocol",
+      "description": "STP, RSTP, MSTP, BPDU.",
+      "keywords": [
+        "STP",
+        "RSTP",
+        "MSTP",
+        "BPDU",
+        "Root bridge",
+        "spanning-tree"
+      ]
+    },
+    {
+      "id": "etherchannel",
+      "name": "EtherChannel",
+      "description": "LACP, PAgP.",
+      "keywords": [
+        "EtherChannel",
+        "LACP",
+        "PAgP",
+        "Port-channel"
+      ]
+    },
+    {
+      "id": "inter_vlan_routing",
+      "name": "Inter-VLAN Routing",
+      "description": "Router on a stick, SVI.",
+      "keywords": [
+        "Router on a stick",
+        "SVI",
+        "interface vlan"
+      ]
+    },
+    {
+      "id": "layer2_security",
+      "name": "Layer 2 Security",
+      "description": "Port security, DHCP snooping, ARP inspection.",
+      "keywords": [
+        "Port security",
+        "DHCP snooping",
+        "Dynamic ARP inspection",
+        "DAI"
+      ]
+    },
+    {
+      "id": "high_availability",
+      "name": "First Hop Redundancy",
+      "description": "HSRP, VRRP, GLBP.",
+      "keywords": [
+        "HSRP",
+        "VRRP",
+        "GLBP",
+        "Standby"
+      ]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "VLAN/Trunking config",
+        "detection": "content_analysis",
+        "pattern": "switchport mode (access|trunk)",
+        "strength": 0.8,
+        "maps_to": [
+          "ne_switching_lan.vlans",
+          "ne_switching_lan.trunking"
+        ]
+      },
+      {
+        "signal": "STP config",
+        "detection": "content_analysis",
+        "pattern": "spanning-tree mode",
+        "strength": 0.8,
+        "maps_to": [
+          "ne_switching_lan.stp"
+        ]
+      },
+      {
+        "signal": "Etherchannel config",
+        "detection": "content_analysis",
+        "pattern": "channel-group \\d+ mode active",
+        "strength": 0.8,
+        "maps_to": [
+          "ne_switching_lan.etherchannel"
+        ]
+      },
+      {
+        "signal": "L2 Security",
+        "detection": "content_analysis",
+        "pattern": "ip dhcp snooping|switchport port-security",
+        "strength": 0.7,
+        "maps_to": [
+          "ne_switching_lan.layer2_security"
+        ]
+      },
+      {
+        "signal": "FHRP config",
+        "detection": "content_analysis",
+        "pattern": "standby \\d+ ip|vrrp \\d+ ip",
+        "strength": 0.8,
+        "maps_to": [
+          "ne_switching_lan.high_availability"
+        ]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "LAN design, STP tuning, VTP domains",
+        "strength": 0.6,
+        "maps_to": [
+          "ne_switching_lan.vlans",
+          "ne_switching_lan.stp",
+          "ne_switching_lan.vtp"
+        ]
+      },
+      {
+        "signal": "Inter-VLAN routing and router-on-a-stick",
+        "strength": 0.6,
+        "maps_to": [
+          "ne_switching_lan.inter_vlan_routing"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Switching endorsed",
+        "strength": 0.4,
+        "maps_to": [
+          "ne_switching_lan.vlans"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "vlans",
+        "trunking",
+        "vtp",
+        "inter_vlan_routing"
+      ],
+      "description": "Can configure basic VLANs, inter-vlan routing, and trunk links."
+    },
+    "mid": {
+      "expected_subskills": [
+        "stp",
+        "etherchannel"
+      ],
+      "description": "Can configure spanning tree topologies and port-channels."
+    },
+    "senior": {
+      "expected_subskills": [
+        "layer2_security",
+        "high_availability"
+      ],
+      "description": "Can design secure and highly available LAN switching environments using FHRPs."
+    }
+  }
+}

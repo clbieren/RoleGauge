@@ -1,0 +1,166 @@
+{
+  "skill_id": "da_statistical_analysis",
+  "name": "Statistical Analysis",
+  "category": "analysis",
+  "description": "Applying statistics to interpret data.",
+  "subskills": [
+    {
+      "id": "descriptive_stats",
+      "name": "Descriptive Statistics",
+      "description": "Mean, median, mode, variance, standard deviation.",
+      "keywords": [
+        "Mean",
+        "Median",
+        "Variance",
+        "Standard Deviation",
+        "describe"
+      ]
+    },
+    {
+      "id": "probability_basics",
+      "name": "Probability Basics",
+      "description": "Basic probability concepts and conditional probability.",
+      "keywords": [
+        "Probability",
+        "Bayes",
+        "Conditional Probability"
+      ]
+    },
+    {
+      "id": "distributions",
+      "name": "Distributions",
+      "description": "Normal, Binomial, Poisson distributions.",
+      "keywords": [
+        "Normal Distribution",
+        "Binomial",
+        "Poisson",
+        "Skewness",
+        "Kurtosis"
+      ]
+    },
+    {
+      "id": "hypothesis_testing",
+      "name": "Hypothesis Testing",
+      "description": "T-tests, ANOVA, Chi-Square, p-values.",
+      "keywords": [
+        "Hypothesis Test",
+        "p-value",
+        "T-test",
+        "ANOVA",
+        "Null Hypothesis"
+      ]
+    },
+    {
+      "id": "correlation",
+      "name": "Correlation",
+      "description": "Pearson, Spearman correlation coefficients.",
+      "keywords": [
+        "Correlation",
+        "Pearson",
+        "Spearman",
+        "Covariance"
+      ]
+    },
+    {
+      "id": "ab_testing",
+      "name": "A/B Testing",
+      "description": "Designing and evaluating A/B tests for product changes.",
+      "keywords": [
+        "A/B Testing",
+        "Experiment Design",
+        "Control Group",
+        "Sample Size"
+      ]
+    },
+    {
+      "id": "regression_analysis",
+      "name": "Regression Analysis",
+      "description": "Linear and logistic regression for inference.",
+      "keywords": [
+        "Linear Regression",
+        "Logistic Regression",
+        "R-squared",
+        "Coefficients"
+      ]
+    },
+    {
+      "id": "time_series_analysis",
+      "name": "Time Series",
+      "description": "ARIMA, seasonality, moving averages.",
+      "keywords": [
+        "Time Series",
+        "ARIMA",
+        "Seasonality",
+        "Moving Average"
+      ]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "Statsmodels or scipy.stats usage",
+        "detection": "dependency_extraction",
+        "pattern": "statsmodels|scipy\\.stats",
+        "strength": 0.8,
+        "maps_to": [
+          "da_statistical_analysis.hypothesis_testing",
+          "da_statistical_analysis.regression_analysis"
+        ]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "Statistical analysis or A/B testing experience",
+        "strength": 0.6,
+        "maps_to": [
+          "da_statistical_analysis.ab_testing",
+          "da_statistical_analysis.hypothesis_testing"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Statistics endorsed",
+        "strength": 0.5,
+        "maps_to": [
+          "da_statistical_analysis.descriptive_stats"
+        ]
+      }
+    ],
+    "assessment": [
+      {
+        "signal": "Can interpret a p-value in the context of an A/B test",
+        "strength": 1.0,
+        "maps_to": [
+          "da_statistical_analysis.ab_testing",
+          "da_statistical_analysis.hypothesis_testing"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "descriptive_stats",
+        "probability_basics"
+      ],
+      "description": "Can summarize data distributions and central tendencies."
+    },
+    "mid": {
+      "expected_subskills": [
+        "distributions",
+        "hypothesis_testing",
+        "correlation"
+      ],
+      "description": "Can perform significance testing and evaluate correlations."
+    },
+    "senior": {
+      "expected_subskills": [
+        "ab_testing",
+        "regression_analysis",
+        "time_series_analysis"
+      ],
+      "description": "Can design robust experiments and perform predictive/inferential regression."
+    }
+  }
+}

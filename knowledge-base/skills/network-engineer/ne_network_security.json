@@ -1,0 +1,214 @@
+{
+  "skill_id": "ne_network_security",
+  "name": "Network Security (Infrastructure)",
+  "category": "networking",
+  "description": "Focuses on the physical and logical configuration of security devices (Cisco ACL syntax, IPSec tunnel setup, VPN device configuration).",
+  "subskills": [
+    {
+      "id": "acls",
+      "name": "Access Control Lists",
+      "description": "Standard, Extended, IPv6 ACLs syntax.",
+      "keywords": [
+        "access-list",
+        "permit ip",
+        "deny tcp",
+        "access-group"
+      ]
+    },
+    {
+      "id": "nat",
+      "name": "NAT/PAT",
+      "description": "Network Address Translation configuration.",
+      "keywords": [
+        "ip nat inside",
+        "ip nat outside",
+        "PAT",
+        "NAT overload"
+      ]
+    },
+    {
+      "id": "firewall_config",
+      "name": "Firewall Configuration",
+      "description": "Cisco ASA, Palo Alto, Fortinet rules.",
+      "keywords": [
+        "Cisco ASA",
+        "Palo Alto",
+        "FortiGate",
+        "Security policy",
+        "zone-based firewall"
+      ]
+    },
+    {
+      "id": "vpn_ipsec",
+      "name": "IPsec VPNs",
+      "description": "Site-to-Site, IKEv1, IKEv2, Phase 1 & 2.",
+      "keywords": [
+        "IPsec",
+        "IKEv2",
+        "crypto map",
+        "crypto isakmp",
+        "crypto ipsec transform-set"
+      ]
+    },
+    {
+      "id": "vpn_remote",
+      "name": "Remote Access VPN",
+      "description": "AnyConnect, SSL VPNs.",
+      "keywords": [
+        "AnyConnect",
+        "SSL VPN",
+        "Remote access"
+      ]
+    },
+    {
+      "id": "aaa",
+      "name": "AAA / TACACS+",
+      "description": "Radius, TACACS+ device administration.",
+      "keywords": [
+        "AAA",
+        "TACACS+",
+        "RADIUS",
+        "aaa new-model"
+      ]
+    },
+    {
+      "id": "dmvpn",
+      "name": "DMVPN",
+      "description": "Dynamic Multipoint VPN, NHRP.",
+      "keywords": [
+        "DMVPN",
+        "NHRP",
+        "mGRE",
+        "multipoint GRE"
+      ]
+    },
+    {
+      "id": "macsec",
+      "name": "MACsec",
+      "description": "802.1AE Layer 2 encryption.",
+      "keywords": [
+        "MACsec",
+        "802.1AE",
+        "MKA"
+      ]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "IPsec crypto config",
+        "detection": "content_analysis",
+        "pattern": "crypto isakmp|crypto ipsec",
+        "strength": 0.9,
+        "maps_to": [
+          "ne_network_security.vpn_ipsec"
+        ]
+      },
+      {
+        "signal": "ACL config",
+        "detection": "content_analysis",
+        "pattern": "access-list \\d+ (permit|deny)",
+        "strength": 0.8,
+        "maps_to": [
+          "ne_network_security.acls"
+        ]
+      },
+      {
+        "signal": "NAT config",
+        "detection": "content_analysis",
+        "pattern": "ip nat inside source|nat \\(inside,outside\\)",
+        "strength": 0.8,
+        "maps_to": [
+          "ne_network_security.nat"
+        ]
+      },
+      {
+        "signal": "AAA config",
+        "detection": "content_analysis",
+        "pattern": "aaa new-model|tacacs-server",
+        "strength": 0.8,
+        "maps_to": [
+          "ne_network_security.aaa"
+        ]
+      },
+      {
+        "signal": "DMVPN config",
+        "detection": "content_analysis",
+        "pattern": "tunnel mode gre multipoint|ip nhrp",
+        "strength": 0.9,
+        "maps_to": [
+          "ne_network_security.dmvpn"
+        ]
+      },
+      {
+        "signal": "MACsec config",
+        "detection": "content_analysis",
+        "pattern": "macsec network-link",
+        "strength": 0.9,
+        "maps_to": [
+          "ne_network_security.macsec"
+        ]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "Firewall management or Site-to-Site VPN experience",
+        "strength": 0.7,
+        "maps_to": [
+          "ne_network_security.firewall_config",
+          "ne_network_security.vpn_ipsec"
+        ]
+      },
+      {
+        "signal": "AnyConnect/Remote VPN deployments",
+        "strength": 0.6,
+        "maps_to": [
+          "ne_network_security.vpn_remote"
+        ]
+      },
+      {
+        "signal": "DMVPN architecture or MACsec encryption",
+        "strength": 0.7,
+        "maps_to": [
+          "ne_network_security.dmvpn",
+          "ne_network_security.macsec"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "IPsec or Firewalls endorsed",
+        "strength": 0.5,
+        "maps_to": [
+          "ne_network_security.firewall_config",
+          "ne_network_security.vpn_ipsec"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "acls",
+        "nat",
+        "aaa"
+      ],
+      "description": "Can write basic access lists, configure NAT, and setup AAA device auth."
+    },
+    "mid": {
+      "expected_subskills": [
+        "firewall_config",
+        "vpn_remote"
+      ],
+      "description": "Can manage firewall policies and remote access gateways."
+    },
+    "senior": {
+      "expected_subskills": [
+        "vpn_ipsec",
+        "dmvpn",
+        "macsec"
+      ],
+      "description": "Can design and deploy complex DMVPN and site-to-site IPsec architectures."
+    }
+  }
+}

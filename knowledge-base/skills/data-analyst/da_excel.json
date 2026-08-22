@@ -1,0 +1,168 @@
+{
+  "skill_id": "da_excel",
+  "name": "Excel & Spreadsheets",
+  "category": "analysis",
+  "description": "Advanced Excel techniques for data manipulation, summarization, and reporting.",
+  "subskills": [
+    {
+      "id": "basic_formulas",
+      "name": "Basic Formulas",
+      "description": "Using SUM, AVERAGE, COUNT, IF, AND, OR for basic cell calculations.",
+      "keywords": [
+        "SUM",
+        "AVERAGE",
+        "COUNT",
+        "IF",
+        "AND",
+        "OR",
+        "formula"
+      ]
+    },
+    {
+      "id": "pivot_tables",
+      "name": "Pivot Tables",
+      "description": "Summarizing large datasets, creating calculated fields, and using slicers.",
+      "keywords": [
+        "Pivot Table",
+        "Slicer",
+        "Calculated Field",
+        "Pivot Chart"
+      ]
+    },
+    {
+      "id": "data_formatting",
+      "name": "Data Formatting",
+      "description": "Formatting text, numbers, dates, and using text-to-columns.",
+      "keywords": [
+        "Text to Columns",
+        "Data Formatting",
+        "Number Format",
+        "Date Format"
+      ]
+    },
+    {
+      "id": "vlookup_index_match",
+      "name": "VLOOKUP/INDEX-MATCH",
+      "description": "Looking up and merging data across sheets using VLOOKUP, HLOOKUP, XLOOKUP, or INDEX/MATCH.",
+      "keywords": [
+        "VLOOKUP",
+        "INDEX",
+        "MATCH",
+        "XLOOKUP",
+        "HLOOKUP"
+      ]
+    },
+    {
+      "id": "data_validation",
+      "name": "Data Validation",
+      "description": "Creating dropdown lists and restricting cell inputs to ensure data integrity.",
+      "keywords": [
+        "Data Validation",
+        "Dropdown List",
+        "Input Restriction"
+      ]
+    },
+    {
+      "id": "conditional_formatting",
+      "name": "Conditional Formatting",
+      "description": "Applying color scales, data bars, and formula-based formatting rules.",
+      "keywords": [
+        "Conditional Formatting",
+        "Color Scale",
+        "Data Bar",
+        "Highlight Cells Rules"
+      ]
+    },
+    {
+      "id": "macros_vba",
+      "name": "Macros & VBA",
+      "description": "Automating repetitive Excel tasks using recorded Macros and VBA scripting.",
+      "keywords": [
+        "Macro",
+        "VBA",
+        "Visual Basic",
+        "Automate"
+      ]
+    },
+    {
+      "id": "power_query",
+      "name": "Power Query",
+      "description": "Connecting to external data sources, merging, appending, and transforming data via Power Query.",
+      "keywords": [
+        "Power Query",
+        "Get & Transform",
+        "M Code",
+        "Merge Queries",
+        "Append Queries"
+      ]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "VBA scripts present",
+        "detection": "file_presence",
+        "pattern": "\\.vba$|\\.bas$",
+        "strength": 0.8,
+        "maps_to": [
+          "da_excel.macros_vba"
+        ]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "Mentioned Pivot Tables, VLOOKUP, or Power Query",
+        "strength": 0.6,
+        "maps_to": [
+          "da_excel.pivot_tables",
+          "da_excel.vlookup_index_match",
+          "da_excel.power_query"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Advanced Excel or VBA endorsed",
+        "strength": 0.5,
+        "maps_to": [
+          "da_excel.macros_vba",
+          "da_excel.vlookup_index_match"
+        ]
+      }
+    ],
+    "assessment": [
+      {
+        "signal": "Can construct a dynamic INDEX/MATCH formula across multiple sheets",
+        "strength": 1.0,
+        "maps_to": [
+          "da_excel.vlookup_index_match"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "basic_formulas",
+        "pivot_tables",
+        "data_formatting"
+      ],
+      "description": "Can perform basic daily reporting and summarization."
+    },
+    "mid": {
+      "expected_subskills": [
+        "vlookup_index_match",
+        "data_validation",
+        "conditional_formatting"
+      ],
+      "description": "Can handle complex lookups and create interactive, validated templates."
+    },
+    "senior": {
+      "expected_subskills": [
+        "macros_vba",
+        "power_query"
+      ],
+      "description": "Can automate data pipelines and build robust VBA applications within Excel."
+    }
+  }
+}
