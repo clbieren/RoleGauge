@@ -1,0 +1,391 @@
+{
+  "skill_id": "gd_graphics_programming",
+  "name": "Shader & Graphics Programming",
+  "category": "graphics",
+  "description": "Graphics programming skills including shader authoring (HLSL, GLSL, ShaderLab), material systems, lighting models, post-processing effects, compute shaders, render targets, custom render pipelines, GPU optimization, and ray tracing.",
+  "subskills": [
+    {
+      "id": "shader_basics",
+      "name": "Shader Fundamentals",
+      "description": "Understanding the GPU rendering pipeline stages, shader types, and basic shader concepts (uniforms, varyings, samplers).",
+      "keywords": [
+        "shader",
+        "vertex shader",
+        "fragment shader",
+        "pixel shader",
+        "uniform",
+        "varying",
+        "sampler",
+        "GPU pipeline",
+        "rasterization",
+        "ShaderLab",
+        "ShaderGraph"
+      ]
+    },
+    {
+      "id": "material_authoring",
+      "name": "Material & Texture Authoring",
+      "description": "Creating materials with textures, normal maps, UV mapping, texture atlases, and material instances/variants.",
+      "keywords": [
+        "material",
+        "texture",
+        "normal map",
+        "UV",
+        "albedo",
+        "roughness",
+        "metallic",
+        "texture atlas",
+        "material instance",
+        "Material Function",
+        "tiling"
+      ]
+    },
+    {
+      "id": "lighting_models",
+      "name": "Lighting Models (Phong, PBR)",
+      "description": "Understanding and implementing lighting models: Phong, Blinn-Phong, PBR (Cook-Torrance), ambient occlusion, and BRDF.",
+      "keywords": [
+        "Phong",
+        "Blinn-Phong",
+        "PBR",
+        "physically based",
+        "Cook-Torrance",
+        "BRDF",
+        "ambient occlusion",
+        "specular",
+        "diffuse",
+        "Fresnel"
+      ]
+    },
+    {
+      "id": "vertex_fragment_shaders",
+      "name": "Vertex & Fragment Shaders",
+      "description": "Writing custom vertex and fragment/pixel shaders in HLSL, GLSL, or engine shader languages for custom visual effects.",
+      "keywords": [
+        "HLSL",
+        "GLSL",
+        "vert",
+        "frag",
+        "SV_POSITION",
+        "gl_Position",
+        "clip space",
+        "world position",
+        "custom shader",
+        "shader_type"
+      ]
+    },
+    {
+      "id": "post_processing_fx",
+      "name": "Post-Processing Effects",
+      "description": "Implementing screen-space post-processing: bloom, tone mapping, depth of field, motion blur, color grading, and SSAO.",
+      "keywords": [
+        "post-processing",
+        "bloom",
+        "tone mapping",
+        "depth of field",
+        "DOF",
+        "motion blur",
+        "color grading",
+        "SSAO",
+        "screen-space",
+        "PostProcessVolume"
+      ]
+    },
+    {
+      "id": "compute_shaders",
+      "name": "Compute Shaders",
+      "description": "Using compute shaders for GPGPU tasks: particle simulation, terrain generation, GPU-driven rendering, and data processing.",
+      "keywords": [
+        "compute shader",
+        "ComputeBuffer",
+        "RWStructuredBuffer",
+        "dispatch",
+        "thread group",
+        "GPGPU",
+        "numthreads",
+        "UAV",
+        "shared memory",
+        "groupshared"
+      ]
+    },
+    {
+      "id": "render_targets",
+      "name": "Render Targets & Frame Buffers",
+      "description": "Working with render textures, multiple render targets (MRT), G-buffer, and off-screen rendering for advanced effects.",
+      "keywords": [
+        "RenderTexture",
+        "render target",
+        "frame buffer",
+        "FBO",
+        "MRT",
+        "G-buffer",
+        "depth buffer",
+        "stencil buffer",
+        "off-screen rendering",
+        "blit"
+      ]
+    },
+    {
+      "id": "custom_render_pipeline",
+      "name": "Custom Render Pipeline",
+      "description": "Building custom render pipelines: SRP (Unity), RHI (Unreal), custom pass scheduling, and render graph architecture.",
+      "keywords": [
+        "SRP",
+        "ScriptableRenderPipeline",
+        "RenderFeature",
+        "RenderPass",
+        "RHI",
+        "render graph",
+        "command buffer",
+        "draw call scheduling",
+        "custom pipeline"
+      ]
+    },
+    {
+      "id": "gpu_optimization",
+      "name": "GPU Profiling & Optimization",
+      "description": "GPU performance analysis, overdraw reduction, shader complexity management, texture bandwidth optimization, and GPU debugging tools.",
+      "keywords": [
+        "RenderDoc",
+        "PIX",
+        "Nsight",
+        "overdraw",
+        "fill rate",
+        "shader complexity",
+        "bandwidth",
+        "GPU bound",
+        "frame debugger",
+        "GPU profiler"
+      ]
+    },
+    {
+      "id": "ray_tracing",
+      "name": "Ray Tracing & Path Tracing",
+      "description": "Hardware and software ray tracing: DXR, RTX, ray-traced reflections/shadows/GI, hybrid rendering, and path tracing.",
+      "keywords": [
+        "ray tracing",
+        "DXR",
+        "RTX",
+        "Lumen",
+        "path tracing",
+        "BVH traversal",
+        "ray generation",
+        "closest hit",
+        "any hit",
+        "hybrid rendering"
+      ]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "Shader files present (.shader, .hlsl, .glsl, .gdshader)",
+        "detection": "file_presence",
+        "pattern": "*.shader|*.hlsl|*.glsl|*.gdshader|*.cginc|*.usf|*.ush",
+        "strength": 0.6,
+        "maps_to": [
+          "gd_graphics_programming.shader_basics"
+        ]
+      },
+      {
+        "signal": "Custom vertex/fragment shader code with HLSL or GLSL",
+        "detection": "content_analysis",
+        "pattern": "SV_POSITION|gl_Position|vert|frag|float4.*:.*POSITION|shader_type",
+        "strength": 0.7,
+        "maps_to": [
+          "gd_graphics_programming.vertex_fragment_shaders"
+        ]
+      },
+      {
+        "signal": "PBR or lighting model implementation in shaders",
+        "detection": "content_analysis",
+        "pattern": "BRDF|Cook-Torrance|Fresnel|metallic|roughness|NdotL|NdotV",
+        "strength": 0.8,
+        "maps_to": [
+          "gd_graphics_programming.lighting_models"
+        ]
+      },
+      {
+        "signal": "Material files or ShaderGraph/Material Editor usage",
+        "detection": "file_presence",
+        "pattern": "*.mat|*.shadergraph|*.material|*.uasset",
+        "strength": 0.5,
+        "maps_to": [
+          "gd_graphics_programming.material_authoring"
+        ]
+      },
+      {
+        "signal": "Post-processing volume or screen-space effect code",
+        "detection": "content_analysis",
+        "pattern": "PostProcess|bloom|tone.*map|depth.*field|SSAO|color.*grad|Blit|OnRenderImage",
+        "strength": 0.7,
+        "maps_to": [
+          "gd_graphics_programming.post_processing_fx"
+        ]
+      },
+      {
+        "signal": "Compute shader usage (ComputeBuffer, dispatch)",
+        "detection": "content_analysis",
+        "pattern": "ComputeBuffer|ComputeShader|Dispatch|numthreads|RWStructuredBuffer|groupshared",
+        "strength": 0.8,
+        "maps_to": [
+          "gd_graphics_programming.compute_shaders"
+        ]
+      },
+      {
+        "signal": "Render target or frame buffer manipulation",
+        "detection": "content_analysis",
+        "pattern": "RenderTexture|RenderTarget|CommandBuffer|ScriptableRenderPass|Graphics\\.Blit|framebuffer",
+        "strength": 0.7,
+        "maps_to": [
+          "gd_graphics_programming.render_targets"
+        ]
+      },
+      {
+        "signal": "Custom SRP or render pipeline code",
+        "detection": "content_analysis",
+        "pattern": "ScriptableRenderPipeline|RenderPipelineAsset|ScriptableRenderer|RenderFeature|RHI",
+        "strength": 0.9,
+        "maps_to": [
+          "gd_graphics_programming.custom_render_pipeline"
+        ]
+      },
+      {
+        "signal": "RenderDoc capture files or GPU debugging setup",
+        "detection": "file_presence",
+        "pattern": "*.rdc|renderdoc*|pix*|nsight*",
+        "strength": 0.7,
+        "maps_to": [
+          "gd_graphics_programming.gpu_optimization"
+        ]
+      },
+      {
+        "signal": "Ray tracing shader code (DXR, RTX)",
+        "detection": "content_analysis",
+        "pattern": "RayGenerationShader|ClosestHitShader|DXR|TraceRay|RayTracingShader|ray_tracing",
+        "strength": 0.9,
+        "maps_to": [
+          "gd_graphics_programming.ray_tracing"
+        ]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "Shader programming mentioned in skills or projects",
+        "strength": 0.3,
+        "maps_to": [
+          "gd_graphics_programming.shader_basics"
+        ]
+      },
+      {
+        "signal": "Describes implementing custom rendering effects or pipelines",
+        "strength": 0.6,
+        "maps_to": [
+          "gd_graphics_programming.vertex_fragment_shaders",
+          "gd_graphics_programming.post_processing_fx"
+        ]
+      },
+      {
+        "signal": "Describes GPU optimization or profiling work",
+        "strength": 0.6,
+        "maps_to": [
+          "gd_graphics_programming.gpu_optimization"
+        ]
+      },
+      {
+        "signal": "Technical Artist role with shader/material pipeline work",
+        "strength": 0.5,
+        "maps_to": [
+          "gd_graphics_programming.material_authoring",
+          "gd_graphics_programming.lighting_models"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "HLSL, GLSL, or Shader Programming in skills",
+        "strength": 0.2,
+        "maps_to": [
+          "gd_graphics_programming.shader_basics"
+        ]
+      },
+      {
+        "signal": "Graphics Programmer or Rendering Engineer role",
+        "strength": 0.4,
+        "maps_to": [
+          "gd_graphics_programming.custom_render_pipeline",
+          "gd_graphics_programming.gpu_optimization"
+        ]
+      },
+      {
+        "signal": "Job experience describing compute shader or GPGPU work",
+        "strength": 0.4,
+        "maps_to": [
+          "gd_graphics_programming.compute_shaders",
+          "gd_graphics_programming.render_targets"
+        ]
+      }
+    ],
+    "assessment": [
+      {
+        "signal": "Can write a custom shader that implements PBR lighting from scratch",
+        "strength": 1.0,
+        "maps_to": [
+          "gd_graphics_programming.vertex_fragment_shaders",
+          "gd_graphics_programming.lighting_models"
+        ]
+      },
+      {
+        "signal": "Can implement a post-processing effect pipeline (bloom + tone mapping)",
+        "strength": 1.0,
+        "maps_to": [
+          "gd_graphics_programming.post_processing_fx",
+          "gd_graphics_programming.render_targets"
+        ]
+      },
+      {
+        "signal": "Can profile and optimize a GPU-bound scene using RenderDoc",
+        "strength": 1.0,
+        "maps_to": [
+          "gd_graphics_programming.gpu_optimization",
+          "gd_graphics_programming.material_authoring"
+        ]
+      },
+      {
+        "signal": "Can design a custom render pipeline with scriptable passes",
+        "strength": 1.0,
+        "maps_to": [
+          "gd_graphics_programming.custom_render_pipeline",
+          "gd_graphics_programming.ray_tracing"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "shader_basics",
+        "material_authoring",
+        "lighting_models"
+      ],
+      "description": "Understands the GPU pipeline, can create materials with textures and normal maps, and grasps basic lighting models."
+    },
+    "mid": {
+      "expected_subskills": [
+        "vertex_fragment_shaders",
+        "post_processing_fx",
+        "compute_shaders",
+        "render_targets"
+      ],
+      "description": "Can write custom vertex/fragment shaders, implement post-processing effects, use compute shaders, and work with render targets."
+    },
+    "senior": {
+      "expected_subskills": [
+        "custom_render_pipeline",
+        "gpu_optimization",
+        "ray_tracing"
+      ],
+      "description": "Can architect custom render pipelines, profile and optimize GPU performance, and implement ray tracing features."
+    }
+  }
+}

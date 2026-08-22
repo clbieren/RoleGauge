@@ -1,0 +1,576 @@
+{
+  "source_id": "assessment",
+  "name": "Adaptive Technical Assessment - Game Development",
+  "description": "Adaptive technical questions and practical tasks used to verify game development skills when evidence from other sources is insufficient or missing. Assessment is triggered when a subskill has 'not_yet_evidenced' or 'insufficient_evidence' status.",
+  "trigger_conditions": {
+    "description": "When to trigger assessment questions for a subskill.",
+    "rules": [
+      "When a subskill has status 'not_yet_evidenced' (confidence = 0.0) for a required role skill",
+      "When a subskill has status 'insufficient_evidence' and confidence < 0.4",
+      "When CV/LinkedIn claims a skill but GitHub has no supporting evidence (not_yet_evidenced on GitHub)",
+      "When a skill is critical for the target role (importance >= 0.80) and evidence is ambiguous",
+      "User can also voluntarily request assessment to improve their score"
+    ]
+  },
+  "question_types": [
+    {
+      "type": "conceptual",
+      "description": "Multiple-choice or short-answer questions testing theoretical understanding.",
+      "strength": 0.6,
+      "example": "What is the difference between a Quaternion and Euler angles for representing rotations?",
+      "use_when": "Quick verification of basic understanding"
+    },
+    {
+      "type": "scenario",
+      "description": "Scenario-based questions requiring applied knowledge and problem-solving.",
+      "strength": 0.8,
+      "example": "Your game runs at 15 FPS on mobile. Walk through your debugging and optimization process.",
+      "use_when": "Verifying practical experience and troubleshooting ability"
+    },
+    {
+      "type": "practical_task",
+      "description": "Small hands-on tasks that the user completes and submits (code, configuration, game system).",
+      "strength": 1.0,
+      "example": "Implement an A* pathfinding algorithm on a 2D grid with obstacles and visualize the path.",
+      "use_when": "Final verification when high confidence is needed for critical skills"
+    }
+  ],
+  "adaptive_logic": {
+    "description": "How the system selects and adapts questions based on the user's profile and evidence.",
+    "rules": [
+      "Start with a conceptual question for the target subskill",
+      "If answered correctly, escalate to a scenario question",
+      "If scenario is answered correctly, optionally offer a practical task for maximum confidence",
+      "If a conceptual question is answered incorrectly, mark as 'verified_gap' and suggest learning resources",
+      "Difficulty should match the target level (junior/mid/senior)",
+      "Questions should target specific subskills, not broad skill categories"
+    ]
+  },
+  "sample_questions_by_composite_key": {
+    "gd_game_engine.scene_management": [
+      {
+        "level": "junior",
+        "type": "conceptual",
+        "question": "What is the difference between additive and single scene loading?",
+        "expected_answer_keywords": [
+          "additive",
+          "multiple scenes",
+          "single replaces",
+          "DontDestroyOnLoad",
+          "scene hierarchy"
+        ]
+      },
+      {
+        "level": "junior",
+        "type": "practical_task",
+        "question": "Create a scene transition system that loads a new level with a fade-to-black effect while preserving the player's score.",
+        "evaluation_criteria": [
+          "scene loading (async preferred)",
+          "data persistence across scenes",
+          "visual transition effect",
+          "loading state handling"
+        ]
+      }
+    ],
+    "gd_game_engine.physics_system": [
+      {
+        "level": "junior",
+        "type": "conceptual",
+        "question": "What is the difference between a kinematic and a dynamic (rigid) body?",
+        "expected_answer_keywords": [
+          "kinematic",
+          "not affected by forces",
+          "dynamic",
+          "gravity",
+          "collision response",
+          "move_and_slide vs apply_force"
+        ]
+      }
+    ],
+    "gd_game_engine.animation_system": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "Your character's attack animation doesn't transition smoothly back to idle. How would you debug this?",
+        "expected_answer_keywords": [
+          "animation state machine",
+          "transition conditions",
+          "blend time",
+          "exit time",
+          "parameters",
+          "has_exit_time"
+        ]
+      }
+    ],
+    "gd_game_engine.lighting_rendering": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "Your game's draw call count is over 2000 and causing frame drops. What optimization strategies would you use?",
+        "expected_answer_keywords": [
+          "batching",
+          "static batching",
+          "GPU instancing",
+          "LOD",
+          "occlusion culling",
+          "atlas",
+          "SRP Batcher",
+          "draw call reduction"
+        ]
+      }
+    ],
+    "gd_game_engine.custom_editor_tools": [
+      {
+        "level": "senior",
+        "type": "practical_task",
+        "question": "Create a custom editor window that allows level designers to place waypoints on a navmesh and visualize the resulting AI patrol routes.",
+        "evaluation_criteria": [
+          "EditorWindow or Editor Utility Widget",
+          "scene view interaction",
+          "Gizmos or debug drawing",
+          "serialization of waypoint data",
+          "user-friendly interface"
+        ]
+      }
+    ],
+    "gd_game_engine.platform_abstraction": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "You need to ship the same game on PC, Nintendo Switch, and mobile. What architectural decisions would you make to handle platform differences?",
+        "expected_answer_keywords": [
+          "input abstraction",
+          "resolution scaling",
+          "quality settings tiers",
+          "conditional compilation",
+          "platform-specific builds",
+          "asset variants",
+          "certification requirements"
+        ]
+      }
+    ],
+    "gd_programming_language.core_syntax": [
+      {
+        "level": "junior",
+        "type": "conceptual",
+        "question": "Explain the game loop and the difference between Update and FixedUpdate (or _process and _physics_process).",
+        "expected_answer_keywords": [
+          "frame rate",
+          "delta time",
+          "fixed timestep",
+          "physics",
+          "variable framerate",
+          "Update per frame",
+          "FixedUpdate fixed interval"
+        ]
+      }
+    ],
+    "gd_programming_language.oop_patterns": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "You have 50 different enemy types that share some behaviors but differ in others. How would you structure this using OOP?",
+        "expected_answer_keywords": [
+          "inheritance",
+          "interface",
+          "composition",
+          "base class",
+          "strategy pattern",
+          "component",
+          "virtual method"
+        ]
+      }
+    ],
+    "gd_programming_language.memory_management": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "Your game's GC spikes are causing visible hitches every few seconds. How would you diagnose and fix this?",
+        "expected_answer_keywords": [
+          "profiler",
+          "allocation",
+          "object pooling",
+          "avoid boxing",
+          "struct vs class",
+          "string concatenation",
+          "cache",
+          "pre-allocate"
+        ]
+      }
+    ],
+    "gd_programming_language.ecs_architecture": [
+      {
+        "level": "senior",
+        "type": "conceptual",
+        "question": "What are the advantages of ECS over traditional OOP for game development? What are the trade-offs?",
+        "expected_answer_keywords": [
+          "cache coherency",
+          "data-oriented",
+          "composition over inheritance",
+          "parallelism",
+          "archetype",
+          "trade-off complexity",
+          "debugging difficulty"
+        ]
+      }
+    ],
+    "gd_programming_language.custom_allocators": [
+      {
+        "level": "senior",
+        "type": "practical_task",
+        "question": "Implement a simple arena allocator in C++ that can allocate memory blocks from a pre-allocated buffer and reset the entire arena at once.",
+        "evaluation_criteria": [
+          "pre-allocated buffer",
+          "offset tracking",
+          "alignment handling",
+          "reset method",
+          "no individual deallocation"
+        ]
+      }
+    ],
+    "gd_game_mathematics.vectors_basic": [
+      {
+        "level": "junior",
+        "type": "conceptual",
+        "question": "How would you use the dot product to determine if an enemy is in front of or behind the player?",
+        "expected_answer_keywords": [
+          "dot product",
+          "forward vector",
+          "direction to enemy",
+          "positive means in front",
+          "negative means behind",
+          "normalized"
+        ]
+      }
+    ],
+    "gd_game_mathematics.quaternion_rotations": [
+      {
+        "level": "mid",
+        "type": "conceptual",
+        "question": "What is gimbal lock and how do quaternions solve it?",
+        "expected_answer_keywords": [
+          "loss of degree of freedom",
+          "euler angles",
+          "axis alignment",
+          "quaternion",
+          "4D",
+          "no gimbal lock",
+          "slerp"
+        ]
+      }
+    ],
+    "gd_game_mathematics.collision_math": [
+      {
+        "level": "mid",
+        "type": "practical_task",
+        "question": "Implement AABB vs AABB collision detection that returns both whether a collision occurred and the minimum penetration vector.",
+        "evaluation_criteria": [
+          "min/max bounds comparison",
+          "overlap on all axes",
+          "penetration depth per axis",
+          "minimum translation vector",
+          "edge cases handled"
+        ]
+      }
+    ],
+    "gd_game_mathematics.pathfinding_algorithms": [
+      {
+        "level": "mid",
+        "type": "practical_task",
+        "question": "Implement A* pathfinding on a 2D grid. The algorithm should handle obstacles and diagonal movement with correct cost calculation.",
+        "evaluation_criteria": [
+          "open set and closed set",
+          "heuristic function",
+          "g-cost and f-cost",
+          "neighbor exploration",
+          "path reconstruction",
+          "diagonal cost sqrt(2)"
+        ]
+      }
+    ],
+    "gd_game_mathematics.procedural_generation": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "Design a system that generates infinite 2D terrain with biomes that transition smoothly. How would you approach this?",
+        "expected_answer_keywords": [
+          "Perlin noise",
+          "Simplex noise",
+          "octaves",
+          "chunk-based",
+          "seed",
+          "biome threshold",
+          "interpolation",
+          "seamless tiling"
+        ]
+      }
+    ],
+    "gd_game_mathematics.spatial_partitioning": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "You have 10,000 objects in a scene and need efficient range queries and collision detection. Which spatial partitioning structure would you choose and why?",
+        "expected_answer_keywords": [
+          "quadtree",
+          "octree",
+          "spatial hash",
+          "dynamic vs static",
+          "insertion cost",
+          "query cost",
+          "broad phase",
+          "object density"
+        ]
+      }
+    ],
+    "gd_game_mathematics.numerical_methods": [
+      {
+        "level": "senior",
+        "type": "conceptual",
+        "question": "Compare Euler integration, Verlet integration, and RK4 for physics simulation. When would you use each?",
+        "expected_answer_keywords": [
+          "Euler simple but unstable",
+          "Verlet position-based",
+          "RK4 accurate but expensive",
+          "timestep sensitivity",
+          "energy conservation",
+          "constraints"
+        ]
+      }
+    ],
+    "gd_graphics_programming.shader_basics": [
+      {
+        "level": "junior",
+        "type": "conceptual",
+        "question": "Describe the stages of the GPU rendering pipeline from vertex input to pixel output.",
+        "expected_answer_keywords": [
+          "vertex shader",
+          "rasterization",
+          "fragment shader",
+          "depth test",
+          "output merger",
+          "clip space"
+        ]
+      }
+    ],
+    "gd_graphics_programming.vertex_fragment_shaders": [
+      {
+        "level": "mid",
+        "type": "practical_task",
+        "question": "Write a custom shader that creates a dissolve effect using a noise texture and a threshold parameter.",
+        "evaluation_criteria": [
+          "noise texture sampling",
+          "threshold comparison",
+          "alpha cutoff or discard",
+          "edge glow effect",
+          "shader properties exposed"
+        ]
+      }
+    ],
+    "gd_graphics_programming.custom_render_pipeline": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "You need to implement a custom outline/cel-shading render pipeline for a stylized game. How would you architect it?",
+        "expected_answer_keywords": [
+          "render pass",
+          "depth normal pass",
+          "edge detection",
+          "Sobel filter",
+          "custom SRP",
+          "post-processing"
+        ]
+      }
+    ],
+    "gd_networking_multiplayer.client_server_model": [
+      {
+        "level": "junior",
+        "type": "conceptual",
+        "question": "What is the difference between a listen server and a dedicated server in multiplayer games?",
+        "expected_answer_keywords": [
+          "listen server is player-hosted",
+          "dedicated has no local player",
+          "authority",
+          "latency",
+          "host advantage",
+          "bandwidth"
+        ]
+      }
+    ],
+    "gd_networking_multiplayer.lag_compensation": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "A player reports that their shots hit on screen but miss on the server. Explain the problem and how to fix it.",
+        "expected_answer_keywords": [
+          "client prediction",
+          "server reconciliation",
+          "latency",
+          "server-side rewind",
+          "lag compensation",
+          "hit registration"
+        ]
+      }
+    ],
+    "gd_networking_multiplayer.dedicated_servers": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "Design the architecture for hosting 100+ concurrent game sessions with auto-scaling. What services would you use?",
+        "expected_answer_keywords": [
+          "containerized servers",
+          "Agones or GameLift",
+          "Kubernetes",
+          "auto-scaling",
+          "matchmaker",
+          "health checks"
+        ]
+      }
+    ],
+    "gd_optimization_profiling.frame_budget": [
+      {
+        "level": "junior",
+        "type": "conceptual",
+        "question": "Your game targets 60 FPS. What is the maximum frame time budget, and how would you identify what's exceeding it?",
+        "expected_answer_keywords": [
+          "16.6ms",
+          "profiler",
+          "CPU vs GPU bound",
+          "bottleneck",
+          "frame time graph",
+          "spike"
+        ]
+      }
+    ],
+    "gd_optimization_profiling.gpu_profiling": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "Your game is GPU-bound with high overdraw. Walk through your debugging process with RenderDoc.",
+        "expected_answer_keywords": [
+          "frame capture",
+          "draw call list",
+          "overdraw visualization",
+          "pixel history",
+          "shader complexity",
+          "depth pre-pass"
+        ]
+      }
+    ],
+    "gd_version_control.git_fundamentals": [
+      {
+        "level": "junior",
+        "type": "conceptual",
+        "question": "A teammate accidentally committed a 500MB texture file to Git. How would you clean this up?",
+        "expected_answer_keywords": [
+          "git filter-repo",
+          "BFG cleaner",
+          "force push",
+          "LFS migration",
+          ".gitattributes",
+          "history rewrite"
+        ]
+      }
+    ],
+    "gd_version_control.ci_cd_games": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "Design a CI/CD pipeline for a Unity project that builds for Windows, Android, and WebGL on every merge to main.",
+        "expected_answer_keywords": [
+          "GitHub Actions or Jenkins",
+          "Unity build license",
+          "build targets",
+          "artifact upload",
+          "test runner",
+          "build cache"
+        ]
+      }
+    ],
+    "gd_game_design.mechanics_design": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "Design the core loop for a tower defense game. What are the key mechanics and how do they create engagement?",
+        "expected_answer_keywords": [
+          "wave system",
+          "tower placement",
+          "resource management",
+          "enemy variety",
+          "feedback loop",
+          "risk reward"
+        ]
+      }
+    ],
+    "gd_game_design.systems_design": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "Design a crafting system that interacts with an inventory, quest, and economy system. How do you handle emergent exploits?",
+        "expected_answer_keywords": [
+          "recipe database",
+          "ingredient validation",
+          "economy sink",
+          "quest integration",
+          "rate limiting",
+          "play testing",
+          "emergent behavior"
+        ]
+      }
+    ],
+    "gd_ai_behavior.finite_state_machines": [
+      {
+        "level": "junior",
+        "type": "practical_task",
+        "question": "Implement an FSM for an enemy with Idle, Patrol, Chase, and Attack states. Define the transitions between them.",
+        "evaluation_criteria": [
+          "state enum or class",
+          "transition conditions",
+          "enter/exit methods",
+          "current state tracking",
+          "detection range for chase",
+          "attack range check"
+        ]
+      }
+    ],
+    "gd_ai_behavior.behavior_trees": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "Design a behavior tree for a guard NPC that patrols, investigates suspicious sounds, and calls for backup when spotting an intruder.",
+        "expected_answer_keywords": [
+          "selector",
+          "sequence",
+          "blackboard",
+          "patrol waypoints",
+          "perception check",
+          "alert state",
+          "decorator conditions"
+        ]
+      }
+    ],
+    "gd_ai_behavior.goap": [
+      {
+        "level": "senior",
+        "type": "conceptual",
+        "question": "Compare behavior trees and GOAP for NPC decision making. When would you choose one over the other?",
+        "expected_answer_keywords": [
+          "BT is hand-authored",
+          "GOAP is goal-driven",
+          "GOAP plans dynamically",
+          "BT more predictable",
+          "GOAP more emergent",
+          "complexity trade-off"
+        ]
+      }
+    ]
+  },
+  "scoring_rules_reference": {
+    "source": "knowledge-base/scoring/engine.json",
+    "description": "Scoring rules for assessment are defined in engine.json under step_1_evidence_to_subskill_confidence.assessment_override_rules to maintain a single source of truth.",
+    "summary_weights": {
+      "conceptual": 0.6,
+      "scenario": 0.8,
+      "practical_task": 1.0
+    }
+  }
+}

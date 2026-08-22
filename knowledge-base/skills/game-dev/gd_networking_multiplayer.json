@@ -1,0 +1,383 @@
+{
+  "skill_id": "gd_networking_multiplayer",
+  "name": "Multiplayer & Networking",
+  "category": "networking",
+  "description": "Multiplayer game networking including client-server architecture, RPC systems, state synchronization, lag compensation, matchmaking, authority models, network serialization, dedicated servers, and large-scale multiplayer design.",
+  "subskills": [
+    {
+      "id": "client_server_model",
+      "name": "Client-Server Architecture",
+      "description": "Understanding client-server vs peer-to-peer models, host migration, connection management, and session lifecycle.",
+      "keywords": [
+        "client-server",
+        "peer-to-peer",
+        "host",
+        "listen server",
+        "connection",
+        "session",
+        "NetworkManager",
+        "MultiplayerAPI",
+        "multiplayer_peer"
+      ]
+    },
+    {
+      "id": "rpc_systems",
+      "name": "RPC & Remote Calls",
+      "description": "Remote procedure calls, server/client RPCs, Unreal RPCs, Godot RPCs, and reliable vs unreliable channels.",
+      "keywords": [
+        "RPC",
+        "ServerRpc",
+        "ClientRpc",
+        "Command",
+        "TargetRpc",
+        "@rpc",
+        "rpc_config",
+        "reliable",
+        "unreliable",
+        "channel"
+      ]
+    },
+    {
+      "id": "state_synchronization",
+      "name": "State Synchronization",
+      "description": "Synchronizing game state across clients: NetworkVariables, SyncVars, replicated properties, and snapshot interpolation.",
+      "keywords": [
+        "SyncVar",
+        "NetworkVariable",
+        "replicated",
+        "DOREPLIFETIME",
+        "synchronizer",
+        "snapshot",
+        "interpolation",
+        "state sync",
+        "MultiplayerSynchronizer"
+      ]
+    },
+    {
+      "id": "lobby_matchmaking",
+      "name": "Lobby & Matchmaking Systems",
+      "description": "Implementing lobby systems, matchmaking queues, player sessions, room management, and relay services.",
+      "keywords": [
+        "lobby",
+        "matchmaking",
+        "room",
+        "session",
+        "Steam Lobbies",
+        "PlayFab",
+        "Nakama",
+        "EOS",
+        "relay",
+        "queue"
+      ]
+    },
+    {
+      "id": "lag_compensation",
+      "name": "Lag Compensation & Prediction",
+      "description": "Client-side prediction, server reconciliation, input buffering, rollback netcode, and latency hiding techniques.",
+      "keywords": [
+        "prediction",
+        "reconciliation",
+        "rollback",
+        "input buffer",
+        "lag compensation",
+        "client prediction",
+        "server authoritative",
+        "GGPO",
+        "tick rate"
+      ]
+    },
+    {
+      "id": "authority_models",
+      "name": "Authority & Anti-Cheat Models",
+      "description": "Server authority, ownership models, input validation, anti-cheat strategies, and trust boundaries.",
+      "keywords": [
+        "server authority",
+        "client authority",
+        "ownership",
+        "HasAuthority",
+        "IsOwner",
+        "anti-cheat",
+        "input validation",
+        "EasyAntiCheat",
+        "BattlEye"
+      ]
+    },
+    {
+      "id": "serialization_protocol",
+      "name": "Network Serialization Protocols",
+      "description": "Efficient network data serialization: bit packing, delta compression, custom serialization, and protocol design.",
+      "keywords": [
+        "serialization",
+        "bit packing",
+        "delta compression",
+        "NetworkWriter",
+        "NetworkReader",
+        "protobuf",
+        "FlatBuffers",
+        "custom protocol",
+        "bandwidth"
+      ]
+    },
+    {
+      "id": "dedicated_servers",
+      "name": "Dedicated Server Architecture",
+      "description": "Headless server builds, server fleet management, containerized game servers, and cloud hosting (Agones, GameLift).",
+      "keywords": [
+        "dedicated server",
+        "headless",
+        "Agones",
+        "GameLift",
+        "Multiplay",
+        "server fleet",
+        "containerized server",
+        "server build",
+        "batchmode"
+      ]
+    },
+    {
+      "id": "netcode_optimization",
+      "name": "Netcode Optimization & Bandwidth",
+      "description": "Optimizing network bandwidth, packet size, update frequency, relevancy filtering, and interest management.",
+      "keywords": [
+        "bandwidth optimization",
+        "packet size",
+        "update rate",
+        "relevancy",
+        "interest management",
+        "area of interest",
+        "network LOD",
+        "prioritization"
+      ]
+    },
+    {
+      "id": "large_scale_multiplayer",
+      "name": "Large-Scale Multiplayer (MMO)",
+      "description": "MMO architecture: world sharding, zone servers, seamless transitions, persistence layers, and distributed state management.",
+      "keywords": [
+        "MMO",
+        "sharding",
+        "zone server",
+        "seamless transition",
+        "persistence",
+        "distributed state",
+        "spatial OS",
+        "world partition multiplayer",
+        "thousands of players"
+      ]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "NetworkManager or MultiplayerAPI configuration",
+        "detection": "content_analysis",
+        "pattern": "NetworkManager|MultiplayerAPI|NetworkRunner|PhotonNetwork|Mirror\\.NetworkServer",
+        "strength": 0.6,
+        "maps_to": [
+          "gd_networking_multiplayer.client_server_model"
+        ]
+      },
+      {
+        "signal": "RPC declarations in game code",
+        "detection": "content_analysis",
+        "pattern": "ServerRpc|ClientRpc|Command|TargetRpc|@rpc|rpc_config|UFUNCTION.*Server|UFUNCTION.*Client",
+        "strength": 0.7,
+        "maps_to": [
+          "gd_networking_multiplayer.rpc_systems"
+        ]
+      },
+      {
+        "signal": "State sync variables (SyncVar, NetworkVariable, replicated)",
+        "detection": "content_analysis",
+        "pattern": "SyncVar|NetworkVariable|DOREPLIFETIME|MultiplayerSynchronizer|ReplicatedUsing",
+        "strength": 0.7,
+        "maps_to": [
+          "gd_networking_multiplayer.state_synchronization"
+        ]
+      },
+      {
+        "signal": "Matchmaking or lobby integration code",
+        "detection": "content_analysis",
+        "pattern": "SteamMatchmaking|PlayFab|Nakama|EOS.*Lobby|matchmak|CreateRoom|JoinRoom",
+        "strength": 0.7,
+        "maps_to": [
+          "gd_networking_multiplayer.lobby_matchmaking"
+        ]
+      },
+      {
+        "signal": "Client prediction or rollback implementation",
+        "detection": "content_analysis",
+        "pattern": "prediction|reconciliation|rollback|input_buffer|GGPO|NetworkTransform.*interpolat",
+        "strength": 0.8,
+        "maps_to": [
+          "gd_networking_multiplayer.lag_compensation"
+        ]
+      },
+      {
+        "signal": "Server authority checks in code",
+        "detection": "content_analysis",
+        "pattern": "HasAuthority|IsServer|IsOwner|is_multiplayer_authority|server_authoritative",
+        "strength": 0.6,
+        "maps_to": [
+          "gd_networking_multiplayer.authority_models"
+        ]
+      },
+      {
+        "signal": "Custom network serialization (bit packing, delta compression)",
+        "detection": "content_analysis",
+        "pattern": "NetworkWriter|NetworkReader|INetworkSerializable|bit_pack|delta_compress|FlatBuffers",
+        "strength": 0.8,
+        "maps_to": [
+          "gd_networking_multiplayer.serialization_protocol"
+        ]
+      },
+      {
+        "signal": "Dedicated server build configuration",
+        "detection": "content_analysis",
+        "pattern": "batchmode|headless|Agones|GameLift|dedicated.*server|server.*build|DedicatedServerTarget",
+        "strength": 0.8,
+        "maps_to": [
+          "gd_networking_multiplayer.dedicated_servers"
+        ]
+      },
+      {
+        "signal": "Interest management or network LOD code",
+        "detection": "content_analysis",
+        "pattern": "interest.*management|relevancy|NetworkProximityChecker|area_of_interest|network.*LOD",
+        "strength": 0.8,
+        "maps_to": [
+          "gd_networking_multiplayer.netcode_optimization"
+        ]
+      },
+      {
+        "signal": "World sharding or zone server architecture",
+        "detection": "content_analysis",
+        "pattern": "shard|zone.*server|seamless.*travel|world.*partition.*multiplayer|distributed.*state",
+        "strength": 0.9,
+        "maps_to": [
+          "gd_networking_multiplayer.large_scale_multiplayer"
+        ]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "Multiplayer game development mentioned in work experience",
+        "strength": 0.5,
+        "maps_to": [
+          "gd_networking_multiplayer.client_server_model",
+          "gd_networking_multiplayer.rpc_systems"
+        ]
+      },
+      {
+        "signal": "Describes implementing lag compensation or prediction systems",
+        "strength": 0.6,
+        "maps_to": [
+          "gd_networking_multiplayer.lag_compensation"
+        ]
+      },
+      {
+        "signal": "Describes dedicated server infrastructure or fleet management",
+        "strength": 0.7,
+        "maps_to": [
+          "gd_networking_multiplayer.dedicated_servers",
+          "gd_networking_multiplayer.netcode_optimization"
+        ]
+      },
+      {
+        "signal": "MMO or large-scale multiplayer experience described",
+        "strength": 0.7,
+        "maps_to": [
+          "gd_networking_multiplayer.large_scale_multiplayer"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Multiplayer or Networking in game dev skills",
+        "strength": 0.2,
+        "maps_to": [
+          "gd_networking_multiplayer.client_server_model"
+        ]
+      },
+      {
+        "signal": "Network Programmer or Backend Engineer at game studio",
+        "strength": 0.4,
+        "maps_to": [
+          "gd_networking_multiplayer.state_synchronization",
+          "gd_networking_multiplayer.serialization_protocol"
+        ]
+      },
+      {
+        "signal": "Job experience with matchmaking or online services",
+        "strength": 0.4,
+        "maps_to": [
+          "gd_networking_multiplayer.lobby_matchmaking",
+          "gd_networking_multiplayer.authority_models"
+        ]
+      }
+    ],
+    "assessment": [
+      {
+        "signal": "Can set up a basic multiplayer game with RPCs and state sync",
+        "strength": 1.0,
+        "maps_to": [
+          "gd_networking_multiplayer.client_server_model",
+          "gd_networking_multiplayer.rpc_systems",
+          "gd_networking_multiplayer.state_synchronization"
+        ]
+      },
+      {
+        "signal": "Can implement client prediction with server reconciliation",
+        "strength": 1.0,
+        "maps_to": [
+          "gd_networking_multiplayer.lag_compensation",
+          "gd_networking_multiplayer.authority_models"
+        ]
+      },
+      {
+        "signal": "Can design a matchmaking flow with lobby and relay",
+        "strength": 1.0,
+        "maps_to": [
+          "gd_networking_multiplayer.lobby_matchmaking",
+          "gd_networking_multiplayer.serialization_protocol"
+        ]
+      },
+      {
+        "signal": "Can architect a dedicated server fleet with containerized game servers",
+        "strength": 1.0,
+        "maps_to": [
+          "gd_networking_multiplayer.dedicated_servers",
+          "gd_networking_multiplayer.netcode_optimization",
+          "gd_networking_multiplayer.large_scale_multiplayer"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "client_server_model",
+        "rpc_systems",
+        "state_synchronization"
+      ],
+      "description": "Can set up basic multiplayer using engine networking, send RPCs, and synchronize simple game state."
+    },
+    "mid": {
+      "expected_subskills": [
+        "lobby_matchmaking",
+        "lag_compensation",
+        "authority_models",
+        "serialization_protocol"
+      ],
+      "description": "Can implement matchmaking flows, client prediction, server authority, and efficient network serialization."
+    },
+    "senior": {
+      "expected_subskills": [
+        "dedicated_servers",
+        "netcode_optimization",
+        "large_scale_multiplayer"
+      ],
+      "description": "Can architect dedicated server infrastructure, optimize netcode for bandwidth, and design MMO-scale systems."
+    }
+  }
+}

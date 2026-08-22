@@ -1,0 +1,405 @@
+{
+  "skill_id": "gd_game_design",
+  "name": "Game Design Fundamentals",
+  "category": "design",
+  "description": "Game design skills for developers including core mechanics design, level design, rapid prototyping, game feel, balancing, playtesting, narrative integration, systems design, accessibility, and monetization/live ops design.",
+  "subskills": [
+    {
+      "id": "mechanics_design",
+      "name": "Core Mechanics Design",
+      "description": "Designing and implementing core gameplay mechanics: player actions, feedback loops, risk/reward, and interaction systems.",
+      "keywords": [
+        "mechanic",
+        "gameplay loop",
+        "core loop",
+        "feedback loop",
+        "risk reward",
+        "player action",
+        "interaction",
+        "game mechanic",
+        "input response"
+      ]
+    },
+    {
+      "id": "level_design_fundamentals",
+      "name": "Level Design Fundamentals",
+      "description": "Designing game levels: spatial layout, flow, pacing, landmarks, player guidance, environmental storytelling, and blockout/grayboxing.",
+      "keywords": [
+        "level design",
+        "blockout",
+        "graybox",
+        "whitebox",
+        "flow",
+        "pacing",
+        "landmark",
+        "player guidance",
+        "sight line",
+        "chokepoint"
+      ]
+    },
+    {
+      "id": "prototyping",
+      "name": "Rapid Prototyping",
+      "description": "Quickly building playable prototypes to test ideas, paper prototyping, minimum viable gameplay, and fail-fast iteration.",
+      "keywords": [
+        "prototype",
+        "MVP",
+        "proof of concept",
+        "game jam",
+        "iteration",
+        "fail fast",
+        "paper prototype",
+        "vertical slice",
+        "playable prototype"
+      ]
+    },
+    {
+      "id": "game_feel_juice",
+      "name": "Game Feel & Juice",
+      "description": "Creating satisfying game interactions: screen shake, particles on impact, hit stop, animation curves, camera effects, and tactile feedback.",
+      "keywords": [
+        "game feel",
+        "juice",
+        "screen shake",
+        "hit stop",
+        "freeze frame",
+        "impact particles",
+        "camera shake",
+        "haptic feedback",
+        "polish",
+        "satisfying"
+      ]
+    },
+    {
+      "id": "balancing_tuning",
+      "name": "Balancing & Economy Tuning",
+      "description": "Numerical game design: stat balancing, progression curves, economy design, spreadsheet modeling, and data-driven tuning.",
+      "keywords": [
+        "balance",
+        "tuning",
+        "stat",
+        "progression",
+        "economy",
+        "curve",
+        "DPS",
+        "power curve",
+        "spreadsheet",
+        "ScriptableObject data"
+      ]
+    },
+    {
+      "id": "playtesting_iteration",
+      "name": "Playtesting & Iteration",
+      "description": "Conducting playtests, gathering feedback, analyzing player behavior, A/B testing, and iterative design processes.",
+      "keywords": [
+        "playtest",
+        "feedback",
+        "iteration",
+        "A/B test",
+        "analytics",
+        "player behavior",
+        "heatmap",
+        "funnel",
+        "session recording",
+        "usability"
+      ]
+    },
+    {
+      "id": "narrative_integration",
+      "name": "Narrative Integration",
+      "description": "Integrating story with gameplay: dialogue systems, quest systems, branching narratives, environmental storytelling, and narrative tools (Ink, Yarn).",
+      "keywords": [
+        "dialogue",
+        "quest",
+        "narrative",
+        "branching",
+        "Ink",
+        "Yarn Spinner",
+        "dialogue tree",
+        "cutscene",
+        "environmental storytelling",
+        "lore"
+      ]
+    },
+    {
+      "id": "systems_design",
+      "name": "Complex Systems Design",
+      "description": "Designing interconnected game systems: crafting, inventory, skill trees, reputation systems, emergent gameplay, and systemic interactions.",
+      "keywords": [
+        "systems design",
+        "crafting",
+        "inventory",
+        "skill tree",
+        "reputation",
+        "emergent",
+        "systemic",
+        "interconnected systems",
+        "emergent gameplay"
+      ]
+    },
+    {
+      "id": "accessibility_design",
+      "name": "Accessibility Design",
+      "description": "Making games accessible: colorblind modes, remappable controls, subtitles, difficulty options, screen readers, and WCAG-adjacent practices.",
+      "keywords": [
+        "accessibility",
+        "a11y",
+        "colorblind",
+        "remappable controls",
+        "subtitle",
+        "difficulty option",
+        "screen reader",
+        "contrast",
+        "one-handed",
+        "assist mode"
+      ]
+    },
+    {
+      "id": "monetization_liveops",
+      "name": "Monetization & Live Ops Design",
+      "description": "Designing monetization systems (free-to-play, battle pass, DLC), live ops events, seasonal content, and ethical monetization practices.",
+      "keywords": [
+        "monetization",
+        "free-to-play",
+        "F2P",
+        "battle pass",
+        "DLC",
+        "microtransaction",
+        "live ops",
+        "seasonal",
+        "daily challenge",
+        "retention"
+      ]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "Game Design Document (GDD) or design documentation",
+        "detection": "file_presence",
+        "pattern": "GDD*|*design_doc*|*game_design*|DESIGN.md",
+        "strength": 0.5,
+        "maps_to": [
+          "gd_game_design.mechanics_design"
+        ]
+      },
+      {
+        "signal": "Level/scene files with organized spatial design",
+        "detection": "file_presence",
+        "pattern": "levels/|maps/|*blockout*|*graybox*|*whitebox*",
+        "strength": 0.5,
+        "maps_to": [
+          "gd_game_design.level_design_fundamentals"
+        ]
+      },
+      {
+        "signal": "Game jam project (Ludum Dare, GMTK, GGJ references)",
+        "detection": "content_analysis",
+        "pattern": "ludum.*dare|GMTK|game.*jam|global.*game.*jam|itch\\.io.*jam|48.*hours",
+        "strength": 0.6,
+        "maps_to": [
+          "gd_game_design.prototyping"
+        ]
+      },
+      {
+        "signal": "Screen shake, hit stop, or juice effect implementations",
+        "detection": "content_analysis",
+        "pattern": "screen.*shake|hit.*stop|freeze.*frame|camera.*shake|haptic|DOTween|Tween",
+        "strength": 0.6,
+        "maps_to": [
+          "gd_game_design.game_feel_juice"
+        ]
+      },
+      {
+        "signal": "Data-driven balance config files (JSON, ScriptableObject)",
+        "detection": "content_analysis",
+        "pattern": "balance|stats|damage.*table|progression.*curve|DPS|power.*level|XP.*curve",
+        "strength": 0.6,
+        "maps_to": [
+          "gd_game_design.balancing_tuning"
+        ]
+      },
+      {
+        "signal": "Analytics or telemetry integration code",
+        "detection": "content_analysis",
+        "pattern": "Analytics|telemetry|GameAnalytics|Firebase.*Analytics|playtest|heatmap",
+        "strength": 0.6,
+        "maps_to": [
+          "gd_game_design.playtesting_iteration"
+        ]
+      },
+      {
+        "signal": "Dialogue system or narrative tool integration",
+        "detection": "content_analysis",
+        "pattern": "dialogue|DialogueManager|Ink|YarnSpinner|quest.*system|DialogueNode|branching.*narrative",
+        "strength": 0.7,
+        "maps_to": [
+          "gd_game_design.narrative_integration"
+        ]
+      },
+      {
+        "signal": "Complex interconnected systems (inventory, crafting, skill tree)",
+        "detection": "content_analysis",
+        "pattern": "Inventory|CraftingSystem|SkillTree|RecipeData|ItemDatabase|reputation.*system",
+        "strength": 0.7,
+        "maps_to": [
+          "gd_game_design.systems_design"
+        ]
+      },
+      {
+        "signal": "Accessibility options implementation",
+        "detection": "content_analysis",
+        "pattern": "colorblind|accessibility|a11y|remap.*control|subtitle.*option|assist.*mode|contrast",
+        "strength": 0.7,
+        "maps_to": [
+          "gd_game_design.accessibility_design"
+        ]
+      },
+      {
+        "signal": "Monetization or live ops system code",
+        "detection": "content_analysis",
+        "pattern": "battle.*pass|daily.*reward|season.*pass|IAP|in.*app.*purchase|live.*ops|store.*item",
+        "strength": 0.7,
+        "maps_to": [
+          "gd_game_design.monetization_liveops"
+        ]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "Game design experience in work or projects",
+        "strength": 0.3,
+        "maps_to": [
+          "gd_game_design.mechanics_design",
+          "gd_game_design.level_design_fundamentals"
+        ]
+      },
+      {
+        "signal": "Game jam participation listed",
+        "strength": 0.5,
+        "maps_to": [
+          "gd_game_design.prototyping"
+        ]
+      },
+      {
+        "signal": "Describes balancing or economy design with quantifiable outcomes",
+        "strength": 0.6,
+        "maps_to": [
+          "gd_game_design.balancing_tuning",
+          "gd_game_design.playtesting_iteration"
+        ]
+      },
+      {
+        "signal": "Describes complex game systems design (crafting, skill trees)",
+        "strength": 0.6,
+        "maps_to": [
+          "gd_game_design.systems_design",
+          "gd_game_design.narrative_integration"
+        ]
+      },
+      {
+        "signal": "Describes accessibility or inclusive design implementation",
+        "strength": 0.5,
+        "maps_to": [
+          "gd_game_design.accessibility_design"
+        ]
+      },
+      {
+        "signal": "Live ops or free-to-play game economy experience",
+        "strength": 0.6,
+        "maps_to": [
+          "gd_game_design.monetization_liveops",
+          "gd_game_design.game_feel_juice"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Game Design in skills/endorsements",
+        "strength": 0.2,
+        "maps_to": [
+          "gd_game_design.mechanics_design"
+        ]
+      },
+      {
+        "signal": "Game Designer or Level Designer role",
+        "strength": 0.4,
+        "maps_to": [
+          "gd_game_design.level_design_fundamentals",
+          "gd_game_design.balancing_tuning"
+        ]
+      },
+      {
+        "signal": "Live ops or product management at game studio",
+        "strength": 0.4,
+        "maps_to": [
+          "gd_game_design.monetization_liveops",
+          "gd_game_design.playtesting_iteration"
+        ]
+      }
+    ],
+    "assessment": [
+      {
+        "signal": "Can design a core gameplay loop and describe its feedback mechanisms",
+        "strength": 1.0,
+        "maps_to": [
+          "gd_game_design.mechanics_design",
+          "gd_game_design.prototyping",
+          "gd_game_design.game_feel_juice"
+        ]
+      },
+      {
+        "signal": "Can graybox a level with proper flow and player guidance",
+        "strength": 1.0,
+        "maps_to": [
+          "gd_game_design.level_design_fundamentals"
+        ]
+      },
+      {
+        "signal": "Can design and balance a progression system using spreadsheet modeling",
+        "strength": 1.0,
+        "maps_to": [
+          "gd_game_design.balancing_tuning",
+          "gd_game_design.playtesting_iteration"
+        ]
+      },
+      {
+        "signal": "Can design interconnected game systems that produce emergent gameplay",
+        "strength": 1.0,
+        "maps_to": [
+          "gd_game_design.systems_design",
+          "gd_game_design.narrative_integration",
+          "gd_game_design.accessibility_design",
+          "gd_game_design.monetization_liveops"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "mechanics_design",
+        "level_design_fundamentals",
+        "prototyping"
+      ],
+      "description": "Can design basic mechanics, create simple levels with proper flow, and rapidly prototype gameplay ideas."
+    },
+    "mid": {
+      "expected_subskills": [
+        "game_feel_juice",
+        "balancing_tuning",
+        "playtesting_iteration",
+        "narrative_integration"
+      ],
+      "description": "Can polish interactions with game feel, balance game systems with data, conduct playtests, and integrate narrative elements."
+    },
+    "senior": {
+      "expected_subskills": [
+        "systems_design",
+        "accessibility_design",
+        "monetization_liveops"
+      ],
+      "description": "Can architect complex interconnected systems, design for accessibility, and build ethical monetization and live ops strategies."
+    }
+  }
+}

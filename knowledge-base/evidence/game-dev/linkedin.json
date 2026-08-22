@@ -1,0 +1,188 @@
+{
+  "source_id": "linkedin",
+  "name": "LinkedIn Profile Analysis - Game Development",
+  "description": "Signals extracted from LinkedIn profiles to evidence Game Development skills. LinkedIn provides professional context, endorsements, and career trajectory data.",
+  "extraction_rules": {
+    "sections": [
+      {
+        "section": "headline_summary",
+        "description": "Profile headline and summary/about section.",
+        "base_strength": 0.2,
+        "notes": "Self-described; provides intent and self-assessment context. Look for specific engine/language mentions."
+      },
+      {
+        "section": "experience",
+        "description": "Work experience entries with job titles, companies, and descriptions.",
+        "base_strength": 0.4,
+        "notes": "Look for game development-related job titles and descriptions at known studios.",
+        "quality_indicators": [
+          "Game dev job titles (Game Programmer, Engine Programmer, Technical Artist, Gameplay Engineer)",
+          "Duration in game development roles",
+          "Studio reputation and size (AAA vs indie)",
+          "Specific shipped titles mentioned",
+          "Technology mentions in descriptions"
+        ]
+      },
+      {
+        "section": "skills_endorsements",
+        "description": "Skills listed with endorsement counts from connections.",
+        "base_strength": 0.15,
+        "notes": "Endorsements have very low evidential value. However, the skill list provides self-reported skill claims."
+      },
+      {
+        "section": "certifications",
+        "description": "Professional certifications with issuing organizations.",
+        "base_strength": 0.2,
+        "notes": "Same as CV certifications — theoretical knowledge indicator, not practical proof."
+      },
+      {
+        "section": "projects",
+        "description": "Projects section with descriptions and links.",
+        "base_strength": 0.3,
+        "notes": "Links to itch.io, Steam, or GitHub increase strength. Game jam entries are valuable."
+      },
+      {
+        "section": "recommendations",
+        "description": "Written recommendations from colleagues or managers.",
+        "base_strength": 0.3,
+        "notes": "Third-party validation of skills. Look for specific technical skill mentions from industry peers."
+      },
+      {
+        "section": "posts_articles",
+        "description": "Technical posts and articles published on LinkedIn.",
+        "base_strength": 0.3,
+        "notes": "Indicates thought leadership and depth of knowledge in game development topics."
+      }
+    ]
+  },
+  "signal_mapping": {
+    "description": "How LinkedIn mentions map to skill evidence using COMPOSITE KEYS ({skill_id}.{subskill_id}). AI should use these patterns.",
+    "patterns": [
+      {
+        "pattern": "LinkedIn skills endorsement for 'Unity' or 'Unreal Engine'",
+        "maps_to": [
+          "gd_game_engine.scene_management"
+        ],
+        "strength_modifier": 0.33
+      },
+      {
+        "pattern": "LinkedIn skills endorsement for 'C#' or 'C++'",
+        "maps_to": [
+          "gd_programming_language.core_syntax"
+        ],
+        "strength_modifier": 0.33
+      },
+      {
+        "pattern": "LinkedIn skills endorsement for 'Game Design' or 'Game Development'",
+        "maps_to": [
+          "gd_game_engine.scene_management",
+          "gd_game_engine.physics_system"
+        ],
+        "strength_modifier": 0.33
+      },
+      {
+        "pattern": "Job experience explicitly describing gameplay systems programming",
+        "maps_to": [
+          "gd_programming_language.oop_patterns",
+          "gd_programming_language.event_systems"
+        ],
+        "strength_modifier": 1.0
+      },
+      {
+        "pattern": "Job experience describing rendering or shader work at a game studio",
+        "maps_to": [
+          "gd_game_engine.lighting_rendering",
+          "gd_game_mathematics.matrix_transforms"
+        ],
+        "strength_modifier": 1.0
+      },
+      {
+        "pattern": "Job experience describing AI/pathfinding implementation",
+        "maps_to": [
+          "gd_game_mathematics.pathfinding_algorithms"
+        ],
+        "strength_modifier": 1.0
+      },
+      {
+        "pattern": "Engine Programmer or Systems Programmer role at game studio",
+        "maps_to": [
+          "gd_game_engine.engine_source_modification",
+          "gd_programming_language.memory_management"
+        ],
+        "strength_modifier": 1.0
+      },
+      {
+        "pattern": "Technical Artist role with tool pipeline development",
+        "maps_to": [
+          "gd_game_engine.custom_editor_tools",
+          "gd_game_engine.asset_pipeline"
+        ],
+        "strength_modifier": 1.0
+      },
+      {
+        "pattern": "Posts or articles about game development technical topics",
+        "maps_to": [
+          "gd_programming_language.oop_patterns"
+        ],
+        "strength_modifier": 0.5
+      },
+      {
+        "pattern": "Graphics Programmer or Shader Artist role",
+        "maps_to": [
+          "gd_graphics_programming.vertex_fragment_shaders",
+          "gd_graphics_programming.lighting_models"
+        ],
+        "strength_modifier": 1.0
+      },
+      {
+        "pattern": "Network Programmer or Online Services Engineer at game studio",
+        "maps_to": [
+          "gd_networking_multiplayer.client_server_model",
+          "gd_networking_multiplayer.lag_compensation"
+        ],
+        "strength_modifier": 1.0
+      },
+      {
+        "pattern": "Performance optimization or profiling experience at game studio",
+        "maps_to": [
+          "gd_optimization_profiling.engine_profiler",
+          "gd_optimization_profiling.gpu_profiling"
+        ],
+        "strength_modifier": 1.0
+      },
+      {
+        "pattern": "Build Engineer or Release Manager at game studio",
+        "maps_to": [
+          "gd_version_control.build_automation",
+          "gd_version_control.release_management"
+        ],
+        "strength_modifier": 1.0
+      },
+      {
+        "pattern": "Game Designer or Level Designer role with systems design",
+        "maps_to": [
+          "gd_game_design.systems_design",
+          "gd_game_design.balancing_tuning"
+        ],
+        "strength_modifier": 1.0
+      },
+      {
+        "pattern": "AI Programmer with behavior tree or GOAP experience",
+        "maps_to": [
+          "gd_ai_behavior.behavior_trees",
+          "gd_ai_behavior.goap"
+        ],
+        "strength_modifier": 1.0
+      }
+    ]
+  },
+  "important_notes": [
+    "ALL extracted signals MUST be mapped to COMPOSITE KEYS ({skill_id}.{subskill_id})",
+    "LinkedIn data supplements but should not override GitHub or assessment evidence",
+    "Endorsements have near-zero evidential value on their own",
+    "Job titles in game industry are less standardized than other fields — cross-reference with responsibilities",
+    "Career trajectory (indie → studio, junior → lead) provides context for level assessment",
+    "Look for technical content creation (posts, articles, talks at GDC/Unite/Unreal Fest) as evidence of deep understanding",
+    "Studio pedigree (AAA studios like Ubisoft, Epic, Naughty Dog) can indicate exposure to production-grade pipelines"
+  ]
+}

@@ -1,0 +1,405 @@
+{
+  "skill_id": "gd_ai_behavior",
+  "name": "Game AI & Behavior Systems",
+  "category": "ai",
+  "description": "Game AI programming including finite state machines, steering behaviors, navigation agents, behavior trees, perception systems, utility AI, group behaviors, goal-oriented action planning (GOAP), machine learning in games, and AI director systems.",
+  "subskills": [
+    {
+      "id": "finite_state_machines",
+      "name": "Finite State Machines",
+      "description": "Implementing FSMs for AI behavior: states, transitions, guard conditions, and hierarchical state machines.",
+      "keywords": [
+        "FSM",
+        "state machine",
+        "state",
+        "transition",
+        "guard condition",
+        "current state",
+        "enter",
+        "exit",
+        "update",
+        "hierarchical FSM"
+      ]
+    },
+    {
+      "id": "steering_behaviors",
+      "name": "Steering Behaviors",
+      "description": "Implementing autonomous movement: seek, flee, arrive, wander, obstacle avoidance, path following, and flocking.",
+      "keywords": [
+        "steering",
+        "seek",
+        "flee",
+        "arrive",
+        "wander",
+        "obstacle avoidance",
+        "path following",
+        "flocking",
+        "separation",
+        "alignment",
+        "cohesion"
+      ]
+    },
+    {
+      "id": "navigation_agents",
+      "name": "Navigation Agent Usage",
+      "description": "Using engine navigation systems: NavMesh agents, navigation paths, avoidance, and runtime NavMesh modification.",
+      "keywords": [
+        "NavMeshAgent",
+        "NavigationAgent",
+        "NavigationServer",
+        "SetDestination",
+        "target_position",
+        "avoidance",
+        "NavMesh obstacle",
+        "path query"
+      ]
+    },
+    {
+      "id": "behavior_trees",
+      "name": "Behavior Trees",
+      "description": "Designing and implementing behavior trees: selectors, sequences, decorators, composites, and blackboard data.",
+      "keywords": [
+        "behavior tree",
+        "BT",
+        "selector",
+        "sequence",
+        "decorator",
+        "composite",
+        "blackboard",
+        "BTTask",
+        "BTService",
+        "leaf node",
+        "parallel"
+      ]
+    },
+    {
+      "id": "perception_systems",
+      "name": "Perception & Awareness Systems",
+      "description": "AI perception: sight, hearing, smell senses, awareness levels, last known position tracking, and sensory memory.",
+      "keywords": [
+        "perception",
+        "AI perception",
+        "sight",
+        "hearing",
+        "awareness",
+        "line of sight",
+        "field of view",
+        "detection",
+        "last known position",
+        "sensory memory"
+      ]
+    },
+    {
+      "id": "utility_ai",
+      "name": "Utility AI & Scoring",
+      "description": "Utility-based AI decision making: scoring functions, response curves, action selection, and multi-criteria evaluation.",
+      "keywords": [
+        "utility AI",
+        "scoring function",
+        "response curve",
+        "action selection",
+        "consideration",
+        "weight",
+        "priority",
+        "evaluation",
+        "desirability"
+      ]
+    },
+    {
+      "id": "group_behaviors",
+      "name": "Group & Crowd Behaviors",
+      "description": "Coordinating AI groups: formation movement, squad tactics, crowd simulation, influence maps, and cooperative AI.",
+      "keywords": [
+        "formation",
+        "squad",
+        "group behavior",
+        "crowd simulation",
+        "influence map",
+        "tactical position",
+        "flanking",
+        "cover system",
+        "cooperative AI"
+      ]
+    },
+    {
+      "id": "goap",
+      "name": "Goal-Oriented Action Planning",
+      "description": "GOAP architecture: world states, goals, action preconditions/effects, plan generation, and plan execution.",
+      "keywords": [
+        "GOAP",
+        "goal-oriented",
+        "action planning",
+        "world state",
+        "precondition",
+        "effect",
+        "plan",
+        "planner",
+        "goal priority",
+        "action cost"
+      ]
+    },
+    {
+      "id": "ml_in_games",
+      "name": "ML / Neural Network in Games",
+      "description": "Using machine learning in games: ML-Agents, imitation learning, reinforcement learning, neural networks for NPC behavior, and procedural content via ML.",
+      "keywords": [
+        "ML-Agents",
+        "machine learning",
+        "reinforcement learning",
+        "neural network",
+        "imitation learning",
+        "training",
+        "inference",
+        "ONNX",
+        "AI training",
+        "reward function"
+      ]
+    },
+    {
+      "id": "director_ai",
+      "name": "AI Director & Dynamic Difficulty",
+      "description": "Designing meta-AI systems: AI directors (Left 4 Dead style), dynamic difficulty adjustment, pacing management, and drama curves.",
+      "keywords": [
+        "AI director",
+        "dynamic difficulty",
+        "DDA",
+        "pacing",
+        "intensity curve",
+        "spawn manager",
+        "difficulty scaling",
+        "player skill estimation",
+        "drama manager"
+      ]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "State machine implementation for AI",
+        "detection": "content_analysis",
+        "pattern": "StateMachine|FSM|current_state|ChangeState|EnterState|ExitState|AIState",
+        "strength": 0.6,
+        "maps_to": [
+          "gd_ai_behavior.finite_state_machines"
+        ]
+      },
+      {
+        "signal": "Steering behavior implementation",
+        "detection": "content_analysis",
+        "pattern": "Steering|seek|flee|arrive|wander|obstacle_avoidance|flock|separation|cohesion",
+        "strength": 0.7,
+        "maps_to": [
+          "gd_ai_behavior.steering_behaviors"
+        ]
+      },
+      {
+        "signal": "NavMesh agent or navigation system usage",
+        "detection": "content_analysis",
+        "pattern": "NavMeshAgent|NavigationAgent|NavigationServer|SetDestination|target_position|NavMesh\\.SamplePosition",
+        "strength": 0.5,
+        "maps_to": [
+          "gd_ai_behavior.navigation_agents"
+        ]
+      },
+      {
+        "signal": "Behavior tree implementation or asset",
+        "detection": "content_analysis",
+        "pattern": "BehaviorTree|BTTask|BTDecorator|Selector|Sequence|Blackboard|behavior.*tree|BTNode",
+        "strength": 0.8,
+        "maps_to": [
+          "gd_ai_behavior.behavior_trees"
+        ]
+      },
+      {
+        "signal": "AI perception or sensory system code",
+        "detection": "content_analysis",
+        "pattern": "AIPerception|perception|field_of_view|line_of_sight|awareness|DetectTarget|SenseConfig",
+        "strength": 0.7,
+        "maps_to": [
+          "gd_ai_behavior.perception_systems"
+        ]
+      },
+      {
+        "signal": "Utility AI scoring functions",
+        "detection": "content_analysis",
+        "pattern": "UtilityAI|scoring_function|response_curve|consideration|desirability|action_score",
+        "strength": 0.8,
+        "maps_to": [
+          "gd_ai_behavior.utility_ai"
+        ]
+      },
+      {
+        "signal": "Group formation or crowd simulation code",
+        "detection": "content_analysis",
+        "pattern": "formation|squad|crowd|influence_map|flanking|cover_point|group_behavior|tactical",
+        "strength": 0.8,
+        "maps_to": [
+          "gd_ai_behavior.group_behaviors"
+        ]
+      },
+      {
+        "signal": "GOAP architecture implementation",
+        "detection": "content_analysis",
+        "pattern": "GOAP|GoapPlanner|GoapAction|world_state|precondition|effect|action_plan|goal_oriented",
+        "strength": 0.9,
+        "maps_to": [
+          "gd_ai_behavior.goap"
+        ]
+      },
+      {
+        "signal": "ML-Agents or neural network integration",
+        "detection": "content_analysis",
+        "pattern": "MLAgents|ML-Agents|reinforcement.*learning|ONNX|neural.*network|imitation.*learn|reward.*function",
+        "strength": 0.9,
+        "maps_to": [
+          "gd_ai_behavior.ml_in_games"
+        ]
+      },
+      {
+        "signal": "AI Director or dynamic difficulty system",
+        "detection": "content_analysis",
+        "pattern": "AIDirector|dynamic.*difficulty|DDA|intensity.*curve|spawn.*manager|difficulty.*scaling",
+        "strength": 0.9,
+        "maps_to": [
+          "gd_ai_behavior.director_ai"
+        ]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "Game AI or NPC behavior mentioned in skills or projects",
+        "strength": 0.3,
+        "maps_to": [
+          "gd_ai_behavior.finite_state_machines",
+          "gd_ai_behavior.navigation_agents"
+        ]
+      },
+      {
+        "signal": "Describes implementing behavior trees or AI systems",
+        "strength": 0.6,
+        "maps_to": [
+          "gd_ai_behavior.behavior_trees",
+          "gd_ai_behavior.perception_systems"
+        ]
+      },
+      {
+        "signal": "Describes ML-Agents or machine learning for game AI",
+        "strength": 0.7,
+        "maps_to": [
+          "gd_ai_behavior.ml_in_games"
+        ]
+      },
+      {
+        "signal": "Describes GOAP or advanced AI architecture",
+        "strength": 0.7,
+        "maps_to": [
+          "gd_ai_behavior.goap",
+          "gd_ai_behavior.utility_ai"
+        ]
+      },
+      {
+        "signal": "Describes AI director or dynamic difficulty system",
+        "strength": 0.6,
+        "maps_to": [
+          "gd_ai_behavior.director_ai",
+          "gd_ai_behavior.group_behaviors"
+        ]
+      },
+      {
+        "signal": "Describes steering behaviors or flocking for NPC movement",
+        "strength": 0.5,
+        "maps_to": [
+          "gd_ai_behavior.steering_behaviors"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Game AI or AI Programming in skills",
+        "strength": 0.2,
+        "maps_to": [
+          "gd_ai_behavior.finite_state_machines"
+        ]
+      },
+      {
+        "signal": "AI Programmer or Gameplay AI Engineer role",
+        "strength": 0.4,
+        "maps_to": [
+          "gd_ai_behavior.behavior_trees",
+          "gd_ai_behavior.perception_systems"
+        ]
+      },
+      {
+        "signal": "Machine Learning Engineer at game studio",
+        "strength": 0.4,
+        "maps_to": [
+          "gd_ai_behavior.ml_in_games",
+          "gd_ai_behavior.goap"
+        ]
+      }
+    ],
+    "assessment": [
+      {
+        "signal": "Can implement an FSM-based enemy AI with patrol, chase, and attack states",
+        "strength": 1.0,
+        "maps_to": [
+          "gd_ai_behavior.finite_state_machines",
+          "gd_ai_behavior.steering_behaviors",
+          "gd_ai_behavior.navigation_agents"
+        ]
+      },
+      {
+        "signal": "Can design and implement a behavior tree for complex NPC behavior",
+        "strength": 1.0,
+        "maps_to": [
+          "gd_ai_behavior.behavior_trees",
+          "gd_ai_behavior.perception_systems"
+        ]
+      },
+      {
+        "signal": "Can implement utility AI with scoring functions for action selection",
+        "strength": 1.0,
+        "maps_to": [
+          "gd_ai_behavior.utility_ai",
+          "gd_ai_behavior.group_behaviors"
+        ]
+      },
+      {
+        "signal": "Can architect a GOAP system or AI director for a complex game",
+        "strength": 1.0,
+        "maps_to": [
+          "gd_ai_behavior.goap",
+          "gd_ai_behavior.ml_in_games",
+          "gd_ai_behavior.director_ai"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "finite_state_machines",
+        "steering_behaviors",
+        "navigation_agents"
+      ],
+      "description": "Can implement FSM-based AI, basic steering behaviors for NPC movement, and use engine navigation agents."
+    },
+    "mid": {
+      "expected_subskills": [
+        "behavior_trees",
+        "perception_systems",
+        "utility_ai",
+        "group_behaviors"
+      ],
+      "description": "Can design behavior trees, implement perception systems, use utility-based decisions, and coordinate group AI."
+    },
+    "senior": {
+      "expected_subskills": [
+        "goap",
+        "ml_in_games",
+        "director_ai"
+      ],
+      "description": "Can architect GOAP planners, integrate ML for NPC behavior, and design meta-AI systems like AI directors."
+    }
+  }
+}

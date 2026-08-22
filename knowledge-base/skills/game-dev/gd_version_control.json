@@ -1,0 +1,409 @@
+{
+  "skill_id": "gd_version_control",
+  "name": "Version Control for Game Development",
+  "category": "tooling",
+  "description": "Version control systems and workflows for game projects including Git fundamentals, branching strategies, Git LFS for binary assets, Perforce usage, CI/CD pipelines for games, code review, release management, and build automation.",
+  "subskills": [
+    {
+      "id": "git_fundamentals",
+      "name": "Git Fundamentals",
+      "description": "Core Git operations: clone, commit, push, pull, status, diff, log, stash, and .gitignore configuration for game projects.",
+      "keywords": [
+        "git",
+        "commit",
+        "push",
+        "pull",
+        "clone",
+        "stash",
+        ".gitignore",
+        "status",
+        "diff",
+        "log",
+        "remote"
+      ]
+    },
+    {
+      "id": "branching_strategy",
+      "name": "Branching Strategy",
+      "description": "Feature branching, Git Flow, trunk-based development, release branches, and branch naming conventions for game teams.",
+      "keywords": [
+        "branch",
+        "feature branch",
+        "Git Flow",
+        "trunk-based",
+        "develop",
+        "release branch",
+        "hotfix",
+        "main",
+        "checkout",
+        "switch"
+      ]
+    },
+    {
+      "id": "merge_conflict_resolution",
+      "name": "Merge & Conflict Resolution",
+      "description": "Merging branches, resolving conflicts (especially in scene/prefab files), rebase vs merge strategies, and cherry-pick.",
+      "keywords": [
+        "merge",
+        "conflict",
+        "rebase",
+        "cherry-pick",
+        "merge tool",
+        "scene merge",
+        "YAML merge",
+        "diff3",
+        "ours",
+        "theirs"
+      ]
+    },
+    {
+      "id": "git_lfs",
+      "name": "Git LFS for Binary Assets",
+      "description": "Configuring Git LFS for large binary assets (textures, models, audio), .gitattributes setup, LFS storage management, and locking.",
+      "keywords": [
+        "Git LFS",
+        "lfs",
+        ".gitattributes",
+        "lfs track",
+        "lfs lock",
+        "binary asset",
+        "large file",
+        "lfs fetch",
+        "lfs pull",
+        "storage quota"
+      ]
+    },
+    {
+      "id": "code_review_practices",
+      "name": "Code Review Practices",
+      "description": "Pull request workflows, code review best practices, review checklists, and feedback processes for game codebases.",
+      "keywords": [
+        "pull request",
+        "code review",
+        "PR",
+        "review",
+        "approve",
+        "request changes",
+        "reviewer",
+        "checklist",
+        "feedback"
+      ]
+    },
+    {
+      "id": "ci_cd_games",
+      "name": "CI/CD Pipelines for Games",
+      "description": "Automated build pipelines for game projects: Unity Cloud Build, Jenkins, GitHub Actions with game SDKs, automated testing, and build validation.",
+      "keywords": [
+        "CI/CD",
+        "Unity Cloud Build",
+        "Jenkins",
+        "GitHub Actions",
+        "build pipeline",
+        "automated build",
+        "build validation",
+        "nightly build",
+        "build agent",
+        "pipeline"
+      ]
+    },
+    {
+      "id": "perforce_usage",
+      "name": "Perforce (P4V) Usage",
+      "description": "Perforce version control: workspaces, changelists, shelving, streams, and file locking for game team collaboration.",
+      "keywords": [
+        "Perforce",
+        "P4V",
+        "P4",
+        "workspace",
+        "changelist",
+        "shelve",
+        "stream",
+        "depot",
+        "file lock",
+        "submit",
+        "sync"
+      ]
+    },
+    {
+      "id": "release_management",
+      "name": "Release & Tag Management",
+      "description": "Versioning strategies (SemVer, build numbers), release tagging, changelog generation, and release branch workflows.",
+      "keywords": [
+        "tag",
+        "release",
+        "version",
+        "SemVer",
+        "build number",
+        "changelog",
+        "release notes",
+        "release candidate",
+        "RC",
+        "milestone"
+      ]
+    },
+    {
+      "id": "monorepo_management",
+      "name": "Monorepo & Large Project Strategies",
+      "description": "Managing large game repositories: submodules, subtrees, sparse checkout, shallow clones, and repository organization for teams.",
+      "keywords": [
+        "monorepo",
+        "submodule",
+        "subtree",
+        "sparse checkout",
+        "shallow clone",
+        "repository organization",
+        "git filter-repo",
+        "large repo"
+      ]
+    },
+    {
+      "id": "build_automation",
+      "name": "Build Automation & Distribution",
+      "description": "Automated build scripts, platform-specific build configurations, build artifact management, and distribution to testers (TestFlight, Steam Depots, itch.io).",
+      "keywords": [
+        "build script",
+        "BuildPipeline",
+        "build automation",
+        "Steam depot",
+        "TestFlight",
+        "itch.io",
+        "butler",
+        "SteamPipe",
+        "build artifact",
+        "distribution"
+      ]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "Well-structured .gitignore for game engine",
+        "detection": "file_presence",
+        "pattern": ".gitignore",
+        "strength": 0.4,
+        "maps_to": [
+          "gd_version_control.git_fundamentals"
+        ]
+      },
+      {
+        "signal": "Git LFS configuration present (.gitattributes with LFS tracking)",
+        "detection": "content_analysis",
+        "pattern": "filter=lfs|lfs.*merge|*.png filter=lfs|*.fbx filter=lfs|*.wav filter=lfs",
+        "strength": 0.7,
+        "maps_to": [
+          "gd_version_control.git_lfs"
+        ]
+      },
+      {
+        "signal": "CI/CD pipeline configuration for game builds",
+        "detection": "file_presence",
+        "pattern": ".github/workflows/*.yml|Jenkinsfile|.gitlab-ci.yml",
+        "strength": 0.6,
+        "maps_to": [
+          "gd_version_control.ci_cd_games"
+        ]
+      },
+      {
+        "signal": "CI pipeline with game engine build steps",
+        "detection": "content_analysis",
+        "pattern": "unity.*build|UnityEditor\\.BuildPipeline|Unreal.*Build|RunUAT|game-ci|unity-builder",
+        "strength": 0.8,
+        "maps_to": [
+          "gd_version_control.ci_cd_games",
+          "gd_version_control.build_automation"
+        ]
+      },
+      {
+        "signal": "Release tags or version management",
+        "detection": "content_analysis",
+        "pattern": "CHANGELOG|changelog|release.*notes|version.*bump|SemVer",
+        "strength": 0.5,
+        "maps_to": [
+          "gd_version_control.release_management"
+        ]
+      },
+      {
+        "signal": "Multiple branches with game dev naming conventions",
+        "detection": "content_analysis",
+        "pattern": "feature/|develop|release/|hotfix/",
+        "strength": 0.5,
+        "maps_to": [
+          "gd_version_control.branching_strategy"
+        ]
+      },
+      {
+        "signal": "Pull request templates or review guidelines",
+        "detection": "file_presence",
+        "pattern": "PULL_REQUEST_TEMPLATE*|.github/PULL_REQUEST_TEMPLATE*",
+        "strength": 0.5,
+        "maps_to": [
+          "gd_version_control.code_review_practices"
+        ]
+      },
+      {
+        "signal": "Git submodules for shared game packages",
+        "detection": "file_presence",
+        "pattern": ".gitmodules",
+        "strength": 0.6,
+        "maps_to": [
+          "gd_version_control.monorepo_management"
+        ]
+      },
+      {
+        "signal": "Scene merge tool configuration (UnityYAMLMerge, Smart Merge)",
+        "detection": "content_analysis",
+        "pattern": "UnityYAMLMerge|merge.*unity|mergetool.*unity|smart.*merge",
+        "strength": 0.7,
+        "maps_to": [
+          "gd_version_control.merge_conflict_resolution"
+        ]
+      },
+      {
+        "signal": "Build distribution scripts (butler push, steamcmd)",
+        "detection": "content_analysis",
+        "pattern": "butler.*push|steamcmd|SteamPipe|TestFlight|fastlane|itch\\.io",
+        "strength": 0.8,
+        "maps_to": [
+          "gd_version_control.build_automation"
+        ]
+      },
+      {
+        "signal": "Perforce configuration or P4 workspace files",
+        "detection": "file_presence",
+        "pattern": "*.p4config|p4ignore|.p4*",
+        "strength": 0.6,
+        "maps_to": [
+          "gd_version_control.perforce_usage"
+        ]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "Git or version control mentioned in skills",
+        "strength": 0.3,
+        "maps_to": [
+          "gd_version_control.git_fundamentals"
+        ]
+      },
+      {
+        "signal": "Describes CI/CD pipeline setup for game projects",
+        "strength": 0.6,
+        "maps_to": [
+          "gd_version_control.ci_cd_games",
+          "gd_version_control.build_automation"
+        ]
+      },
+      {
+        "signal": "Perforce experience at game studio",
+        "strength": 0.5,
+        "maps_to": [
+          "gd_version_control.perforce_usage"
+        ]
+      },
+      {
+        "signal": "Describes managing large game repo or monorepo strategies",
+        "strength": 0.6,
+        "maps_to": [
+          "gd_version_control.monorepo_management",
+          "gd_version_control.release_management"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Git or Perforce in skills/endorsements",
+        "strength": 0.2,
+        "maps_to": [
+          "gd_version_control.git_fundamentals"
+        ]
+      },
+      {
+        "signal": "Build Engineer or DevOps role at game studio",
+        "strength": 0.4,
+        "maps_to": [
+          "gd_version_control.ci_cd_games",
+          "gd_version_control.build_automation"
+        ]
+      },
+      {
+        "signal": "Experience with Git LFS or large binary asset workflows",
+        "strength": 0.4,
+        "maps_to": [
+          "gd_version_control.git_lfs",
+          "gd_version_control.merge_conflict_resolution"
+        ]
+      },
+      {
+        "signal": "Code review or team collaboration practices described",
+        "strength": 0.3,
+        "maps_to": [
+          "gd_version_control.code_review_practices",
+          "gd_version_control.branching_strategy"
+        ]
+      }
+    ],
+    "assessment": [
+      {
+        "signal": "Can configure a game repo with .gitignore, LFS, and branching strategy",
+        "strength": 1.0,
+        "maps_to": [
+          "gd_version_control.git_fundamentals",
+          "gd_version_control.git_lfs",
+          "gd_version_control.branching_strategy"
+        ]
+      },
+      {
+        "signal": "Can resolve a scene merge conflict in a Unity/Godot project",
+        "strength": 1.0,
+        "maps_to": [
+          "gd_version_control.merge_conflict_resolution",
+          "gd_version_control.code_review_practices"
+        ]
+      },
+      {
+        "signal": "Can set up a CI/CD pipeline that builds and distributes a game",
+        "strength": 1.0,
+        "maps_to": [
+          "gd_version_control.ci_cd_games",
+          "gd_version_control.build_automation",
+          "gd_version_control.perforce_usage"
+        ]
+      },
+      {
+        "signal": "Can design a version control strategy for a large multi-team game project",
+        "strength": 1.0,
+        "maps_to": [
+          "gd_version_control.monorepo_management",
+          "gd_version_control.release_management"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "git_fundamentals",
+        "branching_strategy",
+        "merge_conflict_resolution"
+      ],
+      "description": "Can use Git daily, follow branching conventions, and resolve basic merge conflicts."
+    },
+    "mid": {
+      "expected_subskills": [
+        "git_lfs",
+        "code_review_practices",
+        "ci_cd_games",
+        "perforce_usage"
+      ],
+      "description": "Can configure Git LFS for assets, conduct code reviews, set up CI/CD for game builds, and use Perforce."
+    },
+    "senior": {
+      "expected_subskills": [
+        "release_management",
+        "monorepo_management",
+        "build_automation"
+      ],
+      "description": "Can design release workflows, manage large-scale repos, and architect automated build and distribution pipelines."
+    }
+  }
+}

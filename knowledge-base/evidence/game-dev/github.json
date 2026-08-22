@@ -1,0 +1,271 @@
+{
+  "source_id": "github",
+  "name": "GitHub Repository Analysis - Game Development",
+  "description": "Signals extracted from GitHub repositories to evidence Game Development skills. The backend pre-processes repositories before sending relevant data to AI.",
+  "preprocessing_pipeline": {
+    "description": "Steps the backend takes BEFORE sending any data to AI for analysis.",
+    "steps": [
+      {
+        "step": 1,
+        "name": "repository_metadata",
+        "description": "Collect basic repository information via GitHub API.",
+        "data_points": [
+          "repository name and description",
+          "primary language and all languages used (with byte counts)",
+          "stars, forks, and contributor count",
+          "creation date and last push date",
+          "topics/tags (e.g., game, unity, unreal, godot, gamedev)"
+        ]
+      },
+      {
+        "step": 2,
+        "name": "file_tree_scan",
+        "description": "Scan the repository file tree for game development-relevant files and directories.",
+        "target_files": [
+          {
+            "pattern": "*.uproject|*.umap|*.uasset",
+            "skill": "gd_game_engine",
+            "priority": "high"
+          },
+          {
+            "pattern": "Assets/|ProjectSettings/|*.unity",
+            "skill": "gd_game_engine",
+            "priority": "high"
+          },
+          {
+            "pattern": "project.godot|*.tscn|*.tres",
+            "skill": "gd_game_engine",
+            "priority": "high"
+          },
+          {
+            "pattern": "*.shader|*.hlsl|*.glsl|*.gdshader|*.usf|*.ush",
+            "skill": "gd_game_engine",
+            "priority": "high"
+          },
+          {
+            "pattern": "*.controller|*.anim|*.montage",
+            "skill": "gd_game_engine",
+            "priority": "medium"
+          },
+          {
+            "pattern": "*.cs",
+            "skill": "gd_programming_language",
+            "priority": "medium"
+          },
+          {
+            "pattern": "*.cpp|*.h|*.hpp",
+            "skill": "gd_programming_language",
+            "priority": "medium"
+          },
+          {
+            "pattern": "*.gd",
+            "skill": "gd_programming_language",
+            "priority": "medium"
+          },
+          {
+            "pattern": "*.gdextension|*.gdnlib",
+            "skill": "gd_programming_language",
+            "priority": "high"
+          },
+          {
+            "pattern": "*.fbx|*.glb|*.gltf|*.obj|*.dae",
+            "skill": "gd_game_engine",
+            "priority": "low"
+          },
+          {
+            "pattern": "*.bnk|*.fev|FMODStudioSettings*",
+            "skill": "gd_game_engine",
+            "priority": "medium"
+          },
+          {
+            "pattern": "*.vfx|*Niagara*|*VFXGraph*",
+            "skill": "gd_game_engine",
+            "priority": "medium"
+          },
+          {
+            "pattern": "export_presets.cfg|*.keystore",
+            "skill": "gd_game_engine",
+            "priority": "medium"
+          },
+          {
+            "pattern": "*.shader|*.hlsl|*.glsl|*.gdshader|*.usf|*.ush|*.cginc",
+            "skill": "gd_graphics_programming",
+            "priority": "high"
+          },
+          {
+            "pattern": "*.compute|*ComputeShader*",
+            "skill": "gd_graphics_programming",
+            "priority": "high"
+          },
+          {
+            "pattern": "*.rdc|renderdoc*",
+            "skill": "gd_optimization_profiling",
+            "priority": "medium"
+          },
+          {
+            "pattern": ".gitattributes|.gitmodules",
+            "skill": "gd_version_control",
+            "priority": "medium"
+          },
+          {
+            "pattern": ".github/workflows/*.yml|Jenkinsfile|.gitlab-ci.yml",
+            "skill": "gd_version_control",
+            "priority": "high"
+          },
+          {
+            "pattern": "GDD*|*design_doc*|DESIGN.md",
+            "skill": "gd_game_design",
+            "priority": "medium"
+          },
+          {
+            "pattern": "levels/|maps/|*blockout*",
+            "skill": "gd_game_design",
+            "priority": "medium"
+          },
+          {
+            "pattern": "*BehaviorTree*|*behaviour_tree*|*BTTask*",
+            "skill": "gd_ai_behavior",
+            "priority": "high"
+          },
+          {
+            "pattern": "*NavMesh*|*navigation*",
+            "skill": "gd_ai_behavior",
+            "priority": "medium"
+          }
+        ]
+      },
+      {
+        "step": 3,
+        "name": "dependency_extraction",
+        "description": "Extract dependencies from package manager files to identify game-related tools and libraries.",
+        "target_files": [
+          {
+            "file": "Packages/manifest.json",
+            "ecosystem": "unity_packages"
+          },
+          {
+            "file": "*.uplugin|*.Build.cs",
+            "ecosystem": "unreal_plugins"
+          },
+          {
+            "file": "addons/|plugin.cfg",
+            "ecosystem": "godot_addons"
+          },
+          {
+            "file": "package.json",
+            "ecosystem": "nodejs"
+          },
+          {
+            "file": "requirements.txt|pyproject.toml",
+            "ecosystem": "python"
+          }
+        ],
+        "relevant_dependencies": {
+          "game_engine": [
+            "com.unity.render-pipelines.universal",
+            "com.unity.render-pipelines.high-definition",
+            "com.unity.inputsystem",
+            "com.unity.addressables",
+            "com.unity.entities"
+          ],
+          "audio": [
+            "com.unity.audio.fmod",
+            "AkSoundEngine",
+            "Wwise"
+          ],
+          "physics": [
+            "com.unity.physics",
+            "com.havok.physics",
+            "PhysX"
+          ],
+          "math_tools": [
+            "com.unity.mathematics",
+            "com.unity.burst",
+            "FastNoiseLite",
+            "glm"
+          ],
+          "networking": [
+            "com.unity.netcode.gameobjects",
+            "Mirror",
+            "Photon",
+            "ENet"
+          ],
+          "graphics": [
+            "com.unity.shadergraph",
+            "com.unity.postprocessing",
+            "com.unity.render-pipelines.core",
+            "Amplify Shader Editor"
+          ],
+          "ai": [
+            "com.unity.ml-agents",
+            "NodeCanvas",
+            "Behavior Designer",
+            "RAIN AI"
+          ],
+          "version_control": [
+            "com.unity.collab-proxy",
+            "git-lfs"
+          ]
+        }
+      },
+      {
+        "step": 4,
+        "name": "readme_extraction",
+        "description": "Extract README.md content for project description, game design, and technology mentions.",
+        "data_points": [
+          "game genre and description",
+          "technology stack and engine used",
+          "gameplay mechanics described",
+          "build/deployment instructions",
+          "screenshots or demo links",
+          "platform targets"
+        ]
+      },
+      {
+        "step": 5,
+        "name": "relevant_content_extraction",
+        "description": "For each identified game-dev-relevant file, extract the file content for AI analysis.",
+        "rules": [
+          "Only extract files identified in step 2 as relevant",
+          "For large files (>500 lines), extract only the first 200 lines and key sections",
+          "Prioritize game logic scripts, shaders, and configuration files over asset files",
+          "Include directory structure listing (tree command output) for context",
+          "Skip binary assets (textures, models, audio) — only analyze metadata and scripts"
+        ]
+      },
+      {
+        "step": 6,
+        "name": "commit_analysis",
+        "description": "Analyze recent commit history for game development patterns and contribution quality.",
+        "data_points": [
+          "commit frequency and recency",
+          "commit message patterns (gameplay features, bug fixes, optimization, refactoring)",
+          "files changed in commits (focus on game logic, shaders, and engine configs)",
+          "branch and merge patterns (feature branches for gameplay systems)"
+        ],
+        "limit": "Last 100 commits or 6 months, whichever is less"
+      }
+    ]
+  },
+  "ai_analysis_instructions": {
+    "description": "What AI should do with the preprocessed data.",
+    "tasks": [
+      "Map identified files and patterns to specific subskills from the skill definitions using COMPOSITE KEYS ({skill_id}.{subskill_id})",
+      "Assess the quality and complexity of game implementations (prototype vs. production-grade)",
+      "Identify evidence of best practices (design patterns, performance optimization, cross-platform support)",
+      "Flag subskills with 'not_yet_evidenced' or 'insufficient_evidence' (requires assessment)",
+      "Output structured Evidence JSON with composite keys ({skill_id}.{subskill_id}), status, and confidence per subskill"
+    ],
+    "output_format": {
+      "composite_key_example": "gd_game_engine.lighting_rendering",
+      "per_subskill": {
+        "status": "evidence_found | insufficient_evidence | not_yet_evidenced",
+        "confidence": "0.0 to 1.0",
+        "evidence_sources": [
+          "list of specific files or patterns that provide evidence"
+        ],
+        "quality_notes": "optional notes on quality/depth of evidence"
+      }
+    }
+  }
+}

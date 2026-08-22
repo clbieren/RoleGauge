@@ -1,0 +1,454 @@
+{
+  "skill_id": "gd_game_engine",
+  "name": "Game Engine Proficiency",
+  "category": "engine",
+  "description": "Mastery of game engine tools and workflows including scene management, physics, animation, rendering pipelines, asset pipelines, UI systems, audio integration, and custom editor tooling across engines such as Unity, Unreal Engine, and Godot.",
+  "subskills": [
+    {
+      "id": "scene_management",
+      "name": "Scene & Level Management",
+      "description": "Creating, loading, transitioning between scenes/levels, scene hierarchy organization, prefab/blueprint usage, and level streaming.",
+      "keywords": [
+        "SceneManager",
+        "scene",
+        "level",
+        "prefab",
+        "blueprint",
+        "level streaming",
+        "scene hierarchy",
+        "scene transition",
+        "additive scene",
+        "PackedScene",
+        "World Partition"
+      ]
+    },
+    {
+      "id": "physics_system",
+      "name": "Physics System Usage",
+      "description": "Configuring and using built-in physics engines: rigidbodies, colliders, raycasts, physics materials, joints, and constraint systems.",
+      "keywords": [
+        "Rigidbody",
+        "Collider",
+        "Raycast",
+        "Physics Material",
+        "CharacterController",
+        "KinematicBody",
+        "BoxCollider",
+        "SphereCollider",
+        "trigger",
+        "joint",
+        "PhysicsBody",
+        "collision layer"
+      ]
+    },
+    {
+      "id": "animation_system",
+      "name": "Animation & State Machines",
+      "description": "Animation playback, blend trees, animation state machines (Animator/AnimationTree), skeletal animation, IK, and animation events.",
+      "keywords": [
+        "Animator",
+        "AnimationController",
+        "blend tree",
+        "state machine",
+        "AnimationTree",
+        "AnimationPlayer",
+        "skeletal mesh",
+        "IK",
+        "animation event",
+        "animation clip",
+        "Montage",
+        "Animation Blueprint"
+      ]
+    },
+    {
+      "id": "particle_effects",
+      "name": "Particle & VFX Systems",
+      "description": "Creating and configuring particle systems, VFX graphs, Niagara/Shuriken systems, emitters, and visual effect authoring.",
+      "keywords": [
+        "ParticleSystem",
+        "VFX Graph",
+        "Niagara",
+        "Shuriken",
+        "emitter",
+        "particle",
+        "GPUParticles",
+        "CPUParticles",
+        "trail renderer",
+        "visual effect"
+      ]
+    },
+    {
+      "id": "lighting_rendering",
+      "name": "Lighting & Rendering Pipeline",
+      "description": "Configuring lighting setups, global illumination, post-processing, render pipelines (URP/HDRP/Forward/Deferred), shadow mapping, and LOD systems.",
+      "keywords": [
+        "URP",
+        "HDRP",
+        "forward rendering",
+        "deferred rendering",
+        "global illumination",
+        "lightmap",
+        "post-processing",
+        "shadow",
+        "LOD",
+        "occlusion culling",
+        "Lumen",
+        "Nanite",
+        "reflection probe"
+      ]
+    },
+    {
+      "id": "asset_pipeline",
+      "name": "Asset Import & Pipeline",
+      "description": "Importing 3D models, textures, audio assets, configuring import settings, asset bundles, addressables, and build-time asset processing.",
+      "keywords": [
+        "FBX",
+        "glTF",
+        "asset bundle",
+        "Addressables",
+        "texture import",
+        "model import",
+        "asset postprocessor",
+        "sprite atlas",
+        "texture compression",
+        "mesh optimization",
+        "asset reference"
+      ]
+    },
+    {
+      "id": "ui_system",
+      "name": "In-Engine UI Systems",
+      "description": "Building game UI using engine-specific UI frameworks: Unity UI/UI Toolkit, UMG (Unreal), Godot Control nodes, data binding, and responsive layouts.",
+      "keywords": [
+        "Canvas",
+        "UI Toolkit",
+        "UXML",
+        "USS",
+        "UMG",
+        "Slate",
+        "Control node",
+        "HUD",
+        "menu",
+        "button",
+        "data binding",
+        "responsive layout"
+      ]
+    },
+    {
+      "id": "audio_integration",
+      "name": "Audio System Integration",
+      "description": "Implementing game audio: AudioSource/AudioListener, spatial audio, audio mixers, FMOD/Wwise integration, and dynamic sound design.",
+      "keywords": [
+        "AudioSource",
+        "AudioListener",
+        "AudioMixer",
+        "FMOD",
+        "Wwise",
+        "spatial audio",
+        "3D sound",
+        "audio bus",
+        "sound cue",
+        "MetaSound",
+        "AudioStreamPlayer"
+      ]
+    },
+    {
+      "id": "custom_editor_tools",
+      "name": "Custom Editor Tooling",
+      "description": "Creating custom editor windows, inspectors, property drawers, Unreal Editor Utility Widgets, Godot tool scripts, and build automation within the engine.",
+      "keywords": [
+        "EditorWindow",
+        "CustomEditor",
+        "PropertyDrawer",
+        "Editor Utility Widget",
+        "tool script",
+        "@tool",
+        "ScriptableObject",
+        "SerializedProperty",
+        "Slate widget",
+        "editor plugin"
+      ]
+    },
+    {
+      "id": "engine_source_modification",
+      "name": "Engine Source Modification",
+      "description": "Modifying engine source code (Unreal C++ source, Godot core), building custom engine forks, contributing upstream patches, and understanding engine internals.",
+      "keywords": [
+        "engine fork",
+        "source build",
+        "engine module",
+        "core modification",
+        "custom engine",
+        "engine plugin",
+        "BuildConfiguration",
+        "UnrealBuildTool",
+        "SCons",
+        "engine patch"
+      ]
+    },
+    {
+      "id": "platform_abstraction",
+      "name": "Platform Abstraction Layer",
+      "description": "Cross-platform deployment, platform-specific APIs, conditional compilation, console SDKs, mobile platform requirements, and platform certification processes.",
+      "keywords": [
+        "cross-platform",
+        "platform abstraction",
+        "conditional compilation",
+        "#if UNITY_ANDROID",
+        "console SDK",
+        "NDA platform",
+        "XR SDK",
+        "platform certification",
+        "TRC",
+        "Lotcheck",
+        "export template"
+      ]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "Unity project structure present (Assets/, ProjectSettings/)",
+        "detection": "file_presence",
+        "pattern": "Assets/|ProjectSettings/ProjectSettings.asset",
+        "strength": 0.5,
+        "maps_to": [
+          "gd_game_engine.scene_management"
+        ]
+      },
+      {
+        "signal": "Unreal Engine project file present (.uproject)",
+        "detection": "file_presence",
+        "pattern": "*.uproject",
+        "strength": 0.5,
+        "maps_to": [
+          "gd_game_engine.scene_management"
+        ]
+      },
+      {
+        "signal": "Godot project file present (project.godot)",
+        "detection": "file_presence",
+        "pattern": "project.godot",
+        "strength": 0.5,
+        "maps_to": [
+          "gd_game_engine.scene_management"
+        ]
+      },
+      {
+        "signal": "Animation controller or blend tree assets",
+        "detection": "file_presence",
+        "pattern": "*.controller|*.anim|*.tres|*.montage",
+        "strength": 0.6,
+        "maps_to": [
+          "gd_game_engine.animation_system"
+        ]
+      },
+      {
+        "signal": "Shader files indicating rendering pipeline knowledge",
+        "detection": "file_presence",
+        "pattern": "*.shader|*.hlsl|*.glsl|*.gdshader|*.usf|*.ush",
+        "strength": 0.7,
+        "maps_to": [
+          "gd_game_engine.lighting_rendering"
+        ]
+      },
+      {
+        "signal": "Particle system or VFX graph assets",
+        "detection": "file_presence",
+        "pattern": "*.vfx|*.particle|*Niagara*|*VFXGraph*",
+        "strength": 0.6,
+        "maps_to": [
+          "gd_game_engine.particle_effects"
+        ]
+      },
+      {
+        "signal": "Rigidbody, Collider, or physics configuration in scripts",
+        "detection": "content_analysis",
+        "pattern": "Rigidbody|RigidBody|CharacterController|KinematicBody|PhysicsBody|AddForce|move_and_slide",
+        "strength": 0.6,
+        "maps_to": [
+          "gd_game_engine.physics_system"
+        ]
+      },
+      {
+        "signal": "Addressables or AssetBundle usage in code",
+        "detection": "content_analysis",
+        "pattern": "Addressables|AssetBundle|LoadAssetAsync|ResourceLoader",
+        "strength": 0.7,
+        "maps_to": [
+          "gd_game_engine.asset_pipeline"
+        ]
+      },
+      {
+        "signal": "UI framework code (Canvas, UMG, Control nodes)",
+        "detection": "content_analysis",
+        "pattern": "Canvas|UIDocument|UUserWidget|UMG|Control|UXML",
+        "strength": 0.5,
+        "maps_to": [
+          "gd_game_engine.ui_system"
+        ]
+      },
+      {
+        "signal": "FMOD or Wwise integration files",
+        "detection": "file_presence",
+        "pattern": "FMODStudioSettings*|AkSoundEngine*|*.bnk|*.fev",
+        "strength": 0.7,
+        "maps_to": [
+          "gd_game_engine.audio_integration"
+        ]
+      },
+      {
+        "signal": "Custom editor scripts (EditorWindow, tool scripts)",
+        "detection": "content_analysis",
+        "pattern": "EditorWindow|CustomEditor|@tool|Editor Utility|PropertyDrawer",
+        "strength": 0.8,
+        "maps_to": [
+          "gd_game_engine.custom_editor_tools"
+        ]
+      },
+      {
+        "signal": "Engine source fork or engine module modifications",
+        "detection": "content_analysis",
+        "pattern": "Engine/Source|core/.*\\.cpp|IMPLEMENT_MODULE|register_server_types",
+        "strength": 0.9,
+        "maps_to": [
+          "gd_game_engine.engine_source_modification"
+        ]
+      },
+      {
+        "signal": "Platform-specific conditional compilation",
+        "detection": "content_analysis",
+        "pattern": "#if UNITY_ANDROID|#if UNITY_IOS|PLATFORM_WINDOWS|OS\\.get_name|export_presets\\.cfg",
+        "strength": 0.7,
+        "maps_to": [
+          "gd_game_engine.platform_abstraction"
+        ]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "Game engine mentioned in skills section (Unity, Unreal, Godot)",
+        "strength": 0.3,
+        "maps_to": [
+          "gd_game_engine.scene_management"
+        ]
+      },
+      {
+        "signal": "Describes building levels, scenes, or game worlds in projects",
+        "strength": 0.5,
+        "maps_to": [
+          "gd_game_engine.scene_management",
+          "gd_game_engine.lighting_rendering"
+        ]
+      },
+      {
+        "signal": "Describes implementing physics-based gameplay mechanics",
+        "strength": 0.5,
+        "maps_to": [
+          "gd_game_engine.physics_system"
+        ]
+      },
+      {
+        "signal": "Custom tool or editor extension development described",
+        "strength": 0.6,
+        "maps_to": [
+          "gd_game_engine.custom_editor_tools"
+        ]
+      },
+      {
+        "signal": "Shipped titles on multiple platforms (console, mobile, PC)",
+        "strength": 0.7,
+        "maps_to": [
+          "gd_game_engine.platform_abstraction",
+          "gd_game_engine.asset_pipeline"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Unity or Unreal Engine in skills/endorsements",
+        "strength": 0.2,
+        "maps_to": [
+          "gd_game_engine.scene_management"
+        ]
+      },
+      {
+        "signal": "Job experience describing game engine pipeline work",
+        "strength": 0.4,
+        "maps_to": [
+          "gd_game_engine.asset_pipeline",
+          "gd_game_engine.lighting_rendering"
+        ]
+      },
+      {
+        "signal": "VFX Artist or Technical Artist role with engine-specific work",
+        "strength": 0.4,
+        "maps_to": [
+          "gd_game_engine.particle_effects",
+          "gd_game_engine.animation_system"
+        ]
+      }
+    ],
+    "assessment": [
+      {
+        "signal": "Can set up a complete game scene with physics, lighting, and UI from scratch",
+        "strength": 1.0,
+        "maps_to": [
+          "gd_game_engine.scene_management",
+          "gd_game_engine.physics_system",
+          "gd_game_engine.ui_system"
+        ]
+      },
+      {
+        "signal": "Can configure render pipeline settings and optimize draw calls",
+        "strength": 1.0,
+        "maps_to": [
+          "gd_game_engine.lighting_rendering"
+        ]
+      },
+      {
+        "signal": "Can create a custom editor tool that automates a level design workflow",
+        "strength": 1.0,
+        "maps_to": [
+          "gd_game_engine.custom_editor_tools"
+        ]
+      },
+      {
+        "signal": "Can build and deploy to multiple target platforms with platform-specific optimizations",
+        "strength": 1.0,
+        "maps_to": [
+          "gd_game_engine.platform_abstraction",
+          "gd_game_engine.asset_pipeline"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "scene_management",
+        "physics_system",
+        "animation_system",
+        "particle_effects"
+      ],
+      "description": "Can create and manage scenes, use built-in physics and animation systems, and set up basic particle effects in at least one game engine."
+    },
+    "mid": {
+      "expected_subskills": [
+        "lighting_rendering",
+        "asset_pipeline",
+        "ui_system",
+        "audio_integration"
+      ],
+      "description": "Can configure rendering pipelines, manage asset import workflows, build in-engine UI, and integrate audio middleware."
+    },
+    "senior": {
+      "expected_subskills": [
+        "custom_editor_tools",
+        "engine_source_modification",
+        "platform_abstraction"
+      ],
+      "description": "Can extend the engine with custom editor tools, modify engine source code for project needs, and architect cross-platform deployment strategies."
+    }
+  }
+}

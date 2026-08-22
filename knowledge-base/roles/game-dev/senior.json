@@ -1,0 +1,90 @@
+{
+  "role_id": "game_developer",
+  "level": "senior",
+  "title": "Senior Game Developer",
+  "description": "Senior game developer position focused on architectural leadership, engine-level development, advanced graphics and networking, performance optimization at platform level, and technical mentorship. Expected to lead technical decisions, design enterprise-grade game systems, and drive best practices across the team.",
+  "experience_range": "5+ years",
+  "skills": [
+    {
+      "skill_id": "gd_programming_language",
+      "importance": 0.95,
+      "rationale": "ECS architecture, custom memory allocators, code generation, and deep systems programming"
+    },
+    {
+      "skill_id": "gd_game_engine",
+      "importance": 0.95,
+      "rationale": "Engine source modification, custom editor tools, platform abstraction, and cross-platform deployment strategy"
+    },
+    {
+      "skill_id": "gd_optimization_profiling",
+      "importance": 0.90,
+      "rationale": "GPU frame analysis, platform-specific tuning, build optimization, and performance leadership"
+    },
+    {
+      "skill_id": "gd_graphics_programming",
+      "importance": 0.90,
+      "rationale": "Custom render pipelines, ray tracing, GPU optimization, and advanced shader techniques"
+    },
+    {
+      "skill_id": "gd_game_mathematics",
+      "importance": 0.85,
+      "rationale": "Procedural generation, spatial partitioning, numerical simulation, and advanced algorithm design"
+    },
+    {
+      "skill_id": "gd_networking_multiplayer",
+      "importance": 0.85,
+      "rationale": "Dedicated server architecture, netcode optimization, and large-scale multiplayer systems"
+    },
+    {
+      "skill_id": "gd_ai_behavior",
+      "importance": 0.80,
+      "rationale": "GOAP architecture, AI directors, ML integration, and advanced AI system design"
+    },
+    {
+      "skill_id": "gd_version_control",
+      "importance": 0.80,
+      "rationale": "Monorepo strategies, build automation pipelines, release management, and team workflow design"
+    },
+    {
+      "skill_id": "gd_game_design",
+      "importance": 0.75,
+      "rationale": "Complex systems design, accessibility architecture, and live ops strategy"
+    }
+  ],
+  "scoring": {
+    "method": "weighted_average",
+    "description": "Each skill score is multiplied by its importance weight. Final score is the sum of weighted scores divided by sum of weights.",
+    "thresholds": {
+      "not_ready": {
+        "min": 0.0,
+        "max": 0.3,
+        "label": "Not Ready",
+        "description": "Not at senior level; needs significant growth in architecture and depth"
+      },
+      "developing": {
+        "min": 0.3,
+        "max": 0.5,
+        "label": "Developing",
+        "description": "Some senior skills emerging, but needs more breadth and architectural depth"
+      },
+      "approaching": {
+        "min": 0.5,
+        "max": 0.7,
+        "label": "Approaching Ready",
+        "description": "Strong technical skills, needs to develop leadership and system architecture capabilities"
+      },
+      "ready": {
+        "min": 0.7,
+        "max": 0.85,
+        "label": "Ready",
+        "description": "Meets expectations for senior game developer position"
+      },
+      "exceeds": {
+        "min": 0.85,
+        "max": 1.0,
+        "label": "Exceeds Expectations",
+        "description": "Principal/Staff-level capabilities; ready to lead engine or systems teams"
+      }
+    }
+  }
+}

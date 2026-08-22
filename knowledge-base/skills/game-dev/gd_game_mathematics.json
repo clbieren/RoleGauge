@@ -1,0 +1,428 @@
+{
+  "skill_id": "gd_game_mathematics",
+  "name": "Game Mathematics",
+  "category": "mathematics",
+  "description": "Mathematical foundations for game development including vector operations, coordinate systems, trigonometry, matrix transformations, quaternions, interpolation, collision detection, pathfinding algorithms, procedural generation, and spatial data structures.",
+  "subskills": [
+    {
+      "id": "vectors_basic",
+      "name": "Vector Operations",
+      "description": "Vector addition, subtraction, scaling, dot product, cross product, normalization, magnitude, and direction calculations.",
+      "keywords": [
+        "Vector2",
+        "Vector3",
+        "Vector4",
+        "dot product",
+        "cross product",
+        "normalize",
+        "magnitude",
+        "direction",
+        "FVector",
+        "distance"
+      ]
+    },
+    {
+      "id": "coordinate_systems",
+      "name": "Coordinate Systems & Transforms",
+      "description": "World/local/screen space conversions, transform hierarchies, parent-child relationships, and coordinate system handedness.",
+      "keywords": [
+        "world space",
+        "local space",
+        "screen space",
+        "Transform",
+        "transform",
+        "InverseTransformPoint",
+        "TransformDirection",
+        "to_local",
+        "to_global",
+        "coordinate system",
+        "left-handed",
+        "right-handed"
+      ]
+    },
+    {
+      "id": "trigonometry",
+      "name": "Trigonometry for Games",
+      "description": "Sine, cosine, tangent for rotations, circular motion, angle calculations, atan2, and arc-based movement.",
+      "keywords": [
+        "sin",
+        "cos",
+        "tan",
+        "atan2",
+        "Mathf.Sin",
+        "Mathf.Cos",
+        "radians",
+        "degrees",
+        "angle",
+        "Deg2Rad",
+        "circular motion"
+      ]
+    },
+    {
+      "id": "matrix_transforms",
+      "name": "Matrix Transformations",
+      "description": "Transformation matrices (translation, rotation, scale), matrix multiplication, model-view-projection pipeline, and homogeneous coordinates.",
+      "keywords": [
+        "Matrix4x4",
+        "FMatrix",
+        "TRS",
+        "model matrix",
+        "view matrix",
+        "projection matrix",
+        "MVP",
+        "homogeneous",
+        "affine transform",
+        "basis",
+        "Transform3D"
+      ]
+    },
+    {
+      "id": "quaternion_rotations",
+      "name": "Quaternion Rotations",
+      "description": "Quaternion representation of rotations, slerp, euler-to-quaternion conversion, gimbal lock avoidance, and quaternion multiplication.",
+      "keywords": [
+        "Quaternion",
+        "Quat",
+        "FQuat",
+        "Slerp",
+        "Euler",
+        "gimbal lock",
+        "LookRotation",
+        "AngleAxis",
+        "rotation",
+        "RotateTowards"
+      ]
+    },
+    {
+      "id": "interpolation",
+      "name": "Interpolation & Curves",
+      "description": "Linear interpolation (lerp), smoothstep, easing functions, Bezier curves, splines, and animation curve evaluation.",
+      "keywords": [
+        "Lerp",
+        "Slerp",
+        "SmoothStep",
+        "SmoothDamp",
+        "easing",
+        "Bezier",
+        "spline",
+        "AnimationCurve",
+        "Curve",
+        "catmull-rom",
+        "cubic interpolation",
+        "MoveTowards"
+      ]
+    },
+    {
+      "id": "collision_math",
+      "name": "Collision Detection Math",
+      "description": "AABB, sphere-sphere, ray-plane intersections, separating axis theorem (SAT), GJK algorithm, and broad/narrow phase collision.",
+      "keywords": [
+        "AABB",
+        "bounding box",
+        "sphere collision",
+        "ray intersection",
+        "SAT",
+        "separating axis",
+        "GJK",
+        "broad phase",
+        "narrow phase",
+        "overlap",
+        "intersection test"
+      ]
+    },
+    {
+      "id": "pathfinding_algorithms",
+      "name": "Pathfinding Algorithms",
+      "description": "A* algorithm, Dijkstra, navigation meshes, flow fields, hierarchical pathfinding, and navigation graph construction.",
+      "keywords": [
+        "A*",
+        "AStar",
+        "Dijkstra",
+        "NavMesh",
+        "navigation mesh",
+        "flow field",
+        "heuristic",
+        "waypoint",
+        "NavigationServer",
+        "NavMeshAgent",
+        "pathfinding"
+      ]
+    },
+    {
+      "id": "procedural_generation",
+      "name": "Procedural Generation Math",
+      "description": "Noise functions (Perlin, Simplex), wave function collapse, L-systems, Voronoi diagrams, and procedural mesh generation algorithms.",
+      "keywords": [
+        "Perlin noise",
+        "Simplex noise",
+        "noise",
+        "wave function collapse",
+        "WFC",
+        "L-system",
+        "Voronoi",
+        "Delaunay",
+        "procedural mesh",
+        "heightmap",
+        "fractal",
+        "octave"
+      ]
+    },
+    {
+      "id": "spatial_partitioning",
+      "name": "Spatial Partitioning Structures",
+      "description": "Quadtree, octree, BSP trees, k-d trees, bounding volume hierarchies (BVH), and spatial hashing for efficient queries.",
+      "keywords": [
+        "quadtree",
+        "octree",
+        "BSP",
+        "k-d tree",
+        "BVH",
+        "spatial hash",
+        "grid partitioning",
+        "R-tree",
+        "frustum culling",
+        "spatial index"
+      ]
+    },
+    {
+      "id": "numerical_methods",
+      "name": "Numerical Methods & Simulation",
+      "description": "Euler integration, Verlet integration, Runge-Kutta methods, fixed timestep simulation, numerical stability, and constraint solvers.",
+      "keywords": [
+        "Euler integration",
+        "Verlet",
+        "Runge-Kutta",
+        "RK4",
+        "fixed timestep",
+        "FixedUpdate",
+        "delta time",
+        "numerical stability",
+        "constraint solver",
+        "simulation step"
+      ]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "Vector math operations in game scripts",
+        "detection": "content_analysis",
+        "pattern": "Vector3\\.Dot|Vector3\\.Cross|Normalize|normalized|magnitude|FVector",
+        "strength": 0.5,
+        "maps_to": [
+          "gd_game_mathematics.vectors_basic"
+        ]
+      },
+      {
+        "signal": "Transform and coordinate space conversions",
+        "detection": "content_analysis",
+        "pattern": "InverseTransformPoint|TransformDirection|to_local|to_global|WorldToScreen|ScreenToWorld",
+        "strength": 0.6,
+        "maps_to": [
+          "gd_game_mathematics.coordinate_systems"
+        ]
+      },
+      {
+        "signal": "Trigonometric functions used for gameplay mechanics",
+        "detection": "content_analysis",
+        "pattern": "Mathf\\.Sin|Mathf\\.Cos|Mathf\\.Atan2|FMath::Atan2|sin\\(|cos\\(",
+        "strength": 0.5,
+        "maps_to": [
+          "gd_game_mathematics.trigonometry"
+        ]
+      },
+      {
+        "signal": "Matrix operations in shader or transform code",
+        "detection": "content_analysis",
+        "pattern": "Matrix4x4|FMatrix|mul\\(|UNITY_MATRIX_MVP|model_view_projection|basis",
+        "strength": 0.7,
+        "maps_to": [
+          "gd_game_mathematics.matrix_transforms"
+        ]
+      },
+      {
+        "signal": "Quaternion usage for rotation handling",
+        "detection": "content_analysis",
+        "pattern": "Quaternion\\.Slerp|Quaternion\\.LookRotation|FQuat|Euler|AngleAxis|gimbal",
+        "strength": 0.6,
+        "maps_to": [
+          "gd_game_mathematics.quaternion_rotations"
+        ]
+      },
+      {
+        "signal": "Interpolation functions and easing curves",
+        "detection": "content_analysis",
+        "pattern": "Lerp|SmoothDamp|SmoothStep|AnimationCurve|Bezier|catmull|easing",
+        "strength": 0.5,
+        "maps_to": [
+          "gd_game_mathematics.interpolation"
+        ]
+      },
+      {
+        "signal": "Custom collision detection implementations",
+        "detection": "content_analysis",
+        "pattern": "AABB|bounding_box|ray_intersect|SAT|GJK|broad_phase|narrow_phase|IntersectRay",
+        "strength": 0.8,
+        "maps_to": [
+          "gd_game_mathematics.collision_math"
+        ]
+      },
+      {
+        "signal": "A* or NavMesh pathfinding implementation",
+        "detection": "content_analysis",
+        "pattern": "AStar|AStarGrid|NavMesh|NavMeshAgent|NavigationServer|Dijkstra|flow_field",
+        "strength": 0.7,
+        "maps_to": [
+          "gd_game_mathematics.pathfinding_algorithms"
+        ]
+      },
+      {
+        "signal": "Noise functions or procedural generation code",
+        "detection": "content_analysis",
+        "pattern": "Perlin|Simplex|FastNoiseLite|NoiseTexture|wave_function_collapse|Voronoi|heightmap",
+        "strength": 0.8,
+        "maps_to": [
+          "gd_game_mathematics.procedural_generation"
+        ]
+      },
+      {
+        "signal": "Spatial partitioning data structures",
+        "detection": "content_analysis",
+        "pattern": "Quadtree|Octree|BSP|KDTree|BVH|spatial_hash|SpatialHash",
+        "strength": 0.9,
+        "maps_to": [
+          "gd_game_mathematics.spatial_partitioning"
+        ]
+      },
+      {
+        "signal": "Physics integration methods (Verlet, RK4)",
+        "detection": "content_analysis",
+        "pattern": "Verlet|RungeKutta|RK4|FixedUpdate|fixed_process|PhysicsProcess|delta_time.*integration",
+        "strength": 0.8,
+        "maps_to": [
+          "gd_game_mathematics.numerical_methods"
+        ]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "Game math or linear algebra mentioned in education or skills",
+        "strength": 0.3,
+        "maps_to": [
+          "gd_game_mathematics.vectors_basic",
+          "gd_game_mathematics.matrix_transforms"
+        ]
+      },
+      {
+        "signal": "Describes implementing physics or collision systems",
+        "strength": 0.6,
+        "maps_to": [
+          "gd_game_mathematics.collision_math",
+          "gd_game_mathematics.numerical_methods"
+        ]
+      },
+      {
+        "signal": "Describes procedural world generation or terrain systems",
+        "strength": 0.6,
+        "maps_to": [
+          "gd_game_mathematics.procedural_generation"
+        ]
+      },
+      {
+        "signal": "Describes pathfinding or AI navigation systems",
+        "strength": 0.5,
+        "maps_to": [
+          "gd_game_mathematics.pathfinding_algorithms"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Linear Algebra or Game Math in skills",
+        "strength": 0.2,
+        "maps_to": [
+          "gd_game_mathematics.vectors_basic"
+        ]
+      },
+      {
+        "signal": "Job experience describing physics engine or simulation work",
+        "strength": 0.4,
+        "maps_to": [
+          "gd_game_mathematics.collision_math",
+          "gd_game_mathematics.numerical_methods"
+        ]
+      },
+      {
+        "signal": "Procedural generation or technical art pipeline work described",
+        "strength": 0.4,
+        "maps_to": [
+          "gd_game_mathematics.procedural_generation",
+          "gd_game_mathematics.interpolation"
+        ]
+      }
+    ],
+    "assessment": [
+      {
+        "signal": "Can solve vector math problems and explain coordinate space conversions",
+        "strength": 1.0,
+        "maps_to": [
+          "gd_game_mathematics.vectors_basic",
+          "gd_game_mathematics.coordinate_systems",
+          "gd_game_mathematics.trigonometry"
+        ]
+      },
+      {
+        "signal": "Can implement a quaternion-based camera controller avoiding gimbal lock",
+        "strength": 1.0,
+        "maps_to": [
+          "gd_game_mathematics.quaternion_rotations",
+          "gd_game_mathematics.matrix_transforms"
+        ]
+      },
+      {
+        "signal": "Can implement A* pathfinding on a grid or navigation mesh",
+        "strength": 1.0,
+        "maps_to": [
+          "gd_game_mathematics.pathfinding_algorithms",
+          "gd_game_mathematics.spatial_partitioning"
+        ]
+      },
+      {
+        "signal": "Can implement a procedural terrain generator using noise functions",
+        "strength": 1.0,
+        "maps_to": [
+          "gd_game_mathematics.procedural_generation",
+          "gd_game_mathematics.interpolation"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "vectors_basic",
+        "coordinate_systems",
+        "trigonometry",
+        "matrix_transforms"
+      ],
+      "description": "Can perform basic vector operations, understand coordinate systems, apply trigonometry for rotations and movement, and grasp transformation matrices."
+    },
+    "mid": {
+      "expected_subskills": [
+        "quaternion_rotations",
+        "interpolation",
+        "collision_math",
+        "pathfinding_algorithms"
+      ],
+      "description": "Can use quaternions for gimbal-lock-free rotations, implement interpolation and easing, understand collision detection algorithms, and implement pathfinding."
+    },
+    "senior": {
+      "expected_subskills": [
+        "procedural_generation",
+        "spatial_partitioning",
+        "numerical_methods"
+      ],
+      "description": "Can design procedural generation systems using noise functions, implement spatial partitioning for performance, and apply numerical integration for physics simulation."
+    }
+  }
+}

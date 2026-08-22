@@ -1,0 +1,231 @@
+{
+  "source_id": "cv",
+  "name": "CV / Resume Analysis - Game Development",
+  "description": "Signals extracted from the user's CV/resume to evidence Game Development skills. CV data provides self-reported information that must be cross-validated with other sources.",
+  "extraction_rules": {
+    "description": "How to extract and weight information from CV content.",
+    "sections": [
+      {
+        "section": "skills_list",
+        "description": "Explicit list of technologies, engines, and tools mentioned in skills section.",
+        "base_strength": 0.3,
+        "notes": "Low strength because listing a skill doesn't prove proficiency. Must cross-reference with portfolio and projects."
+      },
+      {
+        "section": "work_experience",
+        "description": "Job descriptions and responsibilities mentioning game development activities.",
+        "base_strength": 0.5,
+        "notes": "Higher strength when specific shipped titles, gameplay systems, or technical contributions are described.",
+        "quality_indicators": [
+          "Shipped game titles with platform and studio details",
+          "Specific engine and language technologies mentioned in context",
+          "Quantifiable outcomes (optimized frame rate by X%, reduced load time by Y%)",
+          "Action verbs indicating hands-on work (implemented, architected, optimized, shipped)",
+          "Duration and recency of game development experience"
+        ]
+      },
+      {
+        "section": "projects",
+        "description": "Personal game projects, game jam entries, or academic game development.",
+        "base_strength": 0.4,
+        "notes": "Higher strength if linked to itch.io, Steam, GitHub, or demo video. Game jam entries indicate practical ability under time pressure.",
+        "quality_indicators": [
+          "Technical depth of project description",
+          "Technologies used match claimed skills",
+          "Links to playable builds, source code, or demo videos",
+          "Game jam participation (Ludum Dare, GMTK, Global Game Jam)",
+          "Platform targets and deployment evidence"
+        ]
+      },
+      {
+        "section": "education",
+        "description": "Relevant courses, degrees, and academic background in game development or computer science.",
+        "base_strength": 0.2,
+        "notes": "Game design/development degrees provide context. Computer science with graphics/game focus is relevant."
+      },
+      {
+        "section": "certifications",
+        "description": "Professional certifications related to game engines and development.",
+        "base_strength": 0.2,
+        "notes": "Certifications alone are NOT evidence of practical skill. They indicate theoretical knowledge and should be cross-validated.",
+        "recognized_certifications": {
+          "unity": [
+            "Unity Certified Developer",
+            "Unity Certified Programmer",
+            "Unity Certified Artist",
+            "Unity Certified Expert"
+          ],
+          "unreal": [
+            "Unreal Authorized Instructor",
+            "Epic Games Certified Developer"
+          ],
+          "graphics": [
+            "NVIDIA CUDA Certified",
+            "Khronos Vulkan Certified"
+          ],
+          "general": [
+            "CompTIA Game Development"
+          ]
+        }
+      }
+    ]
+  },
+  "signal_mapping": {
+    "description": "How CV mentions map to skill evidence using COMPOSITE KEYS ({skill_id}.{subskill_id}). AI should use these patterns.",
+    "patterns": [
+      {
+        "pattern": "Mentions Unity, Unreal, or Godot in work experience with specific activities",
+        "maps_to": [
+          "gd_game_engine.scene_management",
+          "gd_game_engine.physics_system"
+        ],
+        "strength_modifier": 1.0
+      },
+      {
+        "pattern": "Lists game engine in skills section only",
+        "maps_to": [
+          "gd_game_engine.scene_management"
+        ],
+        "strength_modifier": 0.5
+      },
+      {
+        "pattern": "Describes implementing gameplay systems with C#, C++, or GDScript",
+        "maps_to": [
+          "gd_programming_language.core_syntax",
+          "gd_programming_language.oop_patterns"
+        ],
+        "strength_modifier": 1.0
+      },
+      {
+        "pattern": "Describes performance optimization with profiling and memory management",
+        "maps_to": [
+          "gd_programming_language.memory_management",
+          "gd_programming_language.multithreading"
+        ],
+        "strength_modifier": 1.2
+      },
+      {
+        "pattern": "Describes rendering pipeline or shader development work",
+        "maps_to": [
+          "gd_game_engine.lighting_rendering"
+        ],
+        "strength_modifier": 1.0
+      },
+      {
+        "pattern": "Describes implementing procedural generation systems",
+        "maps_to": [
+          "gd_game_mathematics.procedural_generation",
+          "gd_game_mathematics.interpolation"
+        ],
+        "strength_modifier": 1.0
+      },
+      {
+        "pattern": "Describes AI/pathfinding system implementation",
+        "maps_to": [
+          "gd_game_mathematics.pathfinding_algorithms"
+        ],
+        "strength_modifier": 1.0
+      },
+      {
+        "pattern": "Has Unity Certified Programmer without project evidence",
+        "maps_to": [
+          "gd_programming_language.core_syntax"
+        ],
+        "strength_modifier": 0.4
+      },
+      {
+        "pattern": "Describes custom tool or editor pipeline development",
+        "maps_to": [
+          "gd_game_engine.custom_editor_tools"
+        ],
+        "strength_modifier": 1.0
+      },
+      {
+        "pattern": "Describes physics simulation or collision system work",
+        "maps_to": [
+          "gd_game_mathematics.collision_math",
+          "gd_game_mathematics.numerical_methods"
+        ],
+        "strength_modifier": 1.0
+      },
+      {
+        "pattern": "Shipped titles on consoles (PlayStation, Xbox, Nintendo Switch)",
+        "maps_to": [
+          "gd_game_engine.platform_abstraction"
+        ],
+        "strength_modifier": 1.2
+      },
+      {
+        "pattern": "Describes save system or data persistence implementation",
+        "maps_to": [
+          "gd_programming_language.serialization"
+        ],
+        "strength_modifier": 0.8
+      },
+      {
+        "pattern": "Describes ECS or data-oriented design architecture",
+        "maps_to": [
+          "gd_programming_language.ecs_architecture"
+        ],
+        "strength_modifier": 1.0
+      },
+      {
+        "pattern": "Describes custom shader or rendering pipeline development",
+        "maps_to": [
+          "gd_graphics_programming.vertex_fragment_shaders",
+          "gd_graphics_programming.custom_render_pipeline"
+        ],
+        "strength_modifier": 1.0
+      },
+      {
+        "pattern": "Describes multiplayer or online game development",
+        "maps_to": [
+          "gd_networking_multiplayer.client_server_model",
+          "gd_networking_multiplayer.rpc_systems"
+        ],
+        "strength_modifier": 1.0
+      },
+      {
+        "pattern": "Describes optimizing game performance with quantifiable FPS improvements",
+        "maps_to": [
+          "gd_optimization_profiling.frame_budget",
+          "gd_optimization_profiling.draw_call_batching"
+        ],
+        "strength_modifier": 1.2
+      },
+      {
+        "pattern": "CI/CD or build pipeline experience for game projects",
+        "maps_to": [
+          "gd_version_control.ci_cd_games",
+          "gd_version_control.build_automation"
+        ],
+        "strength_modifier": 0.8
+      },
+      {
+        "pattern": "Describes game balancing or economy design with data-driven approach",
+        "maps_to": [
+          "gd_game_design.balancing_tuning",
+          "gd_game_design.playtesting_iteration"
+        ],
+        "strength_modifier": 1.0
+      },
+      {
+        "pattern": "Describes behavior tree or AI system implementation for NPCs",
+        "maps_to": [
+          "gd_ai_behavior.behavior_trees",
+          "gd_ai_behavior.perception_systems"
+        ],
+        "strength_modifier": 1.0
+      }
+    ]
+  },
+  "important_notes": [
+    "CV data is self-reported and inherently unreliable as standalone evidence",
+    "Always cross-validate CV claims with GitHub portfolio and LinkedIn data",
+    "Certifications should NEVER be the sole evidence for a skill rating",
+    "Look for specificity and depth — 'worked with Unity' is weaker than 'implemented ECS-based combat system in Unity DOTS reducing CPU time by 40%'",
+    "Shipped game titles carry significantly more weight than personal projects",
+    "Game jam participation indicates practical ability under time pressure",
+    "Recency matters — skills used 3+ years ago may not reflect current engine versions"
+  ]
+}

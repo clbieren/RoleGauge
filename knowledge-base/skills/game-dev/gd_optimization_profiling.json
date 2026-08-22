@@ -1,0 +1,383 @@
+{
+  "skill_id": "gd_optimization_profiling",
+  "name": "Performance Optimization & Profiling",
+  "category": "optimization",
+  "description": "Game performance analysis and optimization including frame budgeting, CPU/GPU profiling, memory analysis, draw call optimization, asset optimization, mobile/console-specific tuning, and build size management.",
+  "subskills": [
+    {
+      "id": "frame_budget",
+      "name": "Frame Budget Management",
+      "description": "Understanding target frame rates, frame time budgets (16.6ms for 60fps, 33.3ms for 30fps), identifying bottlenecks, and managing CPU/GPU balance.",
+      "keywords": [
+        "frame budget",
+        "frame time",
+        "60fps",
+        "30fps",
+        "16.6ms",
+        "bottleneck",
+        "CPU bound",
+        "GPU bound",
+        "frame rate",
+        "vsync",
+        "target frame rate"
+      ]
+    },
+    {
+      "id": "engine_profiler",
+      "name": "Engine Profiler Usage",
+      "description": "Using built-in engine profilers: Unity Profiler, Unreal Insights, Godot debugger/profiler, and interpreting profiler data.",
+      "keywords": [
+        "Profiler",
+        "Unity Profiler",
+        "Unreal Insights",
+        "Stat Unit",
+        "profiler window",
+        "deep profile",
+        "frame debugger",
+        "stat fps",
+        "monitors",
+        "performance tab"
+      ]
+    },
+    {
+      "id": "draw_call_batching",
+      "name": "Draw Call & Batching Optimization",
+      "description": "Reducing draw calls through static/dynamic batching, GPU instancing, SRP Batcher, material atlasing, and mesh combining.",
+      "keywords": [
+        "draw call",
+        "batching",
+        "static batching",
+        "dynamic batching",
+        "GPU instancing",
+        "SRP Batcher",
+        "mesh combine",
+        "atlas",
+        "instanced rendering",
+        "ISM"
+      ]
+    },
+    {
+      "id": "memory_profiling",
+      "name": "Memory Profiling & Leak Detection",
+      "description": "Tracking memory allocations, detecting leaks, analyzing heap snapshots, and using memory profiler tools.",
+      "keywords": [
+        "memory profiler",
+        "memory leak",
+        "heap snapshot",
+        "allocation tracker",
+        "memory usage",
+        "texture memory",
+        "mesh memory",
+        "Memreport",
+        "LowLevelMemoryTracker"
+      ]
+    },
+    {
+      "id": "asset_optimization",
+      "name": "Asset Size & Load Optimization",
+      "description": "Optimizing texture sizes, mesh polygon counts, audio compression, asset loading strategies (streaming, async), and reducing load times.",
+      "keywords": [
+        "texture compression",
+        "ASTC",
+        "ETC2",
+        "mesh simplification",
+        "LOD",
+        "streaming",
+        "async load",
+        "mipmap",
+        "audio compression",
+        "load time"
+      ]
+    },
+    {
+      "id": "mobile_optimization",
+      "name": "Mobile & Console Optimization",
+      "description": "Platform-specific optimizations: thermal throttling, battery management, reduced shader complexity, render scale, and quality tiers.",
+      "keywords": [
+        "mobile optimization",
+        "thermal throttling",
+        "battery",
+        "render scale",
+        "quality tier",
+        "scalability settings",
+        "reduced precision",
+        "half precision",
+        "tile-based rendering"
+      ]
+    },
+    {
+      "id": "multithreaded_profiling",
+      "name": "Multithreaded Profiling",
+      "description": "Analyzing multi-threaded performance: main thread vs render thread, job system profiling, thread contention, and parallel workload distribution.",
+      "keywords": [
+        "main thread",
+        "render thread",
+        "worker thread",
+        "job system",
+        "thread contention",
+        "lock contention",
+        "parallel",
+        "Timeline view",
+        "thread utilization"
+      ]
+    },
+    {
+      "id": "gpu_profiling",
+      "name": "GPU Frame Analysis (RenderDoc, PIX)",
+      "description": "Advanced GPU profiling with external tools: RenderDoc, PIX, Nsight Graphics, GPU trace analysis, and shader performance.",
+      "keywords": [
+        "RenderDoc",
+        "PIX",
+        "Nsight Graphics",
+        "GPU trace",
+        "frame capture",
+        "shader performance",
+        "pipeline state",
+        "draw call analysis",
+        "GPU timestamp"
+      ]
+    },
+    {
+      "id": "build_size_optimization",
+      "name": "Build Size & Shipping Optimization",
+      "description": "Reducing build size: unused asset stripping, code stripping (IL2CPP), asset bundles, download-on-demand, and compression.",
+      "keywords": [
+        "build size",
+        "code stripping",
+        "IL2CPP",
+        "managed stripping",
+        "asset unused",
+        "Addressables",
+        "on-demand",
+        "compression",
+        "build report",
+        "Pak analysis"
+      ]
+    },
+    {
+      "id": "platform_specific_tuning",
+      "name": "Platform-Specific Performance Tuning",
+      "description": "Console-specific optimization (PS5, Xbox, Switch), platform profiling tools, platform SDKs, and certification performance requirements.",
+      "keywords": [
+        "platform SDK",
+        "console optimization",
+        "Switch optimization",
+        "PS5 profiler",
+        "Xbox PIX",
+        "TRC performance",
+        "certification",
+        "platform target",
+        "NEON",
+        "SIMD"
+      ]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "Profiler markers or performance instrumentation in code",
+        "detection": "content_analysis",
+        "pattern": "Profiler\\.BeginSample|SCOPE_CYCLE_COUNTER|TRACE_CPUPROFILER|performance\\.mark",
+        "strength": 0.7,
+        "maps_to": [
+          "gd_optimization_profiling.engine_profiler"
+        ]
+      },
+      {
+        "signal": "LOD configuration or quality tier settings",
+        "detection": "content_analysis",
+        "pattern": "LODGroup|LOD.*bias|QualitySettings|quality.*tier|scalability|r\\.ScreenPercentage",
+        "strength": 0.6,
+        "maps_to": [
+          "gd_optimization_profiling.asset_optimization",
+          "gd_optimization_profiling.frame_budget"
+        ]
+      },
+      {
+        "signal": "GPU instancing or batching optimization in materials/scripts",
+        "detection": "content_analysis",
+        "pattern": "GPU.*instanc|enableInstancing|static.*batch|SRP.*Batch|DrawMeshInstanced",
+        "strength": 0.7,
+        "maps_to": [
+          "gd_optimization_profiling.draw_call_batching"
+        ]
+      },
+      {
+        "signal": "Memory tracking or leak detection code",
+        "detection": "content_analysis",
+        "pattern": "MemoryProfiler|Profiler\\.GetTotalAllocatedMemory|LowLevelMemoryTracker|Memreport|memory.*leak",
+        "strength": 0.7,
+        "maps_to": [
+          "gd_optimization_profiling.memory_profiling"
+        ]
+      },
+      {
+        "signal": "Mobile-specific optimizations (render scale, quality settings)",
+        "detection": "content_analysis",
+        "pattern": "Application\\.targetFrameRate|thermal|Screen\\.SetResolution|mobile.*optim|half.*precision",
+        "strength": 0.6,
+        "maps_to": [
+          "gd_optimization_profiling.mobile_optimization"
+        ]
+      },
+      {
+        "signal": "Build report or asset size analysis scripts",
+        "detection": "content_analysis",
+        "pattern": "BuildReport|build.*size|code.*strip|IL2CPP|managed.*stripping|Pak.*analysis",
+        "strength": 0.7,
+        "maps_to": [
+          "gd_optimization_profiling.build_size_optimization"
+        ]
+      },
+      {
+        "signal": "Thread profiling or parallel workload distribution",
+        "detection": "content_analysis",
+        "pattern": "Profiler.*thread|render.*thread|worker.*thread|job.*system.*profil|thread.*utilization",
+        "strength": 0.7,
+        "maps_to": [
+          "gd_optimization_profiling.multithreaded_profiling"
+        ]
+      },
+      {
+        "signal": "RenderDoc integration or GPU capture setup",
+        "detection": "content_analysis",
+        "pattern": "RenderDoc|renderdoc|frame.*capture|gpu.*trace|Nsight|PIX.*capture",
+        "strength": 0.8,
+        "maps_to": [
+          "gd_optimization_profiling.gpu_profiling"
+        ]
+      },
+      {
+        "signal": "Platform SDK references or platform-specific tuning",
+        "detection": "content_analysis",
+        "pattern": "PLATFORM_SWITCH|NX_|PS5|XSX|SIMD|NEON|platform.*tuning|certification.*perf",
+        "strength": 0.8,
+        "maps_to": [
+          "gd_optimization_profiling.platform_specific_tuning"
+        ]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "Performance optimization mentioned in game projects",
+        "strength": 0.3,
+        "maps_to": [
+          "gd_optimization_profiling.frame_budget",
+          "gd_optimization_profiling.engine_profiler"
+        ]
+      },
+      {
+        "signal": "Describes optimizing frame rate with quantifiable results",
+        "strength": 0.6,
+        "maps_to": [
+          "gd_optimization_profiling.draw_call_batching",
+          "gd_optimization_profiling.asset_optimization"
+        ]
+      },
+      {
+        "signal": "Describes mobile or console platform optimization",
+        "strength": 0.6,
+        "maps_to": [
+          "gd_optimization_profiling.mobile_optimization",
+          "gd_optimization_profiling.platform_specific_tuning"
+        ]
+      },
+      {
+        "signal": "Describes GPU profiling or advanced graphics optimization",
+        "strength": 0.7,
+        "maps_to": [
+          "gd_optimization_profiling.gpu_profiling",
+          "gd_optimization_profiling.memory_profiling"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Performance or Optimization in game dev skills",
+        "strength": 0.2,
+        "maps_to": [
+          "gd_optimization_profiling.frame_budget"
+        ]
+      },
+      {
+        "signal": "Performance Engineer or Optimization Specialist role",
+        "strength": 0.4,
+        "maps_to": [
+          "gd_optimization_profiling.gpu_profiling",
+          "gd_optimization_profiling.multithreaded_profiling"
+        ]
+      },
+      {
+        "signal": "Job experience with build pipeline or shipping optimization",
+        "strength": 0.4,
+        "maps_to": [
+          "gd_optimization_profiling.build_size_optimization",
+          "gd_optimization_profiling.platform_specific_tuning"
+        ]
+      }
+    ],
+    "assessment": [
+      {
+        "signal": "Can identify and fix performance bottleneck using engine profiler",
+        "strength": 1.0,
+        "maps_to": [
+          "gd_optimization_profiling.engine_profiler",
+          "gd_optimization_profiling.frame_budget",
+          "gd_optimization_profiling.draw_call_batching"
+        ]
+      },
+      {
+        "signal": "Can detect and resolve a memory leak in a game scene",
+        "strength": 1.0,
+        "maps_to": [
+          "gd_optimization_profiling.memory_profiling",
+          "gd_optimization_profiling.asset_optimization"
+        ]
+      },
+      {
+        "signal": "Can optimize a game for mobile achieving stable 60fps",
+        "strength": 1.0,
+        "maps_to": [
+          "gd_optimization_profiling.mobile_optimization",
+          "gd_optimization_profiling.multithreaded_profiling"
+        ]
+      },
+      {
+        "signal": "Can perform GPU frame analysis and optimize shader bottlenecks",
+        "strength": 1.0,
+        "maps_to": [
+          "gd_optimization_profiling.gpu_profiling",
+          "gd_optimization_profiling.build_size_optimization",
+          "gd_optimization_profiling.platform_specific_tuning"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "frame_budget",
+        "engine_profiler",
+        "draw_call_batching"
+      ],
+      "description": "Understands frame budgets, can use engine profiler to identify bottlenecks, and applies basic batching optimizations."
+    },
+    "mid": {
+      "expected_subskills": [
+        "memory_profiling",
+        "asset_optimization",
+        "mobile_optimization",
+        "multithreaded_profiling"
+      ],
+      "description": "Can profile memory, optimize assets, tune for mobile platforms, and analyze multi-threaded performance."
+    },
+    "senior": {
+      "expected_subskills": [
+        "gpu_profiling",
+        "build_size_optimization",
+        "platform_specific_tuning"
+      ],
+      "description": "Can perform deep GPU analysis with external tools, optimize build size for shipping, and tune for specific platform hardware."
+    }
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "role_id": "game_developer",
+  "level": "junior",
+  "title": "Junior Game Developer",
+  "description": "Entry-level game developer position focused on foundational engine proficiency, core programming, game math, basic design skills, and version control. Expected to implement gameplay features, create simple game systems, and contribute to a team under guidance.",
+  "experience_range": "0-2 years",
+  "skills": [
+    {
+      "skill_id": "gd_game_engine",
+      "importance": 0.95,
+      "rationale": "Engine proficiency is the foundation; daily scene, physics, and animation work is non-negotiable"
+    },
+    {
+      "skill_id": "gd_programming_language",
+      "importance": 0.95,
+      "rationale": "Daily coding in C#, C++, or GDScript; OOP patterns and data structures are essential"
+    },
+    {
+      "skill_id": "gd_game_mathematics",
+      "importance": 0.85,
+      "rationale": "Vectors, transforms, and trigonometry are used daily for gameplay mechanics"
+    },
+    {
+      "skill_id": "gd_game_design",
+      "importance": 0.80,
+      "rationale": "Understanding mechanics design and prototyping is expected for implementing gameplay"
+    },
+    {
+      "skill_id": "gd_version_control",
+      "importance": 0.75,
+      "rationale": "Git fundamentals and branching are expected from day one in any team environment"
+    },
+    {
+      "skill_id": "gd_ai_behavior",
+      "importance": 0.60,
+      "rationale": "Basic FSMs and steering behaviors for simple NPC gameplay systems"
+    },
+    {
+      "skill_id": "gd_optimization_profiling",
+      "importance": 0.55,
+      "rationale": "Awareness of frame budget and basic profiler usage; not expected to deep-optimize"
+    },
+    {
+      "skill_id": "gd_graphics_programming",
+      "importance": 0.45,
+      "rationale": "Shader basics and material understanding; deep graphics is mid-level territory"
+    },
+    {
+      "skill_id": "gd_networking_multiplayer",
+      "importance": 0.30,
+      "rationale": "Aspirational for juniors; understanding client-server concepts is enough"
+    }
+  ],
+  "scoring": {
+    "method": "weighted_average",
+    "description": "Each skill score is multiplied by its importance weight. Final score is the sum of weighted scores divided by sum of weights.",
+    "thresholds": {
+      "not_ready": {
+        "min": 0.0,
+        "max": 0.3,
+        "label": "Not Ready",
+        "description": "Significant gaps in foundational game development skills"
+      },
+      "developing": {
+        "min": 0.3,
+        "max": 0.5,
+        "label": "Developing",
+        "description": "Some foundations in place, needs focused learning in engine and programming"
+      },
+      "approaching": {
+        "min": 0.5,
+        "max": 0.7,
+        "label": "Approaching Ready",
+        "description": "Most foundational skills present, some gaps to fill in math or design"
+      },
+      "ready": {
+        "min": 0.7,
+        "max": 0.85,
+        "label": "Ready",
+        "description": "Meets expectations for junior-level game developer position"
+      },
+      "exceeds": {
+        "min": 0.85,
+        "max": 1.0,
+        "label": "Exceeds Expectations",
+        "description": "Exceeds junior-level expectations; may be ready for mid-level"
+      }
+    }
+  }
+}

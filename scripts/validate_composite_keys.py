@@ -4,8 +4,8 @@ import os
 
 valid_keys = set()
 valid_skill_ids = set()
-skills_dir = r'c:\Users\clbie\Desktop\Projects\RoleGauge\knowledge-base\skills\**\*.json'
-evidence_dir = r'c:\Users\clbie\Desktop\Projects\RoleGauge\knowledge-base\evidence\**\*.json'
+skills_dir = r'd:\Repos\RoleGauge\knowledge-base\skills\**\*.json'
+evidence_dir = r'd:\Repos\RoleGauge\knowledge-base\evidence\**\*.json'
 
 broken = []
 referenced_keys = set()

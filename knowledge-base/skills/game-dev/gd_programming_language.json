@@ -1,0 +1,443 @@
+{
+  "skill_id": "gd_programming_language",
+  "name": "Game Programming Languages",
+  "category": "programming",
+  "description": "Proficiency in programming languages used in game development including C#, C++, GDScript, and Blueprints. Covers core syntax, OOP patterns, data structures, memory management, multithreading, serialization, and advanced architecture patterns like ECS.",
+  "subskills": [
+    {
+      "id": "core_syntax",
+      "name": "Core Language Syntax",
+      "description": "Variables, control flow, functions, classes, and language-specific idioms in C#, C++, GDScript, or Blueprints.",
+      "keywords": [
+        "class",
+        "function",
+        "variable",
+        "if",
+        "for",
+        "while",
+        "switch",
+        "enum",
+        "struct",
+        "MonoBehaviour",
+        "AActor",
+        "Node",
+        "extends",
+        "UCLASS",
+        "UPROPERTY"
+      ]
+    },
+    {
+      "id": "oop_patterns",
+      "name": "OOP & Design Patterns",
+      "description": "Object-oriented programming principles and game-specific design patterns: Singleton, Observer, State, Command, Object Pool, Component pattern.",
+      "keywords": [
+        "inheritance",
+        "polymorphism",
+        "interface",
+        "abstract",
+        "singleton",
+        "observer",
+        "state pattern",
+        "command pattern",
+        "object pool",
+        "component pattern",
+        "factory",
+        "strategy"
+      ]
+    },
+    {
+      "id": "data_structures",
+      "name": "Data Structures & Collections",
+      "description": "Using arrays, lists, dictionaries, queues, stacks, hash sets, and game-specific data containers (TArray, TMap, Godot arrays).",
+      "keywords": [
+        "List",
+        "Dictionary",
+        "Array",
+        "Queue",
+        "Stack",
+        "HashSet",
+        "TArray",
+        "TMap",
+        "TSet",
+        "PackedArray",
+        "sorted array",
+        "priority queue"
+      ]
+    },
+    {
+      "id": "event_systems",
+      "name": "Event Systems & Delegates",
+      "description": "Implementing communication between game systems using events, delegates, signals, C# Actions/Events, Unreal delegates, and Godot signals.",
+      "keywords": [
+        "delegate",
+        "event",
+        "Action",
+        "UnityEvent",
+        "signal",
+        "DECLARE_DYNAMIC_MULTICAST_DELEGATE",
+        "EventHandler",
+        "callback",
+        "emit_signal",
+        "connect",
+        "multicast delegate"
+      ]
+    },
+    {
+      "id": "memory_management",
+      "name": "Memory Management & Optimization",
+      "description": "Understanding garbage collection, manual memory management, object pooling, reducing allocations, profiler usage, and heap/stack considerations.",
+      "keywords": [
+        "garbage collection",
+        "GC",
+        "object pooling",
+        "allocation",
+        "heap",
+        "stack",
+        "profiler",
+        "memory leak",
+        "Dispose",
+        "IDisposable",
+        "shared_ptr",
+        "unique_ptr",
+        "weak_ptr",
+        "UPROPERTY GC"
+      ]
+    },
+    {
+      "id": "multithreading",
+      "name": "Multithreading & Async",
+      "description": "Thread-safe programming, async/await patterns, coroutines, Job System (Unity), Task Graph (Unreal), and thread synchronization.",
+      "keywords": [
+        "async",
+        "await",
+        "coroutine",
+        "StartCoroutine",
+        "UniTask",
+        "Job System",
+        "Burst",
+        "Task Graph",
+        "FRunnable",
+        "thread",
+        "mutex",
+        "lock",
+        "Thread.callv"
+      ]
+    },
+    {
+      "id": "serialization",
+      "name": "Serialization & Data Persistence",
+      "description": "Saving and loading game state, JSON/binary serialization, ScriptableObjects, DataAssets, Godot Resources, and save system architecture.",
+      "keywords": [
+        "JsonUtility",
+        "JsonConvert",
+        "BinaryFormatter",
+        "ScriptableObject",
+        "DataAsset",
+        "Resource",
+        "save game",
+        "PlayerPrefs",
+        "USaveGame",
+        "ConfigFile",
+        "protobuf",
+        "serialization"
+      ]
+    },
+    {
+      "id": "native_plugin_dev",
+      "name": "Native Plugin Development",
+      "description": "Writing native C/C++ plugins for managed engines, P/Invoke, JNI bridges, GDExtension/GDNative, and platform-specific native code.",
+      "keywords": [
+        "DllImport",
+        "P/Invoke",
+        "native plugin",
+        "JNI",
+        "GDExtension",
+        "GDNative",
+        "extern",
+        "marshalling",
+        "unmanaged code",
+        "cdecl",
+        "stdcall"
+      ]
+    },
+    {
+      "id": "ecs_architecture",
+      "name": "ECS Architecture",
+      "description": "Entity Component System architecture: DOTS (Unity), Flecs, custom ECS frameworks, data-oriented design, archetype-based storage, and system scheduling.",
+      "keywords": [
+        "ECS",
+        "Entity",
+        "Component",
+        "System",
+        "DOTS",
+        "data-oriented",
+        "archetype",
+        "IComponentData",
+        "SystemBase",
+        "IJobEntity",
+        "Flecs",
+        "EnTT"
+      ]
+    },
+    {
+      "id": "code_generation",
+      "name": "Code Generation & Metaprogramming",
+      "description": "Source generators, C++ templates and SFINAE, reflection systems, Unreal Header Tool (UHT), compile-time code generation, and annotation processing.",
+      "keywords": [
+        "source generator",
+        "Roslyn",
+        "T4 template",
+        "UHT",
+        "GENERATED_BODY",
+        "reflection",
+        "template metaprogramming",
+        "SFINAE",
+        "constexpr",
+        "macro",
+        "attribute"
+      ]
+    },
+    {
+      "id": "custom_allocators",
+      "name": "Custom Memory Allocators",
+      "description": "Implementing custom allocators: linear/arena allocators, pool allocators, stack allocators, TLSF, and engine-level memory management strategies.",
+      "keywords": [
+        "custom allocator",
+        "arena allocator",
+        "pool allocator",
+        "stack allocator",
+        "TLSF",
+        "FMallocBinned",
+        "FMemory",
+        "placement new",
+        "memory arena",
+        "slab allocator"
+      ]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "C# game scripts with MonoBehaviour or Node inheritance",
+        "detection": "content_analysis",
+        "pattern": "MonoBehaviour|: Node|extends Node|extends CharacterBody",
+        "strength": 0.5,
+        "maps_to": [
+          "gd_programming_language.core_syntax"
+        ]
+      },
+      {
+        "signal": "C++ game code with Unreal macros (UCLASS, UPROPERTY)",
+        "detection": "content_analysis",
+        "pattern": "UCLASS|UPROPERTY|UFUNCTION|USTRUCT|GENERATED_BODY",
+        "strength": 0.6,
+        "maps_to": [
+          "gd_programming_language.core_syntax",
+          "gd_programming_language.code_generation"
+        ]
+      },
+      {
+        "signal": "Design patterns implemented in game code",
+        "detection": "content_analysis",
+        "pattern": "Singleton|ObjectPool|StateMachine|EventBus|Observer|CommandPattern",
+        "strength": 0.7,
+        "maps_to": [
+          "gd_programming_language.oop_patterns"
+        ]
+      },
+      {
+        "signal": "Event/delegate/signal usage patterns",
+        "detection": "content_analysis",
+        "pattern": "UnityEvent|Action<|emit_signal|DECLARE_DYNAMIC|EventHandler|connect\\(",
+        "strength": 0.6,
+        "maps_to": [
+          "gd_programming_language.event_systems"
+        ]
+      },
+      {
+        "signal": "Serialization and save system implementations",
+        "detection": "content_analysis",
+        "pattern": "JsonUtility|JsonConvert|USaveGame|SaveGame|BinaryFormatter|ConfigFile",
+        "strength": 0.6,
+        "maps_to": [
+          "gd_programming_language.serialization"
+        ]
+      },
+      {
+        "signal": "Object pooling or memory optimization patterns",
+        "detection": "content_analysis",
+        "pattern": "ObjectPool|pool\\.Get|pool\\.Return|Dispose|IDisposable|shared_ptr|unique_ptr",
+        "strength": 0.7,
+        "maps_to": [
+          "gd_programming_language.memory_management"
+        ]
+      },
+      {
+        "signal": "Coroutine, async/await, or Job System usage",
+        "detection": "content_analysis",
+        "pattern": "StartCoroutine|UniTask|async Task|IJob|FRunnable|Burst|yield return",
+        "strength": 0.7,
+        "maps_to": [
+          "gd_programming_language.multithreading"
+        ]
+      },
+      {
+        "signal": "Native plugin or GDExtension files",
+        "detection": "file_presence",
+        "pattern": "*.gdextension|*.gdnlib|*.dll|*.so|*.bundle",
+        "strength": 0.7,
+        "maps_to": [
+          "gd_programming_language.native_plugin_dev"
+        ]
+      },
+      {
+        "signal": "ECS/DOTS implementation or usage",
+        "detection": "content_analysis",
+        "pattern": "IComponentData|SystemBase|IJobEntity|EntityManager|World\\.DefaultGameObjectInjectionWorld|Flecs|EnTT",
+        "strength": 0.8,
+        "maps_to": [
+          "gd_programming_language.ecs_architecture"
+        ]
+      },
+      {
+        "signal": "Custom memory allocator implementations",
+        "detection": "content_analysis",
+        "pattern": "ArenaAllocator|PoolAllocator|placement new|FMallocBinned|slab_alloc|StackAllocator",
+        "strength": 0.9,
+        "maps_to": [
+          "gd_programming_language.custom_allocators"
+        ]
+      },
+      {
+        "signal": "GDScript files present (.gd)",
+        "detection": "file_presence",
+        "pattern": "*.gd",
+        "strength": 0.5,
+        "maps_to": [
+          "gd_programming_language.core_syntax",
+          "gd_programming_language.data_structures"
+        ]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "C#, C++, or GDScript mentioned in skills for game development",
+        "strength": 0.3,
+        "maps_to": [
+          "gd_programming_language.core_syntax"
+        ]
+      },
+      {
+        "signal": "Describes implementing gameplay systems with design patterns",
+        "strength": 0.5,
+        "maps_to": [
+          "gd_programming_language.oop_patterns",
+          "gd_programming_language.event_systems"
+        ]
+      },
+      {
+        "signal": "Describes performance optimization or memory management work",
+        "strength": 0.6,
+        "maps_to": [
+          "gd_programming_language.memory_management",
+          "gd_programming_language.multithreading"
+        ]
+      },
+      {
+        "signal": "Describes ECS or data-oriented design implementation",
+        "strength": 0.7,
+        "maps_to": [
+          "gd_programming_language.ecs_architecture"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "C# or C++ in skills/endorsements",
+        "strength": 0.2,
+        "maps_to": [
+          "gd_programming_language.core_syntax"
+        ]
+      },
+      {
+        "signal": "Job experience describing game systems programming",
+        "strength": 0.4,
+        "maps_to": [
+          "gd_programming_language.oop_patterns",
+          "gd_programming_language.data_structures"
+        ]
+      },
+      {
+        "signal": "Engine programmer or systems programmer role",
+        "strength": 0.4,
+        "maps_to": [
+          "gd_programming_language.memory_management",
+          "gd_programming_language.native_plugin_dev"
+        ]
+      }
+    ],
+    "assessment": [
+      {
+        "signal": "Can implement a complete gameplay system using OOP patterns and events",
+        "strength": 1.0,
+        "maps_to": [
+          "gd_programming_language.core_syntax",
+          "gd_programming_language.oop_patterns",
+          "gd_programming_language.event_systems"
+        ]
+      },
+      {
+        "signal": "Can implement a save/load system with serialization",
+        "strength": 1.0,
+        "maps_to": [
+          "gd_programming_language.serialization",
+          "gd_programming_language.data_structures"
+        ]
+      },
+      {
+        "signal": "Can profile and optimize a game loop reducing GC allocations",
+        "strength": 1.0,
+        "maps_to": [
+          "gd_programming_language.memory_management",
+          "gd_programming_language.multithreading"
+        ]
+      },
+      {
+        "signal": "Can design and implement an ECS framework from scratch",
+        "strength": 1.0,
+        "maps_to": [
+          "gd_programming_language.ecs_architecture",
+          "gd_programming_language.custom_allocators"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "core_syntax",
+        "oop_patterns",
+        "data_structures",
+        "event_systems"
+      ],
+      "description": "Can write game scripts with proper OOP structure, use collections effectively, and implement event-driven communication between game objects."
+    },
+    "mid": {
+      "expected_subskills": [
+        "memory_management",
+        "multithreading",
+        "serialization",
+        "native_plugin_dev"
+      ],
+      "description": "Can optimize memory usage, implement async patterns and coroutines, build save systems, and integrate native plugins."
+    },
+    "senior": {
+      "expected_subskills": [
+        "ecs_architecture",
+        "code_generation",
+        "custom_allocators"
+      ],
+      "description": "Can architect ECS-based systems, build code generation tools, and implement custom memory management strategies for high-performance games."
+    }
+  }
+}
