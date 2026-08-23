@@ -1,0 +1,164 @@
+{
+  "skill_id": "fe_web_fundamentals",
+  "name": "Web Fundamentals",
+  "category": "frontend_core",
+  "description": "Core browser and web platform knowledge: semantic HTML, DOM API, browser rendering pipeline, forms and validation, responsive design, accessibility, HTTP protocol, browser storage mechanisms, modern Web APIs, and progressive web app concepts.",
+  "subskills": [
+    {
+      "id": "html_semantics",
+      "name": "Semantic HTML",
+      "description": "Proper use of HTML5 semantic elements (header, nav, main, article, section, aside, figure) for document structure and machine readability.",
+      "keywords": ["semantic elements", "header", "nav", "main", "article", "section", "aside", "landmark roles"]
+    },
+    {
+      "id": "dom_manipulation",
+      "name": "DOM Manipulation",
+      "description": "DOM API traversal, node creation, event listeners, and programmatic DOM updates.",
+      "keywords": ["querySelector", "addEventListener", "createElement", "appendChild", "DOM traversal", "NodeList"]
+    },
+    {
+      "id": "browser_rendering",
+      "name": "Browser Rendering Pipeline",
+      "description": "Critical rendering path, CSSOM construction, layout/reflow, paint, compositing layers.",
+      "keywords": ["critical rendering path", "CSSOM", "reflow", "repaint", "compositing", "layout thrashing"]
+    },
+    {
+      "id": "forms_validation",
+      "name": "Forms & Validation",
+      "description": "HTML form elements, native constraint validation API, input types, FormData.",
+      "keywords": ["input types", "required", "pattern", "validity", "setCustomValidity", "FormData"]
+    },
+    {
+      "id": "responsive_design",
+      "name": "Responsive Design",
+      "description": "Mobile-first approach, viewport meta tag, media queries, fluid layouts.",
+      "keywords": ["media queries", "viewport", "mobile-first", "breakpoints", "fluid layout"]
+    },
+    {
+      "id": "web_accessibility",
+      "name": "Web Accessibility (a11y)",
+      "description": "WCAG guidelines, ARIA attributes, keyboard navigation, screen reader compatibility, focus management.",
+      "keywords": ["WCAG", "ARIA", "role", "aria-label", "aria-live", "keyboard navigation", "screen reader", "focus management"]
+    },
+    {
+      "id": "http_protocol",
+      "name": "HTTP Protocol",
+      "description": "HTTP/1.1 vs HTTP/2 multiplexing vs HTTP/3 QUIC, status codes, headers, request methods.",
+      "keywords": ["HTTP/2", "multiplexing", "QUIC", "status codes", "Content-Type", "Accept", "Cache-Control"]
+    },
+    {
+      "id": "browser_storage",
+      "name": "Browser Storage",
+      "description": "localStorage, sessionStorage, IndexedDB, cookies — storage quotas, eviction policies, and appropriate use cases.",
+      "keywords": ["localStorage", "sessionStorage", "IndexedDB", "cookies", "Storage API", "quota"]
+    },
+    {
+      "id": "web_apis",
+      "name": "Modern Web APIs",
+      "description": "Intersection Observer, Mutation Observer, ResizeObserver, Web Workers, Service Workers, Fetch/AbortController.",
+      "keywords": ["IntersectionObserver", "MutationObserver", "Web Worker", "Service Worker", "Fetch API", "AbortController"]
+    },
+    {
+      "id": "pwa",
+      "name": "Progressive Web Apps",
+      "description": "Web App Manifest, service worker lifecycle, offline-first strategies, installability criteria.",
+      "keywords": ["manifest.json", "service worker", "offline", "Cache API", "installable", "push notifications"]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "Semantic HTML5 elements in component templates",
+        "detection": "content_analysis",
+        "pattern": "<(main|article|section|aside|nav|header|footer)[\\s>]",
+        "strength": 0.6,
+        "maps_to": ["fe_web_fundamentals.html_semantics"]
+      },
+      {
+        "signal": "DOM manipulation API usage in JavaScript files",
+        "detection": "content_analysis",
+        "pattern": "querySelector|getElementById|addEventListener|createElement",
+        "strength": 0.7,
+        "maps_to": ["fe_web_fundamentals.dom_manipulation", "fe_web_fundamentals.forms_validation"]
+      },
+      {
+        "signal": "ARIA attributes in templates or JSX",
+        "detection": "content_analysis",
+        "pattern": "aria-label|aria-live|aria-describedby|role=",
+        "strength": 0.8,
+        "maps_to": ["fe_web_fundamentals.web_accessibility"]
+      },
+      {
+        "signal": "Service Worker or PWA manifest file",
+        "detection": "file_presence",
+        "pattern": "service-worker\\.(js|ts)|manifest\\.json|sw\\.(js|ts)",
+        "strength": 0.9,
+        "maps_to": ["fe_web_fundamentals.pwa", "fe_web_fundamentals.web_apis"]
+      },
+      {
+        "signal": "Responsive viewport meta and media queries in CSS",
+        "detection": "content_analysis",
+        "pattern": "viewport|@media\\s*\\(|min-width|max-width",
+        "strength": 0.6,
+        "maps_to": ["fe_web_fundamentals.responsive_design"]
+      },
+      {
+        "signal": "HTTP client configuration or caching headers",
+        "detection": "content_analysis",
+        "pattern": "Cache-Control|ETag|fetch\\(|axios\\.create|HTTP/2",
+        "strength": 0.6,
+        "maps_to": ["fe_web_fundamentals.http_protocol", "fe_web_fundamentals.browser_storage"]
+      },
+      {
+        "signal": "Performance APIs or observer patterns",
+        "detection": "content_analysis",
+        "pattern": "requestAnimationFrame|IntersectionObserver|MutationObserver|performance\\.mark",
+        "strength": 0.7,
+        "maps_to": ["fe_web_fundamentals.browser_rendering", "fe_web_fundamentals.web_apis"]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "Responsive web design and cross-browser development",
+        "strength": 0.7,
+        "maps_to": ["fe_web_fundamentals.responsive_design", "fe_web_fundamentals.html_semantics", "fe_web_fundamentals.browser_rendering"]
+      },
+      {
+        "signal": "Web accessibility compliance (WCAG/ADA)",
+        "strength": 0.7,
+        "maps_to": ["fe_web_fundamentals.web_accessibility"]
+      },
+      {
+        "signal": "PWA development or offline-first applications",
+        "strength": 0.7,
+        "maps_to": ["fe_web_fundamentals.pwa", "fe_web_fundamentals.web_apis", "fe_web_fundamentals.browser_storage"]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "HTML5, Responsive Design, or Web Accessibility endorsed",
+        "strength": 0.5,
+        "maps_to": ["fe_web_fundamentals.html_semantics", "fe_web_fundamentals.responsive_design", "fe_web_fundamentals.web_accessibility"]
+      },
+      {
+        "signal": "Progressive Web Apps or Service Workers endorsed",
+        "strength": 0.5,
+        "maps_to": ["fe_web_fundamentals.pwa", "fe_web_fundamentals.web_apis", "fe_web_fundamentals.browser_storage"]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": ["html_semantics", "dom_manipulation", "forms_validation", "responsive_design"],
+      "description": "Writes semantic HTML, handles DOM events, builds validated forms, and implements mobile-first responsive layouts."
+    },
+    "mid": {
+      "expected_subskills": ["browser_rendering", "web_accessibility", "http_protocol"],
+      "description": "Understands the rendering pipeline for performance optimization, ensures WCAG compliance, and leverages HTTP/2 features."
+    },
+    "senior": {
+      "expected_subskills": ["browser_storage", "web_apis", "pwa"],
+      "description": "Architects offline-capable PWAs, selects appropriate storage strategies, and leverages advanced browser APIs for complex interactions."
+    }
+  }
+}

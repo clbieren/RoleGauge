@@ -1,0 +1,163 @@
+{
+  "skill_id": "be_observability",
+  "name": "Application Observability & Telemetry",
+  "category": "backend_observability",
+  "description": "Application-level observability and code instrumentation. IMPORTANT DISTINCTION: This skill covers observability from a 'software developer instrumenting code' perspective — writing structured JSON logs with correlation IDs, defining custom Prometheus counters/histograms in HTTP handlers, injecting OpenTelemetry trace spans across distributed calls, integrating APM agents to profile database query bottlenecks, and setting up readiness/liveness health check endpoints. This is fundamentally different from the DevOps role's monitoring_observability skill, which approaches the same domain from an infrastructure operations perspective (installing Prometheus/Grafana clusters, configuring Kubernetes DaemonSets, managing VM log shippers, and provisioning alertmanager hardware). Here the backend engineer asks 'how do I instrument my code to emit meaningful spans and metrics?'; in DevOps the engineer asks 'how do I host and scale the monitoring infrastructure?'.",
+  "subskills": [
+    {
+      "id": "structured_logging",
+      "name": "Structured JSON Logging",
+      "description": "Structured JSON logging (Winston, Zap, Logback, structlog), log levels, correlation IDs, contextual metadata (userId, tenantId), and avoiding logging sensitive PII.",
+      "keywords": ["Structured logging", "JSON logs", "correlation ID", "Winston", "Zap", "Logback", "log level", "contextual logging"]
+    },
+    {
+      "id": "application_metrics",
+      "name": "Application Metrics (Prometheus)",
+      "description": "Prometheus metric types (Counter, Gauge, Histogram, Summary), defining custom business metrics in code, label cardinality limits, and /metrics scraping endpoints.",
+      "keywords": ["Prometheus metrics", "Counter", "Gauge", "Histogram", "Summary", "label cardinality", "/metrics endpoint", "client_golang", "prom-client"]
+    },
+    {
+      "id": "health_checks_probes",
+      "name": "Health Checks & Probes",
+      "description": "Implementing /healthz, /readyz, and /startup endpoints, verifying downstream database and message broker connectivity, and graceful shutdown handling.",
+      "keywords": ["Health checks", "Liveness probe", "Readiness probe", "/healthz", "/readyz", "graceful shutdown", "dependency health check"]
+    },
+    {
+      "id": "distributed_tracing_opentelemetry",
+      "name": "Distributed Tracing (OpenTelemetry)",
+      "description": "OpenTelemetry (OTel) SDK instrumentation, traceId and spanId creation, W3C TraceContext HTTP header propagation (traceparent), and span attributes.",
+      "keywords": ["OpenTelemetry", "distributed tracing", "traceId", "spanId", "traceparent", "W3C TraceContext", "span attributes", "OTel SDK"]
+    },
+    {
+      "id": "apm_integration",
+      "name": "APM & Code Profiling Integration",
+      "description": "Application Performance Monitoring (APM) agents (Datadog, New Relic, Elastic APM), automatic database query instrumentation, and slow query identification.",
+      "keywords": ["APM", "Datadog APM", "New Relic", "Elastic APM", "database query instrumentation", "transaction tracing", "slow query profiling"]
+    },
+    {
+      "id": "error_tracking_alerting",
+      "name": "Error Tracking & Sentry SDK",
+      "description": "Automated error capture using Sentry / Rollbar SDKs, capturing stack traces and request context, fingerprinting errors, and alert noise reduction.",
+      "keywords": ["Sentry SDK", "error tracking", "stack trace capture", "error fingerprinting", "breadcrumbs", "unhandled rejection capture"]
+    },
+    {
+      "id": "service_level_objectives",
+      "name": "SLI/SLO Application Telemetry",
+      "description": "Defining Service Level Indicators (SLIs) and Service Level Objectives (SLOs) directly from application telemetry (availability ratio, latency percentiles).",
+      "keywords": ["SLI", "SLO", "Service Level Objective", "Service Level Indicator", "error budget", "application availability telemetry", "burn rate"]
+    },
+    {
+      "id": "distributed_profiling",
+      "name": "Continuous Code Profiling",
+      "description": "Production CPU and memory profiling (Pyroscope, Go pprof, async-profiler), analyzing Flamegraphs, and identifying memory allocation hotspots.",
+      "keywords": ["Continuous profiling", "Pyroscope", "pprof", "Flamegraph", "CPU profiling", "heap profiling", "allocation hotspot"]
+    },
+    {
+      "id": "audit_telemetry_correlation",
+      "name": "Telemetry Correlation & RCA",
+      "description": "Correlating distributed trace spans with structured logs (log-to-trace linking) and metric anomalies for rapid Root Cause Analysis (RCA).",
+      "keywords": ["Log-to-trace correlation", "RCA", "Root Cause Analysis", "traceId in logs", "telemetry correlation", "exemplars"]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "Structured logging library usage with JSON formatters",
+        "detection": "content_analysis",
+        "pattern": "winston\\.createLogger|zap\\.NewProduction|structlog|logback\\.xml|logging\\.basicConfig",
+        "strength": 0.8,
+        "maps_to": ["be_observability.structured_logging"]
+      },
+      {
+        "signal": "Prometheus metric counters, histograms, or metrics endpoints",
+        "detection": "content_analysis",
+        "pattern": "new\\s+Counter\\(|new\\s+Histogram\\(|prometheus\\.NewCounter|prometheus\\.NewHistogram|/metrics",
+        "strength": 0.8,
+        "maps_to": ["be_observability.application_metrics"]
+      },
+      {
+        "signal": "Health check endpoints (/health, /live, /ready)",
+        "detection": "content_analysis",
+        "pattern": "/healthz|/readyz|/health/live|/health/ready|healthCheck|Terminus",
+        "strength": 0.7,
+        "maps_to": ["be_observability.health_checks_probes"]
+      },
+      {
+        "signal": "OpenTelemetry SDK initialization or manual span creation",
+        "detection": "content_analysis",
+        "pattern": "@opentelemetry/sdk|tracer\\.startSpan|trace\\.getTracer|OpenTelemetry\\.getTracer|W3CTraceContextPropagator",
+        "strength": 0.9,
+        "maps_to": ["be_observability.distributed_tracing_opentelemetry", "be_observability.audit_telemetry_correlation"]
+      },
+      {
+        "signal": "APM agent configuration (Datadog dd-trace, New Relic, Elastic APM)",
+        "detection": "content_analysis",
+        "pattern": "dd-trace|newrelic|elastic-apm-node|ddtrace\\.tracer",
+        "strength": 0.8,
+        "maps_to": ["be_observability.apm_integration"]
+      },
+      {
+        "signal": "Sentry SDK initialization and error capture",
+        "detection": "content_analysis",
+        "pattern": "Sentry\\.init|Sentry\\.captureException|sentry_sdk\\.init|@sentry/node",
+        "strength": 0.8,
+        "maps_to": ["be_observability.error_tracking_alerting"]
+      },
+      {
+        "signal": "Continuous profiling or pprof endpoints",
+        "detection": "content_analysis",
+        "pattern": "net/http/pprof|pyroscope\\.start|async-profiler",
+        "strength": 0.9,
+        "maps_to": ["be_observability.distributed_profiling", "be_observability.service_level_objectives"]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "Application logging, metrics, and health check implementation",
+        "strength": 0.7,
+        "maps_to": ["be_observability.structured_logging", "be_observability.application_metrics", "be_observability.health_checks_probes"]
+      },
+      {
+        "signal": "Distributed tracing with OpenTelemetry or APM integration",
+        "strength": 0.8,
+        "maps_to": ["be_observability.distributed_tracing_opentelemetry", "be_observability.apm_integration", "be_observability.error_tracking_alerting"]
+      },
+      {
+        "signal": "Continuous profiling, SLI/SLO instrumentation, or telemetry correlation",
+        "strength": 0.8,
+        "maps_to": ["be_observability.service_level_objectives", "be_observability.distributed_profiling", "be_observability.audit_telemetry_correlation"]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Observability, Prometheus, or Logging endorsed",
+        "strength": 0.5,
+        "maps_to": ["be_observability.structured_logging", "be_observability.application_metrics", "be_observability.health_checks_probes"]
+      },
+      {
+        "signal": "OpenTelemetry, Distributed Tracing, or Datadog endorsed",
+        "strength": 0.5,
+        "maps_to": ["be_observability.distributed_tracing_opentelemetry", "be_observability.apm_integration", "be_observability.error_tracking_alerting"]
+      },
+      {
+        "signal": "Continuous Profiling, SLOs, or Root Cause Analysis experience mentioned",
+        "strength": 0.5,
+        "maps_to": ["be_observability.service_level_objectives", "be_observability.distributed_profiling", "be_observability.audit_telemetry_correlation"]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": ["structured_logging", "application_metrics", "health_checks_probes"],
+      "description": "Emits structured JSON logs with correlation IDs, registers Prometheus counter/gauge metrics, and implements /healthz readiness probes."
+    },
+    "mid": {
+      "expected_subskills": ["distributed_tracing_opentelemetry", "apm_integration", "error_tracking_alerting"],
+      "description": "Instruments code with OpenTelemetry trace spans, integrates APM agents for slow query profiling, and captures exceptions with Sentry."
+    },
+    "senior": {
+      "expected_subskills": ["service_level_objectives", "distributed_profiling", "audit_telemetry_correlation"],
+      "description": "Instruments code for SLI/SLO error budget measurement, conducts continuous CPU/memory profiling with Pyroscope Flamegraphs, and links logs to traces for rapid RCA."
+    }
+  }
+}

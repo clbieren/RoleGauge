@@ -1,0 +1,80 @@
+{
+  "role_id": "qa_engineer",
+  "level": "junior",
+  "title": "Junior QA Engineer",
+  "description": "Entry-level QA engineer focused on structured test case authoring, comprehensive defect reporting, manual functional & smoke testing, DOM inspection with DevTools, writing baseline UI tests in Playwright/Cypress, Postman API testing, and basic JMeter/accessibility checks.",
+  "experience_range": "0-2 years",
+  "skills": [
+    {
+      "skill_id": "qa_manual_testing",
+      "importance": 0.95,
+      "rationale": "Writing high-quality reproducible test cases and logging detailed bug reports with environment details and logs is fundamental for daily tasks."
+    },
+    {
+      "skill_id": "qa_fundamentals_methodology",
+      "importance": 0.9,
+      "rationale": "Applying black-box test design techniques and understanding STLC phases in Agile sprints."
+    },
+    {
+      "skill_id": "qa_web_fundamentals_for_qa",
+      "importance": 0.85,
+      "rationale": "Inspecting HTML DOM trees, crafting resilient XPath/CSS selectors, and analyzing Network tab HTTP requests."
+    },
+    {
+      "skill_id": "qa_frontend_automation",
+      "importance": 0.8,
+      "rationale": "Writing straightforward automated UI tests in Cypress or Playwright using resilient locator strategies (getByRole/getByTestId)."
+    },
+    {
+      "skill_id": "qa_backend_api_automation",
+      "importance": 0.8,
+      "rationale": "Validating RESTful endpoints and writing JavaScript test assertions in Postman collections."
+    },
+    {
+      "skill_id": "qa_test_management_reporting",
+      "importance": 0.75,
+      "rationale": "Tracking test cases and runs in TestRail/Zephyr and managing defect lifecycles in Jira."
+    },
+    {
+      "skill_id": "qa_non_functional_testing",
+      "importance": 0.65,
+      "rationale": "Executing basic JMeter load tests and running automated accessibility audits using axe-core and WAVE."
+    }
+  ],
+  "scoring": {
+    "method": "weighted_average",
+    "description": "Each skill score is multiplied by its importance weight. Final score is sum divided by sum of weights.",
+    "thresholds": {
+      "not_ready": {
+        "min": 0.0,
+        "max": 0.3,
+        "label": "Not Ready",
+        "description": "Significant gaps in manual testing fundamentals, test case authoring, or basic bug reporting."
+      },
+      "developing": {
+        "min": 0.3,
+        "max": 0.5,
+        "label": "Developing",
+        "description": "Can execute test cases and report bugs, but needs guidance on test design techniques, locator resilience, and Postman assertions."
+      },
+      "approaching": {
+        "min": 0.5,
+        "max": 0.7,
+        "label": "Approaching Ready",
+        "description": "Solid manual testing foundation, good grasp of DevTools and Postman, and writes reliable beginner automation scripts."
+      },
+      "ready": {
+        "min": 0.7,
+        "max": 0.85,
+        "label": "Ready",
+        "description": "Meets all junior expectations: delivers thorough test cases, logs precise bug reports, automates core UI/API flows, and tracks STLC metrics."
+      },
+      "exceeds": {
+        "min": 0.85,
+        "max": 1.0,
+        "label": "Exceeds Expectations",
+        "description": "Exceeds junior expectations with early mid-level proficiency in Page Object Model, k6 load testing, and CI/CD test job integration."
+      }
+    }
+  }
+}

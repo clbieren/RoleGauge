@@ -2,7 +2,7 @@
   "skill_id": "git",
   "name": "Git & Version Control",
   "category": "fundamentals",
-  "description": "Version control using Git including branching, merging, collaboration workflows, and hosting platforms (GitHub, GitLab).",
+  "description": "Version control using Git including branching, merging, collaboration workflows, hooks automation, internals, and monorepo management.",
   "subskills": [
     {
       "id": "basic_operations",
@@ -34,6 +34,19 @@
       ]
     },
     {
+      "id": "gitignore_config",
+      "name": "Git Configuration",
+      "description": "Gitignore patterns, global config, hooks, and repository settings.",
+      "keywords": [
+        ".gitignore",
+        ".gitattributes",
+        "git config",
+        "git hooks",
+        "pre-commit",
+        "pre-push"
+      ]
+    },
+    {
       "id": "collaboration_workflows",
       "name": "Collaboration Workflows",
       "description": "Pull requests, code reviews, Gitflow, trunk-based development, and forking.",
@@ -45,19 +58,6 @@
         "trunk-based",
         "feature branch",
         "fork"
-      ]
-    },
-    {
-      "id": "gitignore_config",
-      "name": "Git Configuration",
-      "description": "Gitignore patterns, global config, hooks, and repository settings.",
-      "keywords": [
-        ".gitignore",
-        ".gitattributes",
-        "git config",
-        "git hooks",
-        "pre-commit",
-        "pre-push"
       ]
     },
     {
@@ -84,6 +84,33 @@
         "git hooks",
         "pre-push",
         "commit-msg"
+      ]
+    },
+    {
+      "id": "git_internals",
+      "name": "Git Internals & Plumbing",
+      "description": "Git object model (blobs, trees, commits, tags), reflog recovery, detached HEAD, and git fsck.",
+      "keywords": [
+        "reflog",
+        "git cat-file",
+        "git fsck",
+        "dangling commit",
+        "git object model",
+        "SHA-1",
+        "detached HEAD"
+      ]
+    },
+    {
+      "id": "monorepo_management",
+      "name": "Monorepo & Submodule Management",
+      "description": "Git submodules, subtrees, sparse checkouts, and Git LFS (Large File Storage).",
+      "keywords": [
+        "git submodule",
+        "git subtree",
+        "sparse-checkout",
+        "git lfs",
+        ".gitmodules",
+        "monorepo tooling"
       ]
     }
   ],
@@ -143,6 +170,16 @@
         "maps_to": [
           "git.git_hooks_automation"
         ]
+      },
+      {
+        "signal": "Submodules or Git LFS configuration",
+        "detection": "file_presence",
+        "pattern": ".gitmodules|\\.gitattributes",
+        "strength": 0.7,
+        "maps_to": [
+          "git.monorepo_management",
+          "git.git_internals"
+        ]
       }
     ],
     "cv": [
@@ -157,7 +194,8 @@
         "signal": "GitHub/GitLab collaboration experience described",
         "strength": 0.4,
         "maps_to": [
-          "git.collaboration_workflows"
+          "git.collaboration_workflows",
+          "git.monorepo_management"
         ]
       }
     ],
@@ -199,20 +237,17 @@
     "mid": {
       "expected_subskills": [
         "collaboration_workflows",
-        "tagging_releases"
+        "tagging_releases",
+        "git_hooks_automation"
       ],
-      "description": "Can implement collaboration workflows, investigate history, and manage releases."
+      "description": "Can implement collaboration workflows, investigate history, configure automated hooks, and manage releases."
     },
     "senior": {
       "expected_subskills": [
-        "git_hooks_automation"
-      ],
-      "description": "Can design Git strategies for teams, implement automation hooks, and manage complex mono/multi-repo setups.",
-      "additional_expectations": [
-        "monorepo_management",
         "git_internals",
-        "migration_strategies"
-      ]
+        "monorepo_management"
+      ],
+      "description": "Can diagnose complex repository states with git reflog/internals, manage large monorepos with submodules/sparse-checkouts, and design Git branching strategies for organizations."
     }
   }
 }

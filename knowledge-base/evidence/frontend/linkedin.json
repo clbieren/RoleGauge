@@ -1,0 +1,126 @@
+{
+  "source_id": "linkedin",
+  "name": "LinkedIn Profile Analysis - Frontend Developer",
+  "description": "Signals extracted from LinkedIn profiles to evidence Frontend Developer skills. LinkedIn provides professional context, endorsements, and career trajectory data.",
+  "extraction_rules": {
+    "sections": [
+      {
+        "section": "headline_summary",
+        "description": "Profile headline and summary/about section.",
+        "base_strength": 0.2,
+        "notes": "Self-described; provides intent and self-assessment context. Look for framework specialization signals (e.g., 'Senior React Developer' vs generic 'Frontend Developer')."
+      },
+      {
+        "section": "experience",
+        "description": "Work experience entries with job titles, companies, and descriptions.",
+        "base_strength": 0.4,
+        "notes": "Similar to CV work experience but often more concise. Look for frontend-specific job titles and descriptions.",
+        "quality_indicators": [
+          "Frontend-specific job titles (Frontend Engineer, UI Developer, React Developer, Full-Stack with frontend focus)",
+          "Duration in frontend roles",
+          "Company type (product company vs agency — different skill depth signals)",
+          "Specific technology mentions in descriptions"
+        ]
+      },
+      {
+        "section": "skills_endorsements",
+        "description": "Skills listed with endorsement counts from connections.",
+        "base_strength": 0.15,
+        "notes": "Endorsements have very low evidential value — they are exchanged socially. However, the skill list provides self-reported skill claims."
+      },
+      {
+        "section": "certifications",
+        "description": "Professional certifications with issuing organizations.",
+        "base_strength": 0.2,
+        "notes": "Same as CV certifications — theoretical knowledge indicator, not practical proof."
+      },
+      {
+        "section": "projects",
+        "description": "Projects section with descriptions and links.",
+        "base_strength": 0.3,
+        "notes": "Provides additional project context. Links to GitHub or live demos increase strength."
+      },
+      {
+        "section": "recommendations",
+        "description": "Written recommendations from colleagues or managers.",
+        "base_strength": 0.3,
+        "notes": "Third-party validation. Look for specific mentions of frontend technologies or architectural contributions."
+      },
+      {
+        "section": "posts_articles",
+        "description": "Technical posts and articles published on LinkedIn.",
+        "base_strength": 0.3,
+        "notes": "Indicates thought leadership and depth. Frontend-specific blog posts about performance, architecture, or framework internals are strong signals."
+      }
+    ]
+  },
+  "signal_mapping": {
+    "description": "How LinkedIn mentions map to skill evidence using COMPOSITE KEYS ({skill_id}.{subskill_id}). AI should use these patterns.",
+    "patterns": [
+      {
+        "pattern": "LinkedIn skills endorsement for 'React' or 'React.js'",
+        "maps_to": ["fe_frameworks.react_core"],
+        "strength_modifier": 0.33
+      },
+      {
+        "pattern": "LinkedIn skills endorsement for 'TypeScript'",
+        "maps_to": ["fe_typescript.type_basics"],
+        "strength_modifier": 0.33
+      },
+      {
+        "pattern": "LinkedIn skills endorsement for 'CSS' or 'Sass'",
+        "maps_to": ["fe_css.selectors_specificity"],
+        "strength_modifier": 0.33
+      },
+      {
+        "pattern": "Job experience explicitly describing React/Vue/Angular SPA development",
+        "maps_to": ["fe_frameworks.react_core", "fe_frameworks.component_architecture", "fe_frameworks.routing"],
+        "strength_modifier": 1.0
+      },
+      {
+        "pattern": "Job experience describing Next.js or Nuxt SSR applications",
+        "maps_to": ["fe_meta_frameworks_ssr.nextjs", "fe_meta_frameworks_ssr.nuxt", "fe_meta_frameworks_ssr.ssr_concepts"],
+        "strength_modifier": 1.0
+      },
+      {
+        "pattern": "Job experience describing accessibility compliance or WCAG audits",
+        "maps_to": ["fe_web_fundamentals.web_accessibility", "fe_testing.accessibility_testing"],
+        "strength_modifier": 1.0
+      },
+      {
+        "pattern": "Job experience describing performance optimization with metrics",
+        "maps_to": ["fe_web_security_performance.core_web_vitals", "fe_web_security_performance.bundle_optimization"],
+        "strength_modifier": 1.0
+      },
+      {
+        "pattern": "Job experience describing design system or component library development",
+        "maps_to": ["fe_frameworks.component_design_patterns", "fe_css.css_architecture"],
+        "strength_modifier": 1.0
+      },
+      {
+        "pattern": "Technical article about frontend architecture or framework internals",
+        "maps_to": ["fe_frameworks.virtual_dom", "fe_frameworks.performance_patterns"],
+        "strength_modifier": 0.8
+      },
+      {
+        "pattern": "Endorsement for 'Web Performance' or 'Core Web Vitals'",
+        "maps_to": ["fe_web_security_performance.core_web_vitals"],
+        "strength_modifier": 0.33
+      },
+      {
+        "pattern": "Endorsement for 'Jest' or 'Testing'",
+        "maps_to": ["fe_testing.unit_testing"],
+        "strength_modifier": 0.33
+      }
+    ]
+  },
+  "important_notes": [
+    "ALL extracted signals MUST be mapped to COMPOSITE KEYS ({skill_id}.{subskill_id})",
+    "LinkedIn data supplements but should not override GitHub or assessment evidence",
+    "Endorsements have near-zero evidential value on their own",
+    "Job titles can be inflated — 'Senior Frontend Architect' at a 3-person startup differs from the same title at a FAANG",
+    "Career trajectory (progression from junior to mid to senior frontend roles) provides useful context",
+    "Look for technical content creation (posts, articles) about frontend topics as evidence of deep understanding",
+    "Framework-specific job titles ('React Developer') are stronger signals than generic ones ('Web Developer')"
+  ]
+}

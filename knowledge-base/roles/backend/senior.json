@@ -1,0 +1,85 @@
+{
+  "role_id": "backend_developer",
+  "level": "senior",
+  "title": "Senior Backend Developer",
+  "description": "Senior backend engineer and distributed systems architect responsible for high-throughput scalability, sharding and replication topologies, CQRS/Event Sourcing data pipelines, distributed transaction consistency (Sagas), mTLS zero-trust communication, continuous profiling, and disaster recovery.",
+  "experience_range": "5+ years",
+  "skills": [
+    {
+      "skill_id": "be_scalability_resilience",
+      "importance": 0.95,
+      "rationale": "Architecting load shedding, graceful degradation, calculating RPO/RTO for multi-region disaster recovery, and managing distributed locks."
+    },
+    {
+      "skill_id": "be_architecture_patterns",
+      "importance": 0.95,
+      "rationale": "Architecting CQRS read/write models, Event Sourcing append-only event stores, and Service Mesh mTLS routing."
+    },
+    {
+      "skill_id": "be_databases",
+      "importance": 0.9,
+      "rationale": "Designing sharded and horizontally partitioned tables, replication failover architectures, and distributed transaction Sagas."
+    },
+    {
+      "skill_id": "be_caching_messaging",
+      "importance": 0.9,
+      "rationale": "Architecting idempotent consumers, multi-node Redis Clusters with Sentinel, and stream backpressure flow control."
+    },
+    {
+      "skill_id": "be_observability",
+      "importance": 0.9,
+      "rationale": "Instrumenting SLI/SLO error budget telemetry, conducting continuous production profiling with Pyroscope Flamegraphs, and correlating traces with logs."
+    },
+    {
+      "skill_id": "be_auth_security",
+      "importance": 0.85,
+      "rationale": "Architecting mTLS zero-trust service identity, engineering application-layer DDoS/brute-force defense, and building tamper-evident audit logs."
+    },
+    {
+      "skill_id": "be_api_design",
+      "importance": 0.85,
+      "rationale": "Designing distributed rate limiting algorithms, Backend-for-Frontend (BFF) gateways, and reliable webhook dispatching systems with HMAC signatures."
+    },
+    {
+      "skill_id": "be_testing_quality",
+      "importance": 0.8,
+      "rationale": "Enforcing mutation testing quality metrics, architecting deterministic test data factories, and running chaos engineering fault injections."
+    }
+  ],
+  "scoring": {
+    "method": "weighted_average",
+    "description": "Each skill score is multiplied by its importance weight. Final score is sum divided by sum of weights.",
+    "thresholds": {
+      "not_ready": {
+        "min": 0.0,
+        "max": 0.3,
+        "label": "Not Ready",
+        "description": "Significant gaps in distributed systems design, data consistency, or high-scale resilience."
+      },
+      "developing": {
+        "min": 0.3,
+        "max": 0.5,
+        "label": "Developing",
+        "description": "Solid mid-level backend implementation, but lacks experience in distributed transaction Sagas, sharding, and multi-region disaster recovery."
+      },
+      "approaching": {
+        "min": 0.5,
+        "max": 0.7,
+        "label": "Approaching Ready",
+        "description": "Strong technical capabilities across most areas; refining expertise in CQRS, stream backpressure, and chaos testing."
+      },
+      "ready": {
+        "min": 0.7,
+        "max": 0.85,
+        "label": "Ready",
+        "description": "Meets all senior expectations: designs high-throughput distributed systems, guarantees data consistency, mentors teams, and enforces resilience standards."
+      },
+      "exceeds": {
+        "min": 0.85,
+        "max": 1.0,
+        "label": "Exceeds Expectations",
+        "description": "Exceeds senior expectations: staff/principal level impact across core backend platforms and enterprise distributed systems architecture."
+      }
+    }
+  }
+}

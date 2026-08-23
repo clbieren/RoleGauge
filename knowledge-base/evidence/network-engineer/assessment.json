@@ -734,7 +734,9 @@
         "expected_answer_keywords": [
           "ip name-server",
           "ip domain-lookup",
-          "DNS resolution"
+          "DNS resolution",
+          "port 53 UDP/TCP",
+          "name server IP"
         ]
       }
     ],

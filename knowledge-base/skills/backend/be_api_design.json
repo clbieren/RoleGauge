@@ -1,0 +1,169 @@
+{
+  "skill_id": "be_api_design",
+  "name": "API Design & Protocols",
+  "category": "backend_core",
+  "description": "Designing and building robust, scalable backend APIs across multiple protocols (REST, GraphQL, gRPC), including contract specification (OpenAPI), payload validation, standardized error handling, pagination, versioning lifecycles, rate limiting, and API gateways.",
+  "subskills": [
+    {
+      "id": "restful_principles",
+      "name": "RESTful Principles & Semantics",
+      "description": "Resource-oriented URL design, correct HTTP methods (GET, POST, PUT, PATCH, DELETE), status code semantics, and idempotency.",
+      "keywords": ["REST", "HTTP methods", "idempotency", "201 Created", "204 No Content", "422 Unprocessable", "resource naming"]
+    },
+    {
+      "id": "request_validation_error_handling",
+      "name": "Request Validation & Error Schemas",
+      "description": "Incoming DTO/payload validation (Zod, Joi, class-validator, Pydantic), RFC 7807 Problem Details for HTTP APIs, and centralized error middleware.",
+      "keywords": ["RFC 7807", "Problem Details", "DTO validation", "Zod", "Pydantic", "class-validator", "error middleware"]
+    },
+    {
+      "id": "api_pagination_filtering",
+      "name": "API Pagination & Filtering",
+      "description": "Offset vs cursor-based pagination (keyset), sorting parameters, query filtering specifications, and payload metadata.",
+      "keywords": ["cursor pagination", "keyset pagination", "offset limit", "sorting", "filtering", "totalCount", "next_cursor"]
+    },
+    {
+      "id": "graphql_apis",
+      "name": "GraphQL APIs",
+      "description": "Schema Definition Language (SDL), query and mutation resolvers, subscriptions over WebSockets, schema stitching, and DataLoader for N+1 batching.",
+      "keywords": ["GraphQL", "SDL", "resolvers", "DataLoader", "mutations", "subscriptions", "Apollo Server", "schema stitching"]
+    },
+    {
+      "id": "grpc_protobuf",
+      "name": "gRPC & Protocol Buffers",
+      "description": "Protocol Buffers (.proto) service definitions, unary vs streaming RPCs (client, server, bidirectional), and HTTP/2 transport benefits.",
+      "keywords": ["gRPC", "Protocol Buffers", ".proto", "unary RPC", "server streaming", "bidirectional streaming", "binary serialization"]
+    },
+    {
+      "id": "api_versioning",
+      "name": "API Versioning & Deprecation",
+      "description": "URI path versioning (/v1), header-based versioning (Accept header), query param versioning, backward compatibility, and deprecation headers.",
+      "keywords": ["API versioning", "Sunset header", "deprecation lifecycle", "backward compatibility", "Accept header", "URI path versioning"]
+    },
+    {
+      "id": "openapi_documentation",
+      "name": "OpenAPI / Swagger Contracts",
+      "description": "OpenAPI 3.0/3.1 contract authoring, Swagger UI generation, contract-first development, and mock server generation from specs.",
+      "keywords": ["OpenAPI 3.0", "Swagger", "contract-first", "openapi.yaml", "swagger-ui", "API contract", "code generation"]
+    },
+    {
+      "id": "rate_limiting_throttling",
+      "name": "Rate Limiting & Throttling",
+      "description": "Token bucket, leaky bucket, and sliding window rate limiting algorithms, Redis distributed rate limiters, and 429 Too Many Requests headers.",
+      "keywords": ["Rate limiting", "Token Bucket", "Leaky Bucket", "Sliding Window", "Redis rate limiter", "429 Too Many Requests", "Retry-After"]
+    },
+    {
+      "id": "api_gateway_routing",
+      "name": "API Gateway & BFF Pattern",
+      "description": "Reverse proxy routing, request aggregation, payload transformation, Backend-for-Frontend (BFF) architecture, Kong, Envoy, and AWS API Gateway.",
+      "keywords": ["API Gateway", "BFF pattern", "Backend for Frontend", "reverse proxy", "request aggregation", "Kong", "Envoy"]
+    },
+    {
+      "id": "event_driven_apis_webhooks",
+      "name": "Webhooks & Async APIs",
+      "description": "Outbound webhook dispatching, HMAC-SHA256 signature verification, exponential retry backoff, and dead-letter queue processing for failed deliveries.",
+      "keywords": ["Webhooks", "HMAC signature", "webhook verification", "retry backoff", "dead-letter queue", "AsyncAPI"]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "OpenAPI / Swagger specifications",
+        "detection": "file_presence",
+        "pattern": "openapi\\.ya?ml|swagger\\.ya?ml|openapi\\.json|swagger\\.json",
+        "strength": 0.8,
+        "maps_to": ["be_api_design.openapi_documentation", "be_api_design.restful_principles"]
+      },
+      {
+        "signal": "Protocol Buffers (.proto) definition files",
+        "detection": "file_presence",
+        "pattern": "\\.proto$",
+        "strength": 0.9,
+        "maps_to": ["be_api_design.grpc_protobuf"]
+      },
+      {
+        "signal": "GraphQL schema definitions or resolvers",
+        "detection": "file_presence",
+        "pattern": "schema\\.graphql|resolvers/|@Query|@Mutation|buildSchema",
+        "strength": 0.8,
+        "maps_to": ["be_api_design.graphql_apis"]
+      },
+      {
+        "signal": "Request validation schema definitions (Zod, Joi, Pydantic)",
+        "detection": "content_analysis",
+        "pattern": "z\\.object\\(|BaseModel|Joi\\.object|class-validator|validateRequest",
+        "strength": 0.7,
+        "maps_to": ["be_api_design.request_validation_error_handling"]
+      },
+      {
+        "signal": "Rate limiting middleware or algorithm implementation",
+        "detection": "content_analysis",
+        "pattern": "rateLimit|express-rate-limit|token_bucket|sliding_window|RateLimiterRedis",
+        "strength": 0.8,
+        "maps_to": ["be_api_design.rate_limiting_throttling"]
+      },
+      {
+        "signal": "Cursor pagination or filtering query logic",
+        "detection": "content_analysis",
+        "pattern": "next_cursor|afterCursor|encodeCursor|offset\\s*=\\s*|page_size",
+        "strength": 0.7,
+        "maps_to": ["be_api_design.api_pagination_filtering"]
+      },
+      {
+        "signal": "Webhook verification or HMAC signing",
+        "detection": "content_analysis",
+        "pattern": "crypto\\.createHmac|hmac\\.new|X-Hub-Signature|webhookSecret",
+        "strength": 0.8,
+        "maps_to": ["be_api_design.event_driven_apis_webhooks", "be_api_design.api_versioning"]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "RESTful API or GraphQL API architecture and implementation",
+        "strength": 0.7,
+        "maps_to": ["be_api_design.restful_principles", "be_api_design.graphql_apis", "be_api_design.request_validation_error_handling"]
+      },
+      {
+        "signal": "gRPC or microservices IPC design",
+        "strength": 0.8,
+        "maps_to": ["be_api_design.grpc_protobuf", "be_api_design.api_gateway_routing"]
+      },
+      {
+        "signal": "API Gateway, rate limiting, or webhook system architecture",
+        "strength": 0.8,
+        "maps_to": ["be_api_design.rate_limiting_throttling", "be_api_design.api_gateway_routing", "be_api_design.event_driven_apis_webhooks"]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "REST APIs, GraphQL, or API Design endorsed",
+        "strength": 0.5,
+        "maps_to": ["be_api_design.restful_principles", "be_api_design.graphql_apis", "be_api_design.openapi_documentation"]
+      },
+      {
+        "signal": "gRPC, Protocol Buffers, or Microservices APIs endorsed",
+        "strength": 0.5,
+        "maps_to": ["be_api_design.grpc_protobuf", "be_api_design.api_gateway_routing"]
+      },
+      {
+        "signal": "Rate limiting, Webhooks, or API Versioning mentioned",
+        "strength": 0.5,
+        "maps_to": ["be_api_design.rate_limiting_throttling", "be_api_design.event_driven_apis_webhooks", "be_api_design.api_versioning", "be_api_design.api_pagination_filtering"]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": ["restful_principles", "request_validation_error_handling", "api_pagination_filtering", "openapi_documentation"],
+      "description": "Designs RESTful endpoints with proper status codes, implements DTO validation, paginates queries, and writes OpenAPI documentation."
+    },
+    "mid": {
+      "expected_subskills": ["graphql_apis", "grpc_protobuf", "api_versioning"],
+      "description": "Builds GraphQL schemas with DataLoader, defines gRPC Protobuf services, and manages API versioning lifecycles."
+    },
+    "senior": {
+      "expected_subskills": ["rate_limiting_throttling", "api_gateway_routing", "event_driven_apis_webhooks"],
+      "description": "Architects API Gateways (BFF pattern), designs distributed rate limiters, and builds reliable webhook dispatching systems with signature verification."
+    }
+  }
+}

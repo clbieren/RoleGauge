@@ -1,0 +1,90 @@
+{
+  "role_id": "frontend_developer",
+  "level": "junior",
+  "title": "Junior Frontend Developer",
+  "description": "Entry-level frontend position focused on core web fundamentals, CSS styling, foundational JavaScript, basic TypeScript, and initial framework component development.",
+  "experience_range": "0-2 years",
+  "skills": [
+    {
+      "skill_id": "fe_web_fundamentals",
+      "importance": 0.95,
+      "rationale": "Essential knowledge of HTML semantics, DOM manipulation, forms, and responsive design is critical for any junior engineer."
+    },
+    {
+      "skill_id": "fe_css",
+      "importance": 0.95,
+      "rationale": "Strong grasp of the box model, Flexbox layout, CSS selectors, and basic positioning is required to build reliable UI layouts."
+    },
+    {
+      "skill_id": "fe_javascript",
+      "importance": 0.9,
+      "rationale": "Solid understanding of JS variables, scoping, functions, array/object manipulation, and DOM events."
+    },
+    {
+      "skill_id": "fe_frameworks",
+      "importance": 0.8,
+      "rationale": "Ability to create standard components in React or Vue, handle props, state, and client-side routing."
+    },
+    {
+      "skill_id": "fe_tooling_build",
+      "importance": 0.75,
+      "rationale": "Familiarity with package managers (npm/yarn/pnpm), linters/formatters, git workflows, and dev servers."
+    },
+    {
+      "skill_id": "fe_typescript",
+      "importance": 0.65,
+      "rationale": "Basic TypeScript types, interface definitions, and working in strict mode."
+    },
+    {
+      "skill_id": "fe_testing",
+      "importance": 0.6,
+      "rationale": "Writing basic unit tests and component tests following AAA patterns."
+    },
+    {
+      "skill_id": "fe_meta_frameworks_ssr",
+      "importance": 0.55,
+      "rationale": "Basic page creation and static generation in Next.js or Nuxt."
+    },
+    {
+      "skill_id": "fe_web_security_performance",
+      "importance": 0.5,
+      "rationale": "Awareness of XSS prevention, CORS errors, and Core Web Vitals metrics."
+    }
+  ],
+  "scoring": {
+    "method": "weighted_average",
+    "description": "Each skill score is multiplied by its importance weight. Final score is sum divided by sum of weights.",
+    "thresholds": {
+      "not_ready": {
+        "min": 0.0,
+        "max": 0.3,
+        "label": "Not Ready",
+        "description": "Significant gaps in web foundations and core frontend skills."
+      },
+      "developing": {
+        "min": 0.3,
+        "max": 0.5,
+        "label": "Developing",
+        "description": "Basic HTML/CSS understanding, but needs guidance on JavaScript logic and framework development."
+      },
+      "approaching": {
+        "min": 0.5,
+        "max": 0.7,
+        "label": "Approaching Ready",
+        "description": "Solid core web fundamentals and component creation, working towards independent task delivery."
+      },
+      "ready": {
+        "min": 0.7,
+        "max": 0.85,
+        "label": "Ready",
+        "description": "Meets all junior expectations: builds clean, accessible, responsive components with proper typing and tests."
+      },
+      "exceeds": {
+        "min": 0.85,
+        "max": 1.0,
+        "label": "Exceeds Expectations",
+        "description": "Exceeds junior expectations with early mid-level proficiency in state management and testing."
+      }
+    }
+  }
+}

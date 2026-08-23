@@ -1,0 +1,953 @@
+{
+  "source_id": "assessment",
+  "name": "Adaptive Technical Assessment - QA Engineer",
+  "description": "Adaptive technical questions and practical tasks to verify QA engineering and test automation competencies across manual testing, test design, web fundamentals, UI automation, API automation, non-functional testing, and quality governance.",
+  "trigger_conditions": {
+    "description": "When to trigger assessment questions for a subskill.",
+    "rules": [
+      "When a subskill has status 'not_yet_evidenced' (confidence = 0.0) for a required role skill",
+      "When a subskill has status 'insufficient_evidence' and confidence < 0.4",
+      "When CV/LinkedIn claims a skill but GitHub has no supporting evidence (not_yet_evidenced on GitHub)",
+      "When a skill is critical for the target role (importance >= 0.80) and evidence is ambiguous",
+      "User can also voluntarily request assessment to improve their score"
+    ]
+  },
+  "question_types": [
+    {
+      "type": "conceptual",
+      "description": "Short-answer or multiple-choice questions testing theoretical QA principles and test design.",
+      "strength": 0.6
+    },
+    {
+      "type": "scenario",
+      "description": "Scenario-based troubleshooting, test strategy architecture, and root cause analysis.",
+      "strength": 0.8
+    },
+    {
+      "type": "practical_task",
+      "description": "Hands-on test automation coding (Playwright, Cypress, REST Assured, k6, JMeter).",
+      "strength": 1.0
+    }
+  ],
+  "adaptive_logic": {
+    "description": "How the system selects and adapts questions based on user evidence.",
+    "rules": [
+      "Start with a conceptual question for the target subskill",
+      "If answered correctly, escalate to a scenario or practical automation task",
+      "If answered incorrectly, mark as verified_gap and recommend learning resources",
+      "Difficulty matches the target level (junior, mid, senior)",
+      "Questions target specific composite keys ({skill_id}.{subskill_id})"
+    ]
+  },
+  "sample_questions_by_composite_key": {
+    "qa_fundamentals_methodology.qa_mindset_principles": [
+      {
+        "level": "junior",
+        "type": "conceptual",
+        "question": "Explain the principle 'Exhaustive testing is impossible' and what criteria a QA engineer uses to decide when to stop testing.",
+        "expected_answer_keywords": [
+          "exhaustive testing impossible",
+          "risk analysis",
+          "test exit criteria",
+          "cost of quality",
+          "prioritization based on likelihood and impact"
+        ]
+      }
+    ],
+    "qa_fundamentals_methodology.test_levels_types": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "A team wants to replace all system integration testing with unit tests to speed up deployment. What classes of defects would escape to production with this approach?",
+        "expected_answer_keywords": [
+          "integration failure",
+          "network protocol mismatches",
+          "data serialization errors",
+          "third-party API timeouts",
+          "system-level concurrency issues"
+        ]
+      }
+    ],
+    "qa_fundamentals_methodology.sdlc_stlc_models": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "Explain the concept of 'Shift-Left Testing' in an Agile sprint. What concrete activities does a QA engineer perform during story refinement before developers write any code?",
+        "expected_answer_keywords": [
+          "Shift-Left testing",
+          "Three Amigos",
+          "clarifying acceptance criteria",
+          "identifying edge cases early",
+          "preventing requirements ambiguity"
+        ]
+      }
+    ],
+    "qa_fundamentals_methodology.test_planning_estimation": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "You are assigned to create a Test Plan for a new payment gateway integration. Outline the key sections you must define, including entry, suspension, and exit criteria.",
+        "expected_answer_keywords": [
+          "test scope and objectives",
+          "entry criteria",
+          "exit criteria",
+          "suspension and resumption criteria",
+          "test environment requirements",
+          "risk mitigation"
+        ]
+      }
+    ],
+    "qa_fundamentals_methodology.test_design_techniques": [
+      {
+        "level": "mid",
+        "type": "practical_task",
+        "question": "A credit scoring field accepts integers from 300 to 850 inclusive. Using 3-point Boundary Value Analysis (BVA) and Equivalence Partitioning (EP), design the exact test input values.",
+        "expected_answer_keywords": [
+          "valid partition 300-850",
+          "invalid below 299",
+          "invalid above 851",
+          "boundary values 299, 300, 301",
+          "boundary values 849, 850, 851",
+          "non-integer inputs"
+        ]
+      }
+    ],
+    "qa_fundamentals_methodology.test_oracles_heuristics": [
+      {
+        "level": "mid",
+        "type": "conceptual",
+        "question": "Describe the 'FEW HICCUPS' heuristic framework for identifying test oracles. How does a QA engineer determine expected behavior when formal documentation is outdated or missing?",
+        "expected_answer_keywords": [
+          "FEW HICCUPS",
+          "consistency heuristics",
+          "history / past versions",
+          "comparable products",
+          "user expectations",
+          "explicit product purpose"
+        ]
+      }
+    ],
+    "qa_fundamentals_methodology.risk_based_testing": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "With only 2 days left before release and 200 regression test cases remaining, how do you perform a Risk-Based Testing (RBT) assessment to select which 30 tests to execute?",
+        "expected_answer_keywords": [
+          "risk matrix",
+          "failure impact vs likelihood",
+          "critical revenue paths",
+          "code churn / recently modified areas",
+          "historical defect density"
+        ]
+      }
+    ],
+    "qa_fundamentals_methodology.quality_metrics_governance": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "How is Defect Removal Efficiency (DRE) calculated, and how would you use DRE together with Defect Escape Rate to diagnose whether testing gaps are happening in development, QA, or UAT?",
+        "expected_answer_keywords": [
+          "DRE formula (internal defects / total defects)",
+          "Defect Escape Rate",
+          "escaped production defects",
+          "phase containment metrics",
+          "root cause analysis (RCA)"
+        ]
+      }
+    ],
+    "qa_fundamentals_methodology.exploratory_session_management": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "Explain how to structure Session-Based Test Management (SBTM). How do you author a test charter, timebox execution, and conduct debriefing sessions with stakeholders?",
+        "expected_answer_keywords": [
+          "test charter (Explore / With / To Discover)",
+          "timeboxed session (60-90 min)",
+          "TBS metrics (Test, Bug, Setup time)",
+          "session notes and mind maps",
+          "stakeholder debrief"
+        ]
+      }
+    ],
+    "qa_manual_testing.test_case_authoring": [
+      {
+        "level": "junior",
+        "type": "practical_task",
+        "question": "Write a formal test case for an e-commerce checkout flow with a 20% discount coupon, specifying Title, Preconditions, Test Steps, Test Data, and Expected Results.",
+        "expected_answer_keywords": [
+          "preconditions (user logged in, items in cart)",
+          "step-by-step actions",
+          "test data (valid coupon code)",
+          "expected price calculation",
+          "postconditions (order stored, coupon marked used)"
+        ]
+      }
+    ],
+    "qa_manual_testing.bug_reporting_lifecycle": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "A developer marks your bug report as 'Works on My Machine'. What detailed technical information and reproduction artifacts should you provide to resolve the dispute?",
+        "expected_answer_keywords": [
+          "exact environment details (OS, browser build, viewport)",
+          "console error logs and HAR file",
+          "isolated test data / user ID",
+          "deterministic step-by-step reproduction",
+          "video / screen recording"
+        ]
+      }
+    ],
+    "qa_manual_testing.smoke_sanity_testing": [
+      {
+        "level": "junior",
+        "type": "conceptual",
+        "question": "What is the critical distinction between Smoke Testing and Sanity Testing regarding their timing, scope, and objectives in the deployment lifecycle?",
+        "expected_answer_keywords": [
+          "smoke testing verifies build stability",
+          "broad and shallow scope",
+          "sanity testing verifies bug fixes / hotfixes",
+          "narrow and deep scope",
+          "build acceptance gate"
+        ]
+      }
+    ],
+    "qa_manual_testing.regression_testing_strategy": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "A team refactored the database layer for user authentication. Describe how you perform an impact analysis to select a targeted regression test suite rather than running all tests.",
+        "expected_answer_keywords": [
+          "code change impact analysis",
+          "identifying downstream dependent modules",
+          "session management and token validation",
+          "core user journey testing",
+          "historical bug hotspot analysis"
+        ]
+      }
+    ],
+    "qa_manual_testing.exploratory_testing_execution": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "Apply James Whittaker's 'Supermodel Tour' or 'Landmark Tour' exploratory testing heuristics to test a complex multi-step financial loan application wizard.",
+        "expected_answer_keywords": [
+          "tour testing heuristic",
+          "boundary navigation",
+          "browser back/forward button stress",
+          "interrupted session recovery",
+          "unexpected input combinations"
+        ]
+      }
+    ],
+    "qa_manual_testing.cross_browser_compatibility": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "A CSS grid layout and date picker work flawlessly on Chrome but break on iOS Safari. What browser engine differences cause this, and how do you document the compatibility matrix?",
+        "expected_answer_keywords": [
+          "WebKit vs Blink rendering engine",
+          "iOS Safari specific date-input handling",
+          "CSS prefixing and flex/grid support",
+          "viewport zoom behavior on iOS",
+          "compatibility testing matrix"
+        ]
+      }
+    ],
+    "qa_manual_testing.user_acceptance_testing_uat": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "How do you organize and facilitate User Acceptance Testing (UAT) with non-technical business stakeholders to ensure objective sign-off before production deployment?",
+        "expected_answer_keywords": [
+          "business scenario acceptance criteria",
+          "UAT test environment preparation",
+          "anonymized production-like data",
+          "stakeholder feedback triage",
+          "formal go/no-go sign-off"
+        ]
+      }
+    ],
+    "qa_manual_testing.localization_internationalization_testing": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "When testing a software application localized for German (long strings), Arabic (RTL), and Japanese (multi-byte characters), what specific UI and functional defects do you look for?",
+        "expected_answer_keywords": [
+          "RTL (Right-to-Left) layout mirroring",
+          "string truncation and text overflow",
+          "UTF-8 multi-byte encoding issues",
+          "currency and date/time formatting (locale-aware)",
+          "pluralization rules"
+        ]
+      }
+    ],
+    "qa_manual_testing.usability_heuristic_evaluation": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "Conduct a heuristic evaluation of a checkout form using Jakob Nielsen’s 10 usability heuristics. Identify 3 potential violations related to error prevention and recovery.",
+        "expected_answer_keywords": [
+          "error prevention (inline validation)",
+          "help users recognize, diagnose, and recover from errors",
+          "visibility of system status (loading indicators)",
+          "recognition rather than recall",
+          "clear user feedback"
+        ]
+      }
+    ],
+    "qa_web_fundamentals_for_qa.html_dom_inspection": [
+      {
+        "level": "junior",
+        "type": "conceptual",
+        "question": "Explain how modern web frameworks use Shadow DOM and how Shadow DOM encapsulation affects locating elements during test automation.",
+        "expected_answer_keywords": [
+          "Shadow DOM encapsulation",
+          "open vs closed shadow root",
+          "shadow piercing selectors",
+          "DOM tree boundary",
+          "Playwright auto shadow piercing"
+        ]
+      }
+    ],
+    "qa_web_fundamentals_for_qa.css_xpath_selectors": [
+      {
+        "level": "junior",
+        "type": "practical_task",
+        "question": "Write a robust, resilient XPath and CSS selector to locate a 'Delete' button located inside a table row `<tr>` that contains the text 'Order #1042'.",
+        "expected_answer_keywords": [
+          "//tr[contains(., 'Order #1042')]//button[contains(text(), 'Delete')]",
+          "XPath ancestor/parent axis",
+          "avoiding absolute index paths (/div[3]/table/tr[2])",
+          "CSS :has() pseudo-class",
+          "relative locator strategy"
+        ]
+      }
+    ],
+    "qa_web_fundamentals_for_qa.browser_devtools_debugging": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "A web button click does nothing and displays no visual error. Walk through your step-by-step debugging workflow in Chrome DevTools to uncover the issue.",
+        "expected_answer_keywords": [
+          "Console tab for Uncaught TypeError",
+          "Elements tab event listeners inspection",
+          "DOM breakpoint on attribute modification",
+          "Network tab for pending/failed XHR request",
+          "z-index click interception check"
+        ]
+      }
+    ],
+    "qa_web_fundamentals_for_qa.http_network_inspection": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "A frontend form submission fails silently. Inspecting the Network tab reveals an HTTP 422 Unprocessable Entity. How do you analyze the request payload and headers to pinpoint the validation error?",
+        "expected_answer_keywords": [
+          "HTTP 422 status code",
+          "Request payload (JSON body inspection)",
+          "Content-Type: application/json header",
+          "Response preview showing field validation errors",
+          "CORS preflight (OPTIONS) check"
+        ]
+      }
+    ],
+    "qa_web_fundamentals_for_qa.client_side_storage_inspection": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "How do you test user logout security by inspecting LocalStorage, SessionStorage, and HttpOnly Cookies in the DevTools Application tab?",
+        "expected_answer_keywords": [
+          "clearing JWT / auth tokens from LocalStorage",
+          "HttpOnly cookie expiration / deletion",
+          "SessionStorage reset",
+          "verifying unauthorized back-button navigation",
+          "cross-tab synchronization"
+        ]
+      }
+    ],
+    "qa_web_fundamentals_for_qa.rendering_architectures_qa": [
+      {
+        "level": "mid",
+        "type": "conceptual",
+        "question": "How does Server-Side Rendering (SSR) with client-side hydration (Next.js/Nuxt) cause 'element is not clickable at point' test flakiness if an automation script clicks before hydration completes?",
+        "expected_answer_keywords": [
+          "SSR HTML rendered before JS bundle executes",
+          "hydration delay",
+          "event listener attachment",
+          "clickable DOM element but no JS listener active",
+          "waiting for interactive state"
+        ]
+      }
+    ],
+    "qa_web_fundamentals_for_qa.responsive_viewport_testing": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "Explain how to automate responsive viewport testing across standard mobile (375x667), tablet (768x1024), and desktop (1920x1080) resolutions to detect hamburger menu and layout break issues.",
+        "expected_answer_keywords": [
+          "setViewportSize",
+          "mobile breakpoint validation",
+          "hamburger navigation toggle",
+          "touch vs pointer events emulation",
+          "media query thresholds"
+        ]
+      }
+    ],
+    "qa_web_fundamentals_for_qa.web_performance_profiling_qa": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "A new release causes Largest Contentful Paint (LCP) to degrade from 1.8s to 4.2s. How do you use the DevTools Performance tab and Lighthouse to identify whether the regression is due to unoptimized hero images, render-blocking scripts, or slow API responses?",
+        "expected_answer_keywords": [
+          "Largest Contentful Paint (LCP)",
+          "render-blocking JavaScript/CSS",
+          "Time to First Byte (TTFB)",
+          "Performance tab Flamechart",
+          "image optimization / preloading"
+        ]
+      }
+    ],
+    "qa_web_fundamentals_for_qa.websocket_sse_event_inspection": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "How do you test and validate a real-time trading ticker that uses WebSockets? How do you inspect incoming/outgoing frames and simulate unexpected connection drops in DevTools?",
+        "expected_answer_keywords": [
+          "WebSocket frames in Network tab (WS filter)",
+          "binary vs text opcode frames",
+          "heartbeat / ping-pong frames",
+          "simulating offline / reconnect behavior",
+          "verifying UI recovery without page reload"
+        ]
+      }
+    ],
+    "qa_frontend_automation.cypress_basics": [
+      {
+        "level": "junior",
+        "type": "practical_task",
+        "question": "Write a Cypress test that visits '/login', fills in the username and password fields, clicks 'Sign In', and asserts that the URL changes to '/dashboard' with a welcome banner containing the user's name.",
+        "expected_answer_keywords": [
+          "cy.visit('/login')",
+          "cy.get('input[name=username]').type()",
+          "cy.get('button[type=submit]').click()",
+          "cy.url().should('include', '/dashboard')",
+          "cy.get('.welcome-banner').should('contain', 'John')"
+        ]
+      }
+    ],
+    "qa_frontend_automation.playwright_basics": [
+      {
+        "level": "junior",
+        "type": "practical_task",
+        "question": "Write a Playwright test in TypeScript that navigates to an e-commerce page, adds an item to the shopping cart, and asserts that the cart badge increments to '1' using built-in auto-waiting assertions.",
+        "expected_answer_keywords": [
+          "test('add item to cart', async ({ page }) =>",
+          "await page.goto()",
+          "await page.getByRole('button', { name: 'Add to Cart' }).click()",
+          "await expect(page.locator('.cart-badge')).toHaveText('1')",
+          "auto-waiting mechanism"
+        ]
+      }
+    ],
+    "qa_frontend_automation.locator_strategies_best_practices": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "Explain why user-centric locators (getByRole, getByLabel, getByTestId) are preferred over CSS selectors like `.btn.btn-primary.submit-v2` or complex XPath expressions in modern test automation.",
+        "expected_answer_keywords": [
+          "resilience against CSS refactoring",
+          "reflects actual user accessibility experience",
+          "semantic HTML validation",
+          "reduced test maintenance cost",
+          "avoids tight coupling to implementation details"
+        ]
+      }
+    ],
+    "qa_frontend_automation.page_object_model_pom": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "Refactor a monolithic 500-line test script into the Page Object Model (POM) pattern in TypeScript. Show how you separate page locators and page actions from test assertions.",
+        "expected_answer_keywords": [
+          "class LoginPage { readonly page: Page; }",
+          "encapsulated locator getters",
+          "reusable action methods (login(user, pass))",
+          "keeping assertions inside test files, not POM",
+          "maintainability and DRY principle"
+        ]
+      }
+    ],
+    "qa_frontend_automation.handling_async_waits_flakiness": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "Your automation suite suffers from flakiness due to hardcoded `cy.wait(5000)` and `page.waitForTimeout()`. How do you refactor these into deterministic event-driven waits (waiting for network responses or element state)?",
+        "expected_answer_keywords": [
+          "eliminating hardcoded sleep/wait timeouts",
+          "cy.intercept with cy.wait('@apiCall')",
+          "page.waitForResponse()",
+          "expect(locator).toBeVisible() with auto-retry",
+          "state-driven assertions"
+        ]
+      }
+    ],
+    "qa_frontend_automation.mocking_network_interception": [
+      {
+        "level": "mid",
+        "type": "practical_task",
+        "question": "Write a Playwright test that intercepts a `/api/v1/user/profile` GET request using `page.route()` to return a simulated HTTP 500 Internal Server Error, and verify that the UI renders an error alert banner gracefully.",
+        "expected_answer_keywords": [
+          "await page.route('**/api/v1/user/profile', route =>",
+          "route.fulfill({ status: 500, body: JSON.stringify({ error: 'Server Error' }) })",
+          "deterministic error testing without crashing backend",
+          "await expect(page.getByRole('alert')).toBeVisible()",
+          "graceful error handling assertion"
+        ]
+      }
+    ],
+    "qa_frontend_automation.cross_browser_device_automation": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "How do you configure Playwright in `playwright.config.ts` to execute automated test suites across Chromium, Firefox, WebKit (Safari engine), and Mobile Safari device emulation?",
+        "expected_answer_keywords": [
+          "projects configuration array in Playwright",
+          "use: { ...devices['iPhone 14'] }",
+          "browserName: 'firefox' / 'webkit'",
+          "headless: true in CI",
+          "cross-browser matrix execution"
+        ]
+      }
+    ],
+    "qa_frontend_automation.visual_regression_testing": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "You are setting up Visual Regression Testing with Playwright's `toHaveScreenshot()`. How do you handle dynamic content (timestamps, usernames), anti-aliasing variations across OS environments, and baseline updating?",
+        "expected_answer_keywords": [
+          "toHaveScreenshot({ maxDiffPixelRatio: 0.05 })",
+          "masking dynamic elements (mask: [page.locator('.timestamp')])",
+          "dockerized test runner for font/rendering consistency",
+          "updating visual baselines with --update-snapshots",
+          "DOM vs pixel comparison"
+        ]
+      }
+    ],
+    "qa_frontend_automation.parallel_distributed_test_execution": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "A 1000-test E2E suite takes 90 minutes to execute sequentially. Design a CI matrix workflow using Playwright sharding (`--shard=1/4`, `--shard=2/4`, etc.) and merge the resulting HTML reports into a single consolidated report.",
+        "expected_answer_keywords": [
+          "Playwright test sharding (--shard=x/y)",
+          "GitHub Actions matrix strategy",
+          "uploading blob-reports as CI artifacts",
+          "merge-reports CLI command",
+          "reducing build execution time"
+        ]
+      }
+    ],
+    "qa_frontend_automation.custom_framework_architecture": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "Design an enterprise-level test automation framework from scratch in TypeScript. Explain your directory architecture, custom fixture lifecycle, configuration management, and custom test reporter implementation.",
+        "expected_answer_keywords": [
+          "test.extend<{ customFixture: PageObject }>",
+          "centralized environment config management",
+          "custom Allure/JSON reporter implementation",
+          "data-driven test generation factories",
+          "setup/teardown global authentication state"
+        ]
+      }
+    ],
+    "qa_backend_api_automation.postman_newman_testing": [
+      {
+        "level": "junior",
+        "type": "practical_task",
+        "question": "Write a Postman JavaScript test script that verifies the HTTP response code is 201 Created, the response time is below 400ms, and stores the `access_token` from the JSON response into an environment variable.",
+        "expected_answer_keywords": [
+          "pm.response.to.have.status(201)",
+          "pm.expect(pm.response.responseTime).to.be.below(400)",
+          "const jsonData = pm.response.json()",
+          "pm.environment.set('access_token', jsonData.access_token)",
+          "Newman command line runner"
+        ]
+      }
+    ],
+    "qa_backend_api_automation.http_api_test_authoring": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "For a RESTful endpoint `PUT /api/v1/users/{id}`, design a complete set of automated API test scenarios covering positive updates, negative input validation, idempotency, and non-existent IDs.",
+        "expected_answer_keywords": [
+          "200 OK on valid full update",
+          "400 Bad Request on invalid payload format",
+          "404 Not Found on invalid user ID",
+          "401/403 on missing or invalid authentication token",
+          "idempotency verification on repeated calls"
+        ]
+      }
+    ],
+    "qa_backend_api_automation.rest_assured_framework": [
+      {
+        "level": "mid",
+        "type": "practical_task",
+        "question": "Write a Java test using REST Assured that sends a POST request with a JSON body to `/api/v1/orders`, sets the Authorization Bearer header, and validates using Hamcrest that `status` is 'SUCCESS' and `items.size()` equals 3.",
+        "expected_answer_keywords": [
+          "RestAssured.given()",
+          "header('Authorization', 'Bearer ' + token)",
+          "body(orderPayload).contentType(ContentType.JSON)",
+          "when().post('/api/v1/orders').then()",
+          "statusCode(200).body('status', equalTo('SUCCESS'))",
+          "body('items', hasSize(3))"
+        ]
+      }
+    ],
+    "qa_backend_api_automation.api_test_chaining_state": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "Design an automated integration test scenario that chains 4 API requests: 1) Register user, 2) Authenticate and extract JWT, 3) Create resource with JWT, and 4) Delete resource and verify 404 on subsequent get.",
+        "expected_answer_keywords": [
+          "request chaining",
+          "dynamic token extraction and header injection",
+          "shared test context / state holder",
+          "end-to-end API lifecycle validation",
+          "teardown cleanup"
+        ]
+      }
+    ],
+    "qa_backend_api_automation.json_xml_schema_validation": [
+      {
+        "level": "mid",
+        "type": "practical_task",
+        "question": "How do you enforce JSON Schema validation in your API automation suite against an OpenAPI JSON Schema specification to catch breaking changes like unexpected null fields or changed data types?",
+        "expected_answer_keywords": [
+          "JSON Schema validation",
+          "ajv validator or matchesJsonSchema()",
+          "required properties validation",
+          "type checking (integer vs string)",
+          "catching breaking contract changes"
+        ]
+      }
+    ],
+    "qa_backend_api_automation.graphql_grpc_api_testing": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "How does automated testing of a GraphQL API differ from a REST API? How do you test query depth limits, field alias resolution, and handle the fact that GraphQL returns HTTP 200 even when `errors` array is present?",
+        "expected_answer_keywords": [
+          "GraphQL payload with query and variables",
+          "asserting errors array is null/empty on success",
+          "HTTP 200 with errors vs REST status codes",
+          "gRPC Protobuf payload testing with grpcurl",
+          "schema mutation assertions"
+        ]
+      }
+    ],
+    "qa_backend_api_automation.mock_servers_service_virtualization": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "Your backend depends on a third-party SMS verification provider that charges per API call and is unstable in staging. How do you set up WireMock to simulate successful SMS sends, timeouts, and rate limits in CI?",
+        "expected_answer_keywords": [
+          "WireMock service virtualization",
+          "stubbing HTTP requests and responses",
+          "simulating network latency and 504 timeouts",
+          "scenario state transitions (stateful mocking)",
+          "hermetic and zero-cost CI test execution"
+        ]
+      }
+    ],
+    "qa_backend_api_automation.contract_testing_pact_qa": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "Explain how to implement Consumer-Driven Contract Testing using Pact between a React frontend team and a Go microservice team. How does the Pact Broker and `can-i-deploy` tool prevent breaking changes from reaching staging?",
+        "expected_answer_keywords": [
+          "Consumer-Driven Contract Testing",
+          "Pact file generation from consumer tests",
+          "Provider verification in CI",
+          "Pact Broker contract repository",
+          "pact-broker can-i-deploy check in release pipeline"
+        ]
+      }
+    ],
+    "qa_backend_api_automation.database_validation_in_automation": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "In an automated test for a financial transfer API, explain how you connect to the PostgreSQL database strictly as a 'test oracle' to verify account balances and ledger entries, and how you clean up test records without polluting shared databases.",
+        "expected_answer_keywords": [
+          "database as test oracle (verification only)",
+          "querying balance and ledger persistence",
+          "verifying ACID state after API call",
+          "test data cleanup (transaction rollback or synthetic IDs)",
+          "distinction vs backend database modeling"
+        ]
+      }
+    ],
+    "qa_non_functional_testing.jmeter_load_testing": [
+      {
+        "level": "junior",
+        "type": "practical_task",
+        "question": "Configure an Apache JMeter test plan with a Thread Group of 50 users, a ramp-up period of 30 seconds, a loop count of 10, an HTTP Request sampler, and a Response Assertion checking for HTTP 200.",
+        "expected_answer_keywords": [
+          "Thread Group (Number of Threads: 50)",
+          "Ramp-Up Period (30 seconds)",
+          "Loop Count (10)",
+          "HTTP Request Sampler configuration",
+          "Response Assertion (Field to Test: Response Code)"
+        ]
+      }
+    ],
+    "qa_non_functional_testing.accessibility_testing_axe_wave": [
+      {
+        "level": "junior",
+        "type": "practical_task",
+        "question": "Write a Playwright test using `@axe-core/playwright` that scans an e-commerce product page and asserts that there are zero WCAG 2.1 Level AA accessibility violations.",
+        "expected_answer_keywords": [
+          "import AxeBuilder from '@axe-core/playwright'",
+          "await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa']).analyze()",
+          "expect(accessibilityScanResults.violations).toEqual([])",
+          "WCAG 2.1 AA compliance",
+          "accessibility audit in CI"
+        ]
+      }
+    ],
+    "qa_non_functional_testing.k6_performance_as_code": [
+      {
+        "level": "mid",
+        "type": "practical_task",
+        "question": "Write a k6 load script in JavaScript that ramps up from 0 to 100 Virtual Users over 2 minutes, sends GET requests to `/api/v1/products`, and defines a threshold requiring 95% of requests to complete under 250ms with less than 1% error rate.",
+        "expected_answer_keywords": [
+          "export const options = { stages: [...], thresholds: {...} }",
+          "'http_req_duration': ['p(95)<250']",
+          "'http_req_failed': ['rate<0.01']",
+          "import http from 'k6/http'",
+          "check(res, { 'status is 200': (r) => r.status === 200 })"
+        ]
+      }
+    ],
+    "qa_non_functional_testing.performance_test_types_scenarios": [
+      {
+        "level": "mid",
+        "type": "conceptual",
+        "question": "Compare Load Testing, Stress Testing, Spike Testing, and Soak (Endurance) Testing. For each type, define the traffic pattern and the specific failure modes it aims to uncover.",
+        "expected_answer_keywords": [
+          "Load testing: expected normal traffic SLA validation",
+          "Stress testing: finding breaking point beyond capacity",
+          "Spike testing: sudden burst handling (e.g. flash sales)",
+          "Soak testing: long duration for memory leaks and resource exhaustion",
+          "traffic load curves"
+        ]
+      }
+    ],
+    "qa_non_functional_testing.server_resource_monitoring_during_load": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "During a 500 VU load test, API response times suddenly jump from 150ms to 4500ms while throughput drops. How do you correlate load test timestamps with server metrics (CPU, Memory, DB Connection Pool, Garbage Collection) to find the bottleneck?",
+        "expected_answer_keywords": [
+          "correlating timestamps between load generator and APM",
+          "CPU utilization vs I/O wait",
+          "database connection pool exhaustion (queue wait)",
+          "JVM Garbage Collection pauses (Stop-the-world)",
+          "memory leak / continuous memory climbing"
+        ]
+      }
+    ],
+    "qa_non_functional_testing.app_security_verification_owasp": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "As a QA engineer, how do you verify that an API endpoint is protected against SQL Injection, Reflected XSS, and Insecure Direct Object References (IDOR) during automated quality checks?",
+        "expected_answer_keywords": [
+          "testing SQL injection payloads in query parameters",
+          "verifying script tags are sanitized/escaped in output (XSS)",
+          "testing authorization on /api/orders/{id} with another user's token (IDOR)",
+          "OWASP Top 10 quality gate",
+          "verification vs exploitation distinction"
+        ]
+      }
+    ],
+    "qa_non_functional_testing.distributed_load_generation": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "A single load generation machine reaches 100% CPU and network socket saturation at 15,000 RPS. How do you design and orchestrate a distributed load testing cluster using k6 on Kubernetes or JMeter Master-Slave to generate 100,000 RPS?",
+        "expected_answer_keywords": [
+          "distributed load generation architecture",
+          "k6-operator on Kubernetes / JMeter master-slave",
+          "load generator socket limits (ulimit, ephemeral ports)",
+          "synchronized test start and metric aggregation",
+          "avoiding load generator bottleneck skewing results"
+        ]
+      }
+    ],
+    "qa_non_functional_testing.advanced_accessibility_screen_readers": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "Automated tools catch only ~30% of accessibility issues. Describe your manual testing workflow with screen readers (NVDA/VoiceOver) to evaluate keyboard traps, modal dialog focus trapping, and dynamic live region announcements (`aria-live`).",
+        "expected_answer_keywords": [
+          "screen reader testing (NVDA / VoiceOver)",
+          "keyboard tab navigation and focus visible",
+          "modal focus trap (tab looping inside open modal)",
+          "aria-live region announcements for dynamic updates",
+          "meaningful heading hierarchy (H1-H6)"
+        ]
+      }
+    ],
+    "qa_non_functional_testing.performance_bottleneck_rca": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "A performance test shows p99 latency spikes on a specific microservice. Walk through your Root Cause Analysis (RCA) methodology using APM distributed traces and Flamegraphs to determine whether the delay is in database locking, downstream HTTP latency, or unoptimized thread contention.",
+        "expected_answer_keywords": [
+          "Root Cause Analysis (RCA)",
+          "distributed tracing span breakdown",
+          "database query latency vs table locks",
+          "thread dump and CPU profiling Flamegraphs",
+          "actionable remediation recommendations"
+        ]
+      }
+    ],
+    "qa_test_management_reporting.testrail_zephyr_management": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "How do you organize test suites in TestRail or Zephyr to maintain a 1-to-1 traceability matrix between user stories, manual test cases, automated test results, and reported defects?",
+        "expected_answer_keywords": [
+          "Requirements Traceability Matrix (RTM)",
+          "mapping test cases to Jira user stories",
+          "test run execution tracking",
+          "automated test result synchronization via API",
+          "coverage reporting"
+        ]
+      }
+    ],
+    "qa_test_management_reporting.jira_bug_tracking_workflow": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "Describe a healthy Jira bug tracking lifecycle from 'Open' to 'Closed', including Bug Triaging, 'In Development', 'Ready for QA', 'Reopened', and 'Verified'.",
+        "expected_answer_keywords": [
+          "defect lifecycle states",
+          "bug triaging (severity and priority assignment)",
+          "verification in staging before closing",
+          "reopen criteria on failed verification",
+          "linking defect to root cause issue"
+        ]
+      }
+    ],
+    "qa_test_management_reporting.allure_reporting_rich_artifacts": [
+      {
+        "level": "junior",
+        "type": "practical_task",
+        "question": "How do you configure Allure reporting in Playwright to automatically attach screenshots, trace recordings (`trace.zip`), and failure video files only when a test fails?",
+        "expected_answer_keywords": [
+          "allure-playwright reporter setup",
+          "use: { screenshot: 'only-on-failure', trace: 'retain-on-failure', video: 'retain-on-failure' }",
+          "allure generate allure-results --clean -o allure-report",
+          "rich diagnostic artifacts for developers",
+          "automated report publishing in CI"
+        ]
+      }
+    ],
+    "qa_test_management_reporting.ci_cd_test_pipeline_integration": [
+      {
+        "level": "mid",
+        "type": "practical_task",
+        "question": "Write a GitHub Actions workflow job `.github/workflows/e2e-tests.yml` that checks out code, installs dependencies, installs Playwright browsers, executes tests, and uploads the HTML report artifact if tests fail.",
+        "expected_answer_keywords": [
+          "runs-on: ubuntu-latest",
+          "npx playwright install --with-deps",
+          "run: npx playwright test",
+          "if: always() / if: failure()",
+          "uses: actions/upload-artifact@v4"
+        ]
+      }
+    ],
+    "qa_test_management_reporting.test_environment_data_management": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "Automated test suites fail because of dirty state left by previous runs. How do you design an isolated Test Data Management strategy using database fixtures, synthetic data generators (Faker), and ephemeral test databases?",
+        "expected_answer_keywords": [
+          "ephemeral test databases / Testcontainers",
+          "synthetic data generation with Faker",
+          "database seeding before test runs",
+          "isolated tenant / user credentials per test",
+          "state reset teardown hooks"
+        ]
+      }
+    ],
+    "qa_test_management_reporting.flaky_test_quarantine_governance": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "A team has 5% flaky tests that cause CI builds to fail randomly. Design a Flaky Test Quarantine policy that isolates unstable tests without blocking developer deployments while enforcing resolution SLAs.",
+        "expected_answer_keywords": [
+          "flaky test quarantine tag (@quarantine)",
+          "running quarantined tests non-blocking in CI",
+          "tracking flakiness score / instability metric",
+          "flaky test fix SLA (e.g. 1 sprint)",
+          "root cause analysis (network vs locator vs race condition)"
+        ]
+      }
+    ],
+    "qa_test_management_reporting.quality_dashboards_kpi_tracking": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "Design an Executive QA Dashboard tracking 5 key quality engineering KPIs. Define each KPI, its target threshold, and how it measures engineering velocity and product stability.",
+        "expected_answer_keywords": [
+          "Pass Rate / First-Time Pass Rate (>95%)",
+          "Mean Time to Detect (MTTD) & Mean Time to Resolve (MTTR)",
+          "Defect Escape Rate (<5%)",
+          "Test Automation Execution Time & ROI",
+          "Code / Feature Coverage Matrix"
+        ]
+      }
+    ],
+    "qa_test_management_reporting.test_strategy_architecture_qa": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "An organization has an inverted test pyramid ('ice cream cone') with 80% E2E UI tests and 20% unit tests, leading to slow, brittle 4-hour builds. How do you re-architect the test pyramid and guide teams to Shift-Left?",
+        "expected_answer_keywords": [
+          "Test Pyramid restructuring (70% unit, 20% integration/API, 10% E2E UI)",
+          "pushing UI assertions down to component and API levels",
+          "reserving E2E for critical business journeys only",
+          "developer-QA collaboration on test ownership",
+          "reducing build execution time and flakiness"
+        ]
+      }
+    ],
+    "qa_test_management_reporting.production_quality_monitoring_sentry": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "How do you build a closed feedback loop between production monitoring (Sentry error rates, Datadog synthetic monitors) and the QA regression test suite to ensure that escaped production bugs are permanently prevented?",
+        "expected_answer_keywords": [
+          "Sentry / Datadog production error triage",
+          "converting escaped production incidents to automated regression tests",
+          "synthetic monitoring in production for critical flows",
+          "blameless post-mortem QA action items",
+          "continuous quality feedback loop"
+        ]
+      }
+    ]
+  },
+  "scoring_rules_reference": {
+    "source": "knowledge-base/scoring/engine.json",
+    "description": "Scoring rules for assessment are defined in engine.json under step_1_evidence_to_subskill_confidence.assessment_override_rules to maintain a single source of truth.",
+    "summary_weights": {
+      "conceptual": 0.6,
+      "scenario": 0.8,
+      "practical_task": 1.0
+    }
+  }
+}

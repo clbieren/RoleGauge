@@ -64,7 +64,7 @@
         "level": "junior",
         "type": "practical_task",
         "question": "Write a Dockerfile for a Python Flask application that installs dependencies from requirements.txt, copies the source code, and exposes port 5000.",
-        "evaluation_criteria": [
+        "expected_answer_keywords": [
           "FROM python",
           "COPY requirements.txt",
           "RUN pip install",
@@ -92,7 +92,7 @@
         "level": "junior",
         "type": "practical_task",
         "question": "Write a docker-compose.yml that runs a web application and a PostgreSQL database with persistent data storage.",
-        "evaluation_criteria": [
+        "expected_answer_keywords": [
           "services",
           "image or build",
           "ports",
@@ -168,7 +168,14 @@
         "level": "mid",
         "type": "conceptual",
         "question": "How do you optimize a Dockerfile to reduce image size and build time?",
-        "expected_answer_keywords": []
+        "expected_answer_keywords": [
+          "multi-stage builds",
+          ".dockerignore",
+          "layer caching",
+          "alpine base",
+          "combining RUN commands",
+          "BuildKit cache mounts"
+        ]
       }
     ],
     "linux.basic_filesystem": [
@@ -176,7 +183,13 @@
         "level": "mid",
         "type": "conceptual",
         "question": "Explain the Linux filesystem hierarchy (e.g., /etc, /var, /usr).",
-        "expected_answer_keywords": []
+        "expected_answer_keywords": [
+          "/etc configuration files",
+          "/var log and dynamic data",
+          "/usr user binaries and libraries",
+          "/bin essential user command binaries",
+          "/proc virtual process information"
+        ]
       }
     ],
     "monitoring_observability.sla_slo_sli": [
@@ -184,7 +197,13 @@
         "level": "mid",
         "type": "conceptual",
         "question": "What is the difference between SLA, SLO, and SLI?",
-        "expected_answer_keywords": []
+        "expected_answer_keywords": [
+          "SLA contractual commitment",
+          "SLO target reliability goal",
+          "SLI quantitative indicator metric",
+          "error budget",
+          "availability percentage"
+        ]
       }
     ],
     "networking.http_https": [
@@ -192,7 +211,14 @@
         "level": "mid",
         "type": "conceptual",
         "question": "Describe the HTTP request lifecycle.",
-        "expected_answer_keywords": []
+        "expected_answer_keywords": [
+          "DNS resolution",
+          "TCP handshake",
+          "TLS negotiation",
+          "HTTP request headers and payload",
+          "server processing",
+          "HTTP response status code"
+        ]
       }
     ],
     "networking.ssh_protocol": [
@@ -200,7 +226,13 @@
         "level": "mid",
         "type": "conceptual",
         "question": "How does SSH key exchange work?",
-        "expected_answer_keywords": []
+        "expected_answer_keywords": [
+          "Diffie-Hellman exchange",
+          "asymmetric public private key",
+          "symmetric session key",
+          "host verification",
+          "authorized_keys"
+        ]
       }
     ],
     "scripting.regex": [
@@ -208,7 +240,41 @@
         "level": "mid",
         "type": "conceptual",
         "question": "Write a regex to match a valid IPv4 address.",
-        "expected_answer_keywords": []
+        "expected_answer_keywords": [
+          "character classes",
+          "digit range 0-255",
+          "dot escaping",
+          "anchors ^ and $",
+          "octets"
+        ]
+      }
+    ],
+    "git.git_internals": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "A developer hard-reset a branch and lost multiple unpushed commits. How would you recover the lost work using Git internals?",
+        "expected_answer_keywords": [
+          "git reflog",
+          "HEAD@{n}",
+          "git cherry-pick or branch recreate",
+          "git fsck --lost-found",
+          "dangling commit objects"
+        ]
+      }
+    ],
+    "git.monorepo_management": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "How do you manage a multi-gigabyte monorepo with Git without causing long clone and checkout times for team members?",
+        "expected_answer_keywords": [
+          "git sparse-checkout",
+          "shallow clone --depth",
+          "Git LFS large file storage",
+          "blobless clone --filter=blob:none",
+          "submodules / subtrees"
+        ]
       }
     ],
     "ansible.dynamic_inventory": [

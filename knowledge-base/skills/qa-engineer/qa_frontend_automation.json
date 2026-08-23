@@ -1,0 +1,262 @@
+{
+  "skill_id": "qa_frontend_automation",
+  "name": "E2E Web & UI Test Automation",
+  "category": "frontend_automation",
+  "description": "End-to-end (E2E) web and user interface test automation using modern frameworks (Playwright, Cypress, Selenium). IMPORTANT DISTINCTION: This skill is fundamentally different from Frontend's fe_testing. In fe_testing, the frontend developer writes isolated unit and component tests (Jest, Vitest, React Testing Library) to verify their own code logic. In qa_frontend_automation, the QA engineer automates full, end-to-end user journeys across multiple pages, services, and realistic network conditions to validate the complete integrated application.",
+  "subskills": [
+    {
+      "id": "cypress_basics",
+      "name": "Cypress E2E Testing",
+      "description": "Writing end-to-end user tests in Cypress, cy commands, fixtures, assertions, and test runner execution.",
+      "keywords": [
+        "Cypress",
+        "cy.visit",
+        "cy.get",
+        "cy.intercept",
+        "cypress.config.js",
+        "cypress run",
+        "Chai assertions"
+      ]
+    },
+    {
+      "id": "playwright_basics",
+      "name": "Playwright E2E Testing",
+      "description": "Playwright test setup, page fixtures, locators, auto-waiting, and cross-browser test runs.",
+      "keywords": [
+        "Playwright",
+        "page.goto",
+        "page.locator",
+        "expect(page)",
+        "playwright.config.ts",
+        "test.describe",
+        "auto-waiting"
+      ]
+    },
+    {
+      "id": "locator_strategies_best_practices",
+      "name": "Resilient Locator Strategies",
+      "description": "Using resilient user-facing locators (getByRole, getByTestId, getByLabel) over brittle DOM-coupled selectors.",
+      "keywords": [
+        "getByRole",
+        "getByTestId",
+        "getByLabel",
+        "getByText",
+        "user-centric locators",
+        "avoiding brittle selectors"
+      ]
+    },
+    {
+      "id": "page_object_model_pom",
+      "name": "Page Object Model (POM) Architecture",
+      "description": "Structuring test code with Page Object Model (POM) and Page Component encapsulation.",
+      "keywords": [
+        "Page Object Model",
+        "POM",
+        "page class",
+        "component object",
+        "reusable page actions",
+        "locators encapsulation"
+      ]
+    },
+    {
+      "id": "handling_async_waits_flakiness",
+      "name": "Async Handling & Flakiness Mitigation",
+      "description": "Mitigating test flakiness, explicit waits, network idle assertions, retry strategies, and avoiding hardcoded sleeps.",
+      "keywords": [
+        "Test flakiness",
+        "explicit wait",
+        "waitForURL",
+        "waitForResponse",
+        "networkidle",
+        "retry mechanism",
+        "avoiding sleep"
+      ]
+    },
+    {
+      "id": "mocking_network_interception",
+      "name": "Network Interception & API Mocking in E2E",
+      "description": "Intercepting and stubbing network requests (cy.intercept, page.route) for deterministic front-end state testing.",
+      "keywords": [
+        "cy.intercept",
+        "page.route",
+        "network stubbing",
+        "mocking API response",
+        "simulating 500 error",
+        "deterministic testing"
+      ]
+    },
+    {
+      "id": "cross_browser_device_automation",
+      "name": "Cross-Browser & Emulated Execution",
+      "description": "Running automated suites across Chromium, Firefox, WebKit, and emulated mobile devices.",
+      "keywords": [
+        "Chromium",
+        "WebKit",
+        "Firefox",
+        "device emulation in Playwright",
+        "cross-browser automation",
+        "headless execution"
+      ]
+    },
+    {
+      "id": "visual_regression_testing",
+      "name": "Visual Regression Testing",
+      "description": "Pixel-by-pixel and DOM snapshot diffing using tools like Applitools, Percy, or Playwright toHaveScreenshot.",
+      "keywords": [
+        "Visual regression",
+        "toHaveScreenshot",
+        "Percy",
+        "Applitools",
+        "pixel diff",
+        "visual baseline",
+        "snapshot comparison"
+      ]
+    },
+    {
+      "id": "parallel_distributed_test_execution",
+      "name": "Parallel Execution & Test Sharding",
+      "description": "Sharding test suites across CI matrix workers, parallel execution in Docker, Playwright sharding.",
+      "keywords": [
+        "Playwright shard",
+        "parallel test execution",
+        "CI matrix workers",
+        "test execution optimization",
+        "dockerized test runners"
+      ]
+    },
+    {
+      "id": "custom_framework_architecture",
+      "name": "Custom Test Framework Architecture",
+      "description": "Building extensible TypeScript test frameworks with custom reporters, test fixtures, and data-driven engines.",
+      "keywords": [
+        "Custom test framework",
+        "custom fixtures",
+        "custom reporter",
+        "data-driven automation",
+        "test hooks",
+        "test architecture"
+      ]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "Cypress test suites and configuration files",
+        "detection": "content_analysis",
+        "pattern": "cypress\\.config\\.|cypress/e2e/|cy\\.visit|cy\\.intercept",
+        "strength": 0.9,
+        "maps_to": [
+          "qa_frontend_automation.cypress_basics",
+          "qa_frontend_automation.mocking_network_interception"
+        ]
+      },
+      {
+        "signal": "Playwright test suites, page objects, and configuration",
+        "detection": "content_analysis",
+        "pattern": "playwright\\.config\\.|@playwright/test|page\\.locator|page\\.route|getByRole",
+        "strength": 0.9,
+        "maps_to": [
+          "qa_frontend_automation.playwright_basics",
+          "qa_frontend_automation.locator_strategies_best_practices",
+          "qa_frontend_automation.page_object_model_pom"
+        ]
+      },
+      {
+        "signal": "Visual regression comparisons or snapshot assertions",
+        "detection": "content_analysis",
+        "pattern": "toHaveScreenshot|percySnapshot|applitools|eyes\\.check",
+        "strength": 0.8,
+        "maps_to": [
+          "qa_frontend_automation.visual_regression_testing"
+        ]
+      },
+      {
+        "signal": "Parallel sharding configurations or custom test fixture frameworks",
+        "detection": "content_analysis",
+        "pattern": "--shard=|workers:\\s*[0-9]+|test\\.extend\\<|customReporter",
+        "strength": 0.8,
+        "maps_to": [
+          "qa_frontend_automation.parallel_distributed_test_execution",
+          "qa_frontend_automation.custom_framework_architecture",
+          "qa_frontend_automation.handling_async_waits_flakiness",
+          "qa_frontend_automation.cross_browser_device_automation"
+        ]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "E2E automation with Cypress, Playwright, or Selenium using Page Object Model",
+        "strength": 0.8,
+        "maps_to": [
+          "qa_frontend_automation.cypress_basics",
+          "qa_frontend_automation.playwright_basics",
+          "qa_frontend_automation.page_object_model_pom",
+          "qa_frontend_automation.locator_strategies_best_practices"
+        ]
+      },
+      {
+        "signal": "Visual regression testing, framework architecture, or CI test parallelization",
+        "strength": 0.8,
+        "maps_to": [
+          "qa_frontend_automation.handling_async_waits_flakiness",
+          "qa_frontend_automation.mocking_network_interception",
+          "qa_frontend_automation.visual_regression_testing",
+          "qa_frontend_automation.parallel_distributed_test_execution",
+          "qa_frontend_automation.custom_framework_architecture",
+          "qa_frontend_automation.cross_browser_device_automation"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Playwright, Cypress, or Test Automation endorsed",
+        "strength": 0.5,
+        "maps_to": [
+          "qa_frontend_automation.cypress_basics",
+          "qa_frontend_automation.playwright_basics",
+          "qa_frontend_automation.locator_strategies_best_practices"
+        ]
+      },
+      {
+        "signal": "Page Object Model, Visual Testing, or Test Architecture mentioned",
+        "strength": 0.5,
+        "maps_to": [
+          "qa_frontend_automation.page_object_model_pom",
+          "qa_frontend_automation.visual_regression_testing",
+          "qa_frontend_automation.parallel_distributed_test_execution",
+          "qa_frontend_automation.custom_framework_architecture",
+          "qa_frontend_automation.mocking_network_interception",
+          "qa_frontend_automation.handling_async_waits_flakiness",
+          "qa_frontend_automation.cross_browser_device_automation"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "cypress_basics",
+        "playwright_basics",
+        "locator_strategies_best_practices"
+      ],
+      "description": "Writes automated UI tests using Cypress and Playwright using resilient locator strategies (getByRole/getByTestId)."
+    },
+    "mid": {
+      "expected_subskills": [
+        "page_object_model_pom",
+        "handling_async_waits_flakiness",
+        "mocking_network_interception",
+        "cross_browser_device_automation"
+      ],
+      "description": "Architects Page Object Model suites, intercepts network traffic, eliminates flakiness with explicit waiting, and runs cross-browser tests."
+    },
+    "senior": {
+      "expected_subskills": [
+        "visual_regression_testing",
+        "parallel_distributed_test_execution",
+        "custom_framework_architecture"
+      ],
+      "description": "Builds extensible TypeScript automation frameworks, implements visual regression testing, and shards parallel test runs across CI nodes."
+    }
+  }
+}

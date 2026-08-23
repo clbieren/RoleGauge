@@ -1,0 +1,82 @@
+{
+  "source_id": "github",
+  "name": "GitHub Repository Analysis - Frontend Developer",
+  "description": "Global parsing rules for frontend repositories. NOTE: Specific evidence mappings (regex patterns and maps_to composite keys) are stored within individual skill files under evidence.github, NOT here. The validate_composite_keys.py script scans both locations to verify coverage.",
+  "preprocessing_pipeline": {
+    "steps": [
+      {
+        "step": 1,
+        "name": "file_tree_scan",
+        "target_files": [
+          {
+            "pattern": "*.jsx|*.tsx|*.vue|*.svelte",
+            "skills": ["fe_frameworks", "fe_meta_frameworks_ssr"],
+            "priority": "high",
+            "notes": "Primary signal source for React (.jsx/.tsx), Vue (.vue), and Svelte (.svelte) component usage"
+          },
+          {
+            "pattern": "*.css|*.scss|*.less|*.module.css|*.module.scss",
+            "skills": ["fe_css"],
+            "priority": "high",
+            "notes": "Stylesheets, CSS Modules, Sass, and design system styling"
+          },
+          {
+            "pattern": "*.test.js|*.test.ts|*.test.jsx|*.test.tsx|*.spec.js|*.spec.ts",
+            "skills": ["fe_testing"],
+            "priority": "high",
+            "notes": "Unit, component, integration, and E2E test file presence"
+          },
+          {
+            "pattern": "*.js|*.ts|*.mjs",
+            "skills": ["fe_javascript", "fe_typescript", "fe_web_fundamentals", "fe_web_security_performance"],
+            "priority": "medium",
+            "notes": "Core JavaScript/TypeScript source code, web APIs, and security/performance patterns"
+          }
+        ]
+      },
+      {
+        "step": 2,
+        "name": "dependency_extraction",
+        "source_manifests": ["package.json"],
+        "relevant_dependencies": {
+          "fe_frameworks": ["react", "react-dom", "vue", "svelte", "@angular/core", "preact", "solid-js", "redux", "@reduxjs/toolkit", "zustand", "jotai", "pinia", "mobx", "recoil"],
+          "fe_meta_frameworks_ssr": ["next", "nuxt", "@remix-run/react", "astro", "@sveltejs/kit", "gatsby", "swr", "@tanstack/react-query"],
+          "fe_css": ["tailwindcss", "styled-components", "@emotion/react", "sass", "less", "postcss"],
+          "fe_tooling_build": ["vite", "webpack", "esbuild", "rollup", "parcel", "turbopack", "eslint", "prettier", "stylelint"],
+          "fe_testing": ["jest", "vitest", "@testing-library/react", "@testing-library/vue", "cypress", "@playwright/test", "msw"],
+          "fe_typescript": ["typescript"]
+        }
+      },
+      {
+        "step": 3,
+        "name": "config_file_scan",
+        "target_configs": [
+          "vite.config.*",
+          "webpack.config.*",
+          "next.config.*",
+          "nuxt.config.*",
+          "tsconfig.json",
+          ".eslintrc*",
+          "eslint.config.*",
+          ".prettierrc*",
+          "babel.config.*",
+          ".swcrc",
+          "playwright.config.*",
+          "cypress.config.*",
+          "jest.config.*",
+          "vitest.config.*",
+          "turbo.json",
+          "nx.json"
+        ]
+      }
+    ]
+  },
+  "ai_analysis_instructions": {
+    "tasks": [
+      "Map detected signals to composite keys ({skill_id}.{subskill_id}) using patterns defined in skill files",
+      "Prioritize evidence from actual source code over configuration-only signals",
+      "Check test file quality — presence of describe/it blocks with assertions, not just empty test files",
+      "Evaluate TypeScript usage depth — strict mode, generics, and custom types vs basic type annotations only"
+    ]
+  }
+}

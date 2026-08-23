@@ -1,0 +1,80 @@
+{
+  "role_id": "qa_engineer",
+  "level": "senior",
+  "title": "Senior QA Engineer / SDET Lead",
+  "description": "Senior QA Automation Architect and Quality Engineering Lead responsible for enterprise test strategy architecture (Test Pyramid), building custom TypeScript/Java test frameworks, implementing visual regression testing, parallel test sharding, Consumer-Driven Contract Testing (Pact), distributed load generation in Kubernetes, performance Root Cause Analysis (RCA), and executive QA KPI telemetry dashboards.",
+  "experience_range": "5+ years",
+  "skills": [
+    {
+      "skill_id": "qa_test_management_reporting",
+      "importance": 0.95,
+      "rationale": "Architecting enterprise test strategies, balancing the test pyramid, building executive KPI dashboards (DRE, MTTR), and creating production error feedback loops."
+    },
+    {
+      "skill_id": "qa_frontend_automation",
+      "importance": 0.95,
+      "rationale": "Building extensible test frameworks from scratch, implementing visual regression testing, and optimizing parallel test execution via CI sharding."
+    },
+    {
+      "skill_id": "qa_backend_api_automation",
+      "importance": 0.9,
+      "rationale": "Establishing Consumer-Driven Contract Testing with Pact, service virtualization with WireMock, and utilizing database state validation as a test oracle."
+    },
+    {
+      "skill_id": "qa_non_functional_testing",
+      "importance": 0.9,
+      "rationale": "Orchestrating distributed load testing in Kubernetes, conducting deep performance Root Cause Analysis (RCA), and leading screen reader accessibility audits."
+    },
+    {
+      "skill_id": "qa_fundamentals_methodology",
+      "importance": 0.85,
+      "rationale": "Designing risk-based testing matrices, driving Shift-Left/Shift-Right quality governance, and managing session-based exploratory testing."
+    },
+    {
+      "skill_id": "qa_manual_testing",
+      "importance": 0.8,
+      "rationale": "Leading business stakeholder UAT sign-offs, auditing multi-locale internationalization (L10n/i18n), and conducting usability heuristic audits."
+    },
+    {
+      "skill_id": "qa_web_fundamentals_for_qa",
+      "importance": 0.75,
+      "rationale": "Auditing Core Web Vitals in CI pipelines and inspecting complex real-time WebSocket/SSE streaming events."
+    }
+  ],
+  "scoring": {
+    "method": "weighted_average",
+    "description": "Each skill score is multiplied by its importance weight. Final score is sum divided by sum of weights.",
+    "thresholds": {
+      "not_ready": {
+        "min": 0.0,
+        "max": 0.3,
+        "label": "Not Ready",
+        "description": "Significant gaps in test strategy architecture, distributed automation, or quality governance."
+      },
+      "developing": {
+        "min": 0.3,
+        "max": 0.5,
+        "label": "Developing",
+        "description": "Solid mid-level automation skills, but lacks experience in contract testing, distributed load orchestration, and enterprise test strategy."
+      },
+      "approaching": {
+        "min": 0.5,
+        "max": 0.7,
+        "label": "Approaching Ready",
+        "description": "Strong automation architecture capabilities; refining expertise in visual regression, Pact contract workflows, and performance RCA."
+      },
+      "ready": {
+        "min": 0.7,
+        "max": 0.85,
+        "label": "Ready",
+        "description": "Meets all senior expectations: designs scalable test frameworks, establishes quality engineering standards, governs CI/CD test sharding, and mentors teams."
+      },
+      "exceeds": {
+        "min": 0.85,
+        "max": 1.0,
+        "label": "Exceeds Expectations",
+        "description": "Exceeds senior expectations: Principal/Staff SDET impact across multi-team engineering organizations, continuous quality innovation, and advanced resilience testing."
+      }
+    }
+  }
+}

@@ -1,0 +1,162 @@
+{
+  "skill_id": "be_databases",
+  "name": "Databases & Data Modeling",
+  "category": "backend_data",
+  "description": "Relational and NoSQL database management, advanced SQL querying, schema normalization and indexing optimization, transaction management (ACID, isolation levels), ORM usage and N+1 prevention, schema migrations, and high-availability database architectures (replication, sharding, partitioning).",
+  "subskills": [
+    {
+      "id": "relational_modeling",
+      "name": "Relational Data Modeling",
+      "description": "Schema design, normalization (1NF to 3NF), foreign keys, check constraints, cascade actions, and entity-relationship modeling.",
+      "keywords": ["normalization", "3NF", "foreign key", "check constraint", "ER diagram", "cascade delete", "referential integrity"]
+    },
+    {
+      "id": "sql_querying",
+      "name": "Advanced SQL Querying",
+      "description": "Complex joins, aggregations, window functions (ROW_NUMBER, RANK, LAG/LEAD), Common Table Expressions (CTEs), and subqueries.",
+      "keywords": ["window functions", "CTE", "INNER JOIN", "LEFT JOIN", "GROUP BY", "HAVING", "OVER(PARTITION BY)", "subquery"]
+    },
+    {
+      "id": "indexing_optimization",
+      "name": "Indexing & Query Optimization",
+      "description": "B-Tree, Hash, and GIN indexes, composite indexes, query execution plans (EXPLAIN ANALYZE), index selectivity, and table scans.",
+      "keywords": ["EXPLAIN ANALYZE", "B-Tree index", "composite index", "GIN index", "index scan", "seq scan", "index selectivity"]
+    },
+    {
+      "id": "transactions_acid",
+      "name": "Transactions & ACID",
+      "description": "Transaction isolation levels (Read Committed, Repeatable Read, Serializable), dirty reads, non-repeatable reads, phantom reads, and MVCC.",
+      "keywords": ["ACID", "isolation levels", "Serializable", "Repeatable Read", "dirty read", "phantom read", "MVCC", "deadlock"]
+    },
+    {
+      "id": "orm_data_mappers",
+      "name": "ORMs & Data Mappers",
+      "description": "ORM query building (Prisma, TypeORM, Hibernate, SQLAlchemy), N+1 query detection, lazy vs eager loading, and raw SQL fallbacks.",
+      "keywords": ["Prisma", "TypeORM", "Hibernate", "SQLAlchemy", "N+1 query", "lazy loading", "eager loading", "data mapper"]
+    },
+    {
+      "id": "migrations_schema_versioning",
+      "name": "Schema Migrations",
+      "description": "Version-controlled database migrations (Flyway, Liquibase, Alembic, Prisma Migrate), zero-downtime column migrations, and rollback strategies.",
+      "keywords": ["migrations", "Flyway", "Liquibase", "Alembic", "Prisma Migrate", "zero-downtime migration", "expand and contract pattern"]
+    },
+    {
+      "id": "nosql_document_keyvalue",
+      "name": "NoSQL Document & Key-Value Stores",
+      "description": "Document modeling in MongoDB, key-value data structures in Redis, DynamoDB partition keys, schema flexibility, and indexing.",
+      "keywords": ["MongoDB", "DynamoDB", "Redis", "document store", "key-value", "partition key", "sort key", "BSON"]
+    },
+    {
+      "id": "sharding_partitioning",
+      "name": "Sharding & Table Partitioning",
+      "description": "Horizontal table partitioning (range, list, hash), database sharding strategies, shard key selection, and cross-shard queries.",
+      "keywords": ["table partitioning", "sharding", "shard key", "range partitioning", "hash partitioning", "cross-shard query"]
+    },
+    {
+      "id": "replication_high_availability",
+      "name": "Replication & High Availability",
+      "description": "Primary-replica replication (sync vs async), read replicas, failover automation, write-ahead logging (WAL), and split-brain mitigation.",
+      "keywords": ["primary-replica", "read replica", "WAL", "replication lag", "failover", "split-brain", "connection pooler"]
+    },
+    {
+      "id": "distributed_transactions",
+      "name": "Distributed Transactions & Consistency",
+      "description": "Two-Phase Commit (2PC), Saga pattern (orchestration vs choreography), Outbox pattern, Change Data Capture (CDC), and eventual consistency.",
+      "keywords": ["Saga pattern", "Transactional Outbox", "2PC", "Change Data Capture", "Debezium", "eventual consistency", "idempotency key"]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "Database migration files or ORM schema configurations",
+        "detection": "file_presence",
+        "pattern": "prisma/schema\\.prisma|migrations/.*\\.sql|alembic/versions|flyway|db/schema\\.rb",
+        "strength": 0.8,
+        "maps_to": ["be_databases.migrations_schema_versioning", "be_databases.orm_data_mappers"]
+      },
+      {
+        "signal": "SQL query files or complex joins/window functions",
+        "detection": "content_analysis",
+        "pattern": "SELECT.*OVER\\s*\\(|WITH\\s+\\w+\\s+AS|LEFT\\s+JOIN|GROUP\\s+BY.*HAVING",
+        "strength": 0.8,
+        "maps_to": ["be_databases.sql_querying", "be_databases.relational_modeling"]
+      },
+      {
+        "signal": "Database indexes and constraint definitions",
+        "detection": "content_analysis",
+        "pattern": "CREATE\\s+INDEX|CREATE\\s+UNIQUE\\s+INDEX|EXPLAIN\\s+ANALYZE|ADD\\s+CONSTRAINT",
+        "strength": 0.8,
+        "maps_to": ["be_databases.indexing_optimization"]
+      },
+      {
+        "signal": "Database transaction blocks or isolation configuration",
+        "detection": "content_analysis",
+        "pattern": "BEGIN\\s+TRANSACTION|@Transactional|session\\.beginTransaction|SERIALIZABLE|REPEATABLE_READ",
+        "strength": 0.8,
+        "maps_to": ["be_databases.transactions_acid"]
+      },
+      {
+        "signal": "NoSQL client driver usage (MongoDB, DynamoDB, Redis)",
+        "detection": "content_analysis",
+        "pattern": "mongoose\\.connect|MongoClient|DynamoDBClient|new Redis\\(|ioredis",
+        "strength": 0.7,
+        "maps_to": ["be_databases.nosql_document_keyvalue"]
+      },
+      {
+        "signal": "Table partitioning or distributed transaction patterns (Outbox/Saga)",
+        "detection": "content_analysis",
+        "pattern": "PARTITION\\s+BY\\s+RANGE|PARTITION\\s+BY\\s+HASH|outbox_events|saga_state",
+        "strength": 0.9,
+        "maps_to": ["be_databases.sharding_partitioning", "be_databases.distributed_transactions", "be_databases.replication_high_availability"]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "Relational database schema design and SQL optimization",
+        "strength": 0.7,
+        "maps_to": ["be_databases.relational_modeling", "be_databases.sql_querying", "be_databases.indexing_optimization"]
+      },
+      {
+        "signal": "ORM development and database migration management",
+        "strength": 0.7,
+        "maps_to": ["be_databases.orm_data_mappers", "be_databases.migrations_schema_versioning"]
+      },
+      {
+        "signal": "Distributed database architecture, sharding, or replication",
+        "strength": 0.8,
+        "maps_to": ["be_databases.sharding_partitioning", "be_databases.replication_high_availability", "be_databases.distributed_transactions"]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "PostgreSQL, MySQL, or SQL endorsed",
+        "strength": 0.5,
+        "maps_to": ["be_databases.sql_querying", "be_databases.relational_modeling", "be_databases.indexing_optimization"]
+      },
+      {
+        "signal": "MongoDB, Redis, or DynamoDB endorsed",
+        "strength": 0.5,
+        "maps_to": ["be_databases.nosql_document_keyvalue"]
+      },
+      {
+        "signal": "Database architecture or High Availability experience",
+        "strength": 0.5,
+        "maps_to": ["be_databases.replication_high_availability", "be_databases.sharding_partitioning", "be_databases.distributed_transactions", "be_databases.transactions_acid"]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": ["relational_modeling", "sql_querying", "orm_data_mappers", "migrations_schema_versioning"],
+      "description": "Designs normalized relational tables, writes SQL queries with joins and aggregations, uses ORMs, and manages migration files."
+    },
+    "mid": {
+      "expected_subskills": ["indexing_optimization", "transactions_acid", "nosql_document_keyvalue"],
+      "description": "Analyzes query plans with EXPLAIN ANALYZE, configures transaction isolation levels, and works with NoSQL/document stores."
+    },
+    "senior": {
+      "expected_subskills": ["sharding_partitioning", "replication_high_availability", "distributed_transactions"],
+      "description": "Architects sharded and partitioned datasets, designs replication failover topologies, and implements distributed transaction patterns (Saga/Outbox)."
+    }
+  }
+}

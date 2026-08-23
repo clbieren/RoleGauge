@@ -1,0 +1,85 @@
+{
+  "role_id": "backend_developer",
+  "level": "mid",
+  "title": "Mid-level Backend Developer",
+  "description": "Mid-level backend engineer capable of independently designing complex microservices, implementing Hexagonal/DDD patterns, optimizing database queries with EXPLAIN ANALYZE, configuring Kafka/RabbitMQ message pipelines, and managing distributed auth and observability.",
+  "experience_range": "2-5 years",
+  "skills": [
+    {
+      "skill_id": "be_architecture_patterns",
+      "importance": 0.95,
+      "rationale": "Designing Hexagonal / Clean Architecture boundaries, modeling tactical DDD aggregates, and architecting microservices."
+    },
+    {
+      "skill_id": "be_databases",
+      "importance": 0.95,
+      "rationale": "Optimizing queries using EXPLAIN ANALYZE, configuring ACID transaction isolation levels, and working with NoSQL document stores."
+    },
+    {
+      "skill_id": "be_caching_messaging",
+      "importance": 0.9,
+      "rationale": "Implementing cache-aside/write-through strategies, mitigating cache stampedes, and building RabbitMQ/Kafka producer-consumer workflows."
+    },
+    {
+      "skill_id": "be_api_design",
+      "importance": 0.9,
+      "rationale": "Designing GraphQL schemas with DataLoader, implementing gRPC Protobuf services, and managing API versioning lifecycles."
+    },
+    {
+      "skill_id": "be_auth_security",
+      "importance": 0.85,
+      "rationale": "Implementing OAuth2 / PKCE authorization code flows, enforcing RBAC/ABAC policies, and managing runtime secrets with Vault."
+    },
+    {
+      "skill_id": "be_scalability_resilience",
+      "importance": 0.85,
+      "rationale": "Implementing Circuit Breakers and Bulkhead resource isolation, managing non-blocking concurrency, and load balancing."
+    },
+    {
+      "skill_id": "be_testing_quality",
+      "importance": 0.8,
+      "rationale": "Validating microservice contracts with Pact, load testing p95/p99 latency with k6, and maintaining SonarQube quality gates."
+    },
+    {
+      "skill_id": "be_observability",
+      "importance": 0.8,
+      "rationale": "Instrumenting code with OpenTelemetry distributed trace spans, APM slow query profiling, and Sentry error tracking."
+    }
+  ],
+  "scoring": {
+    "method": "weighted_average",
+    "description": "Each skill score is multiplied by its importance weight. Final score is sum divided by sum of weights.",
+    "thresholds": {
+      "not_ready": {
+        "min": 0.0,
+        "max": 0.3,
+        "label": "Not Ready",
+        "description": "Significant gaps in backend architecture, database indexing, or message queueing."
+      },
+      "developing": {
+        "min": 0.3,
+        "max": 0.5,
+        "label": "Developing",
+        "description": "Competent with layered APIs, but needs guidance on microservice boundaries, Kafka streaming, and circuit breakers."
+      },
+      "approaching": {
+        "min": 0.5,
+        "max": 0.7,
+        "label": "Approaching Ready",
+        "description": "Strong systems understanding, independent feature delivery, and solid grasp of caching and indexing patterns."
+      },
+      "ready": {
+        "min": 0.7,
+        "max": 0.85,
+        "label": "Ready",
+        "description": "Meets all mid-level expectations: designs robust microservices with Kafka/RabbitMQ, optimized databases, and resilient circuit breakers."
+      },
+      "exceeds": {
+        "min": 0.85,
+        "max": 1.0,
+        "label": "Exceeds Expectations",
+        "description": "Exceeds mid-level expectations with advanced distributed systems architecture and performance engineering leadership."
+      }
+    }
+  }
+}

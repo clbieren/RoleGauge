@@ -1,0 +1,172 @@
+{
+  "skill_id": "fe_javascript",
+  "name": "JavaScript",
+  "category": "frontend_core",
+  "description": "Core JavaScript language mastery: variables and type coercion, functions and closures, data structures, async programming, error handling, ES modules, DOM events, prototypal inheritance, iterators/generators, metaprogramming with Proxy, and memory management.",
+  "subskills": [
+    {
+      "id": "variables_types",
+      "name": "Variables & Type System",
+      "description": "let/const/var scoping, primitive vs reference types, type coercion rules, typeof/instanceof.",
+      "keywords": ["let", "const", "var", "hoisting", "type coercion", "typeof", "instanceof", "primitive"]
+    },
+    {
+      "id": "functions_scope",
+      "name": "Functions & Scope",
+      "description": "Closures, lexical scope, arrow functions, IIFE, this binding rules.",
+      "keywords": ["closure", "lexical scope", "arrow function", "this", "bind", "call", "apply", "IIFE"]
+    },
+    {
+      "id": "arrays_objects",
+      "name": "Arrays & Objects",
+      "description": "Destructuring, spread/rest, Map/Set/WeakMap, array methods (map, filter, reduce), deep cloning.",
+      "keywords": ["destructuring", "spread", "rest", "Map", "Set", "WeakMap", "reduce", "Object.entries"]
+    },
+    {
+      "id": "async_programming",
+      "name": "Async Programming",
+      "description": "Promises, async/await, Promise.all/race/allSettled, microtask queue, event loop.",
+      "keywords": ["Promise", "async", "await", "Promise.all", "microtask", "event loop", "callback queue"]
+    },
+    {
+      "id": "error_handling",
+      "name": "Error Handling",
+      "description": "try/catch/finally, custom Error subclasses, unhandled rejection tracking, error boundaries.",
+      "keywords": ["try", "catch", "finally", "Error", "TypeError", "unhandledrejection", "custom errors"]
+    },
+    {
+      "id": "es_modules",
+      "name": "ES Modules",
+      "description": "import/export syntax, named vs default exports, dynamic import(), tree shaking implications.",
+      "keywords": ["import", "export", "default export", "dynamic import", "tree shaking", "side effects"]
+    },
+    {
+      "id": "dom_events",
+      "name": "DOM Events",
+      "description": "Event bubbling, capturing, delegation, CustomEvent, stopPropagation, passive listeners.",
+      "keywords": ["bubbling", "capturing", "event delegation", "CustomEvent", "stopPropagation", "passive"]
+    },
+    {
+      "id": "prototypes_classes",
+      "name": "Prototypes & Classes",
+      "description": "Prototype chain, ES6 class syntax, inheritance, static methods, private fields (#).",
+      "keywords": ["prototype", "__proto__", "class", "extends", "super", "static", "private fields"]
+    },
+    {
+      "id": "iterators_generators",
+      "name": "Iterators & Generators",
+      "description": "Symbol.iterator protocol, generator functions (function*), yield, for...of, async generators.",
+      "keywords": ["Symbol.iterator", "function*", "yield", "for...of", "async generator", "iterable protocol"]
+    },
+    {
+      "id": "proxy_reflect",
+      "name": "Proxy & Reflect",
+      "description": "Proxy traps (get, set, has, deleteProperty), Reflect API, reactive state patterns.",
+      "keywords": ["Proxy", "Reflect", "handler", "trap", "get trap", "set trap", "revocable"]
+    },
+    {
+      "id": "memory_management",
+      "name": "Memory Management",
+      "description": "Garbage collection (mark-and-sweep), WeakRef, FinalizationRegistry, common memory leak patterns in SPAs.",
+      "keywords": ["garbage collection", "WeakRef", "FinalizationRegistry", "memory leak", "detached DOM", "mark-and-sweep"]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "JavaScript/TypeScript source files with modern syntax",
+        "detection": "file_presence",
+        "pattern": "\\.(js|mjs|jsx|ts|tsx)$",
+        "strength": 0.5,
+        "maps_to": ["fe_javascript.variables_types", "fe_javascript.functions_scope"]
+      },
+      {
+        "signal": "Async/await or Promise usage patterns",
+        "detection": "content_analysis",
+        "pattern": "async\\s+function|await\\s+|Promise\\.(all|race|allSettled)|new Promise",
+        "strength": 0.8,
+        "maps_to": ["fe_javascript.async_programming"]
+      },
+      {
+        "signal": "ES module import/export statements",
+        "detection": "content_analysis",
+        "pattern": "import\\s+.*from|export\\s+(default|const|function|class)",
+        "strength": 0.6,
+        "maps_to": ["fe_javascript.es_modules"]
+      },
+      {
+        "signal": "Event delegation or custom events",
+        "detection": "content_analysis",
+        "pattern": "addEventListener|CustomEvent|dispatchEvent|e\\.target\\.closest",
+        "strength": 0.7,
+        "maps_to": ["fe_javascript.dom_events"]
+      },
+      {
+        "signal": "Proxy or generator usage",
+        "detection": "content_analysis",
+        "pattern": "new Proxy|function\\s*\\*|Reflect\\.|Symbol\\.iterator",
+        "strength": 0.9,
+        "maps_to": ["fe_javascript.proxy_reflect", "fe_javascript.iterators_generators"]
+      },
+      {
+        "signal": "Class definitions with inheritance",
+        "detection": "content_analysis",
+        "pattern": "class\\s+\\w+\\s+extends|#\\w+|static\\s+\\w+",
+        "strength": 0.7,
+        "maps_to": ["fe_javascript.prototypes_classes"]
+      },
+      {
+        "signal": "Structured error handling",
+        "detection": "content_analysis",
+        "pattern": "extends\\s+Error|catch\\s*\\(|window\\.onerror|unhandledrejection",
+        "strength": 0.6,
+        "maps_to": ["fe_javascript.error_handling"]
+      },
+      {
+        "signal": "Advanced data structure usage",
+        "detection": "content_analysis",
+        "pattern": "new Map\\(|new Set\\(|WeakMap|WeakRef|FinalizationRegistry|structuredClone",
+        "strength": 0.8,
+        "maps_to": ["fe_javascript.arrays_objects", "fe_javascript.memory_management"]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "JavaScript/ES6+ development experience",
+        "strength": 0.7,
+        "maps_to": ["fe_javascript.variables_types", "fe_javascript.functions_scope", "fe_javascript.arrays_objects"]
+      },
+      {
+        "signal": "Async programming or API integration",
+        "strength": 0.7,
+        "maps_to": ["fe_javascript.async_programming", "fe_javascript.error_handling"]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "JavaScript or ES6 endorsed",
+        "strength": 0.5,
+        "maps_to": ["fe_javascript.variables_types", "fe_javascript.functions_scope", "fe_javascript.dom_events"]
+      },
+      {
+        "signal": "Node.js or Full-stack JavaScript endorsed",
+        "strength": 0.5,
+        "maps_to": ["fe_javascript.es_modules", "fe_javascript.async_programming", "fe_javascript.prototypes_classes"]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": ["variables_types", "functions_scope", "arrays_objects", "dom_events", "error_handling"],
+      "description": "Writes clean JS with proper scoping, manipulates data structures, handles DOM events, and implements basic error handling."
+    },
+    "mid": {
+      "expected_subskills": ["async_programming", "es_modules", "prototypes_classes"],
+      "description": "Masters async patterns, organizes code with ES modules for tree shaking, and understands the prototype-based inheritance model."
+    },
+    "senior": {
+      "expected_subskills": ["iterators_generators", "proxy_reflect", "memory_management"],
+      "description": "Implements custom iterables, builds reactive systems with Proxy, and diagnoses memory leaks in long-running SPAs."
+    }
+  }
+}

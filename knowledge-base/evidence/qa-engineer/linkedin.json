@@ -1,0 +1,122 @@
+{
+  "source_id": "linkedin",
+  "name": "LinkedIn Profile Analysis - QA Engineer",
+  "description": "Signal extraction rules for LinkedIn profiles of QA Engineers and Test Automation Specialists. NOTE: Specific evidence mappings (regex patterns and maps_to composite keys) are stored within individual skill files under evidence.linkedin, NOT here. The validate_composite_keys.py script scans both locations to verify coverage.",
+  "extraction_rules": {
+    "sections": {
+      "headline": {
+        "priority": "high",
+        "base_strength": 0.4,
+        "role_match_keywords": [
+          "QA Engineer",
+          "Quality Assurance Engineer",
+          "SDET",
+          "Software Development Engineer in Test",
+          "Test Automation Engineer",
+          "QA Lead",
+          "Quality Engineering Specialist"
+        ]
+      },
+      "experience": {
+        "priority": "high",
+        "base_strength": 0.6,
+        "quality_indicators": [
+          "Demonstrated career progression from manual QA to test automation architecture",
+          "Specific automation frameworks mentioned (Playwright, Cypress, Selenium, REST Assured)",
+          "Performance testing and CI/CD test pipeline ownership"
+        ]
+      },
+      "skills_endorsements": {
+        "priority": "medium",
+        "base_strength": 0.3,
+        "notes": "Endorsements provide soft validation. High endorsement count (>10) increases confidence."
+      },
+      "certifications": {
+        "priority": "medium",
+        "base_strength": 0.4,
+        "relevant_certifications": [
+          "ISTQB CTFL",
+          "ISTQB CTAL-TAE",
+          "ISTQB CTAL-TM",
+          "Certified Agile Tester (CAT)",
+          "Playwright Certification"
+        ]
+      },
+      "recommendations": {
+        "priority": "medium",
+        "base_strength": 0.5,
+        "quality_indicators": [
+          "Recommendations from engineering managers or product managers praising defect detection accuracy and release velocity",
+          "Peer reviews highlighting reduction in test flakiness and reliable automation pipelines"
+        ]
+      }
+    }
+  },
+  "signal_mapping": {
+    "patterns": [
+      {
+        "pattern": "Playwright, Cypress, or Selenium Automation endorsed",
+        "maps_to": [
+          "qa_frontend_automation.playwright_basics",
+          "qa_frontend_automation.cypress_basics",
+          "qa_frontend_automation.page_object_model_pom"
+        ],
+        "strength_modifier": 1.0
+      },
+      {
+        "pattern": "Manual Testing, Test Planning, or STLC endorsed",
+        "maps_to": [
+          "qa_fundamentals_methodology.qa_mindset_principles",
+          "qa_manual_testing.test_case_authoring",
+          "qa_manual_testing.bug_reporting_lifecycle"
+        ],
+        "strength_modifier": 1.0
+      },
+      {
+        "pattern": "API Testing, Postman, or REST Assured endorsed",
+        "maps_to": [
+          "qa_backend_api_automation.postman_newman_testing",
+          "qa_backend_api_automation.http_api_test_authoring",
+          "qa_backend_api_automation.rest_assured_framework"
+        ],
+        "strength_modifier": 1.0
+      },
+      {
+        "pattern": "Performance Testing, JMeter, or k6 endorsed",
+        "maps_to": [
+          "qa_non_functional_testing.jmeter_load_testing",
+          "qa_non_functional_testing.k6_performance_as_code"
+        ],
+        "strength_modifier": 1.0
+      },
+      {
+        "pattern": "TestRail, JIRA, or Quality Assurance Leadership endorsed",
+        "maps_to": [
+          "qa_test_management_reporting.testrail_zephyr_management",
+          "qa_test_management_reporting.jira_bug_tracking_workflow",
+          "qa_test_management_reporting.test_strategy_architecture_qa"
+        ],
+        "strength_modifier": 1.0
+      },
+      {
+        "pattern": "Accessibility Testing, WCAG, or A11y mentioned",
+        "maps_to": [
+          "qa_non_functional_testing.accessibility_testing_axe_wave"
+        ],
+        "strength_modifier": 1.0
+      },
+      {
+        "pattern": "Contract Testing, Pact, or WireMock mentioned",
+        "maps_to": [
+          "qa_backend_api_automation.contract_testing_pact_qa",
+          "qa_backend_api_automation.mock_servers_service_virtualization"
+        ],
+        "strength_modifier": 1.0
+      }
+    ]
+  },
+  "important_notes": [
+    "LinkedIn endorsements without repository evidence receive moderate weight (0.3 - 0.5)",
+    "Differentiate QA roles from customer support or general IT positions using job descriptions and technology keywords"
+  ]
+}

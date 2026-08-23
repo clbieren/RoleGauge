@@ -1,0 +1,224 @@
+{
+  "skill_id": "qa_non_functional_testing",
+  "name": "Performance, Accessibility & Security Verification",
+  "category": "non_functional_testing",
+  "description": "Non-functional quality verification including load/stress testing (k6, JMeter), accessibility compliance (WCAG, axe-core), and basic application security validation. IMPORTANT DISTINCTION: In security testing, the QA engineer verifies that known vulnerability classes (OWASP Top 10 like SQLi, XSS, CSRF, missing auth headers, IDOR) are checked and blocked during quality gates; this is fundamentally different from Cyber Security's cs_threats_and_attacks where security analysts develop exploit payloads, conduct penetration testing, and analyze attacker TTPs.",
+  "subskills": [
+    {
+      "id": "jmeter_load_testing",
+      "name": "Apache JMeter Load Testing",
+      "description": "Creating Thread Groups, HTTP Request Samplers, View Results Tree, and basic throughput assertions in Apache JMeter.",
+      "keywords": [
+        "JMeter",
+        "Thread Group",
+        "HTTP Sampler",
+        "View Results Tree",
+        "Aggregate Report",
+        "JMeter assertion",
+        "Throughput"
+      ]
+    },
+    {
+      "id": "accessibility_testing_axe_wave",
+      "name": "Automated Accessibility Testing (WCAG/axe)",
+      "description": "Running automated WCAG 2.1 AA audits using axe-core, WAVE, and Lighthouse Accessibility.",
+      "keywords": [
+        "axe-core",
+        "WAVE",
+        "WCAG 2.1 AA",
+        "color contrast",
+        "aria-label",
+        "alt attributes",
+        "accessibility audit"
+      ]
+    },
+    {
+      "id": "k6_performance_as_code",
+      "name": "k6 Performance as Code",
+      "description": "Writing JavaScript load testing scripts in k6 (virtual users, stages, thresholds for p95/p99 latency).",
+      "keywords": [
+        "k6",
+        "Virtual Users",
+        "k6 thresholds",
+        "p95 latency",
+        "p99 latency",
+        "k6 stages",
+        "k6 load script"
+      ]
+    },
+    {
+      "id": "performance_test_types_scenarios",
+      "name": "Load, Stress, Spike & Soak Testing",
+      "description": "Designing Load, Stress, Spike, Soak (Endurance), and Breakpoint testing profiles.",
+      "keywords": [
+        "Load testing",
+        "Stress testing",
+        "Spike testing",
+        "Soak testing",
+        "Endurance testing",
+        "Breakpoint testing",
+        "throughput target"
+      ]
+    },
+    {
+      "id": "server_resource_monitoring_during_load",
+      "name": "Resource Monitoring During Load Tests",
+      "description": "Correlating load generation with CPU/Memory/I/O bottlenecks and database connection pool saturation.",
+      "keywords": [
+        "Server monitoring under load",
+        "CPU bottleneck",
+        "memory leak under load",
+        "connection pool saturation",
+        "I/O wait"
+      ]
+    },
+    {
+      "id": "app_security_verification_owasp",
+      "name": "OWASP Top 10 Quality Gate Verification",
+      "description": "Verifying defensive controls against OWASP Top 10 (SQLi, XSS, CSRF, insecure direct object references, missing auth headers).",
+      "keywords": [
+        "OWASP Top 10 testing",
+        "XSS input check",
+        "SQLi parameter check",
+        "CSRF token verification",
+        "security headers check",
+        "IDOR verification"
+      ]
+    },
+    {
+      "id": "distributed_load_generation",
+      "name": "Distributed Load Testing at Scale",
+      "description": "Orchestrating distributed load generators across multi-node clusters in Kubernetes / cloud for high RPS.",
+      "keywords": [
+        "Distributed load testing",
+        "distributed k6",
+        "JMeter Master-Slave",
+        "Kubernetes load generator",
+        "high RPS generation"
+      ]
+    },
+    {
+      "id": "advanced_accessibility_screen_readers",
+      "name": "Screen Reader & Assistive Tech Auditing",
+      "description": "Manual assistive technology verification (NVDA, VoiceOver, keyboard navigation traps).",
+      "keywords": [
+        "NVDA",
+        "VoiceOver",
+        "keyboard navigation",
+        "focus trap",
+        "screen reader testing",
+        "tabindex audit"
+      ]
+    },
+    {
+      "id": "performance_bottleneck_rca",
+      "name": "Performance Root Cause Analysis (RCA)",
+      "description": "Conducting Root Cause Analysis (RCA) on performance test failures (identifying thread locks, slow DB queries, memory leaks).",
+      "keywords": [
+        "Performance RCA",
+        "Root Cause Analysis",
+        "thread lock",
+        "slow query analysis",
+        "GC pauses in load",
+        "latency breakdown"
+      ]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "JMeter test plans (.jmx) or k6 performance test scripts",
+        "detection": "file_presence",
+        "pattern": "*\\.jmx|k6/|*\\.k6\\.js|load-test.*\\.js",
+        "strength": 0.9,
+        "maps_to": [
+          "qa_non_functional_testing.jmeter_load_testing",
+          "qa_non_functional_testing.k6_performance_as_code",
+          "qa_non_functional_testing.performance_test_types_scenarios"
+        ]
+      },
+      {
+        "signal": "axe-core or accessibility test assertions in Playwright/Cypress",
+        "detection": "content_analysis",
+        "pattern": "@axe-core/playwright|cypress-axe|axe\\.run|checkA11y",
+        "strength": 0.8,
+        "maps_to": [
+          "qa_non_functional_testing.accessibility_testing_axe_wave",
+          "qa_non_functional_testing.advanced_accessibility_screen_readers"
+        ]
+      },
+      {
+        "signal": "Security test checks for OWASP or distributed load configs",
+        "detection": "content_analysis",
+        "pattern": "owasp|security_check|distributed-k6|jmeter-master|thresholds:.*p\\(95\\)",
+        "strength": 0.8,
+        "maps_to": [
+          "qa_non_functional_testing.app_security_verification_owasp",
+          "qa_non_functional_testing.distributed_load_generation",
+          "qa_non_functional_testing.server_resource_monitoring_during_load",
+          "qa_non_functional_testing.performance_bottleneck_rca"
+        ]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "Performance testing with JMeter or k6, or accessibility testing with axe/WCAG",
+        "strength": 0.8,
+        "maps_to": [
+          "qa_non_functional_testing.jmeter_load_testing",
+          "qa_non_functional_testing.accessibility_testing_axe_wave",
+          "qa_non_functional_testing.k6_performance_as_code",
+          "qa_non_functional_testing.performance_test_types_scenarios"
+        ]
+      },
+      {
+        "signal": "Distributed load testing, performance RCA, or OWASP security testing in QA",
+        "strength": 0.8,
+        "maps_to": [
+          "qa_non_functional_testing.server_resource_monitoring_during_load",
+          "qa_non_functional_testing.app_security_verification_owasp",
+          "qa_non_functional_testing.distributed_load_generation",
+          "qa_non_functional_testing.advanced_accessibility_screen_readers",
+          "qa_non_functional_testing.performance_bottleneck_rca"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "JMeter, k6, or Performance Testing endorsed",
+        "strength": 0.5,
+        "maps_to": [
+          "qa_non_functional_testing.jmeter_load_testing",
+          "qa_non_functional_testing.k6_performance_as_code",
+          "qa_non_functional_testing.performance_test_types_scenarios"
+        ]
+      },
+      {
+        "signal": "Accessibility Testing, WCAG, or OWASP Testing mentioned",
+        "strength": 0.5,
+        "maps_to": [
+          "qa_non_functional_testing.accessibility_testing_axe_wave",
+          "qa_non_functional_testing.app_security_verification_owasp",
+          "qa_non_functional_testing.distributed_load_generation",
+          "qa_non_functional_testing.server_resource_monitoring_during_load",
+          "qa_non_functional_testing.advanced_accessibility_screen_readers",
+          "qa_non_functional_testing.performance_bottleneck_rca"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": ["jmeter_load_testing", "accessibility_testing_axe_wave", "performance_test_types_scenarios"],
+      "description": "Understands core performance testing profiles (load vs stress vs soak), executes baseline JMeter load scripts, and runs automated accessibility audits using axe-core and WAVE."
+    },
+    "mid": {
+      "expected_subskills": ["k6_performance_as_code", "server_resource_monitoring_during_load", "app_security_verification_owasp"],
+      "description": "Writes k6 load testing scripts, monitors server resource saturation during load generation, and verifies OWASP Top 10 defenses during quality gates."
+    },
+    "senior": {
+      "expected_subskills": ["distributed_load_generation", "advanced_accessibility_screen_readers", "performance_bottleneck_rca"],
+      "description": "Orchestrates distributed high-RPS load testing in Kubernetes, conducts deep performance RCA on bottlenecks, and audits screen reader accessibility."
+    }
+  }
+}

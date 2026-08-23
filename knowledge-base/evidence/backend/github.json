@@ -1,0 +1,90 @@
+{
+  "source_id": "github",
+  "name": "GitHub Repository Analysis - Backend Developer",
+  "description": "Global parsing rules for backend repositories across languages (Go, Java, Python, Node.js, C#, Rust, Ruby). NOTE: Specific evidence mappings (regex patterns and maps_to composite keys) are stored within individual skill files under evidence.github, NOT here. The validate_composite_keys.py script scans both locations to verify coverage.",
+  "preprocessing_pipeline": {
+    "steps": [
+      {
+        "step": 1,
+        "name": "file_tree_scan",
+        "target_files": [
+          {
+            "pattern": "docker-compose\\.ya?ml|Dockerfile",
+            "skills": ["be_databases", "be_caching_messaging"],
+            "priority": "high",
+            "notes": "Primary source for backing services (PostgreSQL, MySQL, Redis, RabbitMQ, Kafka, Elasticsearch)"
+          },
+          {
+            "pattern": "schema\\.prisma|migrations/|alembic/|flyway/|db/schema\\.rb|ormconfig\\.*",
+            "skills": ["be_databases"],
+            "priority": "high",
+            "notes": "Database schema definitions, migration files, and ORM setups"
+          },
+          {
+            "pattern": "openapi\\.ya?ml|swagger\\.ya?ml|openapi\\.json|swagger\\.json|*.proto|schema\\.graphql",
+            "skills": ["be_api_design"],
+            "priority": "high",
+            "notes": "API contracts, OpenAPI/Swagger specifications, Protocol Buffers, and GraphQL schemas"
+          },
+          {
+            "pattern": "*test*|*spec*|tests/|test/|__tests__/",
+            "skills": ["be_testing_quality"],
+            "priority": "high",
+            "notes": "Unit, integration, contract, load, and chaos testing scripts"
+          },
+          {
+            "pattern": "*.go|*.java|*.py|*.ts|*.js|*.cs|*.rs|*.rb",
+            "skills": ["be_architecture_patterns", "be_auth_security", "be_scalability_resilience", "be_observability"],
+            "priority": "medium",
+            "notes": "Core backend source code analyzed for architecture patterns, authentication, concurrency, and telemetry"
+          }
+        ]
+      },
+      {
+        "step": 2,
+        "name": "dependency_extraction",
+        "source_manifests": [
+          "package.json",
+          "pom.xml",
+          "build.gradle",
+          "requirements.txt",
+          "pyproject.toml",
+          "go.mod",
+          "Cargo.toml",
+          "Gemfile"
+        ],
+        "relevant_dependencies": {
+          "be_databases": ["pg", "mysql2", "prisma", "typeorm", "hibernate", "sqlalchemy", "gorm", "diesel", "mongoose", "dynamodb"],
+          "be_caching_messaging": ["redis", "ioredis", "amqplib", "pika", "kafkajs", "confluent-kafka", "bullmq", "celery", "sidekiq"],
+          "be_scalability_resilience": ["resilience4j", "polly", "opossum", "redlock", "asyncio", "tokio"],
+          "be_observability": ["winston", "zap", "prom-client", "client_golang", "@opentelemetry/sdk", "dd-trace", "newrelic", "sentry"],
+          "be_auth_security": ["bcrypt", "argon2", "jsonwebtoken", "passport", "oauth2", "casbin", "vault"],
+          "be_testing_quality": ["pytest", "junit", "jest", "testcontainers", "pact", "k6", "stryker", "toxiproxy"]
+        }
+      },
+      {
+        "step": 3,
+        "name": "config_file_scan",
+        "target_configs": [
+          "docker-compose.yml",
+          "docker-compose.yaml",
+          "prisma/schema.prisma",
+          "alembic.ini",
+          "logback.xml",
+          "sonar-project.properties",
+          "pact-broker.json",
+          "envoy.yaml",
+          "istio.yaml"
+        ]
+      }
+    ]
+  },
+  "ai_analysis_instructions": {
+    "tasks": [
+      "Map detected signals to composite keys ({skill_id}.{subskill_id}) using patterns defined in backend skill files",
+      "Inspect database models for relational constraints, foreign keys, and indexes vs raw SQL queries",
+      "Check resilience patterns — presence of circuit breakers, retry with backoff, and connection pooling configurations",
+      "Evaluate observability depth — structured JSON logging with correlation IDs vs simple stdout print statements"
+    ]
+  }
+}

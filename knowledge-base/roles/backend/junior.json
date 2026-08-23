@@ -1,0 +1,85 @@
+{
+  "role_id": "backend_developer",
+  "level": "junior",
+  "title": "Junior Backend Developer",
+  "description": "Entry-level backend developer focused on core database querying, RESTful API design, layered architecture, basic caching, unit testing, and defensive input validation.",
+  "experience_range": "0-2 years",
+  "skills": [
+    {
+      "skill_id": "be_databases",
+      "importance": 0.95,
+      "rationale": "Strong foundation in relational modeling, writing SQL queries, using ORMs, and executing migrations is essential for daily task delivery."
+    },
+    {
+      "skill_id": "be_api_design",
+      "importance": 0.95,
+      "rationale": "Building well-structured RESTful endpoints, DTO validation, and maintaining OpenAPI contracts is central to backend development."
+    },
+    {
+      "skill_id": "be_architecture_patterns",
+      "importance": 0.85,
+      "rationale": "Adhering to controller-service-repository layered patterns and applying dependency injection cleanly."
+    },
+    {
+      "skill_id": "be_testing_quality",
+      "importance": 0.8,
+      "rationale": "Writing reliable unit tests and database integration tests following the AAA pattern."
+    },
+    {
+      "skill_id": "be_auth_security",
+      "importance": 0.75,
+      "rationale": "Applying secure password hashing (bcrypt/Argon2), verifying JWT claims, and writing parameterized SQL queries against SQLi."
+    },
+    {
+      "skill_id": "be_caching_messaging",
+      "importance": 0.7,
+      "rationale": "Utilizing Redis for basic key-value caching with TTLs and managing background task queues."
+    },
+    {
+      "skill_id": "be_observability",
+      "importance": 0.65,
+      "rationale": "Emitting structured JSON logs with correlation IDs and implementing /healthz readiness probes."
+    },
+    {
+      "skill_id": "be_scalability_resilience",
+      "importance": 0.6,
+      "rationale": "Designing stateless services for horizontal scaling, connection pool sizing, and retry backoff."
+    }
+  ],
+  "scoring": {
+    "method": "weighted_average",
+    "description": "Each skill score is multiplied by its importance weight. Final score is sum divided by sum of weights.",
+    "thresholds": {
+      "not_ready": {
+        "min": 0.0,
+        "max": 0.3,
+        "label": "Not Ready",
+        "description": "Significant gaps in database querying, API fundamentals, or testing."
+      },
+      "developing": {
+        "min": 0.3,
+        "max": 0.5,
+        "label": "Developing",
+        "description": "Basic understanding of CRUD endpoints, but needs guidance on SQL optimization, transactions, and layered architecture."
+      },
+      "approaching": {
+        "min": 0.5,
+        "max": 0.7,
+        "label": "Approaching Ready",
+        "description": "Solid database fundamentals, reliable API implementation, and consistent unit testing habits."
+      },
+      "ready": {
+        "min": 0.7,
+        "max": 0.85,
+        "label": "Ready",
+        "description": "Meets all junior expectations: delivers secure, tested, well-structured backend endpoints with database migrations."
+      },
+      "exceeds": {
+        "min": 0.85,
+        "max": 1.0,
+        "label": "Exceeds Expectations",
+        "description": "Exceeds junior expectations with early mid-level proficiency in caching, message queues, and indexing."
+      }
+    }
+  }
+}

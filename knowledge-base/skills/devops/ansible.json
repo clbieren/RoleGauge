@@ -263,16 +263,16 @@
       "expected_subskills": [
         "roles",
         "templates",
-        "vault",
-        "idempotency"
+        "vault"
       ],
       "description": "Can create reusable roles, use Jinja2 templates, encrypt secrets, and write robust error-handling logic."
     },
     "senior": {
       "expected_subskills": [
-        "dynamic_inventory"
+        "dynamic_inventory",
+        "idempotency"
       ],
-      "description": "Can design enterprise configuration management strategies, implement dynamic inventory, and integrate with CI/CD.",
+      "description": "Can design enterprise configuration management strategies, implement dynamic inventory, ensure idempotent task execution, and integrate with CI/CD.",
       "additional_expectations": [
         "custom_modules",
         "ansible_tower_awx",

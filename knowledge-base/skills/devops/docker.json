@@ -128,8 +128,8 @@
     },
     {
       "id": "container_security_best_practices",
-      "name": "Container Security Best Practices",
-      "description": "Non-root users, minimal base images, vulnerability scanning, read-only filesystems, and capability restrictions.",
+      "name": "Container Security & Supply Chain",
+      "description": "Non-root users, minimal base images, vulnerability scanning, image signing (cosign), SBOM generation (syft), and capability restrictions.",
       "keywords": [
         "USER",
         "non-root",
@@ -138,6 +138,10 @@
         "scan",
         "trivy",
         "snyk",
+        "cosign",
+        "sbom",
+        "syft",
+        "grype",
         "read-only",
         "cap_drop",
         "no-new-privileges",
@@ -156,21 +160,6 @@
         "restart policy",
         "resources",
         "limits"
-      ]
-    },
-    {
-      "id": "supply_chain_security",
-      "name": "Container Supply Chain Security",
-      "description": "Container image signing, SBOM generation, image provenance, and attestation verification.",
-      "keywords": [
-        "cosign",
-        "sbom",
-        "syft",
-        "grype",
-        "provenance",
-        "slsa",
-        "attestation",
-        "image signing"
       ]
     },
     {
@@ -298,7 +287,7 @@
         "pattern": "cosign sign|syft|grype|sbom",
         "strength": 0.8,
         "maps_to": [
-          "docker.supply_chain_security"
+          "docker.container_security_best_practices"
         ]
       }
     ],
@@ -393,17 +382,16 @@
         "multi_stage_builds",
         "container_networking",
         "registry",
-        "container_security_best_practices",
         "health_checks"
       ],
-      "description": "Can optimize images with multi-stage builds, configure custom networks, work with private registries, and implement security best practices."
+      "description": "Can optimize images with multi-stage builds, configure custom networks, work with registries, and define health checks/limits."
     },
     "senior": {
       "expected_subskills": [
-        "supply_chain_security",
+        "container_security_best_practices",
         "container_performance_optimization"
       ],
-      "description": "Can design enterprise container strategies, implement image signing and SBOMs, optimize build performance, and enforce supply chain security."
+      "description": "Can design enterprise container strategies, enforce supply chain security (cosign/SBOM), optimize build performance, and harden container runtimes."
     }
   }
 }

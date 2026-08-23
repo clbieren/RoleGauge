@@ -1,0 +1,153 @@
+{
+  "skill_id": "fe_typescript",
+  "name": "TypeScript",
+  "category": "frontend_core",
+  "description": "TypeScript type system mastery: basic types and interfaces, generics, type narrowing and guards, advanced mapped/conditional types, declaration files, strict mode configuration, React-specific typing patterns, tsconfig tuning, and type-level programming.",
+  "subskills": [
+    {
+      "id": "type_basics",
+      "name": "Types, Interfaces & Aliases",
+      "description": "Primitive types, interface vs type alias, union/intersection types, literal types, optional properties.",
+      "keywords": ["interface", "type", "union", "intersection", "literal types", "optional", "readonly"]
+    },
+    {
+      "id": "generics",
+      "name": "Generics",
+      "description": "Generic functions, generic constraints (extends), utility types (Partial, Required, Pick, Omit, Record).",
+      "keywords": ["generics", "extends", "Partial", "Required", "Pick", "Omit", "Record", "keyof"]
+    },
+    {
+      "id": "type_narrowing",
+      "name": "Type Narrowing & Guards",
+      "description": "typeof guards, instanceof, discriminated unions, user-defined type guards (is keyword), assertion functions.",
+      "keywords": ["type guard", "is keyword", "discriminated union", "typeof", "instanceof", "assertion function", "narrowing"]
+    },
+    {
+      "id": "advanced_types",
+      "name": "Advanced Types",
+      "description": "Mapped types, conditional types (infer), template literal types, indexed access types.",
+      "keywords": ["mapped types", "conditional types", "infer", "template literal types", "indexed access", "as const"]
+    },
+    {
+      "id": "declaration_files",
+      "name": "Declaration Files",
+      "description": ".d.ts files, ambient declarations, DefinitelyTyped (@types/*), module augmentation.",
+      "keywords": [".d.ts", "declare", "DefinitelyTyped", "@types", "module augmentation", "ambient"]
+    },
+    {
+      "id": "strict_mode",
+      "name": "Strict Mode Configuration",
+      "description": "strict flag family: strictNullChecks, noImplicitAny, noUncheckedIndexedAccess, exactOptionalPropertyTypes.",
+      "keywords": ["strict", "strictNullChecks", "noImplicitAny", "noUncheckedIndexedAccess", "strictFunctionTypes"]
+    },
+    {
+      "id": "ts_with_react",
+      "name": "TypeScript with React",
+      "description": "FC typing, generic component props, event handler types, useRef typing, forwardRef, children typing.",
+      "keywords": ["React.FC", "PropsWithChildren", "ChangeEvent", "useRef", "forwardRef", "ComponentProps", "generic components"]
+    },
+    {
+      "id": "ts_config",
+      "name": "TSConfig & Module Resolution",
+      "description": "tsconfig.json options, paths/baseUrl aliases, moduleResolution (node/bundler), target/lib settings.",
+      "keywords": ["tsconfig.json", "paths", "baseUrl", "moduleResolution", "target", "lib", "composite", "references"]
+    },
+    {
+      "id": "type_level_programming",
+      "name": "Type-Level Programming",
+      "description": "Recursive types, branded/opaque types, type-safe builders, complex inference chains.",
+      "keywords": ["recursive types", "branded types", "opaque types", "type-level", "infer", "distributive conditional"]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "TypeScript source files present",
+        "detection": "file_presence",
+        "pattern": "\\.(ts|tsx)$",
+        "strength": 0.6,
+        "maps_to": ["fe_typescript.type_basics", "fe_typescript.ts_config"]
+      },
+      {
+        "signal": "tsconfig.json with strict mode flags",
+        "detection": "content_analysis",
+        "pattern": "strictNullChecks|noImplicitAny|noUncheckedIndexedAccess|\"strict\":\\s*true",
+        "strength": 0.8,
+        "maps_to": ["fe_typescript.strict_mode", "fe_typescript.ts_config"]
+      },
+      {
+        "signal": "Generic type parameters in code",
+        "detection": "content_analysis",
+        "pattern": "<T\\s*(extends|,)|<T>|Partial<|Omit<|Pick<|Record<",
+        "strength": 0.7,
+        "maps_to": ["fe_typescript.generics"]
+      },
+      {
+        "signal": "Type guards and discriminated unions",
+        "detection": "content_analysis",
+        "pattern": "is\\s+\\w+|asserts\\s+\\w+|discriminant|kind:\\s*['\"]",
+        "strength": 0.8,
+        "maps_to": ["fe_typescript.type_narrowing"]
+      },
+      {
+        "signal": "Advanced type constructs",
+        "detection": "content_analysis",
+        "pattern": "infer\\s+\\w|extends.*\\?.*:|\\[K in keyof|template literal",
+        "strength": 0.9,
+        "maps_to": ["fe_typescript.advanced_types", "fe_typescript.type_level_programming"]
+      },
+      {
+        "signal": ".d.ts declaration files or module augmentation",
+        "detection": "file_presence",
+        "pattern": "\\.d\\.ts$",
+        "strength": 0.8,
+        "maps_to": ["fe_typescript.declaration_files"]
+      },
+      {
+        "signal": "React component typing (FC, PropsWithChildren, forwardRef)",
+        "detection": "content_analysis",
+        "pattern": "React\\.FC|PropsWithChildren|forwardRef<|ComponentProps<",
+        "strength": 0.7,
+        "maps_to": ["fe_typescript.ts_with_react"]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "TypeScript development in production applications",
+        "strength": 0.7,
+        "maps_to": ["fe_typescript.type_basics", "fe_typescript.generics", "fe_typescript.strict_mode"]
+      },
+      {
+        "signal": "Type system architecture or library typing",
+        "strength": 0.7,
+        "maps_to": ["fe_typescript.advanced_types", "fe_typescript.declaration_files", "fe_typescript.type_level_programming"]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "TypeScript endorsed",
+        "strength": 0.5,
+        "maps_to": ["fe_typescript.type_basics", "fe_typescript.ts_config"]
+      },
+      {
+        "signal": "React + TypeScript or Angular (TypeScript-first) endorsed",
+        "strength": 0.5,
+        "maps_to": ["fe_typescript.ts_with_react", "fe_typescript.type_narrowing"]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": ["type_basics", "ts_config", "strict_mode"],
+      "description": "Defines interfaces, configures tsconfig properly, and works with strict null checks enabled."
+    },
+    "mid": {
+      "expected_subskills": ["generics", "type_narrowing", "ts_with_react"],
+      "description": "Writes generic utilities, implements type guards for safe narrowing, and types React components idiomatically."
+    },
+    "senior": {
+      "expected_subskills": ["advanced_types", "declaration_files", "type_level_programming"],
+      "description": "Designs complex mapped/conditional types, writes declaration files for untyped libraries, and implements type-level logic."
+    }
+  }
+}

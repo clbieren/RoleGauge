@@ -1,0 +1,169 @@
+{
+  "skill_id": "be_architecture_patterns",
+  "name": "Backend Architecture & Design Patterns",
+  "category": "backend_architecture",
+  "description": "Architectural paradigms and software design patterns for scalable backend systems: Layered architecture, Dependency Injection, Gang of Four (GoF) behavioral/structural design patterns, Clean/Hexagonal Architecture (Ports and Adapters), Domain-Driven Design (DDD), Microservices decomposition, Event-Driven Architecture (EDA), Command Query Responsibility Segregation (CQRS), Event Sourcing, and Service Mesh.",
+  "subskills": [
+    {
+      "id": "layered_architecture",
+      "name": "Layered Architecture",
+      "description": "Controller-Service-Repository separation of concerns, data transfer objects (DTOs), business logic isolation from web/persistence frameworks.",
+      "keywords": ["Layered architecture", "Controller-Service-Repository", "separation of concerns", "DTO", "business logic isolation"]
+    },
+    {
+      "id": "dependency_injection",
+      "name": "Dependency Injection & Inversion",
+      "description": "Dependency Inversion Principle (DIP), Inversion of Control (IoC) containers (Spring IoC, NestJS DI, Dagger), and constructor injection.",
+      "keywords": ["Dependency Injection", "IoC Container", "DIP", "constructor injection", "loose coupling", "interface-based design"]
+    },
+    {
+      "id": "design_patterns_backend",
+      "name": "Backend Design Patterns (GoF)",
+      "description": "Factory, Strategy, Adapter, Decorator, Observer, and Chain of Responsibility patterns applied to backend workflows.",
+      "keywords": ["Strategy pattern", "Factory pattern", "Adapter pattern", "Decorator pattern", "Observer pattern", "Chain of Responsibility"]
+    },
+    {
+      "id": "clean_hexagonal_architecture",
+      "name": "Clean & Hexagonal Architecture",
+      "description": "Ports and Adapters, Onion architecture, pure domain entities, use case interactor classes, and framework-independent business rules.",
+      "keywords": ["Hexagonal Architecture", "Ports and Adapters", "Clean Architecture", "use cases", "domain entities", "framework independence"]
+    },
+    {
+      "id": "domain_driven_design",
+      "name": "Domain-Driven Design (DDD)",
+      "description": "Strategic and tactical DDD: Bounded Contexts, Ubiquitous Language, Aggregates, Entities, Value Objects, Domain Services, and Domain Events.",
+      "keywords": ["DDD", "Bounded Context", "Aggregate Root", "Value Object", "Domain Event", "Ubiquitous Language", "Domain Service"]
+    },
+    {
+      "id": "microservices_architecture",
+      "name": "Microservices Decomposition",
+      "description": "Decomposition by subdomain or business capability, database-per-service pattern, synchronous vs asynchronous inter-service communication.",
+      "keywords": ["Microservices", "database-per-service", "service boundaries", "subdomain decomposition", "inter-service communication"]
+    },
+    {
+      "id": "event_driven_architecture",
+      "name": "Event-Driven Architecture (EDA)",
+      "description": "Event choreography vs orchestration, domain events, asynchronous event publishing, consumer decouplings, and event schema governance.",
+      "keywords": ["Event-Driven Architecture", "Choreography", "Orchestration", "Event Notification", "Event-Carried State Transfer"]
+    },
+    {
+      "id": "cqrs_pattern",
+      "name": "CQRS Pattern",
+      "description": "Command Query Responsibility Segregation, asymmetric read and write data models, and specialized projection pipelines.",
+      "keywords": ["CQRS", "Command model", "Query model", "read projections", "materialized views", "read-write separation"]
+    },
+    {
+      "id": "event_sourcing",
+      "name": "Event Sourcing",
+      "description": "Append-only immutable event store, state reconstruction by event replaying, snapshotting mechanisms, and auditability.",
+      "keywords": ["Event Sourcing", "Event Store", "event replay", "snapshots", "temporal queries", "immutable event log"]
+    },
+    {
+      "id": "service_mesh",
+      "name": "Service Mesh & Sidecars",
+      "description": "Istio, Envoy sidecar proxies, mutual TLS (mTLS) zero-trust communication, traffic splitting (canary releases), and distributed resilience.",
+      "keywords": ["Service Mesh", "Istio", "Envoy proxy", "mTLS", "sidecar pattern", "canary routing", "zero-trust networking"]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "Clean / Hexagonal architecture directory structures (ports, adapters, domain, usecases)",
+        "detection": "content_analysis",
+        "pattern": "domain/entities|domain/usecases|adapters/inbound|adapters/outbound|ports/|application/services",
+        "strength": 0.9,
+        "maps_to": ["be_architecture_patterns.clean_hexagonal_architecture", "be_architecture_patterns.layered_architecture"]
+      },
+      {
+        "signal": "Dependency Injection decorator or container configurations",
+        "detection": "content_analysis",
+        "pattern": "@Injectable|@Autowired|@Inject|container\\.register|provide\\s*:",
+        "strength": 0.8,
+        "maps_to": ["be_architecture_patterns.dependency_injection"]
+      },
+      {
+        "signal": "Domain-Driven Design Tactical patterns (Aggregates, Value Objects, Domain Events)",
+        "detection": "content_analysis",
+        "pattern": "class.*AggregateRoot|class.*ValueObject|DomainEvent|applyEvent|raiseEvent",
+        "strength": 0.9,
+        "maps_to": ["be_architecture_patterns.domain_driven_design"]
+      },
+      {
+        "signal": "Design pattern implementations (Strategy, Factory, Adapter)",
+        "detection": "content_analysis",
+        "pattern": "class.*Factory|class.*Strategy|implements.*Strategy|class.*Adapter",
+        "strength": 0.7,
+        "maps_to": ["be_architecture_patterns.design_patterns_backend"]
+      },
+      {
+        "signal": "CQRS command / query bus or handlers",
+        "detection": "content_analysis",
+        "pattern": "CommandHandler|QueryHandler|CommandBus|QueryBus|ICommand|IQuery",
+        "strength": 0.9,
+        "maps_to": ["be_architecture_patterns.cqrs_pattern", "be_architecture_patterns.event_driven_architecture"]
+      },
+      {
+        "signal": "Event Sourcing event store or snapshotting implementation",
+        "detection": "content_analysis",
+        "pattern": "EventStore|getEventsForAggregate|loadFromHistory|createSnapshot",
+        "strength": 0.9,
+        "maps_to": ["be_architecture_patterns.event_sourcing"]
+      },
+      {
+        "signal": "Service Mesh configuration (Istio VirtualService, Envoy config)",
+        "detection": "file_presence",
+        "pattern": "virtualservice\\.ya?ml|destinationrule\\.ya?ml|envoy\\.ya?ml",
+        "strength": 0.9,
+        "maps_to": ["be_architecture_patterns.service_mesh", "be_architecture_patterns.microservices_architecture"]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "Backend architecture design (Clean Architecture, Hexagonal, Layered)",
+        "strength": 0.8,
+        "maps_to": ["be_architecture_patterns.layered_architecture", "be_architecture_patterns.clean_hexagonal_architecture", "be_architecture_patterns.dependency_injection"]
+      },
+      {
+        "signal": "Domain-Driven Design (DDD) or Microservices migration",
+        "strength": 0.8,
+        "maps_to": ["be_architecture_patterns.domain_driven_design", "be_architecture_patterns.microservices_architecture", "be_architecture_patterns.event_driven_architecture"]
+      },
+      {
+        "signal": "CQRS, Event Sourcing, or Service Mesh architecture",
+        "strength": 0.9,
+        "maps_to": ["be_architecture_patterns.cqrs_pattern", "be_architecture_patterns.event_sourcing", "be_architecture_patterns.service_mesh"]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Microservices, Clean Architecture, or DDD endorsed",
+        "strength": 0.5,
+        "maps_to": ["be_architecture_patterns.clean_hexagonal_architecture", "be_architecture_patterns.domain_driven_design", "be_architecture_patterns.microservices_architecture"]
+      },
+      {
+        "signal": "Software Architecture, Design Patterns, or OOP endorsed",
+        "strength": 0.5,
+        "maps_to": ["be_architecture_patterns.layered_architecture", "be_architecture_patterns.dependency_injection", "be_architecture_patterns.design_patterns_backend"]
+      },
+      {
+        "signal": "CQRS, Event Sourcing, or Service Mesh experience mentioned",
+        "strength": 0.5,
+        "maps_to": ["be_architecture_patterns.cqrs_pattern", "be_architecture_patterns.event_sourcing", "be_architecture_patterns.service_mesh", "be_architecture_patterns.event_driven_architecture"]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": ["layered_architecture", "dependency_injection", "design_patterns_backend"],
+      "description": "Applies controller-service-repository layered patterns, uses dependency injection containers, and implements standard GoF design patterns."
+    },
+    "mid": {
+      "expected_subskills": ["clean_hexagonal_architecture", "domain_driven_design", "microservices_architecture", "event_driven_architecture"],
+      "description": "Implements Hexagonal / Ports and Adapters architecture, models tactical DDD aggregates, and designs microservice and event-driven communication flows."
+    },
+    "senior": {
+      "expected_subskills": ["cqrs_pattern", "event_sourcing", "service_mesh"],
+      "description": "Architects asynchronous CQRS read/write pipelines, designs append-only Event Sourced systems with snapshotting, and manages Service Mesh mTLS routing."
+    }
+  }
+}

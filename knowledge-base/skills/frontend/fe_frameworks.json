@@ -1,0 +1,183 @@
+{
+  "skill_id": "fe_frameworks",
+  "name": "UI Frameworks",
+  "category": "frontend_frameworks",
+  "description": "Component-based UI framework knowledge: React core, component architecture patterns, state management solutions, React hooks, Vue.js core, Svelte core, virtual DOM internals, client-side routing, component design patterns, and rendering performance optimization.",
+  "subskills": [
+    {
+      "id": "react_core",
+      "name": "React Core",
+      "description": "JSX, functional components, props, useState, useEffect lifecycle, conditional rendering.",
+      "keywords": ["JSX", "useState", "useEffect", "props", "functional component", "conditional rendering", "key prop"]
+    },
+    {
+      "id": "component_architecture",
+      "name": "Component Architecture",
+      "description": "Composition over inheritance, compound components, render props, children patterns, slot-like APIs.",
+      "keywords": ["composition", "compound components", "render props", "children", "slots", "container/presentational"]
+    },
+    {
+      "id": "state_management",
+      "name": "State Management",
+      "description": "Context API, Redux Toolkit, Zustand, Jotai, signal-based state, global vs local state boundaries.",
+      "keywords": ["Context API", "Redux", "Zustand", "Jotai", "global state", "local state", "signals"]
+    },
+    {
+      "id": "react_hooks",
+      "name": "React Hooks (Advanced)",
+      "description": "Custom hooks, useRef, useMemo, useCallback, useReducer, useId, rules of hooks.",
+      "keywords": ["custom hook", "useRef", "useMemo", "useCallback", "useReducer", "useId", "rules of hooks"]
+    },
+    {
+      "id": "vue_core",
+      "name": "Vue.js Core",
+      "description": "Vue 3 template syntax, Composition API (ref, reactive, computed, watch), v-model, provide/inject.",
+      "keywords": ["Vue 3", "Composition API", "ref", "reactive", "computed", "watch", "v-model", "provide/inject"]
+    },
+    {
+      "id": "svelte_core",
+      "name": "Svelte Core",
+      "description": "Svelte reactive declarations ($:), stores (writable, derived), bind directives, compile-time approach.",
+      "keywords": ["Svelte", "$:", "writable", "derived", "bind:", "compile-time", "no virtual DOM"]
+    },
+    {
+      "id": "virtual_dom",
+      "name": "Virtual DOM & Reconciliation",
+      "description": "Virtual DOM diffing, React Fiber architecture, reconciliation algorithm, key-based list optimization.",
+      "keywords": ["virtual DOM", "diffing", "Fiber", "reconciliation", "key prop", "concurrent rendering"]
+    },
+    {
+      "id": "routing",
+      "name": "Client-Side Routing",
+      "description": "React Router v6, Vue Router, dynamic routes, route guards, nested layouts, lazy route loading.",
+      "keywords": ["React Router", "Vue Router", "dynamic routes", "route guard", "nested routes", "lazy loading"]
+    },
+    {
+      "id": "component_design_patterns",
+      "name": "Component Design Patterns",
+      "description": "Higher-Order Components, headless/renderless components, controlled vs uncontrolled, provider pattern.",
+      "keywords": ["HOC", "headless component", "controlled", "uncontrolled", "provider pattern", "renderless"]
+    },
+    {
+      "id": "performance_patterns",
+      "name": "Rendering Performance Patterns",
+      "description": "React.memo, useMemo/useCallback for re-render prevention, lazy/Suspense, windowing/virtualization.",
+      "keywords": ["React.memo", "useMemo", "useCallback", "lazy", "Suspense", "virtualization", "windowing"]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "React component files (.jsx/.tsx)",
+        "detection": "file_presence",
+        "pattern": "\\.(jsx|tsx)$",
+        "strength": 0.7,
+        "maps_to": ["fe_frameworks.react_core", "fe_frameworks.component_architecture"]
+      },
+      {
+        "signal": "React in package.json dependencies",
+        "detection": "content_analysis",
+        "pattern": "\"react\":\\s*\"|\"react-dom\":\\s*\"",
+        "strength": 0.8,
+        "maps_to": ["fe_frameworks.react_core"]
+      },
+      {
+        "signal": "Vue single-file components",
+        "detection": "file_presence",
+        "pattern": "\\.vue$",
+        "strength": 0.8,
+        "maps_to": ["fe_frameworks.vue_core"]
+      },
+      {
+        "signal": "Svelte component files",
+        "detection": "file_presence",
+        "pattern": "\\.svelte$",
+        "strength": 0.8,
+        "maps_to": ["fe_frameworks.svelte_core"]
+      },
+      {
+        "signal": "State management libraries in dependencies",
+        "detection": "content_analysis",
+        "pattern": "\"redux|\"zustand|\"jotai|\"@reduxjs/toolkit|\"pinia",
+        "strength": 0.8,
+        "maps_to": ["fe_frameworks.state_management"]
+      },
+      {
+        "signal": "React Router or Vue Router usage",
+        "detection": "content_analysis",
+        "pattern": "react-router|vue-router|createBrowserRouter|useNavigate|useRoute",
+        "strength": 0.7,
+        "maps_to": ["fe_frameworks.routing"]
+      },
+      {
+        "signal": "Custom hooks (use*.ts/js files)",
+        "detection": "content_analysis",
+        "pattern": "export\\s+(function|const)\\s+use[A-Z]|useCallback|useMemo|useReducer",
+        "strength": 0.8,
+        "maps_to": ["fe_frameworks.react_hooks"]
+      },
+      {
+        "signal": "Performance optimization patterns",
+        "detection": "content_analysis",
+        "pattern": "React\\.memo|React\\.lazy|Suspense|react-window|react-virtualized",
+        "strength": 0.8,
+        "maps_to": ["fe_frameworks.performance_patterns", "fe_frameworks.virtual_dom"]
+      },
+      {
+        "signal": "Advanced component patterns (HOC, renderless, headless)",
+        "detection": "content_analysis",
+        "pattern": "withAuth|with[A-Z]\\w+\\(|renderless|headless|useHeadless",
+        "strength": 0.7,
+        "maps_to": ["fe_frameworks.component_design_patterns"]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "React/Vue/Angular development in production",
+        "strength": 0.7,
+        "maps_to": ["fe_frameworks.react_core", "fe_frameworks.vue_core", "fe_frameworks.routing"]
+      },
+      {
+        "signal": "State management architecture (Redux, MobX, Vuex)",
+        "strength": 0.7,
+        "maps_to": ["fe_frameworks.state_management", "fe_frameworks.react_hooks"]
+      },
+      {
+        "signal": "Component library or design system development",
+        "strength": 0.8,
+        "maps_to": ["fe_frameworks.component_architecture", "fe_frameworks.component_design_patterns"]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "React or Vue.js endorsed",
+        "strength": 0.5,
+        "maps_to": ["fe_frameworks.react_core", "fe_frameworks.vue_core", "fe_frameworks.component_architecture"]
+      },
+      {
+        "signal": "Redux, Svelte, or Angular endorsed",
+        "strength": 0.5,
+        "maps_to": ["fe_frameworks.state_management", "fe_frameworks.svelte_core", "fe_frameworks.performance_patterns"]
+      },
+      {
+        "signal": "Frontend architecture or design systems experience",
+        "strength": 0.5,
+        "maps_to": ["fe_frameworks.virtual_dom", "fe_frameworks.component_design_patterns"]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": ["react_core", "component_architecture", "routing", "vue_core"],
+      "description": "Builds components in React or Vue, understands composition, and implements client-side routing."
+    },
+    "mid": {
+      "expected_subskills": ["react_hooks", "state_management", "svelte_core"],
+      "description": "Writes custom hooks, architects state management, and has breadth across multiple frameworks."
+    },
+    "senior": {
+      "expected_subskills": ["virtual_dom", "component_design_patterns", "performance_patterns"],
+      "description": "Understands framework internals, designs reusable component APIs, and optimizes rendering performance."
+    }
+  }
+}

@@ -1,0 +1,642 @@
+{
+  "source_id": "assessment",
+  "name": "Adaptive Technical Assessment - Backend Developer",
+  "description": "Adaptive assessment question bank for Backend Developer skills. Each question is hand-crafted and technology-specific with diverse scenario, debugging, architectural, code analysis, and trade-off formats.",
+  "sample_questions_by_composite_key": {
+    "be_databases.relational_modeling": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "You are designing an e-commerce order schema. Why should the price of an ordered item be stored redundantly in the 'order_items' table rather than solely referenced via a foreign key to the 'products' table?",
+        "expected_answer_keywords": ["historical price preservation", "immutable snapshot", "product price updates", "financial audit integrity", "referential integrity", "denormalization trade-off"]
+      }
+    ],
+    "be_databases.sql_querying": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "Write a SQL query using window functions (e.g. DENSE_RANK() or ROW_NUMBER() OVER(PARTITION BY department_id ORDER BY salary DESC)) to retrieve the top 3 highest-earning employees in each department without subquery self-joins.",
+        "expected_answer_keywords": ["DENSE_RANK()", "ROW_NUMBER()", "PARTITION BY", "OVER clause", "Common Table Expression (CTE)", "WHERE rank <= 3"]
+      }
+    ],
+    "be_databases.indexing_optimization": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "A query 'SELECT * FROM users WHERE status = 'ACTIVE' AND created_at > NOW() - INTERVAL '7 days' ORDER BY created_at DESC' takes 4 seconds on a 20-million-row table. Explain how you analyze the output of EXPLAIN (ANALYZE, BUFFERS) and design an optimal composite B-Tree index considering column cardinality and sorting order.",
+        "expected_answer_keywords": ["EXPLAIN ANALYZE", "composite B-Tree index (status, created_at DESC)", "Index Scan vs Seq Scan", "index selectivity", "avoiding Sort node in execution plan", "heap fetches reduction"]
+      }
+    ],
+    "be_databases.transactions_acid": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "Two concurrent bank transfer transactions execute simultaneously: Tx1 transfers $50 from Account A to B, while Tx2 reads the sum of balances across all accounts. Compare the 'Read Committed' vs 'Repeatable Read' vs 'Serializable' isolation levels in terms of Non-Repeatable Reads, Phantom Reads, and serialization failure retries in PostgreSQL/MySQL.",
+        "expected_answer_keywords": ["Read Committed", "Repeatable Read", "Serializable", "Non-repeatable read", "Phantom read", "MVCC snapshot", "serialization failure (40001) retry"]
+      }
+    ],
+    "be_databases.orm_data_mappers": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "An endpoint fetching 50 blog posts and their authors executes 51 separate SQL queries. Explain why this N+1 query problem occurs in ORMs (like Hibernate or Prisma) and how to resolve it using eager loading (JOIN FETCH / include) or batch loading.",
+        "expected_answer_keywords": ["N+1 query problem", "lazy loading default", "eager loading", "JOIN FETCH", "Prisma include / TypeORM relations", "batch loading"]
+      }
+    ],
+    "be_databases.migrations_schema_versioning": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "You need to rename a high-traffic column 'full_name' to 'display_name' on a production database with zero downtime. Walk through the Expand and Contract pattern steps across multiple application deploys to prevent breaking live services.",
+        "expected_answer_keywords": ["Expand and Contract pattern", "add new nullable column", "dual-writing in application", "backfilling historical data", "switching read path", "deprecating and dropping old column"]
+      }
+    ],
+    "be_databases.nosql_document_keyvalue": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "Compare embedding documents versus referencing (normalized IDs) in MongoDB for a blog post with comments. In what situation does document embedding hit the 16MB BSON limit or suffer from unbounded document growth?",
+        "expected_answer_keywords": ["embedding vs referencing", "16MB BSON limit", "unbounded array growth", "atomicity within single document", "two-way referencing / subset pattern"]
+      }
+    ],
+    "be_databases.sharding_partitioning": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "A multi-tenant SaaS application database table has reached 500 million rows. Design a horizontal sharding strategy: compare choosing 'tenant_id' as the shard key versus a hash of 'user_id' regarding hotspot prevention, cross-shard joins, and scatter-gather query overhead.",
+        "expected_answer_keywords": ["shard key selection (tenant_id vs user_id)", "hash sharding vs range sharding", "hotspot / noisy neighbor mitigation", "scatter-gather query latency", "cross-shard transaction avoidance"]
+      }
+    ],
+    "be_databases.replication_high_availability": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "During a network partition between database primary and replica nodes, an automated failover promotes a replica to new primary. What causes a 'split-brain' scenario, and how do consensus algorithms (Raft/Paxos) or quorum-based fencing mechanisms prevent dual writes and data divergence?",
+        "expected_answer_keywords": ["split-brain scenario", "quorum (N/2 + 1)", "fencing / STONITH", "replication lag", "asynchronous replication data loss", "automatic master election"]
+      }
+    ],
+    "be_databases.distributed_transactions": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "In a distributed microservices architecture (Order Service, Payment Service, Inventory Service), explain why Two-Phase Commit (2PC) is rarely used in high-scale cloud environments, and walk through how the Saga pattern (Orchestration vs Choreography) with compensating transactions maintains eventual consistency.",
+        "expected_answer_keywords": ["Two-Phase Commit (2PC) blocking coordinator", "Saga pattern", "compensating transactions", "Orchestrator vs Choreography", "Transactional Outbox pattern", "eventual consistency"]
+      }
+    ],
+
+    "be_api_design.restful_principles": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "Explain the difference between PUT and PATCH HTTP methods regarding resource replacement vs partial update idempotency. Why should a successful DELETE request return HTTP 204 No Content or HTTP 200 OK?",
+        "expected_answer_keywords": ["PUT full replacement idempotent", "PATCH partial update", "204 No Content", "idempotency semantics", "URI resource identification"]
+      }
+    ],
+    "be_api_design.request_validation_error_handling": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "Design a standardized REST API error response following RFC 7807 (Problem Details for HTTP APIs). What standard fields ('type', 'title', 'status', 'detail', 'instance', 'invalid_params') must be included when returning a 422 Unprocessable Entity for invalid input payloads?",
+        "expected_answer_keywords": ["RFC 7807 Problem Details", "Content-Type: application/problem+json", "status: 422", "detail field", "invalid_params validation errors array", "centralized error middleware"]
+      }
+    ],
+    "be_api_design.api_pagination_filtering": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "Why does offset-based pagination ('OFFSET 100000 LIMIT 20') degrade in performance on large tables, and how does cursor-based / keyset pagination ('WHERE id > last_seen_id ORDER BY id ASC LIMIT 20') achieve constant-time O(1) pagination without missing newly inserted rows?",
+        "expected_answer_keywords": ["cursor-based pagination", "keyset pagination", "OFFSET full table scan degradation", "constant time O(1) seek", "stable cursor token (base64 encoded id/timestamp)", "handling real-time data drift"]
+      }
+    ],
+    "be_api_design.graphql_apis": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "In a GraphQL API, querying a list of 100 users and their recent orders triggers 101 database queries. Explain how DataLoader batches and caches individual resolver requests within a single tick of the event loop to solve this GraphQL N+1 problem.",
+        "expected_answer_keywords": ["GraphQL N+1 problem", "DataLoader batching function", "event loop microtask tick batching", "per-request caching", "Schema Definition Language (SDL)"]
+      }
+    ],
+    "be_api_design.grpc_protobuf": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "Compare gRPC with Protocol Buffers against traditional JSON REST APIs for high-throughput internal microservice communication in terms of binary serialization efficiency, schema contracts (.proto), and HTTP/2 multiplexed bidirectional streaming.",
+        "expected_answer_keywords": ["Protocol Buffers binary serialization", "compact payload size", "HTTP/2 transport multiplexing", "strongly typed .proto contract", "bidirectional streaming", "low CPU serialization overhead"]
+      }
+    ],
+    "be_api_design.api_versioning": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "Compare URI path versioning ('/v1/orders') versus Header-based versioning ('Accept: application/vnd.company.v1+json'). How do you communicate upcoming breaking changes and sunset dates to API consumers using standard HTTP 'Deprecation' and 'Sunset' headers?",
+        "expected_answer_keywords": ["URI path versioning vs Header versioning", "Sunset header (RFC 8594)", "Deprecation header", "backward compatibility guarantees", "API deprecation grace period"]
+      }
+    ],
+    "be_api_design.openapi_documentation": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "Explain the advantages of Contract-First API development using OpenAPI 3.0 specifications before writing backend code compared to code-first annotation generation. How do mock servers and client SDK generation accelerate frontend-backend pairing?",
+        "expected_answer_keywords": ["Contract-First API design", "OpenAPI 3.0 specification", "openapi-generator client SDKs", "mock server generation (Prism)", "independent frontend/backend parallel development"]
+      }
+    ],
+    "be_api_design.rate_limiting_throttling": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "Design a distributed rate limiter in Redis supporting 100 requests per minute per API key. Compare the Sliding Window Log algorithm (using Redis ZSET) vs the Token Bucket algorithm (using Redis Lua scripts) in terms of memory footprint, atomicity, and burst traffic handling.",
+        "expected_answer_keywords": ["Sliding Window Log (ZSET)", "Token Bucket algorithm", "Redis Lua script atomic execution", "HTTP 429 Too Many Requests", "X-RateLimit-Remaining / Retry-After headers", "memory efficiency at high scale"]
+      }
+    ],
+    "be_api_design.api_gateway_routing": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "In a microservices ecosystem serving Web, iOS, and IoT clients, explain how the Backend-for-Frontend (BFF) pattern implemented in an API Gateway optimizes network round-trips by aggregating disparate microservice payloads into client-tailored response DTOs.",
+        "expected_answer_keywords": ["Backend-for-Frontend (BFF)", "API Gateway payload aggregation", "over-fetching / under-fetching elimination", "request routing and transformation", "protocol translation (gRPC to REST/JSON)"]
+      }
+    ],
+    "be_api_design.event_driven_apis_webhooks": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "Design an enterprise outbound webhook dispatching system. How do you sign payloads using HMAC-SHA256 (via 'X-Signature-256' header), implement exponential backoff retry schedules for 5xx failures, and route permanently failing endpoints to a Dead Letter Queue (DLQ) with automatic suspension?",
+        "expected_answer_keywords": ["HMAC-SHA256 signature header", "shared secret verification", "exponential backoff with jitter", "Dead Letter Queue (DLQ)", "circuit breaking failing consumer endpoints", "idempotent delivery headers"]
+      }
+    ],
+
+    "be_architecture_patterns.layered_architecture": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "In a standard Controller-Service-Repository backend architecture, why should the Controller layer contain zero database queries or business validation logic, and what role do Data Transfer Objects (DTOs) play in isolating domain models from the presentation layer?",
+        "expected_answer_keywords": ["Controller-Service-Repository", "separation of concerns", "DTO mapping", "business logic isolation", "unit testability without HTTP context"]
+      }
+    ],
+    "be_architecture_patterns.dependency_injection": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "Explain the Dependency Inversion Principle (DIP) with a concrete backend example. Why should a 'UserService' depend on an 'IUserRepository' interface rather than instantiating 'new PostgresUserRepository()' directly?",
+        "expected_answer_keywords": ["Dependency Inversion Principle (DIP)", "interface-based coupling", "constructor injection", "swappable mock repository in unit tests", "Inversion of Control (IoC)"]
+      }
+    ],
+    "be_architecture_patterns.design_patterns_backend": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "A checkout service needs to support multiple payment providers (Stripe, PayPal, Adyen) selected dynamically at runtime based on currency and country. How do you implement the Strategy pattern with a PaymentStrategyFactory to eliminate deeply nested 'if-else' switch statements?",
+        "expected_answer_keywords": ["Strategy pattern", "Factory pattern", "polymorphic executePayment()", "Open/Closed Principle (OCP)", "dynamic runtime strategy selection"]
+      }
+    ],
+    "be_architecture_patterns.clean_hexagonal_architecture": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "Walk through the directory structure of a Hexagonal Architecture (Ports and Adapters) backend service. Why must domain entities and use cases have zero import dependencies on framework libraries (like Spring, Express, or ORM annotations)?",
+        "expected_answer_keywords": ["Hexagonal Architecture", "Ports and Adapters", "inbound port vs outbound port", "domain core independence", "framework agnostic business rules", "dependency inversion across hexagonal boundary"]
+      }
+    ],
+    "be_architecture_patterns.domain_driven_design": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "In Domain-Driven Design (DDD), differentiate between an Entity, a Value Object, and an Aggregate Root. Why must all state modifications to child entities within an Aggregate pass strictly through the Aggregate Root's methods?",
+        "expected_answer_keywords": ["Aggregate Root", "Value Object (immutable, equality by value)", "Entity (identity lifecycle)", "enforcing business invariants", "transaction boundary per aggregate"]
+      }
+    ],
+    "be_architecture_patterns.microservices_architecture": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "A team proposes splitting a monolithic backend into 10 microservices that all query a single shared PostgreSQL database. Explain why the 'Shared Database' anti-pattern destroys independent deployability and service autonomy, and explain the 'Database-per-Service' pattern.",
+        "expected_answer_keywords": ["Database-per-Service pattern", "Shared Database anti-pattern", "tight schema coupling", "independent deployability", "data ownership boundaries", "API-driven data access"]
+      }
+    ],
+    "be_architecture_patterns.event_driven_architecture": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "Compare Event Notification, Event-Carried State Transfer, and Event Sourcing in an Event-Driven Architecture. In what scenario is Event-Carried State Transfer preferred to eliminate downstream microservice query round-trips?",
+        "expected_answer_keywords": ["Event-Carried State Transfer", "Event Notification", "reducing synchronous query round-trips", "denormalized event payload", "data staleness trade-off"]
+      }
+    ],
+    "be_architecture_patterns.cqrs_pattern": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "An analytics dashboard requires complex aggregations across 5 tables while writes are high-frequency single-row inserts. Design a CQRS architecture where commands write to a normalized PostgreSQL database while an asynchronous event handler updates denormalized read models in Elasticsearch.",
+        "expected_answer_keywords": ["CQRS (Command Query Responsibility Segregation)", "asymmetric read/write models", "read model projection", "Elasticsearch / Read replica", "eventual consistency synchronization"]
+      }
+    ],
+    "be_architecture_patterns.event_sourcing": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "In an Event Sourced banking ledger, aggregate state is never stored directly—only a sequence of immutable events ('AccountCreated', 'MoneyDeposited', 'MoneyTransferred'). How do you reconstruct the current balance, handle event schema versioning, and use snapshots to avoid replaying millions of historical events?",
+        "expected_answer_keywords": ["Event Sourcing", "immutable event store", "replaying events", "snapshots for performance", "upcasting / schema evolution", "complete audit history"]
+      }
+    ],
+    "be_architecture_patterns.service_mesh": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "How does a Service Mesh (e.g. Istio with Envoy sidecars) decouple cross-cutting operational concerns (mTLS traffic encryption, distributed tracing injection, circuit breaking, and canary traffic splitting) from backend application source code?",
+        "expected_answer_keywords": ["Service Mesh (Istio/Envoy)", "sidecar proxy pattern", "transparent mTLS", "traffic routing / canary deployments", "decoupling infrastructure resilience from app code"]
+      }
+    ],
+
+    "be_caching_messaging.in_memory_caching": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "A product catalog API response takes 600ms due to database joins. How do you implement Redis caching for the endpoint, define appropriate Time-To-Live (TTL) expiration, and handle cache misses gracefully?",
+        "expected_answer_keywords": ["Redis GET / SETEX", "TTL expiration", "cache hit vs cache miss", "JSON serialization / deserialization", "fallback to database"]
+      }
+    ],
+    "be_caching_messaging.pub_sub_patterns": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "A WebSocket chat server runs across 4 horizontal load-balanced backend nodes. When User A on Node 1 sends a message to a group chat, how does Redis Pub/Sub broadcast this message across all 4 nodes so users connected to Node 3 and 4 receive it in real time?",
+        "expected_answer_keywords": ["Redis Pub/Sub", "PUBLISH to channel", "SUBSCRIBE on worker nodes", "horizontal scaling WebSocket servers", "fanout broadcasting"]
+      }
+    ],
+    "be_caching_messaging.async_job_processing": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "A user registration endpoint needs to generate an invoice PDF and send a welcome email. Why should these tasks be offloaded to a background task queue (e.g. BullMQ / Celery) rather than executed synchronously within the HTTP request lifecycle?",
+        "expected_answer_keywords": ["background worker queue (BullMQ/Celery)", "non-blocking HTTP response", "worker retry mechanism", "decoupling slow I/O operations", "job concurrency control"]
+      }
+    ],
+    "be_caching_messaging.cache_strategies": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "Compare the Cache-Aside (Lazy Loading), Write-Through, and Write-Behind (Write-Back) caching strategies. What are the data consistency trade-offs if the backend service crashes before a Write-Behind buffer flushes to the database?",
+        "expected_answer_keywords": ["Cache-Aside", "Write-Through", "Write-Behind (Write-Back)", "data loss risk in Write-Behind", "cache consistency trade-offs", "database write latency reduction"]
+      }
+    ],
+    "be_caching_messaging.cache_invalidation": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "A popular news article cache key expires at the exact second breaking news drops, causing 50,000 concurrent requests to hit the database simultaneously. Explain this Thundering Herd (Cache Stampede) problem and detail how mutex locking (e.g. Redis SETNX) or probabilistic early expiration mitigates it.",
+        "expected_answer_keywords": ["Cache Stampede / Thundering Herd", "mutex lock (SETNX / Redlock) for single compute", "probabilistic early expiration (XFetch algorithm)", "stale-while-revalidate caching", "database overload protection"]
+      }
+    ],
+    "be_caching_messaging.message_queues_rabbitmq": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "In RabbitMQ, compare a Topic Exchange versus a Direct Exchange. Walk through how Dead Letter Exchanges (DLX) and 'x-dead-letter-routing-key' are configured to safely route poisoned messages after 3 failed delivery attempts without blocking the main queue.",
+        "expected_answer_keywords": ["RabbitMQ Direct vs Topic Exchange", "routing key wildcards (* and #)", "Dead Letter Exchange (DLX)", "manual ACK / NACK with requeue: false", "poison pill message handling"]
+      }
+    ],
+    "be_caching_messaging.event_streaming_kafka": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "Explain how Kafka ensures message ordering within a single partition using partition keys. What happens when the number of consumers in a consumer group exceeds the number of partitions in a topic?",
+        "expected_answer_keywords": ["Kafka partition key ordering", "consumer group rebalancing", "idle consumer when consumers > partitions", "offset commit (auto vs manual)", "horizontal scaling via partitions"]
+      }
+    ],
+    "be_caching_messaging.idempotent_consumers": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "In an at-least-once message delivery broker, network retries deliver the exact same 'ProcessPayment' event twice. Detail how to design an Idempotent Consumer using an Idempotency Key in Redis or an 'INSERT ... ON CONFLICT DO NOTHING' database lock table to ensure charges are never processed twice.",
+        "expected_answer_keywords": ["Idempotent consumer pattern", "Idempotency Key / Message ID", "distributed lock / unique constraint check", "at-least-once delivery semantics", "atomic state update"]
+      }
+    ],
+    "be_caching_messaging.distributed_caching_cluster": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "Explain how Redis Cluster shards keys across 16,384 hash slots using CRC16(key) % 16384. How does Redis Sentinel manage master election during node hardware failures, and how do hash tags (e.g. '{user100}:profile' and '{user100}:orders') enforce multi-key operations on the same shard?",
+        "expected_answer_keywords": ["Redis Cluster 16384 hash slots", "CRC16 algorithm", "Redis Hash Tags ({})", "Redis Sentinel quorum election", "multi-key atomic operations on same slot", "cross-slot error prevention"]
+      }
+    ],
+    "be_caching_messaging.backpressure_stream_processing": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "A producer emits 100,000 events per second into an async processing pipeline while database write throughput is capped at 10,000 events per second. How do you implement Reactive Streams Backpressure (flow control, pause/resume, high water marks) to prevent Out-Of-Memory (OOM) crashes?",
+        "expected_answer_keywords": ["Reactive Streams Backpressure", "High water mark / Low water mark", "consumer pause() and resume()", "bounded memory buffers", "producer throttling / rate matching"]
+      }
+    ],
+
+    "be_auth_security.password_hashing": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "Why is using plain SHA-256 with a salt fundamentally insecure for password storage against modern GPU cracking? Explain how adaptive, memory-hard hashing algorithms like Argon2id and bcrypt use configurable cost factors to resist brute-force attacks.",
+        "expected_answer_keywords": ["Argon2id", "bcrypt", "memory-hard function", "GPU / ASIC brute-force resistance", "cost factor / work factor", "constant-time password verification"]
+      }
+    ],
+    "be_auth_security.jwt_session_management": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "Compare signing JWTs with asymmetric algorithms (RS256 with public/private keys) versus symmetric algorithms (HS256 with shared secret). Why is RS256 preferred in microservices where downstream services only need to verify tokens without being able to forge them?",
+        "expected_answer_keywords": ["RS256 asymmetric public/private key", "HS256 symmetric shared secret", "downstream verification without signing ability", "token signature verification", "claims validation (exp, iss, aud)"]
+      }
+    ],
+    "be_auth_security.sql_injection_defense": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "A developer writes 'db.query(\"SELECT * FROM users WHERE email = '\" + req.body.email + \"'\")'. Demonstrate how an attacker exploits this with SQL injection (' OR '1'='1), and write the secure parameterized query version using bind parameters ($1 or ?).",
+        "expected_answer_keywords": ["SQL injection exploitation", "parameterized query / prepared statement", "bind parameter ($1 / ?)", "query plan separation from user input", "ORM safe escaping"]
+      }
+    ],
+    "be_auth_security.oauth2_oidc": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "Walk through the OAuth 2.0 Authorization Code Flow with PKCE (Proof Key for Code Exchange). What attack does PKCE mitigate by using code_verifier and code_challenge parameters during token exchange?",
+        "expected_answer_keywords": ["OAuth 2.0 Authorization Code with PKCE", "code_verifier and code_challenge", "authorization code interception attack mitigation", "OpenID Connect (OIDC) ID token vs Access token", "JWKS token verification"]
+      }
+    ],
+    "be_auth_security.rbac_abac_authorization": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "A hospital management backend requires: 'Doctors can view any medical record in their department, but can only edit records for patients currently assigned to them.' Compare why Role-Based Access Control (RBAC) alone is insufficient and how Attribute-Based Access Control (ABAC) enforces dynamic environmental/resource attributes.",
+        "expected_answer_keywords": ["RBAC vs ABAC", "Attribute-Based Access Control", "dynamic resource ownership check", "policy enforcement point (PEP)", "authorization middleware", "least privilege principle"]
+      }
+    ],
+    "be_auth_security.secrets_management": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "Why should production database credentials never be stored in plain environment variables or .env files in Docker images? How does HashiCorp Vault or AWS Secrets Manager provide dynamic secret generation, leasing, and automated credential rotation for backend services?",
+        "expected_answer_keywords": ["HashiCorp Vault / AWS Secrets Manager", "dynamic database credentials", "secret leasing with TTL", "automated secret rotation", "eliminating hardcoded secrets in source/images"]
+      }
+    ],
+    "be_auth_security.cryptography_in_app": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "You need to store Credit Card numbers in compliance with PCI-DSS. Walk through Envelope Encryption using a Key Management Service (KMS): generating a unique Data Encryption Key (DEK), encrypting data with AES-256-GCM, and storing the encrypted DEK alongside the ciphertext.",
+        "expected_answer_keywords": ["Envelope Encryption", "Data Encryption Key (DEK)", "Key Encryption Key (KEK / KMS Master Key)", "AES-256-GCM authenticated encryption", "Initialization Vector (IV/Nonce)", "PCI-DSS compliance"]
+      }
+    ],
+    "be_auth_security.secure_communication_mtls": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "In a Zero-Trust microservice architecture, standard HTTPS only authenticates the server to the client. How does Mutual TLS (mTLS) force both client and server microservices to present cryptographically verified X.509 certificates to achieve bidirectional authentication and prevent man-in-the-middle attacks on the internal network?",
+        "expected_answer_keywords": ["Mutual TLS (mTLS)", "bidirectional X.509 certificate verification", "Zero-Trust network architecture", "Certificate Authority (CA) root chain", "SAN (Subject Alternative Name) / SPIFFE identity", "man-in-the-middle mitigation"]
+      }
+    ],
+    "be_auth_security.rate_limiting_ddos_defense": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "An attacker launches a distributed credential-stuffing attack against '/api/login' using 10,000 rotating proxy IPs. How do you combine IP reputation scoring, account-level exponential backoff lockouts, and proof-of-work / CAPTCHA challenge triggers to defend backend authentication endpoints without locking out legitimate users?",
+        "expected_answer_keywords": ["Credential stuffing defense", "account-level velocity tracking", "exponential login backoff", "IP reputation and subnet throttling", "CAPTCHA / Proof of Work step-up challenge", "distributed brute-force mitigation"]
+      }
+    ],
+    "be_auth_security.audit_logging_compliance": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "Design a tamper-evident audit logging system for financial transaction operations. How do you implement cryptographic hash-chaining (where each audit log entry includes SHA-256 hash of the previous log entry) and PII masking to ensure audit logs cannot be modified retroactively by rogue database administrators?",
+        "expected_answer_keywords": ["Tamper-evident audit logging", "cryptographic hash-chaining (blockchain-like log integrity)", "write-once-read-many (WORM) storage", "PII masking and redaction", "SOC2 / GDPR compliance audit trail"]
+      }
+    ],
+
+    "be_testing_quality.unit_testing": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "Write a unit test with JUnit, pytest, or Vitest for a discount calculation engine. Demonstrate parameterization to test 0%, 100%, negative amounts, expired coupons, and edge-case rounding scenarios following the Arrange-Act-Assert (AAA) pattern.",
+        "expected_answer_keywords": ["Arrange-Act-Assert (AAA)", "parameterized testing (@pytest.mark.parametrize / @ParameterizedTest)", "edge case validation", "deterministic test execution", "assertion verification"]
+      }
+    ],
+    "be_testing_quality.mocking_stubs_test_doubles": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "When testing a 'NotificationService.sendWelcomeEmail(user)' method, differentiate between using a Stub to simulate an email provider returning '200 OK' versus using a Mock / Spy (like Mockito or unittest.mock) to verify that 'emailClient.send()' was called exactly once with the correct recipient address.",
+        "expected_answer_keywords": ["Stub vs Mock vs Spy", "behavior verification (verify called once)", "state verification", "argument captor", "dependency injection test double"]
+      }
+    ],
+    "be_testing_quality.integration_testing_db": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "Why is testing database queries against H2 in-memory databases hazardous when deploying PostgreSQL to production (due to JSONB, dialect differences, and window functions)? How does Testcontainers spin up ephemeral Docker database containers to run automated integration tests against real PostgreSQL instances?",
+        "expected_answer_keywords": ["Testcontainers", "PostgreSQLContainer", "dialect mismatch in in-memory DBs", "JSONB / custom SQL compatibility", "ephemeral Docker container lifecycle in tests", "isolated test transactions"]
+      }
+    ],
+    "be_testing_quality.api_contract_testing": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "In a microservices architecture, a backend team renames a field in a response JSON, breaking 3 frontend apps in production despite all unit tests passing. Explain how Consumer-Driven Contract Testing with Pact prevents breaking changes by publishing contract pacts and verifying providers in CI before deployment.",
+        "expected_answer_keywords": ["Consumer-Driven Contract Testing", "Pact framework", "Pact Broker", "can-i-deploy verification", "preventing breaking API schema changes", "provider verification"]
+      }
+    ],
+    "be_testing_quality.load_stress_testing": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "You run a k6 load test simulating 5,000 virtual users (VUs) against a checkout API. The average response time is 120ms, but the p99 latency is 4.8 seconds. Explain why reporting average latency is deceptive and how p95/p99 percentiles uncover concurrency bottlenecks, database lock contention, and thread pool exhaustion.",
+        "expected_answer_keywords": ["p99 latency vs average", "k6 load test script", "concurrency bottleneck identification", "database lock contention", "thread pool exhaustion", "Requests Per Second (RPS) thresholds"]
+      }
+    ],
+    "be_testing_quality.code_quality_static_analysis": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "How do you configure SonarQube quality gates in a CI/CD pipeline to block pull requests with cyclomatic complexity > 15, security vulnerabilities (OWASP Top 10 rules), or duplicated code blocks > 3%?",
+        "expected_answer_keywords": ["SonarQube Quality Gate", "cyclomatic complexity", "static analysis security testing (SAST)", "code duplication threshold", "blocking PR merge on gate failure"]
+      }
+    ],
+    "be_testing_quality.mutation_testing": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "A backend codebase has 95% line coverage, but a critical bug slips into production because tests lacked assertions. Explain how Mutation Testing (e.g. Stryker, mutmut) introduces deliberate mutants (flipping '>' to '<=', removing function calls) into source code to verify if the test suite actually catches and 'kills' the mutants.",
+        "expected_answer_keywords": ["Mutation Testing (Stryker / mutmut)", "mutation score", "killed mutants vs surviving mutants", "evaluating test assertion quality", "flaw of vanity line coverage"]
+      }
+    ],
+    "be_testing_quality.test_data_management": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "Design an automated test fixture architecture using the Factory pattern (e.g. FactoryBot / factory_boy) that generates randomized but deterministic relational data trees (Company -> Departments -> Users -> Permissions) for integration tests while avoiding database deadlocks and slow teardown routines.",
+        "expected_answer_keywords": ["Factory pattern (FactoryBoy / FactoryBot)", "deterministic randomized test data", "database cleanup strategies (truncation vs transactions)", "avoiding test inter-dependencies", "foreign key dependency resolution in factories"]
+      }
+    ],
+    "be_testing_quality.chaos_engineering": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "You want to verify if your Payment Service fallback mechanism works during network degradation. How do you use Toxiproxy or Chaos Mesh in an automated integration test pipeline to inject 2000ms latency, TCP packet drops, and peer socket resets into the downstream payment gateway connection?",
+        "expected_answer_keywords": ["Chaos Engineering", "Toxiproxy API", "Chaos Mesh", "latency toxic injection", "TCP connection reset simulation", "verifying circuit breaker fallback under fault"]
+      }
+    ],
+
+    "be_scalability_resilience.horizontal_vs_vertical_scaling": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "A backend service stores active user login sessions in local server memory ('Map<String, Session>'). Why does this prevent horizontal scaling behind a round-robin load balancer, and how does offloading session state to a shared Redis store enable true stateless scalability?",
+        "expected_answer_keywords": ["stateless service design", "session offloading to Redis", "round-robin load balancing", "sticky sessions anti-pattern", "horizontal scaling (scale out)"]
+      }
+    ],
+    "be_scalability_resilience.retry_backoff_jitter": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "When a downstream microservice experiences a transient 500ms outage, 1,000 backend workers immediately retry requests every 100ms synchronously. Explain the resulting 'Retry Storm' phenomenon and write the formula for Exponential Backoff with Full Jitter ('sleep = random(0, min(cap, base * 2^attempt))') to spread out retries.",
+        "expected_answer_keywords": ["Retry Storm", "Exponential Backoff with Full Jitter", "decorrelated retry spikes", "transient failure recovery", "retry budget limit"]
+      }
+    ],
+    "be_scalability_resilience.connection_pooling": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "A backend service running on 20 pod replicas with HikariCP configured at 'maximumPoolSize: 50' crashes the PostgreSQL database server during peak load. Explain why database connections are heavy OS processes, and how you calculate optimal pool size using the formula 'connections = ((core_count * 2) + effective_spindle_count)' combined with PgBouncer.",
+        "expected_answer_keywords": ["connection pool sizing formula", "HikariCP maximumPoolSize", "PgBouncer connection pooling", "PostgreSQL process memory overhead", "avoiding database connection exhaustion"]
+      }
+    ],
+    "be_scalability_resilience.circuit_breaker_pattern": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "Walk through the state transitions of a Circuit Breaker (Resilience4j / Polly): Closed, Open, and Half-Open. When a third-party SMS API fails 60% of requests over a sliding window of 100 calls, how does the circuit trip to Open, execute fallback responses without network I/O, and test recovery in Half-Open state?",
+        "expected_answer_keywords": ["Circuit Breaker state machine (Closed, Open, Half-Open)", "failure rate threshold (60%)", "sliding window evaluation", "fallback execution", "Resilience4j / Polly", "half-open probe requests"]
+      }
+    ],
+    "be_scalability_resilience.bulkhead_pattern": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "A slow reporting endpoint consumes all 200 Tomcat worker threads, causing high-priority user login endpoints to time out. How does the Bulkhead pattern isolate separate thread pools or semaphore quotas for reporting versus authentication to prevent total service starvation?",
+        "expected_answer_keywords": ["Bulkhead pattern", "thread pool isolation", "semaphore isolation", "resource starvation prevention", "compartmentalizing slow dependencies"]
+      }
+    ],
+    "be_scalability_resilience.asynchronous_concurrency": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "In a concurrent backend worker pool processing balance increments, explain what a Race Condition is when multiple threads execute 'balance = balance + amount' without synchronization. Compare Mutex locking, Atomic variables (AtomicInteger / Compare-And-Swap), and Go channels for thread safety.",
+        "expected_answer_keywords": ["Race condition", "thread safety", "Mutex lock", "AtomicInteger / CAS (Compare-And-Swap)", "Go channels / CSP", "deadlock prevention"]
+      }
+    ],
+    "be_scalability_resilience.load_balancing_algorithms": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "Compare Round Robin, Least Connections, and Consistent Hashing load balancing algorithms. Why is Consistent Hashing critical when routing requests to distributed in-memory cache servers or stateful WebSocket nodes to minimize cache remapping when a node is added or removed?",
+        "expected_answer_keywords": ["Consistent Hashing", "hash ring", "Least Connections", "Round Robin", "minimizing key remapping on node scaling", "virtual nodes for uniform distribution"]
+      }
+    ],
+    "be_scalability_resilience.graceful_degradation": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "During a massive Black Friday flash sale, traffic spikes to 10x capacity. How do you implement Graceful Degradation and Load Shedding in your API gateway and backend services (e.g. dropping non-critical recommendation engines, serving stale catalog caches, returning HTTP 429/503 early) to keep core checkout functioning?",
+        "expected_answer_keywords": ["Graceful Degradation", "Load Shedding", "feature flagging non-critical paths", "serving stale cached responses", "HTTP 429 / 503 early rejection", "protecting core checkout path"]
+      }
+    ],
+    "be_scalability_resilience.disaster_recovery_rpo_rto": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "A fintech backend requires an RPO (Recovery Point Objective) < 1 minute and an RTO (Recovery Time Objective) < 5 minutes. Compare an Active-Passive disaster recovery architecture with continuous asynchronous database replication versus an Active-Active multi-region architecture with conflict resolution.",
+        "expected_answer_keywords": ["Recovery Point Objective (RPO)", "Recovery Time Objective (RTO)", "Active-Passive with cross-region replica", "Active-Active multi-region deployment", "data conflict resolution (CRDT / Last-Write-Wins)", "failover automation"]
+      }
+    ],
+    "be_scalability_resilience.high_concurrency_lock_free": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "1,000 users attempt to purchase the last available concert ticket simultaneously. Compare Optimistic Locking with version columns ('UPDATE tickets SET status = 'SOLD', version = version + 1 WHERE id = 1 AND version = 5') versus Pessimistic Locking ('SELECT FOR UPDATE') versus Redis distributed locks (Redlock). In what throughput scenarios does optimistic locking cause high rollback rates?",
+        "expected_answer_keywords": ["Optimistic locking (@Version column)", "Pessimistic locking (SELECT FOR UPDATE)", "Redis distributed lock (Redlock algorithm)", "high write contention rollback storms", "atomic compare-and-swap"]
+      }
+    ],
+
+    "be_observability.structured_logging": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "Why are multi-line unstructured text logs (e.g. 'logger.info(\"User \" + userId + \" logged in\")') difficult to query in log aggregation systems (like Elasticsearch / Datadog)? Demonstrate structured JSON logging with correlation IDs, timestamps in ISO 8601, and contextual key-value fields.",
+        "expected_answer_keywords": ["Structured JSON logging", "correlation ID / requestId", "ISO 8601 timestamp", "log aggregation (Elasticsearch/Datadog)", "parseable key-value metadata", "no string concatenation in logs"]
+      }
+    ],
+    "be_observability.application_metrics": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "In a backend service instrumented with Prometheus client library, explain the difference between a Counter (e.g. 'http_requests_total'), a Gauge (e.g. 'active_db_connections'), and a Histogram (e.g. 'http_request_duration_seconds'). Why does creating high-cardinality labels (like user_id or email) crash Prometheus memory?",
+        "expected_answer_keywords": ["Prometheus Counter vs Gauge vs Histogram", "Histogram buckets for p95/p99 calculation", "high label cardinality danger (user_id in metric label)", "Prometheus memory explosion", "/metrics endpoint scraping"]
+      }
+    ],
+    "be_observability.health_checks_probes": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "Explain the difference between Kubernetes Liveness probes ('/healthz') and Readiness probes ('/readyz'). Why should a database connection failure cause the Readiness probe to fail (removing the pod from traffic) rather than failing the Liveness probe (which triggers a futile pod restart loop)?",
+        "expected_answer_keywords": ["Liveness probe vs Readiness probe", "Readiness probe stops routing traffic", "Liveness probe restarts container", "preventing restart loops on downstream DB outage", "graceful shutdown handler (SIGTERM)"]
+      }
+    ],
+    "be_observability.distributed_tracing_opentelemetry": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "In a microservice call chain (Client -> Gateway -> Order Service -> Payment Service), explain how the OpenTelemetry SDK propagates distributed context using the W3C 'traceparent' HTTP header ('00-{traceId}-{spanId}-{flags}'). How do nested spans visualize latency breakdowns across network hops and database calls in Jaeger or Zipkin?",
+        "expected_answer_keywords": ["OpenTelemetry (OTel)", "W3C TraceContext traceparent header", "traceId global identifier", "spanId parent-child relationship", "Jaeger / Zipkin timeline visualization", "context propagation across HTTP/gRPC"]
+      }
+    ],
+    "be_observability.apm_integration": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "You configure an APM agent (e.g. Datadog dd-trace or Elastic APM) in a Node.js/Java/Python service. How does bytecode / monkey-patching auto-instrumentation intercept SQL queries and HTTP client calls to generate detailed Flamegraphs and identify slow database query bottlenecks without manual code changes?",
+        "expected_answer_keywords": ["APM agent auto-instrumentation", "monkey-patching / bytecode manipulation", "database query tracing", "slow transaction profiling", "Flamegraph visualization in APM dashboard"]
+      }
+    ],
+    "be_observability.error_tracking_alerting": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "How does the Sentry SDK capture unhandled exceptions, attach user breadcrumbs (recent API requests, log messages before the crash), and use error fingerprinting to group 100,000 duplicate exceptions into a single actionable issue in error tracking dashboards?",
+        "expected_answer_keywords": ["Sentry SDK error capture", "breadcrumbs timeline", "error fingerprinting / grouping", "stack trace demangling / source maps", "alert noise reduction"]
+      }
+    ],
+    "be_observability.service_level_objectives": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "Define a Service Level Objective (SLO) for an API: '99.5% of successful requests must respond in < 200ms over a rolling 30-day window.' How do you calculate the Service Level Indicator (SLI) ratio from Prometheus histogram metrics, track the Error Budget, and trigger alerts based on Error Budget Burn Rate?",
+        "expected_answer_keywords": ["Service Level Objective (SLO)", "Service Level Indicator (SLI)", "Prometheus histogram quantile query", "Error Budget calculation (100% - SLO)", "Multi-window Error Budget Burn Rate alerting"]
+      }
+    ],
+    "be_observability.distributed_profiling": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "A production backend service exhibits periodic 100% CPU spikes. How do you deploy Continuous Profiling (e.g. Pyroscope, Go pprof, async-profiler) with low overhead (< 2% CPU) to generate Flamegraphs and pinpoint the exact function and line of code causing lock contention or excessive garbage collection allocations?",
+        "expected_answer_keywords": ["Continuous Profiling (Pyroscope / pprof)", "Flamegraph analysis", "sampling CPU profiler", "heap memory allocation profiling", "identifying lock contention hotspots"]
+      }
+    ],
+    "be_observability.audit_telemetry_correlation": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "During an incident, a Prometheus alert fires for high p99 latency on '/checkout'. How do you implement Telemetry Correlation (exemplars linking metric anomalies directly to traceIds, and traceIds embedded in structured JSON logs) to jump from a metric spike directly to the exact slow trace and log line in under 30 seconds?",
+        "expected_answer_keywords": ["Telemetry Correlation", "Prometheus Exemplars", "log-to-trace linking", "traceId in structured log formatter", "rapid Root Cause Analysis (RCA)", "unified observability platform"]
+      }
+    ]
+  },
+  "scoring_rules_reference": {
+    "source": "knowledge-base/scoring/engine.json",
+    "description": "Scoring rules for assessment questions are defined in engine.json."
+  }
+}

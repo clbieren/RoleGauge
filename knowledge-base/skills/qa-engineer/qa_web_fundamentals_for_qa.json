@@ -1,0 +1,240 @@
+{
+  "skill_id": "qa_web_fundamentals_for_qa",
+  "name": "Web Fundamentals & Browser DevTools for QA",
+  "category": "web_fundamentals",
+  "description": "Web technologies and browser architecture from a QA and test automation perspective. Covers HTML DOM inspection, crafting robust locators, browser DevTools debugging, network inspection, and understanding client/server rendering differences.",
+  "subskills": [
+    {
+      "id": "html_dom_inspection",
+      "name": "HTML & DOM Tree Inspection",
+      "description": "Inspecting HTML elements, semantic tags, accessibility tree, DOM node hierarchy in DevTools.",
+      "keywords": [
+        "DOM tree",
+        "HTML elements",
+        "accessibility tree",
+        "node hierarchy",
+        "DevTools Elements tab",
+        "shadow DOM",
+        "iframe inspection"
+      ]
+    },
+    {
+      "id": "css_xpath_selectors",
+      "name": "CSS & XPath Locators for Automation",
+      "description": "Crafting robust CSS selectors and XPath queries (relative, text(), contains(), axis navigation) for automation locators.",
+      "keywords": [
+        "XPath",
+        "CSS selector",
+        "relative XPath",
+        "contains()",
+        "ancestor axis",
+        "robust locator",
+        "data-testid selector"
+      ]
+    },
+    {
+      "id": "browser_devtools_debugging",
+      "name": "Browser DevTools & Console Debugging",
+      "description": "Using DevTools Elements, Console, Network, and Application tabs to inspect runtime state and JavaScript exceptions.",
+      "keywords": [
+        "DevTools Console",
+        "JavaScript error",
+        "unhandled rejection",
+        "stack trace",
+        "Console logging",
+        "DOM breakpoint"
+      ]
+    },
+    {
+      "id": "http_network_inspection",
+      "name": "Network Tab & HTTP Request Inspection",
+      "description": "Analyzing HTTP requests, status codes (2xx, 4xx, 5xx), request/response headers, payloads, and cookies in DevTools Network tab.",
+      "keywords": [
+        "Network tab",
+        "HTTP status code",
+        "request headers",
+        "response payload",
+        "timing waterfall",
+        "XHR/Fetch filter",
+        "HAR file"
+      ]
+    },
+    {
+      "id": "client_side_storage_inspection",
+      "name": "Client-Side Storage & Cookies Inspection",
+      "description": "Inspecting and manipulating LocalStorage, SessionStorage, Cookies, and IndexedDB during test execution.",
+      "keywords": [
+        "LocalStorage",
+        "SessionStorage",
+        "Cookies",
+        "IndexedDB",
+        "Application tab",
+        "clear session state",
+        "auth token storage"
+      ]
+    },
+    {
+      "id": "rendering_architectures_qa",
+      "name": "CSR vs SSR & Hydration Impacts",
+      "description": "Understanding CSR (Client-Side Rendering) vs SSR (Server-Side Rendering) impacts on locator readiness and hydration delays.",
+      "keywords": [
+        "CSR vs SSR",
+        "hydration delay",
+        "client-side rendering",
+        "server-side rendering",
+        "DOM ready vs load",
+        "locator readiness"
+      ]
+    },
+    {
+      "id": "responsive_viewport_testing",
+      "name": "Responsive Viewports & Device Emulation",
+      "description": "Testing mobile viewports, CSS media queries, and responsive breakpoint behavior via device emulation.",
+      "keywords": [
+        "Device emulation",
+        "responsive breakpoints",
+        "viewport dimensions",
+        "touch simulation",
+        "CSS media queries",
+        "mobile emulation"
+      ]
+    },
+    {
+      "id": "web_performance_profiling_qa",
+      "name": "Lighthouse & Core Web Vitals Auditing",
+      "description": "Using Lighthouse and Core Web Vitals (LCP, FID, CLS, INP) to detect front-end performance regressions.",
+      "keywords": [
+        "Lighthouse audit",
+        "Core Web Vitals",
+        "LCP",
+        "CLS",
+        "FID",
+        "INP",
+        "performance score",
+        "speed index"
+      ]
+    },
+    {
+      "id": "websocket_sse_event_inspection",
+      "name": "WebSocket & Streaming Event Inspection",
+      "description": "Inspecting real-time WebSocket frames, Server-Sent Events, and streaming responses in browser networks.",
+      "keywords": [
+        "WebSocket frames",
+        "Server-Sent Events",
+        "SSE",
+        "real-time events",
+        "socket connection",
+        "streaming payload"
+      ]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "Custom XPath/CSS helper functions or locator utility classes",
+        "detection": "content_analysis",
+        "pattern": "xpath|querySelector|getByTestId|//div\\[|data-test",
+        "strength": 0.7,
+        "maps_to": [
+          "qa_web_fundamentals_for_qa.html_dom_inspection",
+          "qa_web_fundamentals_for_qa.css_xpath_selectors"
+        ]
+      },
+      {
+        "signal": "Browser storage manipulation or HAR network analysis scripts",
+        "detection": "content_analysis",
+        "pattern": "localStorage\\.getItem|sessionStorage|document\\.cookie|\\.har|HAR",
+        "strength": 0.8,
+        "maps_to": [
+          "qa_web_fundamentals_for_qa.http_network_inspection",
+          "qa_web_fundamentals_for_qa.client_side_storage_inspection",
+          "qa_web_fundamentals_for_qa.browser_devtools_debugging"
+        ]
+      },
+      {
+        "signal": "Lighthouse CI audit configuration or responsive emulation fixtures",
+        "detection": "content_analysis",
+        "pattern": "lighthouse|lighthouserc|viewport:.*width|setViewportSize|core-web-vitals",
+        "strength": 0.8,
+        "maps_to": [
+          "qa_web_fundamentals_for_qa.web_performance_profiling_qa",
+          "qa_web_fundamentals_for_qa.responsive_viewport_testing",
+          "qa_web_fundamentals_for_qa.rendering_architectures_qa",
+          "qa_web_fundamentals_for_qa.websocket_sse_event_inspection"
+        ]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "DevTools debugging, XPath/CSS locator creation, or Network traffic inspection",
+        "strength": 0.8,
+        "maps_to": [
+          "qa_web_fundamentals_for_qa.html_dom_inspection",
+          "qa_web_fundamentals_for_qa.css_xpath_selectors",
+          "qa_web_fundamentals_for_qa.browser_devtools_debugging",
+          "qa_web_fundamentals_for_qa.http_network_inspection"
+        ]
+      },
+      {
+        "signal": "Lighthouse performance audits, responsive testing, or browser storage management",
+        "strength": 0.8,
+        "maps_to": [
+          "qa_web_fundamentals_for_qa.client_side_storage_inspection",
+          "qa_web_fundamentals_for_qa.rendering_architectures_qa",
+          "qa_web_fundamentals_for_qa.responsive_viewport_testing",
+          "qa_web_fundamentals_for_qa.web_performance_profiling_qa",
+          "qa_web_fundamentals_for_qa.websocket_sse_event_inspection"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Browser DevTools, HTML/CSS, or XPath endorsed",
+        "strength": 0.5,
+        "maps_to": [
+          "qa_web_fundamentals_for_qa.html_dom_inspection",
+          "qa_web_fundamentals_for_qa.css_xpath_selectors",
+          "qa_web_fundamentals_for_qa.browser_devtools_debugging"
+        ]
+      },
+      {
+        "signal": "Web Performance, Lighthouse, or Network Debugging mentioned",
+        "strength": 0.5,
+        "maps_to": [
+          "qa_web_fundamentals_for_qa.http_network_inspection",
+          "qa_web_fundamentals_for_qa.client_side_storage_inspection",
+          "qa_web_fundamentals_for_qa.web_performance_profiling_qa",
+          "qa_web_fundamentals_for_qa.responsive_viewport_testing",
+          "qa_web_fundamentals_for_qa.rendering_architectures_qa",
+          "qa_web_fundamentals_for_qa.websocket_sse_event_inspection"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "html_dom_inspection",
+        "css_xpath_selectors",
+        "browser_devtools_debugging"
+      ],
+      "description": "Inspects DOM trees in DevTools, crafts robust XPath/CSS selectors for automation, and debugs console errors."
+    },
+    "mid": {
+      "expected_subskills": [
+        "http_network_inspection",
+        "client_side_storage_inspection",
+        "rendering_architectures_qa",
+        "responsive_viewport_testing"
+      ],
+      "description": "Analyzes HTTP network traffic and cookies/storage in tests, handles CSR/SSR timing differences, and validates responsive viewports."
+    },
+    "senior": {
+      "expected_subskills": [
+        "web_performance_profiling_qa",
+        "websocket_sse_event_inspection"
+      ],
+      "description": "Audits Core Web Vitals and Lighthouse metrics in CI, and inspects real-time WebSocket/SSE streaming events."
+    }
+  }
+}

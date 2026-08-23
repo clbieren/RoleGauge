@@ -1,0 +1,230 @@
+{
+  "skill_id": "qa_test_management_reporting",
+  "name": "Test Management, CI/CD Integration & Quality Governance",
+  "category": "test_management",
+  "description": "Test case management systems (TestRail, Zephyr), rich execution reporting (Allure), CI/CD pipeline test integration, flaky test governance, and quality metrics tracking.",
+  "subskills": [
+    {
+      "id": "testrail_zephyr_management",
+      "name": "Test Case Management (TestRail/Zephyr)",
+      "description": "Creating test runs, mapping test cases to user stories, marking execution results, and tracking test coverage.",
+      "keywords": [
+        "TestRail",
+        "Zephyr",
+        "qTest",
+        "test run",
+        "test suite mapping",
+        "traceability matrix",
+        "test execution tracking"
+      ]
+    },
+    {
+      "id": "jira_bug_tracking_workflow",
+      "name": "Defect Tracking & JIRA Workflow",
+      "description": "Managing bug lifecycles in JIRA, linking defects to requirements, tracking bug triaging.",
+      "keywords": [
+        "JIRA",
+        "bug tracking",
+        "issue linking",
+        "defect triaging",
+        "JIRA workflow",
+        "resolution status"
+      ]
+    },
+    {
+      "id": "allure_reporting_rich_artifacts",
+      "name": "Allure & Rich Test Reporting",
+      "description": "Generating Allure / JUnit test reports with embedded screenshots, trace recordings, and video attachments.",
+      "keywords": [
+        "Allure report",
+        "allure-results",
+        "JUnit XML",
+        "test report artifacts",
+        "embedded screenshot",
+        "trace attachment"
+      ]
+    },
+    {
+      "id": "ci_cd_test_pipeline_integration",
+      "name": "CI/CD Test Pipeline Integration",
+      "description": "Integrating Cypress/Playwright/Postman test suites into GitHub Actions / GitLab CI with exit code gating.",
+      "keywords": [
+        "CI/CD test integration",
+        "GitHub Actions test job",
+        "GitLab CI test stage",
+        "test exit code gating",
+        "test pipeline trigger"
+      ]
+    },
+    {
+      "id": "test_environment_data_management",
+      "name": "Test Environments & Test Data Management",
+      "description": "Managing test environments (Staging/QA), seeding test databases, and sanitizing test fixtures.",
+      "keywords": [
+        "Test environment management",
+        "test data seeding",
+        "environment provisioning",
+        "synthetic test data",
+        "staging environment"
+      ]
+    },
+    {
+      "id": "flaky_test_quarantine_governance",
+      "name": "Flaky Test Quarantine & Stabilization",
+      "description": "Identifying flaky tests, implementing quarantine/retrying policies, and tracking test stability metrics.",
+      "keywords": [
+        "Flaky test quarantine",
+        "flakiness rate",
+        "test retries",
+        "flaky test governance",
+        "test suite stabilization"
+      ]
+    },
+    {
+      "id": "quality_dashboards_kpi_tracking",
+      "name": "Quality Dashboards & KPI Telemetry",
+      "description": "Building QA telemetry dashboards (pass rate, MTTR, defect escape rate, automation ROI).",
+      "keywords": [
+        "Quality dashboard",
+        "QA KPIs",
+        "pass rate metric",
+        "defect escape rate",
+        "automation ROI",
+        "test execution trends"
+      ]
+    },
+    {
+      "id": "test_strategy_architecture_qa",
+      "name": "Enterprise Test Strategy & Pyramid",
+      "description": "Architecting organization-wide test strategies, test pyramid balance, and quality engineering standards.",
+      "keywords": [
+        "Test pyramid",
+        "enterprise test strategy",
+        "unit vs integration vs e2e ratio",
+        "quality engineering standards",
+        "shift-left strategy"
+      ]
+    },
+    {
+      "id": "production_quality_monitoring_sentry",
+      "name": "Production Quality Feedback Loops",
+      "description": "Monitoring production error rates via Sentry/Datadog to feed back into regression test suites.",
+      "keywords": [
+        "Production feedback loop",
+        "Sentry error rate",
+        "Datadog synthetic monitoring",
+        "production incident analysis",
+        "escaped defect root cause"
+      ]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "Allure report configuration or JUnit XML test artifact upload in CI",
+        "detection": "content_analysis",
+        "pattern": "allure-results|allure-commandline|junit-report|upload-artifact.*allure",
+        "strength": 0.8,
+        "maps_to": [
+          "qa_test_management_reporting.allure_reporting_rich_artifacts"
+        ]
+      },
+      {
+        "signal": "GitHub Actions or GitLab CI workflow running automated test suites",
+        "detection": "content_analysis",
+        "pattern": "run: npx playwright test|run: npx cypress run|newman run|npm test",
+        "strength": 0.8,
+        "maps_to": [
+          "qa_test_management_reporting.ci_cd_test_pipeline_integration",
+          "qa_test_management_reporting.test_environment_data_management"
+        ]
+      },
+      {
+        "signal": "TestRail API integration scripts, flaky quarantine configs, or quality dashboard metrics",
+        "detection": "content_analysis",
+        "pattern": "testrail-api|testrail\\.py|quarantine|retries:\\s*[1-9]|sentry.*monitoring",
+        "strength": 0.8,
+        "maps_to": [
+          "qa_test_management_reporting.testrail_zephyr_management",
+          "qa_test_management_reporting.jira_bug_tracking_workflow",
+          "qa_test_management_reporting.flaky_test_quarantine_governance",
+          "qa_test_management_reporting.quality_dashboards_kpi_tracking",
+          "qa_test_management_reporting.test_strategy_architecture_qa",
+          "qa_test_management_reporting.production_quality_monitoring_sentry"
+        ]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "Test management with TestRail/Zephyr, JIRA defect management, or Allure reporting",
+        "strength": 0.8,
+        "maps_to": [
+          "qa_test_management_reporting.testrail_zephyr_management",
+          "qa_test_management_reporting.jira_bug_tracking_workflow",
+          "qa_test_management_reporting.allure_reporting_rich_artifacts"
+        ]
+      },
+      {
+        "signal": "CI/CD test pipeline integration, test strategy design, or quality KPI tracking",
+        "strength": 0.8,
+        "maps_to": [
+          "qa_test_management_reporting.ci_cd_test_pipeline_integration",
+          "qa_test_management_reporting.test_environment_data_management",
+          "qa_test_management_reporting.flaky_test_quarantine_governance",
+          "qa_test_management_reporting.quality_dashboards_kpi_tracking",
+          "qa_test_management_reporting.test_strategy_architecture_qa",
+          "qa_test_management_reporting.production_quality_monitoring_sentry"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "TestRail, JIRA, or Test Management endorsed",
+        "strength": 0.5,
+        "maps_to": [
+          "qa_test_management_reporting.testrail_zephyr_management",
+          "qa_test_management_reporting.jira_bug_tracking_workflow",
+          "qa_test_management_reporting.allure_reporting_rich_artifacts"
+        ]
+      },
+      {
+        "signal": "CI/CD Testing, Test Strategy, or Quality Assurance Leadership mentioned",
+        "strength": 0.5,
+        "maps_to": [
+          "qa_test_management_reporting.ci_cd_test_pipeline_integration",
+          "qa_test_management_reporting.test_environment_data_management",
+          "qa_test_management_reporting.flaky_test_quarantine_governance",
+          "qa_test_management_reporting.quality_dashboards_kpi_tracking",
+          "qa_test_management_reporting.test_strategy_architecture_qa",
+          "qa_test_management_reporting.production_quality_monitoring_sentry"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "testrail_zephyr_management",
+        "jira_bug_tracking_workflow",
+        "allure_reporting_rich_artifacts"
+      ],
+      "description": "Manages test runs in TestRail/Zephyr, tracks defects in JIRA, and generates rich Allure test reports."
+    },
+    "mid": {
+      "expected_subskills": [
+        "ci_cd_test_pipeline_integration",
+        "test_environment_data_management",
+        "flaky_test_quarantine_governance"
+      ],
+      "description": "Integrates test suites into CI/CD pipelines, provisions test data and environments, and quarantines flaky tests."
+    },
+    "senior": {
+      "expected_subskills": [
+        "quality_dashboards_kpi_tracking",
+        "test_strategy_architecture_qa",
+        "production_quality_monitoring_sentry"
+      ],
+      "description": "Architects enterprise test strategies (Test Pyramid), builds QA KPI dashboards, and integrates production monitoring into test cycles."
+    }
+  }
+}

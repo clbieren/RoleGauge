@@ -1,0 +1,178 @@
+{
+  "skill_id": "fe_tooling_build",
+  "name": "Tooling & Build Systems",
+  "category": "frontend_tooling",
+  "description": "Frontend development toolchain: package managers, Vite and Webpack bundlers, transpilers (Babel/SWC), linters and formatters, Git workflows, monorepo tooling, CI/CD pipelines, Module Federation for micro-frontends, and developer experience optimization.",
+  "subskills": [
+    {
+      "id": "package_managers",
+      "name": "Package Managers",
+      "description": "npm, yarn, pnpm — lockfiles, workspaces, peer dependencies, resolution strategies.",
+      "keywords": ["npm", "yarn", "pnpm", "package-lock.json", "workspaces", "peer dependencies", "node_modules"]
+    },
+    {
+      "id": "bundlers_vite",
+      "name": "Vite",
+      "description": "Vite native ESM dev server, esbuild pre-bundling, HMR, Rollup-based production builds, plugin API.",
+      "keywords": ["Vite", "esbuild", "HMR", "Rollup", "vite.config", "plugin", "ESM dev server"]
+    },
+    {
+      "id": "bundlers_webpack",
+      "name": "Webpack",
+      "description": "Webpack loaders, plugins, code splitting (dynamic import), chunk optimization, bundle analysis.",
+      "keywords": ["Webpack", "loader", "plugin", "code splitting", "chunks", "webpack.config", "SplitChunksPlugin"]
+    },
+    {
+      "id": "transpilers",
+      "name": "Transpilers & Polyfills",
+      "description": "Babel presets/plugins, SWC, browserslist targets, core-js polyfills, syntax downleveling.",
+      "keywords": ["Babel", "SWC", "browserslist", "polyfill", "core-js", "@babel/preset-env", "syntax transform"]
+    },
+    {
+      "id": "linters_formatters",
+      "name": "Linters & Formatters",
+      "description": "ESLint flat config, Prettier, Stylelint, lint-staged, pre-commit hooks, custom rules.",
+      "keywords": ["ESLint", "Prettier", "Stylelint", ".eslintrc", "lint-staged", "husky", "flat config"]
+    },
+    {
+      "id": "git_workflows",
+      "name": "Git Workflows",
+      "description": "Git Flow vs trunk-based, conventional commits, semantic versioning, pre-commit hooks, changelogs.",
+      "keywords": ["Git Flow", "trunk-based", "conventional commits", "semantic versioning", "husky", "changelog"]
+    },
+    {
+      "id": "monorepo_tools",
+      "name": "Monorepo Tools",
+      "description": "Turborepo, Nx, shared packages, dependency graph, parallel task execution, caching.",
+      "keywords": ["Turborepo", "Nx", "monorepo", "shared packages", "turbo.json", "dependency graph", "remote caching"]
+    },
+    {
+      "id": "ci_cd_frontend",
+      "name": "CI/CD for Frontend",
+      "description": "GitHub Actions, preview deployments, Lighthouse CI, automated testing in pipelines, artifact caching.",
+      "keywords": ["GitHub Actions", "preview deploy", "Lighthouse CI", "CI pipeline", "artifact caching", "deploy preview"]
+    },
+    {
+      "id": "module_federation",
+      "name": "Module Federation",
+      "description": "Webpack Module Federation, micro-frontend architecture, shared dependencies, runtime integration.",
+      "keywords": ["Module Federation", "micro-frontend", "remote module", "shared dependencies", "runtime integration"]
+    },
+    {
+      "id": "dev_experience",
+      "name": "Developer Experience",
+      "description": "Hot reload, source maps, dev proxies, environment variables, editor integration (VS Code extensions).",
+      "keywords": ["hot reload", "source maps", "proxy", "env variables", ".env", "devServer", "VS Code extensions"]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "package.json with dependency management",
+        "detection": "file_presence",
+        "pattern": "package\\.json|package-lock\\.json|yarn\\.lock|pnpm-lock\\.yaml",
+        "strength": 0.6,
+        "maps_to": ["fe_tooling_build.package_managers"]
+      },
+      {
+        "signal": "Vite configuration",
+        "detection": "file_presence",
+        "pattern": "vite\\.config\\.(ts|js|mjs)",
+        "strength": 0.8,
+        "maps_to": ["fe_tooling_build.bundlers_vite"]
+      },
+      {
+        "signal": "Webpack configuration",
+        "detection": "file_presence",
+        "pattern": "webpack\\.config\\.(ts|js|mjs)",
+        "strength": 0.8,
+        "maps_to": ["fe_tooling_build.bundlers_webpack"]
+      },
+      {
+        "signal": "ESLint or Prettier configuration",
+        "detection": "file_presence",
+        "pattern": "\\.eslintrc|eslint\\.config\\.(js|mjs)|prettier\\.config|\\.prettierrc",
+        "strength": 0.7,
+        "maps_to": ["fe_tooling_build.linters_formatters"]
+      },
+      {
+        "signal": "Babel or SWC configuration",
+        "detection": "file_presence",
+        "pattern": "babel\\.config|.babelrc|\\.swcrc|browserslist",
+        "strength": 0.7,
+        "maps_to": ["fe_tooling_build.transpilers"]
+      },
+      {
+        "signal": "CI/CD workflow files",
+        "detection": "file_presence",
+        "pattern": "\\.github/workflows/.*\\.ya?ml|Jenkinsfile|\\.gitlab-ci\\.yml",
+        "strength": 0.8,
+        "maps_to": ["fe_tooling_build.ci_cd_frontend"]
+      },
+      {
+        "signal": "Monorepo configuration (Turborepo/Nx)",
+        "detection": "file_presence",
+        "pattern": "turbo\\.json|nx\\.json|lerna\\.json",
+        "strength": 0.9,
+        "maps_to": ["fe_tooling_build.monorepo_tools"]
+      },
+      {
+        "signal": "Module Federation configuration",
+        "detection": "content_analysis",
+        "pattern": "ModuleFederationPlugin|exposes:|remotes:|shared:",
+        "strength": 0.9,
+        "maps_to": ["fe_tooling_build.module_federation"]
+      },
+      {
+        "signal": "Git hooks or conventional commits setup",
+        "detection": "file_presence",
+        "pattern": "\\.husky|commitlint\\.config|lint-staged",
+        "strength": 0.7,
+        "maps_to": ["fe_tooling_build.git_workflows", "fe_tooling_build.dev_experience"]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "Build tool experience (Webpack, Vite, Rollup)",
+        "strength": 0.7,
+        "maps_to": ["fe_tooling_build.bundlers_vite", "fe_tooling_build.bundlers_webpack", "fe_tooling_build.transpilers"]
+      },
+      {
+        "signal": "CI/CD pipeline setup for frontend",
+        "strength": 0.7,
+        "maps_to": ["fe_tooling_build.ci_cd_frontend", "fe_tooling_build.git_workflows"]
+      },
+      {
+        "signal": "Monorepo or micro-frontend architecture",
+        "strength": 0.8,
+        "maps_to": ["fe_tooling_build.monorepo_tools", "fe_tooling_build.module_federation"]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Webpack, Vite, or build tools endorsed",
+        "strength": 0.5,
+        "maps_to": ["fe_tooling_build.bundlers_vite", "fe_tooling_build.bundlers_webpack", "fe_tooling_build.package_managers"]
+      },
+      {
+        "signal": "CI/CD or DevOps for frontend endorsed",
+        "strength": 0.5,
+        "maps_to": ["fe_tooling_build.ci_cd_frontend", "fe_tooling_build.linters_formatters", "fe_tooling_build.dev_experience"]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": ["package_managers", "linters_formatters", "git_workflows", "dev_experience"],
+      "description": "Manages dependencies, configures linters, follows branching strategies, and maintains productive dev environments."
+    },
+    "mid": {
+      "expected_subskills": ["bundlers_vite", "bundlers_webpack", "transpilers", "ci_cd_frontend"],
+      "description": "Configures bundlers for optimal output, sets up transpilation targets, and builds CI/CD pipelines with preview deploys."
+    },
+    "senior": {
+      "expected_subskills": ["monorepo_tools", "module_federation"],
+      "description": "Architects monorepo structures with shared packages and implements micro-frontend architectures with runtime module loading."
+    }
+  }
+}

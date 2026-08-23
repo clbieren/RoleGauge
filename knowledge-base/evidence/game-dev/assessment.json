@@ -64,10 +64,11 @@
         "level": "junior",
         "type": "practical_task",
         "question": "Create a scene transition system that loads a new level with a fade-to-black effect while preserving the player's score.",
-        "evaluation_criteria": [
-          "scene loading (async preferred)",
-          "data persistence across scenes",
-          "visual transition effect",
+        "expected_answer_keywords": [
+          "async scene loading",
+          "DontDestroyOnLoad",
+          "fade to black transition",
+          "player score persistence",
           "loading state handling"
         ]
       }
@@ -124,12 +125,12 @@
         "level": "senior",
         "type": "practical_task",
         "question": "Create a custom editor window that allows level designers to place waypoints on a navmesh and visualize the resulting AI patrol routes.",
-        "evaluation_criteria": [
+        "expected_answer_keywords": [
           "EditorWindow or Editor Utility Widget",
-          "scene view interaction",
-          "Gizmos or debug drawing",
-          "serialization of waypoint data",
-          "user-friendly interface"
+          "scene view raycast / interaction",
+          "Gizmos debug drawing",
+          "waypoint serialization",
+          "navmesh patrol route"
         ]
       }
     ],
@@ -219,12 +220,12 @@
         "level": "senior",
         "type": "practical_task",
         "question": "Implement a simple arena allocator in C++ that can allocate memory blocks from a pre-allocated buffer and reset the entire arena at once.",
-        "evaluation_criteria": [
-          "pre-allocated buffer",
-          "offset tracking",
-          "alignment handling",
-          "reset method",
-          "no individual deallocation"
+        "expected_answer_keywords": [
+          "pre-allocated memory buffer",
+          "byte offset tracking",
+          "memory alignment",
+          "arena reset method",
+          "O(1) linear allocation"
         ]
       }
     ],
@@ -264,12 +265,12 @@
         "level": "mid",
         "type": "practical_task",
         "question": "Implement AABB vs AABB collision detection that returns both whether a collision occurred and the minimum penetration vector.",
-        "evaluation_criteria": [
-          "min/max bounds comparison",
-          "overlap on all axes",
+        "expected_answer_keywords": [
+          "min max bounds overlap",
+          "AABB collision check",
           "penetration depth per axis",
-          "minimum translation vector",
-          "edge cases handled"
+          "minimum translation vector (MTV)",
+          "collision normal"
         ]
       }
     ],
@@ -278,13 +279,12 @@
         "level": "mid",
         "type": "practical_task",
         "question": "Implement A* pathfinding on a 2D grid. The algorithm should handle obstacles and diagonal movement with correct cost calculation.",
-        "evaluation_criteria": [
-          "open set and closed set",
-          "heuristic function",
+        "expected_answer_keywords": [
+          "open set closed set",
+          "Manhattan / Euclidean heuristic",
           "g-cost and f-cost",
-          "neighbor exploration",
-          "path reconstruction",
-          "diagonal cost sqrt(2)"
+          "diagonal cost sqrt(2)",
+          "parent node path reconstruction"
         ]
       }
     ],
@@ -357,12 +357,12 @@
         "level": "mid",
         "type": "practical_task",
         "question": "Write a custom shader that creates a dissolve effect using a noise texture and a threshold parameter.",
-        "evaluation_criteria": [
+        "expected_answer_keywords": [
           "noise texture sampling",
-          "threshold comparison",
-          "alpha cutoff or discard",
-          "edge glow effect",
-          "shader properties exposed"
+          "dissolve threshold cutoff",
+          "clip / discard function",
+          "step / smoothstep edge glow",
+          "vertex and fragment shader"
         ]
       }
     ],
@@ -522,12 +522,12 @@
         "level": "junior",
         "type": "practical_task",
         "question": "Implement an FSM for an enemy with Idle, Patrol, Chase, and Attack states. Define the transitions between them.",
-        "evaluation_criteria": [
-          "state enum or class",
-          "transition conditions",
-          "enter/exit methods",
-          "current state tracking",
-          "detection range for chase",
+        "expected_answer_keywords": [
+          "state enum / class",
+          "Enter / Update / Exit methods",
+          "transition condition checks",
+          "patrol waypoints",
+          "chase detection radius",
           "attack range check"
         ]
       }

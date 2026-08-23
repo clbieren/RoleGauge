@@ -1,0 +1,149 @@
+{
+  "source_id": "cv",
+  "name": "CV / Resume Analysis - QA Engineer",
+  "description": "Extraction rules and signal mappings for QA Engineer and Test Automation CVs/resumes. NOTE: Specific evidence mappings (regex patterns and maps_to composite keys) are stored within individual skill files under evidence.cv, NOT here. The validate_composite_keys.py script scans both locations to verify coverage.",
+  "extraction_rules": {
+    "sections": {
+      "work_experience": {
+        "priority": "high",
+        "base_strength": 0.6,
+        "quality_indicators": [
+          "Measurable automation coverage increase (e.g., 'increased E2E regression coverage from 30% to 85%')",
+          "Reduction in test cycle time (e.g., 'reduced release testing cycle from 3 days to 45 minutes via CI/CD test sharding')",
+          "Defect escape rate improvements (e.g., 'decreased production bugs by 40% with Shift-Left API testing')",
+          "Architecting cross-browser test frameworks from scratch using Playwright or Cypress",
+          "Establishing performance testing baselines and SLA/SLO thresholds with k6 or JMeter"
+        ]
+      },
+      "skills_list": {
+        "priority": "medium",
+        "base_strength": 0.3,
+        "notes": "Skills listed without project context receive lower strength. Must be corroborated by GitHub or assessment."
+      },
+      "projects": {
+        "priority": "high",
+        "base_strength": 0.5,
+        "quality_indicators": [
+          "Links to public GitHub test automation repositories with CI/CD workflows and Allure reports",
+          "Demonstrated Page Object Model or custom test fixture design",
+          "Demonstrated contract testing (Pact) or service virtualization (WireMock)"
+        ]
+      },
+      "certifications": {
+        "priority": "medium",
+        "base_strength": 0.4,
+        "recognized_certifications": [
+          "ISTQB Certified Tester Foundation Level (CTFL)",
+          "ISTQB Certified Tester Advanced Level - Test Automation Engineer (CTAL-TAE)",
+          "ISTQB Certified Tester Advanced Level - Test Manager (CTAL-TM)",
+          "Certified Agile Tester (CAT)",
+          "Playwright / Cypress Certified Test Automation Specialist"
+        ]
+      },
+      "education": {
+        "priority": "low",
+        "base_strength": 0.2,
+        "relevant_degrees": [
+          "Computer Science",
+          "Software Engineering",
+          "Information Technology",
+          "Computer Engineering"
+        ]
+      }
+    }
+  },
+  "signal_mapping": {
+    "patterns": [
+      {
+        "pattern": "Built and maintained E2E test automation frameworks using Playwright, Cypress, or Selenium",
+        "maps_to": [
+          "qa_frontend_automation.playwright_basics",
+          "qa_frontend_automation.cypress_basics",
+          "qa_frontend_automation.page_object_model_pom"
+        ],
+        "strength_modifier": 1.2
+      },
+      {
+        "pattern": "Designed and executed manual test cases, exploratory charters, and regression suites",
+        "maps_to": [
+          "qa_manual_testing.test_case_authoring",
+          "qa_manual_testing.bug_reporting_lifecycle",
+          "qa_manual_testing.regression_testing_strategy"
+        ],
+        "strength_modifier": 1.0
+      },
+      {
+        "pattern": "Automated REST / GraphQL API tests using Postman, Newman, or REST Assured",
+        "maps_to": [
+          "qa_backend_api_automation.postman_newman_testing",
+          "qa_backend_api_automation.http_api_test_authoring",
+          "qa_backend_api_automation.rest_assured_framework"
+        ],
+        "strength_modifier": 1.1
+      },
+      {
+        "pattern": "Implemented performance and load testing using k6 or Apache JMeter",
+        "maps_to": [
+          "qa_non_functional_testing.jmeter_load_testing",
+          "qa_non_functional_testing.k6_performance_as_code",
+          "qa_non_functional_testing.performance_test_types_scenarios"
+        ],
+        "strength_modifier": 1.1
+      },
+      {
+        "pattern": "Audited accessibility compliance (WCAG 2.1 AA) using axe-core or screen readers",
+        "maps_to": [
+          "qa_non_functional_testing.accessibility_testing_axe_wave",
+          "qa_non_functional_testing.advanced_accessibility_screen_readers"
+        ],
+        "strength_modifier": 1.1
+      },
+      {
+        "pattern": "Integrated automated test suites into CI/CD pipelines (GitHub Actions, GitLab CI) with test gating",
+        "maps_to": [
+          "qa_test_management_reporting.ci_cd_test_pipeline_integration",
+          "qa_test_management_reporting.allure_reporting_rich_artifacts"
+        ],
+        "strength_modifier": 1.1
+      },
+      {
+        "pattern": "Managed test cases and execution runs in TestRail, Zephyr, or JIRA",
+        "maps_to": [
+          "qa_test_management_reporting.testrail_zephyr_management",
+          "qa_test_management_reporting.jira_bug_tracking_workflow"
+        ],
+        "strength_modifier": 1.0
+      },
+      {
+        "pattern": "Established enterprise test strategy, quality KPIs (DRE, defect escape), and risk-based testing",
+        "maps_to": [
+          "qa_fundamentals_methodology.test_planning_estimation",
+          "qa_fundamentals_methodology.risk_based_testing",
+          "qa_fundamentals_methodology.quality_metrics_governance",
+          "qa_test_management_reporting.test_strategy_architecture_qa"
+        ],
+        "strength_modifier": 1.2
+      },
+      {
+        "pattern": "Implemented visual regression testing with Percy or Applitools",
+        "maps_to": [
+          "qa_frontend_automation.visual_regression_testing"
+        ],
+        "strength_modifier": 1.1
+      },
+      {
+        "pattern": "Implemented contract testing with Pact or service virtualization with WireMock",
+        "maps_to": [
+          "qa_backend_api_automation.contract_testing_pact_qa",
+          "qa_backend_api_automation.mock_servers_service_virtualization"
+        ],
+        "strength_modifier": 1.2
+      }
+    ]
+  },
+  "important_notes": [
+    "CV claims of '100% test coverage' should be verified through GitHub CI reports and actual test suite assertions",
+    "Differentiate dedicated QA experience from developer-written unit tests; look for cross-stack test leadership and quality governance",
+    "ISTQB certification without practical automation code receives baseline certification weight but requires code corroboration"
+  ]
+}

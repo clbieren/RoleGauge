@@ -293,25 +293,25 @@
         "compute",
         "cloud_storage",
         "iam",
-        "vpc_networking",
         "cli_sdk"
       ],
-      "description": "Can use basic cloud services (compute, storage, networking), understand IAM, and use CLI tools."
+      "description": "Can use basic cloud services (compute, storage), understand IAM least privilege, and use CLI/SDK tools."
     },
     "mid": {
       "expected_subskills": [
+        "vpc_networking",
         "serverless",
         "databases",
-        "container_services",
-        "monitoring_cloud"
+        "container_services"
       ],
-      "description": "Can work with serverless, managed databases, container services, and cloud monitoring."
+      "description": "Can configure VPC networking, serverless functions, managed databases, and container services (EKS/ECS)."
     },
     "senior": {
       "expected_subskills": [
+        "monitoring_cloud",
         "cost_management"
       ],
-      "description": "Can design multi-region, highly available architectures, optimize costs, and implement cloud governance strategies.",
+      "description": "Can design multi-region, highly available architectures, implement cloud monitoring/alerting, optimize FinOps costs, and govern cloud infrastructure.",
       "additional_expectations": [
         "multi_cloud",
         "well_architected_framework",

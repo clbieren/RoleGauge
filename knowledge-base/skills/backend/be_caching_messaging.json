@@ -1,0 +1,169 @@
+{
+  "skill_id": "be_caching_messaging",
+  "name": "Caching & Asynchronous Messaging",
+  "category": "backend_data",
+  "description": "In-memory caching architectures (Redis, Memcached), caching patterns (Cache-Aside, Write-Through, Write-Behind), cache invalidation and stampede mitigation, message brokers (RabbitMQ), event streaming platforms (Apache Kafka), asynchronous worker queues (Celery, BullMQ), idempotent consumer design, distributed Redis clusters, and stream backpressure control.",
+  "subskills": [
+    {
+      "id": "in_memory_caching",
+      "name": "In-Memory Caching (Redis/Memcached)",
+      "description": "Redis data structures (strings, hashes, sets, sorted sets, bitmaps), TTL expiration policies, cache hit/miss metrics, and basic Memcached usage.",
+      "keywords": ["Redis", "Memcached", "TTL", "cache hit", "cache miss", "sorted set", "redis-cli", "SETEX"]
+    },
+    {
+      "id": "pub_sub_patterns",
+      "name": "Pub/Sub Messaging Patterns",
+      "description": "Publish-subscribe fanout messaging, Redis Pub/Sub channels, event broadcasting across server instances, and decoupled notification systems.",
+      "keywords": ["Pub/Sub", "publish", "subscribe", "Redis Pub/Sub", "channel", "broadcasting", "event fanout"]
+    },
+    {
+      "id": "async_job_processing",
+      "name": "Background Job Queues",
+      "description": "Asynchronous job processing frameworks (BullMQ, Celery, Sidekiq, Celery, SQS), worker concurrency, delayed jobs, and automated retries.",
+      "keywords": ["BullMQ", "Celery", "Sidekiq", "background worker", "job queue", "delayed job", "retry policy", "SQS"]
+    },
+    {
+      "id": "cache_strategies",
+      "name": "Caching Strategies & Patterns",
+      "description": "Cache-Aside (lazy loading), Read-Through, Write-Through, and Write-Behind (Write-Back) caching patterns, and trade-offs in consistency vs latency.",
+      "keywords": ["Cache-Aside", "Write-Through", "Write-Behind", "Read-Through", "lazy loading", "caching patterns"]
+    },
+    {
+      "id": "cache_invalidation",
+      "name": "Cache Invalidation & Thundering Herd",
+      "description": "Cache invalidation techniques, Thundering Herd / Cache Stampede mitigation (mutex locking, probabilistic early expiration), and dogpiling prevention.",
+      "keywords": ["Cache invalidation", "Thundering Herd", "Cache Stampede", "dogpiling", "mutex lock", "early expiration", "XFetch"]
+    },
+    {
+      "id": "message_queues_rabbitmq",
+      "name": "Message Queues (RabbitMQ/AMQP)",
+      "description": "AMQP protocol, exchanges (Direct, Fanout, Topic, Headers), queues, routing keys, consumer acknowledgements (ACK/NACK), and Dead Letter Exchanges (DLX).",
+      "keywords": ["RabbitMQ", "AMQP", "exchange", "routing key", "DLX", "Dead Letter Exchange", "ACK", "NACK", "prefetch count"]
+    },
+    {
+      "id": "event_streaming_kafka",
+      "name": "Event Streaming (Apache Kafka)",
+      "description": "Kafka topics, partitions, consumer groups, offset commit management, log retention, consumer rebalancing, and exactly-once processing semantics.",
+      "keywords": ["Kafka", "topics", "partitions", "consumer groups", "offsets", "rebalancing", "exactly-once", "Kafka Streams"]
+    },
+    {
+      "id": "idempotent_consumers",
+      "name": "Idempotent Consumers & Deduplication",
+      "description": "Message deduplication strategies, unique message ID tracking in Redis/DB, idempotency keys, and handling out-of-order message delivery.",
+      "keywords": ["Idempotent consumer", "deduplication", "idempotency key", "out-of-order delivery", "at-least-once delivery", "message deduplication"]
+    },
+    {
+      "id": "distributed_caching_cluster",
+      "name": "Distributed Caching & Redis Cluster",
+      "description": "Redis Cluster sharding (hash slots 0-16383), Redis Sentinel high availability and master election, consistent hashing, and eviction policies (LRU, LFU).",
+      "keywords": ["Redis Cluster", "hash slots", "Redis Sentinel", "consistent hashing", "eviction policy", "allkeys-lru", "volatile-lfu"]
+    },
+    {
+      "id": "backpressure_stream_processing",
+      "name": "Stream Backpressure & Flow Control",
+      "description": "Reactive streams, consumer backpressure handling, buffer overflow mitigation, rate matching between producers and consumers, and pause/resume mechanisms.",
+      "keywords": ["Backpressure", "Reactive Streams", "flow control", "buffer overflow", "producer consumer rate mismatch", "pause and resume"]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "Redis client usage and caching logic in codebase",
+        "detection": "content_analysis",
+        "pattern": "redis\\.get|redis\\.set|ioredis|redisTemplate|CacheManager|@Cacheable",
+        "strength": 0.8,
+        "maps_to": ["be_caching_messaging.in_memory_caching", "be_caching_messaging.cache_strategies"]
+      },
+      {
+        "signal": "RabbitMQ / AMQP producer and consumer setup",
+        "detection": "content_analysis",
+        "pattern": "amqplib|pika|RabbitTemplate|channel\\.assertQueue|channel\\.consume|deadLetterExchange",
+        "strength": 0.8,
+        "maps_to": ["be_caching_messaging.message_queues_rabbitmq", "be_caching_messaging.pub_sub_patterns"]
+      },
+      {
+        "signal": "Kafka producer, consumer, or stream topologies",
+        "detection": "content_analysis",
+        "pattern": "KafkaProducer|KafkaConsumer|kafkajs|@KafkaListener|confluent_kafka|KafkaStreams",
+        "strength": 0.9,
+        "maps_to": ["be_caching_messaging.event_streaming_kafka", "be_caching_messaging.idempotent_consumers"]
+      },
+      {
+        "signal": "Background job queue workers (BullMQ, Celery, Sidekiq)",
+        "detection": "content_analysis",
+        "pattern": "new Queue\\(|new Worker\\(|@celery\\.task|celery_app|Sidekiq::Worker|perform_async",
+        "strength": 0.8,
+        "maps_to": ["be_caching_messaging.async_job_processing"]
+      },
+      {
+        "signal": "Docker compose definitions with Redis, RabbitMQ, or Kafka",
+        "detection": "content_analysis",
+        "pattern": "image:\\s*redis|image:\\s*rabbitmq|image:\\s*confluentinc/cp-kafka|image:\\s*apache/kafka",
+        "strength": 0.7,
+        "maps_to": ["be_caching_messaging.in_memory_caching", "be_caching_messaging.message_queues_rabbitmq", "be_caching_messaging.event_streaming_kafka"]
+      },
+      {
+        "signal": "Idempotent consumer tracking or distributed locking",
+        "detection": "content_analysis",
+        "pattern": "processed_messages|idempotency_key|redlock|setnx.*px|mutex\\.acquire",
+        "strength": 0.8,
+        "maps_to": ["be_caching_messaging.idempotent_consumers", "be_caching_messaging.cache_invalidation", "be_caching_messaging.distributed_caching_cluster"]
+      },
+      {
+        "signal": "Backpressure or reactive stream handling",
+        "detection": "content_analysis",
+        "pattern": "onBackpressureBuffer|onBackpressureDrop|consumer\\.pause|consumer\\.resume|highWaterMark",
+        "strength": 0.9,
+        "maps_to": ["be_caching_messaging.backpressure_stream_processing"]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "Redis caching and background task queue implementation",
+        "strength": 0.7,
+        "maps_to": ["be_caching_messaging.in_memory_caching", "be_caching_messaging.cache_strategies", "be_caching_messaging.async_job_processing"]
+      },
+      {
+        "signal": "Message broker (RabbitMQ) or Event streaming (Kafka) pipeline architecture",
+        "strength": 0.8,
+        "maps_to": ["be_caching_messaging.message_queues_rabbitmq", "be_caching_messaging.event_streaming_kafka", "be_caching_messaging.pub_sub_patterns"]
+      },
+      {
+        "signal": "Distributed caching (Redis Cluster), idempotent consumer systems, or high-throughput streaming",
+        "strength": 0.9,
+        "maps_to": ["be_caching_messaging.distributed_caching_cluster", "be_caching_messaging.idempotent_consumers", "be_caching_messaging.backpressure_stream_processing", "be_caching_messaging.cache_invalidation"]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Redis, Memcached, or Caching endorsed",
+        "strength": 0.5,
+        "maps_to": ["be_caching_messaging.in_memory_caching", "be_caching_messaging.cache_strategies", "be_caching_messaging.cache_invalidation"]
+      },
+      {
+        "signal": "Apache Kafka, RabbitMQ, or Message Queues endorsed",
+        "strength": 0.5,
+        "maps_to": ["be_caching_messaging.message_queues_rabbitmq", "be_caching_messaging.event_streaming_kafka", "be_caching_messaging.pub_sub_patterns"]
+      },
+      {
+        "signal": "Distributed systems, Event-driven streaming, or Backpressure processing mentioned",
+        "strength": 0.5,
+        "maps_to": ["be_caching_messaging.distributed_caching_cluster", "be_caching_messaging.idempotent_consumers", "be_caching_messaging.backpressure_stream_processing", "be_caching_messaging.async_job_processing"]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": ["in_memory_caching", "pub_sub_patterns", "async_job_processing"],
+      "description": "Utilizes Redis for basic key-value caching with TTLs, publishes events to pub/sub channels, and enqueues background worker tasks."
+    },
+    "mid": {
+      "expected_subskills": ["cache_strategies", "cache_invalidation", "message_queues_rabbitmq", "event_streaming_kafka"],
+      "description": "Implements cache-aside/write-through patterns, prevents cache stampedes, routes AMQP exchanges/DLXs in RabbitMQ, and consumes Kafka partition topics."
+    },
+    "senior": {
+      "expected_subskills": ["idempotent_consumers", "distributed_caching_cluster", "backpressure_stream_processing"],
+      "description": "Architects resilient idempotent consumers with deduplication, configures multi-node Redis Clusters with Sentinel failovers, and manages stream backpressure flow control."
+    }
+  }
+}

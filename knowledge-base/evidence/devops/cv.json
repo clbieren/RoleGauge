@@ -109,7 +109,7 @@
         "pattern": "Mentions managing Kubernetes clusters in production",
         "maps_to": [
           "kubernetes.deployments_replicasets",
-          "kubernetes.namespaces"
+          "kubernetes.resource_management"
         ],
         "strength_modifier": 1.0
       },

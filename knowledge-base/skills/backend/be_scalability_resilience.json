@@ -1,0 +1,169 @@
+{
+  "skill_id": "be_scalability_resilience",
+  "name": "Scalability, Concurrency & Resilience",
+  "category": "backend_architecture",
+  "description": "Engineering high-throughput, fault-tolerant backend systems: Horizontal scaling and stateless design, Circuit Breaker patterns (Resilience4j/Polly), exponential backoff with full jitter, Bulkhead resource isolation, asynchronous concurrency (thread safety, race conditions, goroutines/async-await), database connection pool sizing (HikariCP/PgBouncer), load balancing algorithms, graceful degradation, disaster recovery (RPO/RTO), and distributed lock concurrency (Redlock, optimistic/pessimistic locking).",
+  "subskills": [
+    {
+      "id": "horizontal_vs_vertical_scaling",
+      "name": "Horizontal Scaling & Stateless Design",
+      "description": "Stateless service design, session offloading to distributed stores (Redis), shared-nothing architecture, and horizontal scaling limits.",
+      "keywords": ["Horizontal scaling", "Stateless design", "session offloading", "shared-nothing architecture", "scale-out", "auto-scaling"]
+    },
+    {
+      "id": "retry_backoff_jitter",
+      "name": "Retry Policies, Backoff & Jitter",
+      "description": "Exponential backoff algorithms, full jitter vs decorrelated jitter, retry budgets, and preventing cascading retry storms against failing downstream services.",
+      "keywords": ["Exponential backoff", "Full Jitter", "Retry budget", "Retry storm", "transient error handling", "decorrelated jitter"]
+    },
+    {
+      "id": "connection_pooling",
+      "name": "Connection Pooling & Sizing",
+      "description": "Database connection pool mechanics (HikariCP, PgBouncer, SQLAlchemy pool), thread-to-connection ratios, pool exhaustion troubleshooting, and connection leak detection.",
+      "keywords": ["Connection pool", "HikariCP", "PgBouncer", "pool exhaustion", "maxPoolSize", "connection leak", "idle timeout"]
+    },
+    {
+      "id": "circuit_breaker_pattern",
+      "name": "Circuit Breaker Pattern",
+      "description": "Circuit state machines (Closed, Open, Half-Open), failure rate thresholds, slow call duration limits, Resilience4j, and fallback response execution.",
+      "keywords": ["Circuit Breaker", "Resilience4j", "Closed Open Half-Open", "fallback method", "failure rate threshold", "Polly"]
+    },
+    {
+      "id": "bulkhead_pattern",
+      "name": "Bulkhead Pattern & Resource Isolation",
+      "description": "Isolating thread pools, semaphore execution limits, memory compartmentalization, and preventing one degraded dependency from exhausting server resources.",
+      "keywords": ["Bulkhead pattern", "thread pool isolation", "semaphore isolation", "resource starvation", "compartmentalization"]
+    },
+    {
+      "id": "asynchronous_concurrency",
+      "name": "Concurrency, Threads & Asynchronous I/O",
+      "description": "Non-blocking event loops (Node.js/Netty), goroutines and channels (Go), async/await task scheduling, thread safety, race conditions, and deadlocks.",
+      "keywords": ["Concurrency", "Goroutines", "async/await", "race condition", "deadlock", "thread safety", "Mutex", "event loop", "non-blocking I/O"]
+    },
+    {
+      "id": "load_balancing_algorithms",
+      "name": "Load Balancing Algorithms",
+      "description": "Round Robin, Weighted Least Connections, IP Hash, and Consistent Hashing algorithms for distributing traffic across backend server pools.",
+      "keywords": ["Load balancing", "Consistent Hashing", "Least Connections", "Round Robin", "IP Hash", "health check probes"]
+    },
+    {
+      "id": "graceful_degradation",
+      "name": "Graceful Degradation & Load Shedding",
+      "description": "Load shedding under extreme saturation (HTTP 503 / 429), feature flags to disable non-critical functionality, and cached fallback responses.",
+      "keywords": ["Graceful degradation", "Load shedding", "feature flags", "degraded mode", "non-critical feature disabling", "overload protection"]
+    },
+    {
+      "id": "disaster_recovery_rpo_rto",
+      "name": "Disaster Recovery (RPO/RTO)",
+      "description": "Recovery Point Objective (RPO) and Recovery Time Objective (RTO) calculation, active-passive vs active-active multi-region failover strategies.",
+      "keywords": ["RPO", "RTO", "Disaster Recovery", "active-active", "active-passive", "multi-region failover", "data replication lag"]
+    },
+    {
+      "id": "high_concurrency_lock_free",
+      "name": "Distributed Locking & Concurrency Control",
+      "description": "Optimistic locking (@Version column), pessimistic locking (SELECT FOR UPDATE), distributed locks using Redis (Redlock algorithm) or ZooKeeper.",
+      "keywords": ["Optimistic locking", "Pessimistic locking", "SELECT FOR UPDATE", "Redlock", "distributed lock", "atomic operations", "Compare-And-Swap"]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "Circuit breaker or resilience library configuration (Resilience4j, Polly)",
+        "detection": "content_analysis",
+        "pattern": "@CircuitBreaker|Resilience4j|CircuitBreakerRegistry|Polly\\.Policy|opossum",
+        "strength": 0.9,
+        "maps_to": ["be_scalability_resilience.circuit_breaker_pattern", "be_scalability_resilience.bulkhead_pattern"]
+      },
+      {
+        "signal": "Exponential backoff and jitter implementation",
+        "detection": "content_analysis",
+        "pattern": "exponential_backoff|backoff.*jitter|retry_with_backoff|exponentialBackoff",
+        "strength": 0.8,
+        "maps_to": ["be_scalability_resilience.retry_backoff_jitter"]
+      },
+      {
+        "signal": "Connection pool configuration (HikariCP, PgBouncer, pool_size)",
+        "detection": "content_analysis",
+        "pattern": "HikariConfig|maximumPoolSize|pgbouncer\\.ini|pool_size|max_overflow",
+        "strength": 0.8,
+        "maps_to": ["be_scalability_resilience.connection_pooling"]
+      },
+      {
+        "signal": "Concurrency and synchronization primitives (Mutex, channels, worker pools)",
+        "detection": "content_analysis",
+        "pattern": "sync\\.Mutex|sync\\.WaitGroup|threading\\.Lock|ReentrantLock|p-limit|asyncio\\.gather",
+        "strength": 0.8,
+        "maps_to": ["be_scalability_resilience.asynchronous_concurrency"]
+      },
+      {
+        "signal": "Distributed lock implementations (Redlock, SELECT FOR UPDATE)",
+        "detection": "content_analysis",
+        "pattern": "Redlock|redsync|SELECT.*FOR\\s+UPDATE|@Version|optimistic_lock",
+        "strength": 0.9,
+        "maps_to": ["be_scalability_resilience.high_concurrency_lock_free"]
+      },
+      {
+        "signal": "Load shedding or graceful degradation logic",
+        "detection": "content_analysis",
+        "pattern": "load_shedding|shedLoad|isFeatureEnabled|degraded_response|circuit_fallback",
+        "strength": 0.8,
+        "maps_to": ["be_scalability_resilience.graceful_degradation", "be_scalability_resilience.horizontal_vs_vertical_scaling"]
+      },
+      {
+        "signal": "Consistent hashing or custom load balancing",
+        "detection": "content_analysis",
+        "pattern": "ConsistentHash|hash_ring|least_connections|round_robin",
+        "strength": 0.8,
+        "maps_to": ["be_scalability_resilience.load_balancing_algorithms", "be_scalability_resilience.disaster_recovery_rpo_rto"]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "High-concurrency backend architecture and horizontal scaling",
+        "strength": 0.8,
+        "maps_to": ["be_scalability_resilience.horizontal_vs_vertical_scaling", "be_scalability_resilience.asynchronous_concurrency", "be_scalability_resilience.connection_pooling"]
+      },
+      {
+        "signal": "Fault tolerance, Circuit Breakers, or disaster recovery architecture",
+        "strength": 0.8,
+        "maps_to": ["be_scalability_resilience.circuit_breaker_pattern", "be_scalability_resilience.retry_backoff_jitter", "be_scalability_resilience.disaster_recovery_rpo_rto"]
+      },
+      {
+        "signal": "Distributed locking, load shedding, or multi-region high availability",
+        "strength": 0.9,
+        "maps_to": ["be_scalability_resilience.high_concurrency_lock_free", "be_scalability_resilience.graceful_degradation", "be_scalability_resilience.bulkhead_pattern"]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "High Availability, Concurrency, or Scalability endorsed",
+        "strength": 0.5,
+        "maps_to": ["be_scalability_resilience.horizontal_vs_vertical_scaling", "be_scalability_resilience.asynchronous_concurrency", "be_scalability_resilience.connection_pooling"]
+      },
+      {
+        "signal": "Fault Tolerance, Resilience4j, or Load Balancing endorsed",
+        "strength": 0.5,
+        "maps_to": ["be_scalability_resilience.circuit_breaker_pattern", "be_scalability_resilience.load_balancing_algorithms", "be_scalability_resilience.retry_backoff_jitter"]
+      },
+      {
+        "signal": "Disaster Recovery, Distributed Locking, or Load Shedding mentioned",
+        "strength": 0.5,
+        "maps_to": ["be_scalability_resilience.disaster_recovery_rpo_rto", "be_scalability_resilience.high_concurrency_lock_free", "be_scalability_resilience.graceful_degradation", "be_scalability_resilience.bulkhead_pattern"]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": ["horizontal_vs_vertical_scaling", "retry_backoff_jitter", "connection_pooling"],
+      "description": "Designs stateless services for horizontal scaling, implements exponential backoff with jitter, and configures database connection pool limits."
+    },
+    "mid": {
+      "expected_subskills": ["circuit_breaker_pattern", "bulkhead_pattern", "asynchronous_concurrency", "load_balancing_algorithms"],
+      "description": "Implements Circuit Breakers and Bulkhead thread isolation, manages non-blocking concurrency safely, and understands load balancing algorithms."
+    },
+    "senior": {
+      "expected_subskills": ["graceful_degradation", "disaster_recovery_rpo_rto", "high_concurrency_lock_free"],
+      "description": "Architects load shedding and graceful degradation modes, calculates RPO/RTO for disaster recovery, and implements distributed locking with Redlock and optimistic concurrency."
+    }
+  }
+}

@@ -1,0 +1,159 @@
+{
+  "skill_id": "fe_css",
+  "name": "CSS & Styling",
+  "category": "frontend_core",
+  "description": "CSS layout systems, visual design implementation, animations, responsive units, theming with custom properties, architectural methodologies, and modern CSS features.",
+  "subskills": [
+    {
+      "id": "selectors_specificity",
+      "name": "Selectors & Specificity",
+      "description": "CSS selector types, specificity calculation, cascade order, !important implications.",
+      "keywords": ["specificity", "cascade", "!important", "pseudo-classes", "pseudo-elements", "combinators"]
+    },
+    {
+      "id": "box_model",
+      "name": "Box Model",
+      "description": "Content, padding, border, margin — box-sizing, margin collapse, overflow behavior.",
+      "keywords": ["box-sizing", "border-box", "margin collapse", "padding", "overflow", "content-box"]
+    },
+    {
+      "id": "flexbox",
+      "name": "Flexbox",
+      "description": "Flex container and item properties, main/cross axis alignment, flex-grow/shrink/basis.",
+      "keywords": ["display: flex", "justify-content", "align-items", "flex-grow", "flex-shrink", "flex-basis", "gap"]
+    },
+    {
+      "id": "grid",
+      "name": "CSS Grid",
+      "description": "Grid template areas, auto-fit/auto-fill, named lines, implicit vs explicit grids.",
+      "keywords": ["display: grid", "grid-template-columns", "grid-template-areas", "auto-fit", "auto-fill", "fr unit", "minmax"]
+    },
+    {
+      "id": "positioning",
+      "name": "Positioning & Stacking",
+      "description": "Static, relative, absolute, fixed, sticky positioning; z-index and stacking contexts.",
+      "keywords": ["position", "z-index", "stacking context", "sticky", "fixed", "absolute", "relative"]
+    },
+    {
+      "id": "animations_transitions",
+      "name": "Animations & Transitions",
+      "description": "CSS keyframe animations, transitions, GPU-accelerated properties (transform, opacity), will-change.",
+      "keywords": ["@keyframes", "transition", "transform", "opacity", "will-change", "animation-timing-function"]
+    },
+    {
+      "id": "responsive_units",
+      "name": "Responsive Units & Functions",
+      "description": "rem, em, vh, vw, dvh units; clamp(), calc(), min(), max() functions for fluid design.",
+      "keywords": ["rem", "em", "vh", "vw", "clamp()", "calc()", "min()", "max()", "dvh"]
+    },
+    {
+      "id": "css_variables",
+      "name": "CSS Custom Properties",
+      "description": "CSS variables (--custom-property), theming, runtime manipulation, fallback values.",
+      "keywords": ["--custom-property", "var()", "theming", ":root", "fallback", "runtime toggle"]
+    },
+    {
+      "id": "css_architecture",
+      "name": "CSS Architecture",
+      "description": "BEM naming, ITCSS layering, CSS Modules, utility-first (Tailwind), CSS-in-JS trade-offs.",
+      "keywords": ["BEM", "CSS Modules", "Tailwind", "CSS-in-JS", "styled-components", "ITCSS", "utility-first"]
+    },
+    {
+      "id": "modern_css",
+      "name": "Modern CSS Features",
+      "description": "Container queries, :has() selector, CSS nesting, subgrid, @layer, color-mix().",
+      "keywords": ["container queries", ":has()", "CSS nesting", "subgrid", "@layer", "color-mix()", "@scope"]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "Flexbox or Grid layout usage in CSS/SCSS files",
+        "detection": "content_analysis",
+        "pattern": "display:\\s*(flex|grid)|grid-template|flex-direction|justify-content",
+        "strength": 0.7,
+        "maps_to": ["fe_css.flexbox", "fe_css.grid"]
+      },
+      {
+        "signal": "CSS custom properties for theming",
+        "detection": "content_analysis",
+        "pattern": "--[a-z]+-[a-z]+|var\\(--",
+        "strength": 0.7,
+        "maps_to": ["fe_css.css_variables"]
+      },
+      {
+        "signal": "CSS animations or transitions",
+        "detection": "content_analysis",
+        "pattern": "@keyframes|transition:|animation:|will-change:",
+        "strength": 0.7,
+        "maps_to": ["fe_css.animations_transitions"]
+      },
+      {
+        "signal": "BEM naming or CSS Modules",
+        "detection": "content_analysis",
+        "pattern": "__[a-z]+--|\\.module\\.(css|scss)|:global|:local",
+        "strength": 0.7,
+        "maps_to": ["fe_css.css_architecture"]
+      },
+      {
+        "signal": "Modern CSS features (container queries, :has, nesting)",
+        "detection": "content_analysis",
+        "pattern": "container-type|@container|:has\\(|@layer",
+        "strength": 0.8,
+        "maps_to": ["fe_css.modern_css"]
+      },
+      {
+        "signal": "Responsive units and clamp functions",
+        "detection": "content_analysis",
+        "pattern": "clamp\\(|calc\\(|\\d+rem|\\d+vw|\\d+vh",
+        "strength": 0.6,
+        "maps_to": ["fe_css.responsive_units", "fe_css.box_model"]
+      },
+      {
+        "signal": "Complex selectors and positioning",
+        "detection": "content_analysis",
+        "pattern": "position:\\s*(sticky|fixed|absolute)|z-index:\\s*\\d+|:nth-child|:not\\(",
+        "strength": 0.6,
+        "maps_to": ["fe_css.selectors_specificity", "fe_css.positioning"]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "CSS layout systems (Flexbox, Grid) in production",
+        "strength": 0.7,
+        "maps_to": ["fe_css.flexbox", "fe_css.grid", "fe_css.responsive_units"]
+      },
+      {
+        "signal": "Design system or component library styling",
+        "strength": 0.7,
+        "maps_to": ["fe_css.css_architecture", "fe_css.css_variables"]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "CSS, Sass, or Tailwind endorsed",
+        "strength": 0.5,
+        "maps_to": ["fe_css.selectors_specificity", "fe_css.box_model", "fe_css.css_architecture"]
+      },
+      {
+        "signal": "UI/UX implementation or responsive design",
+        "strength": 0.5,
+        "maps_to": ["fe_css.animations_transitions", "fe_css.positioning", "fe_css.modern_css"]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": ["selectors_specificity", "box_model", "flexbox", "positioning"],
+      "description": "Understands the cascade, box model, builds layouts with Flexbox, and manages element positioning."
+    },
+    "mid": {
+      "expected_subskills": ["grid", "animations_transitions", "responsive_units", "css_variables"],
+      "description": "Creates complex Grid layouts, implements performant animations, uses fluid typography, and maintains theme systems."
+    },
+    "senior": {
+      "expected_subskills": ["css_architecture", "modern_css"],
+      "description": "Architects scalable CSS methodologies and adopts cutting-edge CSS features like container queries and :has()."
+    }
+  }
+}

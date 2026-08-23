@@ -36,7 +36,9 @@
         "question": "Troubleshoot connection to port 443.",
         "expected_answer_keywords": [
           "traffic logs",
-          "security policy"
+          "security policy",
+          "packet drop analysis",
+          "inbound rule verification"
         ]
       }
     ],

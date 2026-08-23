@@ -1,0 +1,125 @@
+{
+  "source_id": "linkedin",
+  "name": "LinkedIn Profile Analysis - Backend Developer",
+  "description": "Signals extracted from LinkedIn profiles to evidence Backend Developer skills. LinkedIn provides professional context, endorsements, recommendations, and career progression data.",
+  "extraction_rules": {
+    "sections": [
+      {
+        "section": "headline_summary",
+        "description": "Profile headline and summary/about section.",
+        "base_strength": 0.2,
+        "notes": "Self-described; provides intent and specialization context (e.g., 'Senior Distributed Systems Engineer' vs generic 'Software Developer')."
+      },
+      {
+        "section": "experience",
+        "description": "Work experience entries with job titles, companies, and responsibilities.",
+        "base_strength": 0.4,
+        "notes": "Similar to CV work experience. Look for backend-specific titles and descriptions of data scale, throughput, and system reliability.",
+        "quality_indicators": [
+          "Backend-specific job titles (Backend Engineer, Distributed Systems Engineer, API Platform Engineer, Data Infrastructure Developer)",
+          "Duration and continuity in backend roles",
+          "Company scale and domain complexity (fintech, e-commerce, high-throughput streaming)",
+          "Specific technologies, databases, and architectural patterns described"
+        ]
+      },
+      {
+        "section": "skills_endorsements",
+        "description": "Skills listed with endorsement counts from connections.",
+        "base_strength": 0.15,
+        "notes": "Endorsements have very low evidential value on their own. They provide a high-level self-reported technology inventory."
+      },
+      {
+        "section": "certifications",
+        "description": "Professional certifications with issuing organizations.",
+        "base_strength": 0.2,
+        "notes": "Theoretical domain indicator, not practical proof."
+      },
+      {
+        "section": "projects",
+        "description": "Projects section with descriptions and links.",
+        "base_strength": 0.3,
+        "notes": "Provides additional project context. Links to live repositories or API docs increase strength."
+      },
+      {
+        "section": "recommendations",
+        "description": "Written recommendations from engineering leads, architects, or peers.",
+        "base_strength": 0.3,
+        "notes": "Third-party validation of technical leadership, code quality, and incident response competency."
+      },
+      {
+        "section": "posts_articles",
+        "description": "Technical posts and articles published on LinkedIn.",
+        "base_strength": 0.3,
+        "notes": "Articles about backend architecture, database optimizations, or post-mortem analyses indicate deep systems grasp."
+      }
+    ]
+  },
+  "signal_mapping": {
+    "description": "How LinkedIn mentions map to skill evidence using COMPOSITE KEYS ({skill_id}.{subskill_id}). AI should use these patterns.",
+    "patterns": [
+      {
+        "pattern": "LinkedIn skills endorsement for 'PostgreSQL' or 'SQL'",
+        "maps_to": ["be_databases.sql_querying"],
+        "strength_modifier": 0.33
+      },
+      {
+        "pattern": "LinkedIn skills endorsement for 'Redis' or 'Apache Kafka'",
+        "maps_to": ["be_caching_messaging.in_memory_caching", "be_caching_messaging.event_streaming_kafka"],
+        "strength_modifier": 0.33
+      },
+      {
+        "pattern": "LinkedIn skills endorsement for 'Microservices' or 'REST APIs'",
+        "maps_to": ["be_architecture_patterns.microservices_architecture", "be_api_design.restful_principles"],
+        "strength_modifier": 0.33
+      },
+      {
+        "pattern": "Job experience explicitly describing building high-throughput event-driven microservices",
+        "maps_to": ["be_architecture_patterns.event_driven_architecture", "be_caching_messaging.event_streaming_kafka", "be_architecture_patterns.microservices_architecture"],
+        "strength_modifier": 1.0
+      },
+      {
+        "pattern": "Job experience describing database optimization, indexing, and migration pipelines",
+        "maps_to": ["be_databases.indexing_optimization", "be_databases.migrations_schema_versioning", "be_databases.relational_modeling"],
+        "strength_modifier": 1.0
+      },
+      {
+        "pattern": "Job experience describing authentication architecture (OAuth2, JWT, RBAC)",
+        "maps_to": ["be_auth_security.oauth2_oidc", "be_auth_security.jwt_session_management", "be_auth_security.rbac_abac_authorization"],
+        "strength_modifier": 1.0
+      },
+      {
+        "pattern": "Job experience describing fault-tolerant resilience engineering (Circuit Breakers, Bulkheads)",
+        "maps_to": ["be_scalability_resilience.circuit_breaker_pattern", "be_scalability_resilience.bulkhead_pattern", "be_scalability_resilience.retry_backoff_jitter"],
+        "strength_modifier": 1.0
+      },
+      {
+        "pattern": "Job experience describing application telemetry instrumentation (OpenTelemetry, Prometheus)",
+        "maps_to": ["be_observability.distributed_tracing_opentelemetry", "be_observability.application_metrics", "be_observability.structured_logging"],
+        "strength_modifier": 1.0
+      },
+      {
+        "pattern": "Technical article about distributed database consistency, Saga pattern, or CQRS",
+        "maps_to": ["be_databases.distributed_transactions", "be_architecture_patterns.cqrs_pattern", "be_architecture_patterns.event_sourcing"],
+        "strength_modifier": 0.8
+      },
+      {
+        "pattern": "Endorsement for 'Software Architecture' or 'Domain-Driven Design'",
+        "maps_to": ["be_architecture_patterns.domain_driven_design", "be_architecture_patterns.clean_hexagonal_architecture"],
+        "strength_modifier": 0.33
+      },
+      {
+        "pattern": "Endorsement for 'JUnit', 'PyTest', or 'Unit Testing'",
+        "maps_to": ["be_testing_quality.unit_testing"],
+        "strength_modifier": 0.33
+      }
+    ]
+  },
+  "important_notes": [
+    "ALL extracted signals MUST be mapped to COMPOSITE KEYS ({skill_id}.{subskill_id})",
+    "LinkedIn data supplements but should not override verified code or assessment evidence",
+    "Endorsements have near-zero evidential value on their own",
+    "Job titles can be inflated — cross-reference with actual system scale and architectural responsibilities described",
+    "Career trajectory (progression from junior bug fixing to mid feature ownership to senior platform/systems architecture) provides valuable context",
+    "Specialized technical content (post-mortems, distributed systems trade-offs) indicates advanced seniority"
+  ]
+}

@@ -1,0 +1,105 @@
+{
+  "source_id": "github",
+  "name": "GitHub Repository Analysis - QA Engineer",
+  "description": "Global parsing rules for QA and test automation repositories. NOTE: Specific evidence mappings (regex patterns and maps_to composite keys) are stored within individual skill files under evidence.github, NOT here. The validate_composite_keys.py script scans both locations to verify coverage.",
+  "preprocessing_pipeline": {
+    "steps": [
+      {
+        "step": 1,
+        "name": "file_tree_scan",
+        "target_files": [
+          {
+            "pattern": "cypress\\.config\\.*|cypress/e2e/|cypress/support/",
+            "skills": ["qa_frontend_automation"],
+            "priority": "high",
+            "notes": "Cypress E2E test suites, custom commands, and configuration"
+          },
+          {
+            "pattern": "playwright\\.config\\.*|tests/.*\\.spec\\.ts|tests/.*\\.spec\\.js",
+            "skills": ["qa_frontend_automation", "qa_web_fundamentals_for_qa"],
+            "priority": "high",
+            "notes": "Playwright cross-browser test suites, page objects, and fixtures"
+          },
+          {
+            "pattern": "*\\.postman_collection\\.json|*\\.postman_environment\\.json",
+            "skills": ["qa_backend_api_automation"],
+            "priority": "high",
+            "notes": "Postman API test collections and environment configurations"
+          },
+          {
+            "pattern": "*\\.jmx|k6/.*\\.js|load-test.*\\.js|gatling\\.conf",
+            "skills": ["qa_non_functional_testing"],
+            "priority": "high",
+            "notes": "Performance and load testing scripts (JMeter, k6, Gatling)"
+          },
+          {
+            "pattern": "allure-results/|allure-report/|junit-report.*\\.xml",
+            "skills": ["qa_test_management_reporting"],
+            "priority": "high",
+            "notes": "Automated test execution reports and XML artifacts"
+          },
+          {
+            "pattern": ".github/workflows/*test*\\.ya?ml|.gitlab-ci.yml",
+            "skills": ["qa_test_management_reporting"],
+            "priority": "high",
+            "notes": "CI/CD test automation pipelines and matrix execution jobs"
+          },
+          {
+            "pattern": "pact/|*\\.pact\\.json|wiremock/|mappings/",
+            "skills": ["qa_backend_api_automation"],
+            "priority": "high",
+            "notes": "Contract testing definitions and WireMock service stubs"
+          },
+          {
+            "pattern": "*test-plan*\\.md|*test-strategy*\\.md|*test-cases*\\.md",
+            "skills": ["qa_fundamentals_methodology", "qa_manual_testing"],
+            "priority": "medium",
+            "notes": "Test planning documentation, test design matrices, and manual test charters"
+          }
+        ]
+      },
+      {
+        "step": 2,
+        "name": "dependency_extraction",
+        "source_manifests": [
+          "package.json",
+          "pom.xml",
+          "build.gradle",
+          "requirements.txt",
+          "pyproject.toml"
+        ],
+        "relevant_dependencies": {
+          "qa_frontend_automation": ["cypress", "@playwright/test", "selenium-webdriver", "webdriverio", "puppeteer", "@percy/cli", "@applitools/eyes-playwright"],
+          "qa_backend_api_automation": ["newman", "rest-assured", "supertest", "pact", "@pact-foundation/pact", "wiremock", "mockoon"],
+          "qa_non_functional_testing": ["k6", "jmeter", "@axe-core/playwright", "cypress-axe", "lighthouse", "artillery"],
+          "qa_test_management_reporting": ["allure-playwright", "allure-cypress", "allure-commandline", "testrail-api", "jest-junit", "mocha-junit-reporter"],
+          "qa_web_fundamentals_for_qa": ["xpath", "cheerio", "jsdom"]
+        }
+      },
+      {
+        "step": 3,
+        "name": "config_file_scan",
+        "target_configs": [
+          "playwright.config.ts",
+          "playwright.config.js",
+          "cypress.config.ts",
+          "cypress.config.js",
+          "wdio.conf.js",
+          "allure.properties",
+          "lighthouserc.json",
+          ".percy.yml",
+          "k6-config.json"
+        ]
+      }
+    ]
+  },
+  "ai_analysis_instructions": {
+    "tasks": [
+      "Map detected test files and dependencies to composite keys ({skill_id}.{subskill_id}) using patterns defined in QA skill files",
+      "Differentiate end-to-end integration tests (Playwright, Cypress) from developer-level unit tests",
+      "Inspect locator robustness — favor user-facing locators (getByRole, getByTestId) over brittle CSS classes or deep XPath hierarchies",
+      "Evaluate test resilience — detect presence of explicit waiting/auto-waiting vs antipattern hardcoded sleeps (cy.wait(5000), time.sleep)",
+      "Check performance script configurations for realistic traffic profiles (stages, target RPS, p95/p99 thresholds)"
+    ]
+  }
+}

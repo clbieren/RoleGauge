@@ -1,0 +1,150 @@
+{
+  "source_id": "cv",
+  "name": "CV / Resume Analysis - Frontend Developer",
+  "description": "Signals extracted from the user's CV/resume to evidence Frontend Developer skills. CV data provides self-reported information that must be cross-validated with GitHub and assessment sources.",
+  "extraction_rules": {
+    "description": "How to extract and weight information from CV content for Frontend roles.",
+    "sections": [
+      {
+        "section": "skills_list",
+        "description": "Explicit list of technologies and tools mentioned in skills section.",
+        "base_strength": 0.3,
+        "notes": "Low strength because listing a skill doesn't prove proficiency. 'React' in a skills list alone is insufficient — must cross-reference with projects and experience."
+      },
+      {
+        "section": "work_experience",
+        "description": "Job descriptions and responsibilities mentioning frontend development activities.",
+        "base_strength": 0.5,
+        "notes": "Higher strength when specific actions and outcomes are described.",
+        "quality_indicators": [
+          "Specific frameworks and versions mentioned in context (e.g., 'migrated from CRA to Vite' not just 'used React')",
+          "Quantifiable outcomes (improved LCP by 40%, reduced bundle size by 60%)",
+          "Action verbs indicating hands-on work (architected, implemented, optimized, migrated, refactored)",
+          "Duration and recency of frontend-specific experience"
+        ]
+      },
+      {
+        "section": "projects",
+        "description": "Personal or professional projects demonstrating frontend skills.",
+        "base_strength": 0.4,
+        "notes": "Higher strength if linked to GitHub repository or live demo. Cross-reference with GitHub analysis.",
+        "quality_indicators": [
+          "Technical depth of project description (e.g., 'built a real-time dashboard with WebSocket and virtual scrolling')",
+          "Technologies used match claimed skills",
+          "Links to source code, live demo, or Storybook",
+          "Complexity indicators (SSR, state management, accessibility compliance)"
+        ]
+      },
+      {
+        "section": "education",
+        "description": "Relevant courses, degrees, and bootcamp certificates.",
+        "base_strength": 0.2,
+        "notes": "Provides context but doesn't directly evidence practical frontend skill. Relevant for career changers and bootcamp grads."
+      },
+      {
+        "section": "certifications",
+        "description": "Professional certifications relevant to frontend development.",
+        "base_strength": 0.2,
+        "notes": "Frontend certifications are less standardized than cloud/infra certs. They indicate theoretical knowledge but not practical build skill.",
+        "recognized_certifications": {
+          "frontend_specific": [
+            "Meta Front-End Developer Professional Certificate",
+            "freeCodeCamp Responsive Web Design",
+            "freeCodeCamp JavaScript Algorithms and Data Structures"
+          ],
+          "ux_design": [
+            "Google UX Design Professional Certificate",
+            "Nielsen Norman Group UX Certification"
+          ],
+          "web_general": [
+            "W3C Front-End Web Developer",
+            "AWS Certified Cloud Practitioner (frontend deployment context)"
+          ],
+          "accessibility": [
+            "IAAP CPACC (Certified Professional in Accessibility Core Competencies)",
+            "IAAP WAS (Web Accessibility Specialist)",
+            "DHS Section 508 Trusted Tester"
+          ]
+        }
+      }
+    ]
+  },
+  "signal_mapping": {
+    "description": "How CV mentions map to skill evidence using COMPOSITE KEYS ({skill_id}.{subskill_id}). AI should use these patterns.",
+    "patterns": [
+      {
+        "pattern": "Describes building React/Vue SPA with specific component architecture",
+        "maps_to": ["fe_frameworks.react_core", "fe_frameworks.component_architecture"],
+        "strength_modifier": 1.0
+      },
+      {
+        "pattern": "Lists React or Vue in skills section only",
+        "maps_to": ["fe_frameworks.react_core"],
+        "strength_modifier": 0.5
+      },
+      {
+        "pattern": "Describes building CI/CD pipeline for frontend with preview deploys",
+        "maps_to": ["fe_tooling_build.ci_cd_frontend", "fe_tooling_build.git_workflows"],
+        "strength_modifier": 1.0
+      },
+      {
+        "pattern": "Mentions Next.js SSR/SSG with performance metrics",
+        "maps_to": ["fe_meta_frameworks_ssr.nextjs", "fe_meta_frameworks_ssr.ssr_concepts"],
+        "strength_modifier": 1.2
+      },
+      {
+        "pattern": "Improved Core Web Vitals or Lighthouse scores with quantified results",
+        "maps_to": ["fe_web_security_performance.core_web_vitals", "fe_web_security_performance.bundle_optimization"],
+        "strength_modifier": 1.2
+      },
+      {
+        "pattern": "Implemented design system or component library",
+        "maps_to": ["fe_css.css_architecture", "fe_css.css_variables", "fe_frameworks.component_design_patterns"],
+        "strength_modifier": 1.0
+      },
+      {
+        "pattern": "Migrated codebase to TypeScript",
+        "maps_to": ["fe_typescript.type_basics", "fe_typescript.strict_mode", "fe_typescript.ts_config"],
+        "strength_modifier": 1.0
+      },
+      {
+        "pattern": "Wrote comprehensive test suites with high coverage",
+        "maps_to": ["fe_testing.unit_testing", "fe_testing.component_testing", "fe_testing.coverage_strategy"],
+        "strength_modifier": 1.0
+      },
+      {
+        "pattern": "Managed monorepo with shared packages",
+        "maps_to": ["fe_tooling_build.monorepo_tools", "fe_tooling_build.package_managers"],
+        "strength_modifier": 1.0
+      },
+      {
+        "pattern": "Implemented OAuth/JWT authentication flow",
+        "maps_to": ["fe_web_security_performance.auth_token_storage", "fe_web_security_performance.csrf_protection"],
+        "strength_modifier": 0.8
+      },
+      {
+        "pattern": "Built micro-frontend architecture",
+        "maps_to": ["fe_tooling_build.module_federation"],
+        "strength_modifier": 1.0
+      },
+      {
+        "pattern": "WCAG/ADA accessibility compliance achievement",
+        "maps_to": ["fe_web_fundamentals.web_accessibility", "fe_testing.accessibility_testing"],
+        "strength_modifier": 1.2
+      },
+      {
+        "pattern": "Has Meta Front-End Developer or freeCodeCamp certification without project evidence",
+        "maps_to": ["fe_web_fundamentals.html_semantics", "fe_css.selectors_specificity"],
+        "strength_modifier": 0.4
+      }
+    ]
+  },
+  "important_notes": [
+    "CV data is self-reported and inherently unreliable as standalone evidence",
+    "Always cross-validate CV claims with GitHub and assessment data",
+    "Frontend certifications alone are NOT evidence of practical skill — frontend is learned by building",
+    "Look for specificity and depth — 'used React' is weaker than 'migrated class components to hooks and reduced re-renders by 40%'",
+    "Recency matters — jQuery expertise from 2015 without modern framework experience is a concern",
+    "Quantifiable performance improvements (LCP, bundle size, test coverage) are strong signals"
+  ]
+}

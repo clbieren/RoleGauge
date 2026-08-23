@@ -1,0 +1,239 @@
+{
+  "skill_id": "qa_fundamentals_methodology",
+  "name": "QA Mindset, Test Design & STLC",
+  "category": "testing_methodology",
+  "description": "Core Quality Assurance fundamentals, testing mindset, test levels, STLC lifecycle models, test design techniques, and quality governance. Covers how quality is planned, designed, and measured across the software lifecycle.",
+  "subskills": [
+    {
+      "id": "qa_mindset_principles",
+      "name": "QA Mindset & Core Testing Principles",
+      "description": "Seven principles of testing, defect prevention vs detection, cost of quality, verification vs validation, and quality culture.",
+      "keywords": [
+        "Seven principles of testing",
+        "defect prevention",
+        "cost of quality",
+        "verification vs validation",
+        "quality culture",
+        "exhaustive testing is impossible",
+        "pesticide paradox"
+      ]
+    },
+    {
+      "id": "test_levels_types",
+      "name": "Test Levels & Black/White/Gray Box",
+      "description": "Black-box, white-box, gray-box testing, unit, integration, system, and acceptance testing levels.",
+      "keywords": [
+        "Black-box testing",
+        "White-box testing",
+        "Gray-box testing",
+        "System testing",
+        "Integration testing",
+        "Acceptance testing",
+        "functional vs non-functional"
+      ]
+    },
+    {
+      "id": "sdlc_stlc_models",
+      "name": "SDLC & STLC Methodologies",
+      "description": "V-Model, Agile/Scrum/Kanban testing, Shift-Left testing, Shift-Right testing, and Continuous Testing in modern release cycles.",
+      "keywords": [
+        "V-Model",
+        "STLC",
+        "Shift-Left",
+        "Shift-Right",
+        "Continuous Testing",
+        "Agile testing",
+        "Sprint testing cycle",
+        "Definition of Done"
+      ]
+    },
+    {
+      "id": "test_planning_estimation",
+      "name": "Test Planning & Estimation",
+      "description": "Test Strategy vs Test Plan, test scope definition, Work Breakdown Structure (WBS), estimation techniques (3-point, planning poker).",
+      "keywords": [
+        "Test Plan",
+        "Test Strategy",
+        "test scope",
+        "test estimation",
+        "WBS",
+        "Three-point estimation",
+        "Planning Poker",
+        "entry and exit criteria"
+      ]
+    },
+    {
+      "id": "test_design_techniques",
+      "name": "Black-Box Test Design Techniques",
+      "description": "Boundary Value Analysis (BVA), Equivalence Partitioning (EP), Decision Table Testing, State Transition Testing, and Use Case Testing.",
+      "keywords": [
+        "Boundary Value Analysis",
+        "Equivalence Partitioning",
+        "BVA",
+        "Decision Table",
+        "State Transition Testing",
+        "Use Case Testing",
+        "pairwise testing"
+      ]
+    },
+    {
+      "id": "test_oracles_heuristics",
+      "name": "Test Oracles & Heuristics",
+      "description": "Heuristic test evaluation (FEW HICCUPS mnemonic), test oracle determination, expected outcome formulation, and recognizing subtle bugs.",
+      "keywords": [
+        "Test oracle",
+        "FEW HICCUPS",
+        "testing heuristics",
+        "consistency heuristics",
+        "expected outcome",
+        "oracle problem"
+      ]
+    },
+    {
+      "id": "risk_based_testing",
+      "name": "Risk-Based Testing (RBT)",
+      "description": "Risk assessment matrix, product risk analysis, failure likelihood vs impact, and prioritizing high-risk business flows.",
+      "keywords": [
+        "Risk-Based Testing",
+        "RBT",
+        "risk matrix",
+        "likelihood vs impact",
+        "risk mitigation",
+        "failure mode",
+        "test prioritization"
+      ]
+    },
+    {
+      "id": "quality_metrics_governance",
+      "name": "Quality Metrics & QA Governance",
+      "description": "Defect Removal Efficiency (DRE), defect density, test execution velocity, MTTR, QA sign-off criteria, and quality audit gates.",
+      "keywords": [
+        "Defect Removal Efficiency",
+        "DRE",
+        "defect density",
+        "QA sign-off",
+        "quality gates",
+        "MTTR",
+        "test execution velocity",
+        "pass rate"
+      ]
+    },
+    {
+      "id": "exploratory_session_management",
+      "name": "Session-Based Test Management (SBTM)",
+      "description": "Session-Based Test Management (SBTM), charter authoring, timeboxed exploratory coverage, and debriefing sessions.",
+      "keywords": [
+        "SBTM",
+        "Session-Based Testing",
+        "test charter",
+        "timeboxing",
+        "exploratory debrief",
+        "opportunity vs bug reporting"
+      ]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "Test plans, test matrices, or test strategy documentation in markdown",
+        "detection": "content_analysis",
+        "pattern": "Test Strategy|Test Plan|test-plan\\.md|test-strategy\\.md|RBT matrix",
+        "strength": 0.7,
+        "maps_to": [
+          "qa_fundamentals_methodology.test_planning_estimation",
+          "qa_fundamentals_methodology.risk_based_testing"
+        ]
+      },
+      {
+        "signal": "Test design documentation applying EP, BVA, or Decision Tables",
+        "detection": "content_analysis",
+        "pattern": "Boundary Value Analysis|Equivalence Partition|Decision Table|State Transition",
+        "strength": 0.8,
+        "maps_to": [
+          "qa_fundamentals_methodology.test_design_techniques",
+          "qa_fundamentals_methodology.test_oracles_heuristics"
+        ]
+      },
+      {
+        "signal": "Session-based exploratory test charters or quality metrics reports",
+        "detection": "content_analysis",
+        "pattern": "test charter|SBTM|DRE|Defect Removal Efficiency|Quality Gate",
+        "strength": 0.8,
+        "maps_to": [
+          "qa_fundamentals_methodology.exploratory_session_management",
+          "qa_fundamentals_methodology.quality_metrics_governance",
+          "qa_fundamentals_methodology.qa_mindset_principles"
+        ]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "QA testing methodologies, STLC, Agile testing, or test design techniques described",
+        "strength": 0.8,
+        "maps_to": [
+          "qa_fundamentals_methodology.qa_mindset_principles",
+          "qa_fundamentals_methodology.test_levels_types",
+          "qa_fundamentals_methodology.sdlc_stlc_models",
+          "qa_fundamentals_methodology.test_design_techniques"
+        ]
+      },
+      {
+        "signal": "Test planning, test strategy, risk-based testing, or QA governance experience",
+        "strength": 0.8,
+        "maps_to": [
+          "qa_fundamentals_methodology.test_planning_estimation",
+          "qa_fundamentals_methodology.risk_based_testing",
+          "qa_fundamentals_methodology.quality_metrics_governance",
+          "qa_fundamentals_methodology.exploratory_session_management"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Quality Assurance, Test Planning, or STLC endorsed",
+        "strength": 0.5,
+        "maps_to": [
+          "qa_fundamentals_methodology.qa_mindset_principles",
+          "qa_fundamentals_methodology.test_levels_types",
+          "qa_fundamentals_methodology.sdlc_stlc_models"
+        ]
+      },
+      {
+        "signal": "Test Strategy, Risk-Based Testing, or QA Metrics mentioned",
+        "strength": 0.5,
+        "maps_to": [
+          "qa_fundamentals_methodology.test_planning_estimation",
+          "qa_fundamentals_methodology.risk_based_testing",
+          "qa_fundamentals_methodology.quality_metrics_governance",
+          "qa_fundamentals_methodology.test_oracles_heuristics"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "qa_mindset_principles",
+        "test_levels_types",
+        "sdlc_stlc_models"
+      ],
+      "description": "Understands fundamental testing principles, applies black-box test types, and works effectively within Agile STLC cycles."
+    },
+    "mid": {
+      "expected_subskills": [
+        "test_planning_estimation",
+        "test_design_techniques",
+        "test_oracles_heuristics"
+      ],
+      "description": "Designs rigorous test cases using BVA, EP, and decision tables, formulates test plans with accurate estimates, and applies heuristic test oracles."
+    },
+    "senior": {
+      "expected_subskills": [
+        "risk_based_testing",
+        "quality_metrics_governance",
+        "exploratory_session_management"
+      ],
+      "description": "Architects risk-based testing strategies, enforces quality gate metrics (DRE, MTTR), and leads session-based exploratory test initiatives across teams."
+    }
+  }
+}

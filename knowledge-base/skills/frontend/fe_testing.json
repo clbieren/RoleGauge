@@ -1,0 +1,172 @@
+{
+  "skill_id": "fe_testing",
+  "name": "Testing",
+  "category": "frontend_quality",
+  "description": "Frontend testing pyramid: unit testing with Jest/Vitest, component testing with Testing Library, integration testing with API mocking (MSW), end-to-end testing with Playwright/Cypress, visual regression testing, accessibility testing, test design patterns, coverage strategy, and performance testing.",
+  "subskills": [
+    {
+      "id": "unit_testing",
+      "name": "Unit Testing",
+      "description": "Jest/Vitest setup, describe/it blocks, matchers, mocking (jest.mock, vi.mock), snapshot testing.",
+      "keywords": ["Jest", "Vitest", "describe", "it", "expect", "jest.mock", "vi.mock", "snapshot"]
+    },
+    {
+      "id": "component_testing",
+      "name": "Component Testing",
+      "description": "React Testing Library, @testing-library/vue, render/screen/fireEvent, user-event, role-based queries.",
+      "keywords": ["Testing Library", "render", "screen", "fireEvent", "userEvent", "getByRole", "queryByText"]
+    },
+    {
+      "id": "integration_testing",
+      "name": "Integration Testing",
+      "description": "API mocking with MSW (Mock Service Worker), testing connected components, multi-component flows.",
+      "keywords": ["MSW", "Mock Service Worker", "setupServer", "rest.get", "API mocking", "integration test"]
+    },
+    {
+      "id": "e2e_testing",
+      "name": "End-to-End Testing",
+      "description": "Playwright/Cypress test authoring, page objects, network interception, CI flakiness mitigation.",
+      "keywords": ["Playwright", "Cypress", "page object", "cy.intercept", "locator", "test isolation", "flaky test"]
+    },
+    {
+      "id": "visual_regression",
+      "name": "Visual Regression Testing",
+      "description": "Chromatic, Percy, Playwright screenshot comparison, baseline management, threshold tuning.",
+      "keywords": ["Chromatic", "Percy", "screenshot comparison", "visual diff", "baseline", "Storybook"]
+    },
+    {
+      "id": "accessibility_testing",
+      "name": "Accessibility Testing",
+      "description": "axe-core integration, jest-axe, Playwright accessibility audit, keyboard navigation testing, ARIA validation.",
+      "keywords": ["axe-core", "jest-axe", "toHaveNoViolations", "keyboard testing", "ARIA validation", "a11y audit"]
+    },
+    {
+      "id": "test_patterns",
+      "name": "Test Design Patterns",
+      "description": "Arrange-Act-Assert (AAA), test doubles (spy, stub, mock, fake), fixtures, factories, test data builders.",
+      "keywords": ["AAA", "Arrange Act Assert", "spy", "stub", "mock", "fake", "fixture", "factory"]
+    },
+    {
+      "id": "coverage_strategy",
+      "name": "Coverage Strategy",
+      "description": "Statement/branch/function/line coverage, meaningful thresholds, coverage-driven refactoring, coverage gaps analysis.",
+      "keywords": ["coverage", "statement coverage", "branch coverage", "Istanbul", "c8", "threshold", "lcov"]
+    },
+    {
+      "id": "performance_testing",
+      "name": "Performance Testing",
+      "description": "Lighthouse CI gates, Web Vitals budgets, bundle size regression, runtime performance benchmarking.",
+      "keywords": ["Lighthouse CI", "Web Vitals", "performance budget", "bundle analysis", "benchmark", "CrUX"]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "Test files in repository",
+        "detection": "file_presence",
+        "pattern": "\\.(test|spec)\\.(js|ts|jsx|tsx)$|__tests__/",
+        "strength": 0.7,
+        "maps_to": ["fe_testing.unit_testing", "fe_testing.test_patterns"]
+      },
+      {
+        "signal": "Jest or Vitest configuration",
+        "detection": "file_presence",
+        "pattern": "jest\\.config|vitest\\.config|\"jest\":\\s*\\{",
+        "strength": 0.8,
+        "maps_to": ["fe_testing.unit_testing"]
+      },
+      {
+        "signal": "Testing Library imports",
+        "detection": "content_analysis",
+        "pattern": "@testing-library/react|@testing-library/vue|render\\(|screen\\.|getByRole",
+        "strength": 0.8,
+        "maps_to": ["fe_testing.component_testing"]
+      },
+      {
+        "signal": "MSW (Mock Service Worker) setup",
+        "detection": "content_analysis",
+        "pattern": "setupServer|setupWorker|http\\.get|HttpResponse|msw",
+        "strength": 0.8,
+        "maps_to": ["fe_testing.integration_testing"]
+      },
+      {
+        "signal": "Playwright or Cypress E2E tests",
+        "detection": "file_presence",
+        "pattern": "playwright\\.config|cypress\\.config|cypress/e2e/",
+        "strength": 0.8,
+        "maps_to": ["fe_testing.e2e_testing"]
+      },
+      {
+        "signal": "axe-core or jest-axe accessibility testing",
+        "detection": "content_analysis",
+        "pattern": "jest-axe|toHaveNoViolations|axe-core|checkA11y",
+        "strength": 0.8,
+        "maps_to": ["fe_testing.accessibility_testing"]
+      },
+      {
+        "signal": "Visual regression (Chromatic, Percy) configuration",
+        "detection": "content_analysis",
+        "pattern": "chromatic|percy|toMatchImageSnapshot|screenshot",
+        "strength": 0.8,
+        "maps_to": ["fe_testing.visual_regression"]
+      },
+      {
+        "signal": "Coverage configuration and thresholds",
+        "detection": "content_analysis",
+        "pattern": "coverageThreshold|--coverage|branches.*\\d+|istanbul|c8",
+        "strength": 0.7,
+        "maps_to": ["fe_testing.coverage_strategy"]
+      },
+      {
+        "signal": "Lighthouse CI or performance budget config",
+        "detection": "content_analysis",
+        "pattern": "lighthouserc|lighthouse-ci|performance-budget|bundlesize",
+        "strength": 0.8,
+        "maps_to": ["fe_testing.performance_testing"]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "Unit/integration testing or TDD experience",
+        "strength": 0.7,
+        "maps_to": ["fe_testing.unit_testing", "fe_testing.integration_testing", "fe_testing.test_patterns"]
+      },
+      {
+        "signal": "E2E testing with Cypress or Playwright",
+        "strength": 0.7,
+        "maps_to": ["fe_testing.e2e_testing", "fe_testing.component_testing"]
+      },
+      {
+        "signal": "Accessibility auditing or WCAG compliance testing",
+        "strength": 0.7,
+        "maps_to": ["fe_testing.accessibility_testing"]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Testing, TDD, or Jest endorsed",
+        "strength": 0.5,
+        "maps_to": ["fe_testing.unit_testing", "fe_testing.test_patterns", "fe_testing.component_testing"]
+      },
+      {
+        "signal": "Cypress, Playwright, or QA automation endorsed",
+        "strength": 0.5,
+        "maps_to": ["fe_testing.e2e_testing", "fe_testing.visual_regression", "fe_testing.coverage_strategy", "fe_testing.performance_testing"]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": ["unit_testing", "component_testing", "test_patterns"],
+      "description": "Writes unit tests with Jest/Vitest, tests components with Testing Library, and follows AAA pattern."
+    },
+    "mid": {
+      "expected_subskills": ["integration_testing", "e2e_testing", "accessibility_testing"],
+      "description": "Mocks APIs with MSW for integration tests, writes stable E2E tests, and integrates accessibility auditing."
+    },
+    "senior": {
+      "expected_subskills": ["visual_regression", "coverage_strategy", "performance_testing"],
+      "description": "Implements visual regression pipelines, defines meaningful coverage thresholds, and gates deploys on performance budgets."
+    }
+  }
+}

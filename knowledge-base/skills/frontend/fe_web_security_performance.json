@@ -1,0 +1,188 @@
+{
+  "skill_id": "fe_web_security_performance",
+  "name": "Web Security & Performance (Developer-Side)",
+  "category": "frontend_quality",
+  "description": "A frontend developer's defensive security practices and client-side performance optimization. IMPORTANT DISTINCTION: This skill covers security from a 'secure code authoring' perspective — correctly setting CSP headers, safely storing JWTs, sanitizing user input before rendering, configuring CORS. This is fundamentally different from the Cyber Security role's cs_threats_and_attacks and cs_cryptography skills, which approach the same topics from an attacker analysis, penetration testing, and cryptographic engineering perspective. Here the developer asks 'how do I prevent XSS in my React app?'; in Cyber Security the analyst asks 'how do I find and exploit XSS vulnerabilities?'.",
+  "subskills": [
+    {
+      "id": "xss_prevention",
+      "name": "XSS Prevention",
+      "description": "Output encoding, DOMPurify sanitization, dangerouslySetInnerHTML risks, Content Security Policy as defense-in-depth.",
+      "keywords": ["XSS", "output encoding", "DOMPurify", "dangerouslySetInnerHTML", "sanitization", "innerHTML"]
+    },
+    {
+      "id": "csp_headers",
+      "name": "Content Security Policy",
+      "description": "CSP directives (script-src, style-src, img-src), nonce-based inline scripts, report-uri, strict-dynamic.",
+      "keywords": ["CSP", "Content-Security-Policy", "script-src", "nonce", "report-uri", "strict-dynamic"]
+    },
+    {
+      "id": "cors_handling",
+      "name": "CORS Handling",
+      "description": "Same-origin policy, preflight requests (OPTIONS), Access-Control-Allow-Origin, credentials mode, proxy workarounds.",
+      "keywords": ["CORS", "same-origin policy", "preflight", "OPTIONS", "Access-Control-Allow-Origin", "credentials"]
+    },
+    {
+      "id": "auth_token_storage",
+      "name": "Auth Token Storage",
+      "description": "JWT storage trade-offs (httpOnly cookies vs localStorage), refresh token rotation, session management, XSS/CSRF attack surface.",
+      "keywords": ["JWT", "httpOnly", "localStorage", "refresh token", "session", "Bearer token", "secure cookie"]
+    },
+    {
+      "id": "csrf_protection",
+      "name": "CSRF Protection",
+      "description": "SameSite cookie attribute, CSRF tokens, double-submit cookie pattern, origin/referer validation.",
+      "keywords": ["CSRF", "SameSite", "CSRF token", "double-submit", "origin header", "referer validation"]
+    },
+    {
+      "id": "core_web_vitals",
+      "name": "Core Web Vitals",
+      "description": "LCP (Largest Contentful Paint), INP (Interaction to Next Paint), CLS (Cumulative Layout Shift) measurement and optimization.",
+      "keywords": ["LCP", "INP", "CLS", "FID", "Core Web Vitals", "web-vitals", "PerformanceObserver"]
+    },
+    {
+      "id": "bundle_optimization",
+      "name": "Bundle Optimization",
+      "description": "Tree shaking, code splitting with dynamic imports, lazy route loading, dead code elimination, bundle analysis.",
+      "keywords": ["tree shaking", "code splitting", "dynamic import", "lazy loading", "dead code", "bundle analyzer"]
+    },
+    {
+      "id": "image_optimization",
+      "name": "Image Optimization",
+      "description": "Modern formats (WebP, AVIF), srcset and sizes attributes, lazy loading (loading='lazy'), CDN delivery, next/image.",
+      "keywords": ["WebP", "AVIF", "srcset", "sizes", "loading=lazy", "CDN", "next/image", "picture element"]
+    },
+    {
+      "id": "caching_strategies",
+      "name": "Caching Strategies",
+      "description": "Cache-Control headers, ETag/Last-Modified, stale-while-revalidate, Service Worker cache strategies (cache-first, network-first).",
+      "keywords": ["Cache-Control", "ETag", "stale-while-revalidate", "cache-first", "network-first", "immutable", "max-age"]
+    },
+    {
+      "id": "runtime_performance",
+      "name": "Runtime Performance",
+      "description": "requestAnimationFrame scheduling, debounce/throttle, list virtualization (react-window), Web Workers for heavy computation, long task detection.",
+      "keywords": ["requestAnimationFrame", "debounce", "throttle", "virtualization", "Web Worker", "long task", "PerformanceLongTaskTiming"]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "XSS sanitization library usage",
+        "detection": "content_analysis",
+        "pattern": "DOMPurify|sanitize-html|xss-filters|dangerouslySetInnerHTML|v-html",
+        "strength": 0.8,
+        "maps_to": ["fe_web_security_performance.xss_prevention"]
+      },
+      {
+        "signal": "CSP header configuration in server or meta tags",
+        "detection": "content_analysis",
+        "pattern": "Content-Security-Policy|script-src|style-src|nonce=|strict-dynamic",
+        "strength": 0.9,
+        "maps_to": ["fe_web_security_performance.csp_headers"]
+      },
+      {
+        "signal": "CORS configuration in proxy or API setup",
+        "detection": "content_analysis",
+        "pattern": "Access-Control-Allow|cors\\(|corsOptions|proxy.*target.*http",
+        "strength": 0.7,
+        "maps_to": ["fe_web_security_performance.cors_handling"]
+      },
+      {
+        "signal": "JWT handling or secure cookie settings",
+        "detection": "content_analysis",
+        "pattern": "httpOnly|SameSite|Secure|refreshToken|Bearer\\s|jwt\\.decode",
+        "strength": 0.8,
+        "maps_to": ["fe_web_security_performance.auth_token_storage", "fe_web_security_performance.csrf_protection"]
+      },
+      {
+        "signal": "Web Vitals measurement or performance budgets",
+        "detection": "content_analysis",
+        "pattern": "web-vitals|getLCP|getINP|getCLS|PerformanceObserver|reportWebVitals",
+        "strength": 0.8,
+        "maps_to": ["fe_web_security_performance.core_web_vitals"]
+      },
+      {
+        "signal": "Code splitting and lazy loading patterns",
+        "detection": "content_analysis",
+        "pattern": "React\\.lazy|import\\(.*\\)|loadable|defineAsyncComponent|dynamic import",
+        "strength": 0.7,
+        "maps_to": ["fe_web_security_performance.bundle_optimization"]
+      },
+      {
+        "signal": "Image optimization (next/image, srcset, WebP)",
+        "detection": "content_analysis",
+        "pattern": "next/image|srcset=|loading=['\"]lazy|<picture|image/webp|image/avif",
+        "strength": 0.7,
+        "maps_to": ["fe_web_security_performance.image_optimization"]
+      },
+      {
+        "signal": "Cache-Control or Service Worker caching",
+        "detection": "content_analysis",
+        "pattern": "Cache-Control|stale-while-revalidate|caches\\.open|workbox|cache-first",
+        "strength": 0.8,
+        "maps_to": ["fe_web_security_performance.caching_strategies"]
+      },
+      {
+        "signal": "Runtime performance optimization patterns",
+        "detection": "content_analysis",
+        "pattern": "requestAnimationFrame|react-window|react-virtualized|useVirtualizer|debounce|throttle",
+        "strength": 0.8,
+        "maps_to": ["fe_web_security_performance.runtime_performance"]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "Web security implementation (CSP, CORS, XSS prevention)",
+        "strength": 0.7,
+        "maps_to": ["fe_web_security_performance.xss_prevention", "fe_web_security_performance.csp_headers", "fe_web_security_performance.cors_handling"]
+      },
+      {
+        "signal": "Authentication system development (JWT, OAuth)",
+        "strength": 0.7,
+        "maps_to": ["fe_web_security_performance.auth_token_storage", "fe_web_security_performance.csrf_protection"]
+      },
+      {
+        "signal": "Performance optimization with measurable outcomes",
+        "strength": 0.8,
+        "maps_to": ["fe_web_security_performance.core_web_vitals", "fe_web_security_performance.bundle_optimization", "fe_web_security_performance.runtime_performance"]
+      },
+      {
+        "signal": "Image optimization or CDN management",
+        "strength": 0.6,
+        "maps_to": ["fe_web_security_performance.image_optimization", "fe_web_security_performance.caching_strategies"]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Web Performance, Core Web Vitals, or Lighthouse endorsed",
+        "strength": 0.5,
+        "maps_to": ["fe_web_security_performance.core_web_vitals", "fe_web_security_performance.bundle_optimization"]
+      },
+      {
+        "signal": "Web Security, OWASP, or Authentication endorsed",
+        "strength": 0.5,
+        "maps_to": ["fe_web_security_performance.xss_prevention", "fe_web_security_performance.auth_token_storage", "fe_web_security_performance.csp_headers"]
+      },
+      {
+        "signal": "CDN, Caching, or image optimization experience",
+        "strength": 0.5,
+        "maps_to": ["fe_web_security_performance.image_optimization", "fe_web_security_performance.caching_strategies", "fe_web_security_performance.runtime_performance", "fe_web_security_performance.csrf_protection"]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": ["xss_prevention", "cors_handling", "core_web_vitals"],
+      "description": "Prevents basic XSS through proper encoding, handles CORS errors, and measures Core Web Vitals."
+    },
+    "mid": {
+      "expected_subskills": ["csp_headers", "auth_token_storage", "csrf_protection", "image_optimization"],
+      "description": "Configures CSP headers, implements secure token storage, applies CSRF defenses, and optimizes images for modern formats."
+    },
+    "senior": {
+      "expected_subskills": ["bundle_optimization", "caching_strategies", "runtime_performance"],
+      "description": "Architects bundle splitting strategies, designs multi-layer caching, and eliminates runtime performance bottlenecks."
+    }
+  }
+}

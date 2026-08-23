@@ -1,0 +1,221 @@
+{
+  "skill_id": "qa_backend_api_automation",
+  "name": "API & Backend Integration Test Automation",
+  "category": "api_automation",
+  "description": "Automated API testing, contract validation, and backend service verification using Postman, REST Assured, and Pact. IMPORTANT DISTINCTION: This skill is fundamentally different from Backend's be_testing_quality. In be_testing_quality, backend developers write unit tests and internal service integration tests for their own controllers/services. In qa_backend_api_automation, the QA engineer validates published API endpoints over HTTP, chains multi-service workflows, enforces schema contracts, and inspects database state solely as a test oracle after API operations (checking inserted/updated rows match expected test assertions — NOT database schema design or indexing optimization, which belongs to be_databases).",
+  "subskills": [
+    {
+      "id": "postman_newman_testing",
+      "name": "Postman & Newman Automation",
+      "description": "Writing JavaScript assertions in Postman test scripts, environment variables, and CLI execution via Newman.",
+      "keywords": [
+        "Postman",
+        "Newman",
+        "pm.test",
+        "pm.expect",
+        "postman_collection.json",
+        "environment variables",
+        "CLI test run"
+      ]
+    },
+    {
+      "id": "http_api_test_authoring",
+      "name": "REST API Endpoint Validation",
+      "description": "Testing RESTful endpoints (GET, POST, PUT, DELETE, PATCH), validating JSON response schemas and HTTP status codes.",
+      "keywords": [
+        "REST API testing",
+        "HTTP methods",
+        "status codes",
+        "JSON response validation",
+        "request payload",
+        "header verification"
+      ]
+    },
+    {
+      "id": "rest_assured_framework",
+      "name": "REST Assured Framework (Java/JVM)",
+      "description": "Building Java/JVM-based API test automation suites using REST Assured (given-when-then syntax, Hamcrest matchers).",
+      "keywords": [
+        "REST Assured",
+        "given().when().then()",
+        "Hamcrest matchers",
+        "Java API testing",
+        "body validation",
+        "request specification"
+      ]
+    },
+    {
+      "id": "api_test_chaining_state",
+      "name": "API State Management & Request Chaining",
+      "description": "Extracting response tokens/IDs to dynamically parameterize subsequent downstream API requests.",
+      "keywords": [
+        "Request chaining",
+        "token extraction",
+        "dynamic test data",
+        "OAuth bearer token reuse",
+        "session state propagation"
+      ]
+    },
+    {
+      "id": "json_xml_schema_validation",
+      "name": "JSON Schema & Contract Validation",
+      "description": "Validating JSON Schema / XML DTD compliance against OpenAPI specifications to catch contract breaking changes.",
+      "keywords": [
+        "JSON Schema validation",
+        "schema validator",
+        "OpenAPI contract check",
+        "breaking change detection",
+        "XML DTD validation"
+      ]
+    },
+    {
+      "id": "graphql_grpc_api_testing",
+      "name": "GraphQL & gRPC API Testing",
+      "description": "Testing GraphQL queries/mutations with variables and testing gRPC endpoints with Protobuf payloads.",
+      "keywords": [
+        "GraphQL testing",
+        "GraphQL query/mutation",
+        "gRPC testing",
+        "Protobuf payload",
+        "grpcurl",
+        "GraphQL variables"
+      ]
+    },
+    {
+      "id": "mock_servers_service_virtualization",
+      "name": "Service Virtualization & WireMock",
+      "description": "Setting up WireMock, Mockoon, or Prism mock servers for third-party dependency isolation in integration suites.",
+      "keywords": [
+        "WireMock",
+        "Mockoon",
+        "Prism",
+        "service virtualization",
+        "third-party API stubbing",
+        "mock server"
+      ]
+    },
+    {
+      "id": "contract_testing_pact_qa",
+      "name": "Consumer-Driven Contract Testing (Pact)",
+      "description": "Consumer-Driven Contract Testing from a QA perspective using Pact and Pact Broker.",
+      "keywords": [
+        "Pact",
+        "Pact Broker",
+        "consumer-driven contract",
+        "provider verification",
+        "contract testing",
+        "can-i-deploy"
+      ]
+    },
+    {
+      "id": "database_validation_in_automation",
+      "name": "Database State Validation (Test Oracle)",
+      "description": "Querying PostgreSQL/MySQL/MongoDB from test code to verify that API operations resulted in the correct persisted database state (using DB strictly as a test oracle).",
+      "keywords": [
+        "Database state verification",
+        "DB test oracle",
+        "SQL query in test",
+        "persistence check",
+        "data integrity assertion",
+        "cleaning test records"
+      ]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "Postman collections with test scripts (.postman_collection.json)",
+        "detection": "file_presence",
+        "pattern": "*\\.postman_collection\\.json|*\\.postman_environment\\.json",
+        "strength": 0.8,
+        "maps_to": [
+          "qa_backend_api_automation.postman_newman_testing",
+          "qa_backend_api_automation.http_api_test_authoring"
+        ]
+      },
+      {
+        "signal": "REST Assured or Supertest API automation code",
+        "detection": "content_analysis",
+        "pattern": "RestAssured\\.given|\\.statusCode\\(|given\\(\\)\\.when\\(\\)|pm\\.test\\(",
+        "strength": 0.9,
+        "maps_to": [
+          "qa_backend_api_automation.rest_assured_framework",
+          "qa_backend_api_automation.api_test_chaining_state",
+          "qa_backend_api_automation.json_xml_schema_validation"
+        ]
+      },
+      {
+        "signal": "Pact contract files, WireMock stubs, or GraphQL/gRPC test clients",
+        "detection": "content_analysis",
+        "pattern": "pact-jvm|PactBuilder|wiremock|Mockoon|grpcurl|graphql-request",
+        "strength": 0.8,
+        "maps_to": [
+          "qa_backend_api_automation.contract_testing_pact_qa",
+          "qa_backend_api_automation.mock_servers_service_virtualization",
+          "qa_backend_api_automation.graphql_grpc_api_testing",
+          "qa_backend_api_automation.database_validation_in_automation"
+        ]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "API test automation with Postman, REST Assured, or Newman",
+        "strength": 0.8,
+        "maps_to": [
+          "qa_backend_api_automation.postman_newman_testing",
+          "qa_backend_api_automation.http_api_test_authoring",
+          "qa_backend_api_automation.rest_assured_framework"
+        ]
+      },
+      {
+        "signal": "Contract testing with Pact, service virtualization with WireMock, or GraphQL testing",
+        "strength": 0.8,
+        "maps_to": [
+          "qa_backend_api_automation.api_test_chaining_state",
+          "qa_backend_api_automation.json_xml_schema_validation",
+          "qa_backend_api_automation.graphql_grpc_api_testing",
+          "qa_backend_api_automation.mock_servers_service_virtualization",
+          "qa_backend_api_automation.contract_testing_pact_qa",
+          "qa_backend_api_automation.database_validation_in_automation"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "API Testing, Postman, or REST Assured endorsed",
+        "strength": 0.5,
+        "maps_to": [
+          "qa_backend_api_automation.postman_newman_testing",
+          "qa_backend_api_automation.http_api_test_authoring",
+          "qa_backend_api_automation.rest_assured_framework"
+        ]
+      },
+      {
+        "signal": "Contract Testing, WireMock, or GraphQL Testing mentioned",
+        "strength": 0.5,
+        "maps_to": [
+          "qa_backend_api_automation.api_test_chaining_state",
+          "qa_backend_api_automation.json_xml_schema_validation",
+          "qa_backend_api_automation.graphql_grpc_api_testing",
+          "qa_backend_api_automation.mock_servers_service_virtualization",
+          "qa_backend_api_automation.contract_testing_pact_qa",
+          "qa_backend_api_automation.database_validation_in_automation"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": ["postman_newman_testing", "http_api_test_authoring", "json_xml_schema_validation"],
+      "description": "Writes REST API tests in Postman with JavaScript assertions, validates JSON schema contracts, and executes test collections using Newman."
+    },
+    "mid": {
+      "expected_subskills": ["rest_assured_framework", "api_test_chaining_state", "graphql_grpc_api_testing"],
+      "description": "Builds REST Assured automated suites, handles dynamic request token chaining, and tests GraphQL and gRPC endpoints."
+    },
+    "senior": {
+      "expected_subskills": ["mock_servers_service_virtualization", "contract_testing_pact_qa", "database_validation_in_automation"],
+      "description": "Establishes Consumer-Driven Contract Testing with Pact, configures WireMock virtualization for third-party isolation, and validates database state as a test oracle."
+    }
+  }
+}

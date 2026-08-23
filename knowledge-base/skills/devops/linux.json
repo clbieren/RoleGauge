@@ -301,24 +301,24 @@
         "file_operations",
         "user_permissions",
         "package_management",
-        "process_management",
-        "ssh_remote"
+        "process_management"
       ],
-      "description": "Can navigate the CLI, manage files and permissions, install packages, monitor processes, and use SSH for remote access."
+      "description": "Can navigate the CLI, manage files and permissions, install packages, and monitor/manage processes."
     },
     "mid": {
       "expected_subskills": [
-        "systemd_services",
+        "ssh_remote",
         "cron_scheduling",
         "basic_filesystem"
       ],
-      "description": "Can manage services, automate tasks with cron, handle basic filesystem mounting and partition management."
+      "description": "Can configure remote SSH access, automate tasks with cron, and handle filesystem mounting and disk inspections."
     },
     "senior": {
       "expected_subskills": [
+        "systemd_services",
         "advanced_storage_lvm"
       ],
-      "description": "Can design LVM/RAID storage strategies, optimize kernel/system performance, implement security hardening, and manage enterprise Linux infrastructure."
+      "description": "Can author and harden systemd services, design LVM/RAID storage topologies, optimize kernel performance, and manage enterprise Linux servers."
     }
   }
 }

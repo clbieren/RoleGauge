@@ -1,0 +1,723 @@
+{
+  "source_id": "assessment",
+  "name": "Adaptive Technical Assessment - Frontend Developer",
+  "description": "Adaptive assessment question bank for Frontend Developer skills. Each question is hand-crafted and technology-specific with diverse scenario, debugging, architectural, and code analysis formats.",
+  "sample_questions_by_composite_key": {
+    "fe_web_fundamentals.html_semantics": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "You are refactoring a blog page consisting entirely of nested <div> elements. Walk through which HTML5 semantic elements you would replace them with for the header banner, main article content, related links sidebar, and individual comments.",
+        "expected_answer_keywords": ["<header>", "<main>", "<article>", "<aside>", "<section>", "landmark roles", "screen reader outline"]
+      }
+    ],
+    "fe_web_fundamentals.dom_manipulation": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "You need to render a dynamic list of 1,000 items in vanilla JavaScript without locking the UI thread or triggering excessive reflows. How would you use DocumentFragment or modern append techniques to batch these updates?",
+        "expected_answer_keywords": ["DocumentFragment", "batch DOM updates", "createDocumentFragment", "reflow reduction", "appendChild", "cloneNode"]
+      }
+    ],
+    "fe_web_fundamentals.browser_rendering": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "A smooth scroll animation is causing noticeable frame drops (jank) on low-end mobile devices. Inspecting DevTools reveals repeated Layout and Paint cycles. Which CSS properties trigger reflow vs composite-only stages, and how would you optimize this animation?",
+        "expected_answer_keywords": ["Layout", "Paint", "Composite", "transform", "opacity", "will-change", "GPU acceleration", "layout thrashing"]
+      }
+    ],
+    "fe_web_fundamentals.forms_validation": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "A checkout form requires an EU tax VAT ID field with a custom regex format and custom error tooltip. How do you implement native HTML5 Constraint Validation using pattern, validity states (e.g. patternMismatch), and setCustomValidity?",
+        "expected_answer_keywords": ["Constraint Validation API", "pattern", "validity.valid", "patternMismatch", "setCustomValidity", "reportValidity"]
+      }
+    ],
+    "fe_web_fundamentals.responsive_design": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "Explain why missing the '<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">' tag causes mobile browsers to render responsive CSS at a simulated 980px desktop viewport.",
+        "expected_answer_keywords": ["viewport meta tag", "device-width", "initial-scale", "virtual viewport", "CSS pixels vs device pixels", "media query breakpoint"]
+      }
+    ],
+    "fe_web_fundamentals.web_accessibility": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "You are building a custom modal dialog from scratch. What keyboard interaction patterns (Tab trapping, Escape key), ARIA attributes (role=\"dialog\", aria-modal, aria-labelledby), and focus restoration logic must be implemented for full WCAG 2.1 AA compliance?",
+        "expected_answer_keywords": ["focus trapping", "role=\"dialog\"", "aria-modal=\"true\"", "aria-labelledby", "Escape key listener", "restoring focus to trigger element", "tabindex"]
+      }
+    ],
+    "fe_web_fundamentals.http_protocol": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "Compare how asset loading behaves over HTTP/1.1 with domain sharding versus HTTP/2 multiplexing over a single TCP connection. What is Head-of-Line (HoL) blocking at the TCP layer and how does HTTP/3 address it?",
+        "expected_answer_keywords": ["HTTP/2 multiplexing", "streams", "single TCP connection", "Head-of-Line blocking", "HTTP/3 QUIC", "UDP", "domain sharding deprecation"]
+      }
+    ],
+    "fe_web_fundamentals.browser_storage": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "A web application needs to store 50MB of offline sync data including relational document indexes. Compare localStorage, sessionStorage, and IndexedDB in terms of capacity limits, synchronous blocking vs asynchronous API, and worker thread access.",
+        "expected_answer_keywords": ["IndexedDB", "asynchronous transaction", "localStorage 5MB limit", "synchronous I/O thread blocking", "object stores", "Web Workers access", "StorageManager quota"]
+      }
+    ],
+    "fe_web_fundamentals.web_apis": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "You need to implement infinite scroll and lazy image loading without listening to window scroll events. How do you configure an IntersectionObserver instance with custom rootMargin and threshold options?",
+        "expected_answer_keywords": ["IntersectionObserver", "rootMargin", "threshold", "isIntersecting", "unobserve", "disconnect", "main thread offloading"]
+      }
+    ],
+    "fe_web_fundamentals.pwa": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "Walk through the service worker lifecycle (register, install, activate, fetch). In a cache-first PWA, how do you handle updating an existing service worker when a new build is deployed without breaking active user sessions (skipWaiting vs clients.claim)?",
+        "expected_answer_keywords": ["install event", "activate event", "skipWaiting()", "clients.claim()", "CacheStorage API", "Cache-First strategy", "Network-First fallback"]
+      }
+    ],
+
+    "fe_css.selectors_specificity": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "Calculate the specificity weight for the selector 'div.container nav > ul li:first-child a[target=\"_blank\"]'. How does the modern ':is()' vs ':where()' pseudo-class alter specificity calculation?",
+        "expected_answer_keywords": ["specificity calculation", "ID vs class vs element", ":where() specificity is 0", ":is() takes highest argument specificity", "cascade order"]
+      }
+    ],
+    "fe_css.box_model": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "An element with 'width: 200px', 'padding: 20px', and 'border: 5px solid' overflows its 200px parent container. Explain the difference between 'box-sizing: content-box' and 'box-sizing: border-box', and describe when vertical margin collapsing occurs.",
+        "expected_answer_keywords": ["box-sizing: border-box", "content-box calculation", "total computed width", "margin collapsing", "BFC (Block Formatting Context)"]
+      }
+    ],
+    "fe_css.flexbox": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "You have a navigation bar with a logo on the left, three menu links in the center, and a user profile button on the right. How do you achieve this layout cleanly using Flexbox properties (justify-content, flex-grow, or auto margins)?",
+        "expected_answer_keywords": ["display: flex", "margin-left: auto", "justify-content: space-between", "align-items: center", "flex-grow"]
+      }
+    ],
+    "fe_css.grid": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "Create a fully responsive product card grid that automatically fits as many 280px cards as possible per row without using any media queries. Which CSS Grid function combination ('repeat(auto-fit, minmax(280px, 1fr))') achieves this?",
+        "expected_answer_keywords": ["grid-template-columns", "repeat()", "auto-fit", "auto-fill", "minmax()", "1fr unit", "gap"]
+      }
+    ],
+    "fe_css.positioning": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "A dropdown menu with 'z-index: 9999' is rendering behind an adjacent section that has 'z-index: 1'. What causes a new Stacking Context to form (e.g. opacity, transform, filter), and how do you resolve this stacking bug?",
+        "expected_answer_keywords": ["Stacking Context", "z-index", "transform creates stacking context", "opacity < 1", "parent stacking hierarchy", "isolation: isolate"]
+      }
+    ],
+    "fe_css.animations_transitions": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "A side navigation drawer transition using 'left: -300px' to 'left: 0px' feels choppy. Why does transitioning 'transform: translateX()' produce 60fps hardware-accelerated animations, and what precautions should you take when using 'will-change: transform'?",
+        "expected_answer_keywords": ["transform: translateX()", "compositor thread", "avoiding layout reflow", "will-change memory footprint", "cubic-bezier", "GPU layer creation"]
+      }
+    ],
+    "fe_css.responsive_units": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "Explain how fluid typography can be implemented using 'font-size: clamp(1rem, 2.5vw + 0.5rem, 2rem)'. What are the accessibility implications of using pure viewport units (vw/vh) for font sizes without rem baselines?",
+        "expected_answer_keywords": ["clamp()", "min, preferred, max values", "rem vs vw", "browser zoom accessibility", "calc() combination", "dvh units for mobile URL bar"]
+      }
+    ],
+    "fe_css.css_variables": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "Design a runtime Dark/Light mode theming architecture using CSS Custom Properties defined on ':root' and '[data-theme=\"dark\"]'. How can JavaScript dynamically read and update these custom properties without reloading stylesheets?",
+        "expected_answer_keywords": ["--custom-property", "var(--bg-color, fallback)", ":root", "[data-theme=\"dark\"]", "getPropertyValue", "setProperty", "runtime theme switching"]
+      }
+    ],
+    "fe_css.css_architecture": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "Evaluate the architectural trade-offs between BEM (Block Element Modifier) naming conventions, CSS Modules, Tailwind utility-first CSS, and CSS-in-JS (styled-components) in a large team regarding bundle size scalability, runtime overhead, and dead code elimination.",
+        "expected_answer_keywords": ["BEM scoping", "CSS Modules hash scoping", "Tailwind purge / JIT engine zero runtime", "CSS-in-JS runtime style tag injection overhead", "critical CSS extraction"]
+      }
+    ],
+    "fe_css.modern_css": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "A card component needs to switch from vertical stacked layout to horizontal row layout whenever its parent container width exceeds 500px, regardless of the browser window viewport size. How do you implement this using CSS Container Queries ('container-type: inline-size' and '@container')?",
+        "expected_answer_keywords": ["container-type: inline-size", "container-name", "@container (min-width: 500px)", "cqw unit", ":has() relational selector", "@layer cascade management"]
+      }
+    ],
+
+    "fe_javascript.variables_types": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "What is the Temporal Dead Zone (TDZ) for 'let' and 'const' declarations compared to 'var' hoisting? Explain why 'typeof null === \"object\"' occurs and how to accurately distinguish between an Array, Object, and null.",
+        "expected_answer_keywords": ["Temporal Dead Zone (TDZ)", "hoisting", "lexical declaration", "Array.isArray()", "Object.prototype.toString.call()", "primitive vs reference"]
+      }
+    ],
+    "fe_javascript.functions_scope": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "Given a loop 'for (var i = 0; i < 3; i++) { setTimeout(() => console.log(i), 100); }', explain why it logs '3, 3, 3'. Walk through two distinct fixes: one using block-scoped 'let' and another using a closure (IIFE or function argument).",
+        "expected_answer_keywords": ["closure", "lexical environment", "block scope let per iteration", "IIFE", "function scope var", "event loop execution timing"]
+      }
+    ],
+    "fe_javascript.arrays_objects": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "You have an array of transaction objects '[{ category: \"food\", amount: 15 }, { category: \"tech\", amount: 120 }, { category: \"food\", amount: 30 }]'. Use 'Array.prototype.reduce()' to transform this into an aggregated category total object '{ food: 45, tech: 120 }'.",
+        "expected_answer_keywords": ["Array.prototype.reduce", "accumulator", "initial value {}", "object grouping", "spread operator", "Object.entries"]
+      }
+    ],
+    "fe_javascript.async_programming": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "You need to fetch user profiles for 5 IDs in parallel. If one request fails, you still want to display the successful ones without throwing an error that aborts all requests. Why is 'Promise.allSettled()' preferred over 'Promise.all()', and how do you handle the results?",
+        "expected_answer_keywords": ["Promise.allSettled()", "Promise.all fail-fast behavior", "status: \"fulfilled\"", "status: \"rejected\"", "microtask queue", "async/await"]
+      }
+    ],
+    "fe_javascript.error_handling": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "How do you create a custom Error class 'ApiError' that extends 'Error', includes HTTP status codes and custom payload metadata, and preserves the correct stack trace via 'Error.captureStackTrace'?",
+        "expected_answer_keywords": ["class ApiError extends Error", "super(message)", "this.statusCode", "Error.captureStackTrace", "instanceof ApiError", "try/catch/finally"]
+      }
+    ],
+    "fe_javascript.es_modules": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "Explain how ES Modules (ESM) static syntax enable static analysis and Tree Shaking compared to CommonJS dynamic 'require()'. In what scenario would you use dynamic 'import()' for route-level code splitting?",
+        "expected_answer_keywords": ["static analysis", "Tree Shaking", "live bindings vs CommonJS copies", "dynamic import() returns Promise", "sideEffects: false in package.json"]
+      }
+    ],
+    "fe_javascript.dom_events": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "You have an interactive table with 5,000 rows where clicking any row's delete button removes it. Explain how Event Delegation leverages Event Bubbling on the parent <table> container ('e.target.closest(\"button.delete\")') to avoid attaching 5,000 individual event listeners.",
+        "expected_answer_keywords": ["Event Delegation", "Event Bubbling", "e.target.closest()", "event.stopPropagation()", "memory optimization", "capturing phase"]
+      }
+    ],
+    "fe_javascript.prototypes_classes": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "Explain how the prototype chain works when accessing 'obj.toString()'. How does ES6 'class Sub extends Super' translate to prototypal inheritance under the hood, and what are private fields (#fieldName) in modern V8 engines?",
+        "expected_answer_keywords": ["prototype chain", "__proto__ vs prototype", "Object.create()", "super() binding", "private class fields (#)", "prototype method sharing"]
+      }
+    ],
+    "fe_javascript.iterators_generators": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "Implement a custom paginated API consumer using an async generator function ('async function* fetchPages(url)'). How does 'yield' yield control back to the consumer for use in a 'for await (const page of fetchPages(url))' loop?",
+        "expected_answer_keywords": ["async generator", "function*", "yield keyword", "Symbol.asyncIterator", "for await...of", "iterable protocol", "backpressure handling"]
+      }
+    ],
+    "fe_javascript.proxy_reflect": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "How do modern reactive frameworks (like Vue 3 Reactivity) use 'new Proxy(target, handler)' with 'get' and 'set' traps and 'Reflect' to track property dependencies and trigger UI re-renders without modifying original object prototypes?",
+        "expected_answer_keywords": ["Proxy handler traps", "Reflect.get / Reflect.set", "dependency tracking (track/trigger)", "deep reactivity via nested Proxy", "receiver argument"]
+      }
+    ],
+    "fe_javascript.memory_management": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "A Single Page Application shows memory steadily climbing during navigation tests. Explain how Detached DOM nodes, uncleared setInterval timers, and retained global event listener closures create memory leaks, and how you would diagnose them using Chrome DevTools Heap Snapshots.",
+        "expected_answer_keywords": ["Detached DOM tree", "Heap Snapshot comparison", "Retainer tree", "Garbage Collection mark-and-sweep", "WeakMap / WeakRef", "cleanup in useEffect / unmounted hook"]
+      }
+    ],
+
+    "fe_typescript.type_basics": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "Compare TypeScript 'type' alias vs 'interface'. Under what circumstances is an interface preferred (e.g. declaration merging, object shape extensibility) versus a type alias (unions, primitives, tuples)?",
+        "expected_answer_keywords": ["interface declaration merging", "type alias union / primitive", "extends keyword", "intersection types (&)", "implements class"]
+      }
+    ],
+    "fe_typescript.generics": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "Write a type-safe API response wrapper function 'async function fetchApi<T>(url: string): Promise<ApiResponse<T>>'. How do generic constraints ('<T extends Record<string, unknown>>') prevent passing primitive types where objects are expected?",
+        "expected_answer_keywords": ["generic type parameter <T>", "generic constraint extends", "Promise<T>", "keyof T", "reusable utility types (Pick, Omit, Partial)"]
+      }
+    ],
+    "fe_typescript.type_narrowing": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "You have a union type 'type ApiResponse = { status: \"success\"; data: User } | { status: \"error\"; message: string }'. Walk through how TypeScript narrows the type inside an 'if (res.status === \"success\")' block using Discriminated Unions and how to write a custom type guard ('function isUser(obj: any): obj is User').",
+        "expected_answer_keywords": ["Discriminated Union", "discriminant property (status)", "user-defined type guard (is keyword)", "exhaustive check with never type", "typeof / instanceof narrowing"]
+      }
+    ],
+    "fe_typescript.advanced_types": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "Implement a custom utility type 'DeepReadonly<T>' using recursive mapped types and conditional type checking ('T extends Function ? T : T extends object ? { readonly [K in keyof T]: DeepReadonly<T[K]> } : T'). How does the 'infer' keyword work in conditional types?",
+        "expected_answer_keywords": ["mapped types [K in keyof T]", "conditional types", "recursive type definition", "infer keyword", "template literal types", "keyof operator"]
+      }
+    ],
+    "fe_typescript.declaration_files": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "You install a third-party legacy JavaScript library 'analytics-sdk' that has no published types. How do you create an ambient module declaration in 'types/analytics-sdk.d.ts' using 'declare module \"analytics-sdk\"' and extend global 'Window' interface via Module Augmentation?",
+        "expected_answer_keywords": ["declare module", ".d.ts file", "ambient declaration", "global augmentation (interface Window)", "export default / named exports in d.ts", "typeRoots / include in tsconfig"]
+      }
+    ],
+    "fe_typescript.strict_mode": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "What common runtime bugs are prevented by enabling 'strictNullChecks: true' and 'noImplicitAny: true' in tsconfig.json? How do you properly handle an 'undefined' property without resorting to the non-null assertion operator ('!')?",
+        "expected_answer_keywords": ["strictNullChecks", "noImplicitAny", "optional chaining (?.)", "nullish coalescing (??)", "type narrowing before access", "avoiding non-null assertion (!)"]
+      }
+    ],
+    "fe_typescript.ts_with_react": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "Write proper TypeScript types for a polymorphic Button component that can accept an 'as' prop (e.g. 'button' or 'a') and inherits all valid HTML attributes for that tag using 'ComponentPropsWithRef<T>' and generic props.",
+        "expected_answer_keywords": ["polymorphic component typing", "React.ComponentPropsWithRef", "ElementType", "generic props <E extends React.ElementType>", "forwardRef typing", "HTMLButtonElement"]
+      }
+    ],
+    "fe_typescript.ts_config": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "Explain the purpose of 'paths' and 'baseUrl' in tsconfig.json for path aliases (e.g. '@components/*'), and why bundler resolution (e.g. Vite or Webpack alias configuration) must also be kept in sync.",
+        "expected_answer_keywords": ["paths and baseUrl", "path aliasing (@/)", "moduleResolution: \"bundler\" vs \"node\"", "runtime module resolution vs compile-time check", "target and lib"]
+      }
+    ],
+    "fe_typescript.type_level_programming": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "Design a type-safe routing path parameter extractor 'type ExtractRouteParams<Path extends string>' using template literal types and recursive conditional inference (e.g. converting '/users/:userId/posts/:postId' into '{ userId: string; postId: string }').",
+        "expected_answer_keywords": ["template literal types `${string}:${infer Param}/${infer Rest}`", "recursive type extraction", "infer keyword in conditional types", "type-safe route params", "branded / nominal types"]
+      }
+    ],
+
+    "fe_frameworks.react_core": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "A state update 'setCount(count + 1)' called three times synchronously in an event handler only increments the state value by 1. Explain React 18 automatic batching and why using the functional updater 'setCount(prev => prev + 1)' fixes this.",
+        "expected_answer_keywords": ["functional state updater", "automatic batching", "stale closure across synchronous calls", "render cycle queue", "React 18 batching"]
+      }
+    ],
+    "fe_frameworks.component_architecture": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "Refactor an inflexible '<Card title=\"\" image=\"\" hasButton={true} buttonText=\"\" />' component into a Compound Component pattern ('<Card><Card.Header /><Card.Body /><Card.Footer /></Card>') sharing state via React Context.",
+        "expected_answer_keywords": ["Compound Components pattern", "React.createContext", "composition over configuration", "children prop", "flexible layout slots"]
+      }
+    ],
+    "fe_frameworks.state_management": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "Compare React Context API vs Zustand / Redux Toolkit for global state management. Why does updating a frequently changing value in Context cause unnecessary re-renders in all consuming child components, and how do selectors in Zustand mitigate this?",
+        "expected_answer_keywords": ["Context re-render all consumers", "Zustand fine-grained selector subscription", "state slicing", "Redux Toolkit createSlice", "immutability with Immer"]
+      }
+    ],
+    "fe_frameworks.react_hooks": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "You are writing a custom hook 'useDebounce(value, delay)'. Walk through how you use 'useEffect' and 'useRef' to manage the timer ID, ensure the cleanup function clears pending timeouts on value change or unmount, and avoid stale closures.",
+        "expected_answer_keywords": ["custom hook useDebounce", "useEffect cleanup return function", "clearTimeout", "useRef for mutable timer ref", "rules of hooks dependency array"]
+      }
+    ],
+    "fe_frameworks.vue_core": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "In Vue 3 Composition API, compare 'ref()' vs 'reactive()'. How does Vue 3 handle reactivity unwrapping in templates, and why does destructuring a 'reactive()' object break its reactivity unless wrapped in 'toRefs()'?",
+        "expected_answer_keywords": ["Vue 3 Composition API", "ref() vs reactive()", ".value unwrapping in template", "toRefs() / toRef()", "Proxy-based reactivity tracking", "v-model two-way binding"]
+      }
+    ],
+    "fe_frameworks.svelte_core": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "Explain how Svelte achieves reactivity at compile time without a Virtual DOM using reactive declarations ('$: doubled = count * 2') and compiled assignment triggers ('count += 1'). How do Svelte writable stores work with the '$store' auto-subscription syntax?",
+        "expected_answer_keywords": ["compile-time reactivity", "no Virtual DOM overhead", "$: reactive declarations", "writable/readable stores", "$store auto-subscription and unsubscription", "fine-grained DOM surgical updates"]
+      }
+    ],
+    "fe_frameworks.virtual_dom": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "Explain React Fiber reconciliation architecture: how does work get split into interruptible units of work (render phase) versus synchronous DOM mutation (commit phase)? Why is using array index as a 'key' prop hazardous when list items can be reordered or deleted?",
+        "expected_answer_keywords": ["React Fiber", "render phase (interruptible) vs commit phase (synchronous)", "reconciliation diffing algorithm", "key prop stability across reorders", "workInProgress tree", "concurrency"]
+      }
+    ],
+    "fe_frameworks.routing": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "Using React Router v6, configure a nested route structure with an '<Outlet />' for an authentication layout, dynamic user profile route ('/user/:id'), and an authenticated Route Guard component that redirects unauthenticated users to '/login'.",
+        "expected_answer_keywords": ["React Router v6", "<Outlet />", "nested routes", "<Navigate to=\"/login\" replace />", "useParams hook", "createBrowserRouter / Route Guard"]
+      }
+    ],
+    "fe_frameworks.component_design_patterns": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "Design a Headless UI component (like Radix UI or Downshift) for a Combobox/Autocomplete. Why is separating state and accessibility logic (keyboard navigation, ARIA attributes) from visual styling beneficial for enterprise design systems?",
+        "expected_answer_keywords": ["Headless UI pattern", "separation of logic and styling", "render props or custom hook hook-based headless", "ARIA combobox pattern", "design system reusability"]
+      }
+    ],
+    "fe_frameworks.performance_patterns": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "A dashboard rendering a real-time table of 20,000 rows suffers severe input lag. Detail a step-by-step performance optimization plan incorporating window virtualization ('react-window'), 'useTransition' / 'useDeferredValue' for non-blocking search filtering, and 'React.memo' with custom comparison functions.",
+        "expected_answer_keywords": ["list virtualization (react-window / tanstack virtual)", "useTransition for non-urgent updates", "useDeferredValue", "React.memo with arePropsEqual", "avoiding anonymous object prop allocations in renders"]
+      }
+    ],
+
+    "fe_meta_frameworks_ssr.nextjs": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "In Next.js App Router (app directory), explain the file conventions for 'layout.tsx', 'page.tsx', 'loading.tsx', 'error.tsx', and 'not-found.tsx'. How does layout preservation prevent re-rendering common UI navigation shells across route transitions?",
+        "expected_answer_keywords": ["Next.js App Router", "layout.tsx persistent state", "loading.tsx React Suspense boundary", "error.tsx ErrorBoundary client component", "nested routing hierarchy"]
+      }
+    ],
+    "fe_meta_frameworks_ssr.nuxt": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "How does Nuxt 3 use the Nitro engine for universal server rendering? Explain how 'useFetch' and 'useAsyncData' prevent duplicate network requests between server rendering and client-side hydration via payload caching.",
+        "expected_answer_keywords": ["Nuxt 3 Nitro engine", "useFetch / useAsyncData", "payload hydration transfer (nuxt payload)", "server/api routes", "auto-imports mechanism", "universal SSR"]
+      }
+    ],
+    "fe_meta_frameworks_ssr.ssr_concepts": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "You encounter a 'Hydration failed because the initial UI does not match what was rendered on the server' error in Next.js caused by 'window.innerWidth' or 'new Date()'. Explain what hydration is, why mismatch errors occur, and two strategies to fix it.",
+        "expected_answer_keywords": ["client hydration", "server HTML vs client VDOM mismatch", "useEffect client-only mount pattern", "suppressHydrationWarning", "dynamic({ ssr: false })", "streaming SSR"]
+      }
+    ],
+    "fe_meta_frameworks_ssr.static_generation": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "An e-commerce site has 100,000 product pages. Explain how Incremental Static Regeneration (ISR) with Next.js 'generateStaticParams' and 'revalidate: 60' allows pre-rendering top products at build time while lazily generating and revalidating less frequent product pages on-demand.",
+        "expected_answer_keywords": ["Incremental Static Regeneration (ISR)", "generateStaticParams", "revalidate time / on-demand revalidation", "stale-while-revalidate at CDN edge", "SSG build-time efficiency"]
+      }
+    ],
+    "fe_meta_frameworks_ssr.server_components": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "In React Server Components (RSC), explain the exact boundary between Server Components and Client Components ('use client'). Why cannot server components use state hooks ('useState') or browser events ('onClick'), and how does passing Server Components as 'children' to Client Components preserve zero-bundle-size server execution?",
+        "expected_answer_keywords": ["React Server Components (RSC)", "'use client' boundary directive", "zero client bundle footprint", "serialization constraint across boundary", "Server Components passed as children to Client Components", "Server Actions ('use server')"]
+      }
+    ],
+    "fe_meta_frameworks_ssr.data_fetching": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "Compare the data fetching patterns in modern web applications: sequential request waterfalls vs parallel fetching with 'Promise.all' or TanStack Query (React Query). How do query keys, automatic cache invalidation, and optimistic updates improve user experience in mutation flows?",
+        "expected_answer_keywords": ["TanStack Query (React Query)", "request waterfall elimination", "query keys and staleTime", "optimistic updates with onMutate rollback", "invalidateQueries"]
+      }
+    ],
+    "fe_meta_frameworks_ssr.edge_runtime": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "You need to perform geolocation-based user redirection and A/B test variant assignment at the network edge with sub-10ms latency. Why is Edge Runtime (V8 isolates without Node.js APIs) preferred over standard Node.js serverless functions regarding cold starts and geographical proximity?",
+        "expected_answer_keywords": ["Edge Runtime (V8 isolates)", "near-zero cold start latency", "Next.js middleware at Edge", "geographical distribution (CDN edge nodes)", "absence of Node.js native APIs (fs, child_process)"]
+      }
+    ],
+    "fe_meta_frameworks_ssr.seo_meta": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "Configure dynamic Open Graph and Twitter Card metadata for a shared social post in Next.js using the 'generateMetadata({ params })' API. How do you inject a JSON-LD structured data script for schema.org Product rich snippets in the page head?",
+        "expected_answer_keywords": ["generateMetadata function", "Open Graph tags (og:title, og:image)", "Twitter card meta", "JSON-LD schema.org structured data", "canonical URL link tag", "robots.txt / sitemap.xml"]
+      }
+    ],
+    "fe_meta_frameworks_ssr.deployment_platforms": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "Architect a self-hosted multi-stage Docker deployment pipeline for a production Next.js application using output: 'standalone'. How does the standalone output mode package only necessary 'node_modules' files, reducing image size from 1.2GB to under 100MB?",
+        "expected_answer_keywords": ["output: 'standalone' in next.config", "multi-stage Dockerfile (deps, builder, runner)", "minimal alpine node image", "static asset serving from CDN or public folder", "health checks and graceful shutdown"]
+      }
+    ],
+
+    "fe_tooling_build.package_managers": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "A team member experiences build failures that you cannot reproduce locally. Explain the role of lockfiles ('package-lock.json', 'pnpm-lock.yaml'), the difference between '^1.2.3', '~1.2.3', and exact versions in package.json, and why running 'npm ci' is strictly required in CI/CD pipelines instead of 'npm install'.",
+        "expected_answer_keywords": ["npm ci vs npm install", "lockfile deterministic dependency tree", "caret (^) vs tilde (~) semantic versioning", "peerDependencies resolution", "pnpm content-addressable storage symlinks"]
+      }
+    ],
+    "fe_tooling_build.bundlers_vite": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "Why does Vite provide instant dev-server startup regardless of project size compared to traditional bundlers? Explain the dual-engine architecture (esbuild for dependency pre-bundling and browser-native ESM for source code) and how Hot Module Replacement (HMR) operates over WebSockets.",
+        "expected_answer_keywords": ["native ESM dev server", "esbuild pre-bundling dependencies", "Rollup for production build", "Hot Module Replacement (HMR)", "vite.config.ts plugins API"]
+      }
+    ],
+    "fe_tooling_build.bundlers_webpack": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "A legacy Webpack production bundle has ballooned to 4.5MB in a single 'main.js' file. How do you configure 'optimization.splitChunks' in 'webpack.config.js' to extract vendor dependencies into separate cached chunks, and use Webpack Bundle Analyzer to identify and eliminate duplicate packages (like lodash vs lodash-es)?",
+        "expected_answer_keywords": ["optimization.splitChunks", "SplitChunksPlugin cacheGroups", "vendor chunk extraction", "Webpack Bundle Analyzer", "contenthash caching", "dynamic import() code splitting"]
+      }
+    ],
+    "fe_tooling_build.transpilers": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "Explain how Babel (@babel/preset-env) and SWC use Browserslist targets to compile modern JavaScript down to legacy browser specifications. What is the difference between syntax downleveling (arrow functions to standard functions) and runtime polyfilling (Promise/Symbol via core-js)?",
+        "expected_answer_keywords": ["Browserslist configuration", "@babel/preset-env useBuiltIns: 'usage'", "core-js polyfills", "SWC Rust-based fast transpilation", "syntax transform vs runtime polyfill"]
+      }
+    ],
+    "fe_tooling_build.linters_formatters": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "Set up a pre-commit quality gate using ESLint flat config ('eslint.config.js'), Prettier, Husky, and lint-staged so that only staged TypeScript and CSS files are formatted and linted before any git commit is permitted.",
+        "expected_answer_keywords": ["Husky pre-commit hook", "lint-staged configuration", "ESLint flat config", "Prettier conflict resolution (eslint-config-prettier)", "blocking invalid commits"]
+      }
+    ],
+    "fe_tooling_build.git_workflows": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "Compare Trunk-Based Development vs GitFlow branching strategies for a fast-shipping web product team. Explain how Conventional Commits ('feat:', 'fix:', 'chore:') enable automated semantic versioning and changelog generation using tools like semantic-release.",
+        "expected_answer_keywords": ["Trunk-Based Development vs GitFlow", "short-lived feature branches", "Conventional Commits specification", "Semantic Versioning (semver major.minor.patch)", "automated release notes and tags"]
+      }
+    ],
+    "fe_tooling_build.monorepo_tools": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "Design a frontend monorepo using Turborepo or Nx containing two Next.js apps and three shared packages (UI component library, TSConfig, and API SDK). How does Turborepo task pipeline caching ('turbo.json' inputs/outputs and Remote Caching) prevent rebuilding unchanged packages in CI?",
+        "expected_answer_keywords": ["Turborepo pipeline (turbo.json)", "workspace dependency graph", "Remote Caching (hash computation)", "shared internal packages without publishing", "parallel task execution (lint, test, build)"]
+      }
+    ],
+    "fe_tooling_build.ci_cd_frontend": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "Write a GitHub Actions CI workflow file that triggers on pull requests to run TypeScript type checking ('tsc --noEmit'), unit tests with Vitest, Lighthouse CI performance audits, and deploys an ephemeral preview environment URL commenting on the PR.",
+        "expected_answer_keywords": ["GitHub Actions workflow YAML", "pull_request trigger", "caching actions/cache node_modules", "tsc --noEmit step", "Lighthouse CI action", "preview deployment step"]
+      }
+    ],
+    "fe_tooling_build.module_federation": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "An enterprise migration splits a monolith into three micro-frontends (Shell, Checkout, Catalog). How does Webpack 5 Module Federation allow the Shell app to dynamically load remote container modules at runtime ('remotes') while sharing singleton dependencies ('react', 'react-dom') to prevent duplicate library instances?",
+        "expected_answer_keywords": ["ModuleFederationPlugin", "host and remotes configuration", "exposes object", "shared dependencies with singleton: true", "requiredVersion matching", "runtime independent deployment"]
+      }
+    ],
+    "fe_tooling_build.dev_experience": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "During local frontend development, API calls to 'http://localhost:3000/api/users' fail due to CORS restrictions against the backend running on port 8080. How do you configure a devServer proxy in Vite or Webpack to seamlessly forward API requests without modifying backend code?",
+        "expected_answer_keywords": ["devServer.proxy configuration", "Vite server.proxy", "target rewriting (/api -> http://localhost:8080)", "changeOrigin: true", "environment variables (.env.development)"]
+      }
+    ],
+
+    "fe_testing.unit_testing": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "Write a unit test with Jest or Vitest for a utility function 'formatCurrency(amount, currency, locale)'. Cover positive cases, edge cases (0, negative numbers, undefined parameters), and mock 'Intl.NumberFormat' if necessary using 'vi.spyOn' or 'jest.spyOn'.",
+        "expected_answer_keywords": ["describe and it/test blocks", "expect matchers (toBe, toEqual, toThrow)", "vi.spyOn / jest.spyOn", "mocking implementation", "edge case parameter testing"]
+      }
+    ],
+    "fe_testing.component_testing": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "You are testing a search filter component with React Testing Library. Why should you query elements using user-facing roles ('screen.getByRole(\"button\", { name: /search/i })') rather than container CSS selectors ('container.querySelector(\".btn-search\")')? Demonstrate how to simulate typing and clicking using '@testing-library/user-event'.",
+        "expected_answer_keywords": ["React Testing Library guiding principles", "screen.getByRole / getByLabelText", "user-event (userEvent.setup(), type, click)", "avoiding implementation details testing", "waitFor asynchronous assertion"]
+      }
+    ],
+    "fe_testing.integration_testing": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "Explain how Mock Service Worker (MSW) intercepts network requests at the Service Worker / Node level for component integration tests without mocking 'fetch' or 'axios' globally. Write an MSW handler ('http.get(\"/api/user\", () => HttpResponse.json(...))') and test how the component renders the error state on a 500 status response.",
+        "expected_answer_keywords": ["Mock Service Worker (MSW)", "http.get / HttpResponse.json", "setupServer from msw/node", "server.use() runtime override for error testing", "realistic network interception"]
+      }
+    ],
+    "fe_testing.e2e_testing": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "Write a Playwright or Cypress E2E test for a complete user checkout flow: logging in, adding a product to cart, filling shipping details, and verifying the order confirmation banner. How do you implement the Page Object Model (POM) pattern to maintain locator definitions as the UI evolves?",
+        "expected_answer_keywords": ["Playwright / Cypress test syntax", "Page Object Model (POM) classes", "locator definitions (page.getByRole)", "network request waiting (waitForResponse / cy.intercept)", "handling test flakiness and assertions"]
+      }
+    ],
+    "fe_testing.visual_regression": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "Integrate visual regression testing with Storybook and Chromatic / Playwright screenshots in a CI pipeline. How do visual testing tools detect pixel-level layout shifts, how are baselines approved across pull requests, and how do you configure threshold tolerances for anti-aliasing font rendering differences?",
+        "expected_answer_keywords": ["visual regression testing", "Chromatic Storybook integration", "baseline snapshot comparison", "pixel diff threshold tolerance", "handling dynamic data (dates/animations) during visual tests"]
+      }
+    ],
+    "fe_testing.accessibility_testing": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "How do you automate accessibility regression testing in your test suite using 'axe-core' (e.g. 'jest-axe' or '@axe-core/playwright')? What categories of WCAG violations can automated scanners catch (color contrast, missing alt, invalid ARIA) and what must still be verified through manual keyboard/screen-reader testing?",
+        "expected_answer_keywords": ["axe-core / jest-axe", "expect(results).toHaveNoViolations()", "automated a11y scanner coverage (approx 30-40%)", "color contrast and missing labels detection", "manual keyboard navigation / screen reader testing necessity"]
+      }
+    ],
+    "fe_testing.test_patterns": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "Explain the Arrange-Act-Assert (AAA) pattern with a concrete component test example. Differentiate between test doubles: Dummy, Stub, Spy, Mock, and Fake.",
+        "expected_answer_keywords": ["Arrange-Act-Assert (AAA) structure", "Dummy object", "Stub (pre-programmed return value)", "Spy (tracks calls and arguments)", "Mock (verifies expectations)", "Fake (working lightweight implementation like in-memory DB)"]
+      }
+    ],
+    "fe_testing.coverage_strategy": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "Why is chasing 100% line coverage often counterproductive in frontend applications? How do you configure meaningful branch coverage thresholds on critical business logic (e.g. pricing, checkout validation) while excluding presentation-only wrappers, and use coverage reports to identify untested error paths?",
+        "expected_answer_keywords": ["branch coverage vs line coverage", "coverageThreshold in jest.config / vitest.config", "collectCoverageFrom glob patterns", "identifying untested conditional branches", "testing behavior over lines of code"]
+      }
+    ],
+    "fe_testing.performance_testing": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "Configure a Lighthouse CI (.lighthouserc.js) budget assertion in a pull request workflow to enforce maximum thresholds on First Contentful Paint (FCP), Largest Contentful Paint (LCP), and JavaScript bundle size. How do you prevent performance regression before merging into production?",
+        "expected_answer_keywords": ["Lighthouse CI (lhci)", "assertions in lighthouserc.js", "performance budget (fcp, lcp, total-byte-weight)", "blocking PR merge on regression", "CrUX vs synthetic laboratory benchmarks"]
+      }
+    ],
+
+    "fe_web_security_performance.xss_prevention": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "A rich-text CMS renders user blog posts containing HTML markup. Explain why passing raw strings to 'dangerouslySetInnerHTML={{ __html: userHtml }}' or Vue's 'v-html' creates a stored XSS vulnerability, and demonstrate how to safely sanitize input using DOMPurify before rendering.",
+        "expected_answer_keywords": ["Cross-Site Scripting (XSS)", "dangerouslySetInnerHTML risks", "DOMPurify.sanitize()", "script execution prevention in innerHTML", "output encoding", "developer-side defense"]
+      }
+    ],
+    "fe_web_security_performance.csp_headers": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "Construct a strict Content Security Policy (CSP) HTTP header for a single page application that blocks untrusted third-party scripts, allows styles only from self and Google Fonts, enforces HTTPS, and uses cryptographic nonces ('nonce-{random}') for authorized inline scripts.",
+        "expected_answer_keywords": ["Content-Security-Policy header", "default-src 'self'", "script-src 'self' 'nonce-...' 'strict-dynamic'", "style-src 'self' fonts.googleapis.com", "upgrade-insecure-requests", "report-uri / report-to"]
+      }
+    ],
+    "fe_web_security_performance.cors_handling": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "A frontend app on 'https://app.example.com' fails when making a PUT request with custom 'Authorization' headers to 'https://api.example.com'. Explain what an HTTP preflight OPTIONS request is, why it is triggered for non-simple requests, and what 'Access-Control-Allow-Headers' response is required from the server.",
+        "expected_answer_keywords": ["CORS (Cross-Origin Resource Sharing)", "preflight OPTIONS request", "Access-Control-Allow-Origin", "Access-Control-Allow-Headers", "Access-Control-Allow-Methods", "credentials mode (include)"]
+      }
+    ],
+    "fe_web_security_performance.auth_token_storage": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "Compare storing JWT authentication tokens in 'localStorage' versus 'httpOnly, Secure, SameSite=Strict' cookies. Why does localStorage leave tokens vulnerable to theft via XSS, and how do silent token refresh patterns using short-lived access tokens and httpOnly refresh token cookies mitigate this risk?",
+        "expected_answer_keywords": ["httpOnly cookie prevents JavaScript read access", "localStorage vulnerable to XSS exfiltration", "Secure flag for HTTPS-only transmission", "SameSite=Strict cookie attribute", "short-lived JWT access token in memory + refresh token in httpOnly cookie"]
+      }
+    ],
+    "fe_web_security_performance.csrf_protection": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "Explain how a Cross-Site Request Forgery (CSRF) attack tricks an authenticated browser into submitting unauthorized transactions. How do 'SameSite=Lax/Strict' cookie settings, anti-CSRF synchronizer tokens, and checking 'Origin' / 'Referer' headers protect state-modifying requests (POST/PUT/DELETE)?",
+        "expected_answer_keywords": ["Cross-Site Request Forgery (CSRF)", "SameSite=Lax / SameSite=Strict cookies", "CSRF token validation (anti-forgery token header)", "Origin / Referer header validation", "defense-in-depth against unauthorized state change"]
+      }
+    ],
+    "fe_web_security_performance.core_web_vitals": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "Define Google's three Core Web Vitals metrics: Largest Contentful Paint (LCP), Interaction to Next Paint (INP), and Cumulative Layout Shift (CLS). For each metric, state the 'Good' threshold and identify one common frontend cause that degrades its score (e.g. unoptimized hero image, long-running JS task, unsized ad container).",
+        "expected_answer_keywords": ["LCP < 2.5s (hero image / banner)", "INP < 200ms (main thread blocking JavaScript)", "CLS < 0.1 (missing width/height attributes on images/ads)", "PerformanceObserver web-vitals measurement"]
+      }
+    ],
+    "fe_web_security_performance.bundle_optimization": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "Your production bundle contains unused functions from 'moment.js' and 'lodash'. Walk through how to configure Tree Shaking with ES module imports ('lodash-es' or 'date-fns'), implement Route-Based Code Splitting via 'React.lazy()' and 'Suspense', and analyze bundle composition using source-map-explorer.",
+        "expected_answer_keywords": ["Tree Shaking with ESM (sideEffects: false)", "dynamic imports and React.lazy / Suspense", "replacing monolithic libraries (date-fns instead of moment)", "source-map-explorer / bundle-analyzer", "vendor chunk splitting"]
+      }
+    ],
+    "fe_web_security_performance.image_optimization": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "A landing page has high LCP due to 4MB PNG hero images. How do you implement responsive, modern image delivery using the '<picture>' element with WebP/AVIF '<source>' fallbacks, 'srcset' with 'sizes' descriptors, and native 'loading=\"lazy\"' with explicit 'width' and 'height' aspect ratio preservation?",
+        "expected_answer_keywords": ["<picture> element with WebP and AVIF formats", "srcset and sizes attributes for resolution switching", "loading=\"lazy\" decoding=\"async\"", "explicit width/height to prevent layout shift (CLS)", "CDN on-the-fly image optimization"]
+      }
+    ],
+    "fe_web_security_performance.caching_strategies": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "Design an HTTP caching strategy for a production Single Page Application. How do you configure 'Cache-Control' headers for fingerprinted static assets ('/assets/app.a1b2c3.js' -> 'max-age=31536000, immutable') versus 'index.html' ('no-cache'), and how does Service Worker 'stale-while-revalidate' caching complement this?",
+        "expected_answer_keywords": ["Cache-Control: max-age=31536000, immutable for hashed assets", "Cache-Control: no-cache, must-revalidate for index.html", "ETag validation", "stale-while-revalidate Service Worker strategy", "cache busting via content hashing"]
+      }
+    ],
+    "fe_web_security_performance.runtime_performance": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "A real-time financial chart rendering 100,000 data points freezes the browser for 800ms on recalculation. Walk through how you would offload CPU-intensive calculations to a Dedicated Web Worker ('new Worker()'), schedule non-urgent UI updates with 'requestIdleCallback' or 'requestAnimationFrame', and debounce input filtering to preserve 60fps responsiveness.",
+        "expected_answer_keywords": ["Dedicated Web Worker (postMessage / onmessage)", "offloading computation from UI thread", "requestAnimationFrame vs requestIdleCallback", "debounce and throttle functions", "PerformanceLongTaskTiming measurement (>50ms)"]
+      }
+    ]
+  },
+  "scoring_rules_reference": {
+    "source": "knowledge-base/scoring/engine.json",
+    "description": "Scoring rules for assessment questions are defined in engine.json."
+  }
+}

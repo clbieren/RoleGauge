@@ -1,0 +1,183 @@
+{
+  "skill_id": "be_auth_security",
+  "name": "Authentication & Defensive Backend Security",
+  "category": "backend_security",
+  "description": "A backend developer's defensive implementation of authentication, authorization, cryptography, and secure API coding. IMPORTANT DISTINCTION: This skill covers security from a 'secure software authoring and data protection' perspective — implementing password hashing (bcrypt/Argon2), building OAuth2/OIDC flows, writing RBAC/ABAC authorization middleware, using parameterized queries against SQL injection, managing secrets with Vault, and configuring mTLS between backend services. This is fundamentally different from the Cyber Security role's cs_threats_and_attacks and cs_cryptography skills, which approach the same topics from an attacker analysis, penetration testing, exploit engineering, and SOC monitoring perspective. Here the backend engineer asks 'how do I securely authenticate users and protect database records in my API?'; in Cyber Security the analyst asks 'how do I penetrate the system and exfiltrate credentials?'.",
+  "subskills": [
+    {
+      "id": "password_hashing",
+      "name": "Password Hashing & Salt Management",
+      "description": "Cryptographic password hashing (bcrypt, Argon2id, scrypt, PBKDF2), salt generation, work factor / cost tuning, and timing attack mitigation.",
+      "keywords": ["bcrypt", "Argon2", "Argon2id", "salt", "work factor", "constant-time comparison", "timing attack", "password verification"]
+    },
+    {
+      "id": "jwt_session_management",
+      "name": "JWT & Stateful Session Management",
+      "description": "JWT creation, signature validation (RS256 vs HS256), claims inspection (iss, exp, aud, sub), token revocation (blocklists), and stateful session cookies.",
+      "keywords": ["JWT", "RS256", "HS256", "claims", "token revocation", "session cookies", "refresh token rotation", "exp claim"]
+    },
+    {
+      "id": "sql_injection_defense",
+      "name": "SQL Injection & Input Sanitization",
+      "description": "Parameterized queries, prepared statements, ORM query building safety, dynamic SQL escaping, and defensive validation.",
+      "keywords": ["SQL injection", "parameterized queries", "prepared statements", "input sanitization", "ORM escaping", "SQLi prevention"]
+    },
+    {
+      "id": "oauth2_oidc",
+      "name": "OAuth 2.0 & OpenID Connect (OIDC)",
+      "description": "OAuth 2.0 grant types (Authorization Code with PKCE, Client Credentials), ID tokens vs Access tokens, JWKS endpoint verification, and SSO integration.",
+      "keywords": ["OAuth 2.0", "OIDC", "OpenID Connect", "PKCE", "Authorization Code", "Client Credentials", "JWKS", "ID token"]
+    },
+    {
+      "id": "rbac_abac_authorization",
+      "name": "RBAC & ABAC Authorization",
+      "description": "Role-Based Access Control (RBAC), Attribute-Based Access Control (ABAC), policy enforcement points, Casbin, and authorization middleware.",
+      "keywords": ["RBAC", "ABAC", "permissions", "roles", "Casbin", "authorization middleware", "least privilege", "Policy Enforcement Point"]
+    },
+    {
+      "id": "secrets_management",
+      "name": "Secrets & Key Management in App",
+      "description": "Loading and injecting secrets at runtime (HashiCorp Vault, AWS Secrets Manager, Doppler), dynamic secret leasing, and preventing secrets in source code.",
+      "keywords": ["HashiCorp Vault", "AWS Secrets Manager", "environment variables", "secret rotation", "dynamic credentials", "secret leasing"]
+    },
+    {
+      "id": "cryptography_in_app",
+      "name": "Application-Level Data Encryption",
+      "description": "Envelope encryption, AES-256-GCM symmetric encryption for sensitive PII database columns, HMAC message signing, and key derivation (HKDF).",
+      "keywords": ["AES-256-GCM", "envelope encryption", "PII encryption at rest", "HMAC", "authenticated encryption", "HKDF", "IV / Nonce"]
+    },
+    {
+      "id": "secure_communication_mtls",
+      "name": "mTLS & Service Identity",
+      "description": "Mutual TLS (mTLS) handshake between microservices, X.509 certificate validation in backend clients, and SPIFFE/SPIRE service identities.",
+      "keywords": ["mTLS", "mutual TLS", "client certificates", "X.509", "SPIFFE", "zero-trust service identity", "CA certificate"]
+    },
+    {
+      "id": "rate_limiting_ddos_defense",
+      "name": "App-Layer DDoS & Brute-Force Defense",
+      "description": "IP and account-based brute-force lockout, exponential login delays, CAPTCHA validation endpoints, and application-layer request throttling.",
+      "keywords": ["Brute force defense", "account lockout", "login rate limiting", "CAPTCHA verification", "slowloris mitigation", "IP reputation"]
+    },
+    {
+      "id": "audit_logging_compliance",
+      "name": "Security Audit Trails & Compliance",
+      "description": "Tamper-evident audit logging, PII data masking/redaction in logs, GDPR right-to-be-forgotten implementation, and SOC2 audit support in backend data layers.",
+      "keywords": ["Audit logging", "PII masking", "tamper-evident", "GDPR compliance", "SOC2 compliance", "immutable audit log", "data retention"]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "Password hashing libraries in dependencies or code",
+        "detection": "content_analysis",
+        "pattern": "bcrypt|argon2|scrypt|passlib|PBKDF2|password_hash",
+        "strength": 0.8,
+        "maps_to": ["be_auth_security.password_hashing"]
+      },
+      {
+        "signal": "JWT signing, verification, or session middleware",
+        "detection": "content_analysis",
+        "pattern": "jsonwebtoken|jwt\\.sign|jwt\\.verify|express-session|PyJWT|jose|passport-jwt",
+        "strength": 0.8,
+        "maps_to": ["be_auth_security.jwt_session_management"]
+      },
+      {
+        "signal": "OAuth2 / OIDC authentication flow implementation",
+        "detection": "content_analysis",
+        "pattern": "passport-oauth2|openid-client|grant_type|client_credentials|authorization_code|code_verifier",
+        "strength": 0.9,
+        "maps_to": ["be_auth_security.oauth2_oidc"]
+      },
+      {
+        "signal": "RBAC / ABAC permission checks or guards",
+        "detection": "content_analysis",
+        "pattern": "@Roles\\(|@RequirePermissions|casbin|hasRole|hasPermission|canAccess",
+        "strength": 0.8,
+        "maps_to": ["be_auth_security.rbac_abac_authorization"]
+      },
+      {
+        "signal": "Parameterized queries or prepared statements avoiding string concatenation",
+        "detection": "content_analysis",
+        "pattern": "\\$1.*\\$2|\\?.*\\?|prepare\\(.*\\)|execute\\(.*params|ParameterizedQuery",
+        "strength": 0.7,
+        "maps_to": ["be_auth_security.sql_injection_defense"]
+      },
+      {
+        "signal": "Vault or Secrets Manager SDK integration",
+        "detection": "content_analysis",
+        "pattern": "vault\\.read|SecretsManagerClient|getSecretValue|doppler",
+        "strength": 0.8,
+        "maps_to": ["be_auth_security.secrets_management"]
+      },
+      {
+        "signal": "Application-level encryption (AES-GCM, HMAC, crypto cipher)",
+        "detection": "content_analysis",
+        "pattern": "createCipheriv|aes-256-gcm|AES\\.GCM|Cipher\\.getInstance|envelope_encryption",
+        "strength": 0.8,
+        "maps_to": ["be_auth_security.cryptography_in_app"]
+      },
+      {
+        "signal": "mTLS client certificate configuration",
+        "detection": "content_analysis",
+        "pattern": "rejectUnauthorized.*true|cert:.*key:.*ca:|SSLContext.*init.*KeyManager",
+        "strength": 0.9,
+        "maps_to": ["be_auth_security.secure_communication_mtls"]
+      },
+      {
+        "signal": "Audit logging or PII masking middleware",
+        "detection": "content_analysis",
+        "pattern": "audit_log|maskPII|redactSensitive|tamper_proof|AuditTrail",
+        "strength": 0.8,
+        "maps_to": ["be_auth_security.audit_logging_compliance", "be_auth_security.rate_limiting_ddos_defense"]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "Authentication and authorization system implementation (OAuth2, JWT, RBAC)",
+        "strength": 0.8,
+        "maps_to": ["be_auth_security.jwt_session_management", "be_auth_security.oauth2_oidc", "be_auth_security.rbac_abac_authorization"]
+      },
+      {
+        "signal": "Backend security engineering, data encryption at rest, or HashiCorp Vault",
+        "strength": 0.8,
+        "maps_to": ["be_auth_security.password_hashing", "be_auth_security.secrets_management", "be_auth_security.cryptography_in_app"]
+      },
+      {
+        "signal": "mTLS inter-service security, audit logging, or compliance engineering",
+        "strength": 0.8,
+        "maps_to": ["be_auth_security.secure_communication_mtls", "be_auth_security.audit_logging_compliance", "be_auth_security.rate_limiting_ddos_defense"]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "OAuth 2.0, JWT, or Authentication endorsed",
+        "strength": 0.5,
+        "maps_to": ["be_auth_security.jwt_session_management", "be_auth_security.oauth2_oidc", "be_auth_security.password_hashing"]
+      },
+      {
+        "signal": "Backend Security, RBAC, or Cryptography endorsed",
+        "strength": 0.5,
+        "maps_to": ["be_auth_security.rbac_abac_authorization", "be_auth_security.cryptography_in_app", "be_auth_security.sql_injection_defense"]
+      },
+      {
+        "signal": "Vault, mTLS, or SOC2/GDPR compliance mentioned",
+        "strength": 0.5,
+        "maps_to": ["be_auth_security.secrets_management", "be_auth_security.secure_communication_mtls", "be_auth_security.audit_logging_compliance", "be_auth_security.rate_limiting_ddos_defense"]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": ["password_hashing", "jwt_session_management", "sql_injection_defense"],
+      "description": "Hashes passwords using bcrypt/Argon2, validates JWT claims and session cookies, and writes safe parameterized SQL queries."
+    },
+    "mid": {
+      "expected_subskills": ["oauth2_oidc", "rbac_abac_authorization", "secrets_management", "cryptography_in_app"],
+      "description": "Implements OAuth 2.0 / PKCE authentication flows, enforces RBAC/ABAC authorization policies, injects runtime secrets with Vault, and applies AES-GCM encryption to sensitive fields."
+    },
+    "senior": {
+      "expected_subskills": ["secure_communication_mtls", "rate_limiting_ddos_defense", "audit_logging_compliance"],
+      "description": "Architects mTLS zero-trust communication between microservices, engineers application-level anti-DDoS/brute-force defenses, and implements tamper-evident audit trails."
+    }
+  }
+}

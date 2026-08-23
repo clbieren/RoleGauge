@@ -1,0 +1,90 @@
+{
+  "role_id": "frontend_developer",
+  "level": "senior",
+  "title": "Senior Frontend Developer",
+  "description": "Senior frontend engineer and technical leader responsible for architectural design, performance engineering, complex meta-framework/RSC implementations, monorepo tooling, quality standards, and defensive web security.",
+  "experience_range": "5+ years",
+  "skills": [
+    {
+      "skill_id": "fe_web_security_performance",
+      "importance": 0.95,
+      "rationale": "Leading bundle optimization, multi-layer caching, runtime performance (Web Workers/virtualization), and developer-side security architecture."
+    },
+    {
+      "skill_id": "fe_frameworks",
+      "importance": 0.95,
+      "rationale": "Mastery of Virtual DOM/Fiber reconciliation internals, headless design patterns, and high-performance component architecture."
+    },
+    {
+      "skill_id": "fe_meta_frameworks_ssr",
+      "importance": 0.9,
+      "rationale": "Architecting React Server Components (RSC) boundaries, edge runtime deployments, and full-stack frontend infrastructure."
+    },
+    {
+      "skill_id": "fe_typescript",
+      "importance": 0.9,
+      "rationale": "Designing complex mapped/conditional types, declaration files, and type-level APIs for shared libraries and design systems."
+    },
+    {
+      "skill_id": "fe_tooling_build",
+      "importance": 0.9,
+      "rationale": "Architecting monorepo pipelines (Turborepo/Nx), Webpack Module Federation for micro-frontends, and automated CI/CD release engineering."
+    },
+    {
+      "skill_id": "fe_testing",
+      "importance": 0.85,
+      "rationale": "Designing visual regression pipelines, setting strategic coverage thresholds, and gating pull requests on automated performance budgets."
+    },
+    {
+      "skill_id": "fe_javascript",
+      "importance": 0.85,
+      "rationale": "Deep expertise in iterators, Proxy reactivity engines, and diagnosing complex memory leaks in large SPAs."
+    },
+    {
+      "skill_id": "fe_css",
+      "importance": 0.8,
+      "rationale": "Architecting design system styling methodologies (CSS Modules, Tailwind, ITCSS) and adopting modern features like container queries."
+    },
+    {
+      "skill_id": "fe_web_fundamentals",
+      "importance": 0.75,
+      "rationale": "Architecting offline-first PWAs with Service Workers, IndexedDB storage management, and advanced browser observer APIs."
+    }
+  ],
+  "scoring": {
+    "method": "weighted_average",
+    "description": "Each skill score is multiplied by its importance weight. Final score is sum divided by sum of weights.",
+    "thresholds": {
+      "not_ready": {
+        "min": 0.0,
+        "max": 0.3,
+        "label": "Not Ready",
+        "description": "Significant gaps in senior frontend architecture, performance engineering, or modern full-stack frontend patterns."
+      },
+      "developing": {
+        "min": 0.3,
+        "max": 0.5,
+        "label": "Developing",
+        "description": "Solid mid-level execution, but lacks the architectural depth, monorepo leadership, or performance optimization experience expected of a senior."
+      },
+      "approaching": {
+        "min": 0.5,
+        "max": 0.7,
+        "label": "Approaching Ready",
+        "description": "Strong technical capabilities across most areas; refining expertise in RSC architecture, micro-frontends, and performance budgets."
+      },
+      "ready": {
+        "min": 0.7,
+        "max": 0.85,
+        "label": "Ready",
+        "description": "Meets all senior expectations: designs robust frontend systems, mentors teams, enforces high quality gates, and solves hard performance challenges."
+      },
+      "exceeds": {
+        "min": 0.85,
+        "max": 1.0,
+        "label": "Exceeds Expectations",
+        "description": "Exceeds senior expectations: staff/principal level impact in frontend platform architecture and cross-team developer tooling."
+      }
+    }
+  }
+}

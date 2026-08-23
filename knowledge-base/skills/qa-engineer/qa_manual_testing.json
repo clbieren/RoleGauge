@@ -1,0 +1,235 @@
+{
+  "skill_id": "qa_manual_testing",
+  "name": "Manual, Exploratory & Functional Testing",
+  "category": "manual_testing",
+  "description": "Hands-on functional testing, test case authoring, comprehensive defect lifecycle management, exploratory testing execution, cross-browser validation, and user acceptance testing.",
+  "subskills": [
+    {
+      "id": "test_case_authoring",
+      "name": "Structured Test Case Authoring",
+      "description": "Writing structured test cases with clear preconditions, unambiguous steps, test data, and precise expected results.",
+      "keywords": [
+        "Test Case",
+        "preconditions",
+        "test steps",
+        "expected result",
+        "actual result",
+        "test data",
+        "acceptance criteria"
+      ]
+    },
+    {
+      "id": "bug_reporting_lifecycle",
+      "name": "Defect Reporting & Bug Lifecycle",
+      "description": "Writing detailed defect reports (steps to reproduce, environment, logs, severity vs priority, expected vs actual).",
+      "keywords": [
+        "Bug report",
+        "defect lifecycle",
+        "severity vs priority",
+        "steps to reproduce",
+        "root cause",
+        "bug triaging",
+        "defect status"
+      ]
+    },
+    {
+      "id": "smoke_sanity_testing",
+      "name": "Smoke & Sanity Testing",
+      "description": "Build acceptance testing, fast sanity verification of core functionality after deployments and hotfixes.",
+      "keywords": [
+        "Smoke testing",
+        "Sanity testing",
+        "build verification test",
+        "BVT",
+        "hotfix validation",
+        "critical path testing"
+      ]
+    },
+    {
+      "id": "regression_testing_strategy",
+      "name": "Regression Testing & Impact Analysis",
+      "description": "Impact analysis, regression test suite maintenance, selecting test subsets for release candidate builds.",
+      "keywords": [
+        "Regression testing",
+        "impact analysis",
+        "regression suite",
+        "selective regression",
+        "release candidate",
+        "change impact"
+      ]
+    },
+    {
+      "id": "exploratory_testing_execution",
+      "name": "Exploratory & Ad-hoc Testing",
+      "description": "Unscripted bug hunting, edge-case probing, tour-based exploratory testing, persona-based scenarios.",
+      "keywords": [
+        "Exploratory testing",
+        "Ad-hoc testing",
+        "tour testing",
+        "edge-case probing",
+        "persona-based testing",
+        "bug hunting"
+      ]
+    },
+    {
+      "id": "cross_browser_compatibility",
+      "name": "Cross-Browser & Device Compatibility",
+      "description": "Cross-browser matrix testing (Chrome, Safari, Firefox, Edge) and cross-OS rendering checks.",
+      "keywords": [
+        "Cross-browser testing",
+        "BrowserStack",
+        "SauceLabs",
+        "Safari rendering",
+        "Edge compatibility",
+        "responsive layout checks"
+      ]
+    },
+    {
+      "id": "user_acceptance_testing_uat",
+      "name": "User Acceptance Testing (UAT) & Sign-Off",
+      "description": "Facilitating UAT with business stakeholders, alpha/beta testing coordination, production readiness sign-off.",
+      "keywords": [
+        "UAT",
+        "User Acceptance Testing",
+        "alpha testing",
+        "beta testing",
+        "business stakeholder sign-off",
+        "production readiness"
+      ]
+    },
+    {
+      "id": "localization_internationalization_testing",
+      "name": "Localization (L10n) & i18n Testing",
+      "description": "L10n/i18n testing, RTL languages, character encodings (UTF-8), date/time format verifications.",
+      "keywords": [
+        "Localization testing",
+        "L10n",
+        "i18n",
+        "RTL layout",
+        "UTF-8 encoding",
+        "currency formatting",
+        "date/time format"
+      ]
+    },
+    {
+      "id": "usability_heuristic_evaluation",
+      "name": "Usability & Heuristic Evaluation",
+      "description": "Nielsen’s usability heuristics, UX anomaly identification, accessibility workflow evaluation.",
+      "keywords": [
+        "Usability testing",
+        "Nielsen heuristics",
+        "UX defect",
+        "user experience evaluation",
+        "cognitive walkthrough",
+        "workflow friction"
+      ]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "Test case spreadsheets, markdown matrices, or defect templates in repository",
+        "detection": "content_analysis",
+        "pattern": "test-cases|test_cases\\.md|defect-template|bug_report\\.md|smoke_checklist",
+        "strength": 0.7,
+        "maps_to": [
+          "qa_manual_testing.test_case_authoring",
+          "qa_manual_testing.bug_reporting_lifecycle",
+          "qa_manual_testing.smoke_sanity_testing"
+        ]
+      },
+      {
+        "signal": "Regression test checklists or cross-browser compatibility matrices",
+        "detection": "content_analysis",
+        "pattern": "regression_suite|cross_browser_matrix|BrowserStack|SauceLabs",
+        "strength": 0.8,
+        "maps_to": [
+          "qa_manual_testing.regression_testing_strategy",
+          "qa_manual_testing.cross_browser_compatibility",
+          "qa_manual_testing.exploratory_testing_execution"
+        ]
+      },
+      {
+        "signal": "UAT sign-off documentation or localization/usability test logs",
+        "detection": "content_analysis",
+        "pattern": "UAT_signoff|localization_test|i18n_checklist|usability_heuristics",
+        "strength": 0.8,
+        "maps_to": [
+          "qa_manual_testing.user_acceptance_testing_uat",
+          "qa_manual_testing.localization_internationalization_testing",
+          "qa_manual_testing.usability_heuristic_evaluation"
+        ]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "Manual testing, test case authoring, bug reporting, or smoke testing described",
+        "strength": 0.8,
+        "maps_to": [
+          "qa_manual_testing.test_case_authoring",
+          "qa_manual_testing.bug_reporting_lifecycle",
+          "qa_manual_testing.smoke_sanity_testing"
+        ]
+      },
+      {
+        "signal": "Regression testing, exploratory testing, UAT, or cross-browser testing leadership",
+        "strength": 0.8,
+        "maps_to": [
+          "qa_manual_testing.regression_testing_strategy",
+          "qa_manual_testing.exploratory_testing_execution",
+          "qa_manual_testing.cross_browser_compatibility",
+          "qa_manual_testing.user_acceptance_testing_uat"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Manual Testing, Bug Tracking, or Test Case Execution endorsed",
+        "strength": 0.5,
+        "maps_to": [
+          "qa_manual_testing.test_case_authoring",
+          "qa_manual_testing.bug_reporting_lifecycle",
+          "qa_manual_testing.smoke_sanity_testing"
+        ]
+      },
+      {
+        "signal": "Regression Testing, Exploratory Testing, or UAT mentioned",
+        "strength": 0.5,
+        "maps_to": [
+          "qa_manual_testing.regression_testing_strategy",
+          "qa_manual_testing.exploratory_testing_execution",
+          "qa_manual_testing.cross_browser_compatibility",
+          "qa_manual_testing.user_acceptance_testing_uat",
+          "qa_manual_testing.localization_internationalization_testing",
+          "qa_manual_testing.usability_heuristic_evaluation"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "test_case_authoring",
+        "bug_reporting_lifecycle",
+        "smoke_sanity_testing"
+      ],
+      "description": "Writes clear, reproducible test cases, logs comprehensive bug reports with logs, and executes smoke/sanity testing."
+    },
+    "mid": {
+      "expected_subskills": [
+        "regression_testing_strategy",
+        "exploratory_testing_execution",
+        "cross_browser_compatibility"
+      ],
+      "description": "Maintains regression suites through impact analysis, uncovers edge cases with exploratory testing, and validates cross-browser matrices."
+    },
+    "senior": {
+      "expected_subskills": [
+        "user_acceptance_testing_uat",
+        "localization_internationalization_testing",
+        "usability_heuristic_evaluation"
+      ],
+      "description": "Coordinates UAT with business stakeholders, leads L10n/i18n validation across multiple locales, and conducts usability heuristic audits."
+    }
+  }
+}

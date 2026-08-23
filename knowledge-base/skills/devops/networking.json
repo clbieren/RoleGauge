@@ -282,17 +282,17 @@
     "mid": {
       "expected_subskills": [
         "firewalls_security_groups",
-        "load_balancing",
         "reverse_proxy",
         "ssl_tls"
       ],
-      "description": "Can configure firewalls, set up load balancers and reverse proxies, and manage SSL/TLS certificates."
+      "description": "Can configure firewalls/security groups, set up reverse proxies, and manage SSL/TLS certificates."
     },
     "senior": {
       "expected_subskills": [
+        "load_balancing",
         "cloud_networking"
       ],
-      "description": "Can design complex cloud network architectures, implement service meshes, and optimize network performance at scale.",
+      "description": "Can architect multi-tier load balancing strategies, design complex cloud network topologies, and optimize network traffic at scale.",
       "additional_expectations": [
         "zero_trust",
         "service_mesh",

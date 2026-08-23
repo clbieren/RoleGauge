@@ -1,0 +1,170 @@
+{
+  "skill_id": "fe_meta_frameworks_ssr",
+  "name": "Meta-Frameworks & SSR",
+  "category": "frontend_frameworks",
+  "description": "Full-stack frontend meta-frameworks: Next.js, Nuxt 3, server-side rendering concepts, static site generation, React Server Components, data fetching patterns, edge runtime, SEO/meta management, and deployment platforms.",
+  "subskills": [
+    {
+      "id": "nextjs",
+      "name": "Next.js",
+      "description": "App Router vs Pages Router, file-based routing, API routes, middleware, SSR/SSG/ISR rendering modes.",
+      "keywords": ["Next.js", "App Router", "Pages Router", "getServerSideProps", "getStaticProps", "API routes", "middleware"]
+    },
+    {
+      "id": "nuxt",
+      "name": "Nuxt 3",
+      "description": "Nuxt 3 auto-imports, server routes (/server/api), useFetch, Nitro engine, modules.",
+      "keywords": ["Nuxt 3", "auto-imports", "useFetch", "Nitro", "server routes", "defineNuxtConfig"]
+    },
+    {
+      "id": "ssr_concepts",
+      "name": "SSR Concepts",
+      "description": "Server-side rendering lifecycle, hydration, hydration mismatch errors, streaming SSR, selective hydration.",
+      "keywords": ["SSR", "hydration", "streaming", "renderToPipeableStream", "selective hydration", "hydration mismatch"]
+    },
+    {
+      "id": "static_generation",
+      "name": "Static Site Generation",
+      "description": "SSG build-time rendering, Incremental Static Regeneration (ISR), fallback pages, revalidation.",
+      "keywords": ["SSG", "ISR", "revalidate", "fallback", "build-time", "static export"]
+    },
+    {
+      "id": "server_components",
+      "name": "React Server Components",
+      "description": "RSC architecture, server/client component boundary, 'use client' / 'use server' directives, serialization constraints.",
+      "keywords": ["Server Components", "use client", "use server", "RSC payload", "serialization", "server actions"]
+    },
+    {
+      "id": "data_fetching",
+      "name": "Data Fetching Patterns",
+      "description": "Server-side fetching, SWR/React Query for client cache, loader patterns, waterfall prevention.",
+      "keywords": ["SWR", "React Query", "TanStack Query", "stale-while-revalidate", "loader", "parallel fetching"]
+    },
+    {
+      "id": "edge_runtime",
+      "name": "Edge Runtime",
+      "description": "Edge functions, Vercel Edge Middleware, Cloudflare Workers compatibility, cold start optimization.",
+      "keywords": ["Edge Runtime", "Edge Middleware", "Cloudflare Workers", "cold start", "V8 isolates"]
+    },
+    {
+      "id": "seo_meta",
+      "name": "SEO & Meta Management",
+      "description": "Head management (next/head, useHead), Open Graph tags, structured data (JSON-LD), sitemap generation.",
+      "keywords": ["next/head", "useHead", "Open Graph", "JSON-LD", "sitemap", "robots.txt", "canonical"]
+    },
+    {
+      "id": "deployment_platforms",
+      "name": "Deployment Platforms",
+      "description": "Vercel, Netlify, Cloudflare Pages, Docker containerization for SSR apps, preview deployments.",
+      "keywords": ["Vercel", "Netlify", "Cloudflare Pages", "Docker", "preview deployment", "serverless"]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "Next.js configuration or app directory",
+        "detection": "content_analysis",
+        "pattern": "next\\.config\\.(js|mjs|ts)|\"next\":\\s*\"|app/layout\\.(tsx|jsx)",
+        "strength": 0.9,
+        "maps_to": ["fe_meta_frameworks_ssr.nextjs"]
+      },
+      {
+        "signal": "Nuxt configuration",
+        "detection": "content_analysis",
+        "pattern": "nuxt\\.config\\.(ts|js)|\"nuxt\":\\s*\"|defineNuxtConfig",
+        "strength": 0.9,
+        "maps_to": ["fe_meta_frameworks_ssr.nuxt"]
+      },
+      {
+        "signal": "Server Components or use client/use server directives",
+        "detection": "content_analysis",
+        "pattern": "'use client'|\"use client\"|'use server'|\"use server\"",
+        "strength": 0.9,
+        "maps_to": ["fe_meta_frameworks_ssr.server_components"]
+      },
+      {
+        "signal": "SSR/SSG data fetching functions",
+        "detection": "content_analysis",
+        "pattern": "getServerSideProps|getStaticProps|getStaticPaths|generateStaticParams",
+        "strength": 0.8,
+        "maps_to": ["fe_meta_frameworks_ssr.static_generation", "fe_meta_frameworks_ssr.ssr_concepts"]
+      },
+      {
+        "signal": "SWR or React Query usage",
+        "detection": "content_analysis",
+        "pattern": "useSWR|useQuery|@tanstack/react-query|swr",
+        "strength": 0.7,
+        "maps_to": ["fe_meta_frameworks_ssr.data_fetching"]
+      },
+      {
+        "signal": "Edge runtime or middleware configuration",
+        "detection": "content_analysis",
+        "pattern": "export const runtime.*=.*'edge'|middleware\\.(ts|js)|edge-runtime",
+        "strength": 0.8,
+        "maps_to": ["fe_meta_frameworks_ssr.edge_runtime"]
+      },
+      {
+        "signal": "SEO meta tags or structured data",
+        "detection": "content_analysis",
+        "pattern": "og:title|og:description|JSON-LD|generateMetadata|useHead|next/head",
+        "strength": 0.7,
+        "maps_to": ["fe_meta_frameworks_ssr.seo_meta"]
+      },
+      {
+        "signal": "Deployment config (Vercel, Netlify, Dockerfile)",
+        "detection": "file_presence",
+        "pattern": "vercel\\.json|netlify\\.toml|Dockerfile|wrangler\\.toml",
+        "strength": 0.7,
+        "maps_to": ["fe_meta_frameworks_ssr.deployment_platforms"]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "Next.js or Nuxt development in production",
+        "strength": 0.8,
+        "maps_to": ["fe_meta_frameworks_ssr.nextjs", "fe_meta_frameworks_ssr.nuxt", "fe_meta_frameworks_ssr.ssr_concepts"]
+      },
+      {
+        "signal": "SSR/SSG architecture or SEO optimization",
+        "strength": 0.7,
+        "maps_to": ["fe_meta_frameworks_ssr.static_generation", "fe_meta_frameworks_ssr.seo_meta"]
+      },
+      {
+        "signal": "Edge computing or serverless deployment",
+        "strength": 0.7,
+        "maps_to": ["fe_meta_frameworks_ssr.edge_runtime", "fe_meta_frameworks_ssr.deployment_platforms"]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Next.js or Nuxt endorsed",
+        "strength": 0.5,
+        "maps_to": ["fe_meta_frameworks_ssr.nextjs", "fe_meta_frameworks_ssr.nuxt"]
+      },
+      {
+        "signal": "SSR, SEO, or Vercel experience mentioned",
+        "strength": 0.5,
+        "maps_to": ["fe_meta_frameworks_ssr.ssr_concepts", "fe_meta_frameworks_ssr.seo_meta", "fe_meta_frameworks_ssr.deployment_platforms"]
+      },
+      {
+        "signal": "Server Components or Edge Functions mentioned",
+        "strength": 0.5,
+        "maps_to": ["fe_meta_frameworks_ssr.server_components", "fe_meta_frameworks_ssr.edge_runtime", "fe_meta_frameworks_ssr.data_fetching"]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": ["nextjs", "static_generation", "seo_meta"],
+      "description": "Builds pages with Next.js, implements SSG for content sites, and manages SEO meta tags."
+    },
+    "mid": {
+      "expected_subskills": ["ssr_concepts", "data_fetching", "nuxt"],
+      "description": "Understands SSR lifecycle and hydration, implements efficient data fetching patterns, and works across meta-frameworks."
+    },
+    "senior": {
+      "expected_subskills": ["server_components", "edge_runtime", "deployment_platforms"],
+      "description": "Architects RSC boundaries, leverages edge runtime for latency-critical paths, and designs deployment strategies."
+    }
+  }
+}

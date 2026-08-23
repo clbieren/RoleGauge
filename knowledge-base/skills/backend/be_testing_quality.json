@@ -1,0 +1,170 @@
+{
+  "skill_id": "be_testing_quality",
+  "name": "Testing & Software Quality",
+  "category": "backend_quality",
+  "description": "Backend testing pyramid and automated quality gates: Unit testing with test doubles (mocks, stubs, fakes), database integration testing with Testcontainers, API consumer/provider contract testing (Pact), load and stress testing (k6, Locust), static code analysis and linting, mutation testing (Stryker, mutmut), deterministic test data management, and chaos engineering experiments.",
+  "subskills": [
+    {
+      "id": "unit_testing",
+      "name": "Backend Unit Testing",
+      "description": "xUnit/pytest/JUnit testing frameworks, Arrange-Act-Assert (AAA) pattern, parameterized tests, assertion libraries, and business logic isolation.",
+      "keywords": ["pytest", "JUnit", "xUnit", "Mocha", "AAA pattern", "parameterized test", "assertions", "isolated logic"]
+    },
+    {
+      "id": "mocking_stubs_test_doubles",
+      "name": "Mocks, Stubs & Test Doubles",
+      "description": "Dependency injection mocking (Mockito, unittest.mock, Jest mock), verifying interactions, stubbing responses, spy objects, and in-memory fakes.",
+      "keywords": ["Mockito", "unittest.mock", "test doubles", "stubs", "spies", "fakes", "mock verification", "argument captor"]
+    },
+    {
+      "id": "integration_testing_db",
+      "name": "Database Integration Testing",
+      "description": "Integration testing against real databases using Testcontainers, transactional test rollbacks, database fixture seeding, and migration testing.",
+      "keywords": ["Testcontainers", "integration testing", "database rollback", "ephemeral database", "fixture seeding", "Docker test container"]
+    },
+    {
+      "id": "api_contract_testing",
+      "name": "API Contract Testing (Pact)",
+      "description": "Consumer-driven contract testing with Pact, OpenAPI schema validation tests, provider verification pipelines, and breaking contract prevention.",
+      "keywords": ["Pact", "consumer-driven contract", "provider verification", "OpenAPI validation", "contract testing", "pact broker"]
+    },
+    {
+      "id": "load_stress_testing",
+      "name": "Load & Stress Testing",
+      "description": "Performance benchmarking with k6, Locust, or JMeter, latency percentile analysis (p50, p95, p99), throughput (RPS), and bottleneck identification.",
+      "keywords": ["k6", "Locust", "JMeter", "p95 latency", "p99 latency", "RPS", "stress testing", "load testing", "virtual users"]
+    },
+    {
+      "id": "code_quality_static_analysis",
+      "name": "Static Code Analysis & Linters",
+      "description": "SonarQube / SonarCloud integration, cyclomatic complexity thresholds, code duplication detection, security linter rules (Bandit, SpotBugs), and CI gates.",
+      "keywords": ["SonarQube", "cyclomatic complexity", "static analysis", "Bandit", "SpotBugs", "code duplication", "quality gate"]
+    },
+    {
+      "id": "mutation_testing",
+      "name": "Mutation Testing",
+      "description": "Assessing test suite effectiveness with mutation testing tools (Stryker, mutmut, PIT), mutation score calculation, and killing surviving mutants.",
+      "keywords": ["Mutation testing", "Stryker", "mutmut", "PIT", "mutation score", "killed mutants", "surviving mutants"]
+    },
+    {
+      "id": "test_data_management",
+      "name": "Test Data Management & Fixtures",
+      "description": "Deterministic test fixture generation, factory patterns (FactoryBoy, FactoryBot), database anonymization for staging, and state reset strategies.",
+      "keywords": ["FactoryBot", "FactoryBoy", "fixtures", "deterministic data", "database anonymization", "data factories", "test isolation"]
+    },
+    {
+      "id": "chaos_engineering",
+      "name": "Chaos Engineering & Fault Injection",
+      "description": "Injecting network latency, packet loss, and service failures using Toxiproxy or Chaos Mesh to validate backend resilience and fallback circuits.",
+      "keywords": ["Chaos engineering", "Toxiproxy", "Chaos Mesh", "fault injection", "latency injection", "network partition simulation"]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "Backend test files or test suites",
+        "detection": "file_presence",
+        "pattern": "(test_.*\\.py|.*_test\\.go|.*Test\\.java|.*\\.test\\.ts|.*\\.spec\\.ts)$",
+        "strength": 0.7,
+        "maps_to": ["be_testing_quality.unit_testing", "be_testing_quality.mocking_stubs_test_doubles"]
+      },
+      {
+        "signal": "Testcontainers configuration in integration tests",
+        "detection": "content_analysis",
+        "pattern": "testcontainers|GenericContainer|PostgreSQLContainer|KafkaContainer",
+        "strength": 0.9,
+        "maps_to": ["be_testing_quality.integration_testing_db"]
+      },
+      {
+        "signal": "Pact contract test definitions or pact files",
+        "detection": "file_presence",
+        "pattern": "pacts/.*\\.json|PactConsumer|PactProvider|@PactFolder",
+        "strength": 0.9,
+        "maps_to": ["be_testing_quality.api_contract_testing"]
+      },
+      {
+        "signal": "Load testing scripts (k6, Locust, JMeter)",
+        "detection": "file_presence",
+        "pattern": ".*k6\\.js|locustfile\\.py|.*\\.jmx|load_test.*\\.js",
+        "strength": 0.8,
+        "maps_to": ["be_testing_quality.load_stress_testing"]
+      },
+      {
+        "signal": "SonarQube or static analysis configuration",
+        "detection": "file_presence",
+        "pattern": "sonar-project\\.properties|\\.sonarlint/|bandit\\.ya?ml",
+        "strength": 0.7,
+        "maps_to": ["be_testing_quality.code_quality_static_analysis"]
+      },
+      {
+        "signal": "Mutation testing configuration (Stryker, mutmut, pitest)",
+        "detection": "file_presence",
+        "pattern": "stryker\\.conf|mutmut-config|pitest",
+        "strength": 0.9,
+        "maps_to": ["be_testing_quality.mutation_testing"]
+      },
+      {
+        "signal": "Test data factories or fixtures setup",
+        "detection": "content_analysis",
+        "pattern": "Factory\\.define|factory_boy|factories/|conftest\\.py|fixtures/",
+        "strength": 0.7,
+        "maps_to": ["be_testing_quality.test_data_management"]
+      },
+      {
+        "signal": "Toxiproxy or chaos engineering configurations",
+        "detection": "content_analysis",
+        "pattern": "toxiproxy|chaos-mesh|chaos_experiment|inject_fault",
+        "strength": 0.9,
+        "maps_to": ["be_testing_quality.chaos_engineering"]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "Automated backend unit and integration testing experience",
+        "strength": 0.7,
+        "maps_to": ["be_testing_quality.unit_testing", "be_testing_quality.mocking_stubs_test_doubles", "be_testing_quality.integration_testing_db"]
+      },
+      {
+        "signal": "Load testing (k6, JMeter) or API contract testing (Pact)",
+        "strength": 0.8,
+        "maps_to": ["be_testing_quality.load_stress_testing", "be_testing_quality.api_contract_testing", "be_testing_quality.code_quality_static_analysis"]
+      },
+      {
+        "signal": "Chaos engineering, mutation testing, or quality gate architecture",
+        "strength": 0.8,
+        "maps_to": ["be_testing_quality.mutation_testing", "be_testing_quality.chaos_engineering", "be_testing_quality.test_data_management"]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Unit Testing, Integration Testing, or Test Automation endorsed",
+        "strength": 0.5,
+        "maps_to": ["be_testing_quality.unit_testing", "be_testing_quality.integration_testing_db", "be_testing_quality.mocking_stubs_test_doubles"]
+      },
+      {
+        "signal": "Load Testing, Performance Testing, or SonarQube endorsed",
+        "strength": 0.5,
+        "maps_to": ["be_testing_quality.load_stress_testing", "be_testing_quality.code_quality_static_analysis", "be_testing_quality.api_contract_testing"]
+      },
+      {
+        "signal": "Chaos Engineering, Mutation Testing, or Test Data Management mentioned",
+        "strength": 0.5,
+        "maps_to": ["be_testing_quality.chaos_engineering", "be_testing_quality.mutation_testing", "be_testing_quality.test_data_management"]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": ["unit_testing", "mocking_stubs_test_doubles", "integration_testing_db"],
+      "description": "Writes isolated unit tests with mock objects and runs database integration tests using Testcontainers or test transactions."
+    },
+    "mid": {
+      "expected_subskills": ["api_contract_testing", "load_stress_testing", "code_quality_static_analysis"],
+      "description": "Verifies API contracts with Pact, conducts load tests to profile p95/p99 latency percentiles, and maintains code quality gates in SonarQube."
+    },
+    "senior": {
+      "expected_subskills": ["mutation_testing", "test_data_management", "chaos_engineering"],
+      "description": "Implements mutation testing pipelines to verify test quality, architects deterministic test data factories, and executes chaos experiments with Toxiproxy."
+    }
+  }
+}
