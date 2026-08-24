@@ -1,0 +1,255 @@
+{
+  "skill_id": "android_app_components",
+  "name": "Android Application Components & Process Lifecycle",
+  "category": "mobile_core",
+  "description": "Deep understanding and implementation of the core Android application building blocks (Activities, Fragments, Services, BroadcastReceivers, ContentProviders, WorkManager), Intent routing, Android IPC / Binder architecture, process priorities, Low Memory Killer (LMK) survival, and deep link verification.",
+  "subskills": [
+    {
+      "id": "activity_lifecycle_navigation",
+      "name": "Activity Lifecycle & State Restoration",
+      "description": "Managing Activity lifecycle callbacks (onCreate, onStart, onResume, onPause, onStop, onDestroy, onRestart), handling runtime configuration changes without state loss, saving UI state with onSaveInstanceState and SavedStateHandle, and using Activity Result API.",
+      "keywords": [
+        "Activity lifecycle",
+        "onSaveInstanceState",
+        "SavedStateHandle",
+        "configuration changes",
+        "ActivityResultLauncher",
+        "launchMode (standard/singleTop/singleTask/singleInstance)"
+      ]
+    },
+    {
+      "id": "fragment_lifecycle_manager",
+      "name": "Fragment Lifecycle & Backstack Transactions",
+      "description": "Mastering Fragment lifecycle states (viewLifecycleOwner vs Fragment lifecycle), FragmentManager backstack operations (add, replace, addToBackStack), Fragment Result API for inter-fragment communication, and avoiding fragment transaction state loss exceptions.",
+      "keywords": [
+        "Fragment lifecycle",
+        "viewLifecycleOwner",
+        "FragmentManager",
+        "FragmentTransaction",
+        "Fragment Result API",
+        "commitAllowingStateLoss",
+        "backstack navigation"
+      ]
+    },
+    {
+      "id": "broadcast_receivers_intents",
+      "name": "BroadcastReceivers & Intent Filter Resolution",
+      "description": "Registering static (AndroidManifest.xml) and dynamic (registerReceiver) BroadcastReceivers with exported flags (RECEIVER_EXPORTED vs RECEIVER_NOT_EXPORTED in Android 13+), intent filter matching rules, ordered broadcasts, and system broadcast handling.",
+      "keywords": [
+        "BroadcastReceiver",
+        "Intent filters",
+        "dynamic receiver registration",
+        "RECEIVER_EXPORTED",
+        "ordered broadcasts",
+        "system broadcasts",
+        "implicit vs explicit intents"
+      ]
+    },
+    {
+      "id": "service_architecture_types",
+      "name": "Foreground, Background & Bound Services",
+      "description": "Architecting Android Services — implementing Foreground Services with ongoing notifications and foregroundServiceType (Android 14+), Bound Services with IBinder and ServiceConnection, background execution limits, and startService vs bindService lifecycles.",
+      "keywords": [
+        "Foreground Service",
+        "foregroundServiceType (Android 14)",
+        "Bound Service",
+        "ServiceConnection",
+        "IBinder",
+        "background execution limits",
+        "ongoing notification"
+      ]
+    },
+    {
+      "id": "content_providers_sharing",
+      "name": "ContentProviders & Secure Data Sharing",
+      "description": "Implementing custom ContentProviders for structured data sharing across apps, UriMatcher for URI resolution, ContentResolver CRUD operations, FileProvider for secure file URI sharing (content:// vs file://), and granting temporary URI permissions.",
+      "keywords": [
+        "ContentProvider",
+        "ContentResolver",
+        "UriMatcher",
+        "FileProvider",
+        "content:// URI",
+        "grantUriPermission",
+        "cross-app data sharing"
+      ]
+    },
+    {
+      "id": "workmanager_background_jobs",
+      "name": "WorkManager & Guaranteed Deferrable Work",
+      "description": "Scheduling guaranteed background work with WorkManager, configuring PeriodicWorkRequest vs OneTimeWorkRequest, applying runtime Constraints (network, battery, charging), chaining sequential and parallel tasks, and implementing CoroutineWorker with ForegroundInfo.",
+      "keywords": [
+        "WorkManager",
+        "CoroutineWorker",
+        "PeriodicWorkRequest",
+        "OneTimeWorkRequest",
+        "WorkConstraints",
+        "chained work",
+        "expedited work / setExpedited",
+        "ForegroundInfo"
+      ]
+    },
+    {
+      "id": "ipc_aid_binder_architecture",
+      "name": "Android IPC & AIDL Binder Architecture",
+      "description": "Designing Inter-Process Communication (IPC) across separate Android processes using the Binder driver, writing Android Interface Definition Language (AIDL) files, handling Parcelable data marshaling, and managing dead object exceptions (DeadObjectException / DeathRecipient).",
+      "keywords": [
+        "Android IPC",
+        "AIDL (.aidl)",
+        "Binder driver",
+        "Parcelable marshaling",
+        "IBinder DeathRecipient",
+        "Messenger IPC",
+        "cross-process transactions"
+      ]
+    },
+    {
+      "id": "process_lifecycle_management",
+      "name": "Process Priority & Low Memory Killer (LMK)",
+      "description": "Understanding Android process lifecycle states (Foreground, Visible, Service, Cached), the Low Memory Killer (LMK) oom_adj scoring mechanism, designing memory-resilient applications that survive process death, and multi-process application architecture (:remote).",
+      "keywords": [
+        "Low Memory Killer (LMK)",
+        "oom_adj / oom_score_adj",
+        "process death survival",
+        "cached processes",
+        "multi-process architecture (android:process)",
+        "memory trims (onTrimMemory)"
+      ]
+    },
+    {
+      "id": "deep_linking_app_links",
+      "name": "Deep Links & Android App Links Verification",
+      "description": "Designing unified deep linking architectures — standard URI schemes vs verified Android App Links (Digital Asset Links with assetlinks.json), handling intent filter verification on Android 12+, backstack synthesis on deep link entry, and deep link routing engines.",
+      "keywords": [
+        "Android App Links",
+        "Digital Asset Links (assetlinks.json)",
+        "deep link verification",
+        "intent-filter autoVerify",
+        "TaskStackBuilder",
+        "deep link routing",
+        "custom URI schemes"
+      ]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "AndroidManifest.xml with component declarations, intent filters, and permissions",
+        "detection": "file_presence",
+        "pattern": "AndroidManifest\\.xml",
+        "strength": 0.8,
+        "maps_to": [
+          "android_app_components.activity_lifecycle_navigation",
+          "android_app_components.broadcast_receivers_intents",
+          "android_app_components.deep_linking_app_links"
+        ]
+      },
+      {
+        "signal": "WorkManager Worker or CoroutineWorker implementations",
+        "detection": "content_analysis",
+        "pattern": ": CoroutineWorker|: Worker|WorkManager\\.getInstance|PeriodicWorkRequestBuilder",
+        "strength": 0.8,
+        "maps_to": [
+          "android_app_components.workmanager_background_jobs"
+        ]
+      },
+      {
+        "signal": "Foreground Service or Bound Service implementation",
+        "detection": "content_analysis",
+        "pattern": "startForeground\\(|ServiceConnection|onBind\\(Intent\\)|foregroundServiceType",
+        "strength": 0.8,
+        "maps_to": [
+          "android_app_components.service_architecture_types"
+        ]
+      },
+      {
+        "signal": "AIDL file definition or Binder IPC implementation",
+        "detection": "file_presence",
+        "pattern": "\\.aidl$|Stub\\.asInterface|DeathRecipient",
+        "strength": 0.9,
+        "maps_to": [
+          "android_app_components.ipc_aid_binder_architecture"
+        ]
+      },
+      {
+        "signal": "Digital Asset Links configuration for Android App Links",
+        "detection": "content_analysis",
+        "pattern": "assetlinks\\.json|android:autoVerify=\"true\"|TaskStackBuilder",
+        "strength": 0.9,
+        "maps_to": [
+          "android_app_components.deep_linking_app_links"
+        ]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "Implemented background processing with WorkManager and Foreground Services",
+        "strength": 0.8,
+        "maps_to": [
+          "android_app_components.workmanager_background_jobs",
+          "android_app_components.service_architecture_types"
+        ]
+      },
+      {
+        "signal": "Architected deep linking navigation and verified Android App Links",
+        "strength": 0.8,
+        "maps_to": [
+          "android_app_components.deep_linking_app_links",
+          "android_app_components.activity_lifecycle_navigation"
+        ]
+      },
+      {
+        "signal": "Designed multi-process Android architecture or IPC services with AIDL",
+        "strength": 0.9,
+        "maps_to": [
+          "android_app_components.ipc_aid_binder_architecture",
+          "android_app_components.process_lifecycle_management"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Android SDK, WorkManager, or App Components endorsed",
+        "strength": 0.5,
+        "maps_to": [
+          "android_app_components.activity_lifecycle_navigation",
+          "android_app_components.workmanager_background_jobs"
+        ]
+      },
+      {
+        "signal": "Job experience describing Android component lifecycles, background services, or IPC architecture",
+        "strength": 0.8,
+        "maps_to": [
+          "android_app_components.service_architecture_types",
+          "android_app_components.process_lifecycle_management",
+          "android_app_components.fragment_lifecycle_manager"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "activity_lifecycle_navigation",
+        "fragment_lifecycle_manager",
+        "broadcast_receivers_intents"
+      ],
+      "description": "Manages Activity and Fragment lifecycles with state restoration, handles backstack transactions, and registers broadcast receivers."
+    },
+    "mid": {
+      "expected_subskills": [
+        "service_architecture_types",
+        "content_providers_sharing",
+        "workmanager_background_jobs"
+      ],
+      "description": "Builds foreground services meeting modern Android constraints, shares data via ContentProviders/FileProvider, and schedules background tasks with WorkManager."
+    },
+    "senior": {
+      "expected_subskills": [
+        "ipc_aid_binder_architecture",
+        "process_lifecycle_management",
+        "deep_linking_app_links"
+      ],
+      "description": "Architects multi-process IPC using AIDL/Binder, engineers applications for LMK process death survival, and implements verified Android App Links routing."
+    }
+  }
+}

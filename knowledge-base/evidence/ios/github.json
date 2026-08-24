@@ -1,0 +1,135 @@
+{
+  "source_id": "github",
+  "name": "GitHub Repository Analysis - iOS Developer",
+  "description": "Global parsing rules for iOS repositories across Swift and Objective-C codebases. NOTE: Specific evidence mappings (regex patterns and maps_to composite keys) are stored within individual skill files under evidence.github, NOT here. The validate_composite_keys.py script scans both locations to verify coverage.",
+  "preprocessing_pipeline": {
+    "steps": [
+      {
+        "step": 1,
+        "name": "file_tree_scan",
+        "target_files": [
+          {
+            "pattern": "Podfile|Podfile\\.lock|Package\\.swift|Cartfile|Cartfile\\.lock",
+            "skills": [
+              "ios_architecture_patterns",
+              "ios_data_persistence_networking",
+              "ios_reactive_concurrency"
+            ],
+            "priority": "high",
+            "notes": "Dependency management manifests (SPM Package.swift, CocoaPods Podfile, Carthage)"
+          },
+          {
+            "pattern": "\\.xcodeproj|\\.xcworkspace|\\.xcconfig$|Info\\.plist",
+            "skills": [
+              "ios_app_lifecycle_xcode",
+              "ios_platform_quality_distribution"
+            ],
+            "priority": "high",
+            "notes": "Xcode project configuration, build schemes, configurations, and privacy entitlements in Info.plist"
+          },
+          {
+            "pattern": "PrivacyInfo\\.xcprivacy",
+            "skills": [
+              "ios_app_lifecycle_xcode"
+            ],
+            "priority": "high",
+            "notes": "Apple Privacy Manifest for Required Reason API compliance"
+          },
+          {
+            "pattern": "\\.swift$|\\.m$|\\.h$",
+            "skills": [
+              "ios_fundamentals_swift",
+              "ios_uikit_swiftui",
+              "ios_architecture_patterns",
+              "ios_reactive_concurrency",
+              "ios_data_persistence_networking"
+            ],
+            "priority": "high",
+            "notes": "Core iOS source code analyzed for SwiftUI, UIKit, Swift Concurrency, Combine, Core Data, and SwiftData"
+          },
+          {
+            "pattern": "Fastfile|Matchfile|Appfile|Pluginfile",
+            "skills": [
+              "ios_platform_quality_distribution"
+            ],
+            "priority": "high",
+            "notes": "Fastlane CI/CD automation and code signing configuration"
+          },
+          {
+            "pattern": "*Tests\\.swift|*UITests\\.swift|*Spec\\.swift",
+            "skills": [
+              "ios_platform_quality_distribution"
+            ],
+            "priority": "high",
+            "notes": "XCTest unit tests, URLProtocol mocks, and XCUITest automated UI test suites"
+          }
+        ]
+      },
+      {
+        "step": 2,
+        "name": "dependency_extraction",
+        "source_manifests": [
+          "Package.swift",
+          "Podfile",
+          "Podfile.lock",
+          "Cartfile"
+        ],
+        "relevant_dependencies": {
+          "ios_data_persistence_networking": [
+            "Alamofire",
+            "Moya",
+            "KeychainAccess",
+            "GRDB",
+            "RealmSwift"
+          ],
+          "ios_architecture_patterns": [
+            "swift-composable-architecture",
+            "Factory",
+            "Swinject",
+            "Resolver"
+          ],
+          "ios_uikit_swiftui": [
+            "SnapKit",
+            "Kingfisher",
+            "SDWebImageSwiftUI",
+            "Lottie"
+          ],
+          "ios_reactive_concurrency": [
+            "RxSwift",
+            "RxCocoa",
+            "CombineExt",
+            "AsyncAlgorithms"
+          ],
+          "ios_platform_quality_distribution": [
+            "Quick",
+            "Nimble",
+            "SnapshotTesting",
+            "FirebaseCrashlytics"
+          ]
+        }
+      },
+      {
+        "step": 3,
+        "name": "config_file_scan",
+        "target_configs": [
+          "Package.swift",
+          "Podfile",
+          "Info.plist",
+          "PrivacyInfo.xcprivacy",
+          "fastlane/Fastfile",
+          "fastlane/Matchfile",
+          "apple-app-site-association"
+        ]
+      }
+    ]
+  },
+  "ai_analysis_instructions": {
+    "tasks": [
+      "Map detected signals to composite keys ({skill_id}.{subskill_id}) using patterns defined in ios skill files",
+      "Inspect Package.swift and Podfile dependencies for modern iOS frameworks (TCA, Alamofire, RxSwift, KeychainAccess)",
+      "Check UI architecture — presence of SwiftUI with Observable macro vs UIKit with programmatic AutoLayout / Diffable Data Sources",
+      "Evaluate concurrency safety — verify usage of modern Swift Concurrency (async/await, Actors, @MainActor) vs legacy GCD",
+      "Assess test coverage — presence of XCTest unit tests, URLProtocol network mocking, and XCUITest UI tests"
+    ]
+  }
+}

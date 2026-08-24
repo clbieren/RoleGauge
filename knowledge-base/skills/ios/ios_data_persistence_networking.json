@@ -1,0 +1,255 @@
+{
+  "skill_id": "ios_data_persistence_networking",
+  "name": "iOS Data Persistence, Offline Sync & Secure Networking",
+  "category": "mobile_core",
+  "description": "Client-side data persistence, offline synchronization, and secure RESTful networking in iOS applications. IMPORTANT DISTINCTION: Mobil networking ve credential saklama (Retrofit/URLSession, Keychain/DataStore) istemci tarafında API tüketimi ve güvenli yerel depolamadır; Backend'in be_api_design/be_auth_security'si sunucu tarafında API sunma ve credential doğrulamadır — farklı taraflar, farklı sorumluluklar. Covers UserDefaults, FileManager sandbox, Keychain Services, Core Data (stack, contexts, migrations, NSFetchedResultsController), SwiftData (@Model, @Query), URLSession / Alamofire networking, offline sync engines, and SSL Certificate Pinning.",
+  "subskills": [
+    {
+      "id": "userdefaults_filemanager",
+      "name": "UserDefaults & Sandbox FileManager",
+      "description": "Managing simple local data and file storage — UserDefaults (reading/writing primitive values, custom Codable encoding, @AppStorage property wrapper), and FileManager sandbox navigation (Documents, Caches, Application Support, Temporary directories) with atomic file writes.",
+      "keywords": [
+        "UserDefaults",
+        "@AppStorage",
+        "FileManager",
+        "App Sandbox directories (Documents/Caches)",
+        "atomic file writing",
+        "Data.write(to:options: .atomic)"
+      ]
+    },
+    {
+      "id": "urlsession_codable_networking",
+      "name": "URLSession & Codable Network Consumption",
+      "description": "Consuming REST APIs using Apple native URLSession — URLRequest, URLSessionConfiguration (default, ephemeral, background), Decodable/Encodable (Codable) JSON parsing with JSONDecoder (dateDecodingStrategy, keyDecodingStrategy), and HTTP status code handling.",
+      "keywords": [
+        "URLSession dataTask",
+        "URLRequest",
+        "Codable (Decodable / Encodable)",
+        "JSONDecoder / JSONEncoder",
+        "keyDecodingStrategy (.convertFromSnakeCase)",
+        "HTTPURLResponse status validation"
+      ]
+    },
+    {
+      "id": "keychain_secure_storage",
+      "name": "Keychain Services & Secure Token Storage",
+      "description": "Securing sensitive user credentials and cryptographic keys using iOS Keychain Services API — SecItemAdd, SecItemCopyMatching, SecItemUpdate, SecItemDelete, configuring accessibility flags (kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly), and Keychain wrapper architectures.",
+      "keywords": [
+        "Keychain Services API",
+        "SecItemAdd / SecItemCopyMatching",
+        "kSecAttrAccessible flags",
+        "secure token storage",
+        "Hardware Secure Enclave",
+        "Keychain wrapper class"
+      ]
+    },
+    {
+      "id": "core_data_fundamentals",
+      "name": "Core Data Stack & NSFetchedResultsController",
+      "description": "Managing relational persistence with Core Data — NSPersistentContainer, NSManagedObjectModel (.xcdatamodeld), NSManagedObject, NSManagedObjectContext CRUD operations, NSPredicate / NSSortDescriptor queries, and NSFetchedResultsController for automatic UI list updates.",
+      "keywords": [
+        "Core Data",
+        "NSPersistentContainer",
+        "NSManagedObjectContext",
+        "NSFetchRequest",
+        "NSPredicate",
+        "NSSortDescriptor",
+        "NSFetchedResultsController",
+        "Core Data CRUD"
+      ]
+    },
+    {
+      "id": "swiftdata_modern_persistence",
+      "name": "SwiftData Modern Declarative Persistence",
+      "description": "Implementing modern Apple persistence using SwiftData (iOS 17+) — @Model macro for schema definition, ModelContainer, ModelContext (insert, delete, save), @Query macro in SwiftUI with Predicate and FetchDescriptor, relationships (@Relationship), and SwiftData migrations.",
+      "keywords": [
+        "SwiftData (iOS 17+)",
+        "@Model macro",
+        "ModelContainer / ModelContext",
+        "@Query in SwiftUI",
+        "#Predicate / FetchDescriptor",
+        "@Relationship (cascade/nullify)",
+        "SchemaMigrationPlan"
+      ]
+    },
+    {
+      "id": "alamofire_networking_layer",
+      "name": "Alamofire Client & Interceptors Architecture",
+      "description": "Building networking layers with Alamofire — Session configuration, RequestAdapter (injecting auth tokens), RequestRetrier (retry policies with backoff), EventMonitor for logging, multipart form-data upload, and response validation.",
+      "keywords": [
+        "Alamofire Session",
+        "RequestAdapter",
+        "RequestRetrier (RetryResult)",
+        "RequestInterceptor",
+        "multipart upload",
+        "responseDecodable",
+        "AF.request"
+      ]
+    },
+    {
+      "id": "core_data_multithreading_migrations",
+      "name": "Core Data Multithreading & Schema Migrations",
+      "description": "Architecting high-scale Core Data systems — background context concurrency with performBackgroundTask / context.perform, parent-child context hierarchies, merge policies (NSMergeByPropertyObjectTrumpMergePolicy), lightweight vs heavyweight migrations (mapping models / NSEntityMigrationPolicy).",
+      "keywords": [
+        "Core Data background context",
+        "performBackgroundTask",
+        "context.perform concurrency",
+        "NSMergePolicy",
+        "Lightweight migrations",
+        "Heavyweight schema migration (Mapping Model)",
+        "NSEntityMigrationPolicy"
+      ]
+    },
+    {
+      "id": "offline_caching_sync_engine",
+      "name": "Offline Caching & Data Sync Engine",
+      "description": "Architecting offline-first iOS applications — local database (CoreData/SwiftData) as Single Source of Truth, optimistic UI state updates, offline mutation queue persistence, background sync with server, and conflict resolution strategies (timestamp / vector clocks).",
+      "keywords": [
+        "Offline-first architecture iOS",
+        "offline sync engine",
+        "optimistic UI updates",
+        "mutation queue",
+        "conflict resolution",
+        "local database Single Source of Truth",
+        "sync state tracking"
+      ]
+    },
+    {
+      "id": "network_security_ssl_pinning",
+      "name": "SSL Pinning, ATS & Network Security",
+      "description": "Hardening iOS network security — implementing SSL / Certificate Pinning via URLSessionDelegate (serverTrust authentication challenges) and Alamofire ServerTrustManager, verifying SHA-256 public key hashes, configuring App Transport Security (ATS) exceptions, and TLS 1.3 verification.",
+      "keywords": [
+        "SSL / Certificate Pinning",
+        "URLSessionDelegate (didReceive challenge)",
+        "ServerTrustManager Alamofire",
+        "Public Key Pinning (SHA-256 hash)",
+        "App Transport Security (ATS)",
+        "MitM attack prevention"
+      ]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "Core Data stack or SwiftData model implementation",
+        "detection": "content_analysis",
+        "pattern": "NSPersistentContainer|@Model class|ModelContainer|NSFetchRequest|@Query var",
+        "strength": 0.8,
+        "maps_to": [
+          "ios_data_persistence_networking.core_data_fundamentals",
+          "ios_data_persistence_networking.swiftdata_modern_persistence",
+          "ios_data_persistence_networking.core_data_multithreading_migrations"
+        ]
+      },
+      {
+        "signal": "URLSession Codable networking or Alamofire request handling",
+        "detection": "content_analysis",
+        "pattern": "URLSession\\.shared|JSONDecoder\\(\\)|AF\\.request|RequestInterceptor|URLRequest\\(",
+        "strength": 0.8,
+        "maps_to": [
+          "ios_data_persistence_networking.urlsession_codable_networking",
+          "ios_data_persistence_networking.alamofire_networking_layer"
+        ]
+      },
+      {
+        "signal": "Keychain Services API integration or wrapper",
+        "detection": "content_analysis",
+        "pattern": "SecItemAdd|SecItemCopyMatching|kSecClassGenericPassword|kSecAttrAccessible",
+        "strength": 0.9,
+        "maps_to": [
+          "ios_data_persistence_networking.keychain_secure_storage"
+        ]
+      },
+      {
+        "signal": "SSL Certificate Pinning implementation in URLSession or Alamofire",
+        "detection": "content_analysis",
+        "pattern": "ServerTrustEvaluating|PinnedCertificatesTrustEvaluator|SecTrustEvaluateAsyncWithError|serverTrust",
+        "strength": 0.9,
+        "maps_to": [
+          "ios_data_persistence_networking.network_security_ssl_pinning"
+        ]
+      },
+      {
+        "signal": "UserDefaults or FileManager sandbox operations",
+        "detection": "content_analysis",
+        "pattern": "UserDefaults\\.standard|@AppStorage|FileManager\\.default|urls\\(for: \\.documentDirectory",
+        "strength": 0.8,
+        "maps_to": [
+          "ios_data_persistence_networking.userdefaults_filemanager"
+        ]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "Architected offline-first iOS applications with Core Data / SwiftData and URLSession",
+        "strength": 0.8,
+        "maps_to": [
+          "ios_data_persistence_networking.core_data_fundamentals",
+          "ios_data_persistence_networking.offline_caching_sync_engine",
+          "ios_data_persistence_networking.urlsession_codable_networking"
+        ]
+      },
+      {
+        "signal": "Implemented secure credential storage with Keychain and SSL Certificate Pinning",
+        "strength": 0.9,
+        "maps_to": [
+          "ios_data_persistence_networking.keychain_secure_storage",
+          "ios_data_persistence_networking.network_security_ssl_pinning"
+        ]
+      },
+      {
+        "signal": "Managed multi-threaded Core Data background contexts and complex schema migrations",
+        "strength": 0.9,
+        "maps_to": [
+          "ios_data_persistence_networking.core_data_multithreading_migrations",
+          "ios_data_persistence_networking.swiftdata_modern_persistence"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Core Data, SwiftData, or iOS Networking endorsed",
+        "strength": 0.5,
+        "maps_to": [
+          "ios_data_persistence_networking.core_data_fundamentals",
+          "ios_data_persistence_networking.urlsession_codable_networking"
+        ]
+      },
+      {
+        "signal": "Job experience describing offline sync engines, Core Data migrations, or Keychain security",
+        "strength": 0.8,
+        "maps_to": [
+          "ios_data_persistence_networking.offline_caching_sync_engine",
+          "ios_data_persistence_networking.core_data_multithreading_migrations",
+          "ios_data_persistence_networking.keychain_secure_storage"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "userdefaults_filemanager",
+        "urlsession_codable_networking",
+        "keychain_secure_storage"
+      ],
+      "description": "Stores user settings with UserDefaults/FileManager, consumes APIs with URLSession and Codable, and secures tokens with Keychain."
+    },
+    "mid": {
+      "expected_subskills": [
+        "core_data_fundamentals",
+        "swiftdata_modern_persistence",
+        "alamofire_networking_layer"
+      ],
+      "description": "Models relational storage with Core Data and SwiftData, and builds networking pipelines with Alamofire interceptors."
+    },
+    "senior": {
+      "expected_subskills": [
+        "core_data_multithreading_migrations",
+        "offline_caching_sync_engine",
+        "network_security_ssl_pinning"
+      ],
+      "description": "Architects background context Core Data migrations, engineers offline sync engines, and enforces SSL certificate pinning."
+    }
+  }
+}

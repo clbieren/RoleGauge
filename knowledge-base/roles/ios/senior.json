@@ -1,0 +1,80 @@
+{
+  "role_id": "ios_developer",
+  "level": "senior",
+  "title": "Senior iOS Developer",
+  "description": "Senior iOS engineer and mobile platform architect responsible for Swift Package Manager (SPM) modularization, Micro-Apps architectures, custom Swift Macros, Core Data background migrations and offline sync engines, low-level Swift memory layout optimization, Xcode Instruments profiling (Time Profiler, Leaks), Fastlane CI/CD automation with Match code signing, MetricKit diagnostics, and Privacy Manifest compliance.",
+  "experience_range": "5+ years",
+  "skills": [
+    {
+      "skill_id": "ios_architecture_patterns",
+      "importance": 0.95,
+      "rationale": "Architecting SPM multi-package modularity, building Micro-Apps with isolated demo targets, and designing state machines."
+    },
+    {
+      "skill_id": "ios_uikit_swiftui",
+      "importance": 0.95,
+      "rationale": "Authoring Core Animation/UIViewPropertyAnimator transitions, rendering custom Core Graphics layers, and enforcing VoiceOver accessibility."
+    },
+    {
+      "skill_id": "ios_reactive_concurrency",
+      "importance": 0.9,
+      "rationale": "Composing advanced Combine streams, debugging data races with Thread Sanitizer, and leading RxSwift-to-Modern-Concurrency migrations."
+    },
+    {
+      "skill_id": "ios_platform_quality_distribution",
+      "importance": 0.9,
+      "rationale": "Automating Fastlane CI/CD with Match code signing, monitoring MetricKit diagnostics, and optimizing binary size via App Thinning."
+    },
+    {
+      "skill_id": "ios_data_persistence_networking",
+      "importance": 0.85,
+      "rationale": "Architecting background context Core Data migrations, engineering offline sync engines, and enforcing SSL certificate pinning."
+    },
+    {
+      "skill_id": "ios_fundamentals_swift",
+      "importance": 0.85,
+      "rationale": "Authoring custom Swift Macros and property wrappers, analyzing low-level Swift memory layout, and bridging with Objective-C/C."
+    },
+    {
+      "skill_id": "ios_app_lifecycle_xcode",
+      "importance": 0.85,
+      "rationale": "Profiling apps with Xcode Instruments, architecting multi-scheme xcconfig setups, and enforcing Privacy Manifests."
+    }
+  ],
+  "scoring": {
+    "method": "weighted_average",
+    "description": "Each skill score is multiplied by its importance weight. Final score is sum divided by sum of weights.",
+    "thresholds": {
+      "not_ready": {
+        "min": 0.0,
+        "max": 0.3,
+        "label": "Not Ready",
+        "description": "Significant gaps in SPM modularization, performance profiling, or iOS security architectures."
+      },
+      "developing": {
+        "min": 0.3,
+        "max": 0.5,
+        "label": "Developing",
+        "description": "Solid mid-level feature delivery, but lacks experience in modularization strategies, Instruments profiling, and CI/CD pipelines."
+      },
+      "approaching": {
+        "min": 0.5,
+        "max": 0.7,
+        "label": "Approaching Ready",
+        "description": "Strong architectural capabilities; refining expertise in Swift Macros, MetricKit telemetry, and advanced Fastlane Match signing."
+      },
+      "ready": {
+        "min": 0.7,
+        "max": 0.85,
+        "label": "Ready",
+        "description": "Meets all senior expectations: architects scalable SPM modular apps, mentors engineers, enforces performance standards, and automates CI/CD."
+      },
+      "exceeds": {
+        "min": 0.85,
+        "max": 1.0,
+        "label": "Exceeds Expectations",
+        "description": "Exceeds senior expectations: staff/principal mobile leadership driving cross-platform strategy and enterprise iOS infrastructure."
+      }
+    }
+  }
+}

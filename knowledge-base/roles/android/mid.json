@@ -1,0 +1,80 @@
+{
+  "role_id": "android_developer",
+  "level": "mid",
+  "title": "Mid-level Android Developer",
+  "description": "Mid-level Android engineer capable of independently architecting complex features using Clean Architecture and MVI, implementing offline-first sync engines, managing foreground services and WorkManager tasks, optimizing Compose side-effects, and building automated Espresso/Compose test suites.",
+  "experience_range": "2-5 years",
+  "skills": [
+    {
+      "skill_id": "android_architecture_patterns",
+      "importance": 0.95,
+      "rationale": "Structuring domain layers with Clean Architecture UseCases, implementing MVI unidirectional data flow, and managing complex Hilt component scopes."
+    },
+    {
+      "skill_id": "android_data_persistence",
+      "importance": 0.95,
+      "rationale": "Managing Room relational models and migrations, architecting offline-first sync repositories, and securing credentials in Android KeyStore."
+    },
+    {
+      "skill_id": "android_concurrency_async",
+      "importance": 0.9,
+      "rationale": "Exposing UI state with StateFlow/SharedFlow, combining complex reactive streams, and coordinating concurrency with Mutex and Channels."
+    },
+    {
+      "skill_id": "android_ui_layouts",
+      "importance": 0.9,
+      "rationale": "Handling Compose side-effects with LaunchedEffect/DisposableEffect, building custom 2D Canvas views, and managing Lazy collections."
+    },
+    {
+      "skill_id": "android_app_components",
+      "importance": 0.85,
+      "rationale": "Implementing background processing with WorkManager, designing foreground services under modern Android restrictions, and FileProvider sharing."
+    },
+    {
+      "skill_id": "android_fundamentals_kotlin",
+      "importance": 0.85,
+      "rationale": "Leveraging generics variance, creating custom property delegates, and maintaining type-safe Gradle build scripts."
+    },
+    {
+      "skill_id": "android_platform_services_quality",
+      "importance": 0.8,
+      "rationale": "Writing automated UI tests with Espresso/Compose, integrating CameraX and location services, and diagnosing memory leaks with LeakCanary."
+    }
+  ],
+  "scoring": {
+    "method": "weighted_average",
+    "description": "Each skill score is multiplied by its importance weight. Final score is sum divided by sum of weights.",
+    "thresholds": {
+      "not_ready": {
+        "min": 0.0,
+        "max": 0.3,
+        "label": "Not Ready",
+        "description": "Significant gaps in Android architecture, reactive Flow pipelines, or background processing."
+      },
+      "developing": {
+        "min": 0.3,
+        "max": 0.5,
+        "label": "Developing",
+        "description": "Competent with basic MVVM, but struggles with offline-first synchronization, complex Flow transformations, or custom View drawing."
+      },
+      "approaching": {
+        "min": 0.5,
+        "max": 0.7,
+        "label": "Approaching Ready",
+        "description": "Strong systems grasp, independent feature delivery, solid Clean Architecture implementation, and proactive memory leak hunting."
+      },
+      "ready": {
+        "min": 0.7,
+        "max": 0.85,
+        "label": "Ready",
+        "description": "Meets all mid-level expectations: delivers offline-first apps, designs clean MVI/Clean Architecture layers, and debugs complex concurrency."
+      },
+      "exceeds": {
+        "min": 0.85,
+        "max": 1.0,
+        "label": "Exceeds Expectations",
+        "description": "Exceeds mid-level expectations with advanced multi-module architecture, KMP contributions, and performance profiling expertise."
+      }
+    }
+  }
+}

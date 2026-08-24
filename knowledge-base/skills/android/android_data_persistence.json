@@ -1,0 +1,254 @@
+{
+  "skill_id": "android_data_persistence",
+  "name": "Android Data Persistence, Offline Sync & Networking",
+  "category": "mobile_core",
+  "description": "Client-side data persistence, offline synchronization, and RESTful API consumption in Android applications. IMPORTANT DISTINCTION: Mobil networking ve credential saklama (Retrofit/URLSession, Keychain/DataStore) istemci tarafında API tüketimi ve güvenli yerel depolamadır; Backend'in be_api_design/be_auth_security'si sunucu tarafında API sunma ve credential doğrulamadır — farklı taraflar, farklı sorumluluklar. Covers DataStore (Preferences & Proto), Room ORM (entities, DAOs, migrations, Paging 3), Retrofit/OkHttp client consumption, Android KeyStore encryption, and SQLite query optimization.",
+  "subskills": [
+    {
+      "id": "datastore_preferences_preferences",
+      "name": "Jetpack DataStore (Preferences & Proto)",
+      "description": "Replacing SharedPreferences with Jetpack DataStore — implementing Preferences DataStore for simple key-value pairs and Proto DataStore with Protocol Buffers for type-safe structured persistence, handling migration from SharedPreferences, and observing updates via Flow.",
+      "keywords": [
+        "Preferences DataStore",
+        "Proto DataStore",
+        "SharedPreferences migration",
+        "Protocol Buffers DataStore",
+        "DataStore Flow",
+        "edit { preferences -> }"
+      ]
+    },
+    {
+      "id": "room_database_fundamentals",
+      "name": "Room Database & DAO Fundamentals",
+      "description": "Implementing local relational storage with Android Jetpack Room ORM — modeling @Entity tables, writing Data Access Objects (@Dao) with type-safe @Query / @Insert / @Update / @Delete, primary keys, autoGenerate, TypeConverters, and returning Flow<List<T>>.",
+      "keywords": [
+        "Room ORM",
+        "@Entity",
+        "@Dao",
+        "@Database",
+        "@TypeConverter",
+        "Room with Flow",
+        "@Query SQLite",
+        "Room database builder"
+      ]
+    },
+    {
+      "id": "retrofit_networking_client",
+      "name": "Retrofit Client & HTTP Consumption",
+      "description": "Consuming REST APIs on Android using Retrofit2 and OkHttp — configuring BaseUrl, ConverterFactory (Kotlinx.serialization, Moshi, Gson), OkHttp logging/auth interceptors, defining GET/POST/PUT endpoints with suspend functions, and HTTP error handling.",
+      "keywords": [
+        "Retrofit2",
+        "OkHttp Interceptors",
+        "Kotlinx.serialization",
+        "Moshi",
+        "HttpLoggingInterceptor",
+        "AuthInterceptor",
+        "REST API consumption Android"
+      ]
+    },
+    {
+      "id": "room_relations_migrations",
+      "name": "Room Relations & Database Migrations",
+      "description": "Modeling complex relational data in Room using @Embedded, @Relation (one-to-one, one-to-many, many-to-many via junction entities), writing automated and manual database Migrations (Migration(1, 2)), and testing database migrations with MigrationTestHelper.",
+      "keywords": [
+        "Room @Relation",
+        "Room @Embedded",
+        "Junction table Room",
+        "Room Migrations",
+        "MigrationTestHelper",
+        "AutoMigration",
+        "foreignKeys constraint"
+      ]
+    },
+    {
+      "id": "offline_first_synchronization",
+      "name": "Offline-First Repository & Sync Engine",
+      "description": "Architecting offline-first Android applications — Room as the single source of truth, synchronizing remote API data to local database, conflict resolution policies (server-wins vs client-wins), optimistic UI updates, and handling offline sync queues.",
+      "keywords": [
+        "offline-first architecture",
+        "offline sync engine",
+        "conflict resolution",
+        "optimistic UI updates",
+        "NetworkBoundResource pattern",
+        "sync queue"
+      ]
+    },
+    {
+      "id": "encrypted_storage_keystore",
+      "name": "Android KeyStore & Encrypted Data Storage",
+      "description": "Securing sensitive client data using Android KeyStore system for hardware-backed cryptographic key generation (AES/GCM, RSA), utilizing EncryptedSharedPreferences and EncryptedFile (Jetpack Security / crypto library), and integrating BiometricPrompt crypto authentication.",
+      "keywords": [
+        "Android KeyStore",
+        "EncryptedSharedPreferences",
+        "EncryptedFile",
+        "Jetpack Security",
+        "hardware-backed keys (TEE/StrongBox)",
+        "BiometricPrompt CryptoObject",
+        "AES-256 GCM"
+      ]
+    },
+    {
+      "id": "room_paging3_integration",
+      "name": "Room Paging 3 & RemoteMediator",
+      "description": "Implementing infinite scrolling lists with Paging 3 and Room database — authoring custom RemoteMediator to orchestrate network pagination and local database caching, managing PagingSource, handling boundary conditions (LoadType.REFRESH, PREPEND, APPEND).",
+      "keywords": [
+        "Paging 3 library",
+        "RemoteMediator",
+        "PagingSource",
+        "PagingData Flow",
+        "LoadState handling",
+        "database + network pagination",
+        "RemoteKeys entity"
+      ]
+    },
+    {
+      "id": "sqlite_advanced_indexing",
+      "name": "SQLite Optimization, Indexing & FTS5",
+      "description": "Optimizing SQLite database performance in Room — designing composite indexes (@Index), configuring Write-Ahead Logging (WAL mode), utilizing SQLite Full-Text Search (FTS4 / FTS5) with @Fts4/@Fts5 entities, analyzing SQLite EXPLAIN QUERY PLAN, and transaction batching.",
+      "keywords": [
+        "Room @Index",
+        "SQLite EXPLAIN QUERY PLAN",
+        "Write-Ahead Logging (WAL)",
+        "Full-Text Search (@Fts5)",
+        "SQLite composite index",
+        "transaction batching (@Transaction)"
+      ]
+    },
+    {
+      "id": "network_resilience_caching",
+      "name": "Network Resilience, Caching & Certificate Pinning",
+      "description": "Engineering client-side network resilience — configuring OkHttp response Cache with Cache-Control directives, implementing exponential retry interceptors with jitter, certificate pinning via CertificatePinner to prevent MitM attacks, and handling network bandwidth adaptation.",
+      "keywords": [
+        "OkHttp Cache-Control",
+        "CertificatePinner / SSL Pinning",
+        "exponential backoff interceptor",
+        "network resilience",
+        "MitM protection",
+        "stale-while-revalidate client"
+      ]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "Room Database entity, DAO, and database builder code",
+        "detection": "content_analysis",
+        "pattern": "@Database\\(entities =|@Dao|@Entity|Room\\.databaseBuilder",
+        "strength": 0.8,
+        "maps_to": [
+          "android_data_persistence.room_database_fundamentals",
+          "android_data_persistence.room_relations_migrations"
+        ]
+      },
+      {
+        "signal": "Retrofit API interface and OkHttp client configuration",
+        "detection": "content_analysis",
+        "pattern": "Retrofit\\.Builder|@GET\\(\"|@POST\\(\"|OkHttpClient\\.Builder|addInterceptor",
+        "strength": 0.8,
+        "maps_to": [
+          "android_data_persistence.retrofit_networking_client",
+          "android_data_persistence.network_resilience_caching"
+        ]
+      },
+      {
+        "signal": "Jetpack DataStore Preferences or Proto implementation",
+        "detection": "content_analysis",
+        "pattern": "preferencesDataStore|ProtoDataStore|DataStore<Preferences>|edit \\{ prefs ->",
+        "strength": 0.8,
+        "maps_to": [
+          "android_data_persistence.datastore_preferences_preferences"
+        ]
+      },
+      {
+        "signal": "Paging 3 RemoteMediator implementation",
+        "detection": "content_analysis",
+        "pattern": ": RemoteMediator<.*,.*>|LoadType\\.REFRESH|PagingData",
+        "strength": 0.9,
+        "maps_to": [
+          "android_data_persistence.room_paging3_integration"
+        ]
+      },
+      {
+        "signal": "Android KeyStore or EncryptedSharedPreferences implementation",
+        "detection": "content_analysis",
+        "pattern": "KeyStore\\.getInstance\\(\"AndroidKeyStore\"\\)|EncryptedSharedPreferences|MasterKey\\.Builder",
+        "strength": 0.9,
+        "maps_to": [
+          "android_data_persistence.encrypted_storage_keystore"
+        ]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "Architected offline-first Android apps using Room ORM, Retrofit, and Paging 3",
+        "strength": 0.8,
+        "maps_to": [
+          "android_data_persistence.room_database_fundamentals",
+          "android_data_persistence.offline_first_synchronization",
+          "android_data_persistence.room_paging3_integration"
+        ]
+      },
+      {
+        "signal": "Implemented secure credential storage with Android KeyStore and SSL Pinning",
+        "strength": 0.9,
+        "maps_to": [
+          "android_data_persistence.encrypted_storage_keystore",
+          "android_data_persistence.network_resilience_caching"
+        ]
+      },
+      {
+        "signal": "Optimized local SQLite database with FTS5 search and automated Room migrations",
+        "strength": 0.9,
+        "maps_to": [
+          "android_data_persistence.sqlite_advanced_indexing",
+          "android_data_persistence.room_relations_migrations"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Room Database, Retrofit, or Android Storage endorsed",
+        "strength": 0.5,
+        "maps_to": [
+          "android_data_persistence.room_database_fundamentals",
+          "android_data_persistence.retrofit_networking_client"
+        ]
+      },
+      {
+        "signal": "Job experience describing offline sync engines, Room migrations, or KeyStore encryption",
+        "strength": 0.8,
+        "maps_to": [
+          "android_data_persistence.offline_first_synchronization",
+          "android_data_persistence.encrypted_storage_keystore",
+          "android_data_persistence.room_paging3_integration"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "datastore_preferences_preferences",
+        "room_database_fundamentals",
+        "retrofit_networking_client"
+      ],
+      "description": "Stores key-value data with DataStore, models local Room tables with basic DAOs, and consumes REST APIs using Retrofit."
+    },
+    "mid": {
+      "expected_subskills": [
+        "room_relations_migrations",
+        "offline_first_synchronization",
+        "encrypted_storage_keystore"
+      ],
+      "description": "Handles Room relational queries and schema migrations, builds offline-first sync repositories, and secures credentials using KeyStore."
+    },
+    "senior": {
+      "expected_subskills": [
+        "room_paging3_integration",
+        "sqlite_advanced_indexing",
+        "network_resilience_caching"
+      ],
+      "description": "Implements Paging 3 RemoteMediator for local+remote pagination, tunes SQLite indexes and FTS5 search, and enforces SSL pinning with retry resilience."
+    }
+  }
+}

@@ -1,0 +1,144 @@
+{
+  "skill_id": "api_alternative_styles",
+  "name": "Alternative API Styles & Protocol Governance",
+  "category": "api_design_core",
+  "description": "Governing the selection, standardization, and federation of non-REST API styles across the organization — GraphQL, gRPC, AsyncAPI, WebSocket, and streaming protocols. IMPORTANT DISTINCTION: Backend's be_api_design.graphql_apis covers writing resolvers, DataLoader batching, and SDL schemas for a single service (implementation); Backend's be_api_design.grpc_protobuf covers writing .proto files and streaming RPC handlers (implementation). API Design's api_alternative_styles covers deciding WHEN each protocol is appropriate organization-wide, governing GraphQL schema federation across teams, managing Protobuf schema registries, and authoring AsyncAPI event-driven specifications as platform standards (strategic/architectural decision-making).",
+  "subskills": [
+    {
+      "id": "graphql_schema_governance",
+      "name": "GraphQL Schema Governance & Standards",
+      "description": "Governing GraphQL schema design across teams — naming conventions, nullable vs non-nullable field policies, pagination standards (Relay Connection spec), query depth and complexity limits, and schema review processes before merging to the federated graph.",
+      "keywords": ["GraphQL governance", "schema naming conventions", "Relay Connection spec", "query depth limit", "complexity scoring", "schema review process", "GraphQL standards"]
+    },
+    {
+      "id": "grpc_service_contracts",
+      "name": "gRPC Service Contract Standards",
+      "description": "Establishing organization-wide gRPC service contract conventions — .proto file structure standards, package naming, field numbering policies, service method naming, backward-compatible Protobuf evolution rules, and gRPC status code mapping governance.",
+      "keywords": ["gRPC contract standards", "Protobuf style guide", "field numbering policy", "package naming conventions", "gRPC status codes", "proto file structure", "backward-compatible proto evolution"]
+    },
+    {
+      "id": "asyncapi_event_specifications",
+      "name": "AsyncAPI Event-Driven Specifications",
+      "description": "Authoring AsyncAPI specifications for event-driven APIs — channel naming standards, message payload schemas, bindings for Kafka/AMQP/WebSocket, event catalog governance, and code generation from AsyncAPI documents.",
+      "keywords": ["AsyncAPI 3.0", "event specification", "channel naming", "message payload schema", "Kafka binding", "AMQP binding", "event catalog governance"]
+    },
+    {
+      "id": "websocket_api_patterns",
+      "name": "WebSocket API Design Patterns",
+      "description": "Designing WebSocket API contracts — connection lifecycle management, message framing standards (JSON-RPC over WebSocket, custom protocols), heartbeat/ping-pong intervals, reconnection strategies, and authentication during WebSocket upgrade.",
+      "keywords": ["WebSocket API design", "connection lifecycle", "message framing", "heartbeat ping-pong", "WebSocket authentication", "reconnection strategy", "upgrade handshake"]
+    },
+    {
+      "id": "json_rpc_specifications",
+      "name": "JSON-RPC & RPC-Style API Specifications",
+      "description": "Designing JSON-RPC 2.0 compliant APIs — request/response envelope standards, error object structures, batch request handling, notification (fire-and-forget) patterns, and when RPC-style APIs are preferred over REST resource-oriented designs.",
+      "keywords": ["JSON-RPC 2.0", "RPC-style API", "batch JSON-RPC", "notification pattern", "error object structure", "RPC vs REST trade-offs", "method naming conventions"]
+    },
+    {
+      "id": "api_protocol_selection_criteria",
+      "name": "API Protocol Selection Decision Framework",
+      "description": "Creating organizational decision frameworks for API protocol selection — REST vs GraphQL vs gRPC vs WebSocket vs AsyncAPI trade-off matrices, use-case matching criteria (latency, payload size, streaming, browser support), and technology radar governance.",
+      "keywords": ["protocol selection matrix", "REST vs GraphQL trade-offs", "gRPC vs REST criteria", "technology radar", "protocol decision tree", "use-case matching", "API protocol governance"]
+    },
+    {
+      "id": "federation_composition",
+      "name": "API Federation & Schema Composition",
+      "description": "Designing federated API architectures — GraphQL Federation (Apollo Federation 2), gRPC service mesh composition, API gateway aggregation patterns, and ownership boundaries for federated subgraph schemas across autonomous teams.",
+      "keywords": ["GraphQL Federation", "Apollo Federation 2", "subgraph ownership", "federated schema composition", "API gateway aggregation", "supergraph schema", "entity resolution"]
+    },
+    {
+      "id": "schema_registry_management",
+      "name": "Schema Registry & Contract Repository",
+      "description": "Operating centralized schema registries — Confluent Schema Registry for Avro/Protobuf/JSON Schema, Apicurio Registry, schema versioning and compatibility modes (BACKWARD, FORWARD, FULL), and automated schema validation in CI pipelines.",
+      "keywords": ["Confluent Schema Registry", "Apicurio Registry", "schema versioning", "compatibility modes BACKWARD FORWARD FULL", "Avro schema evolution", "schema validation CI", "contract repository"]
+    },
+    {
+      "id": "streaming_api_patterns",
+      "name": "Streaming API Architecture Patterns",
+      "description": "Designing streaming API patterns at the platform level — Server-Sent Events (SSE) vs WebSocket vs gRPC streaming selection criteria, backpressure contract standards, stream lifecycle management, and long-lived connection governance.",
+      "keywords": ["Server-Sent Events SSE", "gRPC streaming design", "streaming API patterns", "backpressure contracts", "stream lifecycle", "long-lived connections", "real-time API architecture"]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "GraphQL federation configuration or schema governance files",
+        "detection": "file_presence",
+        "pattern": "supergraph\\.graphql|federation\\.config|subgraph.*schema\\.graphql|apollo\\.config",
+        "strength": 0.9,
+        "maps_to": ["api_alternative_styles.graphql_schema_governance", "api_alternative_styles.federation_composition"]
+      },
+      {
+        "signal": "Protocol Buffers style guide or gRPC service standard definitions",
+        "detection": "file_presence",
+        "pattern": "proto[-_]style[-_]guide|buf\\.ya?ml|buf\\.gen\\.ya?ml|\\.proto$",
+        "strength": 0.8,
+        "maps_to": ["api_alternative_styles.grpc_service_contracts", "api_alternative_styles.schema_registry_management"]
+      },
+      {
+        "signal": "AsyncAPI specification documents",
+        "detection": "file_presence",
+        "pattern": "asyncapi\\.ya?ml|asyncapi\\.json|asyncapi[-_]spec",
+        "strength": 0.9,
+        "maps_to": ["api_alternative_styles.asyncapi_event_specifications", "api_alternative_styles.streaming_api_patterns"]
+      },
+      {
+        "signal": "Schema registry configuration or compatibility mode settings",
+        "detection": "content_analysis",
+        "pattern": "schema[-_]registry|confluent.*schema|apicurio|compatibility[-_]mode|BACKWARD_TRANSITIVE",
+        "strength": 0.8,
+        "maps_to": ["api_alternative_styles.schema_registry_management", "api_alternative_styles.grpc_service_contracts"]
+      },
+      {
+        "signal": "WebSocket or JSON-RPC API implementations with contract definitions",
+        "detection": "content_analysis",
+        "pattern": "jsonrpc.*2\\.0|websocket.*upgrade|ws://|wss://|JSON-RPC",
+        "strength": 0.7,
+        "maps_to": ["api_alternative_styles.websocket_api_patterns", "api_alternative_styles.json_rpc_specifications", "api_alternative_styles.api_protocol_selection_criteria"]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "GraphQL federation architecture, gRPC platform standardization, or API protocol governance",
+        "strength": 0.8,
+        "maps_to": ["api_alternative_styles.graphql_schema_governance", "api_alternative_styles.grpc_service_contracts", "api_alternative_styles.federation_composition"]
+      },
+      {
+        "signal": "AsyncAPI specifications, event-driven API design, or schema registry management",
+        "strength": 0.8,
+        "maps_to": ["api_alternative_styles.asyncapi_event_specifications", "api_alternative_styles.schema_registry_management", "api_alternative_styles.streaming_api_patterns"]
+      },
+      {
+        "signal": "API protocol selection, WebSocket architecture, or JSON-RPC design",
+        "strength": 0.8,
+        "maps_to": ["api_alternative_styles.api_protocol_selection_criteria", "api_alternative_styles.websocket_api_patterns", "api_alternative_styles.json_rpc_specifications"]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "GraphQL, gRPC, or API Architecture endorsed",
+        "strength": 0.5,
+        "maps_to": ["api_alternative_styles.graphql_schema_governance", "api_alternative_styles.grpc_service_contracts", "api_alternative_styles.federation_composition"]
+      },
+      {
+        "signal": "AsyncAPI, Event-Driven Architecture, or Schema Registry mentioned",
+        "strength": 0.5,
+        "maps_to": ["api_alternative_styles.asyncapi_event_specifications", "api_alternative_styles.schema_registry_management", "api_alternative_styles.streaming_api_patterns", "api_alternative_styles.api_protocol_selection_criteria", "api_alternative_styles.websocket_api_patterns", "api_alternative_styles.json_rpc_specifications"]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": ["graphql_schema_governance", "json_rpc_specifications", "websocket_api_patterns"],
+      "description": "Follows GraphQL schema naming conventions and review processes, understands JSON-RPC 2.0 envelope standards, and designs WebSocket API contracts with proper lifecycle management."
+    },
+    "mid": {
+      "expected_subskills": ["grpc_service_contracts", "asyncapi_event_specifications", "api_protocol_selection_criteria"],
+      "description": "Establishes gRPC Protobuf contract standards with evolution rules, authors AsyncAPI event specifications, and applies protocol selection decision frameworks to match use-cases."
+    },
+    "senior": {
+      "expected_subskills": ["federation_composition", "schema_registry_management", "streaming_api_patterns"],
+      "description": "Architects GraphQL federation and subgraph ownership across teams, operates schema registries with compatibility governance, and designs platform-level streaming API patterns with backpressure contracts."
+    }
+  }
+}

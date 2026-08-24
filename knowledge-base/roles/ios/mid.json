@@ -1,0 +1,80 @@
+{
+  "role_id": "ios_developer",
+  "level": "mid",
+  "title": "Mid-level iOS Developer",
+  "description": "Mid-level iOS engineer capable of independently architecting complex applications using Clean Architecture/VIPER or TCA, managing Core Data / SwiftData persistence, developing WidgetKit extensions with App Groups, enforcing thread safety with Actors and @MainActor, optimizing UIKit/SwiftUI interoperability, and building automated XCUITest suites.",
+  "experience_range": "2-5 years",
+  "skills": [
+    {
+      "skill_id": "ios_architecture_patterns",
+      "importance": 0.95,
+      "rationale": "Structuring applications with Clean Architecture/VIPER or TCA, and managing complex hierarchical child Coordinator trees."
+    },
+    {
+      "skill_id": "ios_data_persistence_networking",
+      "importance": 0.95,
+      "rationale": "Modeling relational storage with Core Data and SwiftData, building networking layers with Alamofire interceptors, and Keychain security."
+    },
+    {
+      "skill_id": "ios_reactive_concurrency",
+      "importance": 0.9,
+      "rationale": "Enforcing thread safety with Actors and @MainActor, bridging delegates with AsyncStream, and building reactive Combine pipelines."
+    },
+    {
+      "skill_id": "ios_uikit_swiftui",
+      "importance": 0.9,
+      "rationale": "Managing complex state with the Observable macro, bridging UIKit and SwiftUI with representables, and implementing NavigationStack."
+    },
+    {
+      "skill_id": "ios_app_lifecycle_xcode",
+      "importance": 0.85,
+      "rationale": "Scheduling background tasks with BGTaskScheduler, developing WidgetKit extensions with App Groups, and configuring Universal Links."
+    },
+    {
+      "skill_id": "ios_fundamentals_swift",
+      "importance": 0.85,
+      "rationale": "Implementing generic abstractions with associated types, preventing ARC retain cycles with capture lists, and custom Error hierarchies."
+    },
+    {
+      "skill_id": "ios_platform_quality_distribution",
+      "importance": 0.8,
+      "rationale": "Writing automated UI tests with XCUITest, integrating CoreLocation geofencing, and implementing Face ID / Touch ID biometrics."
+    }
+  ],
+  "scoring": {
+    "method": "weighted_average",
+    "description": "Each skill score is multiplied by its importance weight. Final score is sum divided by sum of weights.",
+    "thresholds": {
+      "not_ready": {
+        "min": 0.0,
+        "max": 0.3,
+        "label": "Not Ready",
+        "description": "Significant gaps in iOS architecture, Core Data persistence, or modern Swift concurrency."
+      },
+      "developing": {
+        "min": 0.3,
+        "max": 0.5,
+        "label": "Developing",
+        "description": "Competent with basic MVVM, but struggles with Core Data background contexts, Actor isolation, or UIKit/SwiftUI bridging."
+      },
+      "approaching": {
+        "min": 0.5,
+        "max": 0.7,
+        "label": "Approaching Ready",
+        "description": "Strong systems grasp, independent feature delivery, solid Clean Architecture/TCA implementation, and proactive memory leak hunting."
+      },
+      "ready": {
+        "min": 0.7,
+        "max": 0.85,
+        "label": "Ready",
+        "description": "Meets all mid-level expectations: delivers robust Core Data/SwiftData apps, designs clean TCA/VIPER layers, and debugs complex concurrency."
+      },
+      "exceeds": {
+        "min": 0.85,
+        "max": 1.0,
+        "label": "Exceeds Expectations",
+        "description": "Exceeds mid-level expectations with advanced SPM modularization, Swift Macros, and performance profiling expertise."
+      }
+    }
+  }
+}

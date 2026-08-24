@@ -1,0 +1,248 @@
+{
+  "skill_id": "ios_reactive_concurrency",
+  "name": "Swift Concurrency, Combine & Reactive Programming",
+  "category": "mobile_core",
+  "description": "Modern and traditional asynchronous programming on iOS. Covers Grand Central Dispatch (GCD), OperationQueue, Swift Modern Concurrency (async/await, Tasks, TaskGroups), Actors and @MainActor thread safety, AsyncSequence / AsyncStream, Combine framework (Publishers, Subscribers, Operators), Thread Sanitizer (TSan) race detection, and RxSwift migration.",
+  "subskills": [
+    {
+      "id": "grand_central_dispatch_basics",
+      "name": "Grand Central Dispatch (GCD) & Dispatch Queues",
+      "description": "Managing concurrency using Grand Central Dispatch (GCD) — DispatchQueue (Main, Global QoS: userInteractive, userInitiated, utility, background, custom serial and concurrent queues), async vs sync execution, DispatchGroup, and DispatchWorkItem.",
+      "keywords": [
+        "Grand Central Dispatch (GCD)",
+        "DispatchQueue.main / .global()",
+        "Quality of Service (QoS)",
+        "serial vs concurrent queues",
+        "DispatchGroup",
+        "async vs sync dispatch",
+        "DispatchWorkItem"
+      ]
+    },
+    {
+      "id": "operations_operation_queue",
+      "name": "Operation & OperationQueue Architecture",
+      "description": "Managing complex, cancellable, dependent background jobs with Operation and OperationQueue — BlockOperation, custom Operation subclasses (isExecuting, isFinished, isCancelled KVO states), setting dependencies (addDependency), and maxConcurrentOperationCount.",
+      "keywords": [
+        "Operation & OperationQueue",
+        "BlockOperation",
+        "custom Operation subclass",
+        "KVO states (isExecuting/isFinished)",
+        "addDependency",
+        "maxConcurrentOperationCount",
+        "cancellation handling"
+      ]
+    },
+    {
+      "id": "async_await_structured_concurrency",
+      "name": "Swift Modern Concurrency: async/await & Tasks",
+      "description": "Writing asynchronous code with modern Swift concurrency — async/await, Task, Task.sleep, Task.detached, structured concurrency with async let and withTaskGroup, cooperative cancellation checking (Task.isCancelled, try Task.checkCancellation()).",
+      "keywords": [
+        "async / await",
+        "Swift Structured Concurrency",
+        "Task / Task.detached",
+        "async let bindings",
+        "withTaskGroup / withThrowingTaskGroup",
+        "cooperative cancellation (Task.isCancelled)"
+      ]
+    },
+    {
+      "id": "actors_thread_safety",
+      "name": "Actors, @MainActor & Data Race Elimination",
+      "description": "Eliminating data races at compile time with Swift Actors — actor declaration, actor isolation rules, nonisolated keyword, cross-actor message passing, @MainActor for UI thread confinement, and Global Actors.",
+      "keywords": [
+        "Swift Actors",
+        "actor isolation",
+        "@MainActor",
+        "nonisolated keyword",
+        "Global Actors",
+        "data race elimination",
+        "reentrancy in actors"
+      ]
+    },
+    {
+      "id": "async_sequences_streams",
+      "name": "AsyncSequence, AsyncStream & Bridging Delegates",
+      "description": "Consuming asynchronous streams of values using AsyncSequence protocol — for await in loops, creating custom AsyncStream and AsyncThrowingStream (continuation yield, onTermination), and bridging legacy callback/delegate APIs into async streams.",
+      "keywords": [
+        "AsyncSequence protocol",
+        "AsyncStream / AsyncThrowingStream",
+        "for await ... in loop",
+        "continuation.yield()",
+        "continuation.finish()",
+        "bridging delegate callbacks to async"
+      ]
+    },
+    {
+      "id": "combine_publishers_subscribers",
+      "name": "Combine Framework: Publishers & Subscribers",
+      "description": "Reactive programming with Apple's Combine framework — AnyPublisher, PassthroughSubject, CurrentValueSubject, subscriber subscriptions (.sink, .assign(to:on:)), managing AnyCancellable memory lifecycle with Set<AnyCancellable> (store(in:)).",
+      "keywords": [
+        "Combine framework",
+        "AnyPublisher / Subject",
+        "PassthroughSubject / CurrentValueSubject",
+        "sink / assign(to:)",
+        "AnyCancellable",
+        "store(in: &cancellables)",
+        "Publisher-Subscriber lifecycle"
+      ]
+    },
+    {
+      "id": "combine_advanced_operators",
+      "name": "Advanced Combine Operators & Stream Composition",
+      "description": "Composing complex asynchronous pipelines using Combine operators: flatMap, combineLatest, zip, merge, debounce, throttle, removeDuplicates, error recovery with catch and retry, and switching execution with receive(on:) and subscribe(on:).",
+      "keywords": [
+        "Combine flatMap",
+        "combineLatest / zip",
+        "debounce / throttle",
+        "removeDuplicates",
+        "receive(on: DispatchQueue.main)",
+        "subscribe(on:)",
+        "catch / retry error handling"
+      ]
+    },
+    {
+      "id": "concurrency_data_races_tsan",
+      "name": "Thread Sanitizer (TSan) & Lock Synchronization",
+      "description": "Detecting and resolving multithreaded data races in production iOS applications — utilizing Xcode Thread Sanitizer (TSan), implementing high-performance low-level locks with os_unfair_lock, and ensuring thread-safe shared mutable state.",
+      "keywords": [
+        "Thread Sanitizer (TSan)",
+        "data race detection",
+        "os_unfair_lock",
+        "unfair lock synchronization",
+        "thread safety validation",
+        "preventing priority inversion"
+      ]
+    },
+    {
+      "id": "rxswift_reactive_patterns",
+      "name": "RxSwift / RxCocoa & Modern Concurrency Migration",
+      "description": "Working with RxSwift and RxCocoa in enterprise applications — Observable, Single, Completable, DisposeBag, Schedulers, Traits (Driver, Signal), and executing structured migration plans from RxSwift to native Combine and async/await.",
+      "keywords": [
+        "RxSwift / RxCocoa",
+        "Observable / Single / Completable",
+        "DisposeBag lifecycle",
+        "Schedulers (MainScheduler)",
+        "Driver / Signal traits",
+        "RxSwift to Combine migration",
+        "RxSwift to Async/Await"
+      ]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "Swift Modern Concurrency async/await or actor declarations",
+        "detection": "content_analysis",
+        "pattern": "async throws ->|actor .* \\{|@MainActor|withTaskGroup|for await .* in",
+        "strength": 0.8,
+        "maps_to": [
+          "ios_reactive_concurrency.async_await_structured_concurrency",
+          "ios_reactive_concurrency.actors_thread_safety",
+          "ios_reactive_concurrency.async_sequences_streams"
+        ]
+      },
+      {
+        "signal": "Combine framework publisher pipeline or subjects",
+        "detection": "content_analysis",
+        "pattern": "import Combine|AnyPublisher<|PassthroughSubject<|\\.sink \\{|\\.store\\(in: &cancellables\\)",
+        "strength": 0.8,
+        "maps_to": [
+          "ios_reactive_concurrency.combine_publishers_subscribers",
+          "ios_reactive_concurrency.combine_advanced_operators"
+        ]
+      },
+      {
+        "signal": "RxSwift Observable or DisposeBag usage",
+        "detection": "content_analysis",
+        "pattern": "import RxSwift|import RxCocoa|DisposeBag\\(\\)|Observable<|Single<",
+        "strength": 0.8,
+        "maps_to": [
+          "ios_reactive_concurrency.rxswift_reactive_patterns"
+        ]
+      },
+      {
+        "signal": "Grand Central Dispatch or OperationQueue concurrency implementation",
+        "detection": "content_analysis",
+        "pattern": "DispatchQueue\\.global|DispatchGroup\\(\\)|OperationQueue\\(\\)|os_unfair_lock",
+        "strength": 0.8,
+        "maps_to": [
+          "ios_reactive_concurrency.grand_central_dispatch_basics",
+          "ios_reactive_concurrency.operations_operation_queue",
+          "ios_reactive_concurrency.concurrency_data_races_tsan"
+        ]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "Implemented reactive data streams using Combine, Swift Concurrency, and async/await",
+        "strength": 0.8,
+        "maps_to": [
+          "ios_reactive_concurrency.async_await_structured_concurrency",
+          "ios_reactive_concurrency.combine_publishers_subscribers",
+          "ios_reactive_concurrency.actors_thread_safety"
+        ]
+      },
+      {
+        "signal": "Migrated legacy RxSwift codebase to native Swift Modern Concurrency and Combine",
+        "strength": 0.9,
+        "maps_to": [
+          "ios_reactive_concurrency.rxswift_reactive_patterns",
+          "ios_reactive_concurrency.async_sequences_streams"
+        ]
+      },
+      {
+        "signal": "Eliminated multi-threaded data races using Thread Sanitizer and Actor isolation",
+        "strength": 0.9,
+        "maps_to": [
+          "ios_reactive_concurrency.actors_thread_safety",
+          "ios_reactive_concurrency.concurrency_data_races_tsan"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Swift Concurrency, Combine, or Grand Central Dispatch endorsed",
+        "strength": 0.5,
+        "maps_to": [
+          "ios_reactive_concurrency.async_await_structured_concurrency",
+          "ios_reactive_concurrency.combine_publishers_subscribers"
+        ]
+      },
+      {
+        "signal": "Job experience describing async/await migration, actor thread safety, or Combine pipelines",
+        "strength": 0.8,
+        "maps_to": [
+          "ios_reactive_concurrency.actors_thread_safety",
+          "ios_reactive_concurrency.combine_advanced_operators",
+          "ios_reactive_concurrency.async_await_structured_concurrency"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "grand_central_dispatch_basics",
+        "operations_operation_queue",
+        "async_await_structured_concurrency"
+      ],
+      "description": "Dispatches background tasks with GCD, configures Operation dependencies, and writes async/await functions."
+    },
+    "mid": {
+      "expected_subskills": [
+        "actors_thread_safety",
+        "async_sequences_streams",
+        "combine_publishers_subscribers"
+      ],
+      "description": "Enforces thread safety with Actors and @MainActor, bridges delegates with AsyncStream, and builds Combine pipelines."
+    },
+    "senior": {
+      "expected_subskills": [
+        "combine_advanced_operators",
+        "concurrency_data_races_tsan",
+        "rxswift_reactive_patterns"
+      ],
+      "description": "Composes advanced Combine streams, debugs data races with Thread Sanitizer, and leads RxSwift migrations."
+    }
+  }
+}

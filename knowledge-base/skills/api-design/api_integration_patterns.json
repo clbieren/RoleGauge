@@ -1,0 +1,144 @@
+{
+  "skill_id": "api_integration_patterns",
+  "name": "API Integration & Contract Testing Patterns",
+  "category": "api_design_integration",
+  "description": "Governing API integration patterns, contract testing strategies, and consumer-facing integration standards across the organization. IMPORTANT DISTINCTION: Backend's be_api_design.event_driven_apis_webhooks covers coding HMAC-SHA256 webhook dispatching and retry middleware in a single service (implementation); Backend's be_api_design.api_gateway_routing covers configuring Kong reverse proxy routes and BFF aggregation (implementation); Backend's be_testing_quality.api_contract_testing covers writing Pact consumer-provider test code (implementation). API Design's api_integration_patterns covers defining webhook contract standards that all services must follow, architecting gateway topology decisions, SDK generation strategies from OpenAPI specs, and establishing contract testing governance policies across the entire API program (strategic/architectural decision-making).",
+  "subskills": [
+    {
+      "id": "webhook_design_contracts",
+      "name": "Webhook Contract Design Standards",
+      "description": "Defining organizational webhook contract standards — event payload envelope formats, webhook registration API patterns, signature verification requirements (HMAC-SHA256 standard), retry policy documentation, and webhook event catalog governance.",
+      "keywords": ["webhook contract standard", "event payload envelope", "webhook registration API", "HMAC signature standard", "retry policy documentation", "webhook event catalog", "webhook subscription model"]
+    },
+    {
+      "id": "event_driven_api_patterns",
+      "name": "Event-Driven API Architecture Patterns",
+      "description": "Designing event-driven API patterns at the platform level — CloudEvents specification adoption, event naming taxonomy, event versioning strategies, event ordering guarantees documentation, and event-carried state transfer vs event notification trade-off frameworks.",
+      "keywords": ["CloudEvents specification", "event naming taxonomy", "event versioning", "event ordering guarantees", "event-carried state transfer", "event notification pattern", "event-driven API governance"]
+    },
+    {
+      "id": "api_gateway_architecture",
+      "name": "API Gateway Topology & Architecture",
+      "description": "Designing API gateway architecture decisions — single vs multi-gateway topology, gateway per domain/team ownership, request routing and transformation policies, protocol translation strategies (gRPC-JSON transcoding), and gateway vendor selection criteria (Kong, Apigee, AWS API Gateway, Tyk).",
+      "keywords": ["API gateway topology", "multi-gateway architecture", "gateway ownership model", "protocol translation", "gRPC-JSON transcoding", "gateway vendor selection", "request transformation policy"]
+    },
+    {
+      "id": "service_mesh_api_routing",
+      "name": "Service Mesh API Routing & Traffic Management",
+      "description": "Designing API-level traffic management through service mesh — canary routing policies, traffic splitting for A/B testing, header-based routing rules, circuit breaking at the mesh level, and retry/timeout policies defined as API platform standards.",
+      "keywords": ["service mesh routing", "canary deployment policy", "traffic splitting", "header-based routing", "mesh circuit breaking", "retry timeout policy", "Istio VirtualService"]
+    },
+    {
+      "id": "sdk_client_generation",
+      "name": "SDK & Client Library Generation Strategy",
+      "description": "Designing SDK generation strategies from API specifications — openapi-generator configuration, language-specific SDK customization, SDK versioning aligned with API versions, generated client testing requirements, and developer experience (DX) quality standards for generated SDKs.",
+      "keywords": ["SDK generation", "openapi-generator", "client library", "SDK versioning", "generated client testing", "developer experience DX", "multi-language SDK strategy"]
+    },
+    {
+      "id": "contract_testing_strategy",
+      "name": "Contract Testing Strategy & Governance",
+      "description": "Establishing organization-wide API contract testing governance — Pact broker deployment policies, consumer-driven contract workflow standards, can-i-deploy gate integration in CI/CD, contract test coverage requirements, and bi-directional contract testing approaches.",
+      "keywords": ["contract testing governance", "Pact broker", "consumer-driven contracts", "can-i-deploy", "contract test coverage", "bi-directional testing", "CI/CD contract gate"]
+    },
+    {
+      "id": "api_mocking_virtualization",
+      "name": "API Mocking & Service Virtualization",
+      "description": "Designing API mocking and virtualization strategies — Prism mock server from OpenAPI specs, WireMock service virtualization, mock server provisioning in developer portals, stateful mock behavior standards, and sandbox environment architecture.",
+      "keywords": ["API mocking", "Prism mock server", "WireMock", "service virtualization", "sandbox environment", "stateful mocking", "mock provisioning"]
+    },
+    {
+      "id": "backward_compatibility_testing",
+      "name": "Backward Compatibility Testing & Verification",
+      "description": "Designing automated backward compatibility verification pipelines — OpenAPI diff tools (oasdiff, openapi-diff), semantic versioning enforcement based on breaking changes, shadow traffic testing against new API versions, and consumer impact analysis before deployment.",
+      "keywords": ["backward compatibility testing", "oasdiff", "openapi-diff", "semantic versioning enforcement", "shadow traffic testing", "consumer impact analysis", "breaking change detection"]
+    },
+    {
+      "id": "consumer_driven_contracts",
+      "name": "Consumer-Driven Contract Design Philosophy",
+      "description": "Establishing consumer-driven API design philosophy — consumer feedback loops, API design reviews with consuming teams, Pact contract pact authoring by consumer teams, provider verification workflows, and resolving contract conflicts between multiple consumers.",
+      "keywords": ["consumer-driven design", "API design review", "consumer feedback loop", "Pact contract authoring", "provider verification", "contract conflict resolution", "consumer-first API design"]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "Pact contract testing configuration or broker setup",
+        "detection": "file_presence",
+        "pattern": "pact[-_]broker|pactflow|pact/|pact\\.json|pactfile|can[-_]i[-_]deploy",
+        "strength": 0.9,
+        "maps_to": ["api_integration_patterns.contract_testing_strategy", "api_integration_patterns.consumer_driven_contracts"]
+      },
+      {
+        "signal": "API gateway configuration files (Kong, Apigee, Tyk)",
+        "detection": "file_presence",
+        "pattern": "kong\\.ya?ml|kong\\.conf|apigee[-_]proxy|apiproxy/policies/|tyk\\.conf|tyk[-_]api[-_]definition",
+        "strength": 0.9,
+        "maps_to": ["api_integration_patterns.api_gateway_architecture", "api_integration_patterns.service_mesh_api_routing"]
+      },
+      {
+        "signal": "OpenAPI-based SDK generation or client library build configuration",
+        "detection": "content_analysis",
+        "pattern": "openapi-generator|swagger-codegen|autorest|openapitools|generate[-_]sdk|client[-_]generation",
+        "strength": 0.8,
+        "maps_to": ["api_integration_patterns.sdk_client_generation", "api_integration_patterns.api_mocking_virtualization"]
+      },
+      {
+        "signal": "Webhook event catalog or CloudEvents specification files",
+        "detection": "content_analysis",
+        "pattern": "CloudEvents|ce[-_]type|ce[-_]source|webhook[-_]catalog|event[-_]catalog|webhook[-_]contract",
+        "strength": 0.8,
+        "maps_to": ["api_integration_patterns.webhook_design_contracts", "api_integration_patterns.event_driven_api_patterns"]
+      },
+      {
+        "signal": "API backward compatibility diff or breaking change detection configuration",
+        "detection": "content_analysis",
+        "pattern": "oasdiff|openapi[-_]diff|breaking[-_]changes|backward[-_]compat|api[-_]compatibility",
+        "strength": 0.8,
+        "maps_to": ["api_integration_patterns.backward_compatibility_testing", "api_integration_patterns.contract_testing_strategy"]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "Contract testing governance, Pact implementation, or consumer-driven API design",
+        "strength": 0.8,
+        "maps_to": ["api_integration_patterns.contract_testing_strategy", "api_integration_patterns.consumer_driven_contracts", "api_integration_patterns.backward_compatibility_testing"]
+      },
+      {
+        "signal": "API gateway architecture, webhook standards, or event-driven API design",
+        "strength": 0.8,
+        "maps_to": ["api_integration_patterns.api_gateway_architecture", "api_integration_patterns.webhook_design_contracts", "api_integration_patterns.event_driven_api_patterns"]
+      },
+      {
+        "signal": "SDK generation strategy, API mocking, or service mesh routing",
+        "strength": 0.8,
+        "maps_to": ["api_integration_patterns.sdk_client_generation", "api_integration_patterns.api_mocking_virtualization", "api_integration_patterns.service_mesh_api_routing"]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "API Integration, Contract Testing, or API Gateway Architecture endorsed",
+        "strength": 0.5,
+        "maps_to": ["api_integration_patterns.contract_testing_strategy", "api_integration_patterns.api_gateway_architecture", "api_integration_patterns.webhook_design_contracts"]
+      },
+      {
+        "signal": "SDK Development, Service Mesh, or Event-Driven APIs mentioned",
+        "strength": 0.5,
+        "maps_to": ["api_integration_patterns.sdk_client_generation", "api_integration_patterns.service_mesh_api_routing", "api_integration_patterns.event_driven_api_patterns", "api_integration_patterns.api_mocking_virtualization", "api_integration_patterns.consumer_driven_contracts", "api_integration_patterns.backward_compatibility_testing"]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": ["webhook_design_contracts", "api_mocking_virtualization", "sdk_client_generation"],
+      "description": "Follows webhook contract standards for event payload design, provisions mock servers from OpenAPI specs using Prism, and generates client SDKs using openapi-generator per organizational configuration."
+    },
+    "mid": {
+      "expected_subskills": ["event_driven_api_patterns", "contract_testing_strategy", "consumer_driven_contracts"],
+      "description": "Designs event-driven API patterns with CloudEvents adoption, establishes contract testing governance with Pact broker CI integration, and facilitates consumer-driven API design reviews."
+    },
+    "senior": {
+      "expected_subskills": ["api_gateway_architecture", "service_mesh_api_routing", "backward_compatibility_testing"],
+      "description": "Architects multi-gateway topologies with vendor selection, designs service mesh traffic management policies, and builds automated backward compatibility verification pipelines with breaking change detection."
+    }
+  }
+}

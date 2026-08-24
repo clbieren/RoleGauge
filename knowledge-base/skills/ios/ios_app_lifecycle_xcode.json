@@ -1,0 +1,250 @@
+{
+  "skill_id": "ios_app_lifecycle_xcode",
+  "name": "iOS App Lifecycle, Xcode Tooling & System Integration",
+  "category": "mobile_core",
+  "description": "Managing the iOS application lifecycle across UIKit and SwiftUI app structures (AppDelegate, SceneDelegate, WindowGroup), Xcode IDE debugging (LLDB, view hierarchy, os_log), Asset catalogs, Background Tasks (BGTaskScheduler), WidgetKit extensions, Universal Links (AASA), Instruments profiling (Time Profiler, Leaks), multi-scheme build setups, and App Store privacy compliance (Privacy Manifests).",
+  "subskills": [
+    {
+      "id": "app_delegate_scene_delegate",
+      "name": "App & Scene Lifecycle Management",
+      "description": "Managing iOS application lifecycle states (Active, Inactive, Background, Suspended, Not Running) across UIApplicationDelegate, UIWindowSceneDelegate, and SwiftUI App protocol (@main App, WindowGroup, scenePhase), and handling state preservation/restoration.",
+      "keywords": [
+        "UIApplicationDelegate",
+        "UIWindowSceneDelegate",
+        "SwiftUI @main App",
+        "scenePhase environment",
+        "app execution states",
+        "state restoration",
+        "didFinishLaunchingWithOptions"
+      ]
+    },
+    {
+      "id": "xcode_ide_debugging_tools",
+      "name": "Xcode IDE & Advanced LLDB Debugging",
+      "description": "Leveraging Xcode debugging features — LLDB commands (po, p, expression, frame variable, thread backtrace), symbolic/exception breakpoints, Debug View Hierarchy inspector, Memory Graph Debugger, and structured logging with Unified Logging system (os_log / Logger).",
+      "keywords": [
+        "LLDB debugging (po/p/expr)",
+        "Debug View Hierarchy",
+        "Memory Graph Debugger",
+        "symbolic breakpoints",
+        "Unified Logging (os_log / Logger)",
+        "Xcode console debugging"
+      ]
+    },
+    {
+      "id": "asset_catalogs_localization",
+      "name": "Asset Catalogs & String Catalogs Localization",
+      "description": "Managing visual assets and internationalization — Asset Catalogs (.xcassets for color sets, images, app icons, vector PDFs, dark/light mode variants), SF Symbols, String Catalogs (.xcstrings in Xcode 15+), pluralization rules, and RTL (Right-to-Left) layout mirroring.",
+      "keywords": [
+        "Asset Catalogs (.xcassets)",
+        "Color Sets & Light/Dark variants",
+        "SF Symbols",
+        "String Catalogs (.xcstrings)",
+        "Localizable.strings",
+        "internationalization (i18n)",
+        "RTL localization"
+      ]
+    },
+    {
+      "id": "background_modes_tasks",
+      "name": "Background Modes & BGTaskScheduler",
+      "description": "Executing background tasks within Apple power constraints — configuring UIBackgroundModes (remote notifications, audio, location), registering and submitting background processing with BGTaskScheduler (BGAppRefreshTask, BGProcessingTask), and silent push triggers.",
+      "keywords": [
+        "BGTaskScheduler",
+        "BGAppRefreshTask",
+        "BGProcessingTask",
+        "UIBackgroundModes",
+        "silent push notifications",
+        "background execution limits",
+        "power management iOS"
+      ]
+    },
+    {
+      "id": "app_extensions_widgets",
+      "name": "App Extensions, WidgetKit & App Groups",
+      "description": "Developing iOS extensions — building Home Screen & Lock Screen widgets with WidgetKit (TimelineProvider, TimelineEntry, TimelineReloadPolicy), App Groups for shared container data access (UserDefaults suite / shared SQLite), and Notification Service Extensions.",
+      "keywords": [
+        "WidgetKit",
+        "TimelineProvider / TimelineEntry",
+        "App Groups (shared container)",
+        "Lock Screen widgets",
+        "Notification Service Extension",
+        "Share Extension",
+        "extension lifecycle"
+      ]
+    },
+    {
+      "id": "universal_links_deep_linking",
+      "name": "Universal Links & Deep Link Routing",
+      "description": "Architecting deep linking on iOS — configuring Apple App Site Association (apple-app-site-association / AASA on HTTPS server), associated domains entitlement (applinks:), Custom URL Schemes, handling userActivity in scene delegates, and building hierarchical deep link routers.",
+      "keywords": [
+        "Universal Links",
+        "apple-app-site-association (AASA)",
+        "associated domains (applinks:)",
+        "Custom URL Scheme",
+        "NSUserActivity handling",
+        "deep link router architecture"
+      ]
+    },
+    {
+      "id": "instruments_profiling_performance",
+      "name": "Xcode Instruments & Deep Profiling",
+      "description": "Conducting deep application profiling using Xcode Instruments — Time Profiler (CPU call trees, heavy stack traces), Allocations & Leaks (heap growth, unreleased memory), Core Animation instrument (frame drop detection, offscreen rendering), and Energy Log.",
+      "keywords": [
+        "Xcode Instruments",
+        "Time Profiler (Call Tree, Invert Call Tree)",
+        "Allocations & Leaks instruments",
+        "Core Animation (offscreen rendering, color blended layers)",
+        "Energy Log",
+        "Memory footprint analysis"
+      ]
+    },
+    {
+      "id": "multi_target_build_schemes",
+      "name": "Xcode Schemes, Configurations & xcconfig Files",
+      "description": "Architecting enterprise multi-target Xcode projects — Xcode Schemes, Build Configurations (Debug, Staging, Release), decoupling build settings into external .xcconfig files, custom Build Phase scripts (SwiftLint, Run scripts), and bundle identifier overrides.",
+      "keywords": [
+        "Xcode Schemes",
+        "Build Configurations",
+        ".xcconfig files",
+        "Build Phases (Run Script)",
+        "multi-target project setup",
+        "bundle identifier per environment",
+        "preprocess macros"
+      ]
+    },
+    {
+      "id": "app_store_guidelines_privacy",
+      "name": "App Store Guidelines & Privacy Manifests",
+      "description": "Complying with Apple ecosystem policies — App Store Review Guidelines, App Tracking Transparency (ATT framework / ATTrackingManager), Privacy Nutrition Labels, authoring Privacy Manifests (PrivacyInfo.xcprivacy with Required Reason APIs), and third-party SDK signature verification.",
+      "keywords": [
+        "Privacy Manifests (PrivacyInfo.xcprivacy)",
+        "Required Reason APIs",
+        "App Tracking Transparency (ATT)",
+        "App Store Review Guidelines",
+        "Privacy Nutrition Labels",
+        "SDK code signing"
+      ]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "Xcode project or workspace configuration files",
+        "detection": "file_presence",
+        "pattern": "\\.xcodeproj/project\\.pbxproj|\\.xcworkspace|\\.xcconfig$",
+        "strength": 0.8,
+        "maps_to": [
+          "ios_app_lifecycle_xcode.multi_target_build_schemes",
+          "ios_app_lifecycle_xcode.app_delegate_scene_delegate"
+        ]
+      },
+      {
+        "signal": "WidgetKit TimelineProvider implementation or App Extension target",
+        "detection": "content_analysis",
+        "pattern": ": TimelineProvider|struct .*: Widget|TimelineEntry|WidgetBundle",
+        "strength": 0.9,
+        "maps_to": [
+          "ios_app_lifecycle_xcode.app_extensions_widgets"
+        ]
+      },
+      {
+        "signal": "BGTaskScheduler background task registration and handling",
+        "detection": "content_analysis",
+        "pattern": "BGTaskScheduler\\.shared\\.register|BGAppRefreshTaskRequest|BGProcessingTaskRequest",
+        "strength": 0.9,
+        "maps_to": [
+          "ios_app_lifecycle_xcode.background_modes_tasks"
+        ]
+      },
+      {
+        "signal": "Privacy Manifest PrivacyInfo.xcprivacy configuration file",
+        "detection": "file_presence",
+        "pattern": "PrivacyInfo\\.xcprivacy|NSPrivacyAccessedAPITypes",
+        "strength": 0.9,
+        "maps_to": [
+          "ios_app_lifecycle_xcode.app_store_guidelines_privacy"
+        ]
+      },
+      {
+        "signal": "Asset Catalog or String Catalog localization files",
+        "detection": "file_presence",
+        "pattern": "\\.xcassets|\\.xcstrings$|Localizable\\.strings",
+        "strength": 0.8,
+        "maps_to": [
+          "ios_app_lifecycle_xcode.asset_catalogs_localization"
+        ]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "Configured iOS background tasks with BGTaskScheduler and built WidgetKit extensions",
+        "strength": 0.8,
+        "maps_to": [
+          "ios_app_lifecycle_xcode.background_modes_tasks",
+          "ios_app_lifecycle_xcode.app_extensions_widgets"
+        ]
+      },
+      {
+        "signal": "Profiled iOS app performance and eliminated memory leaks using Xcode Instruments",
+        "strength": 0.9,
+        "maps_to": [
+          "ios_app_lifecycle_xcode.instruments_profiling_performance"
+        ]
+      },
+      {
+        "signal": "Implemented Universal Links (AASA) and Privacy Manifests (PrivacyInfo.xcprivacy)",
+        "strength": 0.9,
+        "maps_to": [
+          "ios_app_lifecycle_xcode.universal_links_deep_linking",
+          "ios_app_lifecycle_xcode.app_store_guidelines_privacy"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "iOS App Lifecycle, Xcode, or WidgetKit endorsed",
+        "strength": 0.5,
+        "maps_to": [
+          "ios_app_lifecycle_xcode.app_delegate_scene_delegate",
+          "ios_app_lifecycle_xcode.app_extensions_widgets"
+        ]
+      },
+      {
+        "signal": "Job experience describing Universal Links, Xcode Instruments profiling, or Privacy Manifest compliance",
+        "strength": 0.8,
+        "maps_to": [
+          "ios_app_lifecycle_xcode.instruments_profiling_performance",
+          "ios_app_lifecycle_xcode.universal_links_deep_linking",
+          "ios_app_lifecycle_xcode.app_store_guidelines_privacy"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "app_delegate_scene_delegate",
+        "xcode_ide_debugging_tools",
+        "asset_catalogs_localization"
+      ],
+      "description": "Manages AppDelegate and SceneDelegate lifecycles, debugs using LLDB and View Hierarchy, and organizes assets and String Catalogs."
+    },
+    "mid": {
+      "expected_subskills": [
+        "background_modes_tasks",
+        "app_extensions_widgets",
+        "universal_links_deep_linking"
+      ],
+      "description": "Schedules background tasks with BGTaskScheduler, develops WidgetKit extensions with App Groups, and implements Universal Links."
+    },
+    "senior": {
+      "expected_subskills": [
+        "instruments_profiling_performance",
+        "multi_target_build_schemes",
+        "app_store_guidelines_privacy"
+      ],
+      "description": "Profiles apps with Xcode Instruments, architects multi-scheme xcconfig setups, and enforces Privacy Manifests."
+    }
+  }
+}

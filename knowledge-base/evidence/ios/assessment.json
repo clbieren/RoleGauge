@@ -1,0 +1,925 @@
+{
+  "source_id": "assessment",
+  "name": "Adaptive Technical Assessment - iOS Developer",
+  "description": "Adaptive assessment question bank for iOS Developer skills. Each question is hand-crafted and technology-specific with diverse scenario, debugging, architectural, code analysis, and trade-off formats.",
+  "sample_questions_by_composite_key": {
+    "ios_fundamentals_swift.swift_language_fundamentals": [
+      {
+        "level": "junior",
+        "type": "code_review",
+        "question": "A junior developer uses forced unwrapping across their codebase: `let url = URL(string: str)!` and `let length = user!.name!.count`. Explain the runtime crash risks of `!` in Swift and refactor these lines using `guard let`, `if let`, and the nil-coalescing operator (`??`).",
+        "expected_answer_keywords": [
+          "forced unwrapping triggers fatalError on nil",
+          "`guard let url = URL(string: str) else { return }`",
+          "optional chaining `user?.name?.count ?? 0`",
+          "nil-coalescing fallback",
+          "early exit with guard",
+          "compile-time null safety"
+        ]
+      }
+    ],
+    "ios_fundamentals_swift.value_vs_reference_types": [
+      {
+        "level": "junior",
+        "type": "comparison",
+        "question": "Compare Structs and Classes in Swift regarding memory allocation (Stack vs Heap), inheritance, and identity. Explain how Copy-on-Write (COW) optimization works in standard Swift value types (`Array`, `Dictionary`, `String`), and how you implement custom COW using `isKnownUniquelyReferenced(&ref)` in a custom data structure.",
+        "expected_answer_keywords": [
+          "Structs are value types (stack allocated, copied on assignment)",
+          "Classes are reference types (heap allocated, reference counted)",
+          "Copy-on-Write (COW) defers copying until mutation occurs",
+          "`isKnownUniquelyReferenced` checks reference count == 1",
+          "deep copy only when shared reference is mutated"
+        ]
+      }
+    ],
+    "ios_fundamentals_swift.protocols_extensions_basics": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "Explain the core philosophy of Protocol-Oriented Programming (POP) in Swift. Design a `Describable` protocol with a default implementation in a protocol extension `extension Describable { var descriptionText: String { ... } }`. How does protocol extension dispatch (static vs dynamic witness table) change when a method is declared in the protocol requirements versus only in the extension?",
+        "expected_answer_keywords": [
+          "Protocol-Oriented Programming (POP)",
+          "protocol extensions for default implementation",
+          "method declared in protocol uses dynamic dispatch (witness table)",
+          "method only in extension uses static dispatch",
+          "override behavior on conforming type"
+        ]
+      }
+    ],
+    "ios_fundamentals_swift.generics_type_constraints": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "Explain the role of `associatedtype` in Swift protocols. Contrast opaque return types (`some View`) with existential types (`any View` in Swift 5.7+). Why is returning `some View` in SwiftUI preferred for performance (generic specialization and layout calculation) compared to `any View` (type erasure and heap allocation)?",
+        "expected_answer_keywords": [
+          "`associatedtype` defines protocol placeholder type",
+          "opaque type (`some`) hides concrete type at compile time with fixed static type",
+          "existential type (`any`) wraps type in existential container with dynamic boxing",
+          "SwiftUI `some View` avoids heap boxing and witness table indirection",
+          "where clause type constraints"
+        ]
+      }
+    ],
+    "ios_fundamentals_swift.arc_memory_management": [
+      {
+        "level": "mid",
+        "type": "debugging",
+        "question": "A UIViewController is dismissed from the navigation stack but its `deinit` is never called, causing a 50MB memory leak. The ViewController holds onto a ViewModel which holds a network closure referencing `self.tableView.reloadData()`. Explain how this retain cycle forms and how to break it using a closure capture list `[weak self]` with `guard let self else { return }`.",
+        "expected_answer_keywords": [
+          "strong reference cycle (ViewController -> ViewModel -> Closure -> ViewController)",
+          "closure captures `self` strongly by default",
+          "`deinit` never invoked because reference count never reaches 0",
+          "`[weak self]` creates zeroing weak reference",
+          "`guard let self else { return }` for safe unwrapping in closure"
+        ]
+      }
+    ],
+    "ios_fundamentals_swift.error_handling_result": [
+      {
+        "level": "mid",
+        "type": "code_review",
+        "question": "Refactor a legacy callback-based networking API `func fetchUser(completion: (User?, Error?) -> Void)` using Swift's `Result<User, NetworkError>` enum. Explain why the `(T?, Error?)` signature is prone to invalid dual-nil or dual-value states and how `Result.map`, `Result.flatMap`, and `try result.get()` streamline error propagation.",
+        "expected_answer_keywords": [
+          "`(T?, Error?)` allows invalid (nil, nil) or (val, err) states",
+          "`Result<Success, Failure>` represents mutually exclusive success/failure states",
+          "Result.map / Result.flatMap functional transformations",
+          "`try result.get()` converts Result to throwing expression",
+          "exhaustive switch over .success and .failure"
+        ]
+      }
+    ],
+    "ios_fundamentals_swift.advanced_swift_metaprogramming": [
+      {
+        "level": "senior",
+        "type": "architectural_trade_off",
+        "question": "Explain the architecture of Swift Macros introduced in Swift 5.9+. Contrast Attached Macros (`@attached(member)`, `@attached(peer)`) with Freestanding Macros (`#freestanding(expression)`). Walk through how the Swift compiler executes macro expansions in a separate sandbox process using `SwiftSyntax` and AST node transformations without runtime overhead.",
+        "expected_answer_keywords": [
+          "Swift Macros execute at compile time via `SwiftSyntax`",
+          "Attached macros modify or augment existing type declarations",
+          "Freestanding macros generate independent expressions/declarations",
+          "compiler AST transformation in isolated sandbox process",
+          "zero runtime overhead compared to reflection",
+          "compile-time code generation"
+        ]
+      }
+    ],
+    "ios_fundamentals_swift.memory_layout_performance": [
+      {
+        "level": "senior",
+        "type": "debugging",
+        "question": "Analyze the memory layout of Swift types using `MemoryLayout<T>.size`, `stride`, and `alignment`. Explain how an existential container (Protocol type `any Drawable`) is structured in memory (3-word inline buffer, Value Witness Table pointer, Protocol Witness Table pointer). What happens when a struct exceeding 3 words (24 bytes on 64-bit) is assigned to an existential variable?",
+        "expected_answer_keywords": [
+          "MemoryLayout size vs stride vs alignment",
+          "Existential Container structure (24-byte inline buffer + VWT + PWT)",
+          "values <= 24 bytes fit inline buffer without heap allocation",
+          "values > 24 bytes allocate heap memory and store pointer in inline buffer",
+          "performance cost of existential collections (`[any Protocol]`)"
+        ]
+      }
+    ],
+    "ios_fundamentals_swift.c_obj_c_interoperability": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "You are integrating a low-level C audio processing library (`libaudio.a`) into a modern Swift iOS codebase. Explain how you map C pointers (`const float*`, `void**`) to Swift `UnsafePointer<Float>`, `UnsafeMutableRawPointer`, and `withUnsafeBytes`. Furthermore, explain how `@objc` and `dynamic` keywords enable Objective-C message dispatch (runtime `objc_msgSend`) for KVO and method swizzling in Swift.",
+        "expected_answer_keywords": [
+          "`UnsafePointer` (const C pointer) vs `UnsafeMutablePointer` (mutable C pointer)",
+          "`withUnsafeBytes` and `withUnsafeBufferPointer` scoped memory safety",
+          "`@objc` exposes Swift declaration to Objective-C runtime metadata",
+          "`dynamic` enforces `objc_msgSend` message dispatch instead of vtable",
+          "Method swizzling and Key-Value Observing (KVO) requirements"
+        ]
+      }
+    ],
+    "ios_app_lifecycle_xcode.app_delegate_scene_delegate": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "Explain the transition of app lifecycle management from `UIApplicationDelegate` to `UIWindowSceneDelegate` in iOS 13+ and the `@main` `App` protocol in SwiftUI. How does an app handle multi-window multitasking on iPadOS, and what lifecycle events occur when an app moves from Active to Inactive, Background, and Suspended?",
+        "expected_answer_keywords": [
+          "UIApplicationDelegate handles process-level events (didFinishLaunchingWithOptions)",
+          "UIWindowSceneDelegate handles UI window lifecycle per scene",
+          "iPadOS multi-window support (multiple UIWindowScene instances)",
+          "Active -> Inactive (interruption/app switcher) -> Background -> Suspended",
+          "SwiftUI `@Environment(\\.scenePhase)` (active, inactive, background)"
+        ]
+      }
+    ],
+    "ios_app_lifecycle_xcode.xcode_ide_debugging_tools": [
+      {
+        "level": "junior",
+        "type": "debugging",
+        "question": "An image view on a complex screen is invisible to the user. Walk through using Xcode's Debug View Hierarchy tool to inspect the 3D layer stack, check constraint conflicts, and evaluate frame values (`CGRect(0, 0, 0, 0)`). In LLDB console, demonstrate using `po view.recursiveDescription()`, `expression view.backgroundColor = UIColor.red`, and `e CATransaction.flush()` to debug UI state dynamically.",
+        "expected_answer_keywords": [
+          "Debug View Hierarchy 3D exploded view",
+          "inspecting zero-size frames or zero opacity",
+          "detecting clippedToBounds or obscured layers",
+          "LLDB `po` (print object) and `p`",
+          "LLDB `expression` to mutate runtime state dynamically",
+          "`CATransaction.flush()` to render changes immediately in simulator"
+        ]
+      }
+    ],
+    "ios_app_lifecycle_xcode.asset_catalogs_localization": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "Configure an iOS Asset Catalog (`.xcassets`) supporting Light/Dark appearance color sets and vector PDF/SVG icons with 'Single Scale' rendering. Furthermore, explain how Xcode 15 String Catalogs (`.xcstrings`) automate localization, detect missing translation keys across targets, and handle complex pluralization rules (zero, one, other) for dynamic strings.",
+        "expected_answer_keywords": [
+          "Asset Catalog Color Sets with Any/Dark appearances",
+          "Vector SVG/PDF with Preserve Vector Data / Single Scale",
+          "String Catalogs (.xcstrings in Xcode 15)",
+          "automatic extraction of localized string keys at compile time",
+          "pluralization dictionaries (zero, one, other) in .xcstrings",
+          "RTL layout mirroring"
+        ]
+      }
+    ],
+    "ios_app_lifecycle_xcode.background_modes_tasks": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "An app needs to download updated user catalog data once every 12 hours without draining the device battery. Explain how to configure `UIBackgroundModes` with `fetch`, register a background task with `BGTaskScheduler.shared.register(forTaskWithIdentifier:using:)`, schedule a `BGAppRefreshTaskRequest`, and handle the task expiration handler (`task.expirationHandler`) when iOS terminates the task early.",
+        "expected_answer_keywords": [
+          "`UIBackgroundModes` in Info.plist (`fetch`, `processing`)",
+          "`BGTaskScheduler.shared.register` in `application:didFinishLaunchingWithOptions`",
+          "`BGAppRefreshTaskRequest` with `earliestBeginDate`",
+          "iOS power management decides actual execution time",
+          "`task.expirationHandler` cleanup on timeout",
+          "`task.setTaskCompleted(success:)`"
+        ]
+      }
+    ],
+    "ios_app_lifecycle_xcode.app_extensions_widgets": [
+      {
+        "level": "mid",
+        "type": "architectural_trade_off",
+        "question": "Build an iOS WidgetKit Home Screen widget for an order tracking app: explain the role of `TimelineProvider` (`placeholder`, `getSnapshot`, `getTimeline`), `TimelineEntry`, and `TimelineReloadPolicy` (`.after(date)`, `.never`). How do the main app and the Widget extension share authentication tokens and order data using `App Groups` and shared `UserDefaults(suiteName: \"group.com.app\")`?",
+        "expected_answer_keywords": [
+          "WidgetKit declarative UI in SwiftUI",
+          "`TimelineProvider` generating `TimelineEntry` snapshots",
+          "`TimelineReloadPolicy.after(date)`",
+          "App Groups entitlement (`group.com.company.app`)",
+          "Shared container sandbox via `UserDefaults(suiteName:)` / shared CoreData SQLite file",
+          "WidgetCenter.shared.reloadTimelines(ofKind:)"
+        ]
+      }
+    ],
+    "ios_app_lifecycle_xcode.universal_links_deep_linking": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "Design Universal Links routing for an iOS e-commerce app: configure the `apple-app-site-association` (AASA) JSON file on the web server with `applinks` component paths, set up the `Associated Domains` entitlement (`applinks:example.com`), handle incoming links in `scene(_:continue:)` with `NSUserActivity`, and route seamlessly to product detail screens.",
+        "expected_answer_keywords": [
+          "apple-app-site-association (AASA) hosted on `https://domain.com/.well-known/apple-app-site-association`",
+          "Associated Domains entitlement (`applinks:example.com`)",
+          "no app chooser prompt (direct launch into app)",
+          "handling `NSUserActivity` (`activityType == NSUserActivityTypeBrowsingWeb`)",
+          "deep link router parsing URL path and query parameters"
+        ]
+      }
+    ],
+    "ios_app_lifecycle_xcode.instruments_profiling_performance": [
+      {
+        "level": "senior",
+        "type": "debugging",
+        "question": "An iOS application suffers from severe memory growth leading to OOM (Out of Memory) crash terminations. Walk through your profiling methodology with Xcode Instruments: using the Allocations instrument with 'Mark Generation' during repeated screen pushes/pops to detect unreleased heap allocations, analyzing the Leaks instrument for cyclic references, and inspecting the Time Profiler 'Invert Call Tree' to find CPU bottlenecks on the Main Thread.",
+        "expected_answer_keywords": [
+          "Allocations instrument 'Mark Generation' (Generation Analysis) during push/pop cycles",
+          "identifying persistent heap allocation deltas",
+          "Leaks instrument detecting cyclic reference graphs",
+          "Time Profiler with 'Invert Call Tree' and 'Hide System Libraries'",
+          "identifying Main Thread blocking operations",
+          "reducing memory footprint to prevent Jetsam kills"
+        ]
+      }
+    ],
+    "ios_app_lifecycle_xcode.multi_target_build_schemes": [
+      {
+        "level": "senior",
+        "type": "architectural_trade_off",
+        "question": "Architect an enterprise Xcode project configuration for Development, Staging, and Production environments: decouple all compiler settings, bundle identifiers (`com.app.dev`, `com.app.prod`), and API base URLs into `.xcconfig` files (`Debug.xcconfig`, `Release.xcconfig`, `Shared.xcconfig`), manage distinct Xcode Schemes, and integrate build phase scripts for automated linting with SwiftLint without hardcoding paths.",
+        "expected_answer_keywords": [
+          "External `.xcconfig` files decoupling build settings from project.pbxproj",
+          "Xcode Schemes for Dev, Staging, Production",
+          "Bundle Identifier and Display Name overrides per configuration",
+          "Preprocessor macros (`GCC_PREPROCESSOR_DEFINITIONS`) and Swift flags (`OTHER_SWIFT_FLAGS`)",
+          "Run Script Build Phases with input/output file lists for caching"
+        ]
+      }
+    ],
+    "ios_app_lifecycle_xcode.app_store_guidelines_privacy": [
+      {
+        "level": "senior",
+        "type": "governance_case_study",
+        "question": "Apple requires Privacy Manifests (`PrivacyInfo.xcprivacy`) for all apps and third-party SDKs using 'Required Reason APIs' (User Defaults, File Timestamps, Disk Space, System Boot Time). Walk through auditing an iOS codebase: identifying Required Reason API usages, generating the `PrivacyInfo.xcprivacy` dictionary with `NSPrivacyAccessedAPITypes` and valid justification codes, declaring data collection types, and ensuring third-party SDK XCFrameworks contain valid code signatures.",
+        "expected_answer_keywords": [
+          "Privacy Manifest (`PrivacyInfo.xcprivacy`) requirement",
+          "Required Reason APIs (UserDefaults, systemBootTime, diskSpace)",
+          "`NSPrivacyAccessedAPITypes` and Apple-defined justification reason codes",
+          "NSPrivacyCollectedDataTypes for analytics/tracking",
+          "App Tracking Transparency (ATT / ATTrackingManager)",
+          "signed XCFramework verification"
+        ]
+      }
+    ],
+    "ios_uikit_swiftui.uikit_autolayout_programmatic": [
+      {
+        "level": "junior",
+        "type": "code_review",
+        "question": "A developer builds a UIKit custom view in code but forgets `view.translatesAutoresizingMaskIntoConstraints = false`, causing constraints to conflict with frame autoresizing masks. Explain why this property is mandatory for programmatic AutoLayout, and construct a responsive form layout using `UIStackView` and `NSLayoutConstraint.activate([...])`.",
+        "expected_answer_keywords": [
+          "`translatesAutoresizingMaskIntoConstraints = false` prevents autoresizing mask conversion to rigid constraints",
+          "`NSLayoutConstraint.activate([...])` activates constraints in a single batch layout pass",
+          "UIStackView for automatic distribution and alignment",
+          "safeAreaLayoutGuide constraints",
+          "contentHuggingPriority and contentCompressionResistancePriority"
+        ]
+      }
+    ],
+    "ios_uikit_swiftui.uikit_collection_table_views": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "Explain how `UICollectionViewDiffableDataSource` and `NSDiffableDataSourceSnapshot` eliminate `NSInternalInconsistencyException` crashes previously caused by mismatched `performBatchUpdates()` calls in UIKit. Write the code to configure a diffable data source, apply a snapshot with item identifiers, and explain how automatic animated transitions work.",
+        "expected_answer_keywords": [
+          "`UICollectionViewDiffableDataSource<Section, ItemIdentifier>`",
+          "`NSDiffableDataSourceSnapshot` represents immutable truth of UI state",
+          "eliminates index-based batch update mismatch crashes",
+          "`snapshot.appendSections()` and `snapshot.appendItems()`",
+          "`dataSource.apply(snapshot, animatingDifferences: true)`",
+          "unique Hashable item identifiers"
+        ]
+      }
+    ],
+    "ios_uikit_swiftui.swiftui_views_state_basics": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "Explain how `@State` and `@Binding` manage data flow in SwiftUI. Given a parent screen with a toggle switch, create a reusable child composable `CustomToggleView` that binds to the parent's boolean state via `@Binding var isOn: Boolean`. What happens under the hood when `@State` property changes trigger SwiftUI view re-evaluations?",
+        "expected_answer_keywords": [
+          "@State manages local source of truth allocated outside view struct",
+          "@Binding creates two-way read/write connection to parent state",
+          "SwiftUI views are immutable structs recreated on state mutation",
+          "State mutation invalidates view body and recalculates diff",
+          "unidirectional data flow"
+        ]
+      }
+    ],
+    "ios_uikit_swiftui.swiftui_state_management": [
+      {
+        "level": "mid",
+        "type": "comparison",
+        "question": "Compare the modern iOS 17+ `@Observable` macro (Swift Observation framework) with legacy `@StateObject`, `@ObservedObject`, `@Published`, and `ObservableObject`. Explain how the `@Observable` macro tracks property access at the granular field level (preventing view re-renders when unrelated properties change) and how it simplifies dependency injection via `@Environment`.",
+        "expected_answer_keywords": [
+          "`@Observable` macro (iOS 17+) tracks field-level read dependencies",
+          "Legacy `ObservableObject` with `@Published` invalidates entire view on *any* property change (`objectWillChange`)",
+          "granular property-level re-rendering optimization",
+          "No `@Published` property wrappers required",
+          "`@Environment(UserModel.self)` type-based injection without custom EnvironmentKey"
+        ]
+      }
+    ],
+    "ios_uikit_swiftui.uikit_swiftui_interoperability": [
+      {
+        "level": "mid",
+        "type": "code_review",
+        "question": "You need to integrate a UIKit `MKMapView` into a SwiftUI application. Write a `UIViewRepresentable` struct: implement `makeUIView(context:)`, `updateUIView(_:context:)`, and create a custom `Coordinator` class conforming to `MKMapViewDelegate` to handle user pin selections and pass selected coordinates back to SwiftUI via a `@Binding`.",
+        "expected_answer_keywords": [
+          "`UIViewRepresentable` protocol implementation",
+          "`makeUIView(context:)` instantiates MKMapView",
+          "`updateUIView(_:context:)` updates view on SwiftUI state change",
+          "custom `Coordinator` subclass handling `MKMapViewDelegate`",
+          "`makeCoordinator()` lifecycle binding",
+          "Coordinator communicating back via `@Binding`"
+        ]
+      }
+    ],
+    "ios_uikit_swiftui.swiftui_navigation_custom_layouts": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "Design a type-safe navigation system in SwiftUI using `NavigationStack` and `navigationDestination(for:)`. Explain how you manage a `NavigationPath` binding in a central router, navigate programmatically to different data types (`Product`, `UserProfile`, `Order`), and implement a custom `Layout` protocol container (overriding `sizeThatFits` and `placeSubviews`) that arranges chips in a flowing multi-line tag cloud.",
+        "expected_answer_keywords": [
+          "`NavigationStack(path: $router.path)`",
+          "type-safe `navigationDestination(for: Product.self)`",
+          "`NavigationPath` for heterogeneous push/pop and pop-to-root",
+          "SwiftUI `Layout` protocol (`sizeThatFits` and `placeSubviews`)",
+          "custom FlowLayout tag cloud arrangement",
+          "responsive subview measurement"
+        ]
+      }
+    ],
+    "ios_uikit_swiftui.custom_animations_transitions": [
+      {
+        "level": "senior",
+        "type": "architectural_trade_off",
+        "question": "Build an interactive, gesture-driven bottom drawer card in iOS: compare implementing it in UIKit using `UIViewPropertyAnimator` (controlling `fractionComplete` from a `UIPanGestureRecognizer` for scrubbable, interruptible gestures) versus SwiftUI using `matchedGeometryEffect`, spring physics (`.spring(response:dampingFraction:)`), and `DragGesture`. How do you ensure fluid 120Hz ProMotion animation without frame drops?",
+        "expected_answer_keywords": [
+          "`UIViewPropertyAnimator` allows scrubbing and reversing via `fractionComplete`",
+          "interactive gesture dismissal with velocity calculation",
+          "SwiftUI `matchedGeometryEffect(id:in:)` for hero element morphing",
+          "Fluid spring curves (`.spring(response:dampingFraction:)`)",
+          "120Hz ProMotion display synchronization (`CADisplayLink` / CoreAnimation)",
+          "offloading animation calculations from Main Thread"
+        ]
+      }
+    ],
+    "ios_uikit_swiftui.custom_drawing_core_graphics": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "A stock trading application requires rendering real-time candlestick stock charts at 60fps with 5,000 data points. Explain how you implement high-performance 2D rendering using Core Graphics (`CGContext`, `UIBezierPath`, clipping masks), custom `CALayer` hierarchies (`CAShapeLayer`, `CATextLayer`), and evaluate when to use a Metal shader (`colorEffect` in SwiftUI iOS 17) for GPU-accelerated graphic processing.",
+        "expected_answer_keywords": [
+          "Core Graphics `CGContext` path drawing in `draw(_ rect:)`",
+          "`CAShapeLayer` GPU-accelerated vector drawing using CoreAnimation",
+          "`CATiledLayer` for huge scrollable canvas rendering",
+          "SwiftUI `Canvas` immediate mode rendering",
+          "Metal shader functions (`colorEffect`, `distortionEffect`) for GPU parallel processing",
+          "eliminating CPU rasterization bottlenecks"
+        ]
+      }
+    ],
+    "ios_uikit_swiftui.accessibility_dynamic_type": [
+      {
+        "level": "senior",
+        "type": "governance_case_study",
+        "question": "Conduct an accessibility and UI robustness audit on an iOS application: explain how to configure VoiceOver elements (`accessibilityLabel`, `accessibilityValue`, `accessibilityTraits`, `accessibilityCustomActions` for swipe actions), ensure Dynamic Type font scaling works gracefully across all text without truncating (using `UIFontMetrics` and `ViewThatFits` in SwiftUI), and verify WCAG AAA color contrast ratios.",
+        "expected_answer_keywords": [
+          "VoiceOver accessibility (`accessibilityLabel`, `accessibilityTraits`)",
+          "accessibilityCustomActions replacing gesture-only features",
+          "Dynamic Type scaling with `@ScaledMetric` and `UIFontMetrics`",
+          "`ViewThatFits` in SwiftUI to swap horizontal layouts to vertical on Large Accessibility Sizes",
+          "WCAG color contrast compliance (4.5:1 minimum)",
+          "Accessibility Inspector in Xcode"
+        ]
+      }
+    ],
+    "ios_architecture_patterns.mvc_mvvm_architecture": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "A legacy iOS app suffers from 'Massive View Controller' (MVC) where a single `UserViewController` has 2,500 lines handling networking, database caching, table view delegates, and business validation. Walk through refactoring this to MVVM: define the `UserViewModel`, bind state to the View using Combine `@Published` properties or closure observers, and extract business logic into testable ViewModel methods.",
+        "expected_answer_keywords": [
+          "Massive View Controller refactoring",
+          "ViewModel encapsulates business logic and formatting",
+          "View only binds to ViewModel and handles rendering",
+          "Combine `@Published` properties or Swift Concurrency async state",
+          "ViewModel has zero UIKit imports (pure unit testability)",
+          "Single Responsibility Principle"
+        ]
+      }
+    ],
+    "ios_architecture_patterns.dependency_injection_coordinator": [
+      {
+        "level": "junior",
+        "type": "code_review",
+        "question": "In an iOS app, `LoginViewController` directly instantiates `HomeViewController` and pushes it onto `self.navigationController`. Explain why this tight coupling makes ViewControllers non-reusable and impossible to deep link. Refactor this using the Coordinator pattern: define a `Coordinator` protocol with `func start()`, create `LoginCoordinator`, and inject dependencies via constructor injection.",
+        "expected_answer_keywords": [
+          "Coordinator pattern separates navigation from ViewControllers",
+          "ViewControllers delegate user actions via delegate protocol or closure",
+          "Coordinator manages navigation controller push/pop/present",
+          "Constructor Dependency Injection",
+          "ViewControllers become completely reusable across different user flows",
+          "`Coordinator.start()` lifecycle"
+        ]
+      }
+    ],
+    "ios_architecture_patterns.repository_pattern_services": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "Design a clean data layer in Swift using the Repository pattern: define `protocol UserRepository` with `func getUser(id: String) async throws -> User`, implement `UserRepositoryImpl` that coordinates between local CoreData/SwiftData and remote API client, and create a `MockUserRepository` with static fixtures to power SwiftUI Previews and unit tests.",
+        "expected_answer_keywords": [
+          "Repository protocol abstraction (`UserRepository`)",
+          "Single Source of Truth coordinating local cache and remote API",
+          "Dependency Inversion Principle",
+          "`MockUserRepository` returning static test fixtures",
+          "Instant SwiftUI Previews without live network calls",
+          "DTO to Domain model conversion"
+        ]
+      }
+    ],
+    "ios_architecture_patterns.clean_architecture_viper": [
+      {
+        "level": "mid",
+        "type": "architectural_trade_off",
+        "question": "Explain the responsibilities and communication flow of the five components in VIPER architecture: View, Interactor, Presenter, Entity, Router. How does VIPER enforce strict separation of concerns compared to MVVM, and what are the development overhead trade-offs (boilerplate, protocol proliferation) in large vs small teams?",
+        "expected_answer_keywords": [
+          "VIPER (View, Interactor, Presenter, Entity, Router)",
+          "View displays UI and forwards events to Presenter",
+          "Presenter formats data for View and coordinates with Interactor",
+          "Interactor contains business use cases and data fetching",
+          "Entity represents pure domain data models",
+          "Router manages wireframe navigation",
+          "high testability vs protocol boilerplate trade-off"
+        ]
+      }
+    ],
+    "ios_architecture_patterns.tca_composable_architecture": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "Explain the core concepts of Point-Free's The Composable Architecture (TCA) in Swift: State (struct), Action (enum), Reducer (protocol / closure), Store, and Effect. Walk through building a counter feature with network persistence in TCA: how the Reducer handles user actions, mutates state pure-functionally, and dispatches asynchronous side-effects via `Effect.run`.",
+        "expected_answer_keywords": [
+          "The Composable Architecture (TCA)",
+          "State: single immutable struct of feature data",
+          "Action: enum representing all user interactions and network responses",
+          "Reducer: pure function mutating State and returning Effects",
+          "StoreOf<Feature>: runtime engine",
+          "Effect.run for async side-effects",
+          "predictable unidirectional data flow"
+        ]
+      }
+    ],
+    "ios_architecture_patterns.advanced_coordinators_deeplinking": [
+      {
+        "level": "mid",
+        "type": "debugging",
+        "question": "In an app using hierarchical Coordinators (`AppCoordinator` -> `MainCoordinator` -> `ProfileCoordinator`), child coordinators are retained in memory after their screens are dismissed, causing severe memory leaks. Explain how to manage the `childCoordinators: [Coordinator]` array lifecycle, implement a `childDidFinish(_ child: Coordinator)` cleanup pattern, and resolve deep link navigation by traversing the Coordinator tree.",
+        "expected_answer_keywords": [
+          "Parent coordinator retains child coordinator in `childCoordinators` array",
+          "child coordinator must be removed on dismiss (`childDidFinish`) to allow deallocation",
+          "UINavigationControllerDelegate `didShow` interceptor to detect back-swipe dismissal",
+          "deep link URL parsing and hierarchical Coordinator delegation",
+          "memory leak prevention in coordinator trees"
+        ]
+      }
+    ],
+    "ios_architecture_patterns.modularization_spm_frameworks": [
+      {
+        "level": "senior",
+        "type": "architectural_trade_off",
+        "question": "Architect a multi-package modular iOS application using Swift Package Manager (SPM) with 40+ packages. Detail the package architecture: `:AppTarget`, `Feature*` packages, `Core*` packages (CoreNetworking, CoreDesignSystem, CoreStorage). How do you implement the 'Interface vs Implementation' split (e.g. `AuthFeatureInterface` package with protocols vs `AuthFeature` package with concrete classes) to eliminate circular dependencies and minimize incremental compilation rebuild times?",
+        "expected_answer_keywords": [
+          "SPM multi-package modularization (`Package.swift`)",
+          "Feature packages and Core shared packages",
+          "Interface vs Implementation split (API / Impl target separation)",
+          "eliminating cyclic dependencies between feature modules",
+          "Swift compilation avoidance (changing implementation does not recompile consumers)",
+          "accelerated Xcode build parallelization"
+        ]
+      }
+    ],
+    "ios_architecture_patterns.microapps_plugin_architecture": [
+      {
+        "level": "senior",
+        "type": "architectural_trade_off",
+        "question": "Design a Micro-Apps architecture for a 50-engineer mobile organization: explain how feature teams develop their modules in standalone executable demo apps (Sample Apps) that run in isolation without compiling the main monorepo application. How do you design a dynamic Module Registry / Plugin Interface where the root application discovers and boots enabled feature modules dynamically?",
+        "expected_answer_keywords": [
+          "Micro-Apps architecture with standalone sample application targets",
+          "sub-5-second incremental build and preview times for feature teams",
+          "Module Registry / Service Locator pattern for feature registration",
+          "Plugin protocol with `func initialize(context: ModuleContext)`",
+          "dynamic feature flagging and modular runtime composition"
+        ]
+      }
+    ],
+    "ios_architecture_patterns.state_machine_unidirectional_flow": [
+      {
+        "level": "senior",
+        "type": "governance_case_study",
+        "question": "In a complex ride-hailing iOS application (states: `idle`, `searching`, `driverAssigned`, `inTransit`, `completed`, `cancelled`), explain how implementing a formal Finite State Machine (FSM) in Swift using enums with associated values and pure reducer functions makes illegal transitions (e.g. transitioning from `idle` directly to `completed`) impossible at the type system level. How do you handle state restoration when the app restarts mid-ride?",
+        "expected_answer_keywords": [
+          "Finite State Machine (FSM) in Swift",
+          "State modeled as exhaustive enum with associated values",
+          "State transitions controlled by pure reducer `transition(state: State, event: Event) -> State`",
+          "eliminating illegal state transitions at compile/runtime",
+          "deterministic state serialization to persistent storage for crash/reboot restoration"
+        ]
+      }
+    ],
+    "ios_reactive_concurrency.grand_central_dispatch_basics": [
+      {
+        "level": "junior",
+        "type": "debugging",
+        "question": "A developer writes `DispatchQueue.main.sync { self.updateUI() }` from inside a function executing on the Main Thread, causing the app to freeze instantly. Explain the exact cause of this deadlock. Furthermore, contrast GCD serial queues with concurrent queues, and explain the Quality of Service (QoS) classes (`userInteractive`, `userInitiated`, `utility`, `background`).",
+        "expected_answer_keywords": [
+          "Calling `DispatchQueue.main.sync` from main thread causes instant deadlock",
+          "main thread waits for sync block to complete while block waits for main thread to yield",
+          "serial queue executes tasks sequentially FIFO",
+          "concurrent queue executes multiple tasks concurrently",
+          "Quality of Service (QoS) priority scheduling"
+        ]
+      }
+    ],
+    "ios_reactive_concurrency.operations_operation_queue": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "You need to download an image, apply a blur filter, and save it to disk sequentially, while allowing the user to cancel the entire pipeline at any point. Explain how to implement this using `Operation` and `OperationQueue`: subclassing `Operation`, setting task dependencies with `filterOperation.addDependency(downloadOperation)`, and handling cancellation checks via `isCancelled`.",
+        "expected_answer_keywords": [
+          "`Operation` and `OperationQueue` architecture",
+          "subclassing `Operation` with `main()` / `start()`",
+          "`addDependency()` for DAG dependency graph execution",
+          "`maxConcurrentOperationCount` to limit thread usage",
+          "cooperative cancellation checking `if isCancelled { return }`",
+          "KVO state observation (isExecuting, isFinished)"
+        ]
+      }
+    ],
+    "ios_reactive_concurrency.async_await_structured_concurrency": [
+      {
+        "level": "junior",
+        "type": "code_review",
+        "question": "Refactor a pyramid of 3 nested completion handler callbacks into Swift Modern Concurrency using `async/await`. Explain how structured concurrency with `async let` executes independent network calls in parallel (e.g. `async let user = fetchUser()` and `async let orders = fetchOrders()`), and how `withTaskGroup` coordinates dynamic numbers of concurrent tasks.",
+        "expected_answer_keywords": [
+          "pyramid of doom callback elimination with async/await",
+          "linear readable asynchronous code execution",
+          "`async let` for parallel concurrent execution of fixed tasks",
+          "`withTaskGroup / withThrowingTaskGroup` for dynamic concurrent tasks",
+          "automatic parent-child cancellation propagation"
+        ]
+      }
+    ],
+    "ios_reactive_concurrency.actors_thread_safety": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "Explain how Swift `actor` eliminates data races at compile time. In an in-memory cache `actor ImageCache`, explain why accessing actor properties from outside requires `await`. What is actor reentrancy, why can state change across suspension points (`await`), and how does the `@MainActor` attribute guarantee that UI mutations always execute on the main thread?",
+        "expected_answer_keywords": [
+          "Swift Actors synchronize access to mutable state automatically",
+          "actor isolation requires `await` for cross-actor calls",
+          "data race elimination enforced by Swift 6 compiler",
+          "actor reentrancy: state can be modified while suspended at `await`",
+          "`@MainActor` global actor binds execution to Main Thread"
+        ]
+      }
+    ],
+    "ios_reactive_concurrency.async_sequences_streams": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "You need to bridge a legacy `CLLocationManagerDelegate` callback stream into modern Swift Concurrency. Walk through building an `AsyncStream<CLLocation>`: configuring the continuation (`continuation.yield(location)`), handling stream termination (`continuation.onTermination`), and consuming the stream using `for await location in locationStream` in a SwiftUI ViewModel.",
+        "expected_answer_keywords": [
+          "`AsyncStream<T>` and `AsyncThrowingStream<T, Error>`",
+          "bridging callback/delegate APIs to async streams",
+          "`continuation.yield(value)` to emit stream elements",
+          "`continuation.onTermination` to stop location manager updates",
+          "`for await location in stream` asynchronous iteration"
+        ]
+      }
+    ],
+    "ios_reactive_concurrency.combine_publishers_subscribers": [
+      {
+        "level": "mid",
+        "type": "code_review",
+        "question": "In Combine, explain the roles of `Publisher`, `Subscriber`, `Subject` (`PassthroughSubject` vs `CurrentValueSubject`), and `AnyCancellable`. Write a Combine pipeline in a ViewModel that observes a text field subject, debounces input, and updates a search results publisher. Why is storing the subscription in `Set<AnyCancellable>` via `.store(in: &cancellables)` mandatory to prevent premature deallocation?",
+        "expected_answer_keywords": [
+          "Combine Publisher emits stream values",
+          "Subscriber receives values (`.sink`)",
+          "PassthroughSubject (no initial value) vs CurrentValueSubject (holds state)",
+          "`AnyCancellable` represents subscription token",
+          "Subscription cancelled immediately if AnyCancellable is deallocated",
+          "`.store(in: &cancellables)` binds subscription to ViewModel lifecycle"
+        ]
+      }
+    ],
+    "ios_reactive_concurrency.combine_advanced_operators": [
+      {
+        "level": "senior",
+        "type": "debugging",
+        "question": "A search autocomplete Combine pipeline crashes or stops working when an API call throws an error. Explain why an unhandled error inside a Combine stream sends a `.failure` completion and permanently terminates the publisher. How do you resolve this using `flatMap` with inner `.catch { Just(emptyResults) }`, `debounce`, `removeDuplicates`, and `receive(on: DispatchQueue.main)`?",
+        "expected_answer_keywords": [
+          "Combine completion `.failure` terminates publisher permanently",
+          "`flatMap` isolates network error inside inner publisher",
+          "`.catch { Just(...) }` catches error and emits fallback without killing outer stream",
+          "`.debounce(for: .milliseconds(300), scheduler: ...)`",
+          "`.removeDuplicates()`",
+          "`.receive(on: DispatchQueue.main)` for thread switching"
+        ]
+      }
+    ],
+    "ios_reactive_concurrency.concurrency_data_races_tsan": [
+      {
+        "level": "senior",
+        "type": "debugging",
+        "question": "During a high-concurrency stress test, an app crashes intermittently with `EXC_BAD_ACCESS` inside an unprotected mutable `var cache: [String: Data]`. Walk through enabling Xcode Thread Sanitizer (TSan), interpreting TSan data race reports (Conflicting read/write across threads), and comparing solutions: using a Swift `actor`, a custom serial `DispatchQueue`, or low-level `os_unfair_lock`.",
+        "expected_answer_keywords": [
+          "Thread Sanitizer (TSan) in Xcode Scheme Diagnostics",
+          "detecting unsynchronized concurrent read/write access",
+          "EXC_BAD_ACCESS due to non-atomic heap reallocation",
+          "Swift `actor` for clean compile-time isolation",
+          "`os_unfair_lock` for ultra-low latency critical sections without context switch overhead",
+          "serial dispatch queue synchronization"
+        ]
+      }
+    ],
+    "ios_reactive_concurrency.rxswift_reactive_patterns": [
+      {
+        "level": "senior",
+        "type": "architectural_trade_off",
+        "question": "Your team is migrating a 300,000-line iOS application from RxSwift / RxCocoa (`Observable`, `Single`, `BehaviorRelay`, `DisposeBag`, `Driver`) to native Swift Modern Concurrency and Combine. Detail the phased migration strategy: mapping Rx operators to Combine/Async equivalents, creating interop extensions (`Observable.values` async sequence), and managing dual-framework coexistence during feature delivery.",
+        "expected_answer_keywords": [
+          "RxSwift Single -> async throws function",
+          "RxSwift Observable -> Combine AnyPublisher / AsyncStream",
+          "BehaviorRelay -> CurrentValueSubject / @Published",
+          "DisposeBag -> Set<AnyCancellable> / Task cancellation",
+          "RxSwift to AsyncSequence bridging extensions",
+          "phased domain-by-domain migration roadmap"
+        ]
+      }
+    ],
+    "ios_data_persistence_networking.userdefaults_filemanager": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "A junior developer stores user authentication tokens, full PDF documents, and cached profile images in `UserDefaults.standard`. Explain why this violates iOS storage best practices (performance degradation, plist loading into memory, lack of encryption). Refactor this: explain when to use `UserDefaults` (@AppStorage for lightweight user preferences) versus `FileManager` for writing files atomically to the Documents/Caches sandbox directories.",
+        "expected_answer_keywords": [
+          "UserDefaults reads entire plist into memory on startup",
+          "UserDefaults is unencrypted plain-text plist (security violation for tokens)",
+          "FileManager for large files, images, PDFs",
+          "Application Sandbox directories (`.documentDirectory` for user data, `.cachesDirectory` for purgable files)",
+          "`Data.write(to:options: .atomic)` to prevent file corruption"
+        ]
+      }
+    ],
+    "ios_data_persistence_networking.urlsession_codable_networking": [
+      {
+        "level": "junior",
+        "type": "code_review",
+        "question": "Write a clean native networking client in Swift using `URLSession.shared.data(for: urlRequest)`. Implement `JSONDecoder` with `keyDecodingStrategy = .convertFromSnakeCase` and `dateDecodingStrategy = .iso8601`, decode a generic `T: Decodable`, validate that the HTTP status code is in the 200...299 range, and throw custom typed domain errors for 401 Unauthorized and 404 Not Found.",
+        "expected_answer_keywords": [
+          "`URLSession.shared.data(for: request)` async API",
+          "HTTPURLResponse status code validation (`200...299`)",
+          "`JSONDecoder` with `.convertFromSnakeCase` and `.iso8601`",
+          "Generic decoding `decode(T.self, from: data)`",
+          "custom typed NetworkError mapping (unauthorized, notFound, serverError)"
+        ]
+      }
+    ],
+    "ios_data_persistence_networking.keychain_secure_storage": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "Explain why OAuth access and refresh tokens must be stored in iOS Keychain Services rather than UserDefaults. Write a helper class in Swift wrapping Keychain API: implement `save(key:value:)` using `SecItemAdd` / `SecItemUpdate`, `read(key:)` using `SecItemCopyMatching`, and configure `kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly` to prevent token extraction during backups or device transfers.",
+        "expected_answer_keywords": [
+          "Keychain data is encrypted using hardware-backed keys in Secure Enclave",
+          "UserDefaults is unencrypted plist in app sandbox",
+          "Keychain API (`SecItemAdd`, `SecItemCopyMatching`, `SecItemDelete`)",
+          "`kSecClassGenericPassword`",
+          "`kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly` accessibility flag",
+          "preventing iCloud backup token leakage"
+        ]
+      }
+    ],
+    "ios_data_persistence_networking.core_data_fundamentals": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "Set up a complete Core Data stack in an iOS application: configure `NSPersistentContainer`, describe how `NSManagedObjectContext` tracks object changes, perform CRUD operations (Insert, Fetch with `NSPredicate` and `NSSortDescriptor`, Update, Delete), and explain how `NSFetchedResultsController` automatically animates `UITableView` / `UICollectionView` updates when database records change.",
+        "expected_answer_keywords": [
+          "`NSPersistentContainer` loading persistent stores",
+          "`NSManagedObjectContext` scratchpad for managed objects",
+          "`NSFetchRequest` with `NSPredicate` filtering and `NSSortDescriptor`",
+          "`context.save()` to persist changes to SQLite backing store",
+          "`NSFetchedResultsController` and `NSFetchedResultsControllerDelegate` for automated UI list updates"
+        ]
+      }
+    ],
+    "ios_data_persistence_networking.swiftdata_modern_persistence": [
+      {
+        "level": "mid",
+        "type": "comparison",
+        "question": "Compare Apple's modern SwiftData persistence framework (iOS 17+) with traditional Core Data. How does the `@Model` macro eliminate `.xcdatamodeld` XML files, how does `@Query` seamlessly integrate with SwiftUI view bodies using `#Predicate`, and how do you configure a `ModelContainer` and `ModelContext` with `@Relationship(deleteRule: .cascade)` for relational models?",
+        "expected_answer_keywords": [
+          "SwiftData `@Model` macro defines schema directly in Swift code",
+          "Eliminates visual `.xcdatamodeld` editor and Objective-C model generation",
+          "`@Query` property wrapper in SwiftUI with type-safe `#Predicate`",
+          "`ModelContainer` and `ModelContext` replace persistent container and managed object context",
+          "`@Relationship(deleteRule: .cascade)` for relational cascade deletes"
+        ]
+      }
+    ],
+    "ios_data_persistence_networking.alamofire_networking_layer": [
+      {
+        "level": "mid",
+        "type": "code_review",
+        "question": "Build a modular networking layer with Alamofire: implement an `OAuthAuthenticator` conforming to `RequestInterceptor` (`RequestAdapter` to inject fresh Bearer tokens into headers, and `RequestRetrier` with `retryResult` to refresh expired tokens when receiving a 401 Unauthorized before retrying the failed request), and configure custom `EventMonitor` for network telemetry.",
+        "expected_answer_keywords": [
+          "Alamofire `RequestInterceptor` protocol",
+          "`RequestAdapter.adapt()` adds Authorization header",
+          "`RequestRetrier.retry()` intercepts 401 HTTP response",
+          "asynchronous token refresh mutex and retry failed request with `.retry`",
+          "`EventMonitor` for structured request/response logging"
+        ]
+      }
+    ],
+    "ios_data_persistence_networking.core_data_multithreading_migrations": [
+      {
+        "level": "senior",
+        "type": "debugging",
+        "question": "An app crashes with `EXC_BAD_ACCESS` when accessing an `NSManagedObject` across different threads. Explain Core Data's thread confinement rule: why `NSManagedObjectContext` is not thread-safe, how `persistentContainer.performBackgroundTask` or `context.perform { ... }` ensures thread safety, and walk through implementing a Heavyweight Core Data schema migration using an `NSMappingModel` and custom `NSEntityMigrationPolicy`.",
+        "expected_answer_keywords": [
+          "Core Data contexts and managed objects must only be accessed on their creating queue",
+          "`EXC_BAD_ACCESS` occurs when mutating context concurrently",
+          "`context.perform` and `context.performAndWait` block scheduling",
+          "`performBackgroundTask` creates isolated background context",
+          "Heavyweight migration using `.xcmappingmodel` and `NSEntityMigrationPolicy`",
+          "`NSMergeByPropertyObjectTrumpMergePolicy`"
+        ]
+      }
+    ],
+    "ios_data_persistence_networking.offline_caching_sync_engine": [
+      {
+        "level": "senior",
+        "type": "architectural_trade_off",
+        "question": "Architect an enterprise offline-first synchronization engine for an iOS CRM app: local CoreData/SwiftData acts as Single Source of Truth (SSOT), user updates are written immediately with a `syncStatus = .pending` flag (optimistic UI), offline mutations are queued in a persistent SQLite mutation queue, and a background sync manager reconciles changes with the server resolving data conflicts with field-level timestamps or server-wins rules.",
+        "expected_answer_keywords": [
+          "Offline-first architecture (local DB as Single Source of Truth)",
+          "Optimistic UI updates with pending synchronization flags",
+          "Persistent mutation queue surviving app crashes/kills",
+          "Background synchronization engine using BGTaskScheduler / URLSession",
+          "Conflict resolution strategies (field-level timestamps, server reconciliation)",
+          "Rollback mechanism on permanent sync failures"
+        ]
+      }
+    ],
+    "ios_data_persistence_networking.network_security_ssl_pinning": [
+      {
+        "level": "senior",
+        "type": "governance_case_study",
+        "question": "Design an end-to-end network security architecture for an iOS banking application: implement SSL / Public Key Certificate Pinning using `URLSessionDelegate` (`urlSession(_:didReceive:completionHandler:)` with `SecTrustEvaluateAsyncWithError` and SHA-256 SPKI public key hash comparison), configure Alamofire `ServerTrustManager` with backup pins to avoid app lockouts during cert renewal, and configure App Transport Security (ATS) exceptions.",
+        "expected_answer_keywords": [
+          "SSL / Certificate Pinning to prevent Man-in-the-Middle (MitM) proxy inspection",
+          "`URLSessionDelegate` serverTrust challenge evaluation",
+          "Subject Public Key Info (SPKI) SHA-256 public key hash pinning",
+          "Primary and backup certificate pins for zero-downtime key rotation",
+          "Alamofire `PinnedCertificatesTrustEvaluator`",
+          "App Transport Security (ATS) enforcement (TLS 1.3, forward secrecy)"
+        ]
+      }
+    ],
+    "ios_platform_quality_distribution.unit_testing_xctest": [
+      {
+        "level": "junior",
+        "type": "code_review",
+        "question": "Write a clean automated unit test suite in Swift using XCTest for a `LoginViewModel`: test asynchronous authentication using `async func testLoginSuccess() async throws`, assert state mutations with `XCTAssertEqual`, and mock network requests deterministically using a custom `URLProtocol` subclass without hitting live backend servers.",
+        "expected_answer_keywords": [
+          "`XCTestCase` test suite structure",
+          "async test methods (`func test...() async throws`)",
+          "`XCTAssertEqual`, `XCTAssertTrue`, `XCTAssertThrowsError`",
+          "Custom `URLProtocol` subclass intercepting URLSession requests",
+          "mocking HTTP response codes and JSON fixtures without network dependency"
+        ]
+      }
+    ],
+    "ios_platform_quality_distribution.user_notifications_push": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "Implement user notification handling in iOS: request notification authorization using `UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound])`, schedule a local notification with `UNTimeIntervalNotificationTrigger`, handle foreground banner display with `userNotificationCenter(_:willPresent:withCompletionHandler:)`, and register for remote APNs push device tokens.",
+        "expected_answer_keywords": [
+          "`UNUserNotificationCenter` authorization request",
+          "`UNNotificationContent` (title, body, sound, badge)",
+          "`UNTimeIntervalNotificationTrigger` / `UNCalendarNotificationTrigger`",
+          "`UNUserNotificationCenterDelegate` for foreground notification presentation",
+          "`UIApplication.shared.registerForRemoteNotifications()` for APNs device token"
+        ]
+      }
+    ],
+    "ios_platform_quality_distribution.app_lifecycle_permissions": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "An app crashes immediately upon opening the camera because `NSCameraUsageDescription` is missing from `Info.plist`. Explain Apple's privacy permission model: configuring descriptive Usage Description strings, checking permission status (`AVCaptureDevice.authorizationStatus(for: .video)`), presenting contextual pre-permission rationale UI, and redirecting users to `UIApplication.openSettingsURLString` when permission is denied.",
+        "expected_answer_keywords": [
+          "Missing Info.plist Usage Description triggers instant SIGABRT crash",
+          "`NSCameraUsageDescription` / `NSPhotoLibraryUsageDescription`",
+          "`AVCaptureDevice.authorizationStatus` checking (.notDetermined, .restricted, .denied, .authorized)",
+          "Contextual pre-permission primer screen",
+          "`UIApplication.openSettingsURLString` for denied state recovery"
+        ]
+      }
+    ],
+    "ios_platform_quality_distribution.ui_testing_xcuicache": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "Write an automated UI test suite using XCUITest for an e-commerce checkout flow: structure tests using the Page Object Pattern (`LoginPage`, `CartPage`), query UI elements using accessibility identifiers (`app.buttons[\"checkout_button\"]`), handle asynchronous loading spinners with `element.waitForExistence(timeout: 5)`, and verify end-to-end checkout completion.",
+        "expected_answer_keywords": [
+          "`XCUITest` framework and `XCUIApplication`",
+          "Page Object Pattern structuring UI test screens",
+          "Matching elements via `accessibilityIdentifier` (not localized strings)",
+          "`waitForExistence(timeout:)` for asynchronous UI assertions",
+          "handling system permission alerts with `addUIInterruptionMonitor`"
+        ]
+      }
+    ],
+    "ios_platform_quality_distribution.core_location_mapkit": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "Implement location tracking and geofencing in an iOS delivery app: configure `CLLocationManager` with `requestWhenInUseAuthorization` and `requestAlwaysAuthorization`, set up a `CLCircularRegion` geofence around a store, monitor entry/exit events (`didEnterRegion`, `didExitRegion`), and optimize battery consumption using `startMonitoringSignificantLocationChanges()` instead of continuous high-accuracy GPS tracking.",
+        "expected_answer_keywords": [
+          "`CLLocationManager` and `CLLocationManagerDelegate`",
+          "WhenInUse vs Always location authorization",
+          "`CLCircularRegion` geofencing monitoring",
+          "Significant-change location service (`startMonitoringSignificantLocationChanges`) for low-power tracking",
+          "Background location updates with `allowsBackgroundLocationUpdates`",
+          "MapKit annotations"
+        ]
+      }
+    ],
+    "ios_platform_quality_distribution.biometrics_local_authentication": [
+      {
+        "level": "mid",
+        "type": "code_review",
+        "question": "Write a biometric authentication manager in Swift using the `LocalAuthentication` framework: instantiate `LAContext`, check biometric availability with `canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error:)`, prompt the user with Face ID / Touch ID via `evaluatePolicy`, handle `LAError` domain errors (`userCancel`, `biometryLockout`, `biometryNotEnrolled`), and fallback to device passcode authentication (`.deviceOwnerAuthentication`).",
+        "expected_answer_keywords": [
+          "`LAContext` and `LocalAuthentication` framework",
+          "`canEvaluatePolicy` check before biometric prompt",
+          "`.deviceOwnerAuthenticationWithBiometrics` vs `.deviceOwnerAuthentication` (passcode fallback)",
+          "handling `LAError.biometryLockout` (requiring passcode authentication)",
+          "NSFaceIDUsageDescription in Info.plist",
+          "biometric authentication security"
+        ]
+      }
+    ],
+    "ios_platform_quality_distribution.ci_cd_fastlane_testflight": [
+      {
+        "level": "senior",
+        "type": "governance_case_study",
+        "question": "Architect an automated CI/CD release pipeline for an iOS team with 15 engineers using Fastlane and GitHub Actions / Xcode Cloud: configure `fastlane match` for Git-encrypted team code signing (certificates and provisioning profiles), write a `Fastfile` lane that runs unit/UI tests (`scan`), increments build numbers, compiles signed IPA binaries (`gym`), and distributes beta builds to TestFlight internal/external tester groups (`pilot`).",
+        "expected_answer_keywords": [
+          "Fastlane `match` for Git-encrypted shared team certificates and profiles",
+          "`Fastfile` lane orchestration (test, build, sign, deploy)",
+          "`scan` (run_tests) for automated XCTest execution",
+          "`gym` (build_app) for export and archive creation",
+          "`pilot` (upload_to_testflight) for TestFlight beta distribution",
+          "CI environment variable encryption (App Store Connect API Keys)"
+        ]
+      }
+    ],
+    "ios_platform_quality_distribution.crash_diagnostics_metric_kit": [
+      {
+        "level": "senior",
+        "type": "debugging",
+        "question": "A production app experiences intermittent hard crashes and UI hang rate spikes. Walk through your diagnostics architecture: subscribing to Apple's `MetricKit` framework (`MXMetricManagerSubscriber`) to receive daily aggregated performance and diagnostic payloads (`MXDiagnosticPayload` for crash reports, CPU exceptions, hang rates), symbolication of raw crash logs using dSYM files with `atos` and `dwarfdump`, and correlating with Firebase Crashlytics telemetry.",
+        "expected_answer_keywords": [
+          "`MetricKit` framework (`MXMetricManager.shared.add(subscriber)`)",
+          "`MXDiagnosticPayload` (crash diagnostics, hang traces, CPU exceptions)",
+          "`MXMetricPayload` (memory footprint, scroll jank metrics)",
+          "dSYM crash symbolication using `atos -arch arm64 -o ... -l ...`",
+          "dwarfdump UUID matching between crash log and dSYM archive",
+          "Firebase Crashlytics production telemetry"
+        ]
+      }
+    ],
+    "ios_platform_quality_distribution.app_thinning_size_optimization": [
+      {
+        "level": "senior",
+        "type": "architectural_trade_off",
+        "question": "An iOS application binary size has grown to 180MB, threatening cellular download conversion rates. Walk through your binary optimization strategy: analyzing the Xcode App Size Report, explaining Apple's App Thinning mechanisms (App Slicing for device-specific asset/executable delivery, On-Demand Resources / ODR for deferred game/feature downloads), stripping unused architectures and debug symbols, and compressing Asset Catalogs with High Efficiency formats.",
+        "expected_answer_keywords": [
+          "App Thinning architecture (App Slicing, On-Demand Resources)",
+          "Xcode App Size Report analysis (Universal vs Thinned IPA variants)",
+          "On-Demand Resources (ODR) for deferred asset downloading",
+          "Dead code stripping (`DEAD_CODE_STRIPPING = YES`)",
+          "Asset Catalog HEIF/WebP image compression",
+          "reducing dynamic framework overhead by moving to static SPM libraries"
+        ]
+      }
+    ]
+  }
+}

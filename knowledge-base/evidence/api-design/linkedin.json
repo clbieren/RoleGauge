@@ -1,0 +1,126 @@
+{
+  "source_id": "linkedin",
+  "name": "LinkedIn Profile Analysis - API Designer",
+  "description": "Signals extracted from LinkedIn profiles to evidence API Designer skills. LinkedIn provides professional context, endorsements, recommendations, and career progression data. Focus on API architecture, governance, and platform design leadership roles.",
+  "extraction_rules": {
+    "sections": [
+      {
+        "section": "headline_summary",
+        "description": "Profile headline and summary/about section.",
+        "base_strength": 0.2,
+        "notes": "Self-described; provides intent and specialization context (e.g., 'API Architect' or 'API Platform Engineer' vs generic 'Software Engineer')."
+      },
+      {
+        "section": "experience",
+        "description": "Work experience entries with job titles, companies, and responsibilities.",
+        "base_strength": 0.4,
+        "notes": "Look for API-specific titles and descriptions of governance scope, platform architecture, and standards leadership.",
+        "quality_indicators": [
+          "API-specific job titles (API Architect, API Platform Engineer, API Product Manager, Developer Experience Lead)",
+          "Duration and continuity in API governance or platform roles",
+          "Company scale and API platform complexity (large enterprise with hundreds of APIs vs startup)",
+          "Specific governance outcomes described (style guides adopted, developer portal launched, design review process established)"
+        ]
+      },
+      {
+        "section": "skills_endorsements",
+        "description": "Skills listed with endorsement counts from connections.",
+        "base_strength": 0.15,
+        "notes": "Endorsements have very low evidential value on their own. They provide a high-level self-reported technology inventory."
+      },
+      {
+        "section": "certifications",
+        "description": "Professional certifications with issuing organizations.",
+        "base_strength": 0.2,
+        "notes": "Theoretical domain indicator, not practical governance proof."
+      },
+      {
+        "section": "projects",
+        "description": "Projects section with descriptions and links.",
+        "base_strength": 0.3,
+        "notes": "Provides additional project context. Links to published API style guides, open-source governance tools, or developer portals increase strength."
+      },
+      {
+        "section": "recommendations",
+        "description": "Written recommendations from engineering leaders, API consumers, or platform team peers.",
+        "base_strength": 0.3,
+        "notes": "Third-party validation of API governance leadership, standards quality, and developer experience impact."
+      },
+      {
+        "section": "posts_articles",
+        "description": "Technical posts and articles published on LinkedIn.",
+        "base_strength": 0.3,
+        "notes": "Articles about API design philosophy, governance patterns, or protocol selection indicate deep API architecture grasp."
+      }
+    ]
+  },
+  "signal_mapping": {
+    "description": "How LinkedIn mentions map to skill evidence using COMPOSITE KEYS ({skill_id}.{subskill_id}). AI should use these patterns.",
+    "patterns": [
+      {
+        "pattern": "LinkedIn skills endorsement for 'API Design' or 'REST APIs'",
+        "maps_to": ["api_rest_design.resource_modeling_taxonomy", "api_fundamentals_http.http_methods_semantics"],
+        "strength_modifier": 0.33
+      },
+      {
+        "pattern": "LinkedIn skills endorsement for 'OpenAPI' or 'Swagger'",
+        "maps_to": ["api_rest_design.api_style_guide_authoring", "api_lifecycle_governance.api_documentation_standards"],
+        "strength_modifier": 0.33
+      },
+      {
+        "pattern": "LinkedIn skills endorsement for 'GraphQL' or 'gRPC'",
+        "maps_to": ["api_alternative_styles.graphql_schema_governance", "api_alternative_styles.grpc_service_contracts"],
+        "strength_modifier": 0.33
+      },
+      {
+        "pattern": "LinkedIn skills endorsement for 'OAuth2' or 'API Security'",
+        "maps_to": ["api_auth_security.oauth2_api_contract_patterns", "api_auth_security.auth_scheme_selection"],
+        "strength_modifier": 0.33
+      },
+      {
+        "pattern": "Job experience explicitly describing API governance, style guide authoring, or design review processes",
+        "maps_to": ["api_lifecycle_governance.design_review_process", "api_rest_design.api_style_guide_authoring", "api_lifecycle_governance.api_versioning_policies"],
+        "strength_modifier": 1.0
+      },
+      {
+        "pattern": "Job experience describing API platform architecture with gateway strategy and contract testing",
+        "maps_to": ["api_integration_patterns.api_gateway_architecture", "api_integration_patterns.contract_testing_strategy", "api_integration_patterns.consumer_driven_contracts"],
+        "strength_modifier": 1.0
+      },
+      {
+        "pattern": "Job experience describing developer portal design and API onboarding optimization",
+        "maps_to": ["api_lifecycle_governance.developer_portal_experience", "api_lifecycle_governance.api_documentation_standards", "api_lifecycle_governance.api_catalog_discovery"],
+        "strength_modifier": 1.0
+      },
+      {
+        "pattern": "Job experience describing API performance engineering with SLOs and capacity planning",
+        "maps_to": ["api_performance_scalability.api_latency_budgeting", "api_performance_scalability.capacity_planning_modeling", "api_performance_scalability.rate_limiting_quota_design"],
+        "strength_modifier": 1.0
+      },
+      {
+        "pattern": "Job experience describing OAuth2 scope design and API authentication architecture",
+        "maps_to": ["api_auth_security.oauth2_api_contract_patterns", "api_auth_security.scope_permission_modeling", "api_auth_security.zero_trust_api_architecture"],
+        "strength_modifier": 1.0
+      },
+      {
+        "pattern": "Technical article about API design patterns, governance, or protocol selection trade-offs",
+        "maps_to": ["api_alternative_styles.api_protocol_selection_criteria", "api_rest_design.hateoas_maturity_model", "api_lifecycle_governance.api_program_management"],
+        "strength_modifier": 0.8
+      },
+      {
+        "pattern": "Endorsement for 'API Management' or 'Apigee' or 'Kong'",
+        "maps_to": ["api_integration_patterns.api_gateway_architecture", "api_lifecycle_governance.api_program_management"],
+        "strength_modifier": 0.33
+      }
+    ]
+  },
+  "important_notes": [
+    "ALL extracted signals MUST be mapped to COMPOSITE KEYS ({skill_id}.{subskill_id})",
+    "LinkedIn data supplements but should not override verified governance artifacts or assessment evidence",
+    "Endorsements have near-zero evidential value on their own",
+    "Job titles can be inflated — cross-reference with actual governance scope and architectural responsibilities described",
+    "Career trajectory (progression from API implementer to API architect to API platform leader) provides valuable context",
+    "Specialized API governance content (published style guides, design review processes, protocol selection frameworks) indicates advanced seniority",
+    "Distinguish between 'built APIs' (backend developer work) and 'governed APIs' (API designer work) in experience descriptions"
+  ]
+}

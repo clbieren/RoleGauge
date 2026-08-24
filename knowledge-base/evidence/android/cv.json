@@ -1,0 +1,122 @@
+{
+  "source_id": "cv",
+  "name": "CV / Resume Analysis - Android Developer",
+  "description": "Signals extracted from the user's CV/resume to evidence Android Developer skills. CV data provides self-reported information that must be cross-validated with GitHub and assessment sources.",
+  "extraction_rules": {
+    "description": "How to extract and weight information from CV content for Android roles.",
+    "sections": [
+      {
+        "section": "skills_list",
+        "description": "Explicit list of technologies, frameworks, and tools in skills section.",
+        "base_strength": 0.3,
+        "notes": "Low strength alone. Listing 'Kotlin' or 'Jetpack Compose' requires verification against project details."
+      },
+      {
+        "section": "work_experience",
+        "description": "Job descriptions describing Android engineering achievements and architectural responsibilities.",
+        "base_strength": 0.5,
+        "quality_indicators": [
+          "Specific Jetpack libraries and architectural patterns mentioned (e.g. 'architected multi-module MVI app with Jetpack Compose and Hilt')",
+          "Quantifiable mobile performance metrics (reduced cold start time by 40% using Baseline Profiles, eliminated UI frame drops to 0.1%)",
+          "Action verbs indicating hands-on mobile leadership (architected, migrated, modularized, optimized, hardened)",
+          "Scale indicators (apps with 1M+ MAU, multi-tenant white-label SDKs)"
+        ]
+      },
+      {
+        "section": "projects",
+        "description": "Personal or open-source Android projects demonstrating technical depth.",
+        "base_strength": 0.4,
+        "notes": "Higher strength if linked to GitHub with clean Compose UI, Room offline-first sync, and test suites."
+      },
+      {
+        "section": "certifications",
+        "description": "Professional Android certifications (Associate Android Developer).",
+        "base_strength": 0.2,
+        "recognized_certifications": {
+          "android_google": [
+            "Google Associate Android Developer (AAD)",
+            "Meta Android Developer Professional Certificate"
+          ]
+        }
+      }
+    ]
+  },
+  "signal_mapping": {
+    "description": "How CV mentions map to skill evidence using COMPOSITE KEYS ({skill_id}.{subskill_id}).",
+    "patterns": [
+      {
+        "pattern": "Built reactive Android user interfaces with Jetpack Compose, Material 3, and state hoisting",
+        "maps_to": [
+          "android_ui_layouts.compose_fundamentals_state",
+          "android_ui_layouts.design_systems_theming",
+          "android_ui_layouts.compose_layout_modifiers"
+        ],
+        "strength_modifier": 1.0
+      },
+      {
+        "pattern": "Implemented offline-first data sync architecture with Room ORM and Retrofit",
+        "maps_to": [
+          "android_data_persistence.offline_first_synchronization",
+          "android_data_persistence.room_database_fundamentals",
+          "android_data_persistence.retrofit_networking_client"
+        ],
+        "strength_modifier": 1.1
+      },
+      {
+        "pattern": "Architected multi-module Android codebases using Clean Architecture and Hilt DI",
+        "maps_to": [
+          "android_architecture_patterns.modularization_multi_module",
+          "android_architecture_patterns.clean_architecture_domain_layer",
+          "android_architecture_patterns.dependency_injection_hilt_basics"
+        ],
+        "strength_modifier": 1.1
+      },
+      {
+        "pattern": "Migrated legacy RxJava codebase to Kotlin Coroutines and asynchronous Flow",
+        "maps_to": [
+          "android_concurrency_async.reactive_streams_rxjava_migration",
+          "android_concurrency_async.stateflow_sharedflow_hot_streams",
+          "android_concurrency_async.coroutine_memory_leaks_profiling"
+        ],
+        "strength_modifier": 1.1
+      },
+      {
+        "pattern": "Scheduled guaranteed background sync tasks using WorkManager and Foreground Services",
+        "maps_to": [
+          "android_app_components.workmanager_background_jobs",
+          "android_app_components.service_architecture_types"
+        ],
+        "strength_modifier": 1.0
+      },
+      {
+        "pattern": "Developed cross-platform shared business logic using Kotlin Multiplatform (KMP)",
+        "maps_to": [
+          "android_fundamentals_kotlin.multiplatform_kotlin_kmp",
+          "android_fundamentals_kotlin.kotlin_generics_variance"
+        ],
+        "strength_modifier": 1.2
+      },
+      {
+        "pattern": "Optimized app startup performance with Baseline Profiles and App Startup library",
+        "maps_to": [
+          "android_architecture_patterns.app_startup_architecture",
+          "android_ui_layouts.ui_performance_profiling"
+        ],
+        "strength_modifier": 1.1
+      },
+      {
+        "pattern": "Hardened app security using Android KeyStore, EncryptedSharedPreferences, and R8 obfuscation",
+        "maps_to": [
+          "android_data_persistence.encrypted_storage_keystore",
+          "android_platform_services_quality.security_obfuscation_tamper_proofing"
+        ],
+        "strength_modifier": 1.1
+      }
+    ]
+  },
+  "important_notes": [
+    "Distinguish between client-side API consumption (Retrofit/Room) and backend API design (be_api_design)",
+    "Look for modern Android stack competencies (Compose, Coroutines/Flow, Hilt) vs legacy patterns (AsyncTask, findViewById)",
+    "Cross-validate self-reported performance claims with code in GitHub and assessment results"
+  ]
+}

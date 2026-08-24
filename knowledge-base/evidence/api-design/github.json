@@ -1,0 +1,112 @@
+{
+  "source_id": "github",
+  "name": "GitHub Repository Analysis - API Designer",
+  "description": "Global parsing rules for API design repositories. NOTE: Specific evidence mappings (regex patterns and maps_to composite keys) are stored within individual skill files under evidence.github, NOT here. The validate_composite_keys.py script scans both locations to verify coverage.",
+  "preprocessing_pipeline": {
+    "steps": [
+      {
+        "step": 1,
+        "name": "file_tree_scan",
+        "target_files": [
+          {
+            "pattern": "openapi\\.ya?ml|swagger\\.ya?ml|openapi\\.json|swagger\\.json",
+            "skills": ["api_rest_design", "api_fundamentals_http", "api_lifecycle_governance"],
+            "priority": "high",
+            "notes": "OpenAPI/Swagger specifications — primary artifacts of API design work"
+          },
+          {
+            "pattern": "\\.proto$|buf\\.ya?ml|buf\\.gen\\.ya?ml",
+            "skills": ["api_alternative_styles"],
+            "priority": "high",
+            "notes": "Protocol Buffers definitions and Buf tooling configuration"
+          },
+          {
+            "pattern": "schema\\.graphql|supergraph\\.graphql|federation\\.config|apollo\\.config",
+            "skills": ["api_alternative_styles"],
+            "priority": "high",
+            "notes": "GraphQL schema definitions and federation configuration"
+          },
+          {
+            "pattern": "kong\\.ya?ml|kong\\.conf|apigee[-_]proxy|apiproxy/|tyk\\.conf|envoy\\.ya?ml",
+            "skills": ["api_integration_patterns", "api_performance_scalability"],
+            "priority": "high",
+            "notes": "API gateway configurations (Kong, Apigee, Tyk, Envoy)"
+          },
+          {
+            "pattern": "asyncapi\\.ya?ml|asyncapi\\.json",
+            "skills": ["api_alternative_styles"],
+            "priority": "high",
+            "notes": "AsyncAPI event-driven API specifications"
+          },
+          {
+            "pattern": "pact/|pactfile|pact[-_]broker|pactflow",
+            "skills": ["api_integration_patterns"],
+            "priority": "high",
+            "notes": "Pact contract testing files and broker configuration"
+          },
+          {
+            "pattern": "api[-_]style[-_]guide|spectral\\.ya?ml|\\.spectral\\.js|optic\\.ya?ml",
+            "skills": ["api_rest_design", "api_lifecycle_governance"],
+            "priority": "high",
+            "notes": "API style guides and linting configuration (Spectral, Optic)"
+          },
+          {
+            "pattern": "catalog-info\\.ya?ml|backstage.*catalog|redocly\\.ya?ml",
+            "skills": ["api_lifecycle_governance"],
+            "priority": "medium",
+            "notes": "API catalog, developer portal, and documentation tooling"
+          }
+        ]
+      },
+      {
+        "step": 2,
+        "name": "dependency_extraction",
+        "source_manifests": [
+          "package.json",
+          "pom.xml",
+          "build.gradle",
+          "requirements.txt",
+          "pyproject.toml",
+          "go.mod",
+          "Cargo.toml",
+          "Gemfile"
+        ],
+        "relevant_dependencies": {
+          "api_rest_design": ["@stoplight/spectral", "@optic/openapi-io", "openapi-diff", "oasdiff", "redocly"],
+          "api_alternative_styles": ["@apollo/gateway", "@apollo/federation", "grpc-tools", "protobufjs", "asyncapi-generator", "confluent-schema-registry"],
+          "api_integration_patterns": ["@pact-foundation/pact", "pactflow", "openapi-generator", "swagger-codegen", "prism-cli", "wiremock"],
+          "api_auth_security": ["openid-client", "passport-oauth2", "jose", "jwks-rsa"],
+          "api_performance_scalability": ["express-rate-limit", "rate-limiter-flexible", "wrangler"],
+          "api_lifecycle_governance": ["@backstage/catalog-model", "redoc", "swagger-ui-express"]
+        }
+      },
+      {
+        "step": 3,
+        "name": "config_file_scan",
+        "target_configs": [
+          "openapi.yaml",
+          "openapi.json",
+          "swagger.yaml",
+          "asyncapi.yaml",
+          ".spectral.yml",
+          ".spectral.js",
+          "kong.yml",
+          "apigee-config.json",
+          "redocly.yaml",
+          "catalog-info.yaml",
+          "buf.yaml",
+          "buf.gen.yaml"
+        ]
+      }
+    ]
+  },
+  "ai_analysis_instructions": {
+    "tasks": [
+      "Map detected signals to composite keys ({skill_id}.{subskill_id}) using patterns defined in API design skill files",
+      "Inspect OpenAPI specs for completeness: securitySchemes, error responses (RFC 7807), pagination standards, versioning headers",
+      "Check for API governance artifacts — style guides, Spectral linting rules, design review checklists, API catalog entries",
+      "Evaluate contract testing maturity — Pact broker setup, can-i-deploy gates, backward compatibility diff tools in CI",
+      "Assess protocol diversity — presence of both REST (OpenAPI) and non-REST (GraphQL schemas, .proto files, AsyncAPI) specifications"
+    ]
+  }
+}

@@ -1,0 +1,247 @@
+{
+  "skill_id": "android_platform_services_quality",
+  "name": "Android Platform Services, Quality, CI/CD & Security",
+  "category": "mobile_core",
+  "description": "Android hardware and platform services integration, automated testing (Unit, UI, Compose), memory leak analysis with LeakCanary, CI/CD Gradle build pipelines with R8/ProGuard, crash observability, and device security hardening (Play Integrity).",
+  "subskills": [
+    {
+      "id": "runtime_permissions_model",
+      "name": "Runtime Permissions & Privacy Sandbox",
+      "description": "Implementing Android runtime permission workflows (normal vs dangerous permissions, special permissions), requesting permissions via ActivityResultContracts.RequestPermission, displaying rationale dialogs, handling 'Don't ask again', and adapting to Privacy Sandbox changes.",
+      "keywords": [
+        "Runtime Permissions",
+        "ActivityResultContracts.RequestPermission",
+        "shouldShowRequestPermissionRationale",
+        "POST_NOTIFICATIONS (Android 13)",
+        "Photo Picker privacy",
+        "Privacy Sandbox"
+      ]
+    },
+    {
+      "id": "unit_testing_mockk_junit5",
+      "name": "Unit Testing with JUnit5, MockK & Kotest",
+      "description": "Writing comprehensive unit tests for ViewModels, Repositories, and UseCases using JUnit5 / JUnit4, mocking dependencies with MockK (coEvery, coVerify, relaxed mocks), testing state transitions, and structuring test cases cleanly.",
+      "keywords": [
+        "Unit testing Android",
+        "MockK (coEvery/coVerify)",
+        "JUnit5 / JUnit4",
+        "ViewModel unit testing",
+        "relaxed mocks",
+        "test assertions"
+      ]
+    },
+    {
+      "id": "notifications_channels_manager",
+      "name": "Notification Channels & System Notifications",
+      "description": "Designing notification experiences using NotificationManagerCompat and NotificationCompat.Builder — configuring NotificationChannels (importance levels, sound, vibration), building rich expandable styles (BigTextStyle, BigPictureStyle, MessagingStyle), PendingIntent flags (FLAG_IMMUTABLE), and action buttons.",
+      "keywords": [
+        "NotificationChannel",
+        "NotificationCompat.Builder",
+        "NotificationManagerCompat",
+        "PendingIntent.FLAG_IMMUTABLE",
+        "BigTextStyle / MessagingStyle",
+        "notification priority"
+      ]
+    },
+    {
+      "id": "espresso_ui_testing",
+      "name": "UI Testing with Espresso & Compose Test Rules",
+      "description": "Writing automated UI tests using Espresso (onView, withId, withText, perform(click()), check(matches(isDisplayed()))) and Jetpack Compose Testing API (createComposeRule, onNodeWithText, performClick, assertIsDisplayed), and managing IdlingResources for async UI synchronization.",
+      "keywords": [
+        "Espresso UI testing",
+        "createComposeRule / createAndroidComposeRule",
+        "onNodeWithText / onNodeWithTag",
+        "IdlingResource",
+        "UI test assertions",
+        "UI Automator"
+      ]
+    },
+    {
+      "id": "location_camera_hardware_services",
+      "name": "Hardware Services (CameraX, Location & Sensors)",
+      "description": "Integrating Android hardware capabilities — capturing photos and video with CameraX API (Preview, ImageCapture, ImageAnalysis), tracking precise/approximate device location with FusedLocationProviderClient and LocationRequest, and reading hardware Sensors.",
+      "keywords": [
+        "CameraX API (ImageCapture/ImageAnalysis)",
+        "FusedLocationProviderClient",
+        "LocationRequest (PRIORITY_HIGH_ACCURACY)",
+        "approximate vs precise location",
+        "SensorManager",
+        "BiometricPrompt"
+      ]
+    },
+    {
+      "id": "memory_leak_detection_leakcanary",
+      "name": "Memory Leak Detection & LeakCanary Analysis",
+      "description": "Detecting and resolving Android memory leaks — integrating LeakCanary, analyzing heap dumps (HPROF), tracing retain reference chains back to GC roots (static views, inner class handlers, leaked Activity contexts), and optimizing Bitmap memory footprint.",
+      "keywords": [
+        "LeakCanary",
+        "Memory leak detection",
+        "Heap dump (.hprof) analysis",
+        "GC root retain chain",
+        "leaked Activity context",
+        "Bitmap memory optimization (inSampleSize)"
+      ]
+    },
+    {
+      "id": "ci_cd_gradle_build_optimization",
+      "name": "Gradle CI/CD & Build Speed Optimization",
+      "description": "Architecting automated CI/CD build pipelines for Android (GitHub Actions, Bitrise, GitLab CI) — optimizing Gradle build times with Build Cache, Configuration Cache, and Gradle daemon tuning, generating signed Android App Bundles (.aab), and deploying to Play Store tracks.",
+      "keywords": [
+        "Android CI/CD",
+        "Gradle Build Cache",
+        "Gradle Configuration Cache",
+        "Android App Bundle (.aab)",
+        "Fastlane Android",
+        "Play Store track deployment (Internal/Alpha/Production)"
+      ]
+    },
+    {
+      "id": "crash_reporting_observability",
+      "name": "Crash Reporting, ANR Diagnostics & App Vitals",
+      "description": "Monitoring application production health — integrating Firebase Crashlytics with custom keys and non-fatal logging, diagnosing Application Not Responding (ANR) trace files, tracking Google Play Android Vitals (crash rate, excessive wakeups, slow rendering).",
+      "keywords": [
+        "Firebase Crashlytics",
+        "custom keys & logs",
+        "ANR diagnostics (traces.txt)",
+        "Google Play Android Vitals",
+        "non-fatal exception tracking",
+        "real-time observability"
+      ]
+    },
+    {
+      "id": "security_obfuscation_tamper_proofing",
+      "name": "R8 Code Shrinking & Play Integrity Hardening",
+      "description": "Hardening Android application security — authoring custom ProGuard/R8 rules for code shrinking and obfuscation without breaking reflection/serialization, integrating Google Play Integrity API to verify app genuineness, detecting rooted devices, and verifying APK signature schemes (v2/v3/v4).",
+      "keywords": [
+        "R8 / ProGuard rules",
+        "code obfuscation & shrinking",
+        "Google Play Integrity API",
+        "root detection",
+        "APK signature scheme (v2/v3/v4)",
+        "tamper proofing",
+        "reverse engineering protection"
+      ]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "Unit tests using MockK and JUnit for ViewModels or repositories",
+        "detection": "content_analysis",
+        "pattern": "@Test|mockk<|coEvery \\{|coVerify \\{|assertk|assert\\(",
+        "strength": 0.8,
+        "maps_to": [
+          "android_platform_services_quality.unit_testing_mockk_junit5"
+        ]
+      },
+      {
+        "signal": "Espresso or Compose UI test implementations",
+        "detection": "content_analysis",
+        "pattern": "onView\\(withId|createComposeRule\\(\\)|onNodeWithTag|onNodeWithText",
+        "strength": 0.8,
+        "maps_to": [
+          "android_platform_services_quality.espresso_ui_testing"
+        ]
+      },
+      {
+        "signal": "ProGuard or R8 rules configuration files",
+        "detection": "file_presence",
+        "pattern": "proguard-rules\\.pro|consumer-rules\\.pro|proguard-android-optimize\\.txt",
+        "strength": 0.9,
+        "maps_to": [
+          "android_platform_services_quality.security_obfuscation_tamper_proofing"
+        ]
+      },
+      {
+        "signal": "CameraX or Location Services integration",
+        "detection": "content_analysis",
+        "pattern": "ProcessCameraProvider|ImageCapture\\.Builder|FusedLocationProviderClient|LocationServices",
+        "strength": 0.8,
+        "maps_to": [
+          "android_platform_services_quality.location_camera_hardware_services"
+        ]
+      },
+      {
+        "signal": "Firebase Crashlytics or LeakCanary dependencies and setup",
+        "detection": "content_analysis",
+        "pattern": "com\\.google\\.firebase:firebase-crashlytics|com\\.squareup\\.leakcanary:leakcanary-android|FirebaseCrashlytics\\.getInstance",
+        "strength": 0.8,
+        "maps_to": [
+          "android_platform_services_quality.crash_reporting_observability",
+          "android_platform_services_quality.memory_leak_detection_leakcanary"
+        ]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "Built automated testing suites with JUnit, MockK, Espresso, and Compose Test",
+        "strength": 0.8,
+        "maps_to": [
+          "android_platform_services_quality.unit_testing_mockk_junit5",
+          "android_platform_services_quality.espresso_ui_testing"
+        ]
+      },
+      {
+        "signal": "Optimized Gradle CI/CD pipelines and published App Bundles to Google Play",
+        "strength": 0.8,
+        "maps_to": [
+          "android_platform_services_quality.ci_cd_gradle_build_optimization",
+          "android_platform_services_quality.crash_reporting_observability"
+        ]
+      },
+      {
+        "signal": "Hardened application security with R8 obfuscation and Play Integrity API",
+        "strength": 0.9,
+        "maps_to": [
+          "android_platform_services_quality.security_obfuscation_tamper_proofing",
+          "android_platform_services_quality.memory_leak_detection_leakcanary"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Android Testing, Gradle, or Mobile Security endorsed",
+        "strength": 0.5,
+        "maps_to": [
+          "android_platform_services_quality.unit_testing_mockk_junit5",
+          "android_platform_services_quality.ci_cd_gradle_build_optimization"
+        ]
+      },
+      {
+        "signal": "Job experience describing CI/CD automation, LeakCanary memory tuning, or R8 obfuscation",
+        "strength": 0.8,
+        "maps_to": [
+          "android_platform_services_quality.ci_cd_gradle_build_optimization",
+          "android_platform_services_quality.memory_leak_detection_leakcanary",
+          "android_platform_services_quality.security_obfuscation_tamper_proofing"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "runtime_permissions_model",
+        "unit_testing_mockk_junit5",
+        "notifications_channels_manager"
+      ],
+      "description": "Requests runtime permissions cleanly, writes unit tests with MockK, and implements notification channels."
+    },
+    "mid": {
+      "expected_subskills": [
+        "espresso_ui_testing",
+        "location_camera_hardware_services",
+        "memory_leak_detection_leakcanary"
+      ],
+      "description": "Writes automated UI tests with Espresso/Compose, integrates CameraX and location services, and debugs memory leaks using LeakCanary."
+    },
+    "senior": {
+      "expected_subskills": [
+        "ci_cd_gradle_build_optimization",
+        "crash_reporting_observability",
+        "security_obfuscation_tamper_proofing"
+      ],
+      "description": "Optimizes Gradle CI/CD build caches, monitors production health and ANRs via Crashlytics, and hardens apps with R8 and Play Integrity."
+    }
+  }
+}

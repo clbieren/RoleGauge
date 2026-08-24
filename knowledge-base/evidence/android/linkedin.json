@@ -1,0 +1,94 @@
+{
+  "source_id": "linkedin",
+  "name": "LinkedIn Profile Analysis - Android Developer",
+  "description": "Signals extracted from LinkedIn profiles to evidence Android Developer skills.",
+  "extraction_rules": {
+    "sections": [
+      {
+        "section": "headline_summary",
+        "description": "Profile headline and summary section.",
+        "base_strength": 0.2,
+        "notes": "Look for specialization (e.g. 'Senior Android Engineer | Jetpack Compose | KMP')."
+      },
+      {
+        "section": "experience",
+        "description": "Work experience entries with job titles and project descriptions.",
+        "base_strength": 0.4,
+        "quality_indicators": [
+          "Android-specific job titles (Android Engineer, Mobile Platform Architect, Android Lead)",
+          "Technologies described (Kotlin, Compose, Coroutines, Room, Hilt, KMP)",
+          "Scale and popularity of apps developed"
+        ]
+      },
+      {
+        "section": "skills_endorsements",
+        "description": "Skills listed with endorsements.",
+        "base_strength": 0.15
+      },
+      {
+        "section": "recommendations",
+        "description": "Written peer and manager recommendations.",
+        "base_strength": 0.3
+      }
+    ]
+  },
+  "signal_mapping": {
+    "description": "How LinkedIn mentions map to skill evidence using COMPOSITE KEYS ({skill_id}.{subskill_id}).",
+    "patterns": [
+      {
+        "pattern": "LinkedIn skills endorsement for 'Kotlin' or 'Android Development'",
+        "maps_to": [
+          "android_fundamentals_kotlin.kotlin_language_features",
+          "android_fundamentals_kotlin.android_sdk_lifecycle_basics"
+        ],
+        "strength_modifier": 0.33
+      },
+      {
+        "pattern": "LinkedIn skills endorsement for 'Jetpack Compose' or 'Android UI'",
+        "maps_to": [
+          "android_ui_layouts.compose_fundamentals_state",
+          "android_ui_layouts.compose_layout_modifiers"
+        ],
+        "strength_modifier": 0.33
+      },
+      {
+        "pattern": "Job experience describing building Jetpack Compose design systems and multi-module apps",
+        "maps_to": [
+          "android_ui_layouts.design_systems_theming",
+          "android_architecture_patterns.modularization_multi_module",
+          "android_architecture_patterns.mvvm_architecture_pattern"
+        ],
+        "strength_modifier": 1.0
+      },
+      {
+        "pattern": "Job experience describing Kotlin Coroutines, asynchronous Flow, and offline sync engines",
+        "maps_to": [
+          "android_concurrency_async.coroutines_basics_dispatchers",
+          "android_concurrency_async.stateflow_sharedflow_hot_streams",
+          "android_data_persistence.offline_first_synchronization"
+        ],
+        "strength_modifier": 1.0
+      },
+      {
+        "pattern": "Job experience describing Android CI/CD pipelines, Gradle build optimization, and R8 obfuscation",
+        "maps_to": [
+          "android_platform_services_quality.ci_cd_gradle_build_optimization",
+          "android_platform_services_quality.security_obfuscation_tamper_proofing"
+        ],
+        "strength_modifier": 1.0
+      },
+      {
+        "pattern": "Job experience describing WorkManager background tasks and Foreground Services",
+        "maps_to": [
+          "android_app_components.workmanager_background_jobs",
+          "android_app_components.service_architecture_types"
+        ],
+        "strength_modifier": 1.0
+      }
+    ]
+  },
+  "important_notes": [
+    "ALL extracted signals MUST be mapped to COMPOSITE KEYS ({skill_id}.{subskill_id})",
+    "LinkedIn endorsements have low evidential value on their own; cross-validate with code"
+  ]
+}

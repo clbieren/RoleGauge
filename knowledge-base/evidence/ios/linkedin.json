@@ -1,0 +1,95 @@
+{
+  "source_id": "linkedin",
+  "name": "LinkedIn Profile Analysis - iOS Developer",
+  "description": "Signals extracted from LinkedIn profiles to evidence iOS Developer skills.",
+  "extraction_rules": {
+    "sections": [
+      {
+        "section": "headline_summary",
+        "description": "Profile headline and summary section.",
+        "base_strength": 0.2,
+        "notes": "Look for specialization (e.g. 'Senior iOS Engineer | SwiftUI | Swift Concurrency | SPM')."
+      },
+      {
+        "section": "experience",
+        "description": "Work experience entries with job titles and project descriptions.",
+        "base_strength": 0.4,
+        "quality_indicators": [
+          "iOS-specific job titles (iOS Engineer, Mobile Platform Architect, iOS Lead)",
+          "Technologies described (Swift, SwiftUI, Combine, Swift Concurrency, Core Data, SPM)",
+          "Scale and popularity of apps developed"
+        ]
+      },
+      {
+        "section": "skills_endorsements",
+        "description": "Skills listed with endorsements.",
+        "base_strength": 0.15
+      },
+      {
+        "section": "recommendations",
+        "description": "Written peer and manager recommendations.",
+        "base_strength": 0.3
+      }
+    ]
+  },
+  "signal_mapping": {
+    "description": "How LinkedIn mentions map to skill evidence using COMPOSITE KEYS ({skill_id}.{subskill_id}).",
+    "patterns": [
+      {
+        "pattern": "LinkedIn skills endorsement for 'Swift' or 'iOS Development'",
+        "maps_to": [
+          "ios_fundamentals_swift.swift_language_fundamentals",
+          "ios_app_lifecycle_xcode.app_delegate_scene_delegate"
+        ],
+        "strength_modifier": 0.33
+      },
+      {
+        "pattern": "LinkedIn skills endorsement for 'SwiftUI' or 'UIKit'",
+        "maps_to": [
+          "ios_uikit_swiftui.swiftui_views_state_basics",
+          "ios_uikit_swiftui.uikit_autolayout_programmatic"
+        ],
+        "strength_modifier": 0.33
+      },
+      {
+        "pattern": "Job experience describing building SwiftUI design systems and SPM modular apps",
+        "maps_to": [
+          "ios_uikit_swiftui.swiftui_views_state_basics",
+          "ios_architecture_patterns.modularization_spm_frameworks",
+          "ios_architecture_patterns.mvc_mvvm_architecture"
+        ],
+        "strength_modifier": 1.0
+      },
+      {
+        "pattern": "Job experience describing Swift Concurrency, Combine pipelines, and Core Data sync engines",
+        "maps_to": [
+          "ios_reactive_concurrency.async_await_structured_concurrency",
+          "ios_reactive_concurrency.combine_publishers_subscribers",
+          "ios_data_persistence_networking.offline_caching_sync_engine"
+        ],
+        "strength_modifier": 1.0
+      },
+      {
+        "pattern": "Job experience describing Fastlane CI/CD automation, TestFlight, and Keychain security",
+        "maps_to": [
+          "ios_platform_quality_distribution.ci_cd_fastlane_testflight",
+          "ios_data_persistence_networking.keychain_secure_storage"
+        ],
+        "strength_modifier": 1.0
+      },
+      {
+        "pattern": "Job experience describing WidgetKit extensions, Universal Links, and Xcode Instruments profiling",
+        "maps_to": [
+          "ios_app_lifecycle_xcode.app_extensions_widgets",
+          "ios_app_lifecycle_xcode.universal_links_deep_linking",
+          "ios_app_lifecycle_xcode.instruments_profiling_performance"
+        ],
+        "strength_modifier": 1.0
+      }
+    ]
+  },
+  "important_notes": [
+    "ALL extracted signals MUST be mapped to COMPOSITE KEYS ({skill_id}.{subskill_id})",
+    "LinkedIn endorsements have low evidential value on their own; cross-validate with code"
+  ]
+}

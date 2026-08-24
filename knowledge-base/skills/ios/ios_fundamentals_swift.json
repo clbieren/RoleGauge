@@ -1,0 +1,246 @@
+{
+  "skill_id": "ios_fundamentals_swift",
+  "name": "Swift Language & Memory Model Fundamentals",
+  "category": "mobile_core",
+  "description": "Core Swift programming language mastery and Apple runtime memory architecture. Encompasses idiomatic Swift syntax (Optionals, pattern matching, closures), Value vs Reference type semantics (Copy-on-Write / COW), Protocol-Oriented Programming (POP), Generics type constraints, Automatic Reference Counting (ARC retain cycle prevention), Error handling / Result enum, Swift Macros / Metaprogramming, memory layout optimization, and C/Objective-C bridging interoperability.",
+  "subskills": [
+    {
+      "id": "swift_language_fundamentals",
+      "name": "Swift Idioms, Optionals & Pattern Matching",
+      "description": "Mastering idiomatic Swift syntax — Optionals (optional binding if let / guard let, nil-coalescing ??, optional chaining ?., force unwrapping risks), pattern matching with switch expressions, control flow, functions with argument labels, and closure capture semantics.",
+      "keywords": [
+        "Swift Optionals",
+        "guard let / if let",
+        "nil-coalescing operator",
+        "pattern matching switch",
+        "closures",
+        "argument labels",
+        "trailing closure syntax"
+      ]
+    },
+    {
+      "id": "value_vs_reference_types",
+      "name": "Value vs Reference Types & Copy-on-Write (COW)",
+      "description": "Distinguishing value types (Structs, Enums with associated values, Tuples) from reference types (Classes, Functions), understanding Stack vs Heap allocation, implementing custom Copy-on-Write (COW) data structures using isKnownUniquelyReferenced, and mutation semantics.",
+      "keywords": [
+        "Struct vs Class",
+        "Value vs Reference types",
+        "Copy-on-Write (COW)",
+        "isKnownUniquelyReferenced",
+        "Stack vs Heap allocation",
+        "Enum with associated values",
+        "mutating keyword"
+      ]
+    },
+    {
+      "id": "protocols_extensions_basics",
+      "name": "Protocol-Oriented Programming (POP) & Extensions",
+      "description": "Designing applications using Protocol-Oriented Programming principles — Protocol composition, default implementations via Protocol Extensions, Delegation pattern, protocol inheritance, and static vs dynamic dispatch in protocols.",
+      "keywords": [
+        "Protocol-Oriented Programming (POP)",
+        "Protocol Extensions",
+        "default protocol implementation",
+        "Delegation pattern",
+        "protocol composition",
+        "static vs dynamic dispatch"
+      ]
+    },
+    {
+      "id": "generics_type_constraints",
+      "name": "Swift Generics, Associated Types & Opaque Types",
+      "description": "Building reusable generic algorithms and abstractions — Generic functions/types, associated types (associatedtype in protocols), where clauses for type constraints, Primary Associated Types (some vs any), and opaque return types (some View).",
+      "keywords": [
+        "Swift Generics",
+        "associatedtype",
+        "where clause constraints",
+        "opaque return types (`some`)",
+        "existential types (`any`)",
+        "primary associated types (Swift 5.7+)",
+        "generic specialization"
+      ]
+    },
+    {
+      "id": "arc_memory_management",
+      "name": "Automatic Reference Counting (ARC) & Retain Cycles",
+      "description": "Managing memory lifecycle in iOS — Automatic Reference Counting (ARC), resolving strong reference cycles using weak and unowned references, closure capture lists ([weak self, unowned delegate]), delegate memory rules, and analyzing deallocations in deinit.",
+      "keywords": [
+        "Automatic Reference Counting (ARC)",
+        "retain cycles",
+        "weak vs unowned references",
+        "closure capture lists (`[weak self]`)",
+        "deinit lifecycle",
+        "strong reference cycles"
+      ]
+    },
+    {
+      "id": "error_handling_result",
+      "name": "Swift Error Handling & Result Type",
+      "description": "Designing robust error recovery mechanisms — Error protocol conformance, throwing functions (throws/rethrows), try / try? / try!, Result<Success, Failure> enum transformations (map, flatMap, get), and custom domain error hierarchies.",
+      "keywords": [
+        "Swift Error protocol",
+        "throws / rethrows",
+        "try? / try!",
+        "Result<Success, Failure>",
+        "custom Error enum",
+        "typed throws (Swift 6)",
+        "do-catch error recovery"
+      ]
+    },
+    {
+      "id": "advanced_swift_metaprogramming",
+      "name": "Swift Macros, Property Wrappers & Result Builders",
+      "description": "Metaprogramming in modern Swift — authoring custom Swift Macros (Freestanding and Attached macros via SwiftSyntax), implementing custom Property Wrappers (@propertyWrapper with projectedValue $), and creating Result Builders (@resultBuilder) for declarative DSLs.",
+      "keywords": [
+        "Swift Macros (SwiftSyntax)",
+        "@attached / @freestanding macros",
+        "Property Wrappers (@propertyWrapper)",
+        "projectedValue ($)",
+        "Result Builders (@resultBuilder)",
+        "KeyPaths (\\.property)",
+        "Mirror reflection"
+      ]
+    },
+    {
+      "id": "memory_layout_performance",
+      "name": "Swift Memory Layout & Performance Optimization",
+      "description": "Analyzing runtime memory layout of Swift types (MemoryLayout<T>.size, stride, alignment), understanding existential container overhead (3-word inline buffer + witness tables), optimizing table/message dispatch, and reducing dynamic heap allocations.",
+      "keywords": [
+        "MemoryLayout (size, stride, alignment)",
+        "Existential Containers",
+        "Protocol Witness Table (PWT)",
+        "Value Witness Table (VWT)",
+        "dynamic vs vtable dispatch",
+        "WMO (Whole Module Optimization)"
+      ]
+    },
+    {
+      "id": "c_obj_c_interoperability",
+      "name": "Objective-C & C Interoperability & Bridging",
+      "description": "Bridging Swift with Objective-C and C — @objc attributes, @objcMembers, bridging headers (Project-Bridging-Header.h), nullability annotations (__nonnull/__nullable), NS_SWIFT_NAME, C pointers (UnsafePointer, UnsafeMutableRawPointer), and C function pointers.",
+      "keywords": [
+        "Objective-C bridging header",
+        "@objc / @objcMembers",
+        "NS_SWIFT_NAME",
+        "nullability macros",
+        "UnsafePointer / UnsafeMutablePointer",
+        "C function pointers",
+        "dynamic runtime messaging"
+      ]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "Swift source files utilizing protocols, generics, and property wrappers",
+        "detection": "content_analysis",
+        "pattern": "protocol .* :|struct .*<.*>|@propertyWrapper|associatedtype|guard let .* else \\{",
+        "strength": 0.8,
+        "maps_to": [
+          "ios_fundamentals_swift.swift_language_fundamentals",
+          "ios_fundamentals_swift.protocols_extensions_basics",
+          "ios_fundamentals_swift.generics_type_constraints"
+        ]
+      },
+      {
+        "signal": "Closure capture list [weak self] usage for ARC retain cycle prevention",
+        "detection": "content_analysis",
+        "pattern": "\\[weak self\\]|\\[unowned self\\]|guard let self else \\{ return \\}",
+        "strength": 0.8,
+        "maps_to": [
+          "ios_fundamentals_swift.arc_memory_management"
+        ]
+      },
+      {
+        "signal": "Swift Macro implementation using SwiftSyntax",
+        "detection": "content_analysis",
+        "pattern": "import SwiftSyntax|CompilerPlugin|public struct .*: (ExpressionMacro|AttachedMacro)",
+        "strength": 0.9,
+        "maps_to": [
+          "ios_fundamentals_swift.advanced_swift_metaprogramming"
+        ]
+      },
+      {
+        "signal": "Objective-C bridging header or unsafe pointer memory manipulation",
+        "detection": "file_presence",
+        "pattern": ".*-Bridging-Header\\.h|UnsafeMutablePointer|withUnsafeBytes",
+        "strength": 0.8,
+        "maps_to": [
+          "ios_fundamentals_swift.c_obj_c_interoperability",
+          "ios_fundamentals_swift.memory_layout_performance"
+        ]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "Developed iOS apps using modern Swift, Protocol-Oriented Programming, and ARC",
+        "strength": 0.8,
+        "maps_to": [
+          "ios_fundamentals_swift.swift_language_fundamentals",
+          "ios_fundamentals_swift.protocols_extensions_basics",
+          "ios_fundamentals_swift.arc_memory_management"
+        ]
+      },
+      {
+        "signal": "Built custom Swift Macros or Property Wrappers for declarative architecture",
+        "strength": 0.9,
+        "maps_to": [
+          "ios_fundamentals_swift.advanced_swift_metaprogramming",
+          "ios_fundamentals_swift.generics_type_constraints"
+        ]
+      },
+      {
+        "signal": "Optimized Swift runtime memory layout and eliminated existential container overhead",
+        "strength": 0.9,
+        "maps_to": [
+          "ios_fundamentals_swift.memory_layout_performance",
+          "ios_fundamentals_swift.value_vs_reference_types"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Swift (Programming Language), iOS Development, or Protocol-Oriented Programming endorsed",
+        "strength": 0.5,
+        "maps_to": [
+          "ios_fundamentals_swift.swift_language_fundamentals",
+          "ios_fundamentals_swift.protocols_extensions_basics"
+        ]
+      },
+      {
+        "signal": "Job experience describing Swift macro development, ARC memory optimization, or Obj-C bridging",
+        "strength": 0.8,
+        "maps_to": [
+          "ios_fundamentals_swift.advanced_swift_metaprogramming",
+          "ios_fundamentals_swift.arc_memory_management",
+          "ios_fundamentals_swift.c_obj_c_interoperability"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "swift_language_fundamentals",
+        "value_vs_reference_types",
+        "protocols_extensions_basics"
+      ],
+      "description": "Writes idiomatic Swift with optionals and pattern matching, understands struct vs class value semantics, and applies protocol extensions."
+    },
+    "mid": {
+      "expected_subskills": [
+        "generics_type_constraints",
+        "arc_memory_management",
+        "error_handling_result"
+      ],
+      "description": "Implements generic abstractions with associated types, prevents ARC retain cycles with capture lists, and handles errors with Result types."
+    },
+    "senior": {
+      "expected_subskills": [
+        "advanced_swift_metaprogramming",
+        "memory_layout_performance",
+        "c_obj_c_interoperability"
+      ],
+      "description": "Authors custom Swift Macros and property wrappers, analyzes low-level Swift memory layout, and bridges with Objective-C/C runtimes."
+    }
+  }
+}

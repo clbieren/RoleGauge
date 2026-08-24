@@ -1,0 +1,252 @@
+{
+  "skill_id": "ios_platform_quality_distribution",
+  "name": "iOS Platform Services, Quality, Fastlane & App Store Distribution",
+  "category": "mobile_core",
+  "description": "Automated testing (XCTest, XCUITest), Apple platform hardware services (UserNotifications, CoreLocation, LocalAuthentication Biometrics), Fastlane CI/CD automation, TestFlight beta distribution, MetricKit telemetry diagnostics, and App Thinning / binary size optimization.",
+  "subskills": [
+    {
+      "id": "unit_testing_xctest",
+      "name": "Unit Testing with XCTest & URLProtocol Mocking",
+      "description": "Writing robust automated unit tests in Swift using XCTest — XCTestCase, XCTAssert assertions, testing asynchronous code with XCTestExpectation and async test methods, and mocking networking layers cleanly using custom URLProtocol subclasses.",
+      "keywords": [
+        "XCTest framework",
+        "XCTestCase",
+        "XCTAssertEqual / XCTAssertThrowsError",
+        "XCTestExpectation",
+        "URLProtocol mocking",
+        "unit test coverage",
+        "testing ViewModels"
+      ]
+    },
+    {
+      "id": "user_notifications_push",
+      "name": "UserNotifications Framework & Apple Push (APNs)",
+      "description": "Implementing notification experiences using UserNotifications framework — UNUserNotificationCenter, requesting authorization, scheduling local notifications (UNTimeIntervalNotificationTrigger, UNCalendarNotificationTrigger), handling foreground notifications, and APNs device token registration.",
+      "keywords": [
+        "UserNotifications framework",
+        "UNUserNotificationCenter",
+        "UNNotificationContent",
+        "UNNotificationAction / Category",
+        "APNs device token registration",
+        "remote push notifications"
+      ]
+    },
+    {
+      "id": "app_lifecycle_permissions",
+      "name": "iOS Permissions Model & Info.plist Privacy Keys",
+      "description": "Managing iOS privacy permissions model — configuring Info.plist Usage Description strings (NSCameraUsageDescription, NSLocationWhenInUseUsageDescription, NSPhotoLibraryUsageDescription), checking authorization status, presenting contextual rationale UI, and handling denied states gracefully.",
+      "keywords": [
+        "Info.plist Usage Descriptions",
+        "NSCameraUsageDescription",
+        "NSLocationWhenInUseUsageDescription",
+        "PHPhotoLibrary authorization",
+        "permission request flow",
+        "privacy compliance"
+      ]
+    },
+    {
+      "id": "ui_testing_xcuicache",
+      "name": "UI Testing with XCUITest & Page Object Pattern",
+      "description": "Authoring automated end-to-end UI tests using XCUITest framework — XCUIApplication, XCUIElement query matching (buttons, textFields, staticTexts), handling asynchronous UI expectations (waitForExistence(timeout:)), and structuring tests with the Page Object Pattern.",
+      "keywords": [
+        "XCUITest framework",
+        "XCUIApplication",
+        "XCUIElement queries",
+        "waitForExistence(timeout:)",
+        "Page Object Pattern iOS",
+        "UI test recording & assertions"
+      ]
+    },
+    {
+      "id": "core_location_mapkit",
+      "name": "CoreLocation, Geofencing & MapKit Services",
+      "description": "Integrating location and mapping capabilities — CLLocationManager (requestWhenInUseAuthorization, requestAlwaysAuthorization, desiredAccuracy), tracking location updates, configuring CLCircularRegion geofences, significant location changes, and displaying annotations in MapKit / SwiftUI Map.",
+      "keywords": [
+        "CoreLocation framework",
+        "CLLocationManager",
+        "CLCircularRegion geofencing",
+        "significant-change location service",
+        "MapKit / SwiftUI Map",
+        "MKAnnotation / MapMarker"
+      ]
+    },
+    {
+      "id": "biometrics_local_authentication",
+      "name": "LocalAuthentication & Face ID / Touch ID",
+      "description": "Implementing biometric authentication using the LocalAuthentication framework — LAContext (canEvaluatePolicy, evaluatePolicy), LAPolicy.deviceOwnerAuthenticationWithBiometrics vs deviceOwnerAuthentication (passcode fallback), handling biometry lockouts, and error domain handling.",
+      "keywords": [
+        "LocalAuthentication framework",
+        "LAContext",
+        "Face ID / Touch ID",
+        "LAPolicy.deviceOwnerAuthenticationWithBiometrics",
+        "biometric passcode fallback",
+        "LAError domain handling"
+      ]
+    },
+    {
+      "id": "ci_cd_fastlane_testflight",
+      "name": "Fastlane Automation, Code Signing & TestFlight",
+      "description": "Automating iOS build and release pipelines — Fastlane (Fastfile lanes), Match for Git-based shared code signing certificates and provisioning profiles, Gym for ipa building, Scan for automated testing, Pilot for TestFlight distribution, and GitHub Actions / Xcode Cloud integration.",
+      "keywords": [
+        "Fastlane (Fastfile)",
+        "Fastlane Match (code signing)",
+        "Gym / build_app",
+        "Scan / run_tests",
+        "Pilot / upload_to_testflight",
+        "Apple Developer Provisioning Profiles",
+        "Xcode Cloud / CI/CD"
+      ]
+    },
+    {
+      "id": "crash_diagnostics_metric_kit",
+      "name": "MetricKit Diagnostics & Crash Symbolication",
+      "description": "Monitoring production application telemetry — MetricKit framework (MXMetricManager, MXDiagnosticPayload, MXMetricPayload for hang rate, memory footprint, CPU energy), crash log symbolication using dSYM files and dwarfdump, and integrating Firebase Crashlytics with custom logs.",
+      "keywords": [
+        "MetricKit framework",
+        "MXMetricManager",
+        "MXDiagnosticPayload",
+        "dSYM crash symbolication",
+        "dwarfdump / atos",
+        "Firebase Crashlytics iOS",
+        "Hang Rate / Launch metric analysis"
+      ]
+    },
+    {
+      "id": "app_thinning_size_optimization",
+      "name": "App Thinning & Binary Size Optimization",
+      "description": "Optimizing iOS application binary download size — App Thinning mechanisms (App Slicing for device-specific assets/binaries, On-Demand Resources / ODR), analyzing App Size Report, stripping debug symbols, dead code elimination, and asset compression.",
+      "keywords": [
+        "App Thinning",
+        "App Slicing",
+        "On-Demand Resources (ODR)",
+        "App Size Report in Xcode",
+        "binary size reduction",
+        "dead code stripping",
+        "asset catalog compression"
+      ]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "XCTest unit test suite or URLProtocol mocking implementation",
+        "detection": "content_analysis",
+        "pattern": "import XCTest|class .*Tests: XCTestCase|XCTAssert|class .*URLProtocol: URLProtocol",
+        "strength": 0.8,
+        "maps_to": [
+          "ios_platform_quality_distribution.unit_testing_xctest"
+        ]
+      },
+      {
+        "signal": "XCUITest automated UI test implementation",
+        "detection": "content_analysis",
+        "pattern": "class .*UITests: XCTestCase|XCUIApplication\\(\\)|\\.waitForExistence\\(timeout:",
+        "strength": 0.8,
+        "maps_to": [
+          "ios_platform_quality_distribution.ui_testing_xcuicache"
+        ]
+      },
+      {
+        "signal": "Fastlane Fastfile or Matchfile configuration",
+        "detection": "file_presence",
+        "pattern": "fastlane/Fastfile|fastlane/Matchfile|Fastfile|Matchfile",
+        "strength": 0.9,
+        "maps_to": [
+          "ios_platform_quality_distribution.ci_cd_fastlane_testflight"
+        ]
+      },
+      {
+        "signal": "CoreLocation or LocalAuthentication implementation",
+        "detection": "content_analysis",
+        "pattern": "CLLocationManager|LAContext\\(\\)|deviceOwnerAuthenticationWithBiometrics|UNUserNotificationCenter",
+        "strength": 0.8,
+        "maps_to": [
+          "ios_platform_quality_distribution.core_location_mapkit",
+          "ios_platform_quality_distribution.biometrics_local_authentication",
+          "ios_platform_quality_distribution.user_notifications_push"
+        ]
+      },
+      {
+        "signal": "MetricKit subscriber or Crashlytics crash reporting integration",
+        "detection": "content_analysis",
+        "pattern": "MXMetricManager\\.shared|MXMetricManagerSubscriber|FirebaseCrashlytics|Crashlytics\\.crashlytics\\(\\)",
+        "strength": 0.8,
+        "maps_to": [
+          "ios_platform_quality_distribution.crash_diagnostics_metric_kit"
+        ]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "Automated iOS testing with XCTest, XCUITest, and URLProtocol network mocking",
+        "strength": 0.8,
+        "maps_to": [
+          "ios_platform_quality_distribution.unit_testing_xctest",
+          "ios_platform_quality_distribution.ui_testing_xcuicache"
+        ]
+      },
+      {
+        "signal": "Built automated Fastlane CI/CD pipelines and managed TestFlight distribution",
+        "strength": 0.9,
+        "maps_to": [
+          "ios_platform_quality_distribution.ci_cd_fastlane_testflight",
+          "ios_platform_quality_distribution.app_thinning_size_optimization"
+        ]
+      },
+      {
+        "signal": "Integrated Face ID biometrics, APNs push notifications, and MetricKit telemetry",
+        "strength": 0.8,
+        "maps_to": [
+          "ios_platform_quality_distribution.biometrics_local_authentication",
+          "ios_platform_quality_distribution.user_notifications_push",
+          "ios_platform_quality_distribution.crash_diagnostics_metric_kit"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "XCTest, Fastlane, or iOS Testing endorsed",
+        "strength": 0.5,
+        "maps_to": [
+          "ios_platform_quality_distribution.unit_testing_xctest",
+          "ios_platform_quality_distribution.ci_cd_fastlane_testflight"
+        ]
+      },
+      {
+        "signal": "Job experience describing Fastlane code signing with Match, MetricKit diagnostics, or App Thinning",
+        "strength": 0.8,
+        "maps_to": [
+          "ios_platform_quality_distribution.ci_cd_fastlane_testflight",
+          "ios_platform_quality_distribution.crash_diagnostics_metric_kit",
+          "ios_platform_quality_distribution.app_thinning_size_optimization"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "unit_testing_xctest",
+        "user_notifications_push",
+        "app_lifecycle_permissions"
+      ],
+      "description": "Writes unit tests with XCTest and URLProtocol mocks, configures local push notifications, and handles permission requests."
+    },
+    "mid": {
+      "expected_subskills": [
+        "ui_testing_xcuicache",
+        "core_location_mapkit",
+        "biometrics_local_authentication"
+      ],
+      "description": "Authors UI tests with XCUITest, integrates CoreLocation geofencing, and implements Face ID / Touch ID biometrics."
+    },
+    "senior": {
+      "expected_subskills": [
+        "ci_cd_fastlane_testflight",
+        "crash_diagnostics_metric_kit",
+        "app_thinning_size_optimization"
+      ],
+      "description": "Automates Fastlane CI/CD with Match code signing, monitors MetricKit diagnostics, and optimizes binary size via App Thinning."
+    }
+  }
+}

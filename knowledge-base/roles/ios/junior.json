@@ -1,0 +1,80 @@
+{
+  "role_id": "ios_developer",
+  "level": "junior",
+  "title": "Junior iOS Developer",
+  "description": "Entry-level iOS developer focused on Swift language fundamentals (optionals, structs vs classes, protocols), AppDelegate/SceneDelegate lifecycles, UIKit AutoLayout and SwiftUI basics, MVVM architecture with Coordinator pattern, UserDefaults and URLSession networking, and unit testing with XCTest.",
+  "experience_range": "0-2 years",
+  "skills": [
+    {
+      "skill_id": "ios_fundamentals_swift",
+      "importance": 0.95,
+      "rationale": "Strong foundation in Swift optionals, value vs reference types, and protocol extensions is essential for daily iOS feature development."
+    },
+    {
+      "skill_id": "ios_uikit_swiftui",
+      "importance": 0.95,
+      "rationale": "Constructing programmatic AutoLayout, implementing Diffable Data Sources in collection views, and building basic SwiftUI views."
+    },
+    {
+      "skill_id": "ios_app_lifecycle_xcode",
+      "importance": 0.9,
+      "rationale": "Managing AppDelegate and SceneDelegate lifecycles, debugging with LLDB and View Hierarchy, and organizing Asset Catalogs."
+    },
+    {
+      "skill_id": "ios_architecture_patterns",
+      "importance": 0.85,
+      "rationale": "Applying MVVM architecture with data binding, decoupling navigation with Coordinators, and abstracting APIs with Repositories."
+    },
+    {
+      "skill_id": "ios_data_persistence_networking",
+      "importance": 0.8,
+      "rationale": "Storing user settings with UserDefaults/FileManager, consuming REST APIs with URLSession and Codable, and securing tokens in Keychain."
+    },
+    {
+      "skill_id": "ios_reactive_concurrency",
+      "importance": 0.8,
+      "rationale": "Dispatching background tasks with GCD queues, configuring Operation dependencies, and writing async/await functions."
+    },
+    {
+      "skill_id": "ios_platform_quality_distribution",
+      "importance": 0.7,
+      "rationale": "Writing automated unit tests with XCTest and URLProtocol mocks, configuring notifications, and handling Info.plist privacy permissions."
+    }
+  ],
+  "scoring": {
+    "method": "weighted_average",
+    "description": "Each skill score is multiplied by its importance weight. Final score is sum divided by sum of weights.",
+    "thresholds": {
+      "not_ready": {
+        "min": 0.0,
+        "max": 0.3,
+        "label": "Not Ready",
+        "description": "Significant gaps in Swift language fundamentals, iOS app lifecycles, or basic AutoLayout/SwiftUI."
+      },
+      "developing": {
+        "min": 0.3,
+        "max": 0.5,
+        "label": "Developing",
+        "description": "Basic understanding of UIKit and Swift, but requires guidance on SwiftUI state management, Coordinator navigation, and async/await."
+      },
+      "approaching": {
+        "min": 0.5,
+        "max": 0.7,
+        "label": "Approaching Ready",
+        "description": "Solid Swift fundamentals, reliable MVVM implementation, consistent XCTest habits, and clean SwiftUI code."
+      },
+      "ready": {
+        "min": 0.7,
+        "max": 0.85,
+        "label": "Ready",
+        "description": "Meets all junior expectations: delivers robust, tested iOS features with SwiftUI/UIKit, URLSession, and Coordinator patterns."
+      },
+      "exceeds": {
+        "min": 0.85,
+        "max": 1.0,
+        "label": "Exceeds Expectations",
+        "description": "Exceeds junior expectations with early mid-level proficiency in Combine pipelines, Core Data / SwiftData, and WidgetKit."
+      }
+    }
+  }
+}

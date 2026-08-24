@@ -1,0 +1,80 @@
+{
+  "role_id": "api_designer",
+  "level": "junior",
+  "title": "Junior API Designer",
+  "description": "Entry-level API designer focused on understanding HTTP protocol standards, applying organizational REST conventions, following API security documentation practices, and generating SDK clients and mock servers from OpenAPI specifications.",
+  "experience_range": "0-2 years",
+  "skills": [
+    {
+      "skill_id": "api_rest_design",
+      "importance": 0.95,
+      "rationale": "Foundational ability to model resources, apply RFC 7807 error standards, and follow pagination conventions is essential for producing consistent API designs."
+    },
+    {
+      "skill_id": "api_fundamentals_http",
+      "importance": 0.95,
+      "rationale": "Deep understanding of HTTP method semantics, status codes, and URI design principles forms the bedrock of every API design decision."
+    },
+    {
+      "skill_id": "api_lifecycle_governance",
+      "importance": 0.85,
+      "rationale": "Following versioning policies, writing documentation per standards, and creating proper changelogs ensures organizational API consistency."
+    },
+    {
+      "skill_id": "api_auth_security",
+      "importance": 0.8,
+      "rationale": "Selecting appropriate auth schemes, following API key policies, and documenting securitySchemes correctly in OpenAPI specifications."
+    },
+    {
+      "skill_id": "api_integration_patterns",
+      "importance": 0.8,
+      "rationale": "Designing webhook contracts, provisioning mock servers from specs, and generating client SDKs using openapi-generator."
+    },
+    {
+      "skill_id": "api_alternative_styles",
+      "importance": 0.7,
+      "rationale": "Understanding GraphQL schema governance basics, JSON-RPC specifications, and WebSocket API contract design."
+    },
+    {
+      "skill_id": "api_performance_scalability",
+      "importance": 0.65,
+      "rationale": "Applying rate limiting quota policies, following pagination standards, and optimizing payloads per organizational guidelines."
+    }
+  ],
+  "scoring": {
+    "method": "weighted_average",
+    "description": "Each skill score is multiplied by its importance weight. Final score is sum divided by sum of weights.",
+    "thresholds": {
+      "not_ready": {
+        "min": 0.0,
+        "max": 0.3,
+        "label": "Not Ready",
+        "description": "Significant gaps in HTTP fundamentals, REST design principles, or API documentation standards."
+      },
+      "developing": {
+        "min": 0.3,
+        "max": 0.5,
+        "label": "Developing",
+        "description": "Basic understanding of REST conventions, but needs guidance on resource modeling, error standardization, and OpenAPI authoring."
+      },
+      "approaching": {
+        "min": 0.5,
+        "max": 0.7,
+        "label": "Approaching Ready",
+        "description": "Solid HTTP and REST fundamentals, consistent API documentation, and growing familiarity with auth schemes and integration patterns."
+      },
+      "ready": {
+        "min": 0.7,
+        "max": 0.85,
+        "label": "Ready",
+        "description": "Meets all junior expectations: produces well-designed APIs following organizational standards with proper documentation, versioning, and security schemes."
+      },
+      "exceeds": {
+        "min": 0.85,
+        "max": 1.0,
+        "label": "Exceeds Expectations",
+        "description": "Exceeds junior expectations with early mid-level proficiency in alternative protocols, contract testing awareness, and caching strategies."
+      }
+    }
+  }
+}

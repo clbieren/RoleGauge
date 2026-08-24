@@ -1,0 +1,138 @@
+{
+  "skill_id": "api_fundamentals_http",
+  "name": "HTTP Protocol Foundations for API Design",
+  "category": "api_design_core",
+  "description": "Deep understanding of HTTP protocol semantics as the foundation for designing platform-wide API standards. IMPORTANT DISTINCTION: Backend's be_api_design covers a developer's daily implementation of HTTP methods in their own service endpoints (writing controllers, handlers, route definitions); API Design's api_fundamentals_http covers the organization-wide standardization of HTTP protocol usage — defining which status codes are mandatory across all APIs, establishing URI naming conventions in style guides, and setting platform-level content negotiation policies. The backend developer asks 'which HTTP method should my endpoint use?'; the API designer asks 'what HTTP usage standards must all 200+ APIs in our platform follow?'.",
+  "subskills": [
+    {
+      "id": "http_methods_semantics",
+      "name": "HTTP Method Semantics & Platform Standards",
+      "description": "Defining organization-wide policies for HTTP method usage — when PATCH vs PUT is mandated, which methods must be idempotent, and how custom methods (WebDAV PROPFIND, REPORT) are governed across all APIs.",
+      "keywords": ["HTTP methods policy", "GET POST PUT PATCH DELETE standards", "method idempotency rules", "safe methods", "custom HTTP methods governance", "RFC 7231", "platform method conventions"]
+    },
+    {
+      "id": "status_code_taxonomy",
+      "name": "Status Code Taxonomy & Organizational Catalog",
+      "description": "Maintaining a curated organizational catalog of permitted HTTP status codes with precise usage guidelines — distinguishing 400 vs 422, mandating 429 response shape, and prohibiting ambiguous codes like 418 or 499 across all teams.",
+      "keywords": ["status code catalog", "4xx vs 5xx taxonomy", "422 vs 400 policy", "429 Too Many Requests standard", "201 vs 200 creation response", "status code governance", "RFC 7231 compliance"]
+    },
+    {
+      "id": "content_negotiation",
+      "name": "Content Negotiation & Media Type Policies",
+      "description": "Designing platform standards for content negotiation using Accept and Content-Type headers, vendor-specific media types (application/vnd.company.v2+json), and serialization format governance (JSON vs Protobuf vs MessagePack).",
+      "keywords": ["Content-Type negotiation", "Accept header", "vendor media types", "application/vnd", "JSON vs Protobuf policy", "media type versioning", "serialization format standards"]
+    },
+    {
+      "id": "caching_headers_etag",
+      "name": "HTTP Caching Directives & ETag Governance",
+      "description": "Establishing platform-wide HTTP caching policies — Cache-Control directive standards, ETag generation strategies (strong vs weak), conditional request (If-None-Match, If-Modified-Since) requirements, and Vary header governance.",
+      "keywords": ["Cache-Control directives", "ETag strong vs weak", "If-None-Match", "If-Modified-Since", "Vary header", "max-age policy", "stale-while-revalidate", "conditional requests"]
+    },
+    {
+      "id": "cors_preflight",
+      "name": "CORS Policy Architecture & Preflight Standards",
+      "description": "Designing organization-wide CORS policies — allowed origins whitelisting strategies, preflight caching (Access-Control-Max-Age), credential sharing rules, and wildcard vs explicit origin governance for public vs internal APIs.",
+      "keywords": ["CORS policy design", "Access-Control-Allow-Origin", "preflight OPTIONS", "Access-Control-Max-Age", "credential CORS policy", "wildcard origin risks", "CORS security architecture"]
+    },
+    {
+      "id": "http2_http3_evolution",
+      "name": "HTTP/2 & HTTP/3 Protocol Evolution Strategy",
+      "description": "Evaluating and planning organizational adoption of HTTP/2 (multiplexing, server push, header compression) and HTTP/3 (QUIC, 0-RTT) — migration strategies, backward compatibility with HTTP/1.1 clients, and API gateway protocol termination.",
+      "keywords": ["HTTP/2 multiplexing", "HTTP/3 QUIC", "header compression HPACK", "server push deprecation", "0-RTT resumption", "protocol upgrade strategy", "HTTP version migration"]
+    },
+    {
+      "id": "idempotency_safety",
+      "name": "Idempotency & Safety Contract Standards",
+      "description": "Defining platform-wide idempotency contracts — Idempotency-Key header standards, retry-safe operation guarantees, idempotency window TTL policies, and documenting safety/idempotency matrices in API style guides.",
+      "keywords": ["Idempotency-Key header", "idempotent POST design", "retry safety guarantee", "idempotency window TTL", "at-most-once semantics", "safe method contract", "idempotency matrix documentation"]
+    },
+    {
+      "id": "uri_design_principles",
+      "name": "URI Design Principles & Naming Conventions",
+      "description": "Establishing organizational URI design standards — resource naming conventions (plural nouns, kebab-case vs snake_case), hierarchical path structure depth limits, query parameter naming standards, and URI template (RFC 6570) governance.",
+      "keywords": ["URI naming conventions", "resource path design", "plural noun resources", "kebab-case vs snake_case", "path depth limits", "query parameter standards", "RFC 6570 URI templates"]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "API style guide or HTTP standards documentation files",
+        "detection": "file_presence",
+        "pattern": "api[-_]style[-_]guide|api[-_]standards|http[-_]conventions|api[-_]guidelines\\.md",
+        "strength": 0.9,
+        "maps_to": ["api_fundamentals_http.http_methods_semantics", "api_fundamentals_http.status_code_taxonomy", "api_fundamentals_http.uri_design_principles"]
+      },
+      {
+        "signal": "CORS configuration policies or middleware standards",
+        "detection": "content_analysis",
+        "pattern": "Access-Control-Allow-Origin|cors[-_]policy|corsOptions|allowed_origins",
+        "strength": 0.7,
+        "maps_to": ["api_fundamentals_http.cors_preflight"]
+      },
+      {
+        "signal": "ETag or conditional request implementation patterns",
+        "detection": "content_analysis",
+        "pattern": "ETag|If-None-Match|If-Modified-Since|Cache-Control.*max-age|stale-while-revalidate",
+        "strength": 0.7,
+        "maps_to": ["api_fundamentals_http.caching_headers_etag", "api_fundamentals_http.content_negotiation"]
+      },
+      {
+        "signal": "Idempotency-Key header handling or idempotency middleware",
+        "detection": "content_analysis",
+        "pattern": "Idempotency-Key|idempotency[-_]key|idempotent[-_]request|at[-_]most[-_]once",
+        "strength": 0.8,
+        "maps_to": ["api_fundamentals_http.idempotency_safety", "api_fundamentals_http.http_methods_semantics"]
+      },
+      {
+        "signal": "HTTP/2 or HTTP/3 configuration and protocol negotiation",
+        "detection": "content_analysis",
+        "pattern": "http2|h2c|ALPN|QUIC|http3|createSecureServer.*allowHTTP1",
+        "strength": 0.8,
+        "maps_to": ["api_fundamentals_http.http2_http3_evolution"]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "API standards, HTTP protocol design, or API style guide authorship",
+        "strength": 0.8,
+        "maps_to": ["api_fundamentals_http.http_methods_semantics", "api_fundamentals_http.status_code_taxonomy", "api_fundamentals_http.uri_design_principles"]
+      },
+      {
+        "signal": "HTTP caching architecture, CORS policy design, or content negotiation strategy",
+        "strength": 0.8,
+        "maps_to": ["api_fundamentals_http.caching_headers_etag", "api_fundamentals_http.cors_preflight", "api_fundamentals_http.content_negotiation"]
+      },
+      {
+        "signal": "HTTP/2 or HTTP/3 migration, idempotency design, or protocol evolution strategy",
+        "strength": 0.8,
+        "maps_to": ["api_fundamentals_http.http2_http3_evolution", "api_fundamentals_http.idempotency_safety"]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "API Design, HTTP Protocol, or REST API Standards endorsed",
+        "strength": 0.5,
+        "maps_to": ["api_fundamentals_http.http_methods_semantics", "api_fundamentals_http.status_code_taxonomy", "api_fundamentals_http.uri_design_principles"]
+      },
+      {
+        "signal": "API Architecture, HTTP/2, or Content Negotiation mentioned",
+        "strength": 0.5,
+        "maps_to": ["api_fundamentals_http.content_negotiation", "api_fundamentals_http.caching_headers_etag", "api_fundamentals_http.cors_preflight", "api_fundamentals_http.http2_http3_evolution", "api_fundamentals_http.idempotency_safety"]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": ["http_methods_semantics", "status_code_taxonomy", "uri_design_principles"],
+      "description": "Understands HTTP method semantics and safety/idempotency properties, applies the organization's status code taxonomy correctly, and follows URI naming conventions from the API style guide."
+    },
+    "mid": {
+      "expected_subskills": ["content_negotiation", "caching_headers_etag", "idempotency_safety"],
+      "description": "Designs content negotiation strategies with vendor media types, architects HTTP caching policies with ETag governance, and defines Idempotency-Key contract standards for retry-safe APIs."
+    },
+    "senior": {
+      "expected_subskills": ["cors_preflight", "http2_http3_evolution"],
+      "description": "Architects organization-wide CORS policy frameworks balancing security and developer experience, and plans HTTP/2 to HTTP/3 protocol evolution strategies across the API platform."
+    }
+  }
+}

@@ -1,0 +1,238 @@
+{
+  "skill_id": "ios_architecture_patterns",
+  "name": "iOS Architecture, Modularization & State Machines",
+  "category": "mobile_core",
+  "description": "Architectural design patterns and enterprise modularization for iOS applications. Covers MVC, MVVM (with Combine/Async), Coordinator pattern for decoupled navigation, Repository pattern, Clean Architecture (VIPER), The Composable Architecture (TCA), Swift Package Manager (SPM) multi-module modularization, Micro-apps architectures, and Finite State Machines (FSM).",
+  "subskills": [
+    {
+      "id": "mvc_mvvm_architecture",
+      "name": "MVC & MVVM Architecture with Data Binding",
+      "description": "Implementing Model-View-ViewModel (MVVM) architecture on iOS, resolving 'Massive View Controller' (MVC) anti-patterns, binding View to ViewModel using Combine publishers, async properties, or closure observers, and modeling immutable UI states.",
+      "keywords": [
+        "MVVM architecture iOS",
+        "Massive View Controller refactoring",
+        "ViewModel data binding",
+        "Combine in MVVM",
+        "UI State modeling",
+        "separation of concerns"
+      ]
+    },
+    {
+      "id": "dependency_injection_coordinator",
+      "name": "Coordinator Pattern & Dependency Injection",
+      "description": "Decoupling navigation from ViewControllers using the Coordinator pattern — implementing Coordinator protocols with start(), managing navigation flows independently of UI hierarchy, and applying Constructor Dependency Injection with DI Containers.",
+      "keywords": [
+        "Coordinator pattern",
+        "navigation decoupling",
+        "start() protocol",
+        "Dependency Injection Container",
+        "Constructor Injection",
+        "navigation separation"
+      ]
+    },
+    {
+      "id": "repository_pattern_services",
+      "name": "Repository Pattern & API Service Abstraction",
+      "description": "Designing the Repository pattern to coordinate local persistence (CoreData/SwiftData) and remote networking (URLSession/Alamofire), protocol abstraction for API services, and providing mock data providers for SwiftUI previews and unit testing.",
+      "keywords": [
+        "Repository pattern iOS",
+        "API Service protocol",
+        "mock data providers",
+        "SwiftUI Previews data mocking",
+        "Single Source of Truth",
+        "Data layer abstraction"
+      ]
+    },
+    {
+      "id": "clean_architecture_viper",
+      "name": "Clean Architecture & VIPER Pattern",
+      "description": "Implementing Clean Architecture / VIPER (View, Interactor, Presenter, Entity, Router) pattern — defining strict unidirectional boundaries between presentation, domain use cases (Interactors), data models, and routing logic.",
+      "keywords": [
+        "VIPER architecture",
+        "View-Interactor-Presenter-Entity-Router",
+        "Clean Architecture iOS",
+        "Interactor domain logic",
+        "Presenter view formatting",
+        "Router navigation"
+      ]
+    },
+    {
+      "id": "tca_composable_architecture",
+      "name": "The Composable Architecture (TCA)",
+      "description": "Architecting applications using Point-Free's The Composable Architecture (TCA) — modeling State, Action enum, Reducer functions, Store/ViewStore, managing side-effects with Effect, and composing scoped child domains into parent domains.",
+      "keywords": [
+        "The Composable Architecture (TCA)",
+        "State / Action / Reducer",
+        "Store / ViewStore",
+        "Effect side-effects",
+        "Domain composition",
+        "Point-Free TCA"
+      ]
+    },
+    {
+      "id": "advanced_coordinators_deeplinking",
+      "name": "Hierarchical Coordinators & Deep Link Trees",
+      "description": "Managing complex multi-flow navigation with hierarchical Coordinators — parent-child Coordinator memory retention (childCoordinators array), clean child lifecycle dismissal, and resolving deep link URLs by traversing the Coordinator tree.",
+      "keywords": [
+        "Hierarchical Coordinators",
+        "parent-child coordinator lifecycle",
+        "childCoordinators retain prevention",
+        "deep link coordinator traversal",
+        "navigation flow composition"
+      ]
+    },
+    {
+      "id": "modularization_spm_frameworks",
+      "name": "Swift Package Manager (SPM) Modularization",
+      "description": "Architecting large iOS codebases into isolated Swift Packages using SPM (Package.swift) — structuring feature packages, core packages (Networking, DesignSystem, Storage), separating interfaces from implementations to eliminate cyclic dependencies and accelerate Xcode incremental builds.",
+      "keywords": [
+        "Swift Package Manager (SPM)",
+        "Package.swift modularization",
+        "interface vs implementation targets",
+        "cyclic dependency elimination",
+        "Xcode build parallelization",
+        "Framework modularity"
+      ]
+    },
+    {
+      "id": "microapps_plugin_architecture",
+      "name": "Micro-Apps Architecture & Dynamic Frameworks",
+      "description": "Building Micro-Apps architectures where independent feature teams develop standalone executable targets (Sample Apps) for isolated feature development, dynamic framework loading, module registries, and plugin interfaces.",
+      "keywords": [
+        "Micro-Apps architecture",
+        "standalone demo apps",
+        "module registry pattern",
+        "dynamic frameworks vs static libraries",
+        "isolated feature development",
+        "plugin architecture"
+      ]
+    },
+    {
+      "id": "state_machine_unidirectional_flow",
+      "name": "Finite State Machines & Unidirectional Data Flow",
+      "description": "Designing deterministic state transitions using Finite State Machines (FSM) in Swift — modeling states and events as enums with associated values, pure state reducer functions, and ensuring predictable state restoration without invalid transition states.",
+      "keywords": [
+        "Finite State Machine (FSM)",
+        "Unidirectional Data Flow (UDF)",
+        "pure state reducers",
+        "deterministic state transitions",
+        "invalid state prevention",
+        "state restoration"
+      ]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "Swift Package Manager multi-target manifest or modular frameworks",
+        "detection": "file_presence",
+        "pattern": "Package\\.swift|\\.package\\(path:|\"Feature.*\", targets: \\[\"",
+        "strength": 0.9,
+        "maps_to": [
+          "ios_architecture_patterns.modularization_spm_frameworks",
+          "ios_architecture_patterns.microapps_plugin_architecture"
+        ]
+      },
+      {
+        "signal": "Coordinator pattern implementation or navigation protocol",
+        "detection": "content_analysis",
+        "pattern": "protocol .*Coordinator: AnyObject|childCoordinators|func start\\(\\)|navigationController: UINavigationController",
+        "strength": 0.8,
+        "maps_to": [
+          "ios_architecture_patterns.dependency_injection_coordinator",
+          "ios_architecture_patterns.advanced_coordinators_deeplinking"
+        ]
+      },
+      {
+        "signal": "The Composable Architecture (TCA) Reducer or Store implementation",
+        "detection": "content_analysis",
+        "pattern": "import ComposableArchitecture|@Reducer|struct .*: Reducer|StoreOf<|Effect<Action>",
+        "strength": 0.9,
+        "maps_to": [
+          "ios_architecture_patterns.tca_composable_architecture"
+        ]
+      },
+      {
+        "signal": "VIPER architecture components (Interactor, Presenter, Router)",
+        "detection": "content_analysis",
+        "pattern": "protocol .*InteractorInput|protocol .*PresenterInput|protocol .*RouterInput",
+        "strength": 0.8,
+        "maps_to": [
+          "ios_architecture_patterns.clean_architecture_viper"
+        ]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "Architected iOS apps using MVVM, Coordinators, and Clean Architecture",
+        "strength": 0.8,
+        "maps_to": [
+          "ios_architecture_patterns.mvc_mvvm_architecture",
+          "ios_architecture_patterns.dependency_injection_coordinator",
+          "ios_architecture_patterns.clean_architecture_viper"
+        ]
+      },
+      {
+        "signal": "Modularized monolithic iOS application into 25+ SPM Swift Packages",
+        "strength": 0.9,
+        "maps_to": [
+          "ios_architecture_patterns.modularization_spm_frameworks",
+          "ios_architecture_patterns.microapps_plugin_architecture"
+        ]
+      },
+      {
+        "signal": "Implemented unidirectional data flow using The Composable Architecture (TCA)",
+        "strength": 0.9,
+        "maps_to": [
+          "ios_architecture_patterns.tca_composable_architecture",
+          "ios_architecture_patterns.state_machine_unidirectional_flow"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "iOS Architecture, MVVM, or SPM Modularization endorsed",
+        "strength": 0.5,
+        "maps_to": [
+          "ios_architecture_patterns.mvc_mvvm_architecture",
+          "ios_architecture_patterns.modularization_spm_frameworks"
+        ]
+      },
+      {
+        "signal": "Job experience describing SPM modularization, TCA architecture, or Coordinator navigation trees",
+        "strength": 0.8,
+        "maps_to": [
+          "ios_architecture_patterns.modularization_spm_frameworks",
+          "ios_architecture_patterns.tca_composable_architecture",
+          "ios_architecture_patterns.advanced_coordinators_deeplinking"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "mvc_mvvm_architecture",
+        "dependency_injection_coordinator",
+        "repository_pattern_services"
+      ],
+      "description": "Applies MVVM architecture with data binding, decouples navigation with Coordinators, and abstracts APIs with Repositories."
+    },
+    "mid": {
+      "expected_subskills": [
+        "clean_architecture_viper",
+        "tca_composable_architecture",
+        "advanced_coordinators_deeplinking"
+      ],
+      "description": "Implements Clean Architecture / VIPER layers, builds features with TCA, and manages hierarchical child Coordinators."
+    },
+    "senior": {
+      "expected_subskills": [
+        "modularization_spm_frameworks",
+        "microapps_plugin_architecture",
+        "state_machine_unidirectional_flow"
+      ],
+      "description": "Architects SPM multi-package modularity, builds Micro-Apps with isolated demo targets, and designs state machines."
+    }
+  }
+}

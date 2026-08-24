@@ -1,0 +1,80 @@
+{
+  "role_id": "android_developer",
+  "level": "junior",
+  "title": "Junior Android Developer",
+  "description": "Entry-level Android developer focused on Kotlin language fundamentals, Activity/Fragment lifecycles, Jetpack Compose UI basics with XML ViewBinding, basic MVVM architecture with Hilt dependency injection, Room database CRUD, and unit testing with MockK.",
+  "experience_range": "0-2 years",
+  "skills": [
+    {
+      "skill_id": "android_fundamentals_kotlin",
+      "importance": 0.95,
+      "rationale": "Strong foundation in Kotlin null safety, scope functions, and Android SDK Context hierarchy is essential for daily feature delivery."
+    },
+    {
+      "skill_id": "android_ui_layouts",
+      "importance": 0.95,
+      "rationale": "Building layouts in Compose and XML ConstraintLayout, implementing RecyclerView with ListAdapter and DiffUtil."
+    },
+    {
+      "skill_id": "android_app_components",
+      "importance": 0.9,
+      "rationale": "Proper handling of Activity and Fragment lifecycles, state preservation across configuration changes, and Intent navigation."
+    },
+    {
+      "skill_id": "android_architecture_patterns",
+      "importance": 0.85,
+      "rationale": "Adhering to MVVM pattern, injecting dependencies with Hilt, and organizing data access through repositories."
+    },
+    {
+      "skill_id": "android_data_persistence",
+      "importance": 0.8,
+      "rationale": "Querying local SQLite with Room ORM, storing preferences in DataStore, and consuming REST APIs with Retrofit."
+    },
+    {
+      "skill_id": "android_concurrency_async",
+      "importance": 0.8,
+      "rationale": "Launching coroutines on appropriate Dispatchers and adhering to structured concurrency without blocking the main thread."
+    },
+    {
+      "skill_id": "android_platform_services_quality",
+      "importance": 0.7,
+      "rationale": "Requesting runtime permissions, writing ViewModel unit tests with MockK, and creating notification channels."
+    }
+  ],
+  "scoring": {
+    "method": "weighted_average",
+    "description": "Each skill score is multiplied by its importance weight. Final score is sum divided by sum of weights.",
+    "thresholds": {
+      "not_ready": {
+        "min": 0.0,
+        "max": 0.3,
+        "label": "Not Ready",
+        "description": "Significant gaps in Kotlin fundamentals, Android lifecycles, or UI layout construction."
+      },
+      "developing": {
+        "min": 0.3,
+        "max": 0.5,
+        "label": "Developing",
+        "description": "Basic understanding of Views and Activities, but requires guidance on Compose state hoisting, Hilt DI, and Coroutines."
+      },
+      "approaching": {
+        "min": 0.5,
+        "max": 0.7,
+        "label": "Approaching Ready",
+        "description": "Solid Kotlin fundamentals, reliable MVVM implementation, consistent unit testing habits, and clean Compose UI code."
+      },
+      "ready": {
+        "min": 0.7,
+        "max": 0.85,
+        "label": "Ready",
+        "description": "Meets all junior expectations: delivers robust, tested Android features with Room, Retrofit, Compose, and Hilt."
+      },
+      "exceeds": {
+        "min": 0.85,
+        "max": 1.0,
+        "label": "Exceeds Expectations",
+        "description": "Exceeds junior expectations with early mid-level proficiency in offline sync, StateFlow pipelines, and WorkManager."
+      }
+    }
+  }
+}

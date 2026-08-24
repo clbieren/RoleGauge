@@ -1,0 +1,80 @@
+{
+  "role_id": "api_designer",
+  "level": "mid",
+  "title": "Mid-level API Designer",
+  "description": "Mid-level API designer capable of independently designing API maturity models, establishing contract testing governance, architecting OAuth2 scope taxonomies, selecting appropriate API protocols with decision frameworks, and managing API deprecation lifecycles.",
+  "experience_range": "2-5 years",
+  "skills": [
+    {
+      "skill_id": "api_rest_design",
+      "importance": 0.95,
+      "rationale": "Evaluating Richardson Maturity levels, designing query language standards, and architecting bulk/batch operation patterns with partial success handling."
+    },
+    {
+      "skill_id": "api_alternative_styles",
+      "importance": 0.9,
+      "rationale": "Establishing gRPC contract standards, authoring AsyncAPI event specifications, and applying protocol selection decision frameworks."
+    },
+    {
+      "skill_id": "api_auth_security",
+      "importance": 0.9,
+      "rationale": "Designing OAuth2 contract patterns with appropriate grant types, modeling hierarchical scope taxonomies, and architecting token exchange delegation flows."
+    },
+    {
+      "skill_id": "api_integration_patterns",
+      "importance": 0.9,
+      "rationale": "Establishing contract testing governance with Pact broker CI integration, designing event-driven API patterns, and facilitating consumer-driven design reviews."
+    },
+    {
+      "skill_id": "api_lifecycle_governance",
+      "importance": 0.85,
+      "rationale": "Managing API deprecation with Sunset headers, maintaining API catalog registries, participating in design review boards, and improving developer portal DX."
+    },
+    {
+      "skill_id": "api_performance_scalability",
+      "importance": 0.85,
+      "rationale": "Architecting multi-layer caching strategies, designing SLA/SLO-driven latency budgets, and governing HTTP/2 connection management policies."
+    },
+    {
+      "skill_id": "api_fundamentals_http",
+      "importance": 0.8,
+      "rationale": "Designing content negotiation strategies with vendor media types, architecting HTTP caching policies, and defining Idempotency-Key contract standards."
+    }
+  ],
+  "scoring": {
+    "method": "weighted_average",
+    "description": "Each skill score is multiplied by its importance weight. Final score is sum divided by sum of weights.",
+    "thresholds": {
+      "not_ready": {
+        "min": 0.0,
+        "max": 0.3,
+        "label": "Not Ready",
+        "description": "Significant gaps in API maturity assessment, contract testing, or multi-protocol governance."
+      },
+      "developing": {
+        "min": 0.3,
+        "max": 0.5,
+        "label": "Developing",
+        "description": "Competent with REST standards, but needs guidance on federation, schema registries, and OAuth2 scope modeling."
+      },
+      "approaching": {
+        "min": 0.5,
+        "max": 0.7,
+        "label": "Approaching Ready",
+        "description": "Strong API design capabilities across REST and alternative styles; refining expertise in contract testing governance and deprecation management."
+      },
+      "ready": {
+        "min": 0.7,
+        "max": 0.85,
+        "label": "Ready",
+        "description": "Meets all mid-level expectations: independently designs multi-protocol APIs with contract testing, OAuth2 scope modeling, and SLA-driven performance standards."
+      },
+      "exceeds": {
+        "min": 0.85,
+        "max": 1.0,
+        "label": "Exceeds Expectations",
+        "description": "Exceeds mid-level expectations with advanced API gateway architecture, federation design, and API program management awareness."
+      }
+    }
+  }
+}

@@ -1,0 +1,246 @@
+{
+  "skill_id": "android_fundamentals_kotlin",
+  "name": "Kotlin Language & Android SDK Fundamentals",
+  "category": "mobile_core",
+  "description": "Core Kotlin programming language proficiency and Android SDK architectural foundations. Covers idiomatic Kotlin features (null safety, extensions, sealed types), generics variance, delegated properties, DSL builders, KSP compiler plugins, JVM bytecode memory layout optimization, and Kotlin Multiplatform (KMP) shared logic architecture.",
+  "subskills": [
+    {
+      "id": "kotlin_language_features",
+      "name": "Kotlin Idiomatic Features & Null Safety",
+      "description": "Applying idiomatic Kotlin features including compile-time null safety (nullable vs non-nullable types, safe calls ?., elvis operator ?:), data classes, sealed classes/interfaces for exhaustive when modeling, inline value classes, and extension functions.",
+      "keywords": [
+        "Kotlin null safety",
+        "sealed classes",
+        "data classes",
+        "extension functions",
+        "inline value classes",
+        "smart casting",
+        "exhaustive when"
+      ]
+    },
+    {
+      "id": "kotlin_higher_order_lambdas",
+      "name": "Higher-Order Functions & Scope Functions",
+      "description": "Utilizing higher-order functions, function references, lambda expressions, and Kotlin scope functions (let, apply, run, also, with) with precise selection criteria based on context object receiver (this vs it) and return value.",
+      "keywords": [
+        "higher-order functions",
+        "scope functions (let/apply/run/also/with)",
+        "lambdas",
+        "inline functions",
+        "noinline",
+        "crossinline",
+        "function references"
+      ]
+    },
+    {
+      "id": "android_sdk_lifecycle_basics",
+      "name": "Android SDK Architecture & Context Hierarchy",
+      "description": "Navigating the Android SDK architecture, API level compatibility (minSdk, targetSdk, compileSdk), application class lifecycle, and Context taxonomy (ApplicationContext vs ActivityContext, memory leak prevention when holding Context references).",
+      "keywords": [
+        "Android SDK",
+        "minSdk/targetSdk/compileSdk",
+        "Context hierarchy",
+        "ApplicationContext vs ActivityContext",
+        "Application class",
+        "Context leak prevention"
+      ]
+    },
+    {
+      "id": "kotlin_generics_variance",
+      "name": "Kotlin Generics & Type Variance",
+      "description": "Designing generic classes and functions with declaration-site variance (out for covariance, in for contravariance), type projections (use-site variance), reified type parameters with inline functions, and generic constraints.",
+      "keywords": [
+        "Kotlin generics",
+        "declaration-site variance",
+        "covariance (out)",
+        "contravariance (in)",
+        "reified type parameters",
+        "type projections",
+        "where clause constraints"
+      ]
+    },
+    {
+      "id": "kotlin_delegated_properties",
+      "name": "Delegated Properties & Custom Delegates",
+      "description": "Implementing and utilizing standard Kotlin property delegates (lazy, Delegates.observable, Delegates.vetoable, Delegates.notNull) and authoring custom ReadWriteProperty/ReadOnlyProperty delegates for Android lifecycle, SharedPreferences, or ViewBinding.",
+      "keywords": [
+        "delegated properties",
+        "by lazy",
+        "Delegates.observable",
+        "Delegates.vetoable",
+        "custom property delegates",
+        "ReadWriteProperty",
+        "ReadOnlyProperty"
+      ]
+    },
+    {
+      "id": "kotlin_dsl_type_safe_builders",
+      "name": "Type-Safe Builders & Kotlin DSLs",
+      "description": "Authoring type-safe DSL builders using function literals with receivers (T.() -> Unit), @DslMarker annotation to enforce scope control, and maintaining Gradle Kotlin DSL (build.gradle.kts) build scripts with version catalogs.",
+      "keywords": [
+        "Kotlin DSL",
+        "type-safe builders",
+        "function literal with receiver",
+        "@DslMarker",
+        "build.gradle.kts",
+        "Gradle version catalogs",
+        "libs.versions.toml"
+      ]
+    },
+    {
+      "id": "kotlin_compiler_plugins_ksp",
+      "name": "Kotlin Symbol Processing (KSP) & Compiler Plugins",
+      "description": "Authoring and maintaining custom annotation processors using Kotlin Symbol Processing (KSP) API, understanding KSP performance benefits over KAPT (Kotlin Annotation Processing Tool with Java stubs), and integrating Kotlin compiler plugins.",
+      "keywords": [
+        "KSP (Kotlin Symbol Processing)",
+        "KAPT migration",
+        "SymbolProcessor",
+        "KSVisitor",
+        "code generation",
+        "compiler plugins",
+        "annotation processing performance"
+      ]
+    },
+    {
+      "id": "kotlin_memory_model_bytecode",
+      "name": "Kotlin JVM Bytecode & Memory Optimization",
+      "description": "Analyzing decompiled Kotlin JVM bytecode, measuring runtime overhead of lambdas (capturing vs non-capturing), primitive boxing/unboxing costs in generic collections, companion object overhead, and optimizing memory allocation on ART runtime.",
+      "keywords": [
+        "JVM bytecode analysis",
+        "capturing lambdas",
+        "primitive boxing overhead",
+        "ART runtime memory layout",
+        "companion object bytecode",
+        "inline function inlining"
+      ]
+    },
+    {
+      "id": "multiplatform_kotlin_kmp",
+      "name": "Kotlin Multiplatform (KMP) Architecture",
+      "description": "Architecting shared business logic across Android and iOS using Kotlin Multiplatform (KMP), managing expect/actual platform declarations, sharing network/database/domain layers with Ktor/SqlDelight, and structuring multiplatform sourceSets.",
+      "keywords": [
+        "Kotlin Multiplatform (KMP)",
+        "expect/actual declarations",
+        "shared domain logic",
+        "Ktor client shared",
+        "SqlDelight KMP",
+        "KMP sourceSets",
+        "multiplatform architecture"
+      ]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "Kotlin source code with idioms (sealed interfaces, extension functions, scope functions)",
+        "detection": "content_analysis",
+        "pattern": "sealed (class|interface)|inline value class|fun <.*> .*\\.ext|\\.let \\{.*\\}|\\.apply \\{",
+        "strength": 0.8,
+        "maps_to": [
+          "android_fundamentals_kotlin.kotlin_language_features",
+          "android_fundamentals_kotlin.kotlin_higher_order_lambdas"
+        ]
+      },
+      {
+        "signal": "Gradle build scripts using Kotlin DSL and version catalogs",
+        "detection": "file_presence",
+        "pattern": "build\\.gradle\\.kts|settings\\.gradle\\.kts|gradle/libs\\.versions\\.toml",
+        "strength": 0.8,
+        "maps_to": [
+          "android_fundamentals_kotlin.kotlin_dsl_type_safe_builders",
+          "android_fundamentals_kotlin.android_sdk_lifecycle_basics"
+        ]
+      },
+      {
+        "signal": "Kotlin Symbol Processing (KSP) processor implementation or configuration",
+        "detection": "content_analysis",
+        "pattern": "SymbolProcessorProvider|SymbolProcessor|com\\.google\\.devtools\\.ksp|ksp\\(",
+        "strength": 0.9,
+        "maps_to": [
+          "android_fundamentals_kotlin.kotlin_compiler_plugins_ksp"
+        ]
+      },
+      {
+        "signal": "Kotlin Multiplatform project configuration and expect/actual declarations",
+        "detection": "content_analysis",
+        "pattern": "kotlin\\(\"multiplatform\"\\)|expect (class|fun|val)|actual (class|fun|val)|commonMain",
+        "strength": 0.9,
+        "maps_to": [
+          "android_fundamentals_kotlin.multiplatform_kotlin_kmp"
+        ]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "Developed Android applications using Kotlin, custom DSLs, and modern SDKs",
+        "strength": 0.8,
+        "maps_to": [
+          "android_fundamentals_kotlin.kotlin_language_features",
+          "android_fundamentals_kotlin.android_sdk_lifecycle_basics",
+          "android_fundamentals_kotlin.kotlin_dsl_type_safe_builders"
+        ]
+      },
+      {
+        "signal": "Architected Kotlin Multiplatform (KMP) shared modules between Android and iOS",
+        "strength": 0.9,
+        "maps_to": [
+          "android_fundamentals_kotlin.multiplatform_kotlin_kmp",
+          "android_fundamentals_kotlin.kotlin_generics_variance"
+        ]
+      },
+      {
+        "signal": "Built custom KSP compiler plugins or optimized Kotlin JVM bytecode performance",
+        "strength": 0.9,
+        "maps_to": [
+          "android_fundamentals_kotlin.kotlin_compiler_plugins_ksp",
+          "android_fundamentals_kotlin.kotlin_memory_model_bytecode"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Kotlin, Android Development, or Kotlin Multiplatform endorsed",
+        "strength": 0.5,
+        "maps_to": [
+          "android_fundamentals_kotlin.kotlin_language_features",
+          "android_fundamentals_kotlin.android_sdk_lifecycle_basics"
+        ]
+      },
+      {
+        "signal": "Job experience describing KMP migration, custom Gradle DSLs, or Kotlin compiler tooling",
+        "strength": 0.8,
+        "maps_to": [
+          "android_fundamentals_kotlin.multiplatform_kotlin_kmp",
+          "android_fundamentals_kotlin.kotlin_compiler_plugins_ksp",
+          "android_fundamentals_kotlin.kotlin_delegated_properties"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "kotlin_language_features",
+        "kotlin_higher_order_lambdas",
+        "android_sdk_lifecycle_basics"
+      ],
+      "description": "Writes idiomatic Kotlin code with null safety, utilizes scope functions cleanly, and understands Android SDK Context hierarchies and application lifecycles."
+    },
+    "mid": {
+      "expected_subskills": [
+        "kotlin_generics_variance",
+        "kotlin_delegated_properties",
+        "kotlin_dsl_type_safe_builders"
+      ],
+      "description": "Applies generics type variance, implements custom property delegates, and maintains type-safe Kotlin DSL Gradle build scripts."
+    },
+    "senior": {
+      "expected_subskills": [
+        "kotlin_compiler_plugins_ksp",
+        "kotlin_memory_model_bytecode",
+        "multiplatform_kotlin_kmp"
+      ],
+      "description": "Authors KSP annotation processors, analyzes decompiled bytecode for memory optimizations, and architects cross-platform Kotlin Multiplatform (KMP) shared systems."
+    }
+  }
+}

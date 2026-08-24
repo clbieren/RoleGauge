@@ -1,0 +1,511 @@
+{
+  "source_id": "assessment",
+  "name": "Adaptive Technical Assessment - API Designer",
+  "description": "Adaptive assessment question bank for API Designer skills. Each question is hand-crafted with diverse formats: scenario, architectural_trade_off, design_review, code_review, governance_case_study, comparison, and debugging. Questions focus on organizational API governance and strategic design — not individual service implementation.",
+  "sample_questions_by_composite_key": {
+    "api_fundamentals_http.http_methods_semantics": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "Your organization's payment API uses POST /payments for creating payments and POST /payments/{id}/refund for refunding. A new team wants to use DELETE /payments/{id} instead of the refund endpoint. As the API designer, explain why DELETE is semantically incorrect here and what HTTP method governance rule you would add to the organization's API style guide.",
+        "expected_answer_keywords": ["DELETE removes resource", "refund creates new resource/state", "POST for non-idempotent state changes", "style guide rule", "method semantics governance"]
+      }
+    ],
+    "api_fundamentals_http.status_code_taxonomy": [
+      {
+        "level": "junior",
+        "type": "design_review",
+        "question": "During an API design review, you find that a team returns HTTP 200 with {\"error\": true, \"message\": \"User not found\"} instead of 404. Another team returns 500 for all validation errors. Draft a status code policy section for the API style guide that prevents these anti-patterns, covering 2xx, 4xx, and 5xx usage rules.",
+        "expected_answer_keywords": ["200 only for success", "404 for resource not found", "400/422 for validation", "500 only for server errors", "status code policy", "anti-pattern prevention"]
+      }
+    ],
+    "api_fundamentals_http.uri_design_principles": [
+      {
+        "level": "junior",
+        "type": "design_review",
+        "question": "A team submits an API design with these endpoints: GET /getUsers, POST /createUser, PUT /api/v1/Users/{userId}/updateProfile, DELETE /remove-user?id=123. Identify all URI design violations and rewrite them following a consistent URI naming standard.",
+        "expected_answer_keywords": ["no verbs in URIs", "kebab-case or consistent casing", "plural nouns", "resource hierarchy", "path params not query for identity", "GET /users, POST /users, PUT /users/{id}/profile, DELETE /users/{id}"]
+      }
+    ],
+    "api_fundamentals_http.content_negotiation": [
+      {
+        "level": "mid",
+        "type": "architectural_trade_off",
+        "question": "Your API platform needs to support JSON and Protocol Buffers responses for different consumer types (web apps vs internal microservices). Design a content negotiation strategy using Accept headers, including how to handle unsupported media types and how to version content formats using vendor media types (e.g., application/vnd.company.v2+json).",
+        "expected_answer_keywords": ["Accept header negotiation", "Content-Type response", "406 Not Acceptable", "vendor media types", "application/vnd", "default format fallback", "protobuf for internal"]
+      }
+    ],
+    "api_fundamentals_http.caching_headers_etag": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "An API serving product catalog data (updated hourly) and user profile data (updated on write) needs a platform-wide caching directive standard. Define Cache-Control and ETag policies for both resource types, explaining when to use max-age vs no-cache with conditional requests (If-None-Match).",
+        "expected_answer_keywords": ["max-age=3600 for catalog", "ETag + If-None-Match for profiles", "304 Not Modified", "no-cache with validation", "Vary header", "public vs private cache"]
+      }
+    ],
+    "api_fundamentals_http.idempotency_safety": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "Your payment API experiences duplicate charges when mobile clients retry failed POST /charges requests due to network timeouts. Design an organization-wide Idempotency-Key header standard: specify the header format, server-side storage requirements, response behavior for duplicate keys, and expiration policy.",
+        "expected_answer_keywords": ["Idempotency-Key header", "UUID format", "server-side key storage", "return cached response on duplicate", "key expiration (24-48h)", "409 or same response", "at-most-once guarantee"]
+      }
+    ],
+    "api_fundamentals_http.cors_preflight": [
+      {
+        "level": "senior",
+        "type": "governance_case_study",
+        "question": "Your API platform serves 50+ APIs consumed by first-party SPAs, third-party widgets, and mobile apps. Design a tiered CORS policy architecture: define different Access-Control-Allow-Origin rules per API classification (public, partner, internal), how to handle credentialed vs non-credentialed requests, and preflight caching strategy.",
+        "expected_answer_keywords": ["tiered CORS policy", "public: specific origins", "internal: restrictive", "no wildcard with credentials", "Access-Control-Max-Age", "preflight caching", "API classification"]
+      }
+    ],
+    "api_fundamentals_http.http2_http3_evolution": [
+      {
+        "level": "senior",
+        "type": "architectural_trade_off",
+        "question": "Your organization is migrating from HTTP/1.1 to HTTP/2 across its API gateway layer. Analyze the trade-offs: how HTTP/2 multiplexing eliminates head-of-line blocking at the HTTP layer but introduces it at the TCP layer (motivating HTTP/3/QUIC), how HPACK compression benefits API headers, and what compatibility risks exist with older clients and proxies.",
+        "expected_answer_keywords": ["HTTP/2 multiplexing", "TCP head-of-line blocking", "QUIC UDP transport", "HPACK header compression", "binary framing", "proxy compatibility", "graceful fallback", "ALPN negotiation"]
+      }
+    ],
+    "api_rest_design.resource_modeling_taxonomy": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "You're designing an e-commerce API with products, categories, reviews, and inventory. Model the resource hierarchy: define parent-child relationships, collection vs singleton resources, and explain when to use nested resources (/products/{id}/reviews) vs top-level resources (/reviews?product_id={id}).",
+        "expected_answer_keywords": ["collection resources (plural)", "singleton resources", "nested for tight coupling", "top-level for independent lifecycle", "resource hierarchy", "/products/{id}/reviews for bound resources"]
+      }
+    ],
+    "api_rest_design.error_response_rfc7807": [
+      {
+        "level": "junior",
+        "type": "design_review",
+        "question": "Your organization currently has 10 teams each returning errors in different JSON shapes. Design an RFC 7807 Problem Details standard for the organization: define the required fields (type, title, status, detail, instance), custom extension fields for your platform, and how validation errors should be structured with field-level detail.",
+        "expected_answer_keywords": ["RFC 7807", "application/problem+json", "type URI", "title", "status", "detail", "instance", "validation errors array", "field-level errors", "custom extensions"]
+      }
+    ],
+    "api_rest_design.collection_pagination_standards": [
+      {
+        "level": "junior",
+        "type": "comparison",
+        "question": "Compare cursor-based vs offset-based pagination for your organization's API platform standard. For a high-traffic social feed API with frequent inserts and a low-traffic admin dashboard API, which pagination style would you mandate for each and why? Define the standard response envelope schema.",
+        "expected_answer_keywords": ["cursor for high-traffic, real-time inserts", "offset for admin/low-traffic", "cursor prevents skipped/duplicate items", "offset allows jumping to page N", "response envelope: data, meta, links", "next_cursor token"]
+      }
+    ],
+    "api_rest_design.hateoas_maturity_model": [
+      {
+        "level": "mid",
+        "type": "architectural_trade_off",
+        "question": "Evaluate the Richardson Maturity Model levels (0-3) and recommend which level your organization's public APIs should target. Specifically, argue the trade-offs of Level 3 HATEOAS (hypermedia-driven navigation) versus Level 2 (proper HTTP verbs + status codes) considering developer experience, client complexity, and API discoverability.",
+        "expected_answer_keywords": ["Richardson Maturity Model", "Level 2: HTTP verbs + status codes", "Level 3: HATEOAS hypermedia", "DX complexity trade-off", "client coupling reduction", "link relations", "pragmatic Level 2 for most APIs"]
+      }
+    ],
+    "api_rest_design.query_language_standards": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "Multiple teams are implementing filtering differently: Team A uses ?filter=name:eq:John, Team B uses ?name=John&age_gt=25, Team C uses ?q={\"name\": \"John\"}. Design a unified query language standard for the organization covering filtering operators, sorting syntax, and field selection (sparse fieldsets).",
+        "expected_answer_keywords": ["unified filter syntax", "operator conventions (eq, gt, lt, in)", "sort parameter (?sort=-created_at)", "fields parameter for sparse fieldsets", "consistency across teams", "standardized query grammar"]
+      }
+    ],
+    "api_rest_design.bulk_batch_operations": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "An API consumer needs to create 500 products in a single request instead of 500 individual POST calls. Design a bulk operations standard: define the request/response format, partial success handling (some items fail, others succeed), and whether to use a synchronous response or an async job pattern with polling.",
+        "expected_answer_keywords": ["bulk endpoint POST /products/bulk", "partial success with per-item status", "207 Multi-Status or async 202 Accepted", "job ID polling pattern", "error isolation per item", "batch size limits"]
+      }
+    ],
+    "api_rest_design.api_style_guide_authoring": [
+      {
+        "level": "senior",
+        "type": "governance_case_study",
+        "question": "You're tasked with authoring the organization's first API style guide covering 200+ microservices across 15 teams. Outline the key sections, explain how you would enforce adoption (automated linting vs manual review), and describe how to handle teams that have legacy APIs violating the new standards.",
+        "expected_answer_keywords": ["style guide sections: naming, versioning, errors, auth, pagination", "Spectral automated linting", "CI/CD integration", "legacy API exception process", "gradual migration plan", "design review board", "adoption metrics"]
+      }
+    ],
+    "api_rest_design.schema_evolution_compatibility": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "An API needs to rename a response field from 'userName' to 'display_name' and change a required field to optional. Define the schema evolution compatibility rules for your organization: what constitutes a breaking vs non-breaking change, and how to use OpenAPI schema diff tools to automate compatibility checks in CI.",
+        "expected_answer_keywords": ["breaking: field removal, type change, required addition", "non-breaking: field addition, required to optional", "dual-field period for renames", "OpenAPI diff tools (Optic, oasdiff)", "CI automated checks", "semver for APIs"]
+      }
+    ],
+    "api_rest_design.hypermedia_controls": [
+      {
+        "level": "senior",
+        "type": "architectural_trade_off",
+        "question": "Design a hypermedia control standard for your organization's APIs using HAL or JSON:API link relations. Explain how _links with rel types (self, next, prev, related) enable client-driven workflow navigation, and argue when hypermedia controls add value versus when they add unnecessary complexity.",
+        "expected_answer_keywords": ["HAL _links", "JSON:API links", "rel types: self, next, prev", "workflow navigation", "client decoupling", "complexity vs discoverability trade-off", "public APIs benefit most"]
+      }
+    ],
+    "api_alternative_styles.graphql_schema_governance": [
+      {
+        "level": "junior",
+        "type": "design_review",
+        "question": "A team proposes a GraphQL schema with a generic 'data' field returning JSON blobs, queries accepting 50+ arguments, and no input validation. As the API designer, identify the schema governance violations and propose schema design rules for your organization's GraphQL API standard.",
+        "expected_answer_keywords": ["typed fields not generic JSON", "input types for complex arguments", "query complexity limits", "depth limiting", "schema naming conventions", "nullable vs non-nullable policies"]
+      }
+    ],
+    "api_alternative_styles.json_rpc_specifications": [
+      {
+        "level": "junior",
+        "type": "comparison",
+        "question": "Compare JSON-RPC 2.0 with REST for an internal calculator service with operations like add(a, b), multiply(a, b), and factorial(n). Explain when JSON-RPC's method-oriented approach is more appropriate than REST's resource-oriented approach, and what the organization's selection criteria should be.",
+        "expected_answer_keywords": ["JSON-RPC: action/method-oriented", "REST: resource-oriented", "JSON-RPC for RPC-style operations", "REST for CRUD resources", "JSON-RPC: single endpoint", "selection criteria: resource vs operation nature"]
+      }
+    ],
+    "api_alternative_styles.websocket_api_patterns": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "Your organization needs real-time notifications for an order tracking system. Design a WebSocket API contract standard: define the connection handshake, message format (JSON envelope with type/payload), heartbeat/ping-pong requirements, and reconnection policies for the organization.",
+        "expected_answer_keywords": ["WebSocket upgrade handshake", "JSON message envelope: type, payload, timestamp", "heartbeat ping-pong interval", "reconnection with exponential backoff", "message types: subscribe, unsubscribe, event", "connection authentication"]
+      }
+    ],
+    "api_alternative_styles.grpc_service_contracts": [
+      {
+        "level": "mid",
+        "type": "governance_case_study",
+        "question": "Your organization has 30 microservices communicating via REST, but latency-sensitive services need lower overhead. Design gRPC service contract governance: Protobuf style guide rules, .proto file organization standards, backward compatibility rules for proto field numbering, and the migration strategy from REST to gRPC for internal APIs.",
+        "expected_answer_keywords": ["Protobuf style guide", ".proto file organization", "package naming conventions", "field numbering: never reuse", "reserved fields for removed ones", "buf lint", "REST gateway for external, gRPC for internal"]
+      }
+    ],
+    "api_alternative_styles.asyncapi_event_specifications": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "Your organization publishes events from 20 microservices via Kafka but has no event schema standard. Introduce AsyncAPI specifications: define the event schema governance process, CloudEvents envelope standard, event versioning rules, and how teams should register their event contracts in a central catalog.",
+        "expected_answer_keywords": ["AsyncAPI specification", "CloudEvents envelope", "event schema registry", "event versioning strategy", "central catalog registration", "schema validation in CI", "event naming conventions"]
+      }
+    ],
+    "api_alternative_styles.api_protocol_selection_criteria": [
+      {
+        "level": "mid",
+        "type": "architectural_trade_off",
+        "question": "A new product requires three API capabilities: a public storefront (browsed by web/mobile), real-time chat between users, and high-throughput internal data pipeline between services. Define which protocol (REST, GraphQL, gRPC, WebSocket, AsyncAPI/Kafka) you would select for each and create a protocol selection decision matrix for the organization.",
+        "expected_answer_keywords": ["REST/GraphQL for public storefront", "WebSocket for real-time chat", "gRPC for internal high-throughput", "AsyncAPI/Kafka for event pipeline", "decision matrix: latency, payload, consumer type, tooling"]
+      }
+    ],
+    "api_alternative_styles.federation_composition": [
+      {
+        "level": "senior",
+        "type": "architectural_trade_off",
+        "question": "Your organization has 8 teams each owning GraphQL subgraphs that need to compose into a unified supergraph (Apollo Federation). Design the federation governance: schema ownership boundaries, entity resolution standards (@key directives), composition CI checks, and how to handle breaking changes in one subgraph that affect the supergraph.",
+        "expected_answer_keywords": ["Apollo Federation", "subgraph ownership", "@key entity resolution", "composition CI checks", "schema review for cross-subgraph entities", "breaking change impact analysis", "federated gateway"]
+      }
+    ],
+    "api_alternative_styles.schema_registry_management": [
+      {
+        "level": "senior",
+        "type": "governance_case_study",
+        "question": "Your organization uses Confluent Schema Registry for Avro event schemas but is experiencing schema compatibility failures and schema sprawl (300+ schemas, many unused). Design a schema registry governance program: compatibility mode policies (BACKWARD, FORWARD, FULL), schema lifecycle management, cleanup procedures, and team accountability.",
+        "expected_answer_keywords": ["Confluent Schema Registry", "BACKWARD compatibility default", "FULL for critical schemas", "schema lifecycle: draft→active→deprecated→deleted", "unused schema cleanup", "ownership metadata", "compatibility CI checks"]
+      }
+    ],
+    "api_alternative_styles.streaming_api_patterns": [
+      {
+        "level": "senior",
+        "type": "architectural_trade_off",
+        "question": "Compare Server-Sent Events (SSE), WebSocket, gRPC server streaming, and HTTP/2 push for a real-time analytics dashboard that displays live metrics to 10,000 concurrent users. Evaluate each option's scalability, browser compatibility, reconnection handling, and infrastructure requirements, then recommend a standard.",
+        "expected_answer_keywords": ["SSE: simple, auto-reconnect, unidirectional", "WebSocket: bidirectional, complex", "gRPC streaming: binary, internal only", "HTTP/2 push: limited browser support", "SSE for dashboards", "connection scaling", "load balancer considerations"]
+      }
+    ],
+    "api_auth_security.auth_scheme_selection": [
+      {
+        "level": "junior",
+        "type": "comparison",
+        "question": "Your API platform serves three consumer types: first-party mobile apps, third-party developer integrations, and machine-to-machine internal services. Compare Bearer tokens (OAuth2), API keys, and mTLS certificates for each consumer type and recommend which auth scheme to mandate for each in the organization's API security standard.",
+        "expected_answer_keywords": ["OAuth2 Bearer for first-party apps", "API keys for third-party developers", "mTLS for machine-to-machine", "API keys: simple but less secure", "OAuth2: token refresh, scopes", "mTLS: certificate management overhead"]
+      }
+    ],
+    "api_auth_security.api_key_management_policies": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "A third-party developer's API key is exposed in a public GitHub commit. Define the incident response procedure and design an API key management policy covering: key rotation cadence, automatic key expiration, environment scoping (production vs sandbox), and the developer portal key management UX.",
+        "expected_answer_keywords": ["immediate key revocation", "key rotation cadence (90 days)", "automatic expiration", "environment scoping", "developer portal self-service", "key exposure detection", "audit logging"]
+      }
+    ],
+    "api_auth_security.security_scheme_documentation": [
+      {
+        "level": "junior",
+        "type": "design_review",
+        "question": "Review an OpenAPI specification that has no securitySchemes defined, returns generic 'error' messages for auth failures, and uses query parameter ?token=xxx for authentication. Identify the security documentation violations and rewrite the security section following best practices.",
+        "expected_answer_keywords": ["securitySchemes with type: http, scheme: bearer", "no tokens in query params (URL logging risk)", "401 with WWW-Authenticate header", "403 for authorization failures", "distinct error bodies for 401 vs 403", "security requirement at operation level"]
+      }
+    ],
+    "api_auth_security.oauth2_api_contract_patterns": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "Your API platform needs to support: (1) a React SPA accessing user data, (2) a CLI tool for developers, and (3) IoT devices with limited input capability. Select the appropriate OAuth2 grant type for each, explain why PKCE is mandatory for the SPA, and define the token endpoint contract with required/optional parameters.",
+        "expected_answer_keywords": ["SPA: Authorization Code + PKCE", "CLI: Device Authorization Grant", "IoT: Device Authorization Grant", "PKCE prevents auth code interception", "token endpoint: grant_type, code, redirect_uri, code_verifier", "refresh token rotation"]
+      }
+    ],
+    "api_auth_security.scope_permission_modeling": [
+      {
+        "level": "mid",
+        "type": "governance_case_study",
+        "question": "Your organization has 50 APIs and each team defines scopes independently, resulting in inconsistent naming (user.read vs read_users vs users:read) and scope explosion (200+ scopes). Design a unified scope naming convention, hierarchy model, and governance process for scope creation across the organization.",
+        "expected_answer_keywords": ["naming convention: resource:action (users:read)", "hierarchical scopes: users:* includes users:read, users:write", "scope creation approval process", "scope catalog/registry", "minimal scope principle", "scope documentation standard"]
+      }
+    ],
+    "api_auth_security.token_exchange_delegation": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "Service A receives a user's access token and needs to call Service B on behalf of the user, but with reduced permissions. Design a token exchange flow using RFC 8693: specify the token exchange endpoint contract, how audience restriction limits token scope, and how to prevent token replay across services.",
+        "expected_answer_keywords": ["RFC 8693 token exchange", "subject_token, audience parameter", "audience-restricted tokens", "downscoped permissions", "token binding", "token replay prevention", "on-behalf-of delegation"]
+      }
+    ],
+    "api_auth_security.api_threat_modeling": [
+      {
+        "level": "senior",
+        "type": "governance_case_study",
+        "question": "Conduct an API threat modeling exercise for a banking API platform using OWASP API Security Top 10. Identify the top 3 API-specific threats (BOLA, Broken Authentication, Excessive Data Exposure) and design contract-level mitigations — not code-level fixes, but API design constraints that prevent these vulnerabilities by construction.",
+        "expected_answer_keywords": ["BOLA: object-level authorization in contract", "Broken Auth: mandatory auth scheme per endpoint", "Excessive Data Exposure: field-level response filtering", "API design constraints", "security by design", "OWASP API Top 10", "contract-level prevention"]
+      }
+    ],
+    "api_auth_security.zero_trust_api_architecture": [
+      {
+        "level": "senior",
+        "type": "architectural_trade_off",
+        "question": "Design a zero-trust API architecture for a microservices platform where no service trusts any other service by default. Specify mTLS requirements for service-to-service API calls, SPIFFE identity standards, token validation at every hop (not just the gateway), and the trade-offs of per-request verification vs session-based trust caching.",
+        "expected_answer_keywords": ["mTLS everywhere", "SPIFFE/SPIRE identity", "per-hop token validation", "no perimeter trust", "certificate rotation automation", "verification overhead vs security", "trust caching trade-off"]
+      }
+    ],
+    "api_auth_security.api_abuse_prevention_design": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "Your public API is experiencing credential stuffing attacks on POST /auth/login and account enumeration via timing differences in POST /users/forgot-password. Design API contract-level defenses — not WAF rules, but API design decisions that make these attacks structurally impossible or impractical.",
+        "expected_answer_keywords": ["constant-time responses regardless of user existence", "identical error messages for valid/invalid users", "progressive authentication challenges (CAPTCHA)", "rate limiting per IP and credential pair", "login endpoint returns same response shape", "no user enumeration via error differences"]
+      }
+    ],
+    "api_performance_scalability.rate_limiting_quota_design": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "Design a three-tier API quota policy (Free: 100 req/min, Pro: 1000 req/min, Enterprise: 10000 req/min) for your developer platform. Specify the RateLimit-* response headers (RateLimit-Limit, RateLimit-Remaining, RateLimit-Reset), the 429 error response body format, and how quota resets should work (fixed window vs sliding window).",
+        "expected_answer_keywords": ["three quota tiers", "RateLimit-Limit header", "RateLimit-Remaining", "RateLimit-Reset", "429 Too Many Requests", "Retry-After header", "fixed window vs sliding window trade-off"]
+      }
+    ],
+    "api_performance_scalability.pagination_cursor_standards": [
+      {
+        "level": "junior",
+        "type": "design_review",
+        "question": "A team implements pagination with ?page=5&per_page=100 but their dataset has 10 million rows with frequent inserts. Users report seeing duplicate items when paginating. Explain the root cause and design a cursor-based pagination standard with the response envelope schema including cursor tokens, has_more flag, and page size limits.",
+        "expected_answer_keywords": ["offset pagination: row shifts on insert cause duplicates", "cursor-based: stable position", "opaque cursor token (base64 encoded)", "has_more boolean", "max page_size limit", "response envelope: data, cursors, has_more"]
+      }
+    ],
+    "api_performance_scalability.payload_optimization": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "An API endpoint returning user profiles sends 50 fields per user when mobile clients only need 5 fields (name, avatar, status). Design a sparse fieldsets standard using a ?fields= query parameter: define the syntax, nested field selection, and how the API should respond when a requested field doesn't exist.",
+        "expected_answer_keywords": ["?fields=name,avatar,status", "nested fields: fields=name,address.city", "ignore unknown fields gracefully", "reduced payload size", "bandwidth optimization", "mobile-first design", "Content-Length reduction"]
+      }
+    ],
+    "api_performance_scalability.caching_strategy_architecture": [
+      {
+        "level": "mid",
+        "type": "architectural_trade_off",
+        "question": "Design a multi-layer caching architecture for an API platform: (1) Client-side cache via Cache-Control headers, (2) CDN edge cache for public endpoints, (3) API gateway shared cache, and (4) Application-level Redis cache. Define cache key strategies, TTL policies per layer, and how to handle cache invalidation when underlying data changes.",
+        "expected_answer_keywords": ["four cache layers", "client Cache-Control", "CDN edge: public endpoints", "gateway: shared responses", "Redis: application data", "cache key: URL + Accept + auth", "invalidation: surrogate keys / purge API", "TTL per layer"]
+      }
+    ],
+    "api_performance_scalability.api_latency_budgeting": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "Your API platform SLO requires p99 latency under 200ms for Tier 1 APIs. An API endpoint calls 3 downstream services sequentially (auth: 20ms, database: 50ms, recommendations: 80ms). Calculate the remaining latency budget, explain why this architecture risks SLO violations, and propose optimizations (parallelization, caching, timeout budgets).",
+        "expected_answer_keywords": ["sequential: 20+50+80=150ms baseline", "50ms remaining budget is thin", "parallelize independent calls", "cache auth/recommendations", "per-service timeout budgets", "SLO violation risk from tail latency"]
+      }
+    ],
+    "api_performance_scalability.connection_management_http2": [
+      {
+        "level": "mid",
+        "type": "comparison",
+        "question": "Compare HTTP/1.1 connection pooling (6 parallel connections per host) with HTTP/2 single-connection multiplexing for an API gateway serving 10,000 concurrent requests. Explain how HTTP/2 eliminates connection overhead but introduces stream-level flow control considerations, and define connection management policies for your API platform.",
+        "expected_answer_keywords": ["HTTP/1.1: 6 connection limit", "HTTP/2: single connection multiplexing", "stream-level flow control", "MAX_CONCURRENT_STREAMS setting", "connection reuse", "keep-alive policies", "load balancer stream distribution"]
+      }
+    ],
+    "api_performance_scalability.cdn_edge_distribution": [
+      {
+        "level": "senior",
+        "type": "architectural_trade_off",
+        "question": "Your API platform serves a global audience with 50ms p99 latency SLO. Design a CDN edge distribution architecture: which API responses can be edge-cached (public catalog vs personalized), how to handle cache personalization (Vary header vs edge compute), and how to manage cache consistency across 50+ edge locations during a product price change.",
+        "expected_answer_keywords": ["edge cache for public/catalog APIs", "no edge cache for personalized", "Vary header for personalization", "edge compute for partial personalization", "cache purge propagation delay", "surrogate key purging", "consistency vs latency trade-off"]
+      }
+    ],
+    "api_performance_scalability.capacity_planning_modeling": [
+      {
+        "level": "senior",
+        "type": "governance_case_study",
+        "question": "Your API platform normally handles 5,000 RPS but expects 50,000 RPS during Black Friday (10x spike). Build a capacity planning model: define the load testing approach (shadow traffic vs synthetic), auto-scaling policies (CPU/RPS-based), pre-provisioning strategy, and how to implement graceful degradation when capacity is exceeded.",
+        "expected_answer_keywords": ["10x capacity planning", "load testing with shadow traffic", "auto-scaling: RPS + CPU based", "pre-provisioned capacity for predicted spikes", "graceful degradation tiers", "priority-based request shedding", "circuit breaker for non-critical features"]
+      }
+    ],
+    "api_performance_scalability.throttling_backpressure_patterns": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "Your streaming API pushes events to consumers at varying rates. Fast producers overwhelm slow consumers causing memory pressure and dropped events. Design a backpressure signaling standard for your API platform: compare reactive pull-based flow control, token-based rate negotiation, and HTTP 429 with Retry-After for REST-based throttling.",
+        "expected_answer_keywords": ["backpressure signaling", "pull-based flow control", "consumer-driven rate", "token-based negotiation", "429 with Retry-After for REST", "gRPC flow control", "buffer overflow prevention"]
+      }
+    ],
+    "api_integration_patterns.webhook_design_contracts": [
+      {
+        "level": "junior",
+        "type": "design_review",
+        "question": "A team implements webhooks that: (1) send raw database records as payloads, (2) have no event type field, (3) retry infinitely on failure, and (4) provide no signature verification. Design a webhook contract standard fixing all issues: define the event envelope schema, HMAC signature verification, retry policy with exponential backoff, and dead-letter handling.",
+        "expected_answer_keywords": ["event envelope: type, id, timestamp, data", "HMAC-SHA256 signature header", "exponential backoff retry (max 5)", "dead-letter queue after max retries", "no raw database records", "event type taxonomy"]
+      }
+    ],
+    "api_integration_patterns.api_mocking_virtualization": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "A frontend team is blocked because the backend API isn't ready yet. Design an API mocking standard for your organization: select a mocking tool (Prism, WireMock, MockServer), define how mocks should be generated from OpenAPI specs, how to maintain mock fidelity with the real API, and how to integrate mocks into the developer onboarding flow.",
+        "expected_answer_keywords": ["Prism from OpenAPI spec", "auto-generated mock responses", "mock fidelity: regenerate on spec change", "sandbox environment for third-party devs", "CI validation: mock matches spec", "developer onboarding integration"]
+      }
+    ],
+    "api_integration_patterns.sdk_client_generation": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "Your API platform supports 4 programming languages (JavaScript, Python, Java, Go). Design an SDK generation pipeline from OpenAPI specifications: select the generation tool (openapi-generator), define how SDK versioning aligns with API versioning, and establish SDK quality standards (generated code must include error handling, retries, and pagination helpers).",
+        "expected_answer_keywords": ["openapi-generator", "4 language targets", "SDK version matches API version", "auto-generated in CI/CD", "error handling helpers", "retry with backoff", "pagination iterator helpers", "SDK quality checklist"]
+      }
+    ],
+    "api_integration_patterns.event_driven_api_patterns": [
+      {
+        "level": "mid",
+        "type": "architectural_trade_off",
+        "question": "Compare three event-driven API patterns: (1) Webhooks (HTTP push), (2) Server-Sent Events (SSE streaming), and (3) AsyncAPI over Kafka. For an order management system that needs to notify warehouse, payment, and shipping services, evaluate each pattern's delivery guarantees, consumer complexity, and scaling characteristics.",
+        "expected_answer_keywords": ["webhooks: push, at-least-once, simple consumer", "SSE: streaming, browser-friendly, unidirectional", "Kafka: persistent, replay, complex setup", "webhooks for external", "Kafka for internal", "delivery guarantee differences"]
+      }
+    ],
+    "api_integration_patterns.contract_testing_strategy": [
+      {
+        "level": "mid",
+        "type": "governance_case_study",
+        "question": "Your organization has 30 microservices with REST API dependencies but no contract testing. Introduce Pact contract testing governance: define the consumer-driven workflow (consumer writes pact → provider verifies), CI/CD integration with Pact Broker, and how to handle the 'provider changed without checking consumers' failure mode.",
+        "expected_answer_keywords": ["consumer-driven: consumer writes pact", "provider verifies against consumer pacts", "Pact Broker for contract sharing", "CI/CD: can-i-deploy check", "webhook on provider change", "pending pacts for new consumers", "breaking change prevention"]
+      }
+    ],
+    "api_integration_patterns.consumer_driven_contracts": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "Service A (provider) has 5 consumer services, each using different subsets of the response schema. Consumer C only uses {id, name, status} but the full response has 30 fields. Explain how consumer-driven contracts prevent Provider from breaking Consumer C's expectations, and design the governance workflow when Provider needs to rename the 'status' field.",
+        "expected_answer_keywords": ["each consumer defines expected subset", "provider validates against all consumer contracts", "field rename = breaking for Consumer C", "migration plan: add new field, notify consumers, update contracts, remove old field", "Pact interaction definition"]
+      }
+    ],
+    "api_integration_patterns.api_gateway_architecture": [
+      {
+        "level": "senior",
+        "type": "architectural_trade_off",
+        "question": "Your organization needs an API gateway strategy supporting: public APIs (rate limited, OAuth2), partner APIs (API key, custom SLAs), and internal APIs (mTLS, no rate limiting). Compare single gateway with multi-tiered routing vs separate gateway instances per API classification. Evaluate Kong vs Apigee vs AWS API Gateway for this multi-tenant architecture.",
+        "expected_answer_keywords": ["multi-tiered gateway", "API classification routing", "Kong: open-source, plugins", "Apigee: analytics, monetization", "AWS API Gateway: serverless", "separate gateway per tier", "cross-cutting concerns: logging, auth, rate limiting"]
+      }
+    ],
+    "api_integration_patterns.service_mesh_api_routing": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "Your organization is rolling out Istio service mesh for internal API routing. Design the traffic management strategy: how to implement canary releases (route 5% of API traffic to v2), header-based routing for A/B testing (X-Feature-Flag: new-checkout), and circuit breaker policies at the mesh level instead of application code.",
+        "expected_answer_keywords": ["Istio VirtualService traffic splitting", "5% canary weight-based routing", "header-based match for A/B testing", "DestinationRule circuit breaker", "mesh-level resilience", "sidecar proxy interception", "observability via mesh telemetry"]
+      }
+    ],
+    "api_integration_patterns.backward_compatibility_testing": [
+      {
+        "level": "senior",
+        "type": "governance_case_study",
+        "question": "A team deployed an API change that removed a response field, breaking 3 consumer services in production. Design an automated backward compatibility testing system: how to detect breaking changes from OpenAPI spec diffs, integrate checks into CI/CD as a blocking gate, and handle legitimate breaking changes with a deprecation-first workflow.",
+        "expected_answer_keywords": ["OpenAPI diff in CI (oasdiff, Optic)", "breaking change = blocked merge", "field removal detection", "type change detection", "deprecation-first: mark deprecated → sunset period → remove", "exception approval process", "consumer notification automation"]
+      }
+    ],
+    "api_lifecycle_governance.api_versioning_policies": [
+      {
+        "level": "junior",
+        "type": "comparison",
+        "question": "Compare three API versioning approaches for your organization's standard: URI path versioning (/v1/users), header versioning (API-Version: 2), and media type versioning (Accept: application/vnd.company.v2+json). Evaluate each approach's developer experience, cacheability, and routing complexity, then recommend one as the organization default.",
+        "expected_answer_keywords": ["URI path: simple, cacheable, URL pollution", "header: clean URLs, proxy complexity", "media type: semantic, complex parsing", "URI path most common and DX-friendly", "organization default recommendation", "consistency across all APIs"]
+      }
+    ],
+    "api_lifecycle_governance.api_documentation_standards": [
+      {
+        "level": "junior",
+        "type": "design_review",
+        "question": "Review an API documentation page that has: (1) no authentication section, (2) no error response examples, (3) a single curl command as the only code sample, and (4) no rate limiting information. Define the minimum required sections for your organization's API documentation standard and explain why each section is critical for developer adoption.",
+        "expected_answer_keywords": ["required sections: overview, auth, endpoints, errors, rate limits, code samples", "multi-language code samples (JS, Python, curl)", "error response examples for each status code", "rate limit documentation", "authentication quick-start", "each section reduces support tickets"]
+      }
+    ],
+    "api_lifecycle_governance.api_changelog_communication": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "Your API platform releases weekly updates but consumers complain about surprise breaking changes. Design a changelog communication standard: define the changelog format (Keep a Changelog structure), breaking change notification workflow (email + portal banner + Sunset header), and the minimum advance notice period before breaking changes take effect.",
+        "expected_answer_keywords": ["Keep a Changelog format: Added, Changed, Deprecated, Removed", "breaking change advance notice (90 days minimum)", "email notification to affected consumers", "portal banner/announcement", "Sunset header on deprecated endpoints", "RSS feed for changelog"]
+      }
+    ],
+    "api_lifecycle_governance.deprecation_sunset_management": [
+      {
+        "level": "mid",
+        "type": "governance_case_study",
+        "question": "Your organization needs to sunset API v1 (released 3 years ago) used by 200+ consumers while migrating them to v2. Design the deprecation lifecycle: define the sunset timeline (announcement → deprecation period → traffic monitoring → sunset), Sunset header (RFC 8594) implementation, consumer migration support, and the decision criteria for extending the sunset date.",
+        "expected_answer_keywords": ["sunset timeline: announce → deprecate → monitor → sunset", "Sunset header with date", "RFC 8594", "consumer migration guide", "traffic monitoring per consumer", "extension criteria: high-traffic consumers not migrated", "minimum 6-12 month deprecation"]
+      }
+    ],
+    "api_lifecycle_governance.api_catalog_discovery": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "Your organization has 200+ APIs across 20 teams but no central catalog — developers discover APIs via Slack messages and tribal knowledge. Design an API catalog system using Backstage: define the required metadata per API entry (owner, lifecycle status, documentation link, SLA tier), the registration workflow, and how to enforce catalog completeness.",
+        "expected_answer_keywords": ["Backstage catalog-info.yaml", "required metadata: owner, lifecycle, docs, SLA", "self-service registration", "CI check: API must have catalog entry", "lifecycle states: experimental, production, deprecated", "search and taxonomy"]
+      }
+    ],
+    "api_lifecycle_governance.design_review_process": [
+      {
+        "level": "mid",
+        "type": "governance_case_study",
+        "question": "Your organization has no API design review process, and teams ship APIs with inconsistent naming, authentication, and error formats. Design the API design review workflow: define the review checklist (naming, versioning, auth, errors, pagination), the review board composition, how to use Spectral linting for automated pre-review checks, and the approval/rejection process.",
+        "expected_answer_keywords": ["review checklist: naming, versioning, auth, errors, pagination", "API review board: 3-5 senior engineers", "Spectral linting in CI as pre-filter", "automated checks before human review", "approval with conditions", "rejection with specific feedback", "review SLA (5 business days)"]
+      }
+    ],
+    "api_lifecycle_governance.developer_portal_experience": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "Your developer portal has a 30-minute time-to-first-API-call for new developers, and adoption surveys show frustration with API key provisioning and lack of interactive documentation. Design improvements: specify the ideal onboarding flow (sign up → get API key → try API in playground → integrate), interactive Try-It features, and how to measure developer satisfaction (TTFC, CSAT).",
+        "expected_answer_keywords": ["target TTFC: under 5 minutes", "one-click API key provisioning", "interactive Try-It/playground", "pre-filled code samples", "sandbox environment", "TTFC and CSAT metrics", "onboarding analytics"]
+      }
+    ],
+    "api_lifecycle_governance.api_metrics_analytics": [
+      {
+        "level": "senior",
+        "type": "governance_case_study",
+        "question": "Your API platform has 200+ APIs but no visibility into which APIs are thriving and which are failing. Design an API analytics framework: define the key metrics (adoption rate, error rate, latency percentiles, consumer growth, API deprecation candidates), build a health scoring model, and explain how to use data to drive API portfolio decisions (sunset, invest, or standardize).",
+        "expected_answer_keywords": ["key metrics: adoption, error rate, p99 latency, consumer growth", "API health score: composite metric", "portfolio quadrant: invest, sunset, standardize, experiment", "data-driven deprecation candidates", "usage trend analysis", "consumer satisfaction correlation"]
+      }
+    ],
+    "api_lifecycle_governance.compliance_regulatory_apis": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "Your banking API platform must comply with GDPR (data minimization in responses), PCI DSS (card data masking), and PSD2 (Open Banking API standards). Design API contract-level compliance controls: how to enforce data minimization in response schemas, field-level masking rules, audit trail requirements in API contracts, and PSD2 mandatory endpoint specifications.",
+        "expected_answer_keywords": ["GDPR: minimal response fields, purpose limitation", "PCI DSS: mask card numbers in responses", "PSD2: mandatory AISP/PISP endpoints", "field-level masking rules in schema", "audit trail: request/response logging", "compliance annotations in OpenAPI", "data classification tags"]
+      }
+    ],
+    "api_lifecycle_governance.api_program_management": [
+      {
+        "level": "senior",
+        "type": "governance_case_study",
+        "question": "Your CTO asks you to establish an API Program Office to transform the organization into an API-first company. Design the program: define the governance council structure (representatives from each engineering team), API maturity model (levels 1-5), success metrics (time-to-integration, API reuse rate, developer satisfaction), and how to align API strategy with business revenue goals.",
+        "expected_answer_keywords": ["API governance council", "API maturity model levels 1-5", "success metrics: TTI, reuse rate, developer satisfaction", "API-first strategy", "business alignment: API as product", "program roadmap", "quarterly API portfolio reviews"]
+      }
+    ]
+  }
+}

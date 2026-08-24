@@ -1,0 +1,253 @@
+{
+  "skill_id": "ios_uikit_swiftui",
+  "name": "iOS UI Development: UIKit & SwiftUI Architecture",
+  "category": "mobile_core",
+  "description": "Modern and traditional iOS UI engineering spanning declarative SwiftUI, programmatic UIKit AutoLayout, Diffable Data Sources, SwiftUI state management (@State, @Binding, Observable macro), UIKit/SwiftUI interoperability (UIHostingController, UIViewRepresentable), Core Animation, Core Graphics custom drawing, and VoiceOver Dynamic Type accessibility.",
+  "subskills": [
+    {
+      "id": "uikit_autolayout_programmatic",
+      "name": "Programmatic AutoLayout & UIStackView",
+      "description": "Constructing robust UIKit interfaces purely in code — NSLayoutConstraint, NSLayoutAnchor API, UIStackView composition, constraint priorities (UILayoutPriority), content hugging & compression resistance, and avoiding AutoLayout unsatisfiable constraints.",
+      "keywords": [
+        "Programmatic AutoLayout",
+        "NSLayoutAnchor",
+        "UIStackView",
+        "translatesAutoresizingMaskIntoConstraints",
+        "contentHuggingPriority",
+        "contentCompressionResistancePriority",
+        "SnapKit"
+      ]
+    },
+    {
+      "id": "uikit_collection_table_views",
+      "name": "Diffable Data Sources & Compositional Layouts",
+      "description": "Building high-performance UIKit lists and grids — UITableView, UICollectionView, UITableViewDiffableDataSource / UICollectionViewDiffableDataSource with NSDiffableDataSourceSnapshot, and UICollectionViewCompositionalLayout for complex multi-axis scrolling layouts.",
+      "keywords": [
+        "UICollectionViewDiffableDataSource",
+        "NSDiffableDataSourceSnapshot",
+        "UICollectionViewCompositionalLayout",
+        "NSCollectionLayoutSection",
+        "UICollectionViewCell recycling",
+        "custom cell configurations"
+      ]
+    },
+    {
+      "id": "swiftui_views_state_basics",
+      "name": "SwiftUI Declarative Views & State Hoisting",
+      "description": "Building declarative user interfaces with SwiftUI — View protocol conformance, view hierarchy composition (VStack, HStack, ZStack, List, LazyVStack), managing local state with @State and @Binding, and state hoisting for reusable component design.",
+      "keywords": [
+        "SwiftUI View protocol",
+        "@State / @Binding",
+        "VStack / HStack / ZStack",
+        "LazyVStack / LazyHStack",
+        "State hoisting",
+        "declarative view body",
+        "view modifiers"
+      ]
+    },
+    {
+      "id": "swiftui_state_management",
+      "name": "SwiftUI Observable Macro & State Management",
+      "description": "Managing complex state graphs across SwiftUI applications — utilizing the modern iOS 17+ @Observable macro (Observation framework), comparing with legacy @StateObject, @ObservedObject, @EnvironmentObject, @Published (ObservableObject), and scoping @Environment properties.",
+      "keywords": [
+        "@Observable macro (iOS 17+)",
+        "Observation framework",
+        "@StateObject vs @ObservedObject",
+        "@EnvironmentObject",
+        "@Published property wrapper",
+        "@Environment custom values"
+      ]
+    },
+    {
+      "id": "uikit_swiftui_interoperability",
+      "name": "UIKit & SwiftUI Interoperability Bridging",
+      "description": "Bridging between UIKit and SwiftUI frameworks — embedding SwiftUI views in UIKit with UIHostingController, wrapping UIKit views and controllers for SwiftUI using UIViewRepresentable and UIViewControllerRepresentable with custom Coordinators.",
+      "keywords": [
+        "UIHostingController",
+        "UIViewRepresentable",
+        "UIViewControllerRepresentable",
+        "Coordinator pattern bridging",
+        "makeUIView / updateUIView",
+        "interoperability architecture"
+      ]
+    },
+    {
+      "id": "swiftui_navigation_custom_layouts",
+      "name": "NavigationStack & Custom Layout Protocol",
+      "description": "Implementing type-safe navigation and custom layouts in SwiftUI — NavigationStack with navigationDestination(for:), NavigationSplitView for iPad/Mac multi-column layouts, GeometryReader for responsive measurements, and the Layout protocol (sizeThatFits, placeSubviews).",
+      "keywords": [
+        "NavigationStack",
+        "navigationDestination(for:)",
+        "NavigationSplitView",
+        "GeometryReader",
+        "SwiftUI Layout protocol (sizeThatFits/placeSubviews)",
+        "type-safe navigation path"
+      ]
+    },
+    {
+      "id": "custom_animations_transitions",
+      "name": "Core Animation & SwiftUI Transitions",
+      "description": "Designing fluid animations and transitions — Core Animation layer animations (CABasicAnimation, CAKeyframeAnimation, CATransition), UIViewPropertyAnimator for interactive scrubbable gestures, and SwiftUI matchedGeometryEffect with custom transition modifiers.",
+      "keywords": [
+        "Core Animation (CABasicAnimation)",
+        "UIViewPropertyAnimator (interactive scrub)",
+        "SwiftUI matchedGeometryEffect",
+        "withAnimation spring curves",
+        "custom AnyTransition",
+        "CALayer animation"
+      ]
+    },
+    {
+      "id": "custom_drawing_core_graphics",
+      "name": "Core Graphics & Custom Layer Drawing",
+      "description": "Performing custom 2D rendering — Core Graphics (CGContext, CGPath, UIBezierPath in draw(_:)), custom CALayer subclasses (CAShapeLayer, CAGradientLayer, CATextLayer), and SwiftUI Canvas / ShaderLibrary (Metal shader functions in iOS 17).",
+      "keywords": [
+        "Core Graphics (CGContext / CGPath)",
+        "UIBezierPath",
+        "CAShapeLayer / CAGradientLayer",
+        "draw(_ rect: CGRect)",
+        "SwiftUI Canvas",
+        "Metal shaders in SwiftUI (colorEffect)"
+      ]
+    },
+    {
+      "id": "accessibility_dynamic_type",
+      "name": "VoiceOver Accessibility & Dynamic Type",
+      "description": "Engineering accessible iOS applications — VoiceOver accessibility elements (accessibilityLabel, accessibilityValue, accessibilityTraits, accessibilityCustomActions), supporting Dynamic Type font scaling without UI clipping, and WCAG color contrast compliance.",
+      "keywords": [
+        "VoiceOver accessibility",
+        "accessibilityLabel / accessibilityHint",
+        "accessibilityTraits",
+        "Dynamic Type font scaling",
+        "UIFontMetrics",
+        "WCAG color contrast",
+        "accessibilityCustomActions"
+      ]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "SwiftUI view declarations with state wrappers or Observable macro",
+        "detection": "content_analysis",
+        "pattern": "struct .*: View|@State private var|@Observable class|UIHostingController|NavigationStack",
+        "strength": 0.8,
+        "maps_to": [
+          "ios_uikit_swiftui.swiftui_views_state_basics",
+          "ios_uikit_swiftui.swiftui_state_management",
+          "ios_uikit_swiftui.swiftui_navigation_custom_layouts"
+        ]
+      },
+      {
+        "signal": "Programmatic AutoLayout or UICollectionViewCompositionalLayout code",
+        "detection": "content_analysis",
+        "pattern": "NSLayoutConstraint\\.activate|UICollectionViewDiffableDataSource|UICollectionViewCompositionalLayout",
+        "strength": 0.8,
+        "maps_to": [
+          "ios_uikit_swiftui.uikit_autolayout_programmatic",
+          "ios_uikit_swiftui.uikit_collection_table_views"
+        ]
+      },
+      {
+        "signal": "UIViewRepresentable or UIViewControllerRepresentable bridging implementation",
+        "detection": "content_analysis",
+        "pattern": ": UIViewRepresentable|: UIViewControllerRepresentable|func makeUIView|func updateUIView",
+        "strength": 0.9,
+        "maps_to": [
+          "ios_uikit_swiftui.uikit_swiftui_interoperability"
+        ]
+      },
+      {
+        "signal": "Core Animation UIViewPropertyAnimator or matchedGeometryEffect",
+        "detection": "content_analysis",
+        "pattern": "UIViewPropertyAnimator|matchedGeometryEffect|CABasicAnimation|CAShapeLayer",
+        "strength": 0.8,
+        "maps_to": [
+          "ios_uikit_swiftui.custom_animations_transitions",
+          "ios_uikit_swiftui.custom_drawing_core_graphics"
+        ]
+      },
+      {
+        "signal": "VoiceOver accessibility modifiers and Dynamic Type scaling",
+        "detection": "content_analysis",
+        "pattern": "\\.accessibilityLabel|\\.accessibilityHint|UIFontMetrics|accessibilityTraits",
+        "strength": 0.8,
+        "maps_to": [
+          "ios_uikit_swiftui.accessibility_dynamic_type"
+        ]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "Built modern iOS UIs with SwiftUI, Observable macro, and UIKit interoperability",
+        "strength": 0.8,
+        "maps_to": [
+          "ios_uikit_swiftui.swiftui_views_state_basics",
+          "ios_uikit_swiftui.swiftui_state_management",
+          "ios_uikit_swiftui.uikit_swiftui_interoperability"
+        ]
+      },
+      {
+        "signal": "Engineered complex layouts using Compositional Layout and Diffable Data Sources",
+        "strength": 0.8,
+        "maps_to": [
+          "ios_uikit_swiftui.uikit_collection_table_views",
+          "ios_uikit_swiftui.uikit_autolayout_programmatic"
+        ]
+      },
+      {
+        "signal": "Designed fluid Core Animation transitions and enforced VoiceOver accessibility",
+        "strength": 0.9,
+        "maps_to": [
+          "ios_uikit_swiftui.custom_animations_transitions",
+          "ios_uikit_swiftui.accessibility_dynamic_type"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "SwiftUI, UIKit, or AutoLayout endorsed",
+        "strength": 0.5,
+        "maps_to": [
+          "ios_uikit_swiftui.swiftui_views_state_basics",
+          "ios_uikit_swiftui.uikit_autolayout_programmatic"
+        ]
+      },
+      {
+        "signal": "Job experience describing SwiftUI architecture, UIKit bridging, or interactive animations",
+        "strength": 0.8,
+        "maps_to": [
+          "ios_uikit_swiftui.uikit_swiftui_interoperability",
+          "ios_uikit_swiftui.custom_animations_transitions",
+          "ios_uikit_swiftui.swiftui_navigation_custom_layouts"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "uikit_autolayout_programmatic",
+        "uikit_collection_table_views",
+        "swiftui_views_state_basics"
+      ],
+      "description": "Constructs programmatic AutoLayout interfaces, implements Diffable Data Sources in collection views, and builds basic SwiftUI views."
+    },
+    "mid": {
+      "expected_subskills": [
+        "swiftui_state_management",
+        "uikit_swiftui_interoperability",
+        "swiftui_navigation_custom_layouts"
+      ],
+      "description": "Manages complex state with the Observable macro, bridges UIKit and SwiftUI with representables, and implements NavigationStack."
+    },
+    "senior": {
+      "expected_subskills": [
+        "custom_animations_transitions",
+        "custom_drawing_core_graphics",
+        "accessibility_dynamic_type"
+      ],
+      "description": "Authors Core Animation/UIViewPropertyAnimator transitions, renders custom Core Graphics layers, and enforces VoiceOver standards."
+    }
+  }
+}

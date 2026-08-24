@@ -1,0 +1,253 @@
+{
+  "skill_id": "android_ui_layouts",
+  "name": "Android UI Development, Views & Jetpack Compose",
+  "category": "mobile_core",
+  "description": "Modern and traditional Android UI engineering spanning Jetpack Compose declarative UI, XML layouts (ConstraintLayout), RecyclerView performance, custom Canvas drawing, Compose state and side-effects, compiler stability optimization, Material 3 design systems, and 120fps UI profiling.",
+  "subskills": [
+    {
+      "id": "xml_layouts_view_binding",
+      "name": "XML Layouts, ConstraintLayout & ViewBinding",
+      "description": "Building XML layouts using ConstraintLayout (guidelines, barriers, chains, flow virtual layouts), ViewBinding for type-safe view lookups replacing findViewById, style/theme definitions, and layout inflation.",
+      "keywords": [
+        "ConstraintLayout",
+        "ViewBinding",
+        "XML layouts",
+        "Barriers/Chains/Guidelines",
+        "layout_optimization",
+        "styles/themes",
+        "ViewBinding inflate"
+      ]
+    },
+    {
+      "id": "recyclerview_adapter_patterns",
+      "name": "RecyclerView, ListAdapter & DiffUtil",
+      "description": "Implementing high-performance lists with RecyclerView, ListAdapter with AsyncListDiffer and DiffUtil for granular item update animations, custom ItemTouchHelper for swipe/drag gestures, and multiple ViewHolder view types.",
+      "keywords": [
+        "RecyclerView",
+        "ListAdapter",
+        "DiffUtil.ItemCallback",
+        "AsyncListDiffer",
+        "ViewHolder pattern",
+        "multiple view types",
+        "ItemTouchHelper",
+        "item view recycling"
+      ]
+    },
+    {
+      "id": "compose_fundamentals_state",
+      "name": "Jetpack Compose Fundamentals & State",
+      "description": "Building declarative UIs with Jetpack Compose, understanding unidirectional data flow in UI, managing state with remember, mutableStateOf, and rememberSaveable, and applying state hoisting patterns to create stateless, reusable composables.",
+      "keywords": [
+        "Jetpack Compose",
+        "@Composable",
+        "remember",
+        "mutableStateOf",
+        "rememberSaveable",
+        "State hoisting",
+        "unidirectional data flow"
+      ]
+    },
+    {
+      "id": "compose_layout_modifiers",
+      "name": "Compose Layouts, Modifiers & Lazy Lists",
+      "description": "Designing complex layouts with Box, Column, Row, LazyColumn/LazyRow (with items, keys, and contentType for composition recycling), applying and chaining Modifiers (layout, draw, pointerInput), and custom Layout composables.",
+      "keywords": [
+        "LazyColumn / LazyRow",
+        "Modifier chaining",
+        "Box/Column/Row",
+        "contentType in Lazy layouts",
+        "custom Layout composable",
+        "SubcomposeLayout",
+        "Intrinsic measurements"
+      ]
+    },
+    {
+      "id": "custom_views_canvas_drawing",
+      "name": "Custom Views & 2D Canvas Drawing",
+      "description": "Subclassing View/ViewGroup to build custom views from scratch, overriding onMeasure (MeasureSpec modes: EXACTLY, AT_MOST, UNSPECIFIED), onLayout, and onDraw using Canvas, Paint, Path, and handling custom touch gestures in onTouchEvent.",
+      "keywords": [
+        "Custom View",
+        "onMeasure / MeasureSpec",
+        "onDraw / Canvas",
+        "Paint & Path",
+        "onTouchEvent / GestureDetector",
+        "custom XML declare-styleable attributes"
+      ]
+    },
+    {
+      "id": "compose_side_effects_lifecycle",
+      "name": "Compose Side-Effects & Lifecycle",
+      "description": "Managing asynchronous operations and external state in Compose using side-effect handlers: LaunchedEffect, rememberCoroutineScope, DisposableEffect for resource cleanup, SideEffect, rememberUpdatedState, and derivedStateOf for calculation caching.",
+      "keywords": [
+        "LaunchedEffect",
+        "rememberCoroutineScope",
+        "DisposableEffect",
+        "SideEffect",
+        "rememberUpdatedState",
+        "derivedStateOf",
+        "produceState"
+      ]
+    },
+    {
+      "id": "compose_compiler_recomposition",
+      "name": "Compose Compiler Metrics & Recomposition Tuning",
+      "description": "Analyzing Compose compiler metrics (composable reports), understanding parameter Stability inference (@Stable, @Immutable annotations), eliminating unnecessary recompositions, avoiding lambda instantiation in recomposition loops, and using Compose layout inspector.",
+      "keywords": [
+        "Compose compiler metrics",
+        "@Stable / @Immutable",
+        "Stability inference",
+        "recomposition optimization",
+        "Layout Inspector recomposition counters",
+        "unstable parameters fix"
+      ]
+    },
+    {
+      "id": "design_systems_theming",
+      "name": "Material Design 3 & Design System Architecture",
+      "description": "Architecting scalable design systems using Material Design 3 (Material You), dynamic color theming, custom Typography, Shapes, ColorScheme palettes, building custom reusable component libraries, and supporting dark/light/contrast themes.",
+      "keywords": [
+        "Material Design 3 (M3)",
+        "MaterialTheme",
+        "Dynamic Color (Material You)",
+        "ColorScheme tokenization",
+        "Design System component library",
+        "custom Typography & Shapes"
+      ]
+    },
+    {
+      "id": "ui_performance_profiling",
+      "name": "UI Rendering Pipeline & 120fps Profiling",
+      "description": "Profiling the Android UI rendering pipeline (Measure, Layout, Draw), measuring UI frame rendering performance using JankStats, identifying and eliminating GPU overdraw in Developer Options, Systrace / Perfetto UI thread frame analysis, and achieving stable 120fps rendering.",
+      "keywords": [
+        "JankStats library",
+        "GPU Overdraw elimination",
+        "Perfetto / Systrace UI frame analysis",
+        "120fps rendering",
+        "Choreographer frame drops",
+        "RenderThread profiling"
+      ]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "Jetpack Compose UI components and state management",
+        "detection": "content_analysis",
+        "pattern": "@Composable|remember \\{ mutableStateOf|rememberSaveable|LazyColumn \\{",
+        "strength": 0.8,
+        "maps_to": [
+          "android_ui_layouts.compose_fundamentals_state",
+          "android_ui_layouts.compose_layout_modifiers"
+        ]
+      },
+      {
+        "signal": "Compose side-effects or derivedStateOf optimizations",
+        "detection": "content_analysis",
+        "pattern": "LaunchedEffect\\(|DisposableEffect\\(|derivedStateOf \\{|rememberUpdatedState",
+        "strength": 0.8,
+        "maps_to": [
+          "android_ui_layouts.compose_side_effects_lifecycle"
+        ]
+      },
+      {
+        "signal": "RecyclerView ListAdapter with DiffUtil implementation",
+        "detection": "content_analysis",
+        "pattern": ": ListAdapter<.*,.*>|DiffUtil\\.ItemCallback|AsyncListDiffer",
+        "strength": 0.8,
+        "maps_to": [
+          "android_ui_layouts.recyclerview_adapter_patterns"
+        ]
+      },
+      {
+        "signal": "Custom View implementation with onMeasure and onDraw Canvas",
+        "detection": "content_analysis",
+        "pattern": "override fun onDraw\\(canvas: Canvas\\)|override fun onMeasure\\(|MeasureSpec\\.getMode",
+        "strength": 0.9,
+        "maps_to": [
+          "android_ui_layouts.custom_views_canvas_drawing"
+        ]
+      },
+      {
+        "signal": "Compose stability annotations or compiler metrics configuration",
+        "detection": "content_analysis",
+        "pattern": "@Immutable|@Stable|composeCompilerMetricsReports|enableCompilerMetrics",
+        "strength": 0.9,
+        "maps_to": [
+          "android_ui_layouts.compose_compiler_recomposition"
+        ]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "Built reactive Android UIs using Jetpack Compose and Material 3 design systems",
+        "strength": 0.8,
+        "maps_to": [
+          "android_ui_layouts.compose_fundamentals_state",
+          "android_ui_layouts.design_systems_theming",
+          "android_ui_layouts.compose_layout_modifiers"
+        ]
+      },
+      {
+        "signal": "Optimized Jetpack Compose recomposition performance using compiler metrics",
+        "strength": 0.9,
+        "maps_to": [
+          "android_ui_layouts.compose_compiler_recomposition",
+          "android_ui_layouts.ui_performance_profiling"
+        ]
+      },
+      {
+        "signal": "Created custom 2D Canvas views and eliminated GPU overdraw for 120fps rendering",
+        "strength": 0.9,
+        "maps_to": [
+          "android_ui_layouts.custom_views_canvas_drawing",
+          "android_ui_layouts.ui_performance_profiling"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Jetpack Compose, Android UI, or Material Design endorsed",
+        "strength": 0.5,
+        "maps_to": [
+          "android_ui_layouts.compose_fundamentals_state",
+          "android_ui_layouts.design_systems_theming"
+        ]
+      },
+      {
+        "signal": "Job experience describing Jetpack Compose architecture, custom views, or UI jank elimination",
+        "strength": 0.8,
+        "maps_to": [
+          "android_ui_layouts.compose_compiler_recomposition",
+          "android_ui_layouts.ui_performance_profiling",
+          "android_ui_layouts.compose_side_effects_lifecycle"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "xml_layouts_view_binding",
+        "recyclerview_adapter_patterns",
+        "compose_fundamentals_state"
+      ],
+      "description": "Constructs XML layouts with ConstraintLayout, implements RecyclerView lists with ListAdapter and DiffUtil, and builds Compose UIs with state hoisting."
+    },
+    "mid": {
+      "expected_subskills": [
+        "compose_layout_modifiers",
+        "custom_views_canvas_drawing",
+        "compose_side_effects_lifecycle"
+      ],
+      "description": "Builds complex Compose layouts with Lazy collections, implements custom 2D Canvas views, and manages asynchronous side-effects in Compose."
+    },
+    "senior": {
+      "expected_subskills": [
+        "compose_compiler_recomposition",
+        "design_systems_theming",
+        "ui_performance_profiling"
+      ],
+      "description": "Optimizes Compose compiler stability and recompositions, architects enterprise Material 3 design systems, and profiles UI rendering for 120fps execution."
+    }
+  }
+}

@@ -1,0 +1,251 @@
+{
+  "skill_id": "android_concurrency_async",
+  "name": "Kotlin Coroutines, Asynchronous Flow & Concurrency",
+  "category": "mobile_core",
+  "description": "Mastering asynchronous and reactive programming on Android using Kotlin Coroutines and Kotlin Flow. Covers structured concurrency, Dispatchers, cold vs hot streams (StateFlow, SharedFlow), flow transformations, thread synchronization primitives, lifecycle-aware flow collection, and coroutine unit testing.",
+  "subskills": [
+    {
+      "id": "coroutines_basics_dispatchers",
+      "name": "Coroutines Fundamentals & Dispatchers",
+      "description": "Launching coroutines with launch and async builders, switching execution contexts using CoroutineDispatchers (Dispatchers.Main, Dispatchers.IO, Dispatchers.Default, Dispatchers.Unconfined), and writing non-blocking suspend functions.",
+      "keywords": [
+        "Kotlin Coroutines",
+        "CoroutineDispatchers (Main/IO/Default)",
+        "suspend functions",
+        "coroutine builders (launch/async)",
+        "withContext",
+        "non-blocking execution"
+      ]
+    },
+    {
+      "id": "structured_concurrency_jobs",
+      "name": "Structured Concurrency & Cancellation Propagation",
+      "description": "Enforcing structured concurrency principles — managing Job hierarchies, parent-child cancellation propagation, handling non-cancellable blocks with withContext(NonCancellable), and isolating coroutine failures using supervisorScope and SupervisorJob.",
+      "keywords": [
+        "Structured Concurrency",
+        "Job hierarchy",
+        "CancellationException",
+        "NonCancellable",
+        "supervisorScope",
+        "SupervisorJob",
+        "CoroutineExceptionHandler"
+      ]
+    },
+    {
+      "id": "flow_fundamentals_cold_streams",
+      "name": "Cold Kotlin Flow Fundamentals",
+      "description": "Creating and consuming cold asynchronous streams using Kotlin Flow — flow { ... } builders, flowOf, asFlow, applying intermediate operators (map, filter, take, onEach), terminal operators (collect, toList, first), and exception handling with catch.",
+      "keywords": [
+        "Kotlin Flow",
+        "cold streams",
+        "flow builder",
+        "flow operators (map/filter/onEach)",
+        "terminal operators (collect/first)",
+        "flow catch exception",
+        "flowOn dispatcher"
+      ]
+    },
+    {
+      "id": "stateflow_sharedflow_hot_streams",
+      "name": "Hot Streams: StateFlow & SharedFlow",
+      "description": "Managing hot reactive streams in Android — utilizing StateFlow for UI state representation, SharedFlow for one-shot broadcast events, configuring replay cache, buffer overflow strategies (BufferOverflow.DROP_OLDEST), and converting cold flows with stateIn/shareIn and SharingStarted policies.",
+      "keywords": [
+        "StateFlow",
+        "SharedFlow",
+        "hot streams",
+        "stateIn / shareIn",
+        "SharingStarted.WhileSubscribed(5000)",
+        "replay cache",
+        "BufferOverflow strategy"
+      ]
+    },
+    {
+      "id": "flow_transformations_combination",
+      "name": "Advanced Flow Operators & Stream Combination",
+      "description": "Composing complex reactive pipelines with advanced Flow operators: flatMapLatest vs flatMapMerge vs flatMapConcat, combining streams with combine and zip, search debouncing with debounce and distinctUntilChanged, and flow retries with retryWhen.",
+      "keywords": [
+        "flatMapLatest",
+        "flatMapMerge",
+        "combine / zip Flow",
+        "debounce search",
+        "distinctUntilChanged",
+        "retryWhen / retry backoff",
+        "Flow composition"
+      ]
+    },
+    {
+      "id": "concurrency_synchronization_primitives",
+      "name": "Concurrency Primitives, Mutex & Channels",
+      "description": "Managing shared mutable state across coroutines safely — utilizing Mutex (withLock) for mutual exclusion without thread blocking, Semaphore for concurrency throttling, Channel (Buffered, Rendezvous, Conflated) for producer-consumer communication, and Atomic primitives.",
+      "keywords": [
+        "Mutex withLock",
+        "Semaphore",
+        "Channel (Buffered/Conflated/Rendezvous)",
+        "shared mutable state",
+        "AtomicInteger / AtomicReference",
+        "producer-consumer pattern"
+      ]
+    },
+    {
+      "id": "coroutine_memory_leaks_profiling",
+      "name": "Lifecycle-Aware Flow Collection & Leak Prevention",
+      "description": "Safely collecting Flows in Android UI components — using repeatOnLifecycle and flowWithLifecycle to automatically pause collection when the UI is stopped, preventing background resource leaks, and diagnosing coroutine leaks with Android Studio Profiler.",
+      "keywords": [
+        "repeatOnLifecycle",
+        "flowWithLifecycle",
+        "lifecycleScope.launch",
+        "coroutine leak prevention",
+        "background collection pause",
+        "Memory Profiler coroutines"
+      ]
+    },
+    {
+      "id": "reactive_streams_rxjava_migration",
+      "name": "RxJava to Coroutines/Flow Interoperability & Migration",
+      "description": "Interoperating between RxJava (Observable, Single, Flowable, Completable) and Kotlin Coroutines/Flow using kotlinx-coroutines-rx2/rx3, migrating legacy reactive codebases to native Coroutines, and comparing backpressure models.",
+      "keywords": [
+        "RxJava to Coroutines migration",
+        "asFlow / asObservable",
+        "awaitSingle",
+        "kotlinx-coroutines-rx3",
+        "RxJava Flowable vs Kotlin Flow",
+        "reactive interop"
+      ]
+    },
+    {
+      "id": "custom_coroutine_context_testing",
+      "name": "Coroutine Testing with TestDispatcher & Turbine",
+      "description": "Testing asynchronous coroutine and Flow code deterministically — utilizing StandardTestDispatcher and UnconfinedTestDispatcher with runTest, controlling virtual time with advanceTimeBy and advanceUntilIdle, and asserting Flow emissions using the Turbine library.",
+      "keywords": [
+        "runTest",
+        "StandardTestDispatcher",
+        "UnconfinedTestDispatcher",
+        "advanceUntilIdle / advanceTimeBy",
+        "Turbine library (test { awaitItem() })",
+        "MainDispatcherRule"
+      ]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "Kotlin Flow and Coroutine usage in ViewModels or Repositories",
+        "detection": "content_analysis",
+        "pattern": "MutableStateFlow|MutableSharedFlow|stateIn\\(|viewModelScope\\.launch|withContext\\(Dispatchers\\.",
+        "strength": 0.8,
+        "maps_to": [
+          "android_concurrency_async.coroutines_basics_dispatchers",
+          "android_concurrency_async.stateflow_sharedflow_hot_streams"
+        ]
+      },
+      {
+        "signal": "Lifecycle-aware flow collection with repeatOnLifecycle",
+        "detection": "content_analysis",
+        "pattern": "repeatOnLifecycle\\(Lifecycle\\.State|flowWithLifecycle\\(",
+        "strength": 0.9,
+        "maps_to": [
+          "android_concurrency_async.coroutine_memory_leaks_profiling"
+        ]
+      },
+      {
+        "signal": "Advanced Flow operators (flatMapLatest, combine, debounce)",
+        "detection": "content_analysis",
+        "pattern": "\\.flatMapLatest|\\.combine\\(|\\.debounce\\(|\\.distinctUntilChanged",
+        "strength": 0.8,
+        "maps_to": [
+          "android_concurrency_async.flow_transformations_combination"
+        ]
+      },
+      {
+        "signal": "Coroutine testing with runTest and Turbine library",
+        "detection": "content_analysis",
+        "pattern": "runTest \\{|\\.test \\{.*awaitItem|StandardTestDispatcher|advanceUntilIdle",
+        "strength": 0.9,
+        "maps_to": [
+          "android_concurrency_async.custom_coroutine_context_testing"
+        ]
+      },
+      {
+        "signal": "Mutex or Channel concurrency primitive usage",
+        "detection": "content_analysis",
+        "pattern": "Mutex\\(\\)|\\.withLock \\{|Channel<.*>\\(|Channel\\.BUFFERED",
+        "strength": 0.8,
+        "maps_to": [
+          "android_concurrency_async.concurrency_synchronization_primitives"
+        ]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "Engineered reactive Android data flows using Kotlin Flow, StateFlow, and Coroutines",
+        "strength": 0.8,
+        "maps_to": [
+          "android_concurrency_async.coroutines_basics_dispatchers",
+          "android_concurrency_async.stateflow_sharedflow_hot_streams",
+          "android_concurrency_async.flow_transformations_combination"
+        ]
+      },
+      {
+        "signal": "Migrated legacy RxJava2/3 codebase to Kotlin Coroutines and Flow",
+        "strength": 0.9,
+        "maps_to": [
+          "android_concurrency_async.reactive_streams_rxjava_migration",
+          "android_concurrency_async.coroutine_memory_leaks_profiling"
+        ]
+      },
+      {
+        "signal": "Authored comprehensive asynchronous unit test suites using Turbine and runTest",
+        "strength": 0.8,
+        "maps_to": [
+          "android_concurrency_async.custom_coroutine_context_testing",
+          "android_concurrency_async.structured_concurrency_jobs"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Kotlin Coroutines, Reactive Programming, or Asynchronous Programming endorsed",
+        "strength": 0.5,
+        "maps_to": [
+          "android_concurrency_async.coroutines_basics_dispatchers",
+          "android_concurrency_async.flow_fundamentals_cold_streams"
+        ]
+      },
+      {
+        "signal": "Job experience describing complex Flow pipelines, repeatOnLifecycle leak prevention, or Coroutines migration",
+        "strength": 0.8,
+        "maps_to": [
+          "android_concurrency_async.coroutine_memory_leaks_profiling",
+          "android_concurrency_async.flow_transformations_combination",
+          "android_concurrency_async.custom_coroutine_context_testing"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "coroutines_basics_dispatchers",
+        "structured_concurrency_jobs",
+        "flow_fundamentals_cold_streams"
+      ],
+      "description": "Launches coroutines with appropriate Dispatchers, adheres to structured concurrency, and consumes cold Flows with basic operators."
+    },
+    "mid": {
+      "expected_subskills": [
+        "stateflow_sharedflow_hot_streams",
+        "flow_transformations_combination",
+        "concurrency_synchronization_primitives"
+      ],
+      "description": "Exposes UI state using StateFlow/SharedFlow, builds complex Flow combination pipelines, and coordinates coroutines with Mutex and Channels."
+    },
+    "senior": {
+      "expected_subskills": [
+        "coroutine_memory_leaks_profiling",
+        "reactive_streams_rxjava_migration",
+        "custom_coroutine_context_testing"
+      ],
+      "description": "Prevents memory leaks with lifecycle-aware collection, leads RxJava-to-Flow migrations, and tests async pipelines deterministically with virtual time."
+    }
+  }
+}

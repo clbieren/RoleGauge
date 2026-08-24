@@ -1,0 +1,249 @@
+{
+  "skill_id": "android_architecture_patterns",
+  "name": "Android Architecture, Dependency Injection & Modularity",
+  "category": "mobile_core",
+  "description": "Clean, scalable, and testable Android application architecture. Encompasses MVVM, MVI (Unidirectional Data Flow), Clean Architecture domain layers, Dependency Injection with Hilt/Dagger, multi-module modularization strategies, Navigation Compose, and App Startup optimization.",
+  "subskills": [
+    {
+      "id": "mvvm_architecture_pattern",
+      "name": "MVVM Pattern & ViewModel Lifecycle",
+      "description": "Implementing Model-View-ViewModel architecture, leveraging Android Jetpack ViewModel to survive configuration changes, modeling UI state using immutable data classes, and exposing state to UI via StateFlow/LiveData.",
+      "keywords": [
+        "MVVM architecture",
+        "Jetpack ViewModel",
+        "ViewModelProvider",
+        "UI State modeling",
+        "StateFlow in ViewModel",
+        "SingleLiveEvent / Channel events"
+      ]
+    },
+    {
+      "id": "dependency_injection_hilt_basics",
+      "name": "Dependency Injection with Hilt Fundamentals",
+      "description": "Applying dependency injection in Android using Hilt/Dagger, annotating application (@HiltAndroidApp), activities/fragments (@AndroidEntryPoint), view models (@HiltViewModel), constructor injection with @Inject, and providing dependencies with @Module and @Provides.",
+      "keywords": [
+        "Hilt DI",
+        "Dagger Hilt",
+        "@HiltAndroidApp",
+        "@AndroidEntryPoint",
+        "@HiltViewModel",
+        "@Inject constructor",
+        "@Module / @Provides"
+      ]
+    },
+    {
+      "id": "repository_pattern_data_sources",
+      "name": "Repository Pattern & Single Source of Truth",
+      "description": "Designing the Repository pattern as the mediator between UI and data layers, coordinating remote API and local database data sources, establishing single source of truth (SSOT) policies, and converting raw DTOs to UI/domain models using mappers.",
+      "keywords": [
+        "Repository pattern",
+        "Single Source of Truth (SSOT)",
+        "remote data source",
+        "local data source",
+        "DTO to domain model mappers",
+        "data layer architecture"
+      ]
+    },
+    {
+      "id": "clean_architecture_domain_layer",
+      "name": "Clean Architecture & Domain Layer UseCases",
+      "description": "Structuring applications using Clean Architecture principles, defining pure Kotlin Domain layers independent of Android framework dependencies, authoring single-responsibility UseCases / Interactors, and enforcing dependency inversion.",
+      "keywords": [
+        "Clean Architecture",
+        "Domain layer",
+        "UseCase / Interactor pattern",
+        "Dependency Inversion Principle",
+        "business logic isolation",
+        "pure Kotlin modules"
+      ]
+    },
+    {
+      "id": "mvi_unidirectional_data_flow",
+      "name": "MVI Architecture & Unidirectional Data Flow (UDF)",
+      "description": "Implementing Model-View-Intent (MVI) architecture, modeling state machines with sealed Intent/Action, immutable ViewState, and one-shot SideEffect/Event channels, and ensuring strict unidirectional data flow without state synchronization races.",
+      "keywords": [
+        "MVI architecture",
+        "Unidirectional Data Flow (UDF)",
+        "Intent / Action modeling",
+        "immutable ViewState",
+        "SideEffect / Event handling",
+        "Redux pattern Android"
+      ]
+    },
+    {
+      "id": "advanced_di_scopes_modules",
+      "name": "Advanced Dagger/Hilt Scopes & Multi-Bindings",
+      "description": "Configuring custom Hilt/Dagger component hierarchies, @InstallIn scopes (SingletonComponent, ActivityRetainedComponent, ViewModelComponent), custom @Scope annotations, Dagger Multi-bindings (@IntoSet, @IntoMap), and @AssistedInject for dynamic runtime parameters.",
+      "keywords": [
+        "Hilt scopes (@InstallIn)",
+        "Dagger Multi-bindings (@IntoMap/@IntoSet)",
+        "custom @Scope",
+        "@AssistedInject / AssistedFactory",
+        "subcomponents",
+        "component hierarchies"
+      ]
+    },
+    {
+      "id": "modularization_multi_module",
+      "name": "Multi-Module Architecture & Feature Modularity",
+      "description": "Architecting large-scale Android codebases into multi-module Gradle setups: feature-by-feature modularization, core-api and core-impl split patterns to eliminate circular dependencies, internal visibility modifiers, and dynamic feature delivery modules.",
+      "keywords": [
+        "multi-module architecture",
+        "feature modularization",
+        "core-api / core-impl pattern",
+        "circular dependency resolution",
+        "Gradle build parallelization",
+        "Dynamic Feature Modules"
+      ]
+    },
+    {
+      "id": "navigation_component_compose",
+      "name": "Jetpack Navigation & Navigation Compose",
+      "description": "Implementing type-safe in-app navigation using Navigation Compose and Jetpack Navigation Component, passing serialized arguments, defining nested navigation graphs, bottom navigation integration, and managing deep link navigation hierarchies.",
+      "keywords": [
+        "Navigation Compose",
+        "NavHost / NavController",
+        "type-safe navigation routes",
+        "nested navigation graphs",
+        "NavBackStackEntry",
+        "bottom bar navigation",
+        "deep link destination mapping"
+      ]
+    },
+    {
+      "id": "app_startup_architecture",
+      "name": "App Startup & Baseline Profiles Initialization",
+      "description": "Optimizing Android application cold start time using the App Startup library (Initializer<T>), eliminating redundant ContentProvider initializers, generating Baseline Profiles using Macrobenchmark to pre-compile critical execution paths on install.",
+      "keywords": [
+        "App Startup library",
+        "Initializer<T>",
+        "cold start optimization",
+        "Baseline Profiles",
+        "Macrobenchmark pre-compilation",
+        "lazy dependency initialization"
+      ]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "Hilt or Dagger dependency injection configuration",
+        "detection": "content_analysis",
+        "pattern": "@HiltAndroidApp|@AndroidEntryPoint|@HiltViewModel|@InstallIn\\(|@Module.*@InstallIn",
+        "strength": 0.8,
+        "maps_to": [
+          "android_architecture_patterns.dependency_injection_hilt_basics",
+          "android_architecture_patterns.advanced_di_scopes_modules"
+        ]
+      },
+      {
+        "signal": "Clean Architecture UseCase / Interactor implementations",
+        "detection": "content_analysis",
+        "pattern": "class .*UseCase\\(|class .*Interactor\\(|operator fun invoke\\(",
+        "strength": 0.8,
+        "maps_to": [
+          "android_architecture_patterns.clean_architecture_domain_layer"
+        ]
+      },
+      {
+        "signal": "Multi-module Gradle architecture with feature and core modules",
+        "detection": "file_presence",
+        "pattern": ":feature:.*|:core:.*|include\\(\":.*\"\\)",
+        "strength": 0.9,
+        "maps_to": [
+          "android_architecture_patterns.modularization_multi_module"
+        ]
+      },
+      {
+        "signal": "Navigation Compose type-safe route definitions",
+        "detection": "content_analysis",
+        "pattern": "NavHost\\(|composable<.*>\\(|rememberNavController|NavGraphBuilder",
+        "strength": 0.8,
+        "maps_to": [
+          "android_architecture_patterns.navigation_component_compose"
+        ]
+      },
+      {
+        "signal": "Baseline profile generator or App Startup Initializer",
+        "detection": "content_analysis",
+        "pattern": "BaselineProfileRule|class .*Initializer : Initializer<|macrobenchmark",
+        "strength": 0.9,
+        "maps_to": [
+          "android_architecture_patterns.app_startup_architecture"
+        ]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "Architected Android apps using Clean Architecture, MVVM/MVI, and Hilt DI",
+        "strength": 0.8,
+        "maps_to": [
+          "android_architecture_patterns.mvvm_architecture_pattern",
+          "android_architecture_patterns.clean_architecture_domain_layer",
+          "android_architecture_patterns.dependency_injection_hilt_basics"
+        ]
+      },
+      {
+        "signal": "Refactored monolithic Android codebase into 20+ feature and core modules",
+        "strength": 0.9,
+        "maps_to": [
+          "android_architecture_patterns.modularization_multi_module",
+          "android_architecture_patterns.advanced_di_scopes_modules"
+        ]
+      },
+      {
+        "signal": "Reduced cold start time by 40% using App Startup and Baseline Profiles",
+        "strength": 0.9,
+        "maps_to": [
+          "android_architecture_patterns.app_startup_architecture",
+          "android_architecture_patterns.navigation_component_compose"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Android Architecture, Clean Architecture, or Hilt endorsed",
+        "strength": 0.5,
+        "maps_to": [
+          "android_architecture_patterns.mvvm_architecture_pattern",
+          "android_architecture_patterns.dependency_injection_hilt_basics"
+        ]
+      },
+      {
+        "signal": "Job experience describing multi-module modularization, MVI architecture, or baseline profile optimizations",
+        "strength": 0.8,
+        "maps_to": [
+          "android_architecture_patterns.modularization_multi_module",
+          "android_architecture_patterns.mvi_unidirectional_data_flow",
+          "android_architecture_patterns.app_startup_architecture"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "mvvm_architecture_pattern",
+        "dependency_injection_hilt_basics",
+        "repository_pattern_data_sources"
+      ],
+      "description": "Applies MVVM architecture with ViewModels, injects dependencies using Hilt, and implements the Repository pattern with remote/local data sources."
+    },
+    "mid": {
+      "expected_subskills": [
+        "clean_architecture_domain_layer",
+        "mvi_unidirectional_data_flow",
+        "advanced_di_scopes_modules"
+      ],
+      "description": "Structures domain layers with Clean Architecture UseCases, implements MVI unidirectional data flow, and configures custom Hilt scopes and multibindings."
+    },
+    "senior": {
+      "expected_subskills": [
+        "modularization_multi_module",
+        "navigation_component_compose",
+        "app_startup_architecture"
+      ],
+      "description": "Architects multi-module codebases, designs type-safe navigation graphs, and optimizes application cold startup with Baseline Profiles."
+    }
+  }
+}

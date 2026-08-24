@@ -1,0 +1,80 @@
+{
+  "role_id": "android_developer",
+  "level": "senior",
+  "title": "Senior Android Developer",
+  "description": "Senior Android engineer and mobile platform architect responsible for multi-module codebases, Kotlin Multiplatform (KMP) shared modules, Compose compiler stability and recomposition tuning, 120fps UI rendering pipelines, multi-process IPC with AIDL/Binder, Gradle CI/CD build cache optimization, R8 code obfuscation, and Play Integrity security hardening.",
+  "experience_range": "5+ years",
+  "skills": [
+    {
+      "skill_id": "android_architecture_patterns",
+      "importance": 0.95,
+      "rationale": "Architecting multi-module codebases, type-safe Navigation Compose graphs, and cold startup optimization with Baseline Profiles."
+    },
+    {
+      "skill_id": "android_ui_layouts",
+      "importance": 0.95,
+      "rationale": "Tuning Compose compiler stability metrics, eliminating recompositions, architecting Material 3 design systems, and 120fps frame profiling."
+    },
+    {
+      "skill_id": "android_concurrency_async",
+      "importance": 0.9,
+      "rationale": "Preventing memory leaks with lifecycle-aware collection, leading RxJava-to-Flow migrations, and testing async code with virtual time."
+    },
+    {
+      "skill_id": "android_platform_services_quality",
+      "importance": 0.9,
+      "rationale": "Optimizing Gradle CI/CD build caches, monitoring production health/ANRs via Crashlytics, and hardening security with R8 and Play Integrity."
+    },
+    {
+      "skill_id": "android_data_persistence",
+      "importance": 0.85,
+      "rationale": "Implementing Paging 3 RemoteMediator, optimizing SQLite indexes and FTS5 search, and enforcing SSL certificate pinning."
+    },
+    {
+      "skill_id": "android_fundamentals_kotlin",
+      "importance": 0.85,
+      "rationale": "Building KSP annotation processors, analyzing decompiled bytecode for memory optimization, and architecting Kotlin Multiplatform (KMP) shared modules."
+    },
+    {
+      "skill_id": "android_app_components",
+      "importance": 0.85,
+      "rationale": "Designing multi-process IPC with AIDL/Binder, engineering LMK process death survival, and configuring verified Android App Links."
+    }
+  ],
+  "scoring": {
+    "method": "weighted_average",
+    "description": "Each skill score is multiplied by its importance weight. Final score is sum divided by sum of weights.",
+    "thresholds": {
+      "not_ready": {
+        "min": 0.0,
+        "max": 0.3,
+        "label": "Not Ready",
+        "description": "Significant gaps in multi-module architecture, performance profiling, or mobile platform security."
+      },
+      "developing": {
+        "min": 0.3,
+        "max": 0.5,
+        "label": "Developing",
+        "description": "Solid mid-level feature delivery, but lacks experience in modularization strategies, Compose compiler optimization, and CI/CD pipelines."
+      },
+      "approaching": {
+        "min": 0.5,
+        "max": 0.7,
+        "label": "Approaching Ready",
+        "description": "Strong architectural capabilities; refining expertise in Baseline Profiles, KMP, and advanced R8 obfuscation rules."
+      },
+      "ready": {
+        "min": 0.7,
+        "max": 0.85,
+        "label": "Ready",
+        "description": "Meets all senior expectations: architects scalable multi-module apps, mentors engineers, enforces performance standards, and automates CI/CD."
+      },
+      "exceeds": {
+        "min": 0.85,
+        "max": 1.0,
+        "label": "Exceeds Expectations",
+        "description": "Exceeds senior expectations: staff/principal mobile leadership driving cross-platform KMP strategy and enterprise mobile infrastructure."
+      }
+    }
+  }
+}

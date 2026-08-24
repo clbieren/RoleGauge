@@ -1,0 +1,144 @@
+{
+  "skill_id": "api_auth_security",
+  "name": "API Authentication & Security Contract Design",
+  "category": "api_design_security",
+  "description": "Designing API-level authentication schemes, security contract documentation, and abuse prevention architectures at the platform level. CRITICAL CROSS-ROLE DISTINCTION: This skill is fundamentally different from four other roles' security-related skills. Backend's be_auth_security covers implementing bcrypt password hashing, writing JWT signing code, building OAuth2 middleware, and coding RBAC guards (implementation — 'how do I securely code this auth flow?'). Cyber Security's cs_threats_and_attacks covers analyzing attack vectors, conducting penetration testing, and developing exploit payloads (offensive — 'how do I break into this system?'). QA's qa_non_functional_testing.app_security_verification_owasp covers verifying OWASP Top 10 defenses pass quality gates (verification — 'does the security implementation actually work?'). API Design's api_auth_security covers deciding WHICH authentication scheme (API Key, OAuth2, mTLS) belongs in the API contract, how security schemes are documented in OpenAPI securitySchemes, modeling OAuth2 scopes and permission hierarchies at the specification level, and designing organization-wide API abuse prevention policies (strategic contract-level decision-making — 'which auth method should this API's contract specify, and how is it documented for consumers?').",
+  "subskills": [
+    {
+      "id": "auth_scheme_selection",
+      "name": "Authentication Scheme Selection & Trade-offs",
+      "description": "Evaluating and selecting API authentication schemes for different use-cases — API Key vs OAuth2 vs mTLS vs HMAC signature vs JWT Bearer token trade-off analysis, consumer type mapping (internal service, third-party app, public client), and documenting selection rationale.",
+      "keywords": ["auth scheme selection", "API Key vs OAuth2", "mTLS vs JWT", "HMAC signature auth", "consumer type mapping", "auth trade-off matrix", "authentication decision framework"]
+    },
+    {
+      "id": "oauth2_api_contract_patterns",
+      "name": "OAuth2 API Contract Patterns",
+      "description": "Designing OAuth2 integration patterns at the API contract level — specifying grant types per API category (Authorization Code for user-facing, Client Credentials for service-to-service), token endpoint documentation, refresh token policies, and PKCE requirements in OpenAPI securitySchemes.",
+      "keywords": ["OAuth2 contract patterns", "grant type selection", "Authorization Code vs Client Credentials", "PKCE requirement policy", "token endpoint documentation", "OpenAPI securitySchemes", "OAuth2 flow specification"]
+    },
+    {
+      "id": "api_key_management_policies",
+      "name": "API Key Lifecycle & Management Policies",
+      "description": "Designing API key lifecycle policies — key generation standards, rotation schedules, scoping and rate-limit tiers per key, revocation procedures, key transmission standards (header vs query parameter), and developer portal key provisioning flows.",
+      "keywords": ["API key lifecycle", "key rotation policy", "key scoping", "rate-limit tiers", "key revocation", "X-API-Key header standard", "developer portal provisioning"]
+    },
+    {
+      "id": "scope_permission_modeling",
+      "name": "OAuth2 Scope & Permission Modeling",
+      "description": "Designing hierarchical OAuth2 scope taxonomies — scope naming conventions (resource:action format), scope inheritance and composition rules, minimum-privilege scope assignment policies, and consent screen design for third-party API consumers.",
+      "keywords": ["OAuth2 scopes taxonomy", "scope naming conventions", "resource:action format", "scope hierarchy", "minimum privilege scopes", "consent screen design", "permission modeling"]
+    },
+    {
+      "id": "token_exchange_delegation",
+      "name": "Token Exchange & Delegation Patterns",
+      "description": "Designing token exchange and delegation flows for complex API ecosystems — RFC 8693 Token Exchange, on-behalf-of (OBO) delegation, token downscoping for microservice chains, and audience-restricted token policies.",
+      "keywords": ["RFC 8693 Token Exchange", "on-behalf-of delegation", "token downscoping", "audience restriction", "impersonation vs delegation", "token relay patterns", "microservice token chain"]
+    },
+    {
+      "id": "api_threat_modeling",
+      "name": "API-Specific Threat Modeling",
+      "description": "Conducting threat modeling specifically for API surfaces — STRIDE analysis for API endpoints, OWASP API Security Top 10 (Broken Object Level Authorization, Mass Assignment, SSRF), API attack surface mapping, and security requirements documentation per endpoint.",
+      "keywords": ["API threat modeling", "OWASP API Security Top 10", "BOLA", "Mass Assignment", "SSRF", "STRIDE for APIs", "attack surface mapping", "security requirements per endpoint"]
+    },
+    {
+      "id": "security_scheme_documentation",
+      "name": "Security Scheme Documentation Standards",
+      "description": "Standardizing how security requirements are documented in API specifications — OpenAPI securitySchemes and security requirements objects, authentication flow diagrams in developer portals, error response standards for 401/403, and security onboarding guides for API consumers.",
+      "keywords": ["OpenAPI securitySchemes", "security documentation standards", "401 vs 403 policy", "authentication flow diagrams", "developer onboarding security guide", "security requirements object", "bearer token documentation"]
+    },
+    {
+      "id": "zero_trust_api_architecture",
+      "name": "Zero Trust API Architecture Patterns",
+      "description": "Designing Zero Trust principles for API platforms — per-request authentication and authorization verification, service identity propagation across API boundaries, certificate-based API identity, and eliminating implicit trust in internal API networks.",
+      "keywords": ["Zero Trust API", "per-request verification", "service identity propagation", "certificate-based identity", "no implicit trust", "API boundary authentication", "east-west API security"]
+    },
+    {
+      "id": "api_abuse_prevention_design",
+      "name": "API Abuse Prevention Architecture",
+      "description": "Designing platform-level API abuse prevention systems — bot detection strategies, credential stuffing defense at API gateway level, anomalous usage pattern detection, progressive security challenges (CAPTCHA escalation), and API fraud scoring architectures.",
+      "keywords": ["API abuse prevention", "bot detection", "credential stuffing defense", "anomalous usage detection", "progressive security challenges", "API fraud scoring", "abuse pattern analysis"]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "OpenAPI securitySchemes definitions or API security documentation",
+        "detection": "content_analysis",
+        "pattern": "securitySchemes|securityDefinitions|security:.*bearer|security:.*apiKey|security:.*oauth2",
+        "strength": 0.8,
+        "maps_to": ["api_auth_security.security_scheme_documentation", "api_auth_security.auth_scheme_selection"]
+      },
+      {
+        "signal": "OAuth2 scope definitions or permission modeling in API specs",
+        "detection": "content_analysis",
+        "pattern": "scopes:|x-oauth-scopes|permission[-_]model|scope[-_]taxonomy|resource:action",
+        "strength": 0.8,
+        "maps_to": ["api_auth_security.scope_permission_modeling", "api_auth_security.oauth2_api_contract_patterns"]
+      },
+      {
+        "signal": "API key management configuration or rotation policies",
+        "detection": "content_analysis",
+        "pattern": "api[-_]key[-_]rotation|key[-_]lifecycle|key[-_]management|x-api-key|apiKeyAuth",
+        "strength": 0.7,
+        "maps_to": ["api_auth_security.api_key_management_policies", "api_auth_security.auth_scheme_selection"]
+      },
+      {
+        "signal": "API threat model documentation or OWASP API Security references",
+        "detection": "content_analysis",
+        "pattern": "threat[-_]model|OWASP.*API.*Security|BOLA|broken[-_]object[-_]level|mass[-_]assignment|api[-_]attack[-_]surface",
+        "strength": 0.9,
+        "maps_to": ["api_auth_security.api_threat_modeling", "api_auth_security.zero_trust_api_architecture", "api_auth_security.api_abuse_prevention_design"]
+      },
+      {
+        "signal": "Token exchange or delegation flow configurations",
+        "detection": "content_analysis",
+        "pattern": "token[-_]exchange|urn:ietf:params:oauth:grant-type:token-exchange|on[-_]behalf[-_]of|token[-_]downscop",
+        "strength": 0.8,
+        "maps_to": ["api_auth_security.token_exchange_delegation", "api_auth_security.oauth2_api_contract_patterns"]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "API security architecture, auth scheme design, or OAuth2 scope modeling",
+        "strength": 0.8,
+        "maps_to": ["api_auth_security.auth_scheme_selection", "api_auth_security.oauth2_api_contract_patterns", "api_auth_security.scope_permission_modeling"]
+      },
+      {
+        "signal": "API key management, security documentation standards, or token exchange design",
+        "strength": 0.8,
+        "maps_to": ["api_auth_security.api_key_management_policies", "api_auth_security.security_scheme_documentation", "api_auth_security.token_exchange_delegation"]
+      },
+      {
+        "signal": "API threat modeling, Zero Trust API architecture, or API abuse prevention",
+        "strength": 0.8,
+        "maps_to": ["api_auth_security.api_threat_modeling", "api_auth_security.zero_trust_api_architecture", "api_auth_security.api_abuse_prevention_design"]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "API Security, OAuth2, or API Authentication Architecture endorsed",
+        "strength": 0.5,
+        "maps_to": ["api_auth_security.auth_scheme_selection", "api_auth_security.oauth2_api_contract_patterns", "api_auth_security.security_scheme_documentation"]
+      },
+      {
+        "signal": "Zero Trust, API Threat Modeling, or API Abuse Prevention mentioned",
+        "strength": 0.5,
+        "maps_to": ["api_auth_security.api_threat_modeling", "api_auth_security.zero_trust_api_architecture", "api_auth_security.api_abuse_prevention_design", "api_auth_security.api_key_management_policies", "api_auth_security.scope_permission_modeling", "api_auth_security.token_exchange_delegation"]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": ["auth_scheme_selection", "api_key_management_policies", "security_scheme_documentation"],
+      "description": "Selects appropriate authentication schemes based on consumer type, follows API key lifecycle policies, and documents security requirements in OpenAPI securitySchemes correctly."
+    },
+    "mid": {
+      "expected_subskills": ["oauth2_api_contract_patterns", "scope_permission_modeling", "token_exchange_delegation"],
+      "description": "Designs OAuth2 contract patterns with appropriate grant types per API category, models hierarchical OAuth2 scope taxonomies, and architects token exchange delegation flows for microservice ecosystems."
+    },
+    "senior": {
+      "expected_subskills": ["api_threat_modeling", "zero_trust_api_architecture", "api_abuse_prevention_design"],
+      "description": "Conducts OWASP API Security Top 10 threat modeling for API surfaces, architects Zero Trust API platforms with per-request verification, and designs organization-wide API abuse prevention and fraud scoring systems."
+    }
+  }
+}

@@ -1,0 +1,137 @@
+{
+  "skill_id": "api_performance_scalability",
+  "name": "API Performance & Scalability Architecture",
+  "category": "api_design_performance",
+  "description": "Designing platform-wide API performance standards, scalability policies, and capacity planning frameworks. IMPORTANT DISTINCTION: Backend's be_api_design.rate_limiting_throttling covers implementing Redis token bucket algorithms and coding rate limiter middleware for a single service (implementation); Backend's be_scalability_resilience covers circuit breakers, retry backoff, and connection pooling at the application layer (implementation). API Design's api_performance_scalability covers defining organization-wide rate limiting quota policies, SLA/SLO-driven latency budgets across API tiers, CDN edge distribution strategies, and capacity planning models that govern how all APIs perform and scale (strategic/architectural decision-making). The backend developer writes the rate limiter; the API designer defines the quota tiers, SLAs, and throttling policies that the limiter enforces.",
+  "subskills": [
+    {
+      "id": "rate_limiting_quota_design",
+      "name": "Rate Limiting & Quota Policy Design",
+      "description": "Designing tiered rate limiting and quota policies at the platform level — defining quota tiers per API consumer class (free/pro/enterprise), burst allowance policies, quota header standards (X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset), and overage handling strategies.",
+      "keywords": ["rate limiting policy", "quota tiers", "X-RateLimit headers", "burst allowance", "overage handling", "consumer tier quotas", "rate limit design"]
+    },
+    {
+      "id": "caching_strategy_architecture",
+      "name": "API Caching Strategy Architecture",
+      "description": "Architecting multi-layer API caching strategies — CDN edge caching policies, API gateway cache rules, surrogate key (cache tag) invalidation, Vary header strategies for personalized content, and cache warming procedures for high-traffic API launches.",
+      "keywords": ["API caching architecture", "CDN cache policies", "surrogate key invalidation", "cache tagging", "Vary header strategy", "cache warming", "multi-layer caching"]
+    },
+    {
+      "id": "pagination_cursor_standards",
+      "name": "Pagination & Cursor Strategy Standards",
+      "description": "Defining platform-wide pagination strategy standards — when cursor-based vs offset pagination is mandated, maximum page size limits, cursor encoding standards, total count computation policies (exact vs estimated), and deep pagination prevention rules.",
+      "keywords": ["pagination strategy standards", "cursor encoding standard", "max page size policy", "deep pagination prevention", "total count policy", "cursor vs offset mandate", "pagination envelope standard"]
+    },
+    {
+      "id": "payload_optimization",
+      "name": "Payload Optimization & Compression Standards",
+      "description": "Establishing payload optimization standards — response compression policies (gzip, Brotli), sparse fieldsets and field selection standards, envelope vs flat response format decisions, binary serialization considerations, and maximum payload size governance.",
+      "keywords": ["payload optimization", "gzip compression", "Brotli compression", "sparse fieldsets", "field selection", "max payload size", "response envelope standard"]
+    },
+    {
+      "id": "api_latency_budgeting",
+      "name": "API Latency Budgeting & SLA/SLO Design",
+      "description": "Designing API latency budgets and SLA/SLO frameworks — p50/p95/p99 latency targets per API tier, error budget allocation, latency breakdown across gateway-service-database layers, SLO-driven alerting thresholds, and API performance SLA contracts for external consumers.",
+      "keywords": ["latency budgeting", "SLA design", "SLO targets", "p99 latency policy", "error budget", "latency breakdown", "API performance contract"]
+    },
+    {
+      "id": "cdn_edge_distribution",
+      "name": "CDN & Edge API Distribution",
+      "description": "Architecting CDN and edge computing strategies for API distribution — edge caching rules for API responses, geographic routing policies, edge function computation (Cloudflare Workers, Lambda@Edge), API response localization at the edge, and cache purge orchestration.",
+      "keywords": ["CDN edge caching", "Cloudflare Workers", "Lambda@Edge", "geographic API routing", "edge computation", "cache purge orchestration", "API response localization"]
+    },
+    {
+      "id": "connection_management_http2",
+      "name": "Connection Management & Multiplexing Policies",
+      "description": "Designing API connection management standards — HTTP/2 multiplexing policies, connection pooling governance at the gateway level, keep-alive timeout standards, connection draining during deployments, and WebSocket connection limit policies.",
+      "keywords": ["connection management", "HTTP/2 multiplexing", "keep-alive policy", "connection draining", "connection pooling governance", "WebSocket connection limits", "concurrent connection policy"]
+    },
+    {
+      "id": "capacity_planning_modeling",
+      "name": "API Capacity Planning & Traffic Modeling",
+      "description": "Conducting API capacity planning — traffic forecasting models, peak-to-average ratio analysis, infrastructure scaling triggers, load testing-driven capacity validation, API usage analytics for demand prediction, and cost-per-request efficiency modeling.",
+      "keywords": ["capacity planning", "traffic forecasting", "peak-to-average ratio", "scaling triggers", "load test capacity validation", "demand prediction", "cost-per-request modeling"]
+    },
+    {
+      "id": "throttling_backpressure_patterns",
+      "name": "Throttling & Backpressure Pattern Governance",
+      "description": "Designing platform-wide throttling and backpressure policies — adaptive throttling algorithms, priority queue-based request scheduling, load shedding decision frameworks, graceful degradation API response standards (HTTP 503 with Retry-After), and cascading failure prevention policies.",
+      "keywords": ["adaptive throttling", "backpressure policy", "priority queue scheduling", "load shedding framework", "graceful degradation standard", "503 Retry-After", "cascading failure prevention"]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "API gateway rate limiting or quota configuration files (Kong, Apigee, AWS API Gateway)",
+        "detection": "file_presence",
+        "pattern": "kong\\.ya?ml|apigee[-_]proxy|apiproxy/|rate[-_]limit[-_]policy|quota[-_]policy|api[-_]gateway.*config",
+        "strength": 0.9,
+        "maps_to": ["api_performance_scalability.rate_limiting_quota_design", "api_performance_scalability.throttling_backpressure_patterns"]
+      },
+      {
+        "signal": "CDN or edge function configuration for API distribution",
+        "detection": "file_presence",
+        "pattern": "wrangler\\.toml|cloudflare[-_]worker|lambda@edge|edge[-_]function|cdn[-_]config",
+        "strength": 0.8,
+        "maps_to": ["api_performance_scalability.cdn_edge_distribution", "api_performance_scalability.caching_strategy_architecture"]
+      },
+      {
+        "signal": "SLA/SLO definitions or latency budget documentation",
+        "detection": "content_analysis",
+        "pattern": "sla[-_]definition|slo[-_]target|latency[-_]budget|error[-_]budget|p99.*target|performance[-_]sla",
+        "strength": 0.8,
+        "maps_to": ["api_performance_scalability.api_latency_budgeting", "api_performance_scalability.capacity_planning_modeling"]
+      },
+      {
+        "signal": "API response compression or payload optimization configuration",
+        "detection": "content_analysis",
+        "pattern": "Content-Encoding.*gzip|brotli|compression[-_]middleware|max[-_]payload[-_]size|sparse[-_]fieldset",
+        "strength": 0.7,
+        "maps_to": ["api_performance_scalability.payload_optimization", "api_performance_scalability.pagination_cursor_standards", "api_performance_scalability.connection_management_http2"]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "API performance architecture, rate limiting policy design, or SLA/SLO governance",
+        "strength": 0.8,
+        "maps_to": ["api_performance_scalability.rate_limiting_quota_design", "api_performance_scalability.api_latency_budgeting", "api_performance_scalability.throttling_backpressure_patterns"]
+      },
+      {
+        "signal": "CDN edge distribution, API caching architecture, or capacity planning",
+        "strength": 0.8,
+        "maps_to": ["api_performance_scalability.cdn_edge_distribution", "api_performance_scalability.caching_strategy_architecture", "api_performance_scalability.capacity_planning_modeling"]
+      },
+      {
+        "signal": "Payload optimization, pagination standards, or connection management",
+        "strength": 0.8,
+        "maps_to": ["api_performance_scalability.payload_optimization", "api_performance_scalability.pagination_cursor_standards", "api_performance_scalability.connection_management_http2"]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "API Performance, Rate Limiting, or SLA/SLO Design endorsed",
+        "strength": 0.5,
+        "maps_to": ["api_performance_scalability.rate_limiting_quota_design", "api_performance_scalability.api_latency_budgeting", "api_performance_scalability.pagination_cursor_standards"]
+      },
+      {
+        "signal": "CDN, API Caching, or Capacity Planning mentioned",
+        "strength": 0.5,
+        "maps_to": ["api_performance_scalability.cdn_edge_distribution", "api_performance_scalability.caching_strategy_architecture", "api_performance_scalability.capacity_planning_modeling", "api_performance_scalability.payload_optimization", "api_performance_scalability.connection_management_http2", "api_performance_scalability.throttling_backpressure_patterns"]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": ["rate_limiting_quota_design", "pagination_cursor_standards", "payload_optimization"],
+      "description": "Applies platform rate limiting quota policies to API designs, follows pagination strategy standards, and optimizes payloads with compression and sparse fieldsets per organizational guidelines."
+    },
+    "mid": {
+      "expected_subskills": ["caching_strategy_architecture", "api_latency_budgeting", "connection_management_http2"],
+      "description": "Architects multi-layer API caching strategies with surrogate key invalidation, designs SLA/SLO-driven latency budgets for API tiers, and governs HTTP/2 connection management policies."
+    },
+    "senior": {
+      "expected_subskills": ["cdn_edge_distribution", "capacity_planning_modeling", "throttling_backpressure_patterns"],
+      "description": "Architects CDN edge distribution for global API delivery, conducts API capacity planning with traffic forecasting, and designs platform-wide throttling and backpressure policies for cascading failure prevention."
+    }
+  }
+}

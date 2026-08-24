@@ -1,0 +1,144 @@
+{
+  "skill_id": "api_rest_design",
+  "name": "RESTful API Design Standards & Maturity",
+  "category": "api_design_core",
+  "description": "Designing and governing organization-wide RESTful API standards from resource modeling to hypermedia maturity. IMPORTANT DISTINCTION: Backend's be_api_design.restful_principles covers a developer implementing GET/POST/PUT endpoints in their own service with correct status codes (daily coding); API Design's api_rest_design covers establishing the organization's REST maturity model, writing the API style guide that all teams must follow, defining mandatory error response schemas (RFC 7807), and governing schema evolution compatibility rules across hundreds of APIs (strategic/architectural decision-making). The backend developer writes an endpoint; the API designer writes the standard that governs how all endpoints are written.",
+  "subskills": [
+    {
+      "id": "resource_modeling_taxonomy",
+      "name": "Resource Modeling & Domain Taxonomy",
+      "description": "Designing canonical resource models that represent business domains — defining resource boundaries, sub-resource relationships, singleton vs collection resources, and establishing a shared resource taxonomy across API teams.",
+      "keywords": ["resource modeling", "domain taxonomy", "sub-resource relationships", "singleton resource", "collection resource", "canonical data model", "resource boundary design"]
+    },
+    {
+      "id": "hateoas_maturity_model",
+      "name": "HATEOAS & Richardson Maturity Model",
+      "description": "Evaluating and selecting the appropriate Richardson Maturity Level (0-3) for organizational APIs, designing HATEOAS link relations (RFC 8288), and governing hypermedia-driven API navigation standards.",
+      "keywords": ["Richardson Maturity Model", "HATEOAS", "Level 3 REST", "link relations RFC 8288", "hypermedia navigation", "rel self next prev", "API maturity assessment"]
+    },
+    {
+      "id": "collection_pagination_standards",
+      "name": "Collection Pagination & Filtering Standards",
+      "description": "Defining platform-wide pagination conventions — cursor-based vs offset pagination mandates, standardized page metadata envelope shapes, filtering parameter syntax (field[operator]=value), and sorting conventions across all collection endpoints.",
+      "keywords": ["pagination standards", "cursor vs offset policy", "page metadata envelope", "filtering syntax convention", "sorting parameter standard", "collection response shape", "next_cursor standardization"]
+    },
+    {
+      "id": "error_response_rfc7807",
+      "name": "Error Response Standards (RFC 7807/9457)",
+      "description": "Designing and enforcing organization-wide error response schemas based on RFC 7807/9457 Problem Details — mandatory fields, custom extension fields, error type URI taxonomy, and localized error message strategies.",
+      "keywords": ["RFC 7807", "RFC 9457", "Problem Details", "application/problem+json", "error type URI taxonomy", "error response standardization", "custom extension fields", "localized error messages"]
+    },
+    {
+      "id": "query_language_standards",
+      "name": "Query Language & Filtering Specifications",
+      "description": "Selecting and standardizing API query languages — OData $filter syntax, JSON:API sparse fieldsets, GraphQL-like field selection in REST, FIQL/RSQL query DSLs, and governing query complexity limits to prevent abuse.",
+      "keywords": ["OData $filter", "JSON:API sparse fieldsets", "FIQL", "RSQL", "field selection", "query complexity limits", "query DSL standardization"]
+    },
+    {
+      "id": "bulk_batch_operations",
+      "name": "Bulk & Batch Operation Design Patterns",
+      "description": "Designing standards for multi-resource operations — batch request envelopes (JSON Batch, multipart/mixed), partial success handling (HTTP 207 Multi-Status), transactional vs non-transactional batch semantics, and progress tracking for long-running bulk operations.",
+      "keywords": ["batch API design", "bulk operations", "HTTP 207 Multi-Status", "partial success handling", "multipart/mixed batch", "long-running operation pattern", "async batch progress"]
+    },
+    {
+      "id": "api_style_guide_authoring",
+      "name": "API Style Guide Authoring & Enforcement",
+      "description": "Writing comprehensive API style guides (like Google, Microsoft, Zalando) — naming conventions, mandatory headers, pagination rules, error format, versioning policy — and enforcing compliance via automated linting (Spectral, Optic) in CI/CD pipelines.",
+      "keywords": ["API style guide", "Spectral linting", "Optic API linter", "naming conventions document", "mandatory headers policy", "style guide enforcement", "Zalando RESTful guidelines"]
+    },
+    {
+      "id": "schema_evolution_compatibility",
+      "name": "Schema Evolution & Compatibility Rules",
+      "description": "Defining backward and forward compatibility rules for API schema changes — additive-only field policies, required field introduction strategies, enum extension rules, and automated compatibility checking in CI pipelines.",
+      "keywords": ["backward compatibility", "forward compatibility", "additive-only changes", "breaking change detection", "schema evolution rules", "required field introduction", "compatibility checking CI"]
+    },
+    {
+      "id": "hypermedia_controls",
+      "name": "Hypermedia Controls & Affordance Design",
+      "description": "Designing hypermedia affordances — HAL (Hypertext Application Language), JSON:API, Siren, and Ion format evaluation; link relation registries (IANA); and action affordances that guide client state transitions without out-of-band documentation.",
+      "keywords": ["HAL format", "JSON:API", "Siren hypermedia", "IANA link relations", "affordance design", "client state transitions", "self-descriptive API messages"]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "API style guide markdown or linting configuration (Spectral/Optic)",
+        "detection": "file_presence",
+        "pattern": "api[-_]style[-_]guide|spectral\\.ya?ml|\\.spectral\\.js|optic\\.ya?ml|\\.optic\\.yml",
+        "strength": 0.9,
+        "maps_to": ["api_rest_design.api_style_guide_authoring", "api_rest_design.resource_modeling_taxonomy"]
+      },
+      {
+        "signal": "RFC 7807/9457 Problem Details error response implementation",
+        "detection": "content_analysis",
+        "pattern": "application/problem\\+json|ProblemDetails|problem[-_]detail|RFC[_ ]?7807|RFC[_ ]?9457",
+        "strength": 0.8,
+        "maps_to": ["api_rest_design.error_response_rfc7807"]
+      },
+      {
+        "signal": "HATEOAS link relations or HAL/JSON:API response structures",
+        "detection": "content_analysis",
+        "pattern": "_links|_embedded|hal\\+json|jsonapi|\"links\".*\"self\".*\"href\"|\"relationships\"",
+        "strength": 0.8,
+        "maps_to": ["api_rest_design.hateoas_maturity_model", "api_rest_design.hypermedia_controls"]
+      },
+      {
+        "signal": "Batch or bulk API endpoint patterns with multi-status responses",
+        "detection": "content_analysis",
+        "pattern": "/batch|/bulk|207.*Multi-Status|multipart/mixed|partial[-_]success",
+        "strength": 0.7,
+        "maps_to": ["api_rest_design.bulk_batch_operations", "api_rest_design.collection_pagination_standards"]
+      },
+      {
+        "signal": "Schema compatibility checking or breaking change detection tools",
+        "detection": "content_analysis",
+        "pattern": "openapi-diff|oasdiff|breaking[-_]change|backward[-_]compatible|schema[-_]evolution",
+        "strength": 0.8,
+        "maps_to": ["api_rest_design.schema_evolution_compatibility", "api_rest_design.query_language_standards"]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "API style guide authorship, REST maturity assessment, or API design standards leadership",
+        "strength": 0.8,
+        "maps_to": ["api_rest_design.api_style_guide_authoring", "api_rest_design.hateoas_maturity_model", "api_rest_design.resource_modeling_taxonomy"]
+      },
+      {
+        "signal": "Error standardization (RFC 7807), schema evolution, or API compatibility governance",
+        "strength": 0.8,
+        "maps_to": ["api_rest_design.error_response_rfc7807", "api_rest_design.schema_evolution_compatibility", "api_rest_design.collection_pagination_standards"]
+      },
+      {
+        "signal": "Hypermedia API design, bulk operations architecture, or query language standardization",
+        "strength": 0.8,
+        "maps_to": ["api_rest_design.hypermedia_controls", "api_rest_design.bulk_batch_operations", "api_rest_design.query_language_standards"]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "API Design, REST API Standards, or API Architecture endorsed",
+        "strength": 0.5,
+        "maps_to": ["api_rest_design.resource_modeling_taxonomy", "api_rest_design.hateoas_maturity_model", "api_rest_design.api_style_guide_authoring"]
+      },
+      {
+        "signal": "API Governance, Schema Design, or HATEOAS mentioned",
+        "strength": 0.5,
+        "maps_to": ["api_rest_design.error_response_rfc7807", "api_rest_design.schema_evolution_compatibility", "api_rest_design.hypermedia_controls", "api_rest_design.collection_pagination_standards", "api_rest_design.bulk_batch_operations", "api_rest_design.query_language_standards"]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": ["resource_modeling_taxonomy", "error_response_rfc7807", "collection_pagination_standards"],
+      "description": "Models API resources following the organization's domain taxonomy, applies RFC 7807 error response standards consistently, and implements platform-standard pagination conventions for collection endpoints."
+    },
+    "mid": {
+      "expected_subskills": ["hateoas_maturity_model", "query_language_standards", "bulk_batch_operations"],
+      "description": "Evaluates Richardson Maturity levels for API programs, designs query language standards for complex filtering, and architects bulk/batch operation patterns with partial success semantics."
+    },
+    "senior": {
+      "expected_subskills": ["api_style_guide_authoring", "schema_evolution_compatibility", "hypermedia_controls"],
+      "description": "Authors and enforces organization-wide API style guides with automated linting, defines schema evolution compatibility rules enforced in CI, and designs hypermedia affordance patterns for self-descriptive APIs."
+    }
+  }
+}

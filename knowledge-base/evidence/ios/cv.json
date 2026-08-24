@@ -1,0 +1,124 @@
+{
+  "source_id": "cv",
+  "name": "CV / Resume Analysis - iOS Developer",
+  "description": "Signals extracted from the user's CV/resume to evidence iOS Developer skills. CV data provides self-reported information that must be cross-validated with GitHub and assessment sources.",
+  "extraction_rules": {
+    "description": "How to extract and weight information from CV content for iOS roles.",
+    "sections": [
+      {
+        "section": "skills_list",
+        "description": "Explicit list of technologies, frameworks, and tools in skills section.",
+        "base_strength": 0.3,
+        "notes": "Low strength alone. Listing 'Swift' or 'SwiftUI' requires verification against project details."
+      },
+      {
+        "section": "work_experience",
+        "description": "Job descriptions describing iOS engineering achievements and architectural responsibilities.",
+        "base_strength": 0.5,
+        "quality_indicators": [
+          "Specific iOS frameworks and architectural patterns mentioned (e.g. 'architected SPM multi-package app with SwiftUI and TCA')",
+          "Quantifiable mobile performance metrics (reduced app binary size by 35% with App Thinning, eliminated memory leaks with Instruments)",
+          "Action verbs indicating hands-on mobile leadership (architected, migrated, modularized, optimized, signed)",
+          "Scale indicators (apps with 1M+ MAU, App Store featured apps)"
+        ]
+      },
+      {
+        "section": "projects",
+        "description": "Personal or open-source iOS projects demonstrating technical depth.",
+        "base_strength": 0.4,
+        "notes": "Higher strength if linked to GitHub with clean SwiftUI, SwiftData/CoreData persistence, and test suites."
+      },
+      {
+        "section": "certifications",
+        "description": "Apple developer certifications or training programs.",
+        "base_strength": 0.2
+      }
+    ]
+  },
+  "signal_mapping": {
+    "description": "How CV mentions map to skill evidence using COMPOSITE KEYS ({skill_id}.{subskill_id}).",
+    "patterns": [
+      {
+        "pattern": "Built reactive iOS user interfaces with SwiftUI, Observable macro, and UIKit interoperability",
+        "maps_to": [
+          "ios_uikit_swiftui.swiftui_views_state_basics",
+          "ios_uikit_swiftui.swiftui_state_management",
+          "ios_uikit_swiftui.uikit_swiftui_interoperability"
+        ],
+        "strength_modifier": 1.0
+      },
+      {
+        "pattern": "Implemented offline-first data sync architecture with Core Data / SwiftData and URLSession",
+        "maps_to": [
+          "ios_data_persistence_networking.offline_caching_sync_engine",
+          "ios_data_persistence_networking.core_data_fundamentals",
+          "ios_data_persistence_networking.urlsession_codable_networking"
+        ],
+        "strength_modifier": 1.1
+      },
+      {
+        "pattern": "Modularized monolithic iOS codebase into Swift Packages using SPM",
+        "maps_to": [
+          "ios_architecture_patterns.modularization_spm_frameworks",
+          "ios_architecture_patterns.microapps_plugin_architecture"
+        ],
+        "strength_modifier": 1.1
+      },
+      {
+        "pattern": "Migrated legacy RxSwift codebase to native Swift Concurrency and Combine",
+        "maps_to": [
+          "ios_reactive_concurrency.rxswift_reactive_patterns",
+          "ios_reactive_concurrency.async_await_structured_concurrency",
+          "ios_reactive_concurrency.combine_publishers_subscribers"
+        ],
+        "strength_modifier": 1.1
+      },
+      {
+        "pattern": "Scheduled background tasks using BGTaskScheduler and developed WidgetKit extensions",
+        "maps_to": [
+          "ios_app_lifecycle_xcode.background_modes_tasks",
+          "ios_app_lifecycle_xcode.app_extensions_widgets"
+        ],
+        "strength_modifier": 1.0
+      },
+      {
+        "pattern": "Eliminated multi-threaded data races using Actor isolation and Thread Sanitizer",
+        "maps_to": [
+          "ios_reactive_concurrency.actors_thread_safety",
+          "ios_reactive_concurrency.concurrency_data_races_tsan"
+        ],
+        "strength_modifier": 1.1
+      },
+      {
+        "pattern": "Profiled iOS apps using Xcode Instruments and eliminated memory leaks",
+        "maps_to": [
+          "ios_app_lifecycle_xcode.instruments_profiling_performance",
+          "ios_fundamentals_swift.arc_memory_management"
+        ],
+        "strength_modifier": 1.1
+      },
+      {
+        "pattern": "Hardened app security using Keychain Services, SSL Certificate Pinning, and Privacy Manifests",
+        "maps_to": [
+          "ios_data_persistence_networking.keychain_secure_storage",
+          "ios_data_persistence_networking.network_security_ssl_pinning",
+          "ios_app_lifecycle_xcode.app_store_guidelines_privacy"
+        ],
+        "strength_modifier": 1.1
+      },
+      {
+        "pattern": "Automated iOS build and release pipelines using Fastlane Match and TestFlight",
+        "maps_to": [
+          "ios_platform_quality_distribution.ci_cd_fastlane_testflight",
+          "ios_platform_quality_distribution.app_thinning_size_optimization"
+        ],
+        "strength_modifier": 1.0
+      }
+    ]
+  },
+  "important_notes": [
+    "Distinguish between client-side API consumption (URLSession/Keychain) and backend API design (be_api_design)",
+    "Look for modern iOS stack competencies (SwiftUI, Swift Concurrency, SwiftData/CoreData, SPM) vs legacy Objective-C MVC",
+    "Cross-validate self-reported performance claims with code in GitHub and assessment results"
+  ]
+}

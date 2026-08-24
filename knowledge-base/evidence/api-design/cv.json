@@ -1,0 +1,152 @@
+{
+  "source_id": "cv",
+  "name": "CV / Resume Analysis - API Designer",
+  "description": "Signals extracted from the user's CV/resume to evidence API Designer skills. CV data provides self-reported information that must be cross-validated with GitHub and assessment sources. Focus on organizational API governance, platform architecture, and strategic design leadership — not individual service implementation.",
+  "extraction_rules": {
+    "description": "How to extract and weight information from CV content for API Design roles.",
+    "sections": [
+      {
+        "section": "skills_list",
+        "description": "Explicit list of API design tools, specifications, and governance frameworks mentioned in skills section.",
+        "base_strength": 0.3,
+        "notes": "Low strength because listing 'OpenAPI' or 'GraphQL' alone doesn't prove governance expertise. Look for governance-specific tools like Spectral, Backstage, or Apigee."
+      },
+      {
+        "section": "work_experience",
+        "description": "Job descriptions mentioning API architecture, governance, and platform-level design activities.",
+        "base_strength": 0.5,
+        "notes": "Higher strength when specific governance outcomes, API portfolio scale, and architectural decisions are described.",
+        "quality_indicators": [
+          "Organizational scope indicators (e.g., 'established API standards across 15 engineering teams', 'governed 200+ APIs')",
+          "Governance tooling and process establishment (e.g., 'implemented Spectral linting in CI/CD', 'launched API design review board')",
+          "API strategy and business alignment language (e.g., 'drove API-first strategy', 'reduced time-to-integration by 60%')",
+          "Multi-protocol design experience (REST, GraphQL, gRPC, AsyncAPI mentioned in architectural context)"
+        ]
+      },
+      {
+        "section": "projects",
+        "description": "API platform projects, developer portal implementations, or API governance tool contributions.",
+        "base_strength": 0.4,
+        "notes": "Higher strength if linked to open-source API governance tools, published API style guides, or developer portal implementations.",
+        "quality_indicators": [
+          "Technical depth of API governance project (e.g., 'built Spectral custom ruleset with 50+ organization-specific rules')",
+          "Developer portal or documentation platform architecture",
+          "API gateway or service mesh architecture contributions",
+          "Published API style guides or governance frameworks"
+        ]
+      },
+      {
+        "section": "education",
+        "description": "Relevant degrees in software engineering, computer science, or distributed systems.",
+        "base_strength": 0.2,
+        "notes": "Provides theoretical foundation but API design governance expertise is primarily learned through practice."
+      },
+      {
+        "section": "certifications",
+        "description": "Professional certifications relevant to API design and management.",
+        "base_strength": 0.2,
+        "notes": "Certifications indicate theoretical domain knowledge; cross-validate with governance artifacts and assessment.",
+        "recognized_certifications": {
+          "api_management": [
+            "Google Cloud Apigee API Engineer",
+            "MuleSoft Certified Platform Architect",
+            "Kong Gateway Certified Associate",
+            "AWS Certified API Gateway Specialist"
+          ],
+          "architecture": [
+            "TOGAF 9 Certified",
+            "AWS Certified Solutions Architect - Professional",
+            "Google Cloud Professional Cloud Architect"
+          ],
+          "security": [
+            "Certified API Security Analyst (CASA)",
+            "OWASP API Security Expert"
+          ]
+        }
+      }
+    ]
+  },
+  "signal_mapping": {
+    "description": "How CV mentions map to skill evidence using COMPOSITE KEYS ({skill_id}.{subskill_id}). AI should use these patterns.",
+    "patterns": [
+      {
+        "pattern": "Established organization-wide API style guides and HTTP method/status code standards",
+        "maps_to": ["api_fundamentals_http.http_methods_semantics", "api_fundamentals_http.status_code_taxonomy", "api_fundamentals_http.uri_design_principles"],
+        "strength_modifier": 1.0
+      },
+      {
+        "pattern": "Designed REST API resource modeling standards and pagination conventions",
+        "maps_to": ["api_rest_design.resource_modeling_taxonomy", "api_rest_design.collection_pagination_standards", "api_rest_design.error_response_rfc7807"],
+        "strength_modifier": 1.0
+      },
+      {
+        "pattern": "Authored API style guides and governed schema evolution compatibility",
+        "maps_to": ["api_rest_design.api_style_guide_authoring", "api_rest_design.schema_evolution_compatibility", "api_rest_design.hateoas_maturity_model"],
+        "strength_modifier": 1.1
+      },
+      {
+        "pattern": "Evaluated and selected API protocols (REST, GraphQL, gRPC) based on use case analysis",
+        "maps_to": ["api_alternative_styles.api_protocol_selection_criteria", "api_alternative_styles.graphql_schema_governance", "api_alternative_styles.grpc_service_contracts"],
+        "strength_modifier": 1.0
+      },
+      {
+        "pattern": "Governed GraphQL federation or managed schema registries for event-driven APIs",
+        "maps_to": ["api_alternative_styles.federation_composition", "api_alternative_styles.schema_registry_management", "api_alternative_styles.asyncapi_event_specifications"],
+        "strength_modifier": 1.2
+      },
+      {
+        "pattern": "Designed OAuth2/OIDC authentication architecture and scope hierarchies for API platforms",
+        "maps_to": ["api_auth_security.oauth2_api_contract_patterns", "api_auth_security.scope_permission_modeling", "api_auth_security.auth_scheme_selection"],
+        "strength_modifier": 1.0
+      },
+      {
+        "pattern": "Conducted API threat modeling and designed zero-trust API architecture",
+        "maps_to": ["api_auth_security.api_threat_modeling", "api_auth_security.zero_trust_api_architecture", "api_auth_security.api_abuse_prevention_design"],
+        "strength_modifier": 1.1
+      },
+      {
+        "pattern": "Designed API rate limiting quota policies and SLA/SLO latency budgets",
+        "maps_to": ["api_performance_scalability.rate_limiting_quota_design", "api_performance_scalability.api_latency_budgeting", "api_performance_scalability.caching_strategy_architecture"],
+        "strength_modifier": 1.0
+      },
+      {
+        "pattern": "Architected CDN edge distribution and capacity planning for global API platforms",
+        "maps_to": ["api_performance_scalability.cdn_edge_distribution", "api_performance_scalability.capacity_planning_modeling", "api_performance_scalability.throttling_backpressure_patterns"],
+        "strength_modifier": 1.2
+      },
+      {
+        "pattern": "Established contract testing governance with Pact and consumer-driven contracts",
+        "maps_to": ["api_integration_patterns.contract_testing_strategy", "api_integration_patterns.consumer_driven_contracts", "api_integration_patterns.backward_compatibility_testing"],
+        "strength_modifier": 1.0
+      },
+      {
+        "pattern": "Architected API gateway strategies and service mesh routing for multi-cloud deployments",
+        "maps_to": ["api_integration_patterns.api_gateway_architecture", "api_integration_patterns.service_mesh_api_routing", "api_integration_patterns.webhook_design_contracts"],
+        "strength_modifier": 1.1
+      },
+      {
+        "pattern": "Managed API versioning policies, deprecation lifecycles, and developer portal experiences",
+        "maps_to": ["api_lifecycle_governance.api_versioning_policies", "api_lifecycle_governance.deprecation_sunset_management", "api_lifecycle_governance.developer_portal_experience"],
+        "strength_modifier": 1.0
+      },
+      {
+        "pattern": "Led API program management and governance councils aligned with business objectives",
+        "maps_to": ["api_lifecycle_governance.api_program_management", "api_lifecycle_governance.api_metrics_analytics", "api_lifecycle_governance.compliance_regulatory_apis"],
+        "strength_modifier": 1.2
+      },
+      {
+        "pattern": "Has Apigee or MuleSoft certification without governance project evidence",
+        "maps_to": ["api_lifecycle_governance.api_versioning_policies", "api_integration_patterns.api_gateway_architecture"],
+        "strength_modifier": 0.4
+      }
+    ]
+  },
+  "important_notes": [
+    "CV data is self-reported and inherently unreliable as standalone evidence",
+    "Always cross-validate CV claims with GitHub governance artifacts and adaptive assessment results",
+    "Distinguish governance scope — 'designed APIs' (individual contributor) differs from 'established API standards across teams' (governance leader)",
+    "Look for organizational impact indicators — number of APIs governed, teams standardized, time-to-integration improvements",
+    "Recency and scale matter — governing 200+ APIs at a large platform company differs from writing OpenAPI specs for a startup's 3 endpoints",
+    "API certifications (Apigee, MuleSoft) indicate tool knowledge but not governance leadership"
+  ]
+}

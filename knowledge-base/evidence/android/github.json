@@ -1,0 +1,133 @@
+{
+  "source_id": "github",
+  "name": "GitHub Repository Analysis - Android Developer",
+  "description": "Global parsing rules for Android repositories across Kotlin and Java codebases. NOTE: Specific evidence mappings (regex patterns and maps_to composite keys) are stored within individual skill files under evidence.github, NOT here. The validate_composite_keys.py script scans both locations to verify coverage.",
+  "preprocessing_pipeline": {
+    "steps": [
+      {
+        "step": 1,
+        "name": "file_tree_scan",
+        "target_files": [
+          {
+            "pattern": "build\\.gradle|build\\.gradle\\.kts|settings\\.gradle|settings\\.gradle\\.kts|gradle/libs\\.versions\\.toml",
+            "skills": [
+              "android_fundamentals_kotlin",
+              "android_platform_services_quality",
+              "android_architecture_patterns"
+            ],
+            "priority": "high",
+            "notes": "Gradle build configuration, Kotlin DSL, version catalogs, and dependency graph"
+          },
+          {
+            "pattern": "AndroidManifest\\.xml",
+            "skills": [
+              "android_app_components",
+              "android_platform_services_quality"
+            ],
+            "priority": "high",
+            "notes": "Component declarations, permissions, foreground services, intent filters, and application metadata"
+          },
+          {
+            "pattern": "proguard-rules\\.pro|consumer-rules\\.pro",
+            "skills": [
+              "android_platform_services_quality"
+            ],
+            "priority": "high",
+            "notes": "R8 and ProGuard code shrinking, obfuscation, and optimization rules"
+          },
+          {
+            "pattern": "\\.kt$|\\.java$",
+            "skills": [
+              "android_fundamentals_kotlin",
+              "android_ui_layouts",
+              "android_architecture_patterns",
+              "android_concurrency_async",
+              "android_data_persistence"
+            ],
+            "priority": "high",
+            "notes": "Core Android source code analyzed for Compose, Coroutines, Room, Hilt, and architecture patterns"
+          },
+          {
+            "pattern": "\\.aidl$",
+            "skills": [
+              "android_app_components"
+            ],
+            "priority": "medium",
+            "notes": "Android Interface Definition Language (AIDL) for inter-process communication"
+          },
+          {
+            "pattern": "*Test*\\.kt|*Test*\\.java|*Spec*\\.kt|androidTest/",
+            "skills": [
+              "android_platform_services_quality",
+              "android_concurrency_async"
+            ],
+            "priority": "high",
+            "notes": "Unit tests (MockK, JUnit5) and instrumented UI tests (Espresso, Compose test rules)"
+          }
+        ]
+      },
+      {
+        "step": 2,
+        "name": "dependency_extraction",
+        "source_manifests": [
+          "build.gradle",
+          "build.gradle.kts",
+          "gradle/libs.versions.toml"
+        ],
+        "relevant_dependencies": {
+          "android_data_persistence": [
+            "androidx.room",
+            "retrofit",
+            "okhttp3",
+            "androidx.datastore",
+            "androidx.paging"
+          ],
+          "android_architecture_patterns": [
+            "com.google.dagger:hilt",
+            "androidx.hilt",
+            "androidx.navigation",
+            "androidx.lifecycle"
+          ],
+          "android_ui_layouts": [
+            "androidx.compose.ui",
+            "androidx.compose.material3",
+            "androidx.constraintlayout",
+            "androidx.recyclerview"
+          ],
+          "android_concurrency_async": [
+            "org.jetbrains.kotlinx:kotlinx-coroutines",
+            "app.cash.turbine",
+            "io.reactivex.rxjava3"
+          ],
+          "android_platform_services_quality": [
+            "io.mockk:mockk",
+            "androidx.test.espresso",
+            "com.google.firebase:firebase-crashlytics",
+            "com.squareup.leakcanary:leakcanary-android"
+          ]
+        }
+      },
+      {
+        "step": 3,
+        "name": "config_file_scan",
+        "target_configs": [
+          "AndroidManifest.xml",
+          "build.gradle.kts",
+          "build.gradle",
+          "proguard-rules.pro",
+          "libs.versions.toml",
+          "assetlinks.json"
+        ]
+      }
+    ]
+  },
+  "ai_analysis_instructions": {
+    "tasks": [
+      "Map detected signals to composite keys ({skill_id}.{subskill_id}) using patterns defined in android skill files",
+      "Inspect build.gradle.kts dependencies for modern Jetpack libraries (Compose, Room, Hilt, Coroutines, Paging 3)",
+      "Check UI architecture — presence of Jetpack Compose declarative layouts with State hoisting vs legacy XML layouts",
+      "Evaluate concurrency safety — verify usage of repeatOnLifecycle or flowWithLifecycle for UI Flow collection",
+      "Assess test coverage — presence of MockK unit tests and Compose UI tests"
+    ]
+  }
+}

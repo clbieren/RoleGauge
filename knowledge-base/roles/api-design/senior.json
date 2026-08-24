@@ -1,0 +1,80 @@
+{
+  "role_id": "api_designer",
+  "level": "senior",
+  "title": "Senior API Designer / API Architect",
+  "description": "Senior API designer and platform architect responsible for organization-wide API style guide authorship, schema evolution governance, GraphQL federation architecture, Zero Trust API security, capacity planning, regulatory compliance, and API-as-a-Product program management.",
+  "experience_range": "5+ years",
+  "skills": [
+    {
+      "skill_id": "api_lifecycle_governance",
+      "importance": 0.95,
+      "rationale": "Designing API usage analytics frameworks, ensuring regulatory compliance (PSD2, GDPR, HIPAA), and managing API-as-a-Product strategy with monetization and partner programs."
+    },
+    {
+      "skill_id": "api_rest_design",
+      "importance": 0.95,
+      "rationale": "Authoring and enforcing organization-wide API style guides, defining schema evolution compatibility rules, and designing hypermedia affordance patterns."
+    },
+    {
+      "skill_id": "api_alternative_styles",
+      "importance": 0.9,
+      "rationale": "Architecting GraphQL federation and subgraph ownership, operating schema registries with compatibility governance, and designing streaming API patterns."
+    },
+    {
+      "skill_id": "api_auth_security",
+      "importance": 0.9,
+      "rationale": "Conducting OWASP API Security Top 10 threat modeling, architecting Zero Trust API platforms, and designing organization-wide API abuse prevention systems."
+    },
+    {
+      "skill_id": "api_integration_patterns",
+      "importance": 0.9,
+      "rationale": "Architecting multi-gateway topologies, designing service mesh traffic management, and building automated backward compatibility verification pipelines."
+    },
+    {
+      "skill_id": "api_performance_scalability",
+      "importance": 0.85,
+      "rationale": "Architecting CDN edge distribution, conducting API capacity planning with traffic forecasting, and designing platform-wide throttling and backpressure policies."
+    },
+    {
+      "skill_id": "api_fundamentals_http",
+      "importance": 0.85,
+      "rationale": "Architecting organization-wide CORS policy frameworks and planning HTTP/2 to HTTP/3 protocol evolution strategies across the API platform."
+    }
+  ],
+  "scoring": {
+    "method": "weighted_average",
+    "description": "Each skill score is multiplied by its importance weight. Final score is sum divided by sum of weights.",
+    "thresholds": {
+      "not_ready": {
+        "min": 0.0,
+        "max": 0.3,
+        "label": "Not Ready",
+        "description": "Significant gaps in API governance, style guide authorship, or platform architecture."
+      },
+      "developing": {
+        "min": 0.3,
+        "max": 0.5,
+        "label": "Developing",
+        "description": "Solid mid-level API design, but lacks experience in federation architecture, API program management, and regulatory compliance."
+      },
+      "approaching": {
+        "min": 0.5,
+        "max": 0.7,
+        "label": "Approaching Ready",
+        "description": "Strong technical capabilities across most API design areas; refining expertise in hypermedia, Zero Trust, and capacity planning."
+      },
+      "ready": {
+        "min": 0.7,
+        "max": 0.85,
+        "label": "Ready",
+        "description": "Meets all senior expectations: authors style guides, governs API programs, architects federation and gateway topologies, and ensures compliance."
+      },
+      "exceeds": {
+        "min": 0.85,
+        "max": 1.0,
+        "label": "Exceeds Expectations",
+        "description": "Exceeds senior expectations: staff/principal-level impact across enterprise API platforms with industry-recognized API program leadership."
+      }
+    }
+  }
+}

@@ -1,0 +1,150 @@
+{
+  "skill_id": "api_lifecycle_governance",
+  "name": "API Lifecycle Management & Governance",
+  "category": "api_design_governance",
+  "description": "Managing the full API lifecycle from design to deprecation — versioning policies, developer portal experience, API program management, and regulatory compliance. IMPORTANT DISTINCTION: Backend's be_api_design.api_versioning covers implementing URI path versioning (/v1) or Accept header versioning in a single service's codebase (implementation); Backend's be_api_design.openapi_documentation covers generating Swagger UI and writing openapi.yaml files for one service (implementation). API Design's api_lifecycle_governance covers establishing the organization's versioning POLICY (e.g., 'all APIs must support N-1 versions for 12 months'), managing the API catalog/registry across all teams, designing developer portal experiences, running API design review boards, and governing API deprecation/sunset across the entire platform (strategic/architectural decision-making). The backend developer versions their own API; the API designer defines the versioning policy all APIs must follow.",
+  "subskills": [
+    {
+      "id": "api_versioning_policies",
+      "name": "API Versioning Policy & Strategy",
+      "description": "Defining organization-wide API versioning policies — versioning strategy selection (URI path vs header vs query param with rationale), N-1 version support window mandates, major vs minor version criteria, and versioning enforcement in CI/CD pipelines.",
+      "keywords": ["versioning policy", "N-1 support window", "major vs minor version criteria", "versioning strategy mandate", "URI vs header versioning policy", "version enforcement CI/CD", "versioning governance"]
+    },
+    {
+      "id": "deprecation_sunset_management",
+      "name": "API Deprecation & Sunset Management",
+      "description": "Managing API deprecation lifecycle — Sunset header (RFC 8594) and Deprecation header governance, migration guide requirements, consumer notification timelines, usage-based sunset trigger thresholds, and phased deprecation rollout plans.",
+      "keywords": ["Sunset header RFC 8594", "Deprecation header", "migration guide", "consumer notification", "deprecation timeline", "usage-based sunset triggers", "phased deprecation"]
+    },
+    {
+      "id": "api_catalog_discovery",
+      "name": "API Catalog & Service Discovery",
+      "description": "Operating an organization-wide API catalog — API registry platforms (Backstage, Apigee Registry, SwaggerHub), service discovery integration, API taxonomy and tagging standards, ownership metadata requirements, and search/filter capabilities for API consumers.",
+      "keywords": ["API catalog", "Backstage integration", "API registry", "service discovery", "API taxonomy", "ownership metadata", "SwaggerHub organization"]
+    },
+    {
+      "id": "design_review_process",
+      "name": "API Design Review Process & Governance Board",
+      "description": "Establishing API design review processes — review board composition and charter, design review checklist criteria, pre-implementation review gates, automated linting (Spectral) as first-pass review, and escalation paths for breaking changes.",
+      "keywords": ["API design review", "review board", "design review checklist", "pre-implementation gate", "Spectral automated review", "breaking change escalation", "design governance board"]
+    },
+    {
+      "id": "api_documentation_standards",
+      "name": "API Documentation Standards & Quality",
+      "description": "Defining API documentation quality standards — mandatory documentation sections (authentication, errors, rate limits, examples), interactive documentation requirements (try-it-out), code sample language coverage policies, and documentation freshness auditing.",
+      "keywords": ["documentation standards", "mandatory doc sections", "interactive documentation", "try-it-out", "code sample coverage", "documentation freshness", "doc quality audit"]
+    },
+    {
+      "id": "developer_portal_experience",
+      "name": "Developer Portal & Experience (DX) Design",
+      "description": "Designing developer portal experiences — portal architecture (Backstage, ReadMe, Redocly), onboarding flow optimization, API playground/sandbox integration, getting-started guide standards, and developer journey mapping from registration to first API call.",
+      "keywords": ["developer portal", "Backstage portal", "ReadMe", "Redocly", "developer onboarding", "API playground", "getting-started guide", "developer journey mapping"]
+    },
+    {
+      "id": "api_metrics_analytics",
+      "name": "API Usage Metrics & Analytics",
+      "description": "Designing API usage analytics frameworks — key metrics definition (calls/day, unique consumers, error rates, latency percentiles), usage dashboards per API product, consumer adoption tracking, deprecation usage monitoring, and data-driven API investment decisions.",
+      "keywords": ["API usage analytics", "calls per day", "unique consumers", "error rate tracking", "latency percentiles", "adoption tracking", "deprecation usage monitoring"]
+    },
+    {
+      "id": "compliance_regulatory_apis",
+      "name": "Regulatory Compliance for API Programs",
+      "description": "Ensuring API programs meet regulatory requirements — PSD2/Open Banking API compliance, GDPR data minimization in API responses, HIPAA-compliant API data handling, industry-standard API certification programs (FAPI), and audit trail requirements for API access.",
+      "keywords": ["PSD2 Open Banking", "GDPR API compliance", "HIPAA API handling", "FAPI certification", "regulatory API requirements", "data minimization", "API audit trail"]
+    },
+    {
+      "id": "api_program_management",
+      "name": "API Program Management & Strategy",
+      "description": "Managing API-as-a-Product programs — API product roadmapping, internal vs external API strategy, API monetization models (freemium, pay-per-call, subscription tiers), partner API programs, API ecosystem health scorecards, and cross-team API coordination.",
+      "keywords": ["API program management", "API-as-a-Product", "API roadmap", "API monetization", "partner API program", "API ecosystem scorecard", "cross-team coordination"]
+    },
+    {
+      "id": "api_changelog_communication",
+      "name": "API Changelog & Change Communication",
+      "description": "Designing API change communication standards — changelog format and tooling (conventional commits for APIs), release notes requirements, breaking change notification channels, developer newsletter governance, and migration guide templates.",
+      "keywords": ["API changelog", "release notes", "breaking change notification", "developer newsletter", "migration guide template", "change communication", "conventional commits for APIs"]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "API style guide, design review checklists, or governance documentation",
+        "detection": "file_presence",
+        "pattern": "api[-_]governance|design[-_]review|api[-_]checklist|api[-_]style[-_]guide|CHANGELOG\\.md.*api",
+        "strength": 0.9,
+        "maps_to": ["api_lifecycle_governance.design_review_process", "api_lifecycle_governance.api_documentation_standards", "api_lifecycle_governance.api_changelog_communication"]
+      },
+      {
+        "signal": "API versioning policy or sunset header configuration",
+        "detection": "content_analysis",
+        "pattern": "Sunset.*header|Deprecation.*header|version[-_]policy|sunset[-_]date|deprecation[-_]notice",
+        "strength": 0.8,
+        "maps_to": ["api_lifecycle_governance.api_versioning_policies", "api_lifecycle_governance.deprecation_sunset_management"]
+      },
+      {
+        "signal": "Backstage catalog or API registry configuration",
+        "detection": "file_presence",
+        "pattern": "catalog-info\\.ya?ml|backstage.*catalog|api[-_]registry|api[-_]catalog\\.ya?ml",
+        "strength": 0.8,
+        "maps_to": ["api_lifecycle_governance.api_catalog_discovery", "api_lifecycle_governance.developer_portal_experience"]
+      },
+      {
+        "signal": "Developer portal configuration or documentation tooling",
+        "detection": "content_analysis",
+        "pattern": "redocly\\.ya?ml|readme\\.io|developer[-_]portal|api[-_]playground|swagger[-_]ui.*config",
+        "strength": 0.7,
+        "maps_to": ["api_lifecycle_governance.developer_portal_experience", "api_lifecycle_governance.api_documentation_standards"]
+      },
+      {
+        "signal": "API usage analytics or metrics dashboards",
+        "detection": "content_analysis",
+        "pattern": "api[-_]analytics|api[-_]metrics|usage[-_]dashboard|api[-_]scorecard|consumer[-_]analytics",
+        "strength": 0.7,
+        "maps_to": ["api_lifecycle_governance.api_metrics_analytics", "api_lifecycle_governance.compliance_regulatory_apis", "api_lifecycle_governance.api_program_management"]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "API program management, versioning policy design, or developer portal architecture",
+        "strength": 0.8,
+        "maps_to": ["api_lifecycle_governance.api_program_management", "api_lifecycle_governance.api_versioning_policies", "api_lifecycle_governance.developer_portal_experience"]
+      },
+      {
+        "signal": "API governance, design review boards, or deprecation management",
+        "strength": 0.8,
+        "maps_to": ["api_lifecycle_governance.design_review_process", "api_lifecycle_governance.deprecation_sunset_management", "api_lifecycle_governance.api_catalog_discovery"]
+      },
+      {
+        "signal": "Regulatory API compliance (PSD2, GDPR), API analytics, or documentation standards",
+        "strength": 0.8,
+        "maps_to": ["api_lifecycle_governance.compliance_regulatory_apis", "api_lifecycle_governance.api_metrics_analytics", "api_lifecycle_governance.api_documentation_standards", "api_lifecycle_governance.api_changelog_communication"]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "API Management, API Governance, or Developer Experience endorsed",
+        "strength": 0.5,
+        "maps_to": ["api_lifecycle_governance.api_program_management", "api_lifecycle_governance.developer_portal_experience", "api_lifecycle_governance.design_review_process"]
+      },
+      {
+        "signal": "API Strategy, Open Banking, or API Documentation mentioned",
+        "strength": 0.5,
+        "maps_to": ["api_lifecycle_governance.api_versioning_policies", "api_lifecycle_governance.deprecation_sunset_management", "api_lifecycle_governance.api_catalog_discovery", "api_lifecycle_governance.compliance_regulatory_apis", "api_lifecycle_governance.api_metrics_analytics", "api_lifecycle_governance.api_documentation_standards", "api_lifecycle_governance.api_changelog_communication"]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": ["api_versioning_policies", "api_documentation_standards", "api_changelog_communication"],
+      "description": "Follows organizational API versioning policies, adheres to documentation quality standards with mandatory sections, and writes API changelogs with proper breaking change notifications."
+    },
+    "mid": {
+      "expected_subskills": ["deprecation_sunset_management", "api_catalog_discovery", "design_review_process", "developer_portal_experience"],
+      "description": "Manages API deprecation lifecycles with Sunset headers and consumer migration, maintains API catalog registries, participates in design review boards, and improves developer portal onboarding experiences."
+    },
+    "senior": {
+      "expected_subskills": ["api_metrics_analytics", "compliance_regulatory_apis", "api_program_management"],
+      "description": "Designs API usage analytics frameworks for data-driven investment decisions, ensures regulatory compliance (PSD2, GDPR, HIPAA) for API programs, and manages API-as-a-Product strategy with monetization and partner programs."
+    }
+  }
+}
