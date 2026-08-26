@@ -1,0 +1,243 @@
+{
+  "skill_id": "ai_agents_orchestration",
+  "name": "AI Agents, Multi-Agent Systems & Tool Orchestration",
+  "category": "ai_core",
+  "description": "Autonomous LLM agents, cognitive architectures, function calling and tool use, ReAct execution loops, memory systems (short-term, long-term, semantic, episodic), multi-agent frameworks (LangGraph, CrewAI, AutoGen), human-in-the-loop (HITL), and task planning.",
+  "subskills": [
+    {
+      "id": "function_calling_tool_definitions",
+      "name": "Function Calling & Tool Schema Definitions",
+      "description": "Defining tools and JSON schemas for LLM function calling (OpenAI tools parameter, Pydantic tool definitions, LangChain @tool decorator), parameter validation, and local execution.",
+      "keywords": [
+        "function calling",
+        "@tool decorator",
+        "OpenAI tools parameter",
+        "tool JSON schema",
+        "Pydantic tool args schema",
+        "tool execution handler"
+      ]
+    },
+    {
+      "id": "react_agent_loop_execution",
+      "name": "ReAct Agent Loop & Thought-Action-Observation",
+      "description": "Implementing and debugging the ReAct (Reasoning + Acting) loop: Thought -> Action -> Action Input -> Observation -> Final Answer cycle, handling parsing errors and infinite loops.",
+      "keywords": [
+        "ReAct framework",
+        "Thought-Action-Observation cycle",
+        "Action Input parsing",
+        "AgentExecutor",
+        "max_iterations limit",
+        "infinite loop mitigation"
+      ]
+    },
+    {
+      "id": "conversational_memory_management",
+      "name": "Agent Conversational & Working Memory",
+      "description": "Managing agent short-term and working memory: ConversationBufferMemory, ConversationSummaryMemory, sliding window token limiters, and structured scratchpad state.",
+      "keywords": [
+        "ConversationBufferMemory",
+        "ConversationSummaryBufferMemory",
+        "sliding window memory",
+        "agent scratchpad",
+        "working memory",
+        "message history trimming"
+      ]
+    },
+    {
+      "id": "stateful_agent_graphs_langgraph",
+      "name": "Stateful Agent Graphs with LangGraph",
+      "description": "Building cyclical, stateful agent graphs using LangGraph: StateGraph, TypedDict state schema, Nodes, conditional Edges, state persistence (MemorySaver, SqliteSaver checkpointer), and time travel.",
+      "keywords": [
+        "LangGraph",
+        "StateGraph",
+        "TypedDict state",
+        "conditional edges",
+        "END node",
+        "MemorySaver checkpointer",
+        "time travel debugging",
+        "cyclical agent flow"
+      ]
+    },
+    {
+      "id": "crewai_role_based_collaboration",
+      "name": "Role-Based Multi-Agent Collaboration (CrewAI)",
+      "description": "Orchestrating multi-agent systems with CrewAI: Agent definitions (role, goal, backstory, verbose), Task assignments, Processes (Sequential, Hierarchical with Manager LLM), and inter-agent delegation.",
+      "keywords": [
+        "CrewAI",
+        "Agent(role, goal, backstory)",
+        "Task(description, expected_output)",
+        "Crew(process=Process.hierarchical)",
+        "manager_llm",
+        "inter-agent delegation"
+      ]
+    },
+    {
+      "id": "autogen_conversable_agents",
+      "name": "Conversable Multi-Agent Systems (AutoGen & AG2)",
+      "description": "Developing conversable multi-agent architectures using Microsoft AutoGen / AG2: AssistantAgent, UserProxyAgent, GroupChatManager, sandboxed Docker code execution, and termination conditions.",
+      "keywords": [
+        "Microsoft AutoGen / AG2",
+        "AssistantAgent",
+        "UserProxyAgent",
+        "GroupChat / GroupChatManager",
+        "code_execution_config (Docker)",
+        "is_termination_msg"
+      ]
+    },
+    {
+      "id": "hierarchical_planning_decomposition",
+      "name": "Hierarchical Task Planning & Subgoal Decomposition",
+      "description": "Implementing hierarchical planning and goal decomposition: Plan-and-Solve prompting, dynamic DAG task generation, dependency resolution, failure recovery, and replanning.",
+      "keywords": [
+        "Plan-and-Solve prompting",
+        "DAG task planner",
+        "subgoal decomposition",
+        "agent replanning on error",
+        "dynamic step execution",
+        "hierarchical planning"
+      ]
+    },
+    {
+      "id": "human_in_the_loop_hitl_workflows",
+      "name": "Human-In-The-Loop (HITL) Workflows & Approval Gates",
+      "description": "Designing enterprise Human-in-the-Loop (HITL) safety workflows: interrupt patterns before high-stakes tool execution (e.g. database mutations, payment triggers), resume tokens, and state inspection.",
+      "keywords": [
+        "Human-in-the-Loop (HITL)",
+        "interrupt_before / interrupt_after",
+        "approval checkpoint",
+        "high-stakes tool gate",
+        "state resumption",
+        "human review workflow"
+      ]
+    },
+    {
+      "id": "episodic_semantic_long_term_memory",
+      "name": "Long-Term Episodic & Semantic Memory (MemGPT / Letta)",
+      "description": "Implementing long-term agent memory architectures: MemGPT / Letta tiered memory (core memory, recall memory, archival memory), episodic experience retrieval, and self-editing user profiles.",
+      "keywords": [
+        "MemGPT / Letta",
+        "core memory (persona, human)",
+        "archival memory (vector)",
+        "recall memory (conversation)",
+        "episodic memory reflection",
+        "self-updating memory"
+      ]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "LangGraph StateGraph, Nodes, checkpointer, and conditional edge definitions",
+        "detection": "content_analysis",
+        "pattern": "from langgraph\\.graph import StateGraph, END|workflow\\.add_node|workflow\\.add_conditional_edges|MemorySaver\\(\\)|SqliteSaver",
+        "strength": 0.9,
+        "maps_to": [
+          "ai_agents_orchestration.stateful_agent_graphs_langgraph",
+          "ai_agents_orchestration.human_in_the_loop_hitl_workflows"
+        ]
+      },
+      {
+        "signal": "CrewAI multi-agent crew, tasks, and agent definitions",
+        "detection": "content_analysis",
+        "pattern": "from crewai import Agent, Task, Crew, Process|backstory=|expected_output=|Crew\\(agents=",
+        "strength": 0.9,
+        "maps_to": [
+          "ai_agents_orchestration.crewai_role_based_collaboration"
+        ]
+      },
+      {
+        "signal": "AutoGen / AG2 ConversableAgent, GroupChat, or AssistantAgent code",
+        "detection": "content_analysis",
+        "pattern": "import autogen|AssistantAgent|UserProxyAgent|GroupChatManager|register_function",
+        "strength": 0.9,
+        "maps_to": [
+          "ai_agents_orchestration.autogen_conversable_agents"
+        ]
+      },
+      {
+        "signal": "OpenAI function calling tool definitions with @tool decorator or Pydantic schemas",
+        "detection": "content_analysis",
+        "pattern": "@tool|from langchain_core\\.tools import tool|tools=\\[.*\\], tool_choice=|AgentExecutor",
+        "strength": 0.8,
+        "maps_to": [
+          "ai_agents_orchestration.function_calling_tool_definitions",
+          "ai_agents_orchestration.react_agent_loop_execution",
+          "ai_agents_orchestration.conversational_memory_management"
+        ]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "Architected multi-agent autonomous workflows using LangGraph state graphs with human-in-the-loop approval gates",
+        "strength": 0.9,
+        "maps_to": [
+          "ai_agents_orchestration.stateful_agent_graphs_langgraph",
+          "ai_agents_orchestration.human_in_the_loop_hitl_workflows",
+          "ai_agents_orchestration.hierarchical_planning_decomposition"
+        ]
+      },
+      {
+        "signal": "Built collaborative agent teams with CrewAI and AutoGen for automated research and code generation",
+        "strength": 0.9,
+        "maps_to": [
+          "ai_agents_orchestration.crewai_role_based_collaboration",
+          "ai_agents_orchestration.autogen_conversable_agents"
+        ]
+      },
+      {
+        "signal": "Integrated MemGPT long-term tiered memory and custom function calling tools for enterprise LLM agents",
+        "strength": 0.85,
+        "maps_to": [
+          "ai_agents_orchestration.episodic_semantic_long_term_memory",
+          "ai_agents_orchestration.function_calling_tool_definitions",
+          "ai_agents_orchestration.react_agent_loop_execution"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "AI Agents, Multi-Agent Systems, LangGraph, or AutoGen endorsed",
+        "strength": 0.5,
+        "maps_to": [
+          "ai_agents_orchestration.stateful_agent_graphs_langgraph",
+          "ai_agents_orchestration.function_calling_tool_definitions"
+        ]
+      },
+      {
+        "signal": "Job experience describing CrewAI orchestration, LangGraph checkpointers, or autonomous agent loops",
+        "strength": 0.85,
+        "maps_to": [
+          "ai_agents_orchestration.crewai_role_based_collaboration",
+          "ai_agents_orchestration.stateful_agent_graphs_langgraph",
+          "ai_agents_orchestration.hierarchical_planning_decomposition"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "function_calling_tool_definitions",
+        "react_agent_loop_execution",
+        "conversational_memory_management"
+      ],
+      "description": "Defines tool schemas for function calling, implements ReAct execution loops, and manages short-term buffer memory."
+    },
+    "mid": {
+      "expected_subskills": [
+        "stateful_agent_graphs_langgraph",
+        "crewai_role_based_collaboration",
+        "autogen_conversable_agents"
+      ],
+      "description": "Constructs cyclical state graphs in LangGraph, orchestrates multi-agent teams with CrewAI, and sets up AutoGen group chats."
+    },
+    "senior": {
+      "expected_subskills": [
+        "hierarchical_planning_decomposition",
+        "human_in_the_loop_hitl_workflows",
+        "episodic_semantic_long_term_memory"
+      ],
+      "description": "Designs hierarchical DAG task planners, implements enterprise HITL approval checkpoints, and manages MemGPT long-term memory."
+    }
+  }
+}

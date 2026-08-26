@@ -1,0 +1,246 @@
+{
+  "skill_id": "ai_prompt_engineering",
+  "name": "Prompt Engineering & Context Construction",
+  "category": "ai_core",
+  "description": "Systematic prompt design, in-context learning, reasoning frameworks (CoT, ToT, ReAct), few-shot exemplar curation, dynamic prompt templating, metaprompts, automated prompt optimization (DSPy), and output calibration.",
+  "subskills": [
+    {
+      "id": "zero_shot_few_shot_prompting",
+      "name": "Zero-Shot & Few-Shot In-Context Learning",
+      "description": "Structuring zero-shot prompts, authoring system instructions, role conditioning, and selecting balanced few-shot exemplars with clear input-output boundaries.",
+      "keywords": [
+        "zero-shot prompting",
+        "few-shot in-context learning",
+        "system prompt",
+        "role conditioning",
+        "exemplar selection",
+        "input-output demonstration",
+        "prompt prefixing"
+      ]
+    },
+    {
+      "id": "prompt_templating_dynamic_injection",
+      "name": "Dynamic Prompt Templating (Jinja2 & LangChain)",
+      "description": "Authoring dynamic and reusable prompt templates with variable injection, partial formatting, Jinja2 conditional rendering, and LangChain/LlamaIndex ChatPromptTemplate.",
+      "keywords": [
+        "PromptTemplate",
+        "ChatPromptTemplate",
+        "Jinja2 template rendering",
+        "partial variable formatting",
+        "SystemMessage / HumanMessage",
+        "dynamic context insertion"
+      ]
+    },
+    {
+      "id": "output_formatting_constraints",
+      "name": "Output Formatting & Delimiter Engineering",
+      "description": "Enforcing output format adherence (Markdown, XML tags, YAML, JSON) using structural delimiters (```, <instructions>, <context>), avoiding markdown fences leakage, and negative constraints.",
+      "keywords": [
+        "XML delimiters (<context>, <query>)",
+        "markdown formatting constraint",
+        "negative constraints",
+        "format adherence",
+        "delimiter isolation",
+        "structural boundaries"
+      ]
+    },
+    {
+      "id": "chain_of_thought_reasoning",
+      "name": "Chain-of-Thought & Self-Consistency Reasoning",
+      "description": "Implementing Chain-of-Thought (CoT) prompting ('Think step-by-step'), Least-to-Most prompting, and Self-Consistency decoding with majority voting across multiple sample paths.",
+      "keywords": [
+        "Chain-of-Thought (CoT)",
+        "zero-shot CoT ('Let's think step by step')",
+        "Self-Consistency decoding",
+        "majority voting",
+        "Least-to-Most prompting",
+        "step-by-step reasoning trace"
+      ]
+    },
+    {
+      "id": "tree_of_thoughts_advanced_reasoning",
+      "name": "Tree of Thoughts (ToT) & Graph Reasoning",
+      "description": "Designing multi-path exploration and heuristic search reasoning architectures: Tree of Thoughts (ToT), Graph of Thoughts (GoT), thought generation, evaluation states, and backtracking.",
+      "keywords": [
+        "Tree of Thoughts (ToT)",
+        "Graph of Thoughts (GoT)",
+        "thought generator",
+        "state evaluation",
+        "beam search prompting",
+        "backtracking heuristic"
+      ]
+    },
+    {
+      "id": "metaprompting_system_architecture",
+      "name": "Enterprise Metaprompting & System Prompt Design",
+      "description": "Architecting comprehensive enterprise metaprompts, role definitions, tone of voice, tool-use guidance, fallback policies, context budget allocation, and self-correcting prompt instructions.",
+      "keywords": [
+        "metaprompting",
+        "system prompt architecture",
+        "enterprise prompt guidelines",
+        "context budget allocation",
+        "self-correcting prompt",
+        "fallback behavior instructions"
+      ]
+    },
+    {
+      "id": "automated_prompt_optimization_dspy",
+      "name": "Automated Prompt Optimization (DSPy & TextGrad)",
+      "description": "Programmatic prompt engineering and automated compiler optimization using DSPy (Signatures, Modules, Teleprompters like BootstrapFewShot, MIPRO) and gradient-like text optimization (TextGrad).",
+      "keywords": [
+        "DSPy framework",
+        "dspy.Signature",
+        "dspy.Module",
+        "dspy.BootstrapFewShot",
+        "MIPRO teleprompter",
+        "compiled prompt program",
+        "TextGrad",
+        "automated prompt tuning"
+      ]
+    },
+    {
+      "id": "prompt_evaluation_benchmarking",
+      "name": "Prompt Evaluation & LLM-as-a-Judge Benchmarking",
+      "description": "Evaluating prompt performance using LLM-as-a-Judge methodologies, pairwise comparison, automated prompt regression testing, and evaluation harness tools (Promptfoo, Langfuse).",
+      "keywords": [
+        "LLM-as-a-Judge",
+        "Promptfoo",
+        "pairwise evaluation",
+        "prompt regression testing",
+        "Elo rating for prompts",
+        "G-Eval",
+        "prompt versioning"
+      ]
+    },
+    {
+      "id": "adversarial_prompt_resilience",
+      "name": "Prompt Injection Resilience & Sandwich Defense",
+      "description": "Hardening prompts against prompt injection, jailbreaking, and goal hijacking using sandwich defense, XML tag isolation, instruction-data separation, and output canary verification.",
+      "keywords": [
+        "sandwich defense",
+        "instruction-data separation",
+        "canary tokens",
+        "prompt injection defense",
+        "system prompt leak prevention",
+        "XML tag wrapping"
+      ]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "LangChain or custom Jinja2 prompt templates with message structures",
+        "detection": "content_analysis",
+        "pattern": "ChatPromptTemplate\\.from_messages|PromptTemplate\\(template=|SystemMessagePromptTemplate|HumanMessagePromptTemplate",
+        "strength": 0.8,
+        "maps_to": [
+          "ai_prompt_engineering.prompt_templating_dynamic_injection",
+          "ai_prompt_engineering.zero_shot_few_shot_prompting",
+          "ai_prompt_engineering.output_formatting_constraints"
+        ]
+      },
+      {
+        "signal": "DSPy signatures, modules, and teleprompter compilation code",
+        "detection": "content_analysis",
+        "pattern": "import dspy|class .*\\(dspy\\.Signature\\):|dspy\\.Predict\\(|dspy\\.ChainOfThought\\(|BootstrapFewShotWithRandomSearch|dspy\\.MIPRO",
+        "strength": 0.95,
+        "maps_to": [
+          "ai_prompt_engineering.automated_prompt_optimization_dspy"
+        ]
+      },
+      {
+        "signal": "Promptfoo configuration or automated prompt evaluation scripts",
+        "detection": "file_presence",
+        "pattern": "promptfooconfig\\.ya?ml|promptfoo\\.json",
+        "strength": 0.9,
+        "maps_to": [
+          "ai_prompt_engineering.prompt_evaluation_benchmarking"
+        ]
+      },
+      {
+        "signal": "Chain-of-thought, self-consistency, or XML delimited system prompts in code",
+        "detection": "content_analysis",
+        "pattern": "<instructions>|<context>|Let's think step by step|reasoning_steps|self_consistency",
+        "strength": 0.8,
+        "maps_to": [
+          "ai_prompt_engineering.chain_of_thought_reasoning",
+          "ai_prompt_engineering.output_formatting_constraints",
+          "ai_prompt_engineering.adversarial_prompt_resilience"
+        ]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "Optimized production prompt pipelines using DSPy, MIPRO teleprompters, and Promptfoo regression suites",
+        "strength": 0.9,
+        "maps_to": [
+          "ai_prompt_engineering.automated_prompt_optimization_dspy",
+          "ai_prompt_engineering.prompt_evaluation_benchmarking"
+        ]
+      },
+      {
+        "signal": "Architected complex prompt systems with Chain-of-Thought, Tree of Thoughts, and defensive formatting",
+        "strength": 0.85,
+        "maps_to": [
+          "ai_prompt_engineering.chain_of_thought_reasoning",
+          "ai_prompt_engineering.tree_of_thoughts_advanced_reasoning",
+          "ai_prompt_engineering.metaprompting_system_architecture"
+        ]
+      },
+      {
+        "signal": "Implemented few-shot in-context learning with dynamic exemplar retrieval and injection protection",
+        "strength": 0.8,
+        "maps_to": [
+          "ai_prompt_engineering.zero_shot_few_shot_prompting",
+          "ai_prompt_engineering.prompt_templating_dynamic_injection",
+          "ai_prompt_engineering.adversarial_prompt_resilience"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Prompt Engineering, In-Context Learning, or Prompt Optimization endorsed",
+        "strength": 0.5,
+        "maps_to": [
+          "ai_prompt_engineering.zero_shot_few_shot_prompting",
+          "ai_prompt_engineering.prompt_templating_dynamic_injection"
+        ]
+      },
+      {
+        "signal": "Job experience describing DSPy prompt compilation, LLM-as-a-judge benchmarking, or reasoning chains",
+        "strength": 0.85,
+        "maps_to": [
+          "ai_prompt_engineering.automated_prompt_optimization_dspy",
+          "ai_prompt_engineering.prompt_evaluation_benchmarking",
+          "ai_prompt_engineering.chain_of_thought_reasoning"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "zero_shot_few_shot_prompting",
+        "prompt_templating_dynamic_injection",
+        "output_formatting_constraints"
+      ],
+      "description": "Authors zero/few-shot prompts, designs reusable dynamic prompt templates, and enforces strict delimiter output formatting."
+    },
+    "mid": {
+      "expected_subskills": [
+        "chain_of_thought_reasoning",
+        "tree_of_thoughts_advanced_reasoning",
+        "metaprompting_system_architecture"
+      ],
+      "description": "Implements Chain-of-Thought and Tree of Thoughts reasoning architectures, and designs production enterprise metaprompts."
+    },
+    "senior": {
+      "expected_subskills": [
+        "automated_prompt_optimization_dspy",
+        "prompt_evaluation_benchmarking",
+        "adversarial_prompt_resilience"
+      ],
+      "description": "Compiles prompts programmatically with DSPy, establishes LLM-as-a-judge evaluation pipelines, and hardens systems against prompt attacks."
+    }
+  }
+}

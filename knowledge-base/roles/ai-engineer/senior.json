@@ -1,0 +1,54 @@
+{
+  "role_id": "ai_engineer",
+  "level": "senior",
+  "title": "Senior AI Engineer",
+  "description": "Senior AI Engineer and Architect leading enterprise GenAI systems: GraphRAG, autonomous multi-agent planning, vLLM high-throughput distributed serving clusters, DSPy prompt compilation, ColPali multimodal RAG, and AI safety/EU AI Act governance.",
+  "experience_range": "5+ years",
+  "skills": [
+    {
+      "skill_id": "ai_agents_orchestration",
+      "importance": 0.95,
+      "rationale": "Architecting autonomous hierarchical multi-agent systems, MemGPT long-term memory, and enterprise HITL."
+    },
+    {
+      "skill_id": "ai_rag_implementation",
+      "importance": 0.95,
+      "rationale": "Architecting GraphRAG knowledge graphs, Corrective RAG (CRAG), and quantitative RAGAS benchmarking."
+    },
+    {
+      "skill_id": "ai_open_source_models",
+      "importance": 0.9,
+      "rationale": "Architecting enterprise vLLM serving clusters (PagedAttention, multi-GPU TP), AWQ/GPTQ quantization, and TCO/sovereignty trade-offs."
+    },
+    {
+      "skill_id": "ai_safety_ethics_deployment",
+      "importance": 0.9,
+      "rationale": "AI alignment (DPO/RLHF), EU AI Act regulatory governance, and LiteLLM gateway caching infrastructure."
+    },
+    {
+      "skill_id": "ai_llm_fundamentals",
+      "importance": 0.85,
+      "rationale": "Transformer architecture, KV cache memory scaling, FlashAttention, structured schema outputs, and quantitative benchmark evaluation."
+    },
+    {
+      "skill_id": "ai_embeddings_vector_db",
+      "importance": 0.85,
+      "rationale": "Hybrid search (BM25+Dense with RRF), ColBERT late-interaction, and Matryoshka embedding fine-tuning."
+    },
+    {
+      "skill_id": "ai_prompt_engineering",
+      "importance": 0.85,
+      "rationale": "Automated prompt optimization with DSPy, MIPRO teleprompters, and LLM-as-a-judge evaluation."
+    },
+    {
+      "skill_id": "ai_multimodal_applications",
+      "importance": 0.8,
+      "rationale": "Realtime WebSocket voice agents, temporal video reasoning, and OCR-free ColPali visual RAG."
+    }
+  ],
+  "scoring": {
+    "method": "weighted_average",
+    "description": "Standard weighted scoring assessing production architecture, reliability, scale, and governance.",
+    "thresholds": {}
+  }
+}

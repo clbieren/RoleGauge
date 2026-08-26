@@ -1,0 +1,243 @@
+{
+  "skill_id": "ai_embeddings_vector_db",
+  "name": "Embeddings, Similarity Search & Vector Databases",
+  "category": "ai_core",
+  "description": "Dense and sparse vector representations, embedding models (OpenAI, Cohere, BGE, Nomic), distance metrics, approximate nearest neighbor (ANN) indexing (HNSW, IVF), vector databases (Pinecone, ChromaDB, Weaviate, Qdrant, pgvector), hybrid search (BM25 + Dense), and ColBERT late-interaction.",
+  "subskills": [
+    {
+      "id": "dense_embeddings_generation",
+      "name": "Dense Embedding Generation & Embedding Models",
+      "description": "Generating dense semantic embeddings using OpenAI (text-embedding-3-small/large), Cohere, HuggingFace sentence-transformers (BGE, Nomic), dimension truncation, and batch embedding pipelines.",
+      "keywords": [
+        "text-embedding-3",
+        "SentenceTransformer",
+        "BGE embeddings",
+        "Cohere embed-v3",
+        "embedding dimensions",
+        "batch embedding generation",
+        "vector normalization"
+      ]
+    },
+    {
+      "id": "distance_metrics_similarity",
+      "name": "Vector Distance Metrics & Similarity Calculation",
+      "description": "Calculating similarity and distance in high-dimensional vector spaces: Cosine Similarity, Dot Product (Inner Product), Euclidean Distance (L2), and Manhattan distance with normalized vectors.",
+      "keywords": [
+        "cosine similarity",
+        "dot product (inner product)",
+        "Euclidean distance (L2)",
+        "Manhattan distance (L1)",
+        "vector magnitude normalization",
+        "high-dimensional geometry"
+      ]
+    },
+    {
+      "id": "chromadb_local_vector_storage",
+      "name": "Local Vector Storage & Querying (ChromaDB & FAISS)",
+      "description": "Setting up local and embedded vector search engines using ChromaDB and FAISS: collection creation, document/metadata indexing, querying by embedding, and persistence management.",
+      "keywords": [
+        "ChromaDB client",
+        "chromadb.PersistentClient",
+        "collection.add / collection.query",
+        "FAISS IndexFlatL2 / IndexHNSWFlat",
+        "local vector store",
+        "metadata filtering"
+      ]
+    },
+    {
+      "id": "cloud_vector_db_pinecone_weaviate_qdrant",
+      "name": "Managed Cloud Vector DBs (Pinecone, Weaviate & Qdrant)",
+      "description": "Architecting production vector stores with Pinecone (serverless indexes, namespaces), Weaviate (schema collections, multi-tenancy), Qdrant (payload indexing), and Milvus.",
+      "keywords": [
+        "Pinecone client",
+        "pinecone.Index",
+        "namespaces",
+        "Weaviate client",
+        "QdrantClient",
+        "payload indexing",
+        "Milvus",
+        "serverless vector index"
+      ]
+    },
+    {
+      "id": "pgvector_relational_integration",
+      "name": "Relational Vector Search with PostgreSQL & pgvector",
+      "description": "Integrating vector search into PostgreSQL using pgvector extension: VECTOR column types, cosine distance operator (<=>), IVFFlat / HNSW index creation, and hybrid SQL relational filtering.",
+      "keywords": [
+        "pgvector",
+        "CREATE EXTENSION vector",
+        "VECTOR(1536)",
+        "cosine distance operator <=>",
+        "HNSW index pgvector",
+        "IVFFlat index",
+        "SQL JOIN with vector search"
+      ]
+    },
+    {
+      "id": "ann_indexing_hnsw_ivf",
+      "name": "Approximate Nearest Neighbor (ANN) Indexing & HNSW",
+      "description": "Tuning Approximate Nearest Neighbor (ANN) algorithms: Hierarchical Navigable Small World (HNSW: M, ef_construction, ef_search), Inverted File Index (IVF: nlist, nprobe), and memory vs latency trade-offs.",
+      "keywords": [
+        "HNSW (Hierarchical Navigable Small World)",
+        "M parameter",
+        "efConstruction / efSearch",
+        "Inverted File Index (IVF)",
+        "nlist / nprobe",
+        "ANN recall vs latency trade-off"
+      ]
+    },
+    {
+      "id": "hybrid_search_sparse_dense_bm25",
+      "name": "Hybrid Search (Dense + Sparse BM25) & Reciprocal Rank Fusion",
+      "description": "Implementing hybrid search combining dense semantic vectors with sparse lexical search (BM25, SPLADE) and merging ranked candidate lists using Reciprocal Rank Fusion (RRF) and alpha weighting.",
+      "keywords": [
+        "hybrid search",
+        "BM25 keyword search",
+        "SPLADE sparse embeddings",
+        "Reciprocal Rank Fusion (RRF)",
+        "hybrid alpha weighting (dense vs sparse)",
+        "lexical-semantic retrieval"
+      ]
+    },
+    {
+      "id": "late_interaction_colbert",
+      "name": "Late-Interaction Multi-Vector Search (ColBERT & RAGatouille)",
+      "description": "Implementing token-level multi-vector late-interaction retrieval using ColBERTv2 and RAGatouille, token embeddings calculation, MaxSim operator, and dense indexing.",
+      "keywords": [
+        "ColBERTv2",
+        "RAGatouille",
+        "late-interaction retrieval",
+        "MaxSim operator",
+        "token-level multi-vector index",
+        "fine-grained semantic matching"
+      ]
+    },
+    {
+      "id": "embedding_finetuning_domain_adaptation",
+      "name": "Embedding Fine-Tuning & Matryoshka Embeddings (MRL)",
+      "description": "Fine-tuning embedding models for domain adaptation using contrastive loss (MultipleNegativesRankingLoss), Triplet Loss, and training Matryoshka Representation Learning (MRL) embeddings.",
+      "keywords": [
+        "embedding fine-tuning",
+        "SentenceTransformers training",
+        "MultipleNegativesRankingLoss",
+        "Matryoshka Representation Learning (MRL)",
+        "triplet loss",
+        "contrastive learning"
+      ]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "Pinecone, ChromaDB, Weaviate, or Qdrant vector database initialization and query code",
+        "detection": "content_analysis",
+        "pattern": "pinecone\\.Pinecone|chromadb\\.Client|chromadb\\.PersistentClient|weaviate\\.connect_to|QdrantClient|from langchain_community\\.vectorstores import",
+        "strength": 0.85,
+        "maps_to": [
+          "ai_embeddings_vector_db.cloud_vector_db_pinecone_weaviate_qdrant",
+          "ai_embeddings_vector_db.chromadb_local_vector_storage"
+        ]
+      },
+      {
+        "signal": "OpenAI or SentenceTransformers embedding generation pipeline",
+        "detection": "content_analysis",
+        "pattern": "from sentence_transformers import SentenceTransformer|openai\\.embeddings\\.create|OpenAIEmbeddings\\(|HuggingFaceEmbeddings\\(",
+        "strength": 0.8,
+        "maps_to": [
+          "ai_embeddings_vector_db.dense_embeddings_generation",
+          "ai_embeddings_vector_db.distance_metrics_similarity"
+        ]
+      },
+      {
+        "signal": "pgvector SQL migration scripts or SQLAlchemy vector column definitions",
+        "detection": "content_analysis",
+        "pattern": "CREATE EXTENSION.*vector|from pgvector\\.sqlalchemy import Vector|Column\\(Vector\\(|<=>",
+        "strength": 0.9,
+        "maps_to": [
+          "ai_embeddings_vector_db.pgvector_relational_integration"
+        ]
+      },
+      {
+        "signal": "ColBERT or RAGatouille multi-vector retrieval integration",
+        "detection": "content_analysis",
+        "pattern": "from ragatouille import RAGPretrainedModel|RAGatouille|colbert",
+        "strength": 0.9,
+        "maps_to": [
+          "ai_embeddings_vector_db.late_interaction_colbert"
+        ]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "Engineered enterprise vector search infrastructure using Pinecone, Qdrant, and pgvector with HNSW indexing",
+        "strength": 0.9,
+        "maps_to": [
+          "ai_embeddings_vector_db.cloud_vector_db_pinecone_weaviate_qdrant",
+          "ai_embeddings_vector_db.pgvector_relational_integration",
+          "ai_embeddings_vector_db.ann_indexing_hnsw_ivf"
+        ]
+      },
+      {
+        "signal": "Implemented hybrid search combining BM25 sparse search with dense embeddings via Reciprocal Rank Fusion (RRF)",
+        "strength": 0.9,
+        "maps_to": [
+          "ai_embeddings_vector_db.hybrid_search_sparse_dense_bm25",
+          "ai_embeddings_vector_db.dense_embeddings_generation"
+        ]
+      },
+      {
+        "signal": "Fine-tuned domain-specific embedding models with Matryoshka Representation Learning (MRL) and ColBERT",
+        "strength": 0.85,
+        "maps_to": [
+          "ai_embeddings_vector_db.embedding_finetuning_domain_adaptation",
+          "ai_embeddings_vector_db.late_interaction_colbert"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Vector Databases, Pinecone, Embeddings, or Semantic Search endorsed",
+        "strength": 0.5,
+        "maps_to": [
+          "ai_embeddings_vector_db.cloud_vector_db_pinecone_weaviate_qdrant",
+          "ai_embeddings_vector_db.dense_embeddings_generation"
+        ]
+      },
+      {
+        "signal": "Job experience describing vector index optimization (HNSW), hybrid search, or pgvector integration",
+        "strength": 0.85,
+        "maps_to": [
+          "ai_embeddings_vector_db.ann_indexing_hnsw_ivf",
+          "ai_embeddings_vector_db.hybrid_search_sparse_dense_bm25",
+          "ai_embeddings_vector_db.pgvector_relational_integration"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "dense_embeddings_generation",
+        "distance_metrics_similarity",
+        "chromadb_local_vector_storage"
+      ],
+      "description": "Generates dense embeddings with OpenAI/SentenceTransformers, calculates vector distances, and manages local ChromaDB/FAISS stores."
+    },
+    "mid": {
+      "expected_subskills": [
+        "cloud_vector_db_pinecone_weaviate_qdrant",
+        "pgvector_relational_integration",
+        "ann_indexing_hnsw_ivf"
+      ],
+      "description": "Configures managed cloud vector DBs (Pinecone, Qdrant), integrates pgvector into PostgreSQL, and tunes HNSW/IVF indexing parameters."
+    },
+    "senior": {
+      "expected_subskills": [
+        "hybrid_search_sparse_dense_bm25",
+        "late_interaction_colbert",
+        "embedding_finetuning_domain_adaptation"
+      ],
+      "description": "Implements hybrid BM25+Dense search with RRF, deploys ColBERT late-interaction indexing, and fine-tunes domain-specific Matryoshka embeddings."
+    }
+  }
+}

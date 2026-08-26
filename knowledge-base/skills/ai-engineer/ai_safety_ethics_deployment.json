@@ -1,0 +1,251 @@
+{
+  "skill_id": "ai_safety_ethics_deployment",
+  "name": "AI Safety, Guardrails, Ethics & Production Deployment",
+  "category": "ai_core",
+  "description": "LLM security, prompt injection defense, red teaming, hallucination detection, guardrails frameworks (Guardrails AI, NeMo Guardrails, Llama Guard), bias and fairness evaluation, AI ethics & GDPR/EU AI Act compliance, observability and tracing (Langfuse, LangSmith), and production AI gateways (LiteLLM). ÖNEMLİ AYRIM: Cyber Security (Siber Güvenlik) geleneksel altyapı, ağ güvenliği, sızma testleri, IAM ve OS/bulut zafiyetlerine odaklanırken; AI Safety, Ethics & Deployment disiplini LLM'lere özgü prompt injection, jailbreaking, halüsinasyon azaltma, guardrails, model önyargısı (bias/fairness), alignment (hizalama) ve üretken yapay zeka gizlilik/telif uyumluluğuna odaklanır — farklı tehdit yüzeyi, farklı hafifletme teknikleri, farklı uzmanlık alanı.",
+  "subskills": [
+    {
+      "id": "prompt_injection_jailbreak_defense",
+      "name": "Prompt Injection & Jailbreak Attack Defense",
+      "description": "Identifying and defending against direct prompt injections, indirect prompt injections from untrusted external sources (web/RAG), system prompt leaking, and multi-turn jailbreak attempts.",
+      "keywords": [
+        "prompt injection (direct & indirect)",
+        "jailbreak defense",
+        "system prompt extraction mitigation",
+        "OWASP Top 10 for LLM - LLM01",
+        "untrusted input sanitization"
+      ]
+    },
+    {
+      "id": "llm_observability_tracing_langfuse",
+      "name": "LLM Observability, Tracing & Cost Accounting (Langfuse & LangSmith)",
+      "description": "Implementing production observability for LLM applications: trace trees, nested span tracking, token usage breakdown, latency monitoring, cost calculation, and logging via Langfuse or LangSmith.",
+      "keywords": [
+        "Langfuse client",
+        "LangSmith tracing",
+        "OpenInference OpenTelemetry",
+        "token usage analytics",
+        "cost per trace accounting",
+        "latency monitoring spans"
+      ]
+    },
+    {
+      "id": "pii_masking_anonymization_presidio",
+      "name": "PII Detection, Anonymization & Data Privacy",
+      "description": "Detecting, masking, and anonymizing Personally Identifiable Information (PII: emails, SSNs, credit cards, names) in prompts and completions using Microsoft Presidio and reversible tokenizers before API calls.",
+      "keywords": [
+        "Microsoft Presidio Analyzer",
+        "Presidio Anonymizer",
+        "PII masking",
+        "anonymization / pseudonymization",
+        "GDPR data compliance",
+        "sensitive entity redaction"
+      ]
+    },
+    {
+      "id": "guardrails_nemo_guardrails_ai",
+      "name": "Deterministic Guardrails (NeMo Guardrails & Guardrails AI)",
+      "description": "Implementing deterministic runtime guardrails on LLM inputs and outputs using NeMo Guardrails (Colang dialog flows, safety rails), Guardrails AI (validators for SQL, toxicity, valid JSON), and Llama Guard.",
+      "keywords": [
+        "NeMo Guardrails",
+        "Colang rails syntax",
+        "Guardrails AI",
+        "Guard.use_many",
+        "Llama Guard safety classifier",
+        "input moderation rail",
+        "output hallucination rail"
+      ]
+    },
+    {
+      "id": "hallucination_detection_metrics",
+      "name": "Hallucination Detection, G-Eval & DeepEval",
+      "description": "Detecting and quantifying model hallucinations: SelfCheckGPT (sampling consistency without ground truth), DeepEval hallucination metric, G-Eval framework, and citation factual consistency checking.",
+      "keywords": [
+        "hallucination detection",
+        "SelfCheckGPT",
+        "DeepEval framework",
+        "G-Eval metric",
+        "factual consistency score",
+        "groundedness verification"
+      ]
+    },
+    {
+      "id": "llm_security_red_teaming_garak",
+      "name": "Automated LLM Red Teaming & Vulnerability Scanning (Garak & PyRIT)",
+      "description": "Running automated red teaming assessments and vulnerability scans on LLM pipelines using Garak (LLM vulnerability scanner), Microsoft PyRIT, and auditing against OWASP Top 10 for LLM Applications.",
+      "keywords": [
+        "Garak LLM scanner",
+        "Microsoft PyRIT",
+        "automated red teaming",
+        "OWASP Top 10 for LLMs",
+        "vulnerability probing",
+        "adversarial safety benchmarking"
+      ]
+    },
+    {
+      "id": "model_alignment_rlhf_dpo_ethics",
+      "name": "AI Alignment (RLHF, DPO) & Bias/Fairness Metrics",
+      "description": "Understanding and applying AI alignment methods: Reinforcement Learning from Human Feedback (RLHF), Direct Preference Optimization (DPO), Constitutional AI, and measuring demographic bias and fairness.",
+      "keywords": [
+        "AI alignment theory",
+        "Direct Preference Optimization (DPO)",
+        "RLHF reward modeling",
+        "Constitutional AI",
+        "demographic parity / fairness metrics",
+        "bias mitigation",
+        "KTO alignment"
+      ]
+    },
+    {
+      "id": "eu_ai_act_compliance_governance",
+      "name": "Enterprise AI Governance & EU AI Act Compliance",
+      "description": "Ensuring regulatory compliance for AI systems: EU AI Act risk categorization (unacceptable, high, limited, minimal risk), model documentation cards, transparency disclosures, and audit trail logging.",
+      "keywords": [
+        "EU AI Act compliance",
+        "risk tier classification (High-Risk AI)",
+        "Model Cards for Model Reporting",
+        "transparency obligations",
+        "AI watermarking / C2PA",
+        "audit trail logging"
+      ]
+    },
+    {
+      "id": "production_gateway_rate_limiting_litellm",
+      "name": "Production AI Gateways, Rate Limiting & Semantic Caching",
+      "description": "Deploying scalable enterprise AI gateways: LiteLLM Proxy / Portkey for virtual key management, provider failover routing, token rate-limiting, and Redis-backed semantic caching (GPTCache).",
+      "keywords": [
+        "LiteLLM Proxy",
+        "Portkey AI Gateway",
+        "virtual key budget limits",
+        "semantic cache (GPTCache / Redis)",
+        "provider fallback routing",
+        "token rate limiting (TPM / RPM)"
+      ]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "Langfuse or LangSmith observability client and tracing integration",
+        "detection": "content_analysis",
+        "pattern": "from langfuse import Langfuse|from langfuse\\.callback import CallbackHandler|os\\.environ\\[\"LANGCHAIN_TRACING_V2\"\\]|openinference",
+        "strength": 0.85,
+        "maps_to": [
+          "ai_safety_ethics_deployment.llm_observability_tracing_langfuse"
+        ]
+      },
+      {
+        "signal": "Microsoft Presidio PII analyzer or anonymizer implementation",
+        "detection": "content_analysis",
+        "pattern": "from presidio_analyzer import AnalyzerEngine|from presidio_anonymizer import AnonymizerEngine|AnalyzerEngine\\(\\)",
+        "strength": 0.9,
+        "maps_to": [
+          "ai_safety_ethics_deployment.pii_masking_anonymization_presidio"
+        ]
+      },
+      {
+        "signal": "Guardrails AI or NeMo Guardrails configuration and validator usage",
+        "detection": "content_analysis",
+        "pattern": "from guardrails import Guard|from nemoguardrails import RailsConfig, LLMRails|Guard\\.from_rail|guardrails_config",
+        "strength": 0.9,
+        "maps_to": [
+          "ai_safety_ethics_deployment.guardrails_nemo_guardrails_ai",
+          "ai_safety_ethics_deployment.prompt_injection_jailbreak_defense"
+        ]
+      },
+      {
+        "signal": "DeepEval or Garak red teaming and evaluation script",
+        "detection": "content_analysis",
+        "pattern": "from deepeval import evaluate|from deepeval\\.metrics import HallucinationMetric|import garak|garak\\.probes",
+        "strength": 0.9,
+        "maps_to": [
+          "ai_safety_ethics_deployment.hallucination_detection_metrics",
+          "ai_safety_ethics_deployment.llm_security_red_teaming_garak"
+        ]
+      },
+      {
+        "signal": "LiteLLM Proxy or GPTCache semantic cache configuration",
+        "detection": "content_analysis",
+        "pattern": "litellm_settings|from gptcache import Cache|portkey|proxy_server",
+        "strength": 0.85,
+        "maps_to": [
+          "ai_safety_ethics_deployment.production_gateway_rate_limiting_litellm"
+        ]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "Implemented production LLM guardrails using NeMo Guardrails and Guardrails AI with PII anonymization via Presidio",
+        "strength": 0.9,
+        "maps_to": [
+          "ai_safety_ethics_deployment.guardrails_nemo_guardrails_ai",
+          "ai_safety_ethics_deployment.pii_masking_anonymization_presidio",
+          "ai_safety_ethics_deployment.prompt_injection_jailbreak_defense"
+        ]
+      },
+      {
+        "signal": "Established enterprise LLM observability with Langfuse and automated red-teaming security scans with Garak/DeepEval",
+        "strength": 0.9,
+        "maps_to": [
+          "ai_safety_ethics_deployment.llm_observability_tracing_langfuse",
+          "ai_safety_ethics_deployment.llm_security_red_teaming_garak",
+          "ai_safety_ethics_deployment.hallucination_detection_metrics"
+        ]
+      },
+      {
+        "signal": "Managed EU AI Act compliance, DPO alignment, and deployed LiteLLM proxy gateways with semantic caching",
+        "strength": 0.85,
+        "maps_to": [
+          "ai_safety_ethics_deployment.eu_ai_act_compliance_governance",
+          "ai_safety_ethics_deployment.model_alignment_rlhf_dpo_ethics",
+          "ai_safety_ethics_deployment.production_gateway_rate_limiting_litellm"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "AI Safety, LLM Guardrails, Langfuse, or AI Ethics endorsed",
+        "strength": 0.5,
+        "maps_to": [
+          "ai_safety_ethics_deployment.guardrails_nemo_guardrails_ai",
+          "ai_safety_ethics_deployment.llm_observability_tracing_langfuse"
+        ]
+      },
+      {
+        "signal": "Job experience describing automated LLM red-teaming, EU AI Act compliance, or LiteLLM proxy architectures",
+        "strength": 0.85,
+        "maps_to": [
+          "ai_safety_ethics_deployment.llm_security_red_teaming_garak",
+          "ai_safety_ethics_deployment.eu_ai_act_compliance_governance",
+          "ai_safety_ethics_deployment.production_gateway_rate_limiting_litellm"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "prompt_injection_jailbreak_defense",
+        "llm_observability_tracing_langfuse",
+        "pii_masking_anonymization_presidio"
+      ],
+      "description": "Defends against basic prompt injections, integrates Langfuse tracing for token/cost monitoring, and masks PII with Presidio."
+    },
+    "mid": {
+      "expected_subskills": [
+        "guardrails_nemo_guardrails_ai",
+        "hallucination_detection_metrics",
+        "llm_security_red_teaming_garak"
+      ],
+      "description": "Configures NeMo/Guardrails AI safety rails, detects hallucinations with DeepEval/SelfCheckGPT, and runs automated Garak red-teaming."
+    },
+    "senior": {
+      "expected_subskills": [
+        "model_alignment_rlhf_dpo_ethics",
+        "eu_ai_act_compliance_governance",
+        "production_gateway_rate_limiting_litellm"
+      ],
+      "description": "Guides DPO/RLHF alignment & fairness, governs EU AI Act compliance audits, and scales LiteLLM AI gateway infrastructure."
+    }
+  }
+}

@@ -1,0 +1,249 @@
+{
+  "skill_id": "ai_rag_implementation",
+  "name": "Retrieval-Augmented Generation (RAG) Architecture",
+  "category": "ai_core",
+  "description": "End-to-end Retrieval-Augmented Generation (RAG) architectures, document parsing/chunking pipelines, semantic chunking, multi-stage retrieval, re-ranking (Cross-Encoders, Cohere Rerank), query transformations (HyDE, Multi-Query), GraphRAG, and RAG evaluation (RAGAS, TruLens). ÖNEMLİ AYRIM: Data Analyst'in ML'i tahmine dayalı klasik modelleme (regresyon, sınıflandırma, kümeleme) ve büyük veri işlemedir; AI Engineer, üretken/büyük dil modellerini (LLM) uygulamalara RAG, agent ve prompt engineering yoluyla entegre etme disiplinidir — farklı matematiksel temel, farklı araç seti, farklı problem sınıfı.",
+  "subskills": [
+    {
+      "id": "document_parsing_chunking_strategies",
+      "name": "Document Parsing & Fixed-Size Chunking",
+      "description": "Ingesting and parsing heterogeneous documents (PDF, Markdown, DOCX, HTML) using Unstructured, PyMuPDF, or LlamaParse, applying fixed-size chunking with sliding window overlap, and enriching metadata.",
+      "keywords": [
+        "document parsing",
+        "PyMuPDF / pdfplumber",
+        "LlamaParse",
+        "fixed-size chunking",
+        "chunk_overlap",
+        "metadata extraction",
+        "CharacterTextSplitter"
+      ]
+    },
+    {
+      "id": "basic_rag_pipeline_langchain_llamaindex",
+      "name": "Baseline RAG Pipelines (LangChain & LlamaIndex)",
+      "description": "Building baseline RAG pipelines using LangChain (create_retrieval_chain, LCEL) and LlamaIndex (VectorStoreIndex, QueryEngine, RetrieverQueryEngine) connecting retriever to LLM generator.",
+      "keywords": [
+        "LangChain LCEL",
+        "create_retrieval_chain",
+        "LlamaIndex VectorStoreIndex",
+        "QueryEngine",
+        "VectorIndexRetriever",
+        "RetrievalQA",
+        "context prompt pipeline"
+      ]
+    },
+    {
+      "id": "context_stuffing_citation_generation",
+      "name": "Context Assembly & Citation Footnoting",
+      "description": "Assembling retrieved chunks into context windows, generating verified citation footnotes with source document metadata, and handling out-of-domain / ungrounded query fallback responses.",
+      "keywords": [
+        "citation generation",
+        "source attribution",
+        "context stuffing",
+        "fallback 'I don't know' response",
+        "grounded answers",
+        "metadata source tracking"
+      ]
+    },
+    {
+      "id": "semantic_recursive_chunking",
+      "name": "Semantic & Hierarchical Parent-Document Chunking",
+      "description": "Implementing advanced chunking techniques: RecursiveCharacterTextSplitter, Semantic Chunking (split by embedding distance threshold), and Hierarchical / ParentDocumentRetriever (small chunk for retrieval, large chunk for generation).",
+      "keywords": [
+        "RecursiveCharacterTextSplitter",
+        "SemanticChunker",
+        "ParentDocumentRetriever",
+        "hierarchical chunking",
+        "summary index retrieval",
+        "sentence boundary splitting"
+      ]
+    },
+    {
+      "id": "query_transformation_hyde_multiquery",
+      "name": "Query Transformation (HyDE, Multi-Query & Step-Back)",
+      "description": "Formulating query transformations: Hypothetical Document Embeddings (HyDE), Multi-Query expansion with LLMs, Step-Back prompting, and sub-question decomposition.",
+      "keywords": [
+        "Hypothetical Document Embeddings (HyDE)",
+        "MultiQueryRetriever",
+        "Step-Back prompting",
+        "sub-question query engine",
+        "query rewriting",
+        "query expansion"
+      ]
+    },
+    {
+      "id": "reranking_cross_encoders",
+      "name": "Multi-Stage Retrieval & Cross-Encoder Re-ranking",
+      "description": "Implementing two-stage retrieval architectures: initial high-recall vector search followed by Cross-Encoder re-ranking (Cohere Rerank, BGE-Reranker, FlashRank) to filter irrelevant chunks.",
+      "keywords": [
+        "cross-encoder reranker",
+        "Cohere Rerank API",
+        "BGE-Reranker",
+        "FlashRank",
+        "two-stage retrieval",
+        "re-ranking top-k precision",
+        "ContextualCompressionRetriever"
+      ]
+    },
+    {
+      "id": "graph_rag_knowledge_graphs",
+      "name": "GraphRAG & Knowledge Graph Augmented Retrieval",
+      "description": "Constructing GraphRAG architectures: automated entity/relationship extraction from text with LLMs, Neo4j / NetworkX graph storage, community detection, and multi-hop graph traversal retrieval.",
+      "keywords": [
+        "GraphRAG",
+        "Knowledge Graph RAG",
+        "Neo4j Cypher query",
+        "entity-relation extraction",
+        "community summarization",
+        "multi-hop graph reasoning",
+        "NetworkX"
+      ]
+    },
+    {
+      "id": "agentic_corrective_rag_crag_self_rag",
+      "name": "Agentic, Corrective (CRAG) & Self-RAG Architectures",
+      "description": "Architecting dynamic RAG loops with agentic decision-making: Corrective RAG (CRAG) with confidence thresholding, Self-RAG (self-reflection on relevance/groundedness), and web search fallback (Tavily/SerpAPI).",
+      "keywords": [
+        "Corrective RAG (CRAG)",
+        "Self-RAG",
+        "reflection tokens",
+        "Adaptive RAG routing",
+        "Tavily web search fallback",
+        "agentic retrieval loop",
+        "retrieval self-correction"
+      ]
+    },
+    {
+      "id": "rag_evaluation_ragas_trulens",
+      "name": "RAG Evaluation Frameworks (RAGAS & TruLens)",
+      "description": "Evaluating RAG pipelines quantitatively using RAGAS and TruLens: Faithfulness, Answer Relevance, Context Precision, Context Recall, Context Entities Score, and synthetic test set generation.",
+      "keywords": [
+        "RAGAS framework",
+        "TruLens RAG Triad",
+        "faithfulness metric",
+        "answer_relevancy",
+        "context_precision",
+        "context_recall",
+        "synthetic test generation (TestsetGenerator)"
+      ]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "LangChain or LlamaIndex RAG retrieval pipeline and chain composition",
+        "detection": "content_analysis",
+        "pattern": "create_retrieval_chain|RetrievalQA\\.from_chain_type|VectorStoreIndex\\.from_documents|as_query_engine\\(|ContextualCompressionRetriever",
+        "strength": 0.85,
+        "maps_to": [
+          "ai_rag_implementation.basic_rag_pipeline_langchain_llamaindex",
+          "ai_rag_implementation.document_parsing_chunking_strategies",
+          "ai_rag_implementation.context_stuffing_citation_generation"
+        ]
+      },
+      {
+        "signal": "Cohere reranking, cross-encoder, or ParentDocumentRetriever implementation",
+        "detection": "content_analysis",
+        "pattern": "CohereRerank|from sentence_transformers import CrossEncoder|ParentDocumentRetriever|SemanticChunker|RecursiveCharacterTextSplitter",
+        "strength": 0.9,
+        "maps_to": [
+          "ai_rag_implementation.reranking_cross_encoders",
+          "ai_rag_implementation.semantic_recursive_chunking"
+        ]
+      },
+      {
+        "signal": "RAGAS or TruLens RAG evaluation evaluation scripts",
+        "detection": "content_analysis",
+        "pattern": "from ragas import evaluate|from ragas\\.metrics import faithfulness|from trulens_eval import TruChain|TestsetGenerator",
+        "strength": 0.95,
+        "maps_to": [
+          "ai_rag_implementation.rag_evaluation_ragas_trulens"
+        ]
+      },
+      {
+        "signal": "GraphRAG or Corrective RAG (CRAG) pipeline implementation",
+        "detection": "content_analysis",
+        "pattern": "from langchain_community\\.graphs import Neo4jGraph|GraphRAG|crag|self_rag",
+        "strength": 0.9,
+        "maps_to": [
+          "ai_rag_implementation.graph_rag_knowledge_graphs",
+          "ai_rag_implementation.agentic_corrective_rag_crag_self_rag"
+        ]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "Architected enterprise RAG systems with hybrid search, Cohere re-ranking, and Parent-Document retrieval",
+        "strength": 0.9,
+        "maps_to": [
+          "ai_rag_implementation.basic_rag_pipeline_langchain_llamaindex",
+          "ai_rag_implementation.semantic_recursive_chunking",
+          "ai_rag_implementation.reranking_cross_encoders"
+        ]
+      },
+      {
+        "signal": "Built Corrective RAG (CRAG) and GraphRAG knowledge graphs with automated RAGAS evaluation pipelines",
+        "strength": 0.9,
+        "maps_to": [
+          "ai_rag_implementation.agentic_corrective_rag_crag_self_rag",
+          "ai_rag_implementation.graph_rag_knowledge_graphs",
+          "ai_rag_implementation.rag_evaluation_ragas_trulens"
+        ]
+      },
+      {
+        "signal": "Implemented query expansion with HyDE, Multi-Query, and dynamic source citation attribution",
+        "strength": 0.85,
+        "maps_to": [
+          "ai_rag_implementation.query_transformation_hyde_multiquery",
+          "ai_rag_implementation.context_stuffing_citation_generation",
+          "ai_rag_implementation.document_parsing_chunking_strategies"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "RAG (Retrieval-Augmented Generation), LangChain, or LlamaIndex endorsed",
+        "strength": 0.5,
+        "maps_to": [
+          "ai_rag_implementation.basic_rag_pipeline_langchain_llamaindex",
+          "ai_rag_implementation.document_parsing_chunking_strategies"
+        ]
+      },
+      {
+        "signal": "Job experience describing RAGAS evaluation, GraphRAG, re-ranking pipelines, or semantic chunking",
+        "strength": 0.85,
+        "maps_to": [
+          "ai_rag_implementation.rag_evaluation_ragas_trulens",
+          "ai_rag_implementation.graph_rag_knowledge_graphs",
+          "ai_rag_implementation.reranking_cross_encoders"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "document_parsing_chunking_strategies",
+        "basic_rag_pipeline_langchain_llamaindex",
+        "context_stuffing_citation_generation"
+      ],
+      "description": "Parses documents with fixed-size chunks, builds baseline RAG pipelines in LangChain/LlamaIndex, and injects verified citations."
+    },
+    "mid": {
+      "expected_subskills": [
+        "semantic_recursive_chunking",
+        "query_transformation_hyde_multiquery",
+        "reranking_cross_encoders"
+      ],
+      "description": "Implements semantic and parent-document chunking, applies HyDE query rewriting, and integrates Cross-Encoder/Cohere re-ranking."
+    },
+    "senior": {
+      "expected_subskills": [
+        "graph_rag_knowledge_graphs",
+        "agentic_corrective_rag_crag_self_rag",
+        "rag_evaluation_ragas_trulens"
+      ],
+      "description": "Architects GraphRAG knowledge graphs, implements self-correcting agentic RAG (CRAG), and benchmarks faithfulness via RAGAS/TruLens."
+    }
+  }
+}

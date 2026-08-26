@@ -1,0 +1,256 @@
+{
+  "skill_id": "ai_open_source_models",
+  "name": "Open-Source Models, Ecosystem & Self-Hosting",
+  "category": "ai_core",
+  "description": "Modern open-weights foundation model ecosystem (Llama 3, DeepSeek-V3/R1 MoE, Qwen 2.5, Mistral), Hugging Face Hub & model card governance, open-weight licensing models (Apache 2.0 vs Llama Community), open vs proprietary TCO/data sovereignty trade-offs, local desktop & edge inference (Ollama, llama.cpp, GGUF, MLX), practical open fine-tuning toolchains (Unsloth, Axolotl, TRL), advanced post-training quantization (AWQ, GPTQ, EXL2, FP8), and enterprise high-throughput self-hosted serving clusters (vLLM PagedAttention, TGI, TensorRT-LLM).",
+  "subskills": [
+    {
+      "id": "huggingface_hub_ecosystem",
+      "name": "Hugging Face Hub, Model Repositories & Model Cards",
+      "description": "Navigating and utilizing Hugging Face Hub: model repositories, dataset loading, Model Cards, Hub API, git-lfs checkpoints, Spaces, and transformers pipeline/AutoModel integration.",
+      "keywords": [
+        "Hugging Face Hub",
+        "huggingface_hub API",
+        "Model Cards",
+        "hf datasets",
+        "snapshot_download",
+        "model repository structure",
+        "Inference Endpoints",
+        "AutoModelForCausalLM",
+        "git-lfs weights"
+      ]
+    },
+    {
+      "id": "open_model_licensing_governance",
+      "name": "Open-Weight Licensing & Usage Governance",
+      "description": "Understanding open-source vs open-weights licensing models: permissive licenses (Apache 2.0, MIT) versus restricted community licenses (Llama 3 Community License, DeepSeek License, Qwen License, commercial threshold restrictions, downstream derivative governance).",
+      "keywords": [
+        "Apache 2.0 license",
+        "MIT license",
+        "Llama 3 Community License",
+        "commercial user threshold (700M MAU)",
+        "open-weights vs open-source",
+        "model attribution",
+        "acceptable use policy (AUP)",
+        "synthetic data distillation restrictions"
+      ]
+    },
+    {
+      "id": "open_vs_proprietary_tradeoffs",
+      "name": "Open-Weight vs Proprietary Model Trade-Off & TCO Analysis",
+      "description": "Evaluating total cost of ownership (TCO: GPU hardware amortization, electricity, ops overhead vs token pricing), data sovereignty/privacy compliance (GDPR, HIPAA, on-prem isolation), latency SLAs, vendor lock-in mitigation, and customization feasibility.",
+      "keywords": [
+        "TCO (Total Cost of Ownership)",
+        "data sovereignty / GDPR compliance",
+        "on-premise isolation / air-gapped",
+        "GPU capital expenditure (CapEx) vs OpEx",
+        "vendor lock-in mitigation",
+        "SLA guarantee vs self-hosted reliability",
+        "customization flexibility"
+      ]
+    },
+    {
+      "id": "open_weight_model_families",
+      "name": "Open-Weight Model Architectures (Llama, DeepSeek, Qwen, Mistral)",
+      "description": "Architecture paradigms and trade-offs across modern open-weight families: Meta Llama 3.x, DeepSeek-V3/R1 (Multi-Head Latent Attention - MLA, DeepSeekMoE, reasoning tokens), Alibaba Qwen 2.5, Mistral/Mixtral sparse Mixture-of-Experts (MoE), Gemma, and Phi.",
+      "keywords": [
+        "Meta Llama 3.x",
+        "DeepSeek-V3 / DeepSeek-R1",
+        "Multi-Head Latent Attention (MLA)",
+        "Mixture of Experts (MoE)",
+        "Qwen 2.5 series",
+        "Mistral / Mixtral 8x7B / 8x22B",
+        "Gemma 2",
+        "router gate load balancing"
+      ]
+    },
+    {
+      "id": "local_desktop_edge_runtime",
+      "name": "Local Desktop & Edge Model Runtimes (Ollama, llama.cpp, GGUF, MLX)",
+      "description": "Running quantized open models locally on developer machines and edge hardware: Ollama CLI/server API, llama.cpp C/C++ engine, GGUF file format conversion, Apple Silicon unified memory acceleration with MLX, and LM Studio.",
+      "keywords": [
+        "Ollama local CLI/server",
+        "llama.cpp engine",
+        "GGUF format",
+        "Modelfile customization",
+        "Apple Silicon MLX framework",
+        "CPU/GPU layer offloading (-ngl)",
+        "LM Studio",
+        "edge device deployment"
+      ]
+    },
+    {
+      "id": "open_model_finetuning_recipes",
+      "name": "Open Model Fine-Tuning Frameworks (Axolotl, Unsloth & TRL)",
+      "description": "Practical fine-tuning toolchains for open-weights models: Unsloth fast Triton kernels, Axolotl declarative YAML configurations, HuggingFace TRL (SFTTrainer/DPOTrainer), dataset format preparation (Alpaca, ShareGPT, ChatML).",
+      "keywords": [
+        "Unsloth fast LoRA/QLoRA",
+        "Axolotl YAML recipes",
+        "HuggingFace TRL (SFTTrainer)",
+        "ChatML format",
+        "ShareGPT dataset formatting",
+        "Triton GPU kernels",
+        "gradient accumulation & checkpointing",
+        "custom tokenizer padding tokens"
+      ]
+    },
+    {
+      "id": "model_quantization_awq_gptq_exl2",
+      "name": "Production Model Quantization (AWQ, GPTQ, EXL2 & BitsAndBytes)",
+      "description": "Post-training quantization (PTQ) techniques for open-weights serving: AWQ (Activation-aware Weight Quantization), GPTQ second-order calibration, EXL2 high-speed inference format, FP8 / INT4 precision calibration, and perplexity degradation testing.",
+      "keywords": [
+        "AWQ (Activation-aware Weight Quantization)",
+        "GPTQ calibration dataset",
+        "EXL2 format",
+        "FP8 E4M3/E5M2 precision",
+        "bitsandbytes NF4/INT8",
+        "quantization perplexity loss",
+        "Tensor Core INT4/FP8 GEMM acceleration"
+      ]
+    },
+    {
+      "id": "enterprise_open_serving_vllm",
+      "name": "Enterprise High-Throughput Open Model Serving (vLLM, TGI & TensorRT-LLM)",
+      "description": "Architecting production-grade, distributed open-source model serving clusters: vLLM engine with PagedAttention and continuous batching, HuggingFace TGI, NVIDIA TensorRT-LLM, multi-GPU Tensor Parallelism (TP), chunked prefill, and OpenAI-compatible API endpoints.",
+      "keywords": [
+        "vLLM serving engine",
+        "PagedAttention memory paging",
+        "Continuous Batching / iteration-level scheduling",
+        "HuggingFace TGI (Text Generation Inference)",
+        "NVIDIA TensorRT-LLM",
+        "Tensor Parallelism (TP) NCCL",
+        "Chunked Prefill",
+        "OpenAI-compatible vLLM server"
+      ]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "Hugging Face Hub API, Model Cards, or snapshot downloads",
+        "detection": "content_analysis",
+        "pattern": "from huggingface_hub import|snapshot_download|hf_hub_download|AutoModelForCausalLM\\.from_pretrained|AutoTokenizer\\.from_pretrained",
+        "strength": 0.85,
+        "maps_to": [
+          "ai_open_source_models.huggingface_hub_ecosystem",
+          "ai_open_source_models.open_weight_model_families"
+        ]
+      },
+      {
+        "signal": "Ollama API, llama.cpp GGUF loading, or MLX Apple Silicon scripts",
+        "detection": "content_analysis",
+        "pattern": "import ollama|ollama\\.chat|ollama\\.generate|llama_cpp|Llama\\(model_path|from mlx_lm import",
+        "strength": 0.9,
+        "maps_to": [
+          "ai_open_source_models.local_desktop_edge_runtime"
+        ]
+      },
+      {
+        "signal": "Unsloth, Axolotl, or HuggingFace TRL fine-tuning scripts and recipes",
+        "detection": "content_analysis",
+        "pattern": "from unsloth import FastLanguageModel|import axolotl|from trl import SFTTrainer, DPOTrainer|SFTConfig",
+        "strength": 0.9,
+        "maps_to": [
+          "ai_open_source_models.open_model_finetuning_recipes"
+        ]
+      },
+      {
+        "signal": "AWQ or AutoGPTQ quantization scripts and calibration runs",
+        "detection": "content_analysis",
+        "pattern": "from awq import AutoAWQForCausalLM|from auto_gptq import AutoGPTQForCausalLM|BitsAndBytesConfig",
+        "strength": 0.9,
+        "maps_to": [
+          "ai_open_source_models.model_quantization_awq_gptq_exl2"
+        ]
+      },
+      {
+        "signal": "vLLM or TGI high-throughput production serving configuration",
+        "detection": "content_analysis",
+        "pattern": "from vllm import LLM, SamplingParams|AsyncLLMEngine|vllm serve|--tensor-parallel-size",
+        "strength": 0.95,
+        "maps_to": [
+          "ai_open_source_models.enterprise_open_serving_vllm"
+        ]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "Architected and maintained high-throughput enterprise LLM serving clusters with vLLM PagedAttention and multi-GPU tensor parallelism",
+        "strength": 0.95,
+        "maps_to": [
+          "ai_open_source_models.enterprise_open_serving_vllm",
+          "ai_open_source_models.model_quantization_awq_gptq_exl2"
+        ]
+      },
+      {
+        "signal": "Fine-tuned open-weights models (Llama 3, DeepSeek, Qwen) using Unsloth, Axolotl, and HuggingFace TRL for domain-specific tasks",
+        "strength": 0.9,
+        "maps_to": [
+          "ai_open_source_models.open_model_finetuning_recipes",
+          "ai_open_source_models.open_weight_model_families"
+        ]
+      },
+      {
+        "signal": "Deployed quantized models locally and on edge hardware with Ollama, llama.cpp (GGUF), and Apple Silicon MLX",
+        "strength": 0.85,
+        "maps_to": [
+          "ai_open_source_models.local_desktop_edge_runtime",
+          "ai_open_source_models.model_quantization_awq_gptq_exl2"
+        ]
+      },
+      {
+        "signal": "Conducted TCO, data sovereignty, and open-weights licensing analyses (Apache 2.0 vs Llama Community) for private on-prem AI migration",
+        "strength": 0.85,
+        "maps_to": [
+          "ai_open_source_models.open_vs_proprietary_tradeoffs",
+          "ai_open_source_models.open_model_licensing_governance",
+          "ai_open_source_models.huggingface_hub_ecosystem"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Open Source AI, Hugging Face, Ollama, vLLM, or Llama endorsed",
+        "strength": 0.5,
+        "maps_to": [
+          "ai_open_source_models.huggingface_hub_ecosystem",
+          "ai_open_source_models.local_desktop_edge_runtime"
+        ]
+      },
+      {
+        "signal": "Job experience deploying open-weights models with vLLM, fine-tuning via Unsloth/Axolotl, or on-prem LLM architectures",
+        "strength": 0.85,
+        "maps_to": [
+          "ai_open_source_models.enterprise_open_serving_vllm",
+          "ai_open_source_models.open_model_finetuning_recipes",
+          "ai_open_source_models.open_weight_model_families"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "huggingface_hub_ecosystem",
+        "open_model_licensing_governance",
+        "open_vs_proprietary_tradeoffs"
+      ],
+      "description": "Utilizes Hugging Face Hub, evaluates open-weights licensing (Apache 2.0 vs Llama Community), and assesses TCO/privacy trade-offs."
+    },
+    "mid": {
+      "expected_subskills": [
+        "open_weight_model_families",
+        "local_desktop_edge_runtime",
+        "open_model_finetuning_recipes"
+      ],
+      "description": "Runs local models with Ollama/llama.cpp (GGUF), understands open model architectures (Llama, DeepSeek MoE), and fine-tunes via Unsloth/Axolotl."
+    },
+    "senior": {
+      "expected_subskills": [
+        "model_quantization_awq_gptq_exl2",
+        "enterprise_open_serving_vllm"
+      ],
+      "description": "Architects high-throughput vLLM serving clusters (PagedAttention, tensor parallelism) and executes post-training quantization (AWQ/GPTQ/FP8)."
+    }
+  }
+}

@@ -1,0 +1,238 @@
+{
+  "skill_id": "ai_llm_fundamentals",
+  "name": "Large Language Model Fundamentals & Architecture",
+  "category": "ai_core",
+  "description": "Foundation models, transformer architectures, tokenization, pre-training vs fine-tuning (LoRA, QLoRA, PEFT), inference mechanics, sampling parameters, context windows, and quantitative evaluation benchmarks. ÖNEMLİ AYRIM: Data Analyst'in ML'i tahmine dayalı klasik modelleme (regresyon, sınıflandırma, kümeleme) ve büyük veri işlemedir; AI Engineer, üretken/büyük dil modellerini (LLM) uygulamalara RAG, agent ve prompt engineering yoluyla entegre etme disiplinidir — farklı matematiksel temel, farklı araç seti, farklı problem sınıfı.",
+  "subskills": [
+    {
+      "id": "tokenization_bpe_sentencepiece",
+      "name": "Tokenization Algorithms & Token Economics",
+      "description": "Understanding subword tokenization algorithms (Byte-Pair Encoding, WordPiece, SentencePiece, tiktoken), token-to-word ratios across languages, context window consumption, and token cost modeling.",
+      "keywords": [
+        "tokenization",
+        "Byte-Pair Encoding (BPE)",
+        "tiktoken",
+        "SentencePiece",
+        "token-to-word ratio",
+        "context limit budget",
+        "cl100k_base",
+        "o200k_base"
+      ]
+    },
+    {
+      "id": "llm_inference_sampling_parameters",
+      "name": "LLM Sampling Parameters & Generation Control",
+      "description": "Controlling LLM output generation using hyperparameters: temperature, top-p (nucleus sampling), top-k, frequency penalty, presence penalty, stop sequences, and logit bias.",
+      "keywords": [
+        "temperature",
+        "top_p / nucleus sampling",
+        "top_k",
+        "frequency_penalty",
+        "presence_penalty",
+        "stop sequences",
+        "logit_bias",
+        "deterministic decoding (greedy)"
+      ]
+    },
+    {
+      "id": "foundation_models_api_integration",
+      "name": "Foundation Model SDKs & Multi-Provider API Integration",
+      "description": "Consuming proprietary LLM APIs (OpenAI, Anthropic Claude, Google Gemini) using official SDKs, streaming completions (SSE), rate limiting, exponential backoff, and unified wrappers (LiteLLM).",
+      "keywords": [
+        "OpenAI API",
+        "Anthropic Claude SDK",
+        "Google GenerativeAI",
+        "LiteLLM client",
+        "streaming completions (SSE)",
+        "model fallback routing",
+        "exponential backoff",
+        "rate limit handling"
+      ]
+    },
+    {
+      "id": "transformer_architecture_attention",
+      "name": "Transformer Architecture, Self-Attention & KV Cache",
+      "description": "Inner mechanics of decoder-only transformer models: self-attention, multi-head attention (MHA), grouped-query attention (GQA), rotary positional embeddings (RoPE), KV cache memory dynamics, and FLOPs scaling.",
+      "keywords": [
+        "self-attention mechanism",
+        "Grouped-Query Attention (GQA)",
+        "Multi-Head Attention (MHA)",
+        "Rotary Position Embedding (RoPE)",
+        "KV cache memory sizing",
+        "decoder-only architecture"
+      ]
+    },
+    {
+      "id": "fine_tuning_peft_lora_qlora",
+      "name": "Parameter-Efficient Fine-Tuning (PEFT, LoRA & QLoRA)",
+      "description": "Supervised fine-tuning (SFT) mathematical theory and mechanics: low-rank adaptation decomposition (ΔW = B·A), rank (r) and alpha (α) scaling, QLoRA 4-bit NormalFloat (NF4), double quantization, and adapter merging.",
+      "keywords": [
+        "PEFT",
+        "LoRA (Low-Rank Adaptation)",
+        "QLoRA",
+        "low-rank decomposition (B·A)",
+        "NF4 quantization theory",
+        "lora_rank / lora_alpha",
+        "adapter weights merging",
+        "gradient checkpointing"
+      ]
+    },
+    {
+      "id": "structured_outputs_json_schema",
+      "name": "Structured Outputs, JSON Schema & Instructor",
+      "description": "Enforcing deterministic structured JSON output from LLMs using JSON Schema response formats, Pydantic models, Instructor library, and Outlines constrained grammar decoding.",
+      "keywords": [
+        "structured outputs",
+        "response_format json_schema",
+        "Pydantic response validation",
+        "Instructor library",
+        "Outlines grammar constraint",
+        "strict mode schema",
+        "function calling structured output"
+      ]
+    },
+    {
+      "id": "context_window_scaling_techniques",
+      "name": "Context Window Scaling & Long-Context Dynamics",
+      "description": "Long-context LLM mechanics: FlashAttention-2/3, context window extension (YaRN, RoPE interpolation), Needle-In-A-Haystack (NIAH) retrieval degradation, and lost-in-the-middle positioning effects.",
+      "keywords": [
+        "FlashAttention-2",
+        "FlashAttention-3",
+        "Needle In A Haystack (NIAH)",
+        "lost-in-the-middle phenomenon",
+        "RoPE scaling / YaRN",
+        "effective context length",
+        "context compression"
+      ]
+    },
+    {
+      "id": "model_evaluation_benchmarks_metrics",
+      "name": "LLM Evaluation Benchmarks & Quantitative Quality Metrics",
+      "description": "Evaluating model capabilities using standardized benchmarks (MMLU, GSM8K, HumanEval, MT-Bench, Chatbot Arena Elo), automated metrics (Perplexity, BLEU, ROUGE, exact match), and LLM-as-a-judge statistical bias mitigation.",
+      "keywords": [
+        "MMLU benchmark",
+        "GSM8K math reasoning",
+        "HumanEval code benchmark",
+        "Chatbot Arena Elo rating",
+        "Perplexity (PPL)",
+        "LLM-as-a-judge evaluation",
+        "MT-Bench multi-turn evaluation",
+        "win-rate statistical significance"
+      ]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "OpenAI, Anthropic, or LiteLLM SDK client usage and streaming completions",
+        "detection": "content_analysis",
+        "pattern": "from (openai|anthropic|litellm) import|OpenAI\\(|Anthropic\\(|completion\\(|ChatOpenAI\\(|stream=True",
+        "strength": 0.8,
+        "maps_to": [
+          "ai_llm_fundamentals.foundation_models_api_integration",
+          "ai_llm_fundamentals.llm_inference_sampling_parameters"
+        ]
+      },
+      {
+        "signal": "Instructor or Pydantic structured output extraction and JSON schema enforcement",
+        "detection": "content_analysis",
+        "pattern": "instructor\\.from_openai|instructor\\.patch|response_format=\\{\"type\": \"json_object\"\\}|response_model=|class .*\\(BaseModel\\):",
+        "strength": 0.85,
+        "maps_to": [
+          "ai_llm_fundamentals.structured_outputs_json_schema"
+        ]
+      },
+      {
+        "signal": "PEFT or LoRA configuration and low-rank adapter training code",
+        "detection": "content_analysis",
+        "pattern": "from peft import LoraConfig|get_peft_model|prepare_model_for_kbit_training|LoraConfig\\(",
+        "strength": 0.9,
+        "maps_to": [
+          "ai_llm_fundamentals.fine_tuning_peft_lora_qlora"
+        ]
+      },
+      {
+        "signal": "Benchmark evaluation scripts and perplexity or accuracy measurement",
+        "detection": "content_analysis",
+        "pattern": "lm_eval|evaluate_perplexity|torch\\.exp\\(loss\\)|mmlu_eval|mt_bench|calculate_win_rate",
+        "strength": 0.85,
+        "maps_to": [
+          "ai_llm_fundamentals.model_evaluation_benchmarks_metrics",
+          "ai_llm_fundamentals.context_window_scaling_techniques"
+        ]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "Evaluated foundation models using standard benchmarks (MMLU, GSM8K, MT-Bench) and automated LLM-as-a-judge pipelines",
+        "strength": 0.85,
+        "maps_to": [
+          "ai_llm_fundamentals.model_evaluation_benchmarks_metrics",
+          "ai_llm_fundamentals.structured_outputs_json_schema"
+        ]
+      },
+      {
+        "signal": "Implemented mathematical parameter-efficient fine-tuning (LoRA/QLoRA) and long-context FlashAttention scaling",
+        "strength": 0.9,
+        "maps_to": [
+          "ai_llm_fundamentals.fine_tuning_peft_lora_qlora",
+          "ai_llm_fundamentals.transformer_architecture_attention",
+          "ai_llm_fundamentals.context_window_scaling_techniques"
+        ]
+      },
+      {
+        "signal": "Integrated multi-provider LLM pipelines (OpenAI, Anthropic Claude, Gemini) with LiteLLM and token optimization",
+        "strength": 0.8,
+        "maps_to": [
+          "ai_llm_fundamentals.foundation_models_api_integration",
+          "ai_llm_fundamentals.tokenization_bpe_sentencepiece",
+          "ai_llm_fundamentals.llm_inference_sampling_parameters"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Large Language Models (LLM), OpenAI API, or Generative AI endorsed",
+        "strength": 0.5,
+        "maps_to": [
+          "ai_llm_fundamentals.foundation_models_api_integration",
+          "ai_llm_fundamentals.tokenization_bpe_sentencepiece"
+        ]
+      },
+      {
+        "signal": "Job experience describing LLM architecture research, transformer optimization, or prompt token economics",
+        "strength": 0.85,
+        "maps_to": [
+          "ai_llm_fundamentals.transformer_architecture_attention",
+          "ai_llm_fundamentals.fine_tuning_peft_lora_qlora",
+          "ai_llm_fundamentals.model_evaluation_benchmarks_metrics"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "tokenization_bpe_sentencepiece",
+        "llm_inference_sampling_parameters",
+        "foundation_models_api_integration"
+      ],
+      "description": "Understands tokenization economics and sampling hyperparameters, and integrates proprietary LLM APIs via standard SDKs."
+    },
+    "mid": {
+      "expected_subskills": [
+        "transformer_architecture_attention",
+        "fine_tuning_peft_lora_qlora",
+        "structured_outputs_json_schema"
+      ],
+      "description": "Applies PEFT/LoRA low-rank theory, understands attention mechanics and KV cache dynamics, and enforces strict structured outputs via Pydantic/Instructor."
+    },
+    "senior": {
+      "expected_subskills": [
+        "context_window_scaling_techniques",
+        "model_evaluation_benchmarks_metrics"
+      ],
+      "description": "Manages long-context FlashAttention scaling, evaluates models against MMLU/MT-Bench benchmarks, and mitigates LLM-as-a-judge evaluation bias."
+    }
+  }
+}

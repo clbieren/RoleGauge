@@ -1,0 +1,54 @@
+{
+  "role_id": "ai_engineer",
+  "level": "junior",
+  "title": "Junior AI Engineer",
+  "description": "Entry-level AI Engineer focused on integrating foundation model APIs, crafting dynamic prompt templates, exploring open-source models with Hugging Face and Ollama, setting up vector databases, and assembling baseline RAG pipelines with basic observability.",
+  "experience_range": "0-2 years",
+  "skills": [
+    {
+      "skill_id": "ai_llm_fundamentals",
+      "importance": 0.95,
+      "rationale": "Core understanding of tokenization, sampling hyperparameters, and API SDK consumption."
+    },
+    {
+      "skill_id": "ai_prompt_engineering",
+      "importance": 0.9,
+      "rationale": "Core ability to author few-shot prompts, dynamic Jinja2 templates, and formatted outputs."
+    },
+    {
+      "skill_id": "ai_embeddings_vector_db",
+      "importance": 0.85,
+      "rationale": "Core vector generation, distance similarity calculations, and ChromaDB/FAISS storage."
+    },
+    {
+      "skill_id": "ai_rag_implementation",
+      "importance": 0.85,
+      "rationale": "Core document chunking, LangChain/LlamaIndex baseline retrieval chains, and citations."
+    },
+    {
+      "skill_id": "ai_open_source_models",
+      "importance": 0.8,
+      "rationale": "Understanding Hugging Face Hub, open-weights licensing vs proprietary APIs, and basic Ollama local setup."
+    },
+    {
+      "skill_id": "ai_safety_ethics_deployment",
+      "importance": 0.6,
+      "rationale": "Basic awareness of prompt injection, PII masking with Presidio, and Langfuse tracing."
+    },
+    {
+      "skill_id": "ai_agents_orchestration",
+      "importance": 0.55,
+      "rationale": "Basic understanding of function calling tool schemas and simple ReAct loops."
+    },
+    {
+      "skill_id": "ai_multimodal_applications",
+      "importance": 0.5,
+      "rationale": "Basic integration of vision LLMs and Whisper speech-to-text APIs."
+    }
+  ],
+  "scoring": {
+    "method": "weighted_average",
+    "description": "Standard weighted scoring evaluating junior AI engineering foundations.",
+    "thresholds": {}
+  }
+}

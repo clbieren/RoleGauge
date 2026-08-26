@@ -1,0 +1,248 @@
+{
+  "skill_id": "ai_multimodal_applications",
+  "name": "Multimodal AI & Vision-Language Applications",
+  "category": "ai_core",
+  "description": "Multimodal LLMs (GPT-4o, Claude 3.5 Sonnet, Gemini 1.5 Pro), vision-language processing, document OCR / visual understanding, audio/speech AI (Whisper, TTS, realtime voice APIs), image generation (Stable Diffusion, FLUX, DALL-E 3), video understanding, multimodal embeddings (CLIP), and ColPali visual RAG.",
+  "subskills": [
+    {
+      "id": "vision_llm_api_image_analysis",
+      "name": "Vision LLMs & Visual Question Answering",
+      "description": "Ingesting and analyzing images with Vision-Language Models (GPT-4o, Claude 3.5 Sonnet, Gemini 1.5 Pro, LLaVA) using Base64 encoding, high-detail image tiling, and visual reasoning.",
+      "keywords": [
+        "GPT-4o vision",
+        "Claude 3.5 Sonnet vision",
+        "base64 image payload",
+        "image_url type",
+        "detail: high/low",
+        "Visual Question Answering (VQA)",
+        "LLaVA"
+      ]
+    },
+    {
+      "id": "speech_to_text_whisper_integration",
+      "name": "Speech-to-Text Transcription (Whisper & Faster-Whisper)",
+      "description": "Transcribing audio streams and files using OpenAI Whisper and faster-whisper (CTranslate2): word-level timestamps, language detection, VAD chunking, and handling background noise.",
+      "keywords": [
+        "OpenAI Whisper API",
+        "faster-whisper",
+        "CTranslate2",
+        "word-level timestamps",
+        "voice activity detection (VAD)",
+        "audio chunking (pydub)",
+        "transcribe audio"
+      ]
+    },
+    {
+      "id": "text_to_speech_voice_synthesis",
+      "name": "Text-to-Speech & Voice Synthesis (ElevenLabs & OpenAI TTS)",
+      "description": "Synthesizing natural voice from text using ElevenLabs API and OpenAI TTS: voice cloning parameters, stability/clarity tuning, SSML formatting, and audio chunk streaming.",
+      "keywords": [
+        "ElevenLabs API",
+        "OpenAI TTS (tts-1-hd)",
+        "voice synthesis",
+        "streaming audio chunks",
+        "voice cloning",
+        "stability / similarity_boost",
+        "latency optimization"
+      ]
+    },
+    {
+      "id": "visual_document_understanding_ocr",
+      "name": "Visual Document Parsing & Table Extraction",
+      "description": "Extracting structured data, tables, and key-value fields from complex scanned PDF documents, invoices, and receipts using vision LLMs, bounding box coordinates, and visual layout understanding.",
+      "keywords": [
+        "visual document parsing",
+        "table extraction from image",
+        "invoice parsing VLM",
+        "bounding box coordinates [ymin, xmin, ymax, xmax]",
+        "receipt OCR with LLM",
+        "visual layout analysis"
+      ]
+    },
+    {
+      "id": "multimodal_embeddings_clip",
+      "name": "Cross-Modal Embeddings & Joint Search (CLIP & SigLIP)",
+      "description": "Computing joint text-image embeddings using CLIP (OpenAI / OpenCLIP) and SigLIP: calculating cross-modal cosine similarity, zero-shot image classification, and text-to-image semantic search.",
+      "keywords": [
+        "CLIP (Contrastive Language-Image Pretraining)",
+        "SigLIP",
+        "OpenCLIP",
+        "text-image similarity",
+        "cross-modal embeddings",
+        "zero-shot image classification"
+      ]
+    },
+    {
+      "id": "image_generation_sd_flux_dalle",
+      "name": "Programmatic Image Generation (FLUX, Stable Diffusion & DALL-E)",
+      "description": "Generating and editing images programmatically using DALL-E 3 API, HuggingFace Diffusers library (FLUX.1, Stable Diffusion XL), ControlNet conditioning, and inpainting masks.",
+      "keywords": [
+        "DALL-E 3 API",
+        "HuggingFace Diffusers",
+        "Stable Diffusion XL (SDXL)",
+        "FLUX.1 pipeline",
+        "ControlNet conditioning",
+        "inpainting / outpainting mask",
+        "prompt weighting"
+      ]
+    },
+    {
+      "id": "realtime_multimodal_voice_websocket",
+      "name": "Realtime Bidirectional Voice Streaming (WebSockets & WebRTC)",
+      "description": "Architecting low-latency, bidirectional audio streaming voice agents using OpenAI Realtime API (WebSockets), WebRTC, client-side Voice Activity Detection (VAD), and turn-taking interrupt handling.",
+      "keywords": [
+        "OpenAI Realtime API",
+        "WebSocket audio streaming",
+        "WebRTC audio channel",
+        "server-side VAD (voice activity detection)",
+        "low-latency audio response",
+        "turn-taking interruption"
+      ]
+    },
+    {
+      "id": "video_understanding_temporal_reasoning",
+      "name": "Video Understanding & Temporal Event Reasoning",
+      "description": "Processing video inputs for LLMs: frame extraction algorithms (uniform sampling, scene-change detection), Gemini 1.5 Pro native video ingestion, audio transcript synchronization, and temporal event detection.",
+      "keywords": [
+        "video understanding",
+        "Gemini 1.5 Pro video upload",
+        "frame sampling (cv2.VideoCapture)",
+        "scene change detection",
+        "temporal event timestamping",
+        "audio-video multimodal fusion"
+      ]
+    },
+    {
+      "id": "multimodal_rag_colpali_visual_retrieval",
+      "name": "Visual Document RAG & ColPali Multi-Vector Indexing",
+      "description": "Implementing end-to-end OCR-free Multimodal RAG with ColPali (PaliGemma-based late interaction): embedding high-resolution page screenshot patches directly into multi-vector indexes for visual layout retrieval.",
+      "keywords": [
+        "ColPali",
+        "PaliGemma VLM",
+        "visual document RAG",
+        "OCR-free retrieval",
+        "page screenshot patch embedding",
+        "multi-vector visual retrieval",
+        "byaldi library"
+      ]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "Vision LLM API call with image payload (GPT-4o, Claude, or Gemini)",
+        "detection": "content_analysis",
+        "pattern": "\"type\": \"image_url\"|base64\\.b64encode|image/jpeg;base64|genai\\.upload_file|from diffusers import",
+        "strength": 0.85,
+        "maps_to": [
+          "ai_multimodal_applications.vision_llm_api_image_analysis",
+          "ai_multimodal_applications.visual_document_understanding_ocr",
+          "ai_multimodal_applications.image_generation_sd_flux_dalle"
+        ]
+      },
+      {
+        "signal": "Whisper audio transcription or ElevenLabs TTS synthesis code",
+        "detection": "content_analysis",
+        "pattern": "from faster_whisper import WhisperModel|openai\\.audio\\.transcriptions\\.create|from elevenlabs import|elevenlabs\\.generate",
+        "strength": 0.85,
+        "maps_to": [
+          "ai_multimodal_applications.speech_to_text_whisper_integration",
+          "ai_multimodal_applications.text_to_speech_voice_synthesis"
+        ]
+      },
+      {
+        "signal": "CLIP / OpenCLIP cross-modal embedding model loading and inference",
+        "detection": "content_analysis",
+        "pattern": "import open_clip|clip\\.load\\(|from transformers import CLIPProcessor, CLIPModel",
+        "strength": 0.9,
+        "maps_to": [
+          "ai_multimodal_applications.multimodal_embeddings_clip"
+        ]
+      },
+      {
+        "signal": "ColPali visual RAG or OpenAI Realtime API WebSocket client implementation",
+        "detection": "content_analysis",
+        "pattern": "from colpali_engine import|from byaldi import RAGMultiModalModel|wss://api\\.openai\\.com/v1/realtime|session\\.update.*voice",
+        "strength": 0.95,
+        "maps_to": [
+          "ai_multimodal_applications.multimodal_rag_colpali_visual_retrieval",
+          "ai_multimodal_applications.realtime_multimodal_voice_websocket",
+          "ai_multimodal_applications.video_understanding_temporal_reasoning"
+        ]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "Built multimodal applications integrating GPT-4o vision, Whisper STT, and ElevenLabs voice streaming",
+        "strength": 0.85,
+        "maps_to": [
+          "ai_multimodal_applications.vision_llm_api_image_analysis",
+          "ai_multimodal_applications.speech_to_text_whisper_integration",
+          "ai_multimodal_applications.text_to_speech_voice_synthesis"
+        ]
+      },
+      {
+        "signal": "Architected real-time WebSocket voice agents with OpenAI Realtime API and WebRTC low-latency streaming",
+        "strength": 0.9,
+        "maps_to": [
+          "ai_multimodal_applications.realtime_multimodal_voice_websocket",
+          "ai_multimodal_applications.video_understanding_temporal_reasoning"
+        ]
+      },
+      {
+        "signal": "Implemented OCR-free visual document RAG using ColPali and cross-modal search with CLIP embeddings",
+        "strength": 0.9,
+        "maps_to": [
+          "ai_multimodal_applications.multimodal_rag_colpali_visual_retrieval",
+          "ai_multimodal_applications.multimodal_embeddings_clip",
+          "ai_multimodal_applications.visual_document_understanding_ocr"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Multimodal AI, Computer Vision, Speech AI, or Whisper endorsed",
+        "strength": 0.5,
+        "maps_to": [
+          "ai_multimodal_applications.vision_llm_api_image_analysis",
+          "ai_multimodal_applications.speech_to_text_whisper_integration"
+        ]
+      },
+      {
+        "signal": "Job experience describing ColPali visual retrieval, Realtime Voice APIs, or CLIP embedding search",
+        "strength": 0.85,
+        "maps_to": [
+          "ai_multimodal_applications.multimodal_rag_colpali_visual_retrieval",
+          "ai_multimodal_applications.realtime_multimodal_voice_websocket",
+          "ai_multimodal_applications.multimodal_embeddings_clip"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "vision_llm_api_image_analysis",
+        "speech_to_text_whisper_integration",
+        "text_to_speech_voice_synthesis"
+      ],
+      "description": "Integrates vision LLM APIs with image payloads, transcribes audio with Whisper, and synthesizes speech with ElevenLabs/TTS."
+    },
+    "mid": {
+      "expected_subskills": [
+        "visual_document_understanding_ocr",
+        "multimodal_embeddings_clip",
+        "image_generation_sd_flux_dalle"
+      ],
+      "description": "Extracts structured tables from scanned documents, generates CLIP cross-modal embeddings, and controls image generation pipelines."
+    },
+    "senior": {
+      "expected_subskills": [
+        "realtime_multimodal_voice_websocket",
+        "video_understanding_temporal_reasoning",
+        "multimodal_rag_colpali_visual_retrieval"
+      ],
+      "description": "Architects real-time bidirectional WebSocket voice agents, ingests video streams, and deploys OCR-free ColPali visual RAG."
+    }
+  }
+}

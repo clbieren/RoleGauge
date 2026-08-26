@@ -1,0 +1,129 @@
+{
+  "source_id": "cv",
+  "name": "CV / Resume Analysis - AI Engineer",
+  "description": "Signals extracted from the user's CV/resume to evidence AI Engineer skills. CV data provides self-reported technical achievements that must be cross-validated with GitHub repositories and assessment sources.",
+  "extraction_rules": {
+    "description": "How to extract and weight information from CV content for AI Engineer roles.",
+    "sections": [
+      {
+        "section": "skills_list",
+        "description": "Explicit list of technologies, frameworks, vector DBs, and LLM toolkits in skills section.",
+        "base_strength": 0.3,
+        "notes": "Low strength alone. Listing 'LangChain' or 'RAG' requires verification against project details."
+      },
+      {
+        "section": "work_experience",
+        "description": "Job descriptions describing AI engineering achievements, RAG deployments, and multi-agent systems.",
+        "base_strength": 0.5,
+        "quality_indicators": [
+          "Specific LLM architectures and frameworks mentioned (e.g. 'architected multi-agent system with LangGraph, vLLM serving, and Qdrant hybrid search')",
+          "Quantifiable GenAI metrics (reduced hallucination rate by 35% using Corrective RAG and Cohere re-ranking, reduced token costs by 45% via semantic caching)",
+          "Action verbs indicating hands-on AI leadership (architected, fine-tuned, deployed, orchestrated, evaluated, hardened)",
+          "Production scale indicators (serving 10M+ daily LLM tokens, 100k+ QPS vector similarity searches)"
+        ]
+      },
+      {
+        "section": "projects",
+        "description": "Personal or open-source GenAI projects demonstrating technical depth.",
+        "base_strength": 0.4,
+        "notes": "Higher strength if linked to GitHub with clean LangGraph code, DSPy optimization, and automated RAGAS test suites."
+      },
+      {
+        "section": "certifications",
+        "description": "Professional Generative AI and Cloud ML certifications.",
+        "base_strength": 0.2,
+        "recognized_certifications": {
+          "ai_certifications": [
+            "DeepLearning.AI LangChain / LangGraph Certification",
+            "AWS Certified Machine Learning - Specialty",
+            "Google Cloud Professional Machine Learning Engineer",
+            "Databricks Generative AI Engineer"
+          ]
+        }
+      }
+    ]
+  },
+  "signal_mapping": {
+    "description": "How CV mentions map to skill evidence using COMPOSITE KEYS ({skill_id}.{subskill_id}).",
+    "patterns": [
+      {
+        "pattern": "Architected end-to-end RAG pipelines with semantic chunking, Cohere re-ranking, and Pinecone/Qdrant vector databases",
+        "maps_to": [
+          "ai_rag_implementation.basic_rag_pipeline_langchain_llamaindex",
+          "ai_rag_implementation.semantic_recursive_chunking",
+          "ai_rag_implementation.reranking_cross_encoders",
+          "ai_embeddings_vector_db.cloud_vector_db_pinecone_weaviate_qdrant"
+        ],
+        "strength_modifier": 1.1
+      },
+      {
+        "pattern": "Fine-tuned open-weights models (Llama 3, DeepSeek) using Unsloth/Axolotl and deployed with vLLM PagedAttention clusters",
+        "maps_to": [
+          "ai_open_source_models.enterprise_open_serving_vllm",
+          "ai_open_source_models.open_model_finetuning_recipes",
+          "ai_open_source_models.model_quantization_awq_gptq_exl2"
+        ],
+        "strength_modifier": 1.2
+      },
+      {
+        "pattern": "Orchestrated autonomous multi-agent systems using LangGraph, CrewAI, and custom tool function calling",
+        "maps_to": [
+          "ai_agents_orchestration.stateful_agent_graphs_langgraph",
+          "ai_agents_orchestration.crewai_role_based_collaboration",
+          "ai_agents_orchestration.function_calling_tool_definitions"
+        ],
+        "strength_modifier": 1.1
+      },
+      {
+        "pattern": "Optimized production prompt pipelines using DSPy teleprompters and LLM-as-a-judge benchmarking with Promptfoo",
+        "maps_to": [
+          "ai_prompt_engineering.automated_prompt_optimization_dspy",
+          "ai_prompt_engineering.prompt_evaluation_benchmarking",
+          "ai_prompt_engineering.chain_of_thought_reasoning"
+        ],
+        "strength_modifier": 1.1
+      },
+      {
+        "pattern": "Implemented hybrid search combining BM25 and dense embeddings with Reciprocal Rank Fusion (RRF) in PostgreSQL pgvector",
+        "maps_to": [
+          "ai_embeddings_vector_db.hybrid_search_sparse_dense_bm25",
+          "ai_embeddings_vector_db.pgvector_relational_integration",
+          "ai_embeddings_vector_db.ann_indexing_hnsw_ivf"
+        ],
+        "strength_modifier": 1.1
+      },
+      {
+        "pattern": "Built multimodal applications using GPT-4o vision, Whisper audio transcription, and ElevenLabs speech synthesis",
+        "maps_to": [
+          "ai_multimodal_applications.vision_llm_api_image_analysis",
+          "ai_multimodal_applications.speech_to_text_whisper_integration",
+          "ai_multimodal_applications.text_to_speech_voice_synthesis"
+        ],
+        "strength_modifier": 1.0
+      },
+      {
+        "pattern": "Enforced production LLM guardrails using NeMo Guardrails, Microsoft Presidio PII masking, and Langfuse tracing",
+        "maps_to": [
+          "ai_safety_ethics_deployment.guardrails_nemo_guardrails_ai",
+          "ai_safety_ethics_deployment.pii_masking_anonymization_presidio",
+          "ai_safety_ethics_deployment.llm_observability_tracing_langfuse"
+        ],
+        "strength_modifier": 1.1
+      },
+      {
+        "pattern": "Evaluated RAG systems using RAGAS metrics and constructed GraphRAG knowledge graphs with Neo4j",
+        "maps_to": [
+          "ai_rag_implementation.rag_evaluation_ragas_trulens",
+          "ai_rag_implementation.graph_rag_knowledge_graphs",
+          "ai_rag_implementation.agentic_corrective_rag_crag_self_rag"
+        ],
+        "strength_modifier": 1.2
+      }
+    ]
+  },
+  "important_notes": [
+    "Distinguish AI Engineer (LLMs, RAG, Agents, Prompting) from Data Analyst (da_machine_learning: regression, classification, tabular modeling)",
+    "Distinguish AI Safety (prompt injection, jailbreak, guardrails, hallucinations) from traditional Cyber Security (network, IAM, OS CVEs)",
+    "Cross-validate self-reported GenAI metrics with code in GitHub and assessment results"
+  ]
+}

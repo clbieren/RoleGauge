@@ -1,0 +1,174 @@
+{
+  "source_id": "github",
+  "name": "GitHub Repository Analysis - AI Engineer",
+  "description": "Global parsing rules for AI Engineer repositories across Python and TypeScript codebases. NOTE: Specific evidence mappings (regex patterns and maps_to composite keys) are stored within individual skill files under evidence.github. The validate_composite_keys.py script scans both locations to verify coverage.",
+  "preprocessing_pipeline": {
+    "steps": [
+      {
+        "step": 1,
+        "name": "file_tree_scan",
+        "target_files": [
+          {
+            "pattern": "requirements\\.txt|pyproject\\.toml|Pipfile|setup\\.py|package\\.json",
+            "skills": [
+              "ai_llm_fundamentals",
+              "ai_open_source_models",
+              "ai_embeddings_vector_db",
+              "ai_rag_implementation",
+              "ai_agents_orchestration",
+              "ai_safety_ethics_deployment"
+            ],
+            "priority": "high",
+            "notes": "Python and Node dependency manifests containing GenAI libraries (langchain, llama-index, openai, anthropic, chromadb, pinecone-client, vllm, litellm, dspy-ai, guardrails-ai, deepeval, langfuse, unsloth, huggingface-hub)"
+          },
+          {
+            "pattern": "\\.py$|\\.ipynb$",
+            "skills": [
+              "ai_llm_fundamentals",
+              "ai_open_source_models",
+              "ai_prompt_engineering",
+              "ai_embeddings_vector_db",
+              "ai_rag_implementation",
+              "ai_agents_orchestration",
+              "ai_multimodal_applications",
+              "ai_safety_ethics_deployment"
+            ],
+            "priority": "high",
+            "notes": "Core Python scripts and Jupyter notebooks implementing LLM chains, agent graphs, RAG retrievers, open-source fine-tuning recipes, and prompt templates"
+          },
+          {
+            "pattern": "promptfooconfig\\.ya?ml|\\.promptfoo|nemoguardrails/|guardrails/|litellm_config\\.ya?ml",
+            "skills": [
+              "ai_prompt_engineering",
+              "ai_safety_ethics_deployment"
+            ],
+            "priority": "high",
+            "notes": "Configuration files for prompt evaluation (Promptfoo), safety guardrails (NeMo), and AI gateways (LiteLLM)"
+          },
+          {
+            "pattern": "\\.env\\.example|docker-compose\\.ya?ml|Dockerfile|Modelfile",
+            "skills": [
+              "ai_embeddings_vector_db",
+              "ai_llm_fundamentals",
+              "ai_open_source_models",
+              "ai_safety_ethics_deployment"
+            ],
+            "priority": "medium",
+            "notes": "Infrastructure definitions for vector databases (Qdrant, Weaviate, Milvus, pgvector), local model inference (vLLM, Ollama, Modelfile), and API gateways"
+          }
+        ]
+      },
+      {
+        "step": 2,
+        "name": "dependency_extraction",
+        "source_manifests": [
+          "requirements.txt",
+          "pyproject.toml",
+          "package.json"
+        ],
+        "relevant_dependencies": {
+          "ai_llm_fundamentals": [
+            "openai",
+            "anthropic",
+            "google-generativeai",
+            "litellm",
+            "peft",
+            "transformers",
+            "instructor",
+            "tiktoken"
+          ],
+          "ai_open_source_models": [
+            "huggingface-hub",
+            "transformers",
+            "accelerate",
+            "vllm",
+            "ollama",
+            "unsloth",
+            "axolotl",
+            "trl",
+            "llama-cpp-python",
+            "autoawq",
+            "auto-gptq",
+            "bitsandbytes",
+            "mlx-lm"
+          ],
+          "ai_prompt_engineering": [
+            "dspy-ai",
+            "promptfoo",
+            "jinja2",
+            "textgrad"
+          ],
+          "ai_embeddings_vector_db": [
+            "sentence-transformers",
+            "chromadb",
+            "pinecone-client",
+            "weaviate-client",
+            "qdrant-client",
+            "pymilvus",
+            "pgvector",
+            "faiss-cpu",
+            "ragatouille"
+          ],
+          "ai_rag_implementation": [
+            "langchain",
+            "llama-index",
+            "ragas",
+            "trulens-eval",
+            "unstructured",
+            "pypdf",
+            "neo4j",
+            "cohere"
+          ],
+          "ai_agents_orchestration": [
+            "langgraph",
+            "crewai",
+            "pyautogen",
+            "letta",
+            "memgpt"
+          ],
+          "ai_multimodal_applications": [
+            "faster-whisper",
+            "elevenlabs",
+            "open-clip-torch",
+            "diffusers",
+            "colpali-engine",
+            "byaldi",
+            "opencv-python"
+          ],
+          "ai_safety_ethics_deployment": [
+            "guardrails-ai",
+            "nemoguardrails",
+            "presidio-analyzer",
+            "presidio-anonymizer",
+            "langfuse",
+            "langsmith",
+            "deepeval",
+            "garak"
+          ]
+        }
+      },
+      {
+        "step": 3,
+        "name": "config_file_scan",
+        "target_configs": [
+          "promptfooconfig.yaml",
+          "litellm_config.yaml",
+          "config.colang",
+          "docker-compose.yml",
+          "pyproject.toml",
+          "Modelfile"
+        ]
+      }
+    ]
+  },
+  "ai_analysis_instructions": {
+    "tasks": [
+      "Map detected signals to composite keys ({skill_id}.{subskill_id}) using patterns defined in ai-engineer skill files",
+      "Inspect requirements.txt and pyproject.toml for modern GenAI frameworks (LangGraph, DSPy, vLLM, LiteLLM, Qdrant, RAGAS, Unsloth)",
+      "Check RAG implementation — presence of hybrid search, cross-encoder re-ranking, and semantic chunking vs naive splitters",
+      "Evaluate agent architectures — cyclical LangGraph state graphs with checkpointers vs simple single-shot ReAct chains",
+      "Assess open source & self-hosting — presence of vLLM serving configs, Ollama Modelfiles, and Unsloth/Axolotl fine-tuning recipes",
+      "Assess safety & observability — presence of Langfuse/LangSmith tracing, Presidio PII masking, and NeMo/Guardrails AI integration"
+    ]
+  }
+}

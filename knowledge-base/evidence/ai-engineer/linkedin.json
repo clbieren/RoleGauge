@@ -1,0 +1,113 @@
+{
+  "source_id": "linkedin",
+  "name": "LinkedIn Profile Analysis - AI Engineer",
+  "description": "Signals extracted from LinkedIn profiles to evidence AI Engineer skills.",
+  "extraction_rules": {
+    "sections": [
+      {
+        "section": "headline_summary",
+        "description": "Profile headline and summary section.",
+        "base_strength": 0.2,
+        "notes": "Look for specialization (e.g. 'Senior AI Engineer | LLMs | LangGraph | RAG | vLLM')."
+      },
+      {
+        "section": "experience",
+        "description": "Work experience entries with job titles and project descriptions.",
+        "base_strength": 0.4,
+        "quality_indicators": [
+          "AI-specific job titles (AI Engineer, Generative AI Architect, LLM Engineer, Machine Learning Systems Engineer)",
+          "Technologies described (LangChain, LangGraph, LlamaIndex, vLLM, Pinecone, Qdrant, DSPy, LoRA, Hugging Face)",
+          "Scale and production impact of GenAI applications"
+        ]
+      },
+      {
+        "section": "skills_endorsements",
+        "description": "Skills listed with endorsements.",
+        "base_strength": 0.15
+      },
+      {
+        "section": "recommendations",
+        "description": "Written peer and manager recommendations.",
+        "base_strength": 0.3
+      }
+    ]
+  },
+  "signal_mapping": {
+    "description": "How LinkedIn mentions map to skill evidence using COMPOSITE KEYS ({skill_id}.{subskill_id}).",
+    "patterns": [
+      {
+        "pattern": "LinkedIn skills endorsement for 'Large Language Models (LLM)' or 'Generative AI'",
+        "maps_to": [
+          "ai_llm_fundamentals.foundation_models_api_integration",
+          "ai_llm_fundamentals.tokenization_bpe_sentencepiece"
+        ],
+        "strength_modifier": 0.33
+      },
+      {
+        "pattern": "LinkedIn skills endorsement for 'Prompt Engineering' or 'LangChain'",
+        "maps_to": [
+          "ai_prompt_engineering.prompt_templating_dynamic_injection",
+          "ai_prompt_engineering.zero_shot_few_shot_prompting"
+        ],
+        "strength_modifier": 0.33
+      },
+      {
+        "pattern": "LinkedIn skills endorsement for 'Vector Databases' or 'Pinecone'",
+        "maps_to": [
+          "ai_embeddings_vector_db.cloud_vector_db_pinecone_weaviate_qdrant",
+          "ai_embeddings_vector_db.dense_embeddings_generation"
+        ],
+        "strength_modifier": 0.33
+      },
+      {
+        "pattern": "Job experience describing building production RAG systems with LlamaIndex and hybrid vector search",
+        "maps_to": [
+          "ai_rag_implementation.basic_rag_pipeline_langchain_llamaindex",
+          "ai_embeddings_vector_db.hybrid_search_sparse_dense_bm25",
+          "ai_rag_implementation.semantic_recursive_chunking"
+        ],
+        "strength_modifier": 1.0
+      },
+      {
+        "pattern": "Job experience describing deploying open-weights models with vLLM, Ollama runtimes, and Hugging Face Hub integration",
+        "maps_to": [
+          "ai_open_source_models.enterprise_open_serving_vllm",
+          "ai_open_source_models.local_desktop_edge_runtime",
+          "ai_open_source_models.huggingface_hub_ecosystem"
+        ],
+        "strength_modifier": 1.0
+      },
+      {
+        "pattern": "Job experience describing LangGraph multi-agent architectures, checkpointers, and human-in-the-loop workflows",
+        "maps_to": [
+          "ai_agents_orchestration.stateful_agent_graphs_langgraph",
+          "ai_agents_orchestration.human_in_the_loop_hitl_workflows",
+          "ai_agents_orchestration.function_calling_tool_definitions"
+        ],
+        "strength_modifier": 1.0
+      },
+      {
+        "pattern": "Job experience describing LLM guardrails, PII masking with Presidio, and Langfuse tracing",
+        "maps_to": [
+          "ai_safety_ethics_deployment.guardrails_nemo_guardrails_ai",
+          "ai_safety_ethics_deployment.pii_masking_anonymization_presidio",
+          "ai_safety_ethics_deployment.llm_observability_tracing_langfuse"
+        ],
+        "strength_modifier": 1.0
+      },
+      {
+        "pattern": "Job experience describing multimodal Vision-Language integration, Whisper speech transcription, or ColPali visual RAG",
+        "maps_to": [
+          "ai_multimodal_applications.vision_llm_api_image_analysis",
+          "ai_multimodal_applications.speech_to_text_whisper_integration",
+          "ai_multimodal_applications.multimodal_rag_colpali_visual_retrieval"
+        ],
+        "strength_modifier": 1.0
+      }
+    ]
+  },
+  "important_notes": [
+    "ALL extracted signals MUST be mapped to COMPOSITE KEYS ({skill_id}.{subskill_id})",
+    "LinkedIn endorsements have low evidential value on their own; cross-validate with code and technical assessments"
+  ]
+}
