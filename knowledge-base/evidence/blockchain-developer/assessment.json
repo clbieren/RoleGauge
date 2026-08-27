@@ -1,0 +1,163 @@
+{
+  "source_id": "assessment",
+  "name": "Adaptive Technical Assessment - Blockchain Developer",
+  "description": "Adaptive assessment question bank for Blockchain Developer skills. Questions are scenario-based, code-review, and practical-task formats that evaluate deep understanding of EVM mechanics, smart contract security, decentralized architectures, and protocol design tradeoffs.",
+  "sample_questions_by_composite_key": {
+    "blockchain_fundamentals.what_is_blockchain": [
+      {
+        "level": "junior",
+        "type": "conceptual",
+        "question": "Explain the difference between a public permissionless blockchain (like Ethereum) and a permissioned consortium blockchain (like Hyperledger Fabric). Provide an example use case where a consortium blockchain is fundamentally a better choice than a public one.",
+        "expected_answer_keywords": ["permissionless", "permissioned", "consortium", "validator selection", "access control", "throughput", "privacy", "enterprise", "supply chain", "KYC"]
+      }
+    ],
+    "blockchain_fundamentals.decentralization_why_it_matters": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "A team wants to build a fully decentralized limit order book DEX on Ethereum L1, aiming to process 1,000 transactions per second. Using the Blockchain Trilemma framework, explain why this design is fundamentally flawed on Ethereum L1 and what the architectural trade-offs would be to make it work.",
+        "expected_answer_keywords": ["blockchain trilemma", "scalability", "decentralization", "security", "Ethereum L1 TPS", "gas cost", "order book vs AMM", "Layer 2", "centralized sequencer", "trade-off"]
+      }
+    ],
+    "blockchain_fundamentals.blockchain_structure": [
+      {
+        "level": "junior",
+        "type": "conceptual",
+        "question": "Explain the role of a Merkle Tree in a block header. How does a Light Client use the Merkle Root to verify that a specific transaction was included in a block without downloading the entire block?",
+        "expected_answer_keywords": ["Merkle tree", "Merkle root", "block header", "light client", "Merkle proof", "hash path", "verify inclusion", "without downloading full block", "O(log n)"]
+      }
+    ],
+    "blockchain_core_concepts.consensus_protocols": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "Compare the finality guarantees of a Nakamoto consensus chain (like Bitcoin PoW) with a BFT-based PoS chain (like Tendermint). How does 'probabilistic finality' differ from 'deterministic finality', and how does this difference affect the design of cross-chain bridges connecting the two?",
+        "expected_answer_keywords": ["probabilistic finality", "deterministic finality", "Nakamoto consensus", "BFT", "Tendermint", "Proof of Work", "Proof of Stake", "reorg", "bridge security", "confirmation time", "waiting for blocks"]
+      }
+    ],
+    "blockchain_core_concepts.forking": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "Ethereum is undergoing a contentious hard fork, splitting into Chain A and Chain B. You run a DeFi protocol where users deposit collateral. Explain the mechanics of a 'replay attack' across these two chains and describe how EIP-155 (Chain ID) mitigates this risk at the protocol level.",
+        "expected_answer_keywords": ["hard fork", "chain split", "replay attack", "signature reuse", "same transaction", "EIP-155", "Chain ID", "v, r, s", "transaction signing", "network ID"]
+      }
+    ],
+    "blockchain_networks.evm_based_chains": [
+      {
+        "level": "junior",
+        "type": "practical_task",
+        "question": "You have a Solidity contract deployed on Ethereum Mainnet. You now need to deploy the exact same compiled bytecode to Polygon and Avalanche C-Chain. What two configuration values must change in your deployment script (e.g., in Hardhat/Foundry) for each network, and why might the gas fee logic (EIP-1559 vs Legacy) behave differently across them?",
+        "expected_answer_keywords": ["Chain ID", "RPC URL", "RPC endpoint", "Polygon", "Avalanche", "EVM compatibility", "EIP-1559 support", "baseFee", "maxPriorityFeePerGas", "legacy transactions"]
+      }
+    ],
+    "blockchain_networks.l2_arbitrum": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "You are building a cross-chain messaging app. A message is sent from Arbitrum to Ethereum L1. Explain the role of the Optimistic Rollup 'challenge period' (7 days). Why does a withdrawal take 7 days natively, and how do fast liquidity bridges bypass this limitation for token transfers?",
+        "expected_answer_keywords": ["Optimistic Rollup", "challenge period", "fraud proof", "Sequencer", "7 days", "dispute window", "L2 to L1", "fast bridge", "liquidity provider", "taking on risk", "fee for instant withdrawal"]
+      }
+    ],
+    "blockchain_oracles.hybrid_smart_contracts": [
+      {
+        "level": "mid",
+        "type": "conceptual",
+        "question": "What is the 'Oracle Problem' in smart contracts? Explain why a smart contract cannot simply make an HTTP GET request to an external API like Binance to fetch the price of ETH during transaction execution.",
+        "expected_answer_keywords": ["Oracle Problem", "determinism", "consensus", "HTTP request", "external state", "different results for different nodes", "breaking consensus", "off-chain data", "push vs pull"]
+      }
+    ],
+    "blockchain_oracles.chainlink": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "You are integrating a Chainlink Price Feed (AggregatorV3Interface) into a lending protocol. Write a pseudocode snippet showing how you fetch the latest price, and explicitly identify three checks you must perform on the returned data to prevent oracle staleness or manipulation attacks (e.g., LUNA crash scenario).",
+        "expected_answer_keywords": ["latestRoundData", "answeredInRound", "updatedAt", "staleness check", "block.timestamp", "heartbeat", "min/max circuit breaker", "price deviation", "aggregator", "oracle manipulation"]
+      }
+    ],
+    "smart_contract_development.solidity": [
+      {
+        "level": "junior",
+        "type": "practical_task",
+        "question": "In Solidity, what is the difference between `memory`, `storage`, and `calldata` data locations? Give an example of when you would specifically use `calldata` over `memory` for a function parameter and explain the gas implications.",
+        "expected_answer_keywords": ["memory", "storage", "calldata", "read-only", "immutable parameter", "gas optimization", "avoiding copying", "external function", "persistent state", "temporary variable"]
+      },
+      {
+        "level": "mid",
+        "type": "conceptual",
+        "question": "Explain how the EVM stores mapping data (e.g., `mapping(address => uint256) balances`). How is the storage slot for a specific address's balance calculated, and why is it impossible to iterate over a standard mapping without an auxiliary array?",
+        "expected_answer_keywords": ["mapping", "storage slot", "keccak256", "hash", "key", "slot number", "concatenation", "iteration impossible", "keys not stored", "EnumerableMap"]
+      }
+    ],
+    "smart_contract_development.upgrades": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "You are upgrading a UUPS proxy contract. In the new implementation contract, you accidentally declare a new state variable above an existing state variable. Explain exactly what happens to the contract's state when the proxy delegates calls to this new implementation. What is this vulnerability called, and how do tools like OpenZeppelin Upgrades prevent it?",
+        "expected_answer_keywords": ["storage collision", "storage layout", "UUPS", "delegatecall", "state corruption", "variables appended", "OpenZeppelin upgrades plugin", "storage gaps", "__gap", "overwrite existing data"]
+      }
+    ],
+    "smart_contract_development.erc_tokens": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "A user wants a DeFi protocol smart contract to transfer ERC-20 tokens on their behalf. Describe the exact two-step transaction process required (using standard ERC-20 functions). What is the 'infinite approval' pattern, and what security risk does it introduce if the protocol is compromised?",
+        "expected_answer_keywords": ["approve", "transferFrom", "two-step", "allowance", "infinite approval", "type(uint256).max", "security risk", "contract compromised", "drain user funds", "revoke approval"]
+      }
+    ],
+    "smart_contract_tooling.foundry": [
+      {
+        "level": "mid",
+        "type": "practical_task",
+        "question": "In a Foundry test (`.t.sol`), you need to test a function that reverts if the caller is not the owner, and you need to simulate this happening 100 blocks in the future. Explain which three Foundry cheatcodes (e.g., `vm.*`) you would use to set up and execute this test.",
+        "expected_answer_keywords": ["Foundry", "cheatcodes", "vm.prank", "vm.expectRevert", "vm.roll", "vm.warp", "simulate caller", "simulate block number", "test revert"]
+      }
+    ],
+    "blockchain_security.common_threat_vectors": [
+      {
+        "level": "junior",
+        "type": "code_review",
+        "question": "Review this pseudocode: `function withdraw(uint amount) public { require(balances[msg.sender] >= amount); (bool success, ) = msg.sender.call{value: amount}(\"\"); require(success); balances[msg.sender] -= amount; }`. Identify the critical vulnerability, explain how an attacker exploits it, and rewrite the function using the Checks-Effects-Interactions pattern.",
+        "expected_answer_keywords": ["reentrancy", "fallback function", "Checks-Effects-Interactions", "CEI", "state update after call", "drain contract", "msg.sender.call", "balances[msg.sender] -= amount before call", "ReentrancyGuard"]
+      },
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "A DeFi lending protocol uses an AMM (e.g., Uniswap V2) spot price to value collateral for liquidations. Explain how an attacker can use a Flash Loan to execute a profitable price manipulation exploit against this protocol. How should the protocol architecture be changed to mitigate this (e.g., TWAP)?",
+        "expected_answer_keywords": ["flash loan", "price manipulation", "spot price", "Uniswap V2", "borrow large amount", "skew pool ratio", "trigger liquidation", "TWAP", "Time-Weighted Average Price", "Chainlink Oracle", "manipulate reserves"]
+      }
+    ],
+    "blockchain_security.randomness_attacks": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "An NFT minting contract uses `uint256(keccak256(abi.encodePacked(block.timestamp, msg.sender))) % 10000` to determine the rarity of the minted NFT. Explain two distinct ways this can be exploited by an attacker or a malicious miner to guarantee they mint a rare NFT.",
+        "expected_answer_keywords": ["block.timestamp", "predictable randomness", "miner manipulation", "withhold block", "front-running", "revert if not rare", "smart contract caller", "Chainlink VRF", "commit-reveal"]
+      }
+    ],
+    "dapp_development.defi": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "Explain the mechanics of 'Impermanent Loss' (Divergence Loss) for a Liquidity Provider in a Constant Product AMM (like Uniswap V2). Under what price movement conditions does the LP lose value compared to simply holding the two tokens in their wallet?",
+        "expected_answer_keywords": ["Impermanent Loss", "Divergence Loss", "AMM", "Constant Product", "x*y=k", "price change", "arbitrage", "rebalancing", "opportunity cost", "loss vs holding", "price divergence in either direction"]
+      }
+    ],
+    "dapp_development.frontend_frameworks": [
+      {
+        "level": "mid",
+        "type": "practical_task",
+        "question": "When building a React dApp with `wagmi`, you need to read a user's token balance and update it automatically when it changes on-chain. Which wagmi hooks would you use, and how do you configure the hook to listen for new blocks or events to ensure the UI stays synchronized?",
+        "expected_answer_keywords": ["wagmi", "useBalance", "useReadContract", "useWatchContractEvent", "watch: true", "React component", "auto-refresh", "block listener", "ethers provider"]
+      }
+    ],
+    "blockchain_scaling.zk_rollups": [
+      {
+        "level": "senior",
+        "type": "conceptual",
+        "question": "Explain the difference between a Type 1 zkEVM (Ethereum-equivalent) and a Type 4 zkEVM (High-level-language equivalent, like zkSync Era). What are the trade-offs regarding developer experience, compatibility with existing Ethereum tooling, and prover performance (proof generation time)?",
+        "expected_answer_keywords": ["Type 1 zkEVM", "Type 4 zkEVM", "Ethereum equivalent", "language equivalent", "Vitalik taxonomy", "prover performance", "proof generation time", "tooling compatibility", "EVM opcodes", "LLVM compiler", "custom VM"]
+      }
+    ]
+  }
+}

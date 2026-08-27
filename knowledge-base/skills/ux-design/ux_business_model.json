@@ -1,0 +1,115 @@
+{
+  "skill_id": "ux_business_model",
+  "name": "Business Model Analysis for UX",
+  "category": "ux_research_strategy",
+  "description": "Understanding the business context in which UX design operates. Covers both analysis of existing business models (Business Model Canvas, Lean Canvas) and evaluation of competitive and strategic landscape for new ventures (Inspirator, Competitor Analysis, Porter's Five Forces, SWOT). UX designers who understand business model fundamentals make design decisions that are commercially viable, not just user-desirable.",
+  "subskills": [
+    {
+      "id": "business_model_canvas",
+      "name": "Business Model Canvas (BMC)",
+      "description": "Osterwalder's 9-block framework for mapping an existing business: Customer Segments, Value Propositions, Channels, Customer Relationships, Revenue Streams, Key Resources, Key Activities, Key Partnerships, and Cost Structure. UX designers use BMC to understand which user segments generate value, what the core proposition is, and how customer relationships shape interaction design.",
+      "keywords": ["Business Model Canvas", "BMC", "Osterwalder", "customer segments", "value proposition", "channels", "customer relationships", "revenue streams", "key resources", "key activities", "key partnerships", "cost structure"]
+    },
+    {
+      "id": "lean_canvas",
+      "name": "Lean Canvas",
+      "description": "Ash Maurya's startup-focused adaptation of the BMC, replacing partner/activity/resource blocks with Problem, Solution, Key Metrics, and Unfair Advantage. Suited for early-stage product discovery. UX designers use it to align design sprints with validated problem-solution fit hypotheses.",
+      "keywords": ["Lean Canvas", "Ash Maurya", "Running Lean", "problem-solution fit", "unique value proposition", "unfair advantage", "key metrics", "early adopters", "cost structure", "revenue streams", "startup canvas"]
+    },
+    {
+      "id": "inspirator_analysis",
+      "name": "Inspirator Analysis",
+      "description": "Identifying non-competing products or services that excel at the behavioral mechanics the new product aims to achieve. Inspirators are studied for their engagement patterns, habit loops, and UX innovations that could be adapted. Differs from competitor analysis in that inspirators may come from entirely different industries.",
+      "keywords": ["Inspirator", "analogous inspiration", "cross-industry inspiration", "behavioral reference", "engagement pattern", "design benchmark", "UX inspiration", "non-competitor inspiration"]
+    },
+    {
+      "id": "competitor_analysis",
+      "name": "Competitor Analysis",
+      "description": "Systematic evaluation of direct competitors' UX, features, pricing, positioning, strengths, and weaknesses. Covers feature matrix comparisons, UX teardowns (heuristic evaluation of competitor interfaces), and identifying market gaps that represent UX opportunities.",
+      "keywords": ["competitor analysis", "competitive landscape", "feature matrix", "UX teardown", "heuristic evaluation", "market positioning", "competitive gap", "direct competitor", "indirect competitor", "SWOT competitor"]
+    },
+    {
+      "id": "five_forces",
+      "name": "Porter's Five Forces",
+      "description": "Strategic framework analyzing industry competitiveness across five dimensions: competitive rivalry, supplier power, buyer power, threat of new entrants, and threat of substitutes. Informs UX decisions about product stickiness, switching cost design, and where to invest in differentiation.",
+      "keywords": ["Porter's Five Forces", "competitive rivalry", "supplier power", "buyer power", "threat of new entrants", "threat of substitutes", "industry analysis", "switching costs", "product stickiness", "competitive moat"]
+    },
+    {
+      "id": "swot_analysis",
+      "name": "SWOT Analysis",
+      "description": "Strengths-Weaknesses-Opportunities-Threats framework applied to product or organization context. UX teams use SWOT to identify internal design capabilities and external market opportunities that shape the product strategy and interaction design priorities.",
+      "keywords": ["SWOT", "Strengths", "Weaknesses", "Opportunities", "Threats", "strategic analysis", "internal factors", "external factors", "product strategy", "design opportunity", "risk assessment"]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "Business model, competitive analysis, or strategic framework documentation in design repository",
+        "detection": "content_analysis",
+        "pattern": "Business Model Canvas|Lean Canvas|SWOT|Five Forces|competitor analysis|inspirator|competitive landscape",
+        "strength": 0.8,
+        "maps_to": [
+          "ux_business_model.business_model_canvas",
+          "ux_business_model.lean_canvas",
+          "ux_business_model.competitor_analysis",
+          "ux_business_model.swot_analysis",
+          "ux_business_model.five_forces"
+        ]
+      },
+      {
+        "signal": "Feature comparison matrices, UX teardown reports, or competitor benchmarking files",
+        "detection": "file_presence",
+        "pattern": "competitor-analysis|competitive-audit|feature-matrix|ux-teardown|benchmark",
+        "strength": 0.7,
+        "maps_to": [
+          "ux_business_model.competitor_analysis",
+          "ux_business_model.inspirator_analysis"
+        ]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "Conducted competitive analysis, UX benchmarking, or market research for product teams",
+        "strength": 0.8,
+        "maps_to": [
+          "ux_business_model.competitor_analysis",
+          "ux_business_model.inspirator_analysis"
+        ]
+      },
+      {
+        "signal": "Used Business Model Canvas, Lean Canvas, or SWOT in product discovery or strategy sessions",
+        "strength": 0.75,
+        "maps_to": [
+          "ux_business_model.business_model_canvas",
+          "ux_business_model.lean_canvas",
+          "ux_business_model.swot_analysis"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Business strategy, competitive analysis, or product discovery endorsed",
+        "strength": 0.5,
+        "maps_to": [
+          "ux_business_model.competitor_analysis",
+          "ux_business_model.business_model_canvas",
+          "ux_business_model.swot_analysis"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": ["business_model_canvas", "competitor_analysis"],
+      "description": "Reads and interprets a Business Model Canvas and can conduct structured competitor UX teardowns."
+    },
+    "mid": {
+      "expected_subskills": ["lean_canvas", "inspirator_analysis", "swot_analysis"],
+      "description": "Uses Lean Canvas for problem-solution fit discovery, finds cross-industry behavioral inspirators, and synthesizes SWOT insights into design priorities."
+    },
+    "senior": {
+      "expected_subskills": ["five_forces"],
+      "description": "Applies Five Forces analysis to identify competitive moats, switching cost opportunities, and product differentiation vectors that guide long-term UX strategy."
+    }
+  }
+}

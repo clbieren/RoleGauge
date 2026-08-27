@@ -1,0 +1,90 @@
+{
+  "role_id": "blockchain_developer",
+  "level": "mid",
+  "title": "Mid-Level Blockchain Developer",
+  "description": "Mid-level blockchain developer independently driving protocol and dApp development end-to-end: deep Solidity and multi-chain deployment proficiency, comprehensive testing (unit/integration/fuzz/coverage), production monitoring (The Graph, Tenderly/Defender), upgradeable proxy patterns, DeFi and DAO protocol implementation, Chainlink oracle integration, static analysis tooling (Slither), L2 deployment (Arbitrum, Optimism, zkSync), and cross-chain bridge architecture awareness.",
+  "experience_range": "2-5 years",
+  "skills": [
+    {
+      "skill_id": "smart_contract_development",
+      "importance": 0.95,
+      "rationale": "Mid-level mastery includes upgradeable proxies (UUPS/Transparent), comprehensive test suites (integration, coverage, fuzz), production monitoring (The Graph, Defender), and Vyper literacy."
+    },
+    {
+      "skill_id": "blockchain_security",
+      "importance": 0.95,
+      "rationale": "Integrating Slither in CI, writing Echidna/Foundry property-based fuzz tests, implementing secure randomness (Chainlink VRF), and conducting pre-deployment security reviews are core mid-level responsibilities."
+    },
+    {
+      "skill_id": "dapp_development",
+      "importance": 0.9,
+      "rationale": "Building DeFi protocols (AMM interactions, lending, vault mechanics), DAO governance systems, and professional dApp frontends with wagmi/viem is the expected mid-level deliverable scope."
+    },
+    {
+      "skill_id": "blockchain_networks",
+      "importance": 0.9,
+      "rationale": "Multi-chain deployment across EVM networks (Polygon, BSC, Avalanche, Fantom), L2s (Arbitrum, Optimism), and meaningful exposure to at least one non-EVM chain (Solana or TVM) differentiates mid from junior."
+    },
+    {
+      "skill_id": "blockchain_oracles",
+      "importance": 0.85,
+      "rationale": "Production Chainlink Data Feed, VRF, and Automation integration — understanding oracle security risks (staleness, price manipulation) and mitigation — is a core mid-level capability."
+    },
+    {
+      "skill_id": "blockchain_scaling",
+      "importance": 0.8,
+      "rationale": "Understanding ZK Rollup vs Optimistic Rollup trade-offs, deploying on multiple L2 ecosystems, and articulating EIP-4844's impact on L2 costs is expected at mid level."
+    },
+    {
+      "skill_id": "smart_contract_tooling",
+      "importance": 0.8,
+      "rationale": "Full Foundry toolchain proficiency (forge/cast/anvil), IPFS/Arweave decentralized storage integration, and multi-framework literacy (Hardhat + Foundry) are mid-level expectations."
+    },
+    {
+      "skill_id": "blockchain_core_concepts",
+      "importance": 0.8,
+      "rationale": "Deep understanding of consensus protocol trade-offs, fork mechanics (hard/soft forks, replay attacks), mining incentive economics, and decentralization degrees is required for architectural decisions."
+    },
+    {
+      "skill_id": "blockchain_fundamentals",
+      "importance": 0.75,
+      "rationale": "At mid level, fundamentals are assumed solid; the focus is on applying them critically — evaluating blockchain trilemma trade-offs for specific application domains and use-case fit decisions."
+    }
+  ],
+  "scoring": {
+    "method": "weighted_average",
+    "description": "Each skill score is multiplied by its importance weight. Final score is sum divided by sum of weights.",
+    "thresholds": {
+      "not_ready": {
+        "min": 0.0,
+        "max": 0.3,
+        "label": "Not Ready",
+        "description": "Operates at junior level despite experience — lacks production contract deployment, upgrade patterns, or security tooling proficiency."
+      },
+      "developing": {
+        "min": 0.3,
+        "max": 0.5,
+        "label": "Developing",
+        "description": "Solid junior skills with some mid-level exposure; needs coaching on DeFi protocol implementation, oracle integration, and security toolchain setup."
+      },
+      "approaching": {
+        "min": 0.5,
+        "max": 0.7,
+        "label": "Approaching Ready",
+        "description": "Deploys on multiple EVM chains, uses Slither and fuzz testing, integrates Chainlink oracles, and builds DeFi integrations with growing independence."
+      },
+      "ready": {
+        "min": 0.7,
+        "max": 0.85,
+        "label": "Ready",
+        "description": "Meets all mid-level expectations: independently ships production-grade smart contract systems with upgradeable proxies, comprehensive testing, security tooling, DeFi and oracle integration, and multi-chain deployment."
+      },
+      "exceeds": {
+        "min": 0.85,
+        "max": 1.0,
+        "label": "Exceeds Expectations",
+        "description": "Exceeds mid-level with early senior proficiency: cross-chain bridge architecture, ZK proof system familiarity, custom subgraph development, Solana/TVM development, or security audit contributions."
+      }
+    }
+  }
+}

@@ -1,0 +1,131 @@
+{
+  "skill_id": "ux_behavior_strategies",
+  "name": "Behavior Change Strategies",
+  "category": "ux_behavioral_science",
+  "description": "Practical intervention strategies for changing or reinforcing user behavior. Covers three strategic pillars: supporting conscious action (education, reflection), cheating (defaults, incidental design), and habit formation/disruption (automate new behaviors, replace existing routines). Designers select strategies by diagnosing the user's current behavioral state and target outcome.",
+  "subskills": [
+    {
+      "id": "educate_encourage",
+      "name": "Support Conscious Action — Educate & Encourage",
+      "description": "Providing users with information, reasoning, and motivational framing to consciously adopt a new behavior. Includes onboarding walkthroughs, contextual tooltips, achievement celebrations, progress disclosure, and persuasive copywriting that addresses the user's why.",
+      "keywords": ["Educate user", "Encourage action", "onboarding", "contextual help", "persuasive copy", "motivational framing", "progress disclosure", "achievement", "conscious decision", "information provision"]
+    },
+    {
+      "id": "help_think_about_action",
+      "name": "Support Conscious Action — Help User Think About Action",
+      "description": "Prompting users to reflect on a potential action before taking it. Techniques include implementation intentions (if-then planning), commitment devices, reflection prompts, self-monitoring tools, and reminders that surface at decision-relevant moments.",
+      "keywords": ["Help user think", "implementation intentions", "if-then planning", "commitment device", "reflection prompt", "self-monitoring", "journaling", "contemplation", "decision moment", "prompting reflection"]
+    },
+    {
+      "id": "defaulting",
+      "name": "Cheating — Defaulting",
+      "description": "Designing the system so the desired behavior is the path of least resistance — the default. Users who take no action automatically end up in the preferred state. Covers opt-in vs opt-out defaults, pre-selected options, smart default settings, and automatic enrollment.",
+      "keywords": ["Defaulting", "opt-out", "opt-in", "default setting", "pre-selection", "auto-enrollment", "status quo bias", "choice architecture", "nudge", "Thaler", "default effect"]
+    },
+    {
+      "id": "making_it_incidental",
+      "name": "Cheating — Making It Incidental",
+      "description": "Embedding the desired behavior into an existing action the user already performs, so it happens automatically without conscious effort. Examples include step counting that happens by carrying a phone, or saving money that happens automatically with each purchase.",
+      "keywords": ["Incidental behavior", "piggybacking", "behavior bundling", "automaticity", "frictionless design", "invisible design", "embedding behavior", "background action", "passive engagement"]
+    },
+    {
+      "id": "automate_new_behavior",
+      "name": "Make/Change Habits — Automate Repetition (New Behavior)",
+      "description": "Reducing the cognitive load of a new behavior until it becomes automatic through repetition scaffolding. Techniques include scheduled reminders, streak mechanics, habit stacking prompts, and progressive disclosure that reduces complexity over time as the habit forms.",
+      "keywords": ["Automate repetition", "habit formation", "new behavior", "streak", "scheduled reminder", "habit stacking", "repetition scaffold", "progressive complexity reduction", "automaticity", "neuroplasticity", "spaced repetition"]
+    },
+    {
+      "id": "disrupt_existing_habit",
+      "name": "Make/Change Habits — Modify Existing Behavior",
+      "description": "Strategies for modifying established habits in the existing behavior → Avoid the Cue (remove environmental triggers), Replace the Routine (substitute behavior while keeping the same cue and reward), Use Consciousness/Mindfulness (bring automatic behaviors to conscious awareness), and Crowd Out Old Habit (replace it by building a competing positive habit).",
+      "keywords": ["Avoid the cue", "replace the routine", "use consciousness", "mindfulness", "crowd out old habit", "habit reversal", "cue removal", "routine substitution", "awareness", "competing behavior", "Duhigg habit change formula"]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "Design documentation describing behavior change strategy selection (defaults, incidental, habit loops)",
+        "detection": "content_analysis",
+        "pattern": "behavior change|defaulting|opt-out|opt-in|habit formation|implementation intention|incidental|crowd out|replace routine",
+        "strength": 0.8,
+        "maps_to": [
+          "ux_behavior_strategies.defaulting",
+          "ux_behavior_strategies.making_it_incidental",
+          "ux_behavior_strategies.automate_new_behavior",
+          "ux_behavior_strategies.disrupt_existing_habit"
+        ]
+      },
+      {
+        "signal": "Onboarding, nudge, or engagement strategy design artifacts",
+        "detection": "content_analysis",
+        "pattern": "onboarding|nudge|streak|commitment device|reflection prompt|persuasive copy",
+        "strength": 0.7,
+        "maps_to": [
+          "ux_behavior_strategies.educate_encourage",
+          "ux_behavior_strategies.help_think_about_action"
+        ]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "Designed onboarding flows, behavior change interventions, or engagement mechanics",
+        "strength": 0.8,
+        "maps_to": [
+          "ux_behavior_strategies.educate_encourage",
+          "ux_behavior_strategies.automate_new_behavior"
+        ]
+      },
+      {
+        "signal": "Applied defaults, opt-out patterns, or choice architecture in product design",
+        "strength": 0.8,
+        "maps_to": [
+          "ux_behavior_strategies.defaulting",
+          "ux_behavior_strategies.making_it_incidental"
+        ]
+      },
+      {
+        "signal": "Designed habit-forming features, streaks, or behavior disruption flows",
+        "strength": 0.75,
+        "maps_to": [
+          "ux_behavior_strategies.automate_new_behavior",
+          "ux_behavior_strategies.disrupt_existing_habit",
+          "ux_behavior_strategies.help_think_about_action"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Behavior change design, nudge design, or persuasive design endorsed",
+        "strength": 0.5,
+        "maps_to": [
+          "ux_behavior_strategies.defaulting",
+          "ux_behavior_strategies.educate_encourage",
+          "ux_behavior_strategies.making_it_incidental"
+        ]
+      },
+      {
+        "signal": "Habit design, engagement loop, or retention mechanics mentioned",
+        "strength": 0.5,
+        "maps_to": [
+          "ux_behavior_strategies.automate_new_behavior",
+          "ux_behavior_strategies.disrupt_existing_habit",
+          "ux_behavior_strategies.help_think_about_action"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": ["educate_encourage", "defaulting"],
+      "description": "Designs clear onboarding and informational flows, and applies opt-out/opt-in defaults with proper rationale."
+    },
+    "mid": {
+      "expected_subskills": ["help_think_about_action", "making_it_incidental", "automate_new_behavior"],
+      "description": "Designs implementation intention prompts, embeds incidental behaviors, and scaffolds habit formation with streak mechanics and spaced repetition."
+    },
+    "senior": {
+      "expected_subskills": ["disrupt_existing_habit"],
+      "description": "Diagnoses entrenched behavioral patterns and selects the appropriate disruption strategy (avoid cue, replace routine, mindfulness, crowd out), with ethical evaluation of intervention strength."
+    }
+  }
+}

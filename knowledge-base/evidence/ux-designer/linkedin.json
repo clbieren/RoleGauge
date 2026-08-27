@@ -1,0 +1,155 @@
+{
+  "source_id": "linkedin",
+  "name": "LinkedIn Profile Analysis - UX Designer",
+  "description": "Signals extracted from LinkedIn profiles to evidence UX Designer skills. LinkedIn provides professional context, endorsements, recommendations, published case studies, and career progression data. NOTE: Specific evidence mappings (maps_to composite keys) are stored within individual skill files under evidence.linkedin, NOT here.",
+  "extraction_rules": {
+    "sections": {
+      "headline_summary": {
+        "priority": "medium",
+        "base_strength": 0.2,
+        "notes": "Look for behavioral design specialization in headline (e.g., 'Behavioral UX Designer', 'Product Designer | Persuasive Tech', 'UX Lead | Behavioral Economics'). Generic 'UX Designer' provides minimal signal.",
+        "quality_indicators": [
+          "Explicit behavioral design specialization in headline",
+          "Framework references in summary (Fogg, Hook Model, JTBD)",
+          "Portfolio link in featured or contact section"
+        ]
+      },
+      "experience": {
+        "priority": "high",
+        "base_strength": 0.4,
+        "notes": "Similar to CV work experience. Prioritize descriptions of behavioral impact and framework application over tool listings.",
+        "quality_indicators": [
+          "UX-specific job titles (UX Designer, Product Designer, Interaction Designer, Behavioral Designer, UX Researcher)",
+          "Duration and continuity in UX/behavioral design roles",
+          "Company context (fintech, healthtech, edtech, B2C apps — domains where behavioral design has highest impact)",
+          "Named frameworks and interventions applied",
+          "Quantified behavioral outcomes (retention lift, conversion increase, activation improvement)"
+        ]
+      },
+      "skills_endorsements": {
+        "priority": "low",
+        "base_strength": 0.15,
+        "notes": "UX skill endorsements have low evidential value. Figma endorsements are near-universal and carry minimal signal. Behavioral Economics or Persuasive Design endorsements are rarer and more meaningful.",
+        "high_signal_skills": [
+          "Behavioral Economics",
+          "Persuasive Technology",
+          "Behavior Change Design",
+          "Gamification Design",
+          "A/B Testing",
+          "UX Research",
+          "Journey Mapping"
+        ]
+      },
+      "certifications": {
+        "priority": "medium",
+        "base_strength": 0.3,
+        "recognized_certifications": [
+          "Nielsen Norman Group UX Certification",
+          "Interaction Design Foundation Certification",
+          "Google UX Design Certificate",
+          "Behavioral Design Academy (SUE Amsterdam)",
+          "IDEO Design Thinking"
+        ]
+      },
+      "projects": {
+        "priority": "high",
+        "base_strength": 0.35,
+        "notes": "Projects section with portfolio links or Figma embeds provide strong supporting evidence. Look for case study depth.",
+        "quality_indicators": [
+          "Links to Figma case studies or Behance/Dribbble portfolios",
+          "Described behavioral design rationale in project descriptions",
+          "Cross-functional project context (worked with engineers, PMs, behavioral scientists)"
+        ]
+      },
+      "recommendations": {
+        "priority": "medium",
+        "base_strength": 0.35,
+        "notes": "Recommendations from product managers, engineers, or behavioral scientists that specifically cite the designer's behavioral design impact or framework expertise are strong third-party validation.",
+        "quality_indicators": [
+          "Recommendation from PM or engineer citing specific behavioral design contribution",
+          "Mention of measurable impact (retention, conversion, engagement)",
+          "Reference to expertise in behavioral frameworks or persuasive design"
+        ]
+      },
+      "posts_articles": {
+        "priority": "medium",
+        "base_strength": 0.4,
+        "notes": "LinkedIn articles on behavioral design, persuasive UX, gamification, or behavioral economics indicate deep subject matter expertise. Posts sharing design case studies with behavioral rationale are high-signal.",
+        "quality_indicators": [
+          "Articles or posts specifically about behavioral design, Fogg, Hook Model, or nudge theory",
+          "Case study posts with behavioral design rationale and outcomes",
+          "Engagement (comments, reactions) indicating community recognition of expertise"
+        ]
+      }
+    }
+  },
+  "signal_mapping": {
+    "patterns": [
+      {
+        "pattern": "UX Design, User Experience Design, or Interaction Design endorsed",
+        "maps_to": [
+          "ux_deliverables_prototyping.wireframing_tools",
+          "ux_conceptual_design.user_stories",
+          "ux_classifying_behavior.user_personas"
+        ],
+        "strength_modifier": 0.6
+      },
+      {
+        "pattern": "Behavioral Design, Persuasive Technology, or Behavior Change Design endorsed",
+        "maps_to": [
+          "ux_behavior_frameworks.fogg_behavior_model",
+          "ux_behavior_frameworks.behavioral_buzzwords",
+          "ux_behavior_strategies.educate_encourage",
+          "ux_patterns_best_practices.social_proof"
+        ],
+        "strength_modifier": 1.0
+      },
+      {
+        "pattern": "A/B Testing, Conversion Optimization, or Experimentation endorsed",
+        "maps_to": [
+          "ux_measuring_impact.ab_testing",
+          "ux_measuring_impact.statistical_interpretation"
+        ],
+        "strength_modifier": 0.9
+      },
+      {
+        "pattern": "Figma, Adobe XD, Sketch, or Balsamiq endorsed",
+        "maps_to": [
+          "ux_deliverables_prototyping.wireframing_tools"
+        ],
+        "strength_modifier": 0.5
+      },
+      {
+        "pattern": "Gamification, Engagement Design, or Retention Design endorsed or mentioned",
+        "maps_to": [
+          "ux_attention_context.many_chances_gamification",
+          "ux_attention_context.many_chances_planners",
+          "ux_behavior_frameworks.hook_model"
+        ],
+        "strength_modifier": 0.9
+      },
+      {
+        "pattern": "Journey Mapping, Service Design, or Customer Experience endorsed",
+        "maps_to": [
+          "ux_deliverables_prototyping.customer_experience_map",
+          "ux_deliverables_prototyping.simple_flowchart"
+        ],
+        "strength_modifier": 0.8
+      },
+      {
+        "pattern": "Business analysis, BPMN, or process modeling mentioned",
+        "maps_to": [
+          "ux_deliverables_prototyping.bpmn_diagram",
+          "ux_deliverables_prototyping.epc_diagram"
+        ],
+        "strength_modifier": 0.8
+      }
+    ]
+  },
+  "important_notes": [
+    "A portfolio link in the LinkedIn profile is equivalent to a strong project reference — always evaluate linked portfolio case studies",
+    "LinkedIn is weaker evidence for UX than GitHub/portfolio for engineering roles — the behavioral UX skills that matter most (framework application, A/B testing) rarely leave code artifacts",
+    "High endorsement counts for generic skills (Figma, UX Design) add minimal signal — look for specificity of behavioral design skills endorsed",
+    "Recommendations that quantify behavioral design impact (retention %, conversion lift) are the strongest LinkedIn evidence category for UX"
+  ]
+}

@@ -1,0 +1,367 @@
+{
+  "source_id": "assessment",
+  "name": "Adaptive Technical Assessment - UX Designer",
+  "description": "Adaptive assessment question bank for UX Designer skills. Questions are scenario-based, case-analysis, and practical-task formats that evaluate whether the candidate can apply behavioral frameworks and UX patterns to realistic design problems — not just recall definitions.",
+  "sample_questions_by_composite_key": {
+    "ux_behavior_frameworks.fogg_behavior_model": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "You are designing a feature to encourage daily meditation in a wellness app. Using Fogg's B=MAP model, analyze why users who express strong intent to meditate still fail to form the habit. Identify which component of the B=MAP equation is most likely failing and propose one concrete design intervention for each of the three components.",
+        "expected_answer_keywords": ["B=MAP", "motivation", "ability", "prompt", "spark vs facilitator vs signal", "reducing friction", "ability barrier", "trigger timing", "competing behaviors", "action line"]
+      }
+    ],
+    "ux_behavior_frameworks.hook_model": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "Analyze how Instagram's notification system implements Nir Eyal's Hook Model. Walk through each of the four phases (Trigger, Action, Variable Reward, Investment) with specific Instagram features. Then identify one ethical concern with this implementation and propose how you would redesign it to preserve user autonomy.",
+        "expected_answer_keywords": ["external trigger", "internal trigger", "FOMO", "variable reward", "reward of the tribe", "likes", "investment", "followers", "content creation", "ethical concern", "autonomy-preserving redesign"]
+      }
+    ],
+    "ux_behavior_frameworks.create_action_funnel": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "A fitness app shows 70% of users who start onboarding never complete their first workout session. Using Wendel's CREATE Action Funnel, systematically diagnose where in the funnel the drop-off most likely occurs and what UX intervention addresses each failure point.",
+        "expected_answer_keywords": ["CREATE", "Cue", "Reaction", "Evaluation", "Ability", "Timing", "Experience", "failure point", "drop-off diagnosis", "friction audit", "ability barrier", "wrong timing", "habit not formed"]
+      }
+    ],
+    "ux_behavior_frameworks.dual_process_theory": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "A checkout flow on an e-commerce site has a 'Save 15% by subscribing to our newsletter' checkbox. Explain how System 1 and System 2 thinking would each process this choice, and how the checkbox's default state (checked vs unchecked) differently impacts each thinking mode.",
+        "expected_answer_keywords": ["System 1", "System 2", "fast thinking", "slow thinking", "default state", "status quo bias", "opt-in vs opt-out", "cognitive load", "automatic processing", "deliberate evaluation"]
+      }
+    ],
+    "ux_behavior_frameworks.cue_routine_reward": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "You are designing a language learning app that wants to help users form a daily practice habit. Map the three components of Duhigg's habit loop (Cue, Routine, Reward) to specific features you would design, and explain what type of reward (social, intrinsic, extrinsic) you would choose and why.",
+        "expected_answer_keywords": ["Cue", "Routine", "Reward", "daily reminder", "streak", "habit loop", "intrinsic reward", "extrinsic reward", "social reward", "overjustification", "craving", "habit trigger"]
+      }
+    ],
+    "ux_behavior_frameworks.fogg_behavior_grid": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "A health insurance company wants to design interventions for three distinct behavioral goals: (1) getting users to complete a one-time health assessment, (2) getting users to take a daily step goal, and (3) stopping users from eating unhealthy snacks. Using Fogg's Behavior Grid, classify each behavior and explain how the classification changes your design strategy for each.",
+        "expected_answer_keywords": ["Behavior Grid", "one-time behavior", "green behavior", "dotted behavior", "black behavior", "daily behavior", "stopping behavior", "different strategies", "classification changes approach", "duration dimension", "type dimension"]
+      }
+    ],
+    "ux_behavior_frameworks.spectrum_of_thinking_interventions": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "A fintech app wants to help users increase their retirement savings. Propose three interventions placed at different points on the Spectrum of Thinking Interventions (unconscious to conscious), explain the ethical trade-offs of each, and explain which one you would recommend and why.",
+        "expected_answer_keywords": ["Spectrum of Thinking", "unconscious intervention", "nudge", "default enrollment", "conscious intervention", "education", "ethical trade-offs", "autonomy", "libertarian paternalism", "informed choice", "dark pattern boundary"]
+      }
+    ],
+    "ux_behavior_frameworks.behavioral_buzzwords": [
+      {
+        "level": "junior",
+        "type": "conceptual",
+        "question": "Explain the difference between Behavioral Economics, Behavioral Science, and Persuasive Technology as applied to UX design. Give one concrete UX pattern that originates from each domain.",
+        "expected_answer_keywords": ["Behavioral Economics", "loss aversion", "Kahneman", "Behavioral Science", "Cialdini", "Persuasive Technology", "Fogg", "captology", "irrational decision-making", "cognitive biases", "persuasive patterns"]
+      }
+    ],
+    "ux_behavior_strategies.educate_encourage": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "A B2B SaaS product has a powerful but rarely-used 'Advanced Analytics' feature. Users who discover it see dramatically higher engagement, but 80% never find it. You choose an 'Educate and Encourage' strategy. Design three specific touchpoints in the product experience where you would deliver educational content, explaining why each timing is appropriate.",
+        "expected_answer_keywords": ["Educate and Encourage", "contextual education", "empty state", "tooltip", "in-app announcement", "email nurture", "just-in-time learning", "discovery moment", "feature adoption", "progressive disclosure"]
+      }
+    ],
+    "ux_behavior_strategies.help_think_about_action": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "Research shows that users who explicitly plan when and where they will exercise are 2-3x more likely to follow through (Gollwitzer, implementation intentions). You are designing an exercise app's onboarding. Design a specific implementation intention flow, including the exact prompts you would show and how you would store and use the user's commitment.",
+        "expected_answer_keywords": ["implementation intention", "if-then planning", "when-where-how", "commitment device", "specific time", "specific place", "calendar integration", "reminder personalization", "Gollwitzer", "follow-through", "pre-commitment"]
+      }
+    ],
+    "ux_behavior_strategies.defaulting": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "A pension provider wants to increase retirement contribution rates. They currently default new employees to a 3% contribution and allow opt-out. Research suggests a 6% default significantly increases average retirement savings. Walk through the ethical considerations and UX design implications of changing the default to 6%, including how you would make the opt-out clearly accessible.",
+        "expected_answer_keywords": ["default", "opt-out", "status quo bias", "3% vs 6%", "ethical consideration", "informed consent", "accessible opt-out", "libertarian paternalism", "choice architecture", "transparent design", "not exploitative"]
+      }
+    ],
+    "ux_behavior_strategies.making_it_incidental": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "A banking app wants to help users save money without requiring conscious savings decisions. Design an 'incidental' saving mechanism that embeds saving into a behavior users already perform, and explain what psychological principle makes incidental design effective.",
+        "expected_answer_keywords": ["incidental behavior", "round-up savings", "spare change", "piggybacking", "automaticity", "existing routine", "zero decision cost", "passive saving", "behavior embedding", "effortless design"]
+      }
+    ],
+    "ux_behavior_strategies.automate_new_behavior": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "You are designing the habit formation system for a meditation app targeting users who have never meditated before. Design a 30-day scaffold that gradually reduces app support as the habit solidifies, specifying what changes in the app experience at Day 1, Day 7, Day 14, and Day 30.",
+        "expected_answer_keywords": ["scaffold", "habit formation", "Day 1 high support", "progressive reduction", "automaticity", "repetition", "spaced reminder reduction", "fading scaffold", "independence", "intrinsic motivation", "habit solidification"]
+      }
+    ],
+    "ux_behavior_strategies.disrupt_existing_habit": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "A healthcare app wants to help patients reduce daily sugar intake — a deeply ingrained eating habit. Using Duhigg's habit change framework, design interventions for each of the four disruption strategies (Avoid the Cue, Replace the Routine, Use Consciousness/Mindfulness, Crowd Out Old Habit) and recommend which single strategy to prioritize first for this behavior and context.",
+        "expected_answer_keywords": ["Avoid the Cue", "Replace the Routine", "mindfulness", "Crowd Out", "cue removal", "environmental redesign", "routine substitution", "same cue different routine", "awareness", "competing habit", "priority recommendation", "entrenched habit"]
+      }
+    ],
+    "ux_classifying_behavior.clarify_product": [
+      {
+        "level": "junior",
+        "type": "practical_task",
+        "question": "Write a one-sentence product purpose statement and a problem statement for a new productivity app that claims to 'help people be more productive'. Your statements should eliminate ambiguity and specify who is helped, what problem is solved, and what the measurable outcome is.",
+        "expected_answer_keywords": ["specific user", "specific problem", "measurable outcome", "not generic", "behavioral goal", "target actor", "target outcome", "problem statement structure", "eliminates ambiguity"]
+      }
+    ],
+    "ux_classifying_behavior.target_outcome": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "A product team says the target outcome for their fitness app is 'users get healthier'. As a UX designer, how would you decompose this into specific, measurable behavioral outcomes vs business outcomes? Give two examples of each and explain why the distinction matters for design decisions.",
+        "expected_answer_keywords": ["user outcome", "business outcome", "behavioral goal", "measurable", "specific action", "retention metric", "lagging indicator", "leading indicator", "outcome vs output", "design alignment"]
+      }
+    ],
+    "ux_classifying_behavior.target_actor": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "You are designing a recycling habit feature for a municipality app. Identify and compare two distinct target actors (by behavioral profile, not demographic) who might use this feature, and explain how their different motivation levels and ability constraints would lead to different design interventions.",
+        "expected_answer_keywords": ["behavioral segmentation", "motivation level", "ability constraint", "different actors", "different interventions", "high motivation low ability", "low motivation high ability", "actor profile", "B=MAP actor analysis"]
+      }
+    ],
+    "ux_classifying_behavior.target_action": [
+      {
+        "level": "junior",
+        "type": "practical_task",
+        "question": "A health app's stated design goal is 'help users be healthier'. Rewrite this as three specific, observable target actions that the design could produce, ensuring each action is single, concrete, and measurable.",
+        "expected_answer_keywords": ["specific action", "observable", "single behavior", "concrete", "measurable", "not a goal state", "one action at a time", "behavioral precision", "not 'be healthy'", "log a meal", "take 10000 steps"]
+      }
+    ],
+    "ux_classifying_behavior.user_personas": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "Explain the difference between a demographic persona and a behavioral persona. Given a budget tracking app, create a behavioral persona that captures motivation, ability constraints, existing habits, and behavioral triggers — without mentioning age, gender, or occupation.",
+        "expected_answer_keywords": ["behavioral persona", "motivation", "ability", "existing habits", "triggers", "no demographic", "behavioral profile", "goal-directed", "Jobs-to-be-Done", "mental model", "pain point", "behavioral tendency"]
+      }
+    ],
+    "ux_business_model.business_model_canvas": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "You join a startup designing a meal planning app. The PM hands you a Business Model Canvas. Which three blocks are most directly relevant to your UX design decisions, and how does information in each block concretely change what you design?",
+        "expected_answer_keywords": ["Customer Segments", "Value Propositions", "Customer Relationships", "UX relevance", "design implication", "segment shapes interaction model", "value prop shapes feature set", "relationship type shapes engagement pattern"]
+      }
+    ],
+    "ux_business_model.lean_canvas": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "A founding team has completed a Lean Canvas for their new mental health journaling app. The 'Problem' block lists three user problems. How do you use this information to guide your user research, behavioral target action definition, and initial wireframe scope?",
+        "expected_answer_keywords": ["Lean Canvas", "problem block", "problem-solution fit", "user research alignment", "behavioral target", "scope discipline", "hypothesis", "validated vs assumed", "design sprint scoping", "early adopters"]
+      }
+    ],
+    "ux_business_model.competitor_analysis": [
+      {
+        "level": "junior",
+        "type": "practical_task",
+        "question": "You are conducting a UX competitor analysis for a new habit-tracking app. Define your analysis framework: what five dimensions would you evaluate across competitors, how would you score or document each dimension, and how would you identify a UX gap that represents a design opportunity?",
+        "expected_answer_keywords": ["competitor dimensions", "onboarding", "engagement loop", "feature set", "visual design", "UX gap", "scoring framework", "feature matrix", "heuristic evaluation", "benchmark", "design opportunity", "competitive differentiation"]
+      }
+    ],
+    "ux_business_model.swot_analysis": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "Conduct a SWOT analysis for the UX of Duolingo as a language learning platform (from a behavioral design perspective), and explain how one item from each quadrant should inform a specific UX design decision.",
+        "expected_answer_keywords": ["Strengths", "Weaknesses", "Opportunities", "Threats", "gamification strength", "streak anxiety", "behavioral weakness", "design opportunity", "threat response", "SWOT-to-design translation"]
+      }
+    ],
+    "ux_business_model.five_forces": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "Apply Porter's Five Forces to a B2C subscription fitness app (e.g., Peloton). For each force, identify how it manifests, and explain how one aspect of each force should influence a specific UX design decision (e.g., switching cost design, network effect features, barrier design).",
+        "expected_answer_keywords": ["competitive rivalry", "supplier power", "buyer power", "new entrants", "substitutes", "switching costs", "lock-in design", "network effect", "UX moat", "Five Forces UX implications", "strategic design"]
+      }
+    ],
+    "ux_conceptual_design.user_stories": [
+      {
+        "level": "junior",
+        "type": "practical_task",
+        "question": "Write three behaviorally-grounded user stories for a savings goal feature in a banking app. Each story must follow the correct format, specify a behavioral outcome (not just a feature), and include at least two acceptance criteria per story.",
+        "expected_answer_keywords": ["As a [actor]", "I want to [action]", "so that [outcome]", "acceptance criteria", "behavioral outcome", "testable", "Given/When/Then", "behavioral intent", "not just feature description"]
+      }
+    ],
+    "ux_conceptual_design.ux_principle_short_simple": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "A signup flow has 12 fields: name, email, password, phone, birthday, gender, country, city, occupation, company, team size, and referral source. Redesign this flow applying the 'Keep It Short and Simple' principle. Explain which fields you would remove, defer, or restructure, and cite the psychological principles that support your decisions.",
+        "expected_answer_keywords": ["cognitive load", "Miller's Law", "progressive disclosure", "required vs optional", "defer to onboarding", "form field reduction", "friction", "Hick's Law", "decision fatigue", "chunk into steps"]
+      }
+    ],
+    "ux_conceptual_design.ux_principle_progress_visible": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "A 6-step onboarding survey for a project management tool has a 40% completion rate. Applying the Goal Gradient Effect and the Endowed Progress Effect, propose two specific design changes with rationale — one applying each psychological effect.",
+        "expected_answer_keywords": ["Goal Gradient Effect", "Endowed Progress Effect", "progress bar", "pre-completed step", "step indicator", "momentum", "near-completion", "acceleration", "pre-filled step", "you're almost there"]
+      }
+    ],
+    "ux_conceptual_design.ux_principle_success_prominent": [
+      {
+        "level": "junior",
+        "type": "practical_task",
+        "question": "Design the success state for a user who has just completed their first month of consistent budgeting in a finance app. Describe the specific UI elements, copy, and micro-interactions you would include, and explain the psychological principles (dopamine, positive reinforcement, social proof) each element engages.",
+        "expected_answer_keywords": ["success state", "celebration", "confetti", "positive reinforcement", "achievement copy", "social sharing prompt", "dopamine", "completion reward", "peak moment", "wow moment", "accomplishment framing"]
+      }
+    ],
+    "ux_conceptual_design.ux_principle_scaffolding": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "You are designing onboarding for a professional data visualization tool (similar to Tableau). New users feel overwhelmed by the full feature set. Apply Vygotsky's Zone of Proximal Development and fading scaffolding theory to design a 4-week progressive onboarding experience that builds from basic to advanced capabilities.",
+        "expected_answer_keywords": ["Zone of Proximal Development", "scaffolding", "fading scaffold", "Week 1 basics", "progressive complexity", "contextual help fades", "beginner mode", "feature gating", "competence building", "user confidence", "just-in-time help"]
+      }
+    ],
+    "ux_deliverables_prototyping.customer_experience_map": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "Create the structure (phases, dimensions, and key insight types) for a Customer Experience Map for a patient using a telemedicine service for the first time — from realizing they need medical help through to receiving follow-up care. Identify two 'moments of truth' and explain what behavioral design intervention should address each.",
+        "expected_answer_keywords": ["phases", "touchpoints", "actions", "thoughts", "emotions", "pain points", "moments of truth", "peak-end rule", "emotional journey", "pre-service", "post-service", "behavioral intervention at moment of truth"]
+      }
+    ],
+    "ux_deliverables_prototyping.bpmn_diagram": [
+      {
+        "level": "mid",
+        "type": "practical_task",
+        "question": "Describe the BPMN 2.0 elements you would use to model a multi-actor loan approval process involving three pools (Applicant, Bank Loan Officer, Credit System). Specify at least three BPMN element types with their correct notation names and explain why BPMN's formalism is more appropriate than a simple flowchart for this process.",
+        "expected_answer_keywords": ["pool", "lane", "exclusive gateway", "parallel gateway", "start event", "end event", "message flow", "task", "subprocess", "sequence flow", "multi-actor", "formalism advantage", "BPMN 2.0"]
+      }
+    ],
+    "ux_deliverables_prototyping.wireframing_tools": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "You need to present a new checkout flow to stakeholders next week. Explain your tool and fidelity choice (lo-fi, mid-fi, or hi-fi) for this situation, describe how you would use Figma's Auto-Layout and Component system to make the prototype efficient to iterate on after stakeholder feedback, and explain one advantage Figma has over Balsamiq for this specific context.",
+        "expected_answer_keywords": ["fidelity choice", "lo-fi vs hi-fi", "stakeholder context", "Figma", "Auto-Layout", "component", "iteration efficiency", "Balsamiq comparison", "interactive prototype", "handoff readiness", "click-through prototype"]
+      }
+    ],
+    "ux_deliverables_prototyping.layout_rules": [
+      {
+        "level": "junior",
+        "type": "practical_task",
+        "question": "You are reviewing a dashboard design. It has poor readability. Identify and apply four specific layout principles from Gestalt theory, grid systems, or visual hierarchy rules that would improve it, naming each principle and describing the exact layout change it mandates.",
+        "expected_answer_keywords": ["proximity", "similarity", "visual hierarchy", "contrast", "8-point grid", "whitespace", "typography scale", "F-pattern", "Z-pattern", "WCAG contrast ratio", "Gestalt principle", "visual weight"]
+      }
+    ],
+    "ux_attention_context.fleeting_attention_cta": [
+      {
+        "level": "junior",
+        "type": "practical_task",
+        "question": "Write three alternative CTA variants for a free trial signup button on a project management SaaS landing page. For each variant, explain the psychological principle it applies (urgency, benefit, social proof, loss aversion, etc.) and predict which would perform best in an A/B test and why.",
+        "expected_answer_keywords": ["CTA copy", "action verb", "benefit-led copy", "urgency", "loss aversion framing", "social proof variant", "psychological principle", "A/B test prediction", "micro-copy", "friction reduction", "specific vs generic"]
+      }
+    ],
+    "ux_attention_context.many_chances_gamification": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "A learning platform wants to add gamification to increase course completion rates (currently 18%). Design a gamification system using at least three game mechanics, explain how each mechanic maps to an intrinsic or extrinsic motivation vector, and explain what risk you need to monitor to prevent the gamification from backfiring via the overjustification effect.",
+        "expected_answer_keywords": ["points", "badges", "leaderboard", "streak", "levels", "intrinsic motivation", "extrinsic motivation", "overjustification effect", "undermining intrinsic motivation", "PBL framework", "mastery", "purpose", "reward design", "course completion"]
+      }
+    ],
+    "ux_attention_context.many_chances_tutorials": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "A B2B CRM tool has D7 retention of 35% — most users churn in the first week before completing setup. Design a multi-session onboarding sequence (Day 1, Day 3, Day 7) that addresses the most common failure points in early product adoption, specifying the channel (in-app, email, push) and behavioral mechanism for each touchpoint.",
+        "expected_answer_keywords": ["D1 activation", "D3 follow-up", "D7 retention", "multi-session", "in-app guidance", "email nurture", "activation milestone", "churn risk", "re-engagement", "aha moment", "value realization", "progress toward goal"]
+      }
+    ],
+    "ux_attention_context.many_chances_social_sharing": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "Design a social sharing mechanic for a fitness app that creates genuine peer accountability (not just vanity metrics) and has viral loop potential. Explain the network effect it generates, how you would A/B test the sharing prompt timing, and what ethical boundary you would set to prevent social comparison from causing harm.",
+        "expected_answer_keywords": ["social sharing", "peer accountability", "viral loop", "network effect", "sharing prompt timing", "A/B test", "ethical boundary", "social comparison harm", "genuine connection vs vanity", "opt-in privacy", "shareable achievement"]
+      }
+    ],
+    "ux_patterns_best_practices.social_proof": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "An e-learning platform has 50,000 enrolled students, a 4.7/5 average rating from 3,200 reviews, and a testimonial from a learner who got a job after completing the course. Design a course landing page section that maximizes the persuasive impact of this social proof. Explain where to place each element, what copy to use, and why quantitative social proof is more effective in this context than qualitative.",
+        "expected_answer_keywords": ["social proof placement", "quantitative vs qualitative", "review count", "star rating", "testimonial", "recency", "specificity of testimonial outcome", "above the fold", "social validation", "Cialdini", "wisdom of crowds"]
+      }
+    ],
+    "ux_patterns_best_practices.loss_aversion": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "A subscription app wants to improve trial-to-paid conversion. Using Prospect Theory and loss aversion (ratio ~2:1), rewrite these two copy variants to maximize conversion: (A) 'Get Premium features for $9.99/month' and (B) 'Your free trial ends in 3 days'. Explain the psychological mechanism each rewrite activates.",
+        "expected_answer_keywords": ["loss aversion", "Prospect Theory", "loss framing vs gain framing", "don't lose access", "you'll lose your progress", "2:1 ratio", "endowment effect", "trial expiry", "countdown", "pain of losing vs pleasure of gaining"]
+      }
+    ],
+    "ux_patterns_best_practices.friction_reduction_defaulting": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "A multi-step insurance quote form has 47 fields and a 12% completion rate. You have been given 6 weeks to double the completion rate without removing any legally required fields. Design a comprehensive friction reduction strategy, prioritizing five specific interventions and explaining the psychological mechanism each addresses.",
+        "expected_answer_keywords": ["progressive disclosure", "pre-filled fields", "smart defaults", "step chunking", "continuation flow", "save progress", "reduce choice", "auto-fill", "error prevention", "cognitive load reduction", "ability barrier", "Fogg ability dimension"]
+      }
+    ],
+    "ux_patterns_best_practices.peer_comparison": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "A savings app wants to use peer comparison to motivate users to save more. Design a peer comparison feature that applies normative social influence (descriptive and injunctive norms) while protecting user privacy and avoiding the boomerang effect (where above-average performers reduce effort after seeing they are already ahead).",
+        "expected_answer_keywords": ["peer comparison", "descriptive norm", "injunctive norm", "normative messaging", "boomerang effect", "privacy protection", "anonymized cohort", "opt-in comparison", "above average performer", "below average motivation", "norm framing"]
+      }
+    ],
+    "ux_measuring_impact.ab_testing": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "You want to A/B test two CTA variants on your app's paywall screen. The current conversion rate is 3.5% and you want to detect a 15% relative improvement. Walk through how you would calculate the required sample size, set the test duration, define your primary and guardrail metrics, and explain what the 'peeking problem' is and how you avoid it.",
+        "expected_answer_keywords": ["sample size calculation", "power analysis", "minimum detectable effect", "15% relative improvement", "primary metric", "guardrail metric", "peeking problem", "fixed horizon test", "statistical significance", "Type I error", "Type II error", "confidence interval"]
+      }
+    ],
+    "ux_measuring_impact.statistical_interpretation": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "An A/B test runs for 2 weeks. The result shows p=0.03 and the treatment variant shows +8% conversion uplift. Your PM wants to immediately ship the treatment. What three questions would you ask before recommending a ship decision, and explain one scenario in which a p=0.03 result should NOT lead to shipping.",
+        "expected_answer_keywords": ["p-value", "practical significance", "sample size", "power", "novelty effect", "peeking", "multiple testing", "segment heterogeneity", "guardrail metrics", "confidence interval width", "effect size", "Type I error", "p=0.03 not sufficient alone"]
+      }
+    ],
+    "ux_measuring_impact.multivariate_testing": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "You want to simultaneously test two hero image variants (A/B) and three headline variants (X/Y/Z) on a landing page. Explain the difference between running sequential A/B tests vs a full-factorial multivariate test for this scenario, including the traffic volume requirements, what interaction effects you might discover, and when you would choose each approach.",
+        "expected_answer_keywords": ["multivariate testing", "full factorial", "2x3 design", "6 cells", "interaction effect", "traffic volume", "sequential A/B test", "time requirement", "interaction discovery", "fractional factorial", "trade-off", "when to use MVT vs sequential"]
+      }
+    ],
+    "ux_measuring_impact.ux_metrics": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "You are asked to define the UX success metrics for a new onboarding flow. Using the HEART framework, specify one metric for each dimension (Happiness, Engagement, Adoption, Retention, Task Success) and explain whether each is a leading or lagging indicator of product-market fit.",
+        "expected_answer_keywords": ["HEART framework", "Happiness", "Engagement", "Adoption", "Retention", "Task Success", "leading indicator", "lagging indicator", "NPS", "DAU", "feature adoption rate", "D30 retention", "task completion rate"]
+      }
+    ]
+  }
+}

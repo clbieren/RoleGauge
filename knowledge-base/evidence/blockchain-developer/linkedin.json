@@ -1,0 +1,159 @@
+{
+  "source_id": "linkedin",
+  "name": "LinkedIn Profile Analysis - Blockchain Developer",
+  "description": "Signals extracted from LinkedIn profiles for Blockchain Developer skill assessment. LinkedIn provides professional context, endorsements, posts/articles, and recommendation quality. NOTE: Blockchain developers have unusually strong GitHub evidence — LinkedIn complements rather than leads the assessment. Specific maps_to composite keys are in individual skill files.",
+  "extraction_rules": {
+    "sections": {
+      "headline_summary": {
+        "priority": "medium",
+        "base_strength": 0.2,
+        "notes": "Look for blockchain-specific specialization: 'Solidity Developer', 'DeFi Engineer', 'Smart Contract Engineer', 'Web3 Developer', 'Protocol Engineer', 'ZK Engineer'. Generic 'Software Engineer' without blockchain context provides minimal signal.",
+        "quality_indicators": [
+          "Blockchain/Web3/DeFi/Solidity in headline",
+          "Named protocols or chains in headline (Ethereum, Solana, EVM)",
+          "GitHub or portfolio link in featured section with blockchain work"
+        ]
+      },
+      "experience": {
+        "priority": "high",
+        "base_strength": 0.4,
+        "quality_indicators": [
+          "Protocol names (Uniswap, Aave, Compound, OpenSea, Chainlink, etc.) as employer or collaborator",
+          "Named blockchains and L2s in role descriptions",
+          "Duration in blockchain-specific roles (not just companies that happen to have a blockchain feature)",
+          "Hackathon wins, ETHGlobal awards, or protocol grants received",
+          "Audit firm experience (Trail of Bits, OpenZeppelin, ConsenSys Diligence, Sherlock, Code4rena)"
+        ]
+      },
+      "skills_endorsements": {
+        "priority": "low",
+        "base_strength": 0.15,
+        "notes": "Solidity endorsements are increasingly common and low-signal. High-signal: Foundry, Slither, Echidna, ZK proofs, Rust (for Solana/Substrate), cross-chain bridge design.",
+        "high_signal_skills": [
+          "Rust (blockchain context)",
+          "ZK Proofs / zkSNARKs",
+          "Foundry",
+          "Slither",
+          "Echidna",
+          "Chainlink",
+          "DeFi Protocol Development",
+          "Cross-Chain Bridge Development",
+          "Smart Contract Security",
+          "Solana"
+        ]
+      },
+      "certifications": {
+        "priority": "medium",
+        "base_strength": 0.35,
+        "recognized_certifications": [
+          "ConsenSys Academy / Alchemy University",
+          "Chainlink Developer Expert",
+          "Secureum Bootcamp",
+          "RareSkills Security Bootcamp",
+          "Cyfrin Updraft / Patrick Collins Courses"
+        ]
+      },
+      "posts_articles": {
+        "priority": "high",
+        "base_strength": 0.5,
+        "notes": "LinkedIn articles or posts analyzing specific smart contract vulnerabilities, DeFi protocol mechanics, ZK proof systems, or L2 scaling architectures are extremely high-signal for blockchain developers — writing technical content at this depth requires genuine expertise.",
+        "quality_indicators": [
+          "Technical deep-dives on specific vulnerability classes (reentrancy variants, oracle manipulation)",
+          "Protocol post-mortems or security analyses of known hacks",
+          "EIP analysis or contribution discussions",
+          "ZK proof system comparisons (Groth16 vs PLONK vs STARKs)",
+          "DeFi mechanism design articles"
+        ]
+      },
+      "recommendations": {
+        "priority": "medium",
+        "base_strength": 0.4,
+        "quality_indicators": [
+          "Recommendation from protocol founder, lead engineer, or security auditor",
+          "Specific mention of security-conscious development practices",
+          "Named protocols or hacks the candidate helped prevent/analyze",
+          "Hackathon or grant program recommendation"
+        ]
+      }
+    }
+  },
+  "signal_mapping": {
+    "patterns": [
+      {
+        "pattern": "Solidity, EVM, or smart contract development endorsed",
+        "maps_to": [
+          "smart_contract_development.solidity",
+          "blockchain_fundamentals.basic_operations"
+        ],
+        "strength_modifier": 0.6
+      },
+      {
+        "pattern": "DeFi protocol development, Uniswap, Aave, or Compound integration endorsed",
+        "maps_to": [
+          "dapp_development.defi",
+          "smart_contract_development.erc_tokens"
+        ],
+        "strength_modifier": 0.8
+      },
+      {
+        "pattern": "Smart contract security, security audit, Slither, or Echidna endorsed",
+        "maps_to": [
+          "blockchain_security.slither",
+          "blockchain_security.echidna",
+          "blockchain_security.common_threat_vectors",
+          "blockchain_security.fuzz_testing_static_analysis"
+        ],
+        "strength_modifier": 1.0
+      },
+      {
+        "pattern": "Foundry, Hardhat, or Truffle endorsed",
+        "maps_to": [
+          "smart_contract_tooling.foundry",
+          "smart_contract_tooling.hardhat",
+          "smart_contract_tooling.truffle"
+        ],
+        "strength_modifier": 0.7
+      },
+      {
+        "pattern": "ZK proofs, zkSNARK, zkEVM, or zero-knowledge cryptography endorsed",
+        "maps_to": [
+          "blockchain_scaling.zk_rollups",
+          "blockchain_core_concepts.cryptography"
+        ],
+        "strength_modifier": 1.1
+      },
+      {
+        "pattern": "Chainlink, oracle, or decentralized data feed mentioned",
+        "maps_to": [
+          "blockchain_oracles.chainlink",
+          "blockchain_oracles.hybrid_smart_contracts"
+        ],
+        "strength_modifier": 0.9
+      },
+      {
+        "pattern": "Solana, Rust blockchain, or Anchor framework endorsed",
+        "maps_to": [
+          "blockchain_networks.solana",
+          "smart_contract_development.rust_blockchain"
+        ],
+        "strength_modifier": 1.0
+      },
+      {
+        "pattern": "Layer 2, Arbitrum, Optimism, zkSync, or rollup development mentioned",
+        "maps_to": [
+          "blockchain_scaling.optimistic_rollups",
+          "blockchain_scaling.zk_rollups",
+          "blockchain_networks.l2_arbitrum"
+        ],
+        "strength_modifier": 0.9
+      }
+    ]
+  },
+  "important_notes": [
+    "GitHub is significantly stronger evidence for blockchain developers than LinkedIn — always prioritize GitHub analysis",
+    "ETHGlobal hackathon prizes, protocol bug bounty payouts (Immunefi), or Code4rena/Sherlock audit competition rankings are LinkedIn-mentionable achievements that carry high weight",
+    "Connections and followers in the Web3/DeFi community (Vitalik Buterin, protocol founders) are weak social proof signals but indicate ecosystem integration",
+    "LinkedIn posts analyzing the mechanics of real DeFi hacks (Euler Finance, Cream Finance, Mango Markets) demonstrate genuine security depth that cannot be faked",
+    "Audit firm work experience (Trail of Bits, OpenZeppelin, ConsenSys Diligence, Spearbit) is an extremely strong senior signal"
+  ]
+}

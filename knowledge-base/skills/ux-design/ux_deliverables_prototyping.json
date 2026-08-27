@@ -1,0 +1,129 @@
+{
+  "skill_id": "ux_deliverables_prototyping",
+  "name": "UX Deliverables & Prototyping",
+  "category": "ux_design_craft",
+  "description": "The artifacts and tooling UX designers produce to communicate design intent and validate concepts. Covers process modeling deliverables (Customer Experience Map, Simple Flowchart, EPC, BPMN) and prototyping (wireframing tools, fidelity levels, and layout principles). These artifacts bridge research and production, enabling stakeholder alignment and usability testing.",
+  "subskills": [
+    {
+      "id": "customer_experience_map",
+      "name": "Customer Experience Map",
+      "description": "A visual artifact mapping the end-to-end customer journey across touchpoints, phases, actions, thoughts, emotions, and pain points. Differs from a user flow in that it captures the holistic experience including pre- and post-product touchpoints. Used to identify emotional peaks/valleys and moments of highest behavioral leverage.",
+      "keywords": ["Customer Experience Map", "CX map", "journey map", "touchpoints", "customer journey", "emotions", "pain points", "moments of truth", "service blueprint", "emotional journey", "experience phases"]
+    },
+    {
+      "id": "simple_flowchart",
+      "name": "Simple Flowchart",
+      "description": "Basic process visualization using standard flowchart notation (start/end terminals, process boxes, decision diamonds, connectors). Used for communicating user flows, decision trees, and interaction paths at a level of simplicity accessible to all stakeholders including non-technical ones.",
+      "keywords": ["flowchart", "process flow", "decision diamond", "process box", "user flow", "decision tree", "connector", "terminal", "flow notation", "process visualization"]
+    },
+    {
+      "id": "epc_diagram",
+      "name": "EPC — Event-Driven Process Chain",
+      "description": "A formal process modeling notation used in enterprise UX and SAP-related contexts. EPC diagrams alternate Events (states) and Functions (activities), connected by logical operators (AND, OR, XOR). Used to model complex business processes with conditional paths and parallel flows.",
+      "keywords": ["EPC", "Event-driven Process Chain", "event", "function", "logical operator", "AND gate", "OR gate", "XOR gate", "business process", "SAP EPC", "process modeling notation"]
+    },
+    {
+      "id": "bpmn_diagram",
+      "name": "BPMN — Business Process Model and Notation",
+      "description": "The ISO-standardized notation for business process modeling. Covers BPMN 2.0 elements: pools, lanes, tasks, gateways (exclusive, parallel, inclusive), events (start, intermediate, end), and sequence flows. BPMN is the professional standard for communicating complex, multi-actor processes to both business and technical stakeholders.",
+      "keywords": ["BPMN", "Business Process Model and Notation", "BPMN 2.0", "pool", "lane", "task", "gateway", "exclusive gateway", "parallel gateway", "start event", "end event", "sequence flow", "message flow", "subprocess"]
+    },
+    {
+      "id": "wireframing_tools",
+      "name": "Wireframing & Prototyping Tools",
+      "description": "Proficiency in industry-standard wireframing and prototyping tools: Figma (the dominant collaborative design tool), Adobe XD, Sketch (macOS), and Balsamiq (low-fidelity rapid wireframing). Covers creating low-fidelity (lo-fi) sketches, mid-fidelity wireframes, and high-fidelity interactive prototypes. Also includes handoff workflows to engineering teams.",
+      "keywords": ["Figma", "Adobe XD", "Sketch", "Balsamiq", "wireframe", "prototype", "lo-fi", "hi-fi", "interactive prototype", "design handoff", "component library", "auto-layout", "design system", "prototyping", "clickable prototype"]
+    },
+    {
+      "id": "layout_rules",
+      "name": "Good Layout Rules",
+      "description": "Core visual design principles applied to UX layouts: visual hierarchy (F-pattern, Z-pattern reading), Gestalt principles (proximity, similarity, continuity, closure), grid systems (8-point grid, 12-column), white space, contrast ratios (WCAG 2.1 AA), typography scale, and responsive layout breakpoints.",
+      "keywords": ["visual hierarchy", "F-pattern", "Z-pattern", "Gestalt", "proximity", "similarity", "continuity", "closure", "8-point grid", "12-column grid", "white space", "contrast ratio", "WCAG", "typography scale", "responsive layout", "breakpoints", "visual weight"]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "Figma, XD, Sketch, or Balsamiq files linked or exported in design repository",
+        "detection": "file_presence",
+        "pattern": "\\.fig$|\\.xd$|\\.sketch$|wireframe|prototype|mockup|lo-fi|hi-fi",
+        "strength": 0.8,
+        "maps_to": [
+          "ux_deliverables_prototyping.wireframing_tools",
+          "ux_deliverables_prototyping.layout_rules"
+        ]
+      },
+      {
+        "signal": "Customer journey maps, experience maps, or process flow diagrams in repository",
+        "detection": "content_analysis",
+        "pattern": "customer journey|experience map|CX map|flowchart|BPMN|EPC|user flow diagram",
+        "strength": 0.8,
+        "maps_to": [
+          "ux_deliverables_prototyping.customer_experience_map",
+          "ux_deliverables_prototyping.simple_flowchart",
+          "ux_deliverables_prototyping.bpmn_diagram",
+          "ux_deliverables_prototyping.epc_diagram"
+        ]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "Created wireframes, prototypes, or interactive mockups using Figma, Sketch, or Adobe XD",
+        "strength": 0.8,
+        "maps_to": [
+          "ux_deliverables_prototyping.wireframing_tools",
+          "ux_deliverables_prototyping.layout_rules"
+        ]
+      },
+      {
+        "signal": "Produced customer journey maps, experience maps, or UX process documentation",
+        "strength": 0.8,
+        "maps_to": [
+          "ux_deliverables_prototyping.customer_experience_map",
+          "ux_deliverables_prototyping.simple_flowchart"
+        ]
+      },
+      {
+        "signal": "Created BPMN diagrams or EPC process models for enterprise or complex workflows",
+        "strength": 0.75,
+        "maps_to": [
+          "ux_deliverables_prototyping.bpmn_diagram",
+          "ux_deliverables_prototyping.epc_diagram"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Figma, Adobe XD, Sketch, wireframing, or prototyping endorsed",
+        "strength": 0.5,
+        "maps_to": [
+          "ux_deliverables_prototyping.wireframing_tools",
+          "ux_deliverables_prototyping.layout_rules"
+        ]
+      },
+      {
+        "signal": "Customer journey mapping, experience design, or process modeling mentioned",
+        "strength": 0.5,
+        "maps_to": [
+          "ux_deliverables_prototyping.customer_experience_map",
+          "ux_deliverables_prototyping.simple_flowchart",
+          "ux_deliverables_prototyping.bpmn_diagram"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": ["wireframing_tools", "simple_flowchart", "layout_rules"],
+      "description": "Creates lo-fi and mid-fi wireframes in Figma or equivalent, draws clear user flow diagrams, and applies grid systems and Gestalt principles in layouts."
+    },
+    "mid": {
+      "expected_subskills": ["customer_experience_map", "bpmn_diagram"],
+      "description": "Produces comprehensive customer experience maps identifying emotional leverage points, and creates BPMN process models for multi-actor workflows."
+    },
+    "senior": {
+      "expected_subskills": ["epc_diagram"],
+      "description": "Models complex enterprise processes with EPC notation, establishes cross-team standards for UX deliverable formats, and governs design handoff quality."
+    }
+  }
+}

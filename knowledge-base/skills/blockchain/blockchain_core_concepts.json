@@ -1,0 +1,146 @@
+{
+  "skill_id": "blockchain_core_concepts",
+  "name": "Blockchain Core Concepts",
+  "category": "blockchain_core",
+  "description": "Deeper technical concepts that underpin how blockchains operate, incentivize participation, and reach agreement. Covers mining and incentive economics, the trust model of decentralization, forking mechanics, cryptocurrencies as assets, cryptowallet types and operation, cryptographic primitives used in blockchain, and the full spectrum of consensus protocols.",
+  "subskills": [
+    {
+      "id": "mining_incentive_models",
+      "name": "Mining & Incentive Models",
+      "description": "How Proof of Work mining functions: the computational puzzle (finding a nonce such that SHA-256(block) < target), difficulty adjustment, mining pools, block rewards vs transaction fees, halving events, and the economic model that makes honest mining the rational choice. Also covers why incentive alignment is central to blockchain security — Nakamoto consensus as a game-theoretic equilibrium.",
+      "keywords": ["Proof of Work", "mining", "nonce", "difficulty adjustment", "block reward", "halving", "mining pool", "hash rate", "51% attack", "Nakamoto consensus", "incentive alignment", "transaction fees", "coinbase transaction"]
+    },
+    {
+      "id": "decentralization_vs_trust",
+      "name": "Decentralization vs Trust",
+      "description": "The spectrum from fully centralized (trusted third party) to fully decentralized (trustless) systems. Covers why blockchains replace institutional trust with cryptographic and economic guarantees, the role of validator sets in determining decentralization degree, Sybil resistance mechanisms, and the distinction between decentralization as a technical property vs a governance property.",
+      "keywords": ["trustless", "trusted third party", "Sybil resistance", "validator set", "decentralization degree", "cryptographic guarantee", "economic guarantee", "governance decentralization", "permissioned trust", "censorship resistance"]
+    },
+    {
+      "id": "forking",
+      "name": "Forking",
+      "description": "Hard forks vs soft forks: in a hard fork, the new rules are backward-incompatible and the chain permanently splits (e.g., Ethereum/Ethereum Classic, Bitcoin/Bitcoin Cash). In a soft fork, the new rules are backward-compatible and the network upgrades without splitting. Covers contentious vs planned forks, replay attacks after hard forks, and chain splits in the context of upgrades and governance disputes.",
+      "keywords": ["hard fork", "soft fork", "chain split", "backward compatible", "Ethereum Classic", "Bitcoin Cash", "replay attack", "planned upgrade", "contentious fork", "governance dispute", "UASF", "SegWit", "EIP process"]
+    },
+    {
+      "id": "cryptocurrencies",
+      "name": "Cryptocurrencies",
+      "description": "Native digital assets of blockchains: Bitcoin (BTC) as a store of value and payment medium, Ether (ETH) as gas and collateral, altcoins, stablecoins (fiat-backed like USDC, algorithmic, crypto-collateralized), wrapped tokens (WBTC), and the distinction between coins (native) and tokens (smart contract-issued). Covers market structure, volatility, and how cryptocurrency economics affect developer decisions (gas pricing, token economics).",
+      "keywords": ["Bitcoin", "Ether", "altcoin", "stablecoin", "USDC", "USDT", "DAI", "wrapped token", "WBTC", "coin vs token", "gas economics", "tokenomics", "fiat-backed", "algorithmic stablecoin", "crypto-collateralized"]
+    },
+    {
+      "id": "cryptowallets",
+      "name": "Cryptowallets",
+      "description": "Software and hardware wallets for managing blockchain keys and assets. Covers HD wallets (BIP-32/BIP-39 mnemonic seed phrases, BIP-44 derivation paths), hot vs cold wallets, custodial vs non-custodial, MetaMask, hardware wallets (Ledger, Trezor), multi-signature wallets (Gnosis Safe), and account abstraction (ERC-4337). Critical distinction: wallets hold keys, not coins — assets live on-chain.",
+      "keywords": ["HD wallet", "BIP-32", "BIP-39", "mnemonic", "seed phrase", "derivation path", "MetaMask", "Ledger", "Trezor", "hot wallet", "cold wallet", "custodial", "non-custodial", "Gnosis Safe", "multi-sig", "account abstraction", "ERC-4337"]
+    },
+    {
+      "id": "cryptography",
+      "name": "Cryptography in Blockchain",
+      "description": "Cryptographic primitives that make blockchains work: SHA-256 and Keccak-256 hash functions (collision resistance, preimage resistance), elliptic curve cryptography (secp256k1, Ed25519) for key generation and ECDSA signatures, Merkle proofs for light client verification, zero-knowledge proofs (ZKP) at a conceptual level (zkSNARKs, zkSTARKs), and hash-based commitments.",
+      "keywords": ["SHA-256", "Keccak-256", "hash function", "collision resistance", "preimage resistance", "elliptic curve", "secp256k1", "Ed25519", "ECDSA", "digital signature", "Merkle proof", "zero-knowledge proof", "zkSNARK", "zkSTARK", "commitment scheme"]
+    },
+    {
+      "id": "consensus_protocols",
+      "name": "Consensus Protocols",
+      "description": "Mechanisms by which distributed nodes agree on the canonical chain state without a central authority. Covers Proof of Work (PoW), Proof of Stake (PoS, Ethereum's Gasper), Delegated PoS (DPoS), Proof of Authority (PoA), Proof of History (PoH — Solana), Tendermint/BFT consensus, Avalanche consensus, and Nominated PoS (NPoS — Polkadot). Compares finality guarantees, validator requirements, and energy consumption.",
+      "keywords": ["Proof of Work", "Proof of Stake", "Delegated PoS", "Proof of Authority", "Proof of History", "Tendermint", "BFT", "Avalanche consensus", "Gasper", "validator", "finality", "probabilistic finality", "deterministic finality", "slashing", "staking"]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "Implementation or documentation of consensus mechanisms, cryptographic primitives, or wallet key derivation",
+        "detection": "content_analysis",
+        "pattern": "secp256k1|ECDSA|BIP-39|mnemonic|Keccak|SHA-256|consensus|Proof of Stake|Proof of Work|validator|slashing",
+        "strength": 0.8,
+        "maps_to": [
+          "blockchain_core_concepts.cryptography",
+          "blockchain_core_concepts.consensus_protocols",
+          "blockchain_core_concepts.cryptowallets"
+        ]
+      },
+      {
+        "signal": "Wallet integration code, HD wallet derivation, or multi-sig implementation",
+        "detection": "content_analysis",
+        "pattern": "ethers\\.Wallet|HDNode|fromMnemonic|derivePath|Gnosis Safe|MultiSigWallet|MetaMask|WalletConnect",
+        "strength": 0.8,
+        "maps_to": [
+          "blockchain_core_concepts.cryptowallets",
+          "blockchain_core_concepts.cryptography"
+        ]
+      },
+      {
+        "signal": "Tokenomics documentation, stablecoin design, or cryptocurrency economics analysis",
+        "detection": "content_analysis",
+        "pattern": "tokenomics|stablecoin|ERC-20|halving|block reward|gas economics|WBTC|wrapped token",
+        "strength": 0.7,
+        "maps_to": [
+          "blockchain_core_concepts.cryptocurrencies",
+          "blockchain_core_concepts.mining_incentive_models"
+        ]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "Designed or implemented consensus mechanisms, fork handling, or cryptographic primitives",
+        "strength": 0.85,
+        "maps_to": [
+          "blockchain_core_concepts.consensus_protocols",
+          "blockchain_core_concepts.forking",
+          "blockchain_core_concepts.cryptography"
+        ]
+      },
+      {
+        "signal": "Built wallet integrations, multi-sig systems, or HD wallet derivation",
+        "strength": 0.8,
+        "maps_to": [
+          "blockchain_core_concepts.cryptowallets",
+          "blockchain_core_concepts.cryptography"
+        ]
+      },
+      {
+        "signal": "Worked on tokenomics, mining incentive models, or cryptocurrency economics",
+        "strength": 0.75,
+        "maps_to": [
+          "blockchain_core_concepts.mining_incentive_models",
+          "blockchain_core_concepts.cryptocurrencies",
+          "blockchain_core_concepts.decentralization_vs_trust"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Consensus protocols, cryptography, or blockchain security endorsed",
+        "strength": 0.5,
+        "maps_to": [
+          "blockchain_core_concepts.consensus_protocols",
+          "blockchain_core_concepts.cryptography"
+        ]
+      },
+      {
+        "signal": "Cryptocurrency, DeFi tokenomics, or wallet development mentioned",
+        "strength": 0.5,
+        "maps_to": [
+          "blockchain_core_concepts.cryptocurrencies",
+          "blockchain_core_concepts.cryptowallets",
+          "blockchain_core_concepts.mining_incentive_models"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": ["cryptography", "cryptowallets", "cryptocurrencies"],
+      "description": "Understands hash functions, elliptic curve key pairs, and ECDSA signatures; knows how HD wallets derive keys from mnemonic phrases; distinguishes coins from tokens and understands gas economics."
+    },
+    "mid": {
+      "expected_subskills": ["mining_incentive_models", "decentralization_vs_trust", "forking", "consensus_protocols"],
+      "description": "Explains PoW incentive economics, evaluates decentralization degree of validator sets, understands hard vs soft fork implications, and compares PoS/PoW/PoH consensus trade-offs."
+    },
+    "senior": {
+      "expected_subskills": [],
+      "description": "Designs consensus-aware architectures, evaluates protocol-level trust assumptions, and advises on fork migration strategies and replay attack mitigation."
+    }
+  }
+}

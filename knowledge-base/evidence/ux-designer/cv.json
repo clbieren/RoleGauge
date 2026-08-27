@@ -1,0 +1,173 @@
+{
+  "source_id": "cv",
+  "name": "CV / Resume Analysis - UX Designer",
+  "description": "Extraction rules and signal mappings for UX Designer CVs/resumes. NOTE: Specific evidence mappings (maps_to composite keys) are stored within individual skill files under evidence.cv, NOT here. This file governs section-level extraction rules and signal quality indicators used by the scoring engine.",
+  "extraction_rules": {
+    "sections": {
+      "work_experience": {
+        "priority": "high",
+        "base_strength": 0.6,
+        "quality_indicators": [
+          "Measurable behavioral impact (e.g., 'applied Fogg B=MAP to redesign onboarding, increasing D7 retention by 23%')",
+          "Named behavioral frameworks applied in context (Hook Model, CREATE Action Funnel, Dual Process Theory)",
+          "A/B test results quantifying UX impact (e.g., 'designed loss aversion CTA that increased conversion 18% in A/B test')",
+          "Specific tools used in professional context (Figma, Adobe XD, BPMN modeling tools)",
+          "Cross-functional collaboration on behavior change interventions (product, engineering, data science)",
+          "Leadership of behavioral design workshops or design sprints"
+        ]
+      },
+      "projects": {
+        "priority": "high",
+        "base_strength": 0.5,
+        "quality_indicators": [
+          "Links to public Figma files, case study portfolios, or design system documentation",
+          "Described behavioral design rationale (why a specific intervention was chosen)",
+          "Demonstrated full design process from research to prototype to test",
+          "Gamification, habit design, or persuasive pattern systems with documented outcomes",
+          "Customer journey maps, experience maps, or BPMN diagrams included or linked"
+        ]
+      },
+      "portfolio": {
+        "priority": "high",
+        "base_strength": 0.7,
+        "notes": "UX portfolios are the strongest CV-equivalent for practitioners. A portfolio link with case studies demonstrating behavioral design process is weighted higher than work experience descriptions alone.",
+        "quality_indicators": [
+          "Case studies with clear problem statement → research → behavioral diagnosis → intervention → measurement structure",
+          "Before/after metrics demonstrating design impact",
+          "Process artifacts (personas, journey maps, wireframes, prototypes) visible in case study"
+        ]
+      },
+      "skills_list": {
+        "priority": "medium",
+        "base_strength": 0.3,
+        "notes": "Listing tools (Figma, Sketch) or framework names (Hook Model, BPMN) without project context receives low strength. Must be corroborated by portfolio or work experience."
+      },
+      "certifications": {
+        "priority": "medium",
+        "base_strength": 0.35,
+        "recognized_certifications": [
+          "Nielsen Norman Group UX Certification (NN/g)",
+          "Interaction Design Foundation (IDF) — UX Design, Human-Computer Interaction",
+          "Google UX Design Certificate (Coursera)",
+          "IDEO Design Thinking Certification",
+          "Certified User Experience Professional (CUXP)",
+          "Behavioral Design Academy Certification (SUE Amsterdam)",
+          "BJ Fogg's Tiny Habits Coach Certification"
+        ]
+      },
+      "education": {
+        "priority": "low",
+        "base_strength": 0.2,
+        "relevant_degrees": [
+          "Human-Computer Interaction (HCI)",
+          "Interaction Design",
+          "Cognitive Psychology",
+          "Behavioral Science / Behavioral Economics",
+          "Graphic Design / Visual Communication",
+          "Industrial Design",
+          "Computer Science (with UX specialization)"
+        ]
+      }
+    }
+  },
+  "signal_mapping": {
+    "patterns": [
+      {
+        "pattern": "Applied Fogg Behavior Model (B=MAP), Hook Model, or CREATE Action Funnel in design process",
+        "maps_to": [
+          "ux_behavior_frameworks.fogg_behavior_model",
+          "ux_behavior_frameworks.hook_model",
+          "ux_behavior_frameworks.create_action_funnel"
+        ],
+        "strength_modifier": 1.2
+      },
+      {
+        "pattern": "Designed habit-forming products, engagement loops, or retention mechanics",
+        "maps_to": [
+          "ux_behavior_frameworks.cue_routine_reward",
+          "ux_behavior_frameworks.hook_model",
+          "ux_behavior_strategies.automate_new_behavior",
+          "ux_attention_context.many_chances_gamification"
+        ],
+        "strength_modifier": 1.1
+      },
+      {
+        "pattern": "Conducted user research, created behavioral personas, or ran Jobs-to-be-Done interviews",
+        "maps_to": [
+          "ux_classifying_behavior.user_personas",
+          "ux_classifying_behavior.target_actor",
+          "ux_classifying_behavior.target_outcome"
+        ],
+        "strength_modifier": 1.0
+      },
+      {
+        "pattern": "Created wireframes, prototypes, or high-fidelity mockups in Figma, Sketch, or Adobe XD",
+        "maps_to": [
+          "ux_deliverables_prototyping.wireframing_tools",
+          "ux_deliverables_prototyping.layout_rules"
+        ],
+        "strength_modifier": 1.0
+      },
+      {
+        "pattern": "Produced customer journey maps, experience maps, or service blueprints",
+        "maps_to": [
+          "ux_deliverables_prototyping.customer_experience_map",
+          "ux_deliverables_prototyping.simple_flowchart"
+        ],
+        "strength_modifier": 1.0
+      },
+      {
+        "pattern": "Created BPMN process models or EPC diagrams for enterprise workflows",
+        "maps_to": [
+          "ux_deliverables_prototyping.bpmn_diagram",
+          "ux_deliverables_prototyping.epc_diagram"
+        ],
+        "strength_modifier": 1.1
+      },
+      {
+        "pattern": "Applied social proof, loss aversion, authority signals, or urgency patterns in product design",
+        "maps_to": [
+          "ux_patterns_best_practices.social_proof",
+          "ux_patterns_best_practices.loss_aversion",
+          "ux_patterns_best_practices.authority",
+          "ux_patterns_best_practices.urgency_scarcity"
+        ],
+        "strength_modifier": 1.1
+      },
+      {
+        "pattern": "Designed and ran A/B tests, analyzed results, and shipped data-driven design iterations",
+        "maps_to": [
+          "ux_measuring_impact.ab_testing",
+          "ux_measuring_impact.statistical_interpretation",
+          "ux_measuring_impact.integrating_test_results"
+        ],
+        "strength_modifier": 1.2
+      },
+      {
+        "pattern": "Applied defaults, opt-out patterns, or choice architecture in product design",
+        "maps_to": [
+          "ux_behavior_strategies.defaulting",
+          "ux_behavior_strategies.making_it_incidental"
+        ],
+        "strength_modifier": 1.0
+      },
+      {
+        "pattern": "Used Business Model Canvas, Lean Canvas, SWOT, or competitor analysis in product discovery",
+        "maps_to": [
+          "ux_business_model.business_model_canvas",
+          "ux_business_model.lean_canvas",
+          "ux_business_model.swot_analysis",
+          "ux_business_model.competitor_analysis"
+        ],
+        "strength_modifier": 1.0
+      }
+    ]
+  },
+  "important_notes": [
+    "UX portfolios are significantly stronger evidence than CV descriptions alone — always request and evaluate portfolio link if mentioned",
+    "Behavioral framework application must be described in context (what problem, what outcome) — listing 'Fogg Behavior Model' in skills list without application context is low strength",
+    "A/B test claims require quantified outcomes (lift percentage, confidence level) to receive high strength",
+    "Figma proficiency is effectively table stakes for modern UX designers — depth of component architecture and design system work matters more than tool listing alone",
+    "Cross-functional impact (influencing engineering and product decisions with behavioral evidence) is a strong senior signal"
+  ]
+}

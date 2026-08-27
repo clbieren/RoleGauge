@@ -1,0 +1,90 @@
+{
+  "role_id": "blockchain_developer",
+  "level": "junior",
+  "title": "Junior Blockchain Developer",
+  "description": "Entry-level blockchain developer with solid foundational knowledge of blockchain technology, the ability to write and test Solidity smart contracts using OpenZeppelin standards and a development framework (Hardhat or Foundry), basic ERC token implementations (ERC-20, ERC-721), secure handling of known vulnerability patterns, Git-based collaboration workflows, and the ability to build simple dApp frontends connecting to deployed contracts via ethers.js or wagmi.",
+  "experience_range": "0-2 years",
+  "skills": [
+    {
+      "skill_id": "blockchain_fundamentals",
+      "importance": 0.95,
+      "rationale": "A firm grasp of what blockchain is, why decentralization matters, how block structures work, and how transactions flow is the non-negotiable prerequisite for all blockchain development tasks."
+    },
+    {
+      "skill_id": "blockchain_core_concepts",
+      "importance": 0.9,
+      "rationale": "Understanding cryptography (hashing, key pairs, ECDSA), wallet mechanics (HD wallets, MetaMask, seed phrases), and basic cryptocurrency economics (gas, ERC-20 vs native coin) is essential for daily blockchain development work."
+    },
+    {
+      "skill_id": "smart_contract_development",
+      "importance": 0.95,
+      "rationale": "Writing correct Solidity contracts, implementing ERC standards via OpenZeppelin, writing unit tests, and deploying/verifying on testnets is the core technical output for junior blockchain developers."
+    },
+    {
+      "skill_id": "smart_contract_tooling",
+      "importance": 0.9,
+      "rationale": "Productive use of Hardhat or Foundry, MetaMask for testing, faucets for testnet tokens, and Remix/VS Code for development is required for daily workflow."
+    },
+    {
+      "skill_id": "blockchain_security",
+      "importance": 0.85,
+      "rationale": "Knowing the canonical vulnerability taxonomy (reentrancy, overflow, access control) and using OpenZeppelin's audited libraries defensively is a minimum safety requirement — security failures in smart contracts are irreversible."
+    },
+    {
+      "skill_id": "dapp_development",
+      "importance": 0.8,
+      "rationale": "Connecting a dApp frontend with ethers.js/wagmi to a deployed contract on Alchemy/Infura, and building ERC-721 NFT projects with IPFS metadata, are common junior deliverables."
+    },
+    {
+      "skill_id": "blockchain_networks",
+      "importance": 0.75,
+      "rationale": "Understanding the EVM specification and being able to deploy contracts to major EVM chains (Ethereum, Polygon, BSC) with correct chain ID and RPC configuration."
+    },
+    {
+      "skill_id": "blockchain_scaling",
+      "importance": 0.6,
+      "rationale": "Basic understanding of Optimistic Rollups (Arbitrum, Optimism) enables juniors to deploy on L2s and understand why gas costs differ from mainnet."
+    },
+    {
+      "skill_id": "blockchain_oracles",
+      "importance": 0.55,
+      "rationale": "Understanding the oracle problem and why smart contracts cannot access off-chain data is foundational; junior-level Chainlink Data Feed integration is increasingly common."
+    }
+  ],
+  "scoring": {
+    "method": "weighted_average",
+    "description": "Each skill score is multiplied by its importance weight. Final score is sum divided by sum of weights.",
+    "thresholds": {
+      "not_ready": {
+        "min": 0.0,
+        "max": 0.3,
+        "label": "Not Ready",
+        "description": "Significant gaps in blockchain fundamentals, Solidity basics, or cannot write a working unit test — not yet ready for production blockchain development tasks."
+      },
+      "developing": {
+        "min": 0.3,
+        "max": 0.5,
+        "label": "Developing",
+        "description": "Can write basic Solidity contracts and understands blockchain concepts, but needs guidance on test coverage, security patterns, and deployment workflows."
+      },
+      "approaching": {
+        "min": 0.5,
+        "max": 0.7,
+        "label": "Approaching Ready",
+        "description": "Solid Solidity and Hardhat/Foundry proficiency, writes unit tests, uses OpenZeppelin defensively, and can deploy and verify contracts on testnets with minimal coaching."
+      },
+      "ready": {
+        "min": 0.7,
+        "max": 0.85,
+        "label": "Ready",
+        "description": "Meets all junior expectations: independently writes and tests Solidity contracts, implements ERC standards, builds simple dApp frontends, uses Slither in CI, and deploys on EVM chains."
+      },
+      "exceeds": {
+        "min": 0.85,
+        "max": 1.0,
+        "label": "Exceeds Expectations",
+        "description": "Exceeds junior expectations with early mid-level proficiency: Chainlink oracle integration, L2 deployments, Foundry fuzz tests, or meaningful DeFi protocol interaction."
+      }
+    }
+  }
+}

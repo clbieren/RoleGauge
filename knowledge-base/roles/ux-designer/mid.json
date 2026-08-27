@@ -1,0 +1,90 @@
+{
+  "role_id": "ux_designer",
+  "level": "mid",
+  "title": "Mid-Level UX Designer",
+  "description": "Mid-level UX designer independently driving the behavioral design process: applying Hook Model, CREATE funnel, and habit strategies; producing Customer Experience Maps and BPMN models; running Lean Canvas and competitive analysis; designing gamified engagement systems and multi-session onboarding; applying loss aversion, peer comparison, and implementation intention patterns; and interpreting A/B test results.",
+  "experience_range": "2-5 years",
+  "skills": [
+    {
+      "skill_id": "ux_behavior_frameworks",
+      "importance": 0.95,
+      "rationale": "Full framework mastery (Hook, CREATE, Behavior Grid, habit loop) is the differentiating mid-level capability."
+    },
+    {
+      "skill_id": "ux_patterns_best_practices",
+      "importance": 0.95,
+      "rationale": "Independently selecting loss aversion, peer comparison, authority, urgency patterns for each behavioral context."
+    },
+    {
+      "skill_id": "ux_behavior_strategies",
+      "importance": 0.9,
+      "rationale": "Independent strategy selection: conscious action, cheating, or habit formation based on behavioral diagnosis."
+    },
+    {
+      "skill_id": "ux_attention_context",
+      "importance": 0.9,
+      "rationale": "Designing full engagement systems (gamification, goal trackers, tutorials) for sustained behavioral engagement."
+    },
+    {
+      "skill_id": "ux_deliverables_prototyping",
+      "importance": 0.85,
+      "rationale": "Customer Experience Maps, BPMN models for complex flows, and hi-fi interactive prototypes for usability testing."
+    },
+    {
+      "skill_id": "ux_conceptual_design",
+      "importance": 0.85,
+      "rationale": "Managing behavioral design backlogs, compelling success states, and scaffolded onboarding flows."
+    },
+    {
+      "skill_id": "ux_business_model",
+      "importance": 0.8,
+      "rationale": "Lean Canvas for problem-solution fit, cross-industry inspirators, and SWOT-to-design synthesis."
+    },
+    {
+      "skill_id": "ux_measuring_impact",
+      "importance": 0.8,
+      "rationale": "Correctly interpreting A/B test results, avoiding statistical pitfalls, and driving iterative design decisions."
+    },
+    {
+      "skill_id": "ux_classifying_behavior",
+      "importance": 0.75,
+      "rationale": "Precise target outcome/actor/action definition to ensure behavioral interventions are correctly aimed."
+    }
+  ],
+  "scoring": {
+    "method": "weighted_average",
+    "description": "Each skill score is multiplied by its importance weight. Final score is sum divided by sum of weights.",
+    "thresholds": {
+      "not_ready": {
+        "min": 0.0,
+        "max": 0.3,
+        "label": "Not Ready",
+        "description": "Operates at junior level despite experience; lacks independent framework application and experiment literacy."
+      },
+      "developing": {
+        "min": 0.3,
+        "max": 0.5,
+        "label": "Developing",
+        "description": "Applies frameworks with guidance; needs support on experiment interpretation and complex strategy selection."
+      },
+      "approaching": {
+        "min": 0.5,
+        "max": 0.7,
+        "label": "Approaching Ready",
+        "description": "Independently applies most frameworks; designing gamification and onboarding flows; building experiment depth."
+      },
+      "ready": {
+        "min": 0.7,
+        "max": 0.85,
+        "label": "Ready",
+        "description": "Leads behavioral design end-to-end, applies full persuasive toolkit, interprets experiments, drives engagement systems."
+      },
+      "exceeds": {
+        "min": 0.85,
+        "max": 1.0,
+        "label": "Exceeds Expectations",
+        "description": "Exceeds mid-level with early senior proficiency in MVT, Five Forces, and EPC modeling."
+      }
+    }
+  }
+}

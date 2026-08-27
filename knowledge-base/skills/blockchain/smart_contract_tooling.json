@@ -1,0 +1,178 @@
+{
+  "skill_id": "smart_contract_tooling",
+  "name": "Smart Contract Tooling & Development Environment",
+  "category": "blockchain_engineering",
+  "description": "The ecosystem of tools, frameworks, and services that make smart contract development productive and reliable. Covers crypto wallets for development (MetaMask, WalletConnect), IDEs and editor plugins, testnet faucets, decentralized storage (IPFS, Arweave, Filecoin), and the four major smart contract development frameworks (Hardhat, Brownie, Truffle, Foundry).",
+  "subskills": [
+    {
+      "id": "crypto_wallets_dev",
+      "name": "Crypto Wallets for Development",
+      "description": "Using wallets as development and testing tools: MetaMask browser extension (custom RPC, test accounts, signing transactions in browser dApps), MetaMask Flask for experimental features (Snaps), WalletConnect v2 (QR-code wallet connection protocol for mobile wallets), Rainbow Kit and ConnectKit (React components for wallet connection UI), Hardhat Network accounts (deterministic test accounts from mnemonic), and cast wallet (Foundry's CLI wallet). Understanding the difference between signing a message and signing a transaction.",
+      "keywords": ["MetaMask", "WalletConnect", "RainbowKit", "ConnectKit", "Hardhat accounts", "cast wallet", "test mnemonic", "custom RPC", "wallet connection", "sign message", "sign transaction", "MetaMask Flask", "Snaps", "wagmi"]
+    },
+    {
+      "id": "ides",
+      "name": "IDEs & Editor Tooling",
+      "description": "Development environments for smart contract work: Remix IDE (browser-based, instant deployment, built-in debugger — ideal for prototyping), VS Code with solidity extension (Juan Blanco's extension: syntax highlighting, error detection, NatSpec hints), Cursor/GitHub Copilot for AI-assisted Solidity, Hardhat VSCode extension (inline test running), and Foundry toolchain integration. Remix's virtual machine, injected provider, and external provider modes.",
+      "keywords": ["Remix IDE", "VS Code", "solidity extension", "Juan Blanco", "NatSpec", "Hardhat extension", "Cursor", "GitHub Copilot", "Solidity debugger", "Remix VM", "injected provider", "IDE", "code completion", "linting"]
+    },
+    {
+      "id": "faucets",
+      "name": "Testnet Faucets",
+      "description": "Services that distribute free testnet ETH or native tokens for development and testing: Sepolia faucets (Alchemy Faucet, QuickNode Faucet, Chainlink Faucet), Goerli/Holesky faucets, Mumbai/Amoy faucets for Polygon, Avalanche Fuji faucet, BSC testnet faucet, and Solana Devnet airdrop (solana airdrop command). Understanding testnet limitations vs mainnet, and why testnet state is reset or deprecated.",
+      "keywords": ["faucet", "Sepolia", "Goerli", "Holesky", "Mumbai", "Amoy", "Fuji", "testnet ETH", "Alchemy Faucet", "QuickNode Faucet", "Chainlink Faucet", "solana airdrop", "BSC testnet", "testnet limitations", "drip"]
+    },
+    {
+      "id": "decentralized_storage",
+      "name": "Decentralized Storage",
+      "description": "Off-chain storage solutions for blockchain applications, essential for NFT metadata and large data that cannot live on-chain due to gas costs. IPFS (InterPlanetary File System): content-addressed storage using CID (content identifier), pinning services (Pinata, web3.storage, NFT.Storage), IPFS gateways. Arweave: permanent storage with one-time payment, Arweave permaweb, Bundlr/Irys for efficient uploads, AR token economics. Filecoin: incentivized IPFS storage with FIL token, storage deals, retrieval market. On-chain vs off-chain metadata trade-offs for NFT projects.",
+      "keywords": ["IPFS", "CID", "content-addressed", "Pinata", "web3.storage", "NFT.Storage", "IPFS gateway", "Arweave", "permaweb", "Bundlr", "Irys", "Filecoin", "FIL", "storage deal", "off-chain metadata", "on-chain metadata", "tokenURI"]
+    },
+    {
+      "id": "hardhat",
+      "name": "Hardhat",
+      "description": "The most widely used Ethereum development framework (Node.js). Key features: Hardhat Network (local EVM with console.log in Solidity, stack traces, mining modes), task and plugin system (hardhat-ethers, hardhat-waffle, hardhat-etherscan, hardhat-gas-reporter, hardhat-coverage, OpenZeppelin hardhat-upgrades), compilation with solc version management, deployment scripts with hardhat-deploy, and fork testing (forking mainnet state). Configuration via hardhat.config.ts.",
+      "keywords": ["Hardhat", "Hardhat Network", "console.log Solidity", "hardhat-ethers", "hardhat-etherscan", "hardhat-gas-reporter", "hardhat-coverage", "hardhat-upgrades", "hardhat-deploy", "mainnet fork", "hardhat.config.ts", "task", "plugin", "npx hardhat"]
+    },
+    {
+      "id": "foundry",
+      "name": "Foundry",
+      "description": "Rust-based, fastest smart contract testing and development toolkit. Components: forge (compilation, testing, fuzzing, gas snapshots), cast (CLI for on-chain interactions — call, send, decode, estimate-gas, block), anvil (local EVM node with same features as Hardhat Network), chisel (REPL for Solidity). Foundry's Solidity-native test DSL (no JS wrapper), built-in fuzz testing (forge test --fuzz-runs), invariant testing, fork testing (--fork-url), and vm.prank, vm.deal, vm.expectRevert cheat codes.",
+      "keywords": ["Foundry", "forge", "cast", "anvil", "chisel", "forge test", "fuzz testing", "invariant test", "cheat codes", "vm.prank", "vm.deal", "vm.expectRevert", "foundry.toml", "forge fmt", "forge snapshot", "Solidity test", "cast call"]
+    },
+    {
+      "id": "brownie",
+      "name": "Brownie",
+      "description": "Python-based Ethereum development framework (now in maintenance mode, superseded largely by Foundry for many use cases). Key features: pytest integration for smart contract testing, Web3.py under the hood, accounts management, network management, contract interaction via Python objects, and console for interactive testing. Widely used in DeFi (Yearn Finance is built with Brownie). Relevant for teams with Python expertise or maintaining legacy codebases.",
+      "keywords": ["Brownie", "Python", "pytest", "Web3.py", "accounts", "network", "Yearn Finance", "brownie compile", "brownie test", "brownie run", "brownie console", "DeFi Python", "transaction", "ContractContainer"]
+    },
+    {
+      "id": "truffle",
+      "name": "Truffle",
+      "description": "One of the original Ethereum development frameworks (now in maintenance mode, superseded by Hardhat and Foundry). Historically significant: introduced the concept of migrations (sequential deployment scripts), Mocha/Chai testing, Ganache (local blockchain — now replaced by Hardhat Network/Anvil), and Truffle Boxes (project templates). Understanding Truffle is important for legacy codebase maintenance and understanding how migration patterns were established.",
+      "keywords": ["Truffle", "migrations", "Ganache", "Truffle Box", "Truffle Suite", "truffle compile", "truffle migrate", "truffle test", "Mocha", "Chai", "legacy", "maintenance mode", "historical significance"]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "Hardhat configuration file or Hardhat project structure",
+        "detection": "file_presence",
+        "pattern": "hardhat\\.config\\.ts|hardhat\\.config\\.js|hardhat-user-config|@nomiclabs/hardhat|@nomicfoundation/hardhat",
+        "strength": 0.8,
+        "maps_to": [
+          "smart_contract_tooling.hardhat"
+        ]
+      },
+      {
+        "signal": "Foundry project configuration (foundry.toml) or Solidity test files (.t.sol)",
+        "detection": "file_presence",
+        "pattern": "foundry\\.toml|remappings\\.txt|.*\\.t\\.sol$|src/.*\\.sol|script/.*\\.s\\.sol",
+        "strength": 0.8,
+        "maps_to": [
+          "smart_contract_tooling.foundry"
+        ]
+      },
+      {
+        "signal": "Brownie project files (brownie-config.yaml, build/contracts/)",
+        "detection": "file_presence",
+        "pattern": "brownie-config\\.yaml|brownie_config|build/contracts/.*\\.json",
+        "strength": 0.8,
+        "maps_to": [
+          "smart_contract_tooling.brownie"
+        ]
+      },
+      {
+        "signal": "Truffle migration files or truffle-config.js",
+        "detection": "file_presence",
+        "pattern": "truffle-config\\.js|migrations/[0-9]+_.*\\.js|truffle\\.js",
+        "strength": 0.8,
+        "maps_to": [
+          "smart_contract_tooling.truffle"
+        ]
+      },
+      {
+        "signal": "IPFS, Arweave, or Filecoin storage integration",
+        "detection": "content_analysis",
+        "pattern": "ipfs|pinata|web3\\.storage|arweave|bundlr|irys|filecoin|NFT\\.Storage|CID",
+        "strength": 0.8,
+        "maps_to": [
+          "smart_contract_tooling.decentralized_storage"
+        ]
+      },
+      {
+        "signal": "WalletConnect, RainbowKit, ConnectKit, or wagmi integration",
+        "detection": "content_analysis",
+        "pattern": "WalletConnect|RainbowKit|ConnectKit|wagmi|@wagmi/core|useAccount|useConnect",
+        "strength": 0.8,
+        "maps_to": [
+          "smart_contract_tooling.crypto_wallets_dev"
+        ]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "Used Hardhat or Foundry as primary development framework for smart contracts",
+        "strength": 0.8,
+        "maps_to": [
+          "smart_contract_tooling.hardhat",
+          "smart_contract_tooling.foundry"
+        ]
+      },
+      {
+        "signal": "Integrated IPFS, Arweave, or Filecoin for decentralized storage in blockchain projects",
+        "strength": 0.8,
+        "maps_to": [
+          "smart_contract_tooling.decentralized_storage"
+        ]
+      },
+      {
+        "signal": "Built wallet connection flows with MetaMask, WalletConnect, or wagmi",
+        "strength": 0.75,
+        "maps_to": [
+          "smart_contract_tooling.crypto_wallets_dev"
+        ]
+      },
+      {
+        "signal": "Used Brownie (Python) or Truffle for smart contract development",
+        "strength": 0.75,
+        "maps_to": [
+          "smart_contract_tooling.brownie",
+          "smart_contract_tooling.truffle"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Hardhat, Foundry, or Truffle endorsed",
+        "strength": 0.5,
+        "maps_to": [
+          "smart_contract_tooling.hardhat",
+          "smart_contract_tooling.foundry",
+          "smart_contract_tooling.truffle"
+        ]
+      },
+      {
+        "signal": "IPFS, Arweave, Pinata, or decentralized storage mentioned",
+        "strength": 0.6,
+        "maps_to": [
+          "smart_contract_tooling.decentralized_storage"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": ["hardhat", "crypto_wallets_dev", "faucets", "ides"],
+      "description": "Productive in Hardhat (or Foundry), uses MetaMask with custom RPC endpoints, obtains testnet tokens from faucets, and works in Remix or VS Code with Solidity extension."
+    },
+    "mid": {
+      "expected_subskills": ["foundry", "decentralized_storage"],
+      "description": "Proficient in Foundry's full toolchain (forge/cast/anvil), integrates IPFS or Arweave for NFT metadata and off-chain storage, and has used multiple frameworks."
+    },
+    "senior": {
+      "expected_subskills": ["brownie", "truffle"],
+      "description": "Navigates legacy Brownie/Truffle codebases, evaluates framework trade-offs for new projects, and contributes to toolchain decisions at the team or protocol level."
+    }
+  }
+}

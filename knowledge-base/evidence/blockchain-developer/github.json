@@ -1,0 +1,224 @@
+{
+  "source_id": "github",
+  "name": "GitHub Repository Analysis - Blockchain Developer",
+  "description": "GitHub is the PRIMARY evidence source for blockchain developers — unlike most software roles, blockchain work leaves highly verifiable on-chain artifacts (deployed contract addresses, verified bytecode, transaction history) that can be cross-referenced with Etherscan. A blockchain developer's GitHub is a direct window into their craft: code quality, security practices, test coverage, tooling choices, and ecosystem breadth are all visible.",
+  "preprocessing_pipeline": {
+    "steps": [
+      {
+        "step": 1,
+        "name": "file_tree_scan",
+        "target_files": [
+          {
+            "pattern": "*.sol",
+            "skills": ["smart_contract_development", "blockchain_security"],
+            "priority": "critical",
+            "notes": "Solidity files are primary evidence. Check: SPDX license headers, pragma version pinning, NatSpec documentation, OpenZeppelin imports, access control patterns, and absence of known anti-patterns."
+          },
+          {
+            "pattern": "*.vy",
+            "skills": ["smart_contract_development"],
+            "priority": "high",
+            "notes": "Vyper files indicate deeper smart contract language breadth — rare and high-signal."
+          },
+          {
+            "pattern": "Anchor.toml|programs/**/*.rs",
+            "skills": ["smart_contract_development", "blockchain_networks"],
+            "priority": "high",
+            "notes": "Rust Solana Anchor program — Rust + Anchor expertise is rare and high-value."
+          },
+          {
+            "pattern": "*.fc|*.tact|*.fif",
+            "skills": ["blockchain_networks"],
+            "priority": "high",
+            "notes": "TON/TVM FunC or Tact smart contracts — very rare, strong TVM ecosystem signal."
+          },
+          {
+            "pattern": "hardhat.config.ts|hardhat.config.js",
+            "skills": ["smart_contract_tooling"],
+            "priority": "high",
+            "notes": "Check for: multiple network definitions (multi-chain deployment), gas reporter, coverage, upgrades plugin, etherscan verification config, and fork testing setup."
+          },
+          {
+            "pattern": "foundry.toml",
+            "skills": ["smart_contract_tooling"],
+            "priority": "high",
+            "notes": "Foundry presence. Check for: fuzz configuration (fuzz_runs), invariant testing, fork URL, remappings (indicates proper dependency management)."
+          },
+          {
+            "pattern": "brownie-config.yaml",
+            "skills": ["smart_contract_tooling"],
+            "priority": "medium",
+            "notes": "Brownie project — often DeFi-focused (Yearn-ecosystem). Indicates Python blockchain proficiency."
+          },
+          {
+            "pattern": "test/**/*.sol|test/**/*.t.sol",
+            "skills": ["smart_contract_development", "blockchain_security"],
+            "priority": "high",
+            "notes": "Test files. Key quality signals: number of test cases, use of vm.prank / vm.deal / vm.expectRevert, fork testing (mainnet state), fuzz test functions, invariant test functions."
+          },
+          {
+            "pattern": "scripts/deploy*|script/Deploy*.s.sol|migrations/*.js",
+            "skills": ["smart_contract_development"],
+            "priority": "high",
+            "notes": "Deployment scripts — check for multi-network support, CREATE2 usage, Gnosis Safe integration, and environment variable security."
+          },
+          {
+            "pattern": ".github/workflows/*.yml|.github/workflows/*.yaml",
+            "skills": ["blockchain_security"],
+            "priority": "high",
+            "notes": "CI/CD workflows. Look for: slither-action, echidna-action, forge test, solhint, coverage reporting, and hardhat-gas-reporter integration."
+          },
+          {
+            "pattern": "subgraph.yaml|schema.graphql|src/mappings/*.ts",
+            "skills": ["smart_contract_development"],
+            "priority": "high",
+            "notes": "The Graph subgraph project — event indexing expertise is a strong signal."
+          },
+          {
+            "pattern": "*.ipynb|analysis/*.py|analytics/*.R|*.sql",
+            "skills": ["dapp_development"],
+            "priority": "medium",
+            "notes": "Data analysis of blockchain data (Dune, Flipside) or MEV/arbitrage strategy analysis."
+          }
+        ]
+      },
+      {
+        "step": 2,
+        "name": "smart_contract_quality_analysis",
+        "criteria": [
+          {
+            "signal": "reentrancy_guard_present",
+            "pattern": "ReentrancyGuard|nonReentrant|Checks-Effects-Interactions|CEI",
+            "strength": 0.8,
+            "maps_to": ["blockchain_security.common_threat_vectors", "blockchain_security.openzeppelin"]
+          },
+          {
+            "signal": "access_control_pattern",
+            "pattern": "Ownable|AccessControl|onlyOwner|onlyRole|hasRole|modifier.*only",
+            "strength": 0.7,
+            "maps_to": ["blockchain_security.common_threat_vectors", "blockchain_security.openzeppelin"]
+          },
+          {
+            "signal": "upgradeable_proxy_pattern",
+            "pattern": "UUPSUpgradeable|TransparentUpgradeableProxy|initializer|_disableInitializers|upgrades\\.deployProxy|ERC1967",
+            "strength": 0.9,
+            "maps_to": ["smart_contract_development.upgrades"]
+          },
+          {
+            "signal": "erc_token_standard",
+            "pattern": "ERC20|ERC721|ERC1155|ERC4626|ERC4337|ERC2981|IERC20|IERC721|_safeMint|_mint",
+            "strength": 0.8,
+            "maps_to": ["smart_contract_development.erc_tokens"]
+          },
+          {
+            "signal": "defi_protocol_patterns",
+            "pattern": "IUniswapV2|IUniswapV3|IAave|ICompound|IERC4626|swap|addLiquidity|borrow|repay|liquidate|harvest|flashLoan",
+            "strength": 0.9,
+            "maps_to": ["dapp_development.defi", "dapp_development.payments_insurance"]
+          },
+          {
+            "signal": "oracle_integration",
+            "pattern": "AggregatorV3Interface|latestRoundData|VRFConsumerBaseV2|VRFCoordinatorV2|requestRandomWords|AutomationCompatible",
+            "strength": 0.9,
+            "maps_to": ["blockchain_oracles.chainlink", "blockchain_oracles.hybrid_smart_contracts"]
+          },
+          {
+            "signal": "gas_optimization_patterns",
+            "pattern": "immutable|constant|unchecked|assembly|yul|mstore|sload|sstore|packed.*struct|uint256.*instead.*bool",
+            "strength": 0.8,
+            "maps_to": ["smart_contract_development.solidity", "blockchain_scaling.on_chain_scaling"]
+          },
+          {
+            "signal": "fuzz_or_invariant_tests",
+            "pattern": "echidna_|function invariant_|forge fuzz|--fuzz-runs|testFuzz|stateful_fuzz|InvariantTest",
+            "strength": 0.95,
+            "maps_to": ["blockchain_security.fuzz_testing_static_analysis", "blockchain_security.echidna"]
+          },
+          {
+            "signal": "zk_proof_code",
+            "pattern": "circom|snarkjs|groth16|PLONK|halo2|bellman|StarkWare|STARK|Cairo|Noir|zkSync|stark_curve",
+            "strength": 0.95,
+            "maps_to": ["blockchain_scaling.zk_rollups", "blockchain_core_concepts.cryptography"]
+          },
+          {
+            "signal": "cross_chain_bridge",
+            "pattern": "LayerZero|Wormhole|CCIP|IBC|bridge|cross-chain|HTLC|omnichain|lock-and-mint|nonblockingLzApp",
+            "strength": 0.9,
+            "maps_to": ["blockchain_networks.interoperability"]
+          },
+          {
+            "signal": "dao_governance",
+            "pattern": "Governor|GovernorBravo|TimelockController|propose|castVote|queue.*proposal|votingPeriod|quorumNumerator|Snapshot",
+            "strength": 0.9,
+            "maps_to": ["dapp_development.daos"]
+          },
+          {
+            "signal": "decentralized_storage",
+            "pattern": "ipfs|pinata|arweave|bundlr|irys|filecoin|NFT\\.Storage|web3\\.storage|CID",
+            "strength": 0.8,
+            "maps_to": ["smart_contract_tooling.decentralized_storage"]
+          }
+        ]
+      },
+      {
+        "step": 3,
+        "name": "repository_type_classification",
+        "repository_types": [
+          {
+            "type": "defi_protocol",
+            "signals": ["swap", "liquidity", "borrow", "lend", "vault", "yield", "IUniswap", "IAave"],
+            "skills": ["dapp_development.defi", "smart_contract_development.solidity"],
+            "strength_multiplier": 1.3,
+            "notes": "DeFi protocols are the most complex and high-value smart contract work — strong multiplier"
+          },
+          {
+            "type": "nft_project",
+            "signals": ["ERC721", "_safeMint", "tokenURI", "allowlist", "MerkleProof", "royalty", "ERC2981"],
+            "skills": ["dapp_development.nfts", "smart_contract_development.erc_tokens"],
+            "strength_multiplier": 1.0,
+            "notes": "NFT projects are common — quality indicators matter more than presence"
+          },
+          {
+            "type": "security_research",
+            "signals": ["Echidna", "Slither", "CTF", "Ethernaut", "challenge", "exploit", "vulnerable", "attack"],
+            "skills": ["blockchain_security.fuzz_testing_static_analysis", "blockchain_security.common_threat_vectors"],
+            "strength_multiplier": 1.4,
+            "notes": "Security research repos (CTF solutions, vulnerability analyses) are the strongest security signal"
+          },
+          {
+            "type": "dao_governance",
+            "signals": ["Governor", "Timelock", "propose", "castVote", "Snapshot"],
+            "skills": ["dapp_development.daos"],
+            "strength_multiplier": 1.1
+          },
+          {
+            "type": "zk_circuit",
+            "signals": ["circom", "snarkjs", "Cairo", "Noir", "halo2"],
+            "skills": ["blockchain_scaling.zk_rollups", "blockchain_core_concepts.cryptography"],
+            "strength_multiplier": 1.5,
+            "notes": "ZK circuit development is the rarest and most valuable blockchain skill — highest multiplier"
+          },
+          {
+            "type": "solana_program",
+            "signals": ["Anchor.toml", "declare_id!", "solana_program", "#[program]", "Context"],
+            "skills": ["blockchain_networks.solana", "smart_contract_development.rust_blockchain"],
+            "strength_multiplier": 1.3,
+            "notes": "Rust/Anchor Solana programs are rare and highly valued"
+          }
+        ]
+      }
+    ]
+  },
+  "ai_analysis_instructions": {
+    "tasks": [
+      "Prioritize code quality analysis over file count — one well-tested DeFi protocol with 95% coverage is worth more than 10 toy contracts",
+      "Cross-reference Etherscan: if README or comments mention mainnet contract addresses, verify they are deployed and check TVL/transaction volume",
+      "Check commit history depth: meaningful blockchain repos should have iterative commits, not single-commit dumps",
+      "Look for audit reports in the repository: /audit/ or /reports/ directories with PDF audit reports are extremely strong evidence",
+      "Foundry projects: run forge coverage and forge test --fuzz-runs mentally — repos with fuzz configuration and many test functions score higher",
+      "Security-focused repos (solving Ethernaut challenges, Damn Vulnerable DeFi, CTF submissions) demonstrate security thinking even for non-audit roles",
+      "Check imported OpenZeppelin version: using recent audited versions (4.x, 5.x) vs old versions with known vulnerabilities signals security awareness",
+      "Gas optimization patterns (unchecked blocks, immutable variables, slot packing) indicate advanced Solidity expertise beyond junior level"
+    ]
+  }
+}

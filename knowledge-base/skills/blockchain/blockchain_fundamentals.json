@@ -1,0 +1,114 @@
+{
+  "skill_id": "blockchain_fundamentals",
+  "name": "Blockchain Fundamentals",
+  "category": "blockchain_core",
+  "description": "Foundational knowledge of what blockchain technology is, how it works structurally, and what problems it solves. Covers the definition and properties of blockchains, the principle of decentralization and its significance, the data structure (blocks, chains, Merkle trees), basic read/write operations, and real-world application domains. This is the entry point for all blockchain development work.",
+  "subskills": [
+    {
+      "id": "what_is_blockchain",
+      "name": "What is Blockchain",
+      "description": "Definition and properties of a blockchain: an immutable, append-only distributed ledger of transactions grouped into cryptographically linked blocks. Covers the distinction between a blockchain and a traditional database, the public vs private vs consortium spectrum, permissioned vs permissionless networks, and why immutability is achieved through cryptographic hashing.",
+      "keywords": ["blockchain definition", "distributed ledger", "immutability", "append-only", "permissioned", "permissionless", "public blockchain", "private blockchain", "consortium blockchain", "cryptographic hash", "SHA-256"]
+    },
+    {
+      "id": "decentralization_why_it_matters",
+      "name": "Decentralization & Why It Matters",
+      "description": "The principle of distributing authority, data, and computation across many nodes with no single point of control or failure. Covers the blockchain trilemma (decentralization, security, scalability), censorship resistance, trust minimization, Byzantine fault tolerance, and the trade-offs between decentralization and performance.",
+      "keywords": ["decentralization", "blockchain trilemma", "censorship resistance", "trust minimization", "Byzantine fault tolerance", "no single point of failure", "node", "peer-to-peer", "distributed network", "51% attack resistance"]
+    },
+    {
+      "id": "blockchain_structure",
+      "name": "Blockchain Structure",
+      "description": "The data structures underlying a blockchain: block headers (previous hash, Merkle root, timestamp, nonce, difficulty target), transaction data, Merkle trees for efficient transaction verification, and the chain of hashes that ensures tamper evidence. Covers genesis block, block height, and how forks affect chain structure.",
+      "keywords": ["block header", "Merkle tree", "Merkle root", "previous hash", "nonce", "timestamp", "genesis block", "block height", "chain of hashes", "tamper evidence", "transaction data", "UTXO", "account model"]
+    },
+    {
+      "id": "basic_operations",
+      "name": "Basic Blockchain Operations",
+      "description": "How transactions are created, signed, broadcast, validated, and included in blocks. Covers the transaction lifecycle (creation → mempool → mining/validation → confirmation), transaction fees (gas in Ethereum), confirmations and finality, wallet addresses and private/public key pairs, and reading blockchain data via block explorers.",
+      "keywords": ["transaction lifecycle", "mempool", "gas", "gas limit", "gas price", "confirmation", "finality", "wallet address", "private key", "public key", "block explorer", "Etherscan", "signing a transaction", "nonce"]
+    },
+    {
+      "id": "applications_and_uses",
+      "name": "Applications & Use Cases",
+      "description": "Real-world domains where blockchain technology adds genuine value: decentralized finance (DeFi), supply chain provenance, digital identity and self-sovereign identity (SSI), tokenization of real-world assets (RWA), non-fungible tokens (NFTs), voting systems, healthcare data management, and cross-border payments. Understanding use-case fit vs hype is essential.",
+      "keywords": ["DeFi", "supply chain", "self-sovereign identity", "SSI", "RWA", "NFT", "voting", "cross-border payments", "tokenization", "use case fit", "blockchain hype", "healthcare blockchain", "digital identity"]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "README or documentation explaining blockchain fundamentals, architecture, or use cases",
+        "detection": "content_analysis",
+        "pattern": "blockchain|distributed ledger|Merkle tree|block header|decentralization|consensus|immutability|UTXO|genesis block",
+        "strength": 0.7,
+        "maps_to": [
+          "blockchain_fundamentals.what_is_blockchain",
+          "blockchain_fundamentals.blockchain_structure",
+          "blockchain_fundamentals.decentralization_why_it_matters"
+        ]
+      },
+      {
+        "signal": "Block explorer integration, blockchain data reading scripts, or transaction parsing code",
+        "detection": "content_analysis",
+        "pattern": "ethers\\.getBlock|web3\\.eth\\.getTransaction|Etherscan API|block explorer|getTransactionReceipt|blockNumber",
+        "strength": 0.7,
+        "maps_to": [
+          "blockchain_fundamentals.basic_operations",
+          "blockchain_fundamentals.blockchain_structure"
+        ]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "Demonstrated understanding of blockchain technology, distributed ledger systems, or decentralized architectures",
+        "strength": 0.7,
+        "maps_to": [
+          "blockchain_fundamentals.what_is_blockchain",
+          "blockchain_fundamentals.decentralization_why_it_matters",
+          "blockchain_fundamentals.blockchain_structure"
+        ]
+      },
+      {
+        "signal": "Built or contributed to blockchain-based applications or proofs of concept",
+        "strength": 0.75,
+        "maps_to": [
+          "blockchain_fundamentals.basic_operations",
+          "blockchain_fundamentals.applications_and_uses"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Blockchain, distributed ledger technology, or decentralization endorsed",
+        "strength": 0.5,
+        "maps_to": [
+          "blockchain_fundamentals.what_is_blockchain",
+          "blockchain_fundamentals.decentralization_why_it_matters"
+        ]
+      },
+      {
+        "signal": "DeFi, NFT, supply chain blockchain, or blockchain use cases mentioned",
+        "strength": 0.5,
+        "maps_to": [
+          "blockchain_fundamentals.applications_and_uses",
+          "blockchain_fundamentals.basic_operations"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": ["what_is_blockchain", "decentralization_why_it_matters", "blockchain_structure", "basic_operations"],
+      "description": "Clearly explains what a blockchain is, why decentralization matters, can describe block structure and the transaction lifecycle from creation to confirmation."
+    },
+    "mid": {
+      "expected_subskills": ["applications_and_uses"],
+      "description": "Critically evaluates blockchain use-case fit vs traditional database alternatives, articulates trilemma trade-offs for specific application domains."
+    },
+    "senior": {
+      "expected_subskills": [],
+      "description": "Advises organizations on blockchain adoption decisions, distinguishes genuine decentralization value from hype, and designs systems that respect the trilemma."
+    }
+  }
+}
