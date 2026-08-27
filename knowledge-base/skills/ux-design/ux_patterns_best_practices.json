@@ -1,155 +1,227 @@
 {
   "skill_id": "ux_patterns_best_practices",
-  "name": "UX Patterns & Persuasive Best Practices",
-  "category": "ux_design_craft",
-  "description": "The tactical toolkit of evidence-based UX patterns that influence how users perceive, evaluate, and act. Organized around four behavioral objectives: getting attention, creating a positive impression, winning conscious evaluation, and making action easy. Each pattern is grounded in cognitive psychology and behavioral economics research.",
+  "name": "Persuasive UX Patterns & Behavioral Best Practices",
+  "category": "ux_patterns",
+  "description": "Evidence-backed persuasive UX patterns: social proof, authority, loss aversion, peer comparisons, urgency/scarcity, implementation intentions, and friction reduction.",
   "subskills": [
     {
       "id": "get_attention_patterns",
-      "name": "Get Attention — Salience & Noticeability",
-      "description": "Design patterns that ensure the right element is noticed at the right moment. Covers visual salience (contrast, motion, size), notification design (push, email, in-app), empty state design that draws the eye, and F/Z-pattern layout optimization. Applies the Von Restorff Effect (the isolated item is remembered) and Attentional Spotlight theory.",
-      "keywords": ["salience", "visual contrast", "Von Restorff Effect", "motion design", "notification design", "empty state", "F-pattern", "Z-pattern", "attentional spotlight", "highlighting", "animation", "information hierarchy"]
+      "name": "Attention-Grabbing Patterns & Visual Saliency",
+      "description": "Using contrast, motion, directional cues, and faces to guide gaze to key interaction points.",
+      "keywords": [
+        "visual saliency",
+        "directional cues",
+        "eye tracking",
+        "motion in UI",
+        "visual contrast",
+        "focal point"
+      ]
     },
     {
       "id": "positive_impression_patterns",
-      "name": "Create Positive First Impression",
-      "description": "Patterns that establish trust, delight, and credibility on first encounter. Covers aesthetic-usability effect (beautiful designs are perceived as easier to use), brand consistency, typography and color psychology, micro-animations that signal quality, loading skeleton screens that reduce perceived wait time, and first-run experience design.",
-      "keywords": ["aesthetic-usability effect", "first impression", "brand consistency", "trust signals", "micro-animation", "skeleton screen", "loading state", "color psychology", "typography", "delight", "first-run experience", "onboarding first screen"]
+      "name": "First Impression & Aesthetic-Usability Patterns",
+      "description": "Harnessing the aesthetic-usability effect, micro-animations, and polished visual design for immediate trust.",
+      "keywords": [
+        "aesthetic usability effect",
+        "first impression",
+        "visual polish",
+        "micro-animation",
+        "trust building"
+      ]
     },
     {
       "id": "social_proof",
-      "name": "Win Evaluation — Social Proof",
-      "description": "Cialdini's social proof principle: people look to others' behavior when uncertain about what to do. Implementations: user review counts and ratings, testimonials, 'X people are viewing this' indicators, user-generated content, case studies, and social media follower counts. Distinguishes between quantitative social proof (counts) and qualitative (reviews, testimonials).",
-      "keywords": ["social proof", "Cialdini", "user reviews", "ratings", "testimonials", "review count", "star rating", "user-generated content", "case study", "FOMO", "wisdom of crowds", "social validation"]
+      "name": "Social Proof & Testimonial Integration",
+      "description": "Integrating customer testimonials, user counts, real-time activity feeds, and reviews to reduce uncertainty.",
+      "keywords": [
+        "social proof",
+        "testimonials",
+        "user ratings",
+        "reviews",
+        "activity feed",
+        "wisdom of crowds"
+      ]
     },
     {
       "id": "authority",
-      "name": "Win Evaluation — Authority",
-      "description": "Establishing credibility through demonstrated expertise and trusted endorsements. Covers expert recommendations, celebrity endorsements, certifications and badges (SSL, ISO, awards), media mentions ('as seen in...'), verified badges, professional credentials displayed in UI, and trust seals on checkout flows.",
-      "keywords": ["authority", "Cialdini", "expert recommendation", "celebrity endorsement", "certification badge", "trust seal", "media mention", "verified badge", "credential", "as seen in", "expert endorsement", "authoritative source"]
+      "name": "Authority & Trust Signaling",
+      "description": "Displaying expert endorsements, security badges, certifications, and compliance credentials.",
+      "keywords": [
+        "authority bias",
+        "trust badges",
+        "security certificates",
+        "expert endorsements",
+        "compliance logos"
+      ]
     },
     {
       "id": "loss_aversion",
-      "name": "Win Evaluation — Loss Aversion",
-      "description": "Kahneman & Tversky's Prospect Theory: losses loom larger than equivalent gains (loss aversion ratio ~2:1). UX applications: free trial expiry warnings, 'don't lose your progress' nudges, countdown timers for expiring offers, limited seat warnings, and framing copy as avoiding a loss rather than achieving a gain.",
-      "keywords": ["loss aversion", "Prospect Theory", "Kahneman", "Tversky", "loss framing", "gain framing", "expiry warning", "progress loss", "countdown timer", "limited availability", "scarcity framing", "endowment effect"]
+      "name": "Loss Aversion & Sunk Cost Framing",
+      "description": "Framing value in terms of what the user stands to lose or save rather than merely gain.",
+      "keywords": [
+        "loss aversion",
+        "sunk cost",
+        "Kahneman Tversky",
+        "loss framing",
+        "protect progress",
+        "streak loss"
+      ]
     },
     {
       "id": "peer_comparison",
-      "name": "Win Evaluation — Peer Comparison",
-      "description": "Showing users how they compare to relevant peers to motivate behavior change. Covers personalized benchmarks ('You're in the top 20% of users'), anonymized peer comparisons, cohort-based progress reports, leaderboards with opt-in privacy controls, and normative messaging ('Most users complete this in 5 minutes').",
-      "keywords": ["peer comparison", "social comparison", "benchmark", "leaderboard", "normative messaging", "cohort report", "relative performance", "top X%", "social norms", "descriptive norm", "injunctive norm"]
+      "name": "Peer Comparison & Social Norms (Cialdini)",
+      "description": "Showing how a user's behavior compares to similar peers (e.g. Opower energy usage comparisons).",
+      "keywords": [
+        "peer comparison",
+        "social norms",
+        "Cialdini",
+        "normative feedback",
+        "descriptive norms",
+        "benchmark against peers"
+      ]
     },
     {
       "id": "urgency_scarcity",
-      "name": "Make Action Easy — Urgency & Scarcity",
-      "description": "Time and quantity constraints that trigger immediate action. Covers real urgency (genuine deadlines, actual stock limits) vs manufactured urgency (ethical considerations), countdown timers, low-stock indicators, limited-time offer badges, and flash sale design. Includes ethical guidelines on avoiding dark patterns (fake scarcity).",
-      "keywords": ["urgency", "scarcity", "countdown timer", "limited time offer", "low stock indicator", "flash sale", "deadline", "FOMO", "Cialdini scarcity", "genuine urgency", "manufactured urgency", "dark pattern ethics"]
+      "name": "Ethical Urgency & Scarcity Signals",
+      "description": "Authentic, non-deceptive scarcity and deadline indicators that motivate timely completion.",
+      "keywords": [
+        "urgency",
+        "scarcity",
+        "countdown timer",
+        "limited inventory",
+        "deadline",
+        "ethical urgency"
+      ]
     },
     {
       "id": "implementation_intentions",
-      "name": "Make Action Easy — Implementation Intentions",
-      "description": "Gollwitzer's implementation intention research: if-then planning dramatically increases follow-through on intended behaviors. UX applications include prompted scheduling ('When do you want to do this?'), calendar integration, pre-commitment flows, and reminder personalization that anchors the action to a specific time and context.",
-      "keywords": ["implementation intentions", "Gollwitzer", "if-then planning", "pre-commitment", "scheduling prompt", "calendar integration", "action planning", "when-where-how", "follow-through", "goal intention vs implementation intention"]
+      "name": "Implementation Intentions (If-Then Planning)",
+      "description": "Guiding users to pre-commit to exact when/where/how action plans ('When X happens, I will do Y').",
+      "keywords": [
+        "implementation intentions",
+        "if-then planning",
+        "Gollwitzer",
+        "pre-commitment",
+        "action trigger",
+        "behavioral plan"
+      ]
     },
     {
       "id": "friction_reduction_defaulting",
-      "name": "Make Action Easy — Friction Reduction & Defaulting",
-      "description": "Minimizing the effort required to take the target action. Covers one-click flows, pre-filled forms, smart defaults, reducing steps in checkout/signup funnels, progressive form disclosure, autofill, and re-engagement flows that pick up where the user left off. Applies Fogg's Ability dimension to maximize the chance that motivation × ability × prompt converges successfully.",
-      "keywords": ["friction reduction", "one-click", "pre-filled form", "smart default", "checkout optimization", "progressive form", "autofill", "re-engagement", "continuation flow", "ability", "Fogg", "activation friction", "zero-state design"]
+      "name": "Radical Friction Elimination & 1-Click Flows",
+      "description": "Eliminating every non-essential input field, implementing autocomplete, biometric auth, and 1-click checkout.",
+      "keywords": [
+        "friction reduction",
+        "1-click checkout",
+        "biometric auth",
+        "form auto-fill",
+        "minimal input",
+        "effortless UX"
+      ]
     }
   ],
   "evidence": {
     "github": [
       {
-        "signal": "Design documentation referencing persuasive patterns: social proof, authority, loss aversion, urgency",
+        "signal": "Social proof carousels, trust badges, urgency countdowns, and 1-click checkout components",
         "detection": "content_analysis",
-        "pattern": "social proof|authority|loss aversion|urgency|scarcity|peer comparison|implementation intention|friction reduction|Cialdini|Kahneman",
-        "strength": 0.8,
-        "maps_to": [
-          "ux_patterns_best_practices.social_proof",
-          "ux_patterns_best_practices.authority",
-          "ux_patterns_best_practices.loss_aversion",
-          "ux_patterns_best_practices.urgency_scarcity",
-          "ux_patterns_best_practices.peer_comparison",
-          "ux_patterns_best_practices.implementation_intentions"
-        ]
-      },
-      {
-        "signal": "UI pattern documentation: salience design, trust signals, or friction reduction flows",
-        "detection": "content_analysis",
-        "pattern": "trust seal|social validation|countdown timer|Von Restorff|skeleton screen|aesthetic-usability|pre-filled|one-click",
-        "strength": 0.7,
+        "pattern": "SocialProof|TrustBadges|CountdownTimer|OneClickCheckout|IfThenPlanner",
+        "strength": 0.85,
         "maps_to": [
           "ux_patterns_best_practices.get_attention_patterns",
           "ux_patterns_best_practices.positive_impression_patterns",
+          "ux_patterns_best_practices.social_proof",
+          "ux_patterns_best_practices.authority",
+          "ux_patterns_best_practices.loss_aversion",
+          "ux_patterns_best_practices.peer_comparison",
+          "ux_patterns_best_practices.urgency_scarcity",
+          "ux_patterns_best_practices.implementation_intentions",
           "ux_patterns_best_practices.friction_reduction_defaulting"
         ]
       }
     ],
     "cv": [
       {
-        "signal": "Applied social proof, authority signals, or trust design patterns in product work",
-        "strength": 0.8,
+        "signal": "Implemented social proof and peer comparison patterns increasing conversion rates by 22%",
+        "strength": 0.6,
         "maps_to": [
+          "ux_patterns_best_practices.get_attention_patterns",
+          "ux_patterns_best_practices.positive_impression_patterns",
           "ux_patterns_best_practices.social_proof",
-          "ux_patterns_best_practices.authority",
-          "ux_patterns_best_practices.positive_impression_patterns"
+          "ux_patterns_best_practices.authority"
         ]
       },
       {
-        "signal": "Designed urgency mechanics, scarcity indicators, or peer comparison features",
-        "strength": 0.8,
+        "signal": "Designed Gollwitzer implementation intention if-then flows and 1-click checkout experiences",
+        "strength": 0.6,
         "maps_to": [
-          "ux_patterns_best_practices.urgency_scarcity",
+          "ux_patterns_best_practices.loss_aversion",
           "ux_patterns_best_practices.peer_comparison",
-          "ux_patterns_best_practices.loss_aversion"
-        ]
-      },
-      {
-        "signal": "Optimized conversion funnels, reduced signup friction, or designed implementation intention prompts",
-        "strength": 0.8,
-        "maps_to": [
-          "ux_patterns_best_practices.friction_reduction_defaulting",
+          "ux_patterns_best_practices.urgency_scarcity",
           "ux_patterns_best_practices.implementation_intentions",
-          "ux_patterns_best_practices.get_attention_patterns"
+          "ux_patterns_best_practices.friction_reduction_defaulting"
         ]
       }
     ],
     "linkedin": [
       {
-        "signal": "Conversion optimization, persuasive design, or behavioral UX endorsed",
-        "strength": 0.5,
-        "maps_to": [
-          "ux_patterns_best_practices.social_proof",
-          "ux_patterns_best_practices.loss_aversion",
-          "ux_patterns_best_practices.urgency_scarcity",
-          "ux_patterns_best_practices.friction_reduction_defaulting"
-        ]
-      },
-      {
-        "signal": "Trust design, visual hierarchy, or UX best practices mentioned",
-        "strength": 0.5,
+        "signal": "Endorsements in Persuasive Design, Social Proof, Conversion Rate Optimization (CRO), and UX Patterns",
+        "strength": 0.4,
         "maps_to": [
           "ux_patterns_best_practices.get_attention_patterns",
           "ux_patterns_best_practices.positive_impression_patterns",
-          "ux_patterns_best_practices.authority"
+          "ux_patterns_best_practices.social_proof",
+          "ux_patterns_best_practices.authority",
+          "ux_patterns_best_practices.loss_aversion",
+          "ux_patterns_best_practices.peer_comparison",
+          "ux_patterns_best_practices.urgency_scarcity",
+          "ux_patterns_best_practices.implementation_intentions",
+          "ux_patterns_best_practices.friction_reduction_defaulting"
+        ]
+      }
+    ],
+    "assessment": [
+      {
+        "signal": "Passes persuasive UX patterns assessment covering visual saliency, ethical urgency, social proof, and implementation intentions",
+        "strength": 1.0,
+        "maps_to": [
+          "ux_patterns_best_practices.get_attention_patterns",
+          "ux_patterns_best_practices.positive_impression_patterns",
+          "ux_patterns_best_practices.social_proof",
+          "ux_patterns_best_practices.authority",
+          "ux_patterns_best_practices.loss_aversion",
+          "ux_patterns_best_practices.peer_comparison",
+          "ux_patterns_best_practices.urgency_scarcity",
+          "ux_patterns_best_practices.implementation_intentions",
+          "ux_patterns_best_practices.friction_reduction_defaulting"
         ]
       }
     ]
   },
   "levels": {
     "junior": {
-      "expected_subskills": ["get_attention_patterns", "positive_impression_patterns", "social_proof"],
-      "description": "Applies visual salience principles, designs trustworthy first impressions, and implements social proof patterns (reviews, ratings, testimonials)."
+      "expected_subskills": [
+        "get_attention_patterns",
+        "positive_impression_patterns",
+        "social_proof"
+      ],
+      "description": "Applies visual saliency, integrates customer reviews/social proof, and crafts polished first impressions."
     },
     "mid": {
-      "expected_subskills": ["authority", "loss_aversion", "peer_comparison", "urgency_scarcity"],
-      "description": "Designs authority signals, frames copy with loss aversion, builds peer comparison mechanics, and implements ethical urgency/scarcity patterns."
+      "expected_subskills": [
+        "authority",
+        "loss_aversion",
+        "peer_comparison",
+        "urgency_scarcity"
+      ],
+      "description": "Deploys trust authority badges, frames loss aversion, builds peer benchmarks, and adds ethical scarcity indicators."
     },
     "senior": {
-      "expected_subskills": ["implementation_intentions", "friction_reduction_defaulting"],
-      "description": "Architects implementation intention systems, optimizes multi-step conversion funnels for minimal friction, and governs ethical use of persuasive patterns across the product."
+      "expected_subskills": [
+        "implementation_intentions",
+        "friction_reduction_defaulting"
+      ],
+      "description": "Designs Gollwitzer if-then planning commitment devices and re-engineers complex forms into effortless 1-click flows."
     }
   }
 }

@@ -2,65 +2,67 @@
   "skill_id": "ux_behavior_frameworks",
   "name": "Human Behavior Frameworks & Theories",
   "category": "ux_behavioral_science",
-  "description": "Foundational theoretical frameworks explaining how human behavior is formed, triggered, and changed. Covers BJ Fogg's Behavior Model, Nir Eyal's Hook Model, the CREATE Action Funnel, Dual Process Theory (System 1 & 2), the Behavior Grid, the Cue-Routine-Reward habit loop, and the Spectrum of Thinking Interventions.",
+  "description": "Theoretical behavioral models: BJ Fogg's B=MAP, Hook Model, CREATE Funnel, Dual Process Theory, Cue-Routine-Reward, Spectrum of Interventions, and Behavioral Ethics.",
   "subskills": [
     {
       "id": "fogg_behavior_model",
       "name": "BJ Fogg's Behavior Model (B=MAP)",
-      "description": "Fogg's model states Behavior = Motivation × Ability × Prompt. All three must converge simultaneously. Covers motivation dimensions, ability factors, and prompt types (spark, facilitator, signal).",
+      "description": "Behavior = Motivation x Ability x Prompt. Convergence above the action line.",
       "keywords": [
         "B=MAP",
         "Fogg Behavior Model",
         "motivation",
         "ability",
         "prompt",
-        "spark",
-        "facilitator",
-        "signal",
-        "Tiny Habits",
-        "behavior threshold",
-        "action line"
+        "action line",
+        "Tiny Habits"
       ]
     },
     {
-      "id": "fogg_behavior_grid",
-      "name": "BJ Fogg's Behavior Grid",
-      "description": "A 15-cell matrix classifying behaviors across type (do, don't, continue, stop, path) and duration (one-time, period, permanent). Used to select the right persuasive strategy.",
+      "id": "dual_process_theory",
+      "name": "Dual Process Theory (System 1 & System 2)",
+      "description": "Kahneman's cognitive framework distinguishing fast automatic from slow deliberative thinking.",
       "keywords": [
-        "Behavior Grid",
-        "green behavior",
-        "blue behavior",
-        "purple behavior",
-        "gray behavior",
-        "black behavior",
-        "one-time behavior",
-        "permanent behavior",
-        "behavior type classification"
+        "Dual Process Theory",
+        "System 1",
+        "System 2",
+        "Kahneman",
+        "heuristics",
+        "cognitive biases",
+        "fast thinking"
+      ]
+    },
+    {
+      "id": "behavioral_buzzwords",
+      "name": "Behavioral Science Foundations & Heuristics",
+      "description": "Anchoring, availability heuristic, framing effects, endowment effect, and cognitive fluency.",
+      "keywords": [
+        "anchoring",
+        "availability heuristic",
+        "framing",
+        "endowment effect",
+        "cognitive fluency",
+        "nudge"
       ]
     },
     {
       "id": "hook_model",
       "name": "Nir Eyal's Hook Model",
-      "description": "A four-phase loop (Trigger → Action → Variable Reward → Investment) for building habit-forming products.",
+      "description": "Four-phase habit loop: Trigger -> Action -> Variable Reward -> Investment.",
       "keywords": [
         "Hook Model",
         "Trigger",
         "Action",
         "Variable Reward",
         "Investment",
-        "external trigger",
         "internal trigger",
-        "reward of the tribe",
-        "reward of the hunt",
-        "reward of the self",
-        "stored value",
-        "Hooked"
+        "stored value"
       ]
     },
     {
       "id": "create_action_funnel",
-      "name": "CREATE Action Funnel",
-      "description": "Stephen Wendel's 6-step behavioral funnel: Cue, Reaction, Evaluation, Ability, Timing, Experience.",
+      "name": "CREATE Action Funnel (Stephen Wendel)",
+      "description": "Six-stage behavioral funnel: Cue, Reaction, Evaluation, Ability, Timing, Experience.",
       "keywords": [
         "CREATE",
         "Cue",
@@ -69,32 +71,14 @@
         "Ability",
         "Timing",
         "Experience",
-        "Stephen Wendel",
-        "Designing for Behavior Change",
+        "Wendel",
         "behavioral funnel"
       ]
     },
     {
-      "id": "dual_process_theory",
-      "name": "Dual Process Theory (System 1 & System 2)",
-      "description": "Kahneman's framework distinguishing fast automatic System 1 from slow deliberate System 2 thinking.",
-      "keywords": [
-        "Dual Process Theory",
-        "System 1",
-        "System 2",
-        "Kahneman",
-        "Thinking Fast and Slow",
-        "automatic thinking",
-        "deliberate thinking",
-        "cognitive load",
-        "heuristics",
-        "biases"
-      ]
-    },
-    {
       "id": "cue_routine_reward",
-      "name": "Cue-Routine-Reward Habit Loop",
-      "description": "Charles Duhigg's habit loop model: cue triggers a routine that delivers a reward, reinforcing the loop.",
+      "name": "Cue-Routine-Reward Habit Loop (Duhigg)",
+      "description": "Charles Duhigg's habit loop: cue triggers a routine that delivers a craving-satisfying reward.",
       "keywords": [
         "Cue-Routine-Reward",
         "habit loop",
@@ -102,51 +86,74 @@
         "Power of Habit",
         "craving",
         "routine",
-        "reward",
-        "habit formation",
-        "golden rule of habit change"
+        "habit change"
+      ]
+    },
+    {
+      "id": "fogg_behavior_grid",
+      "name": "BJ Fogg's Behavior Grid (15 Behavior Types)",
+      "description": "Classifying behaviors across 15 types (Green, Blue, Purple, Gray, Black x Dot, Span, Path).",
+      "keywords": [
+        "Behavior Grid",
+        "green behavior",
+        "blue behavior",
+        "purple behavior",
+        "gray behavior",
+        "black behavior",
+        "one-time behavior"
       ]
     },
     {
       "id": "spectrum_of_thinking_interventions",
       "name": "Spectrum of Thinking Interventions",
-      "description": "A continuum from fully unconscious UX interventions (nudges, defaults) to fully conscious (education, rational persuasion).",
+      "description": "Graduating interventions from unconscious nudges to conscious deliberation tools.",
       "keywords": [
-        "Spectrum of Thinking Interventions",
-        "unconscious intervention",
-        "conscious intervention",
-        "nudge",
-        "default",
-        "choice architecture",
-        "persuasive design",
-        "ethical design",
-        "autonomy-preserving"
+        "spectrum of thinking",
+        "conscious vs unconscious",
+        "nudge spectrum",
+        "educational intervention",
+        "persuasive UX"
       ]
     },
     {
-      "id": "behavioral_buzzwords",
-      "name": "Behavioral Science Core Concepts",
-      "description": "Key vocabulary: Nudge Theory, Persuasive Technology, Behavior Design, Behavioral Science, and Behavioral Economics.",
+      "id": "behavioral_ethics_dark_patterns_defense",
+      "name": "Behavioral Ethics & Deceptive Design Defense",
+      "description": "Auditing behavioral loops for ethical compliance, avoiding manipulative dark patterns and sludge.",
       "keywords": [
-        "Nudge Theory",
-        "Persuasive Technology",
-        "Behavior Design",
-        "Behavioral Science",
-        "Behavioral Economics",
-        "Thaler",
-        "Sunstein",
-        "choice architecture",
-        "libertarian paternalism"
+        "dark patterns",
+        "deceptive design",
+        "sludge",
+        "confirmshaming",
+        "roach motel",
+        "ethical nudge",
+        "user agency"
       ]
     }
   ],
   "evidence": {
     "github": [
       {
-        "signal": "Behavioral framework documentation referencing Fogg, Hook Model, or CREATE",
+        "signal": "Design documentation analyzing B=MAP, Hook Model loops, or dark pattern defense audits",
         "detection": "content_analysis",
-        "pattern": "Fogg|B=MAP|Hook Model|CREATE Action|Dual Process|System 1|System 2|habit loop|Nudge Theory|Behavioral Economics",
-        "strength": 0.8,
+        "pattern": "Fogg|B=MAP|HookModel|VariableReward|DarkPatterns|CREATEFunnel",
+        "strength": 0.85,
+        "maps_to": [
+          "ux_behavior_frameworks.fogg_behavior_model",
+          "ux_behavior_frameworks.hook_model",
+          "ux_behavior_frameworks.create_action_funnel",
+          "ux_behavior_frameworks.dual_process_theory",
+          "ux_behavior_frameworks.behavioral_buzzwords",
+          "ux_behavior_frameworks.cue_routine_reward",
+          "ux_behavior_frameworks.fogg_behavior_grid",
+          "ux_behavior_frameworks.spectrum_of_thinking_interventions",
+          "ux_behavior_frameworks.behavioral_ethics_dark_patterns_defense"
+        ]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "Applied Fogg B=MAP, Hook Model, and CREATE funnels to improve activation and retention metrics",
+        "strength": 0.6,
         "maps_to": [
           "ux_behavior_frameworks.fogg_behavior_model",
           "ux_behavior_frameworks.hook_model",
@@ -156,63 +163,47 @@
         ]
       },
       {
-        "signal": "UX research reports or case studies applying behavioral frameworks",
-        "detection": "file_presence",
-        "pattern": "behavioral-design|behavior-framework|ux-research|persuasive-design",
-        "strength": 0.7,
-        "maps_to": [
-          "ux_behavior_frameworks.fogg_behavior_model",
-          "ux_behavior_frameworks.spectrum_of_thinking_interventions",
-          "ux_behavior_frameworks.cue_routine_reward"
-        ]
-      }
-    ],
-    "cv": [
-      {
-        "signal": "Applied behavioral frameworks (Fogg, Hook Model, CREATE) in UX design process",
-        "strength": 0.8,
-        "maps_to": [
-          "ux_behavior_frameworks.fogg_behavior_model",
-          "ux_behavior_frameworks.hook_model",
-          "ux_behavior_frameworks.create_action_funnel"
-        ]
-      },
-      {
-        "signal": "Behavioral economics, persuasive technology, or nudge theory referenced in work",
-        "strength": 0.75,
-        "maps_to": [
-          "ux_behavior_frameworks.dual_process_theory",
-          "ux_behavior_frameworks.behavioral_buzzwords",
-          "ux_behavior_frameworks.spectrum_of_thinking_interventions"
-        ]
-      },
-      {
-        "signal": "Habit design, engagement loops, or retention mechanics described in project work",
-        "strength": 0.75,
+        "signal": "Conducted behavioral ethics audits eliminating dark patterns and mapped Fogg Behavior Grid interventions",
+        "strength": 0.6,
         "maps_to": [
           "ux_behavior_frameworks.cue_routine_reward",
-          "ux_behavior_frameworks.hook_model",
-          "ux_behavior_frameworks.fogg_behavior_grid"
+          "ux_behavior_frameworks.fogg_behavior_grid",
+          "ux_behavior_frameworks.spectrum_of_thinking_interventions",
+          "ux_behavior_frameworks.behavioral_ethics_dark_patterns_defense"
         ]
       }
     ],
     "linkedin": [
       {
-        "signal": "Behavioral design, persuasive technology, or behavioral economics endorsed",
-        "strength": 0.5,
+        "signal": "Endorsements in Behavioral Design, Cognitive Psychology, Hook Model, and Behavioral Economics",
+        "strength": 0.4,
         "maps_to": [
           "ux_behavior_frameworks.fogg_behavior_model",
+          "ux_behavior_frameworks.dual_process_theory",
           "ux_behavior_frameworks.behavioral_buzzwords",
-          "ux_behavior_frameworks.dual_process_theory"
-        ]
-      },
-      {
-        "signal": "Hook Model, habit design, or engagement loop design mentioned",
-        "strength": 0.5,
-        "maps_to": [
           "ux_behavior_frameworks.hook_model",
+          "ux_behavior_frameworks.create_action_funnel",
           "ux_behavior_frameworks.cue_routine_reward",
-          "ux_behavior_frameworks.fogg_behavior_grid"
+          "ux_behavior_frameworks.fogg_behavior_grid",
+          "ux_behavior_frameworks.spectrum_of_thinking_interventions",
+          "ux_behavior_frameworks.behavioral_ethics_dark_patterns_defense"
+        ]
+      }
+    ],
+    "assessment": [
+      {
+        "signal": "Passes behavioral frameworks assessment covering B=MAP, CREATE funnel, Hook Model, Fogg Grid, and Dark Pattern audits",
+        "strength": 1.0,
+        "maps_to": [
+          "ux_behavior_frameworks.fogg_behavior_model",
+          "ux_behavior_frameworks.dual_process_theory",
+          "ux_behavior_frameworks.behavioral_buzzwords",
+          "ux_behavior_frameworks.hook_model",
+          "ux_behavior_frameworks.create_action_funnel",
+          "ux_behavior_frameworks.cue_routine_reward",
+          "ux_behavior_frameworks.fogg_behavior_grid",
+          "ux_behavior_frameworks.spectrum_of_thinking_interventions",
+          "ux_behavior_frameworks.behavioral_ethics_dark_patterns_defense"
         ]
       }
     ]
@@ -224,7 +215,7 @@
         "dual_process_theory",
         "behavioral_buzzwords"
       ],
-      "description": "Understands B=MAP mechanics, differentiates System 1 vs System 2, and uses core behavioral science vocabulary."
+      "description": "Applies Fogg B=MAP motivation/ability/prompt concepts and accounts for System 1 heuristics."
     },
     "mid": {
       "expected_subskills": [
@@ -232,14 +223,15 @@
         "create_action_funnel",
         "cue_routine_reward"
       ],
-      "description": "Applies the Hook Model, CREATE funnel, and habit loop to design engagement and behavior change flows."
+      "description": "Designs variable reward loops in the Hook Model and diagnoses drop-offs with the CREATE action funnel."
     },
     "senior": {
       "expected_subskills": [
         "fogg_behavior_grid",
-        "spectrum_of_thinking_interventions"
+        "spectrum_of_thinking_interventions",
+        "behavioral_ethics_dark_patterns_defense"
       ],
-      "description": "Uses the Behavior Grid for strategic classification and reasons ethically across the full spectrum of interventions."
+      "description": "Selects strategic interventions across the 15-cell Fogg Grid, audits dark patterns, and enforces ethical user agency."
     }
   }
 }

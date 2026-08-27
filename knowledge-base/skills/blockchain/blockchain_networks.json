@@ -1,150 +1,257 @@
 {
   "skill_id": "blockchain_networks",
-  "name": "Blockchain Networks & Interoperability",
-  "category": "blockchain_ecosystem",
-  "description": "Knowledge of the major blockchain networks, virtual machine families, and the cross-chain interoperability protocols that connect them. Covers EVM-compatible chains (Ethereum, Polygon, BSC, Avalanche, Fantom, Gnosis, Huobi ECO, Moonbeam/Moonriver), TVM-based chains (TON, Everscale, Gosh, Venom), Solana's unique architecture, Arbitrum as an L2, and general interoperability principles and bridges.",
+  "name": "Multi-Chain Networks & Cross-Chain Infrastructure",
+  "category": "blockchain_networks",
+  "description": "Architecture of EVM chains, Layer 2 networks, Solana/SVM, Alt-VMs (Move, WASM, TVM), cross-chain bridges, CCIP/IBC interoperability, and modular data availability networks.",
   "subskills": [
     {
-      "id": "interoperability",
-      "name": "Interoperability",
-      "description": "Protocols and standards enabling communication between distinct blockchains: cross-chain bridges (lock-and-mint, burn-and-mint), atomic swaps, inter-blockchain communication (IBC protocol — Cosmos), Polkadot's XCMP, LayerZero's omnichain messaging, Wormhole, Chainlink CCIP. Understanding bridge security risks (bridge exploits have caused billions in losses: Ronin, Wormhole, Nomad). Hash Time-Locked Contracts (HTLCs) for trustless swaps.",
-      "keywords": ["interoperability", "cross-chain bridge", "lock-and-mint", "atomic swap", "IBC", "XCMP", "LayerZero", "Wormhole", "Chainlink CCIP", "bridge exploit", "HTLC", "omnichain", "Cosmos", "Polkadot", "bridge security"]
+      "id": "evm_based_chains_ethereum_polygon",
+      "name": "EVM Network Architecture (Ethereum, Polygon, BSC)",
+      "description": "EVM architecture, chain IDs, gas token mechanics, JSON-RPC specifications, and differences across EVM-compatible L1s and sidechains.",
+      "keywords": [
+        "EVM",
+        "Ethereum",
+        "Polygon PoS",
+        "BNB Chain",
+        "Chain ID",
+        "JSON-RPC",
+        "eth_call",
+        "gas limits"
+      ]
     },
     {
-      "id": "evm_based_chains",
-      "name": "EVM-Based Chains",
-      "description": "The Ethereum Virtual Machine (EVM) specification and the ecosystem of EVM-compatible chains. Ethereum mainnet (gas, accounts, EIPs), Polygon (PoS sidechain and zkEVM), BNB Smart Chain (BSC, PoSA consensus, 21 validators), Gnosis Chain (xDAI, low-cost stable gas), Huobi ECO Chain (HECO), Avalanche C-Chain (Snowman consensus, sub-second finality), Fantom (Lachesis DAG-based aBFT), Moonbeam/Moonriver (Polkadot parachain EVM). Key developer implication: same Solidity code deploys across all, but gas costs, block times, finality, and bridge security differ.",
-      "keywords": ["EVM", "Ethereum", "Polygon", "BSC", "BNB Smart Chain", "Gnosis Chain", "HECO", "Avalanche C-Chain", "Fantom", "Moonbeam", "Moonriver", "EVM-compatible", "chain ID", "RPC endpoint", "EIP-1559", "parachain", "PoSA", "Snowman"]
+      "id": "testnets_faucets_rpc_providers",
+      "name": "Testnets, Faucets & RPC Node Providers",
+      "description": "Operating on public testnets (Sepolia, Holesky), managing RPC rate limits, private RPC endpoints (Infura, Alchemy, QuickNode), and fallback providers.",
+      "keywords": [
+        "Sepolia",
+        "Holesky",
+        "testnet",
+        "faucets",
+        "Alchemy",
+        "Infura",
+        "QuickNode",
+        "RPC fallback"
+      ]
     },
     {
-      "id": "tvm_based_chains",
-      "name": "TVM-Based Chains",
-      "description": "Chains running the TON Virtual Machine (TVM) — a distinct VM architecture from EVM. TON (The Open Network — originally Telegram, now independent): actor model, sharding architecture, Fift/FunC/Tact languages for smart contracts, Jettons (TVM-native tokens). Everscale (formerly Free TON): TVM with DeBot browser and multi-threading. Gosh (git on-chain storage protocol built on TON). Venom blockchain (regulated TVM-based chain). TVM's sharding and asynchronous messaging differs fundamentally from EVM's synchronous call model.",
-      "keywords": ["TVM", "TON", "Everscale", "Gosh", "Venom", "FunC", "Tact", "Fift", "Jetton", "TON sharding", "actor model", "asynchronous messaging", "DeBot", "git on-chain", "TVM vs EVM"]
+      "id": "block_explorers_network_monitoring",
+      "name": "Block Explorers & Network Telemetry",
+      "description": "Navigating and querying block explorers (Etherscan, Blockscout, Solscan), contract verification, internal transaction tracing, and validator telemetry.",
+      "keywords": [
+        "Etherscan",
+        "Blockscout",
+        "Solscan",
+        "internal transactions",
+        "trace_transaction",
+        "gas tracker",
+        "block explorer API"
+      ]
     },
     {
-      "id": "solana",
-      "name": "Solana",
-      "description": "Solana's architecture differentiators: Proof of History (PoH) as a cryptographic clock enabling parallel transaction ordering, Tower BFT consensus, Sealevel parallel transaction execution, Turbine block propagation, Gulf Stream mempool-less transaction forwarding, Cloudbreak account database. Programs (smart contracts) written in Rust/C/C++ and compiled to BPF. Accounts model vs EVM's storage model. SPL tokens (Solana Program Library). Common developer tools: Anchor framework, Solana CLI, Phantom wallet.",
-      "keywords": ["Solana", "Proof of History", "PoH", "Tower BFT", "Sealevel", "Turbine", "Gulf Stream", "BPF", "Anchor", "Rust on Solana", "SPL token", "Phantom", "accounts model", "program", "Solana CLI", "parallel execution"]
+      "id": "l2_rollups_arbitrum_optimism_base",
+      "name": "Layer 2 Rollups Ecosystem (Arbitrum, Optimism, Base)",
+      "description": "Rollup architectures: Arbitrum Nitro, OP Stack (Optimism, Base), sequencer role, L1 batch submission, and L1-L2 message passing.",
+      "keywords": [
+        "Arbitrum Nitro",
+        "OP Stack",
+        "Base",
+        "sequencer",
+        "batch posting",
+        "L1 to L2 bridge",
+        "Optimism Bedrock"
+      ]
     },
     {
-      "id": "l2_arbitrum",
-      "name": "L2 — Arbitrum",
-      "description": "Arbitrum as the leading Optimistic Rollup Layer 2 for Ethereum: ArbOS, the Nitro upgrade (WASM-based fraud proofs), Arbitrum One (general purpose), Arbitrum Nova (AnyTrust for gaming/social), Orbit chains (custom L3s). Optimistic Rollup mechanics: transactions batched off-chain, fraud proofs during 7-day challenge window, fast withdrawals via liquidity bridges. EVM-equivalent compatibility means Solidity contracts deploy without modification. Distinctions from zkSync Era and StarkNet (ZK Rollups).",
-      "keywords": ["Arbitrum", "Optimistic Rollup", "ArbOS", "Nitro", "fraud proof", "challenge period", "7-day withdrawal", "Arbitrum One", "Arbitrum Nova", "AnyTrust", "Orbit chain", "L3", "EVM-equivalent", "fast bridge", "Sequencer"]
+      "id": "solana_sealevel_architecture",
+      "name": "Solana Sealevel Runtime & Account Architecture",
+      "description": "Solana runtime architecture: parallel execution (Sealevel), Gulf Stream mempool-less forwarding, Turbine block propagation, and Program Derived Addresses (PDAs).",
+      "keywords": [
+        "Solana",
+        "Sealevel",
+        "parallel execution",
+        "PDA",
+        "Turbine",
+        "Gulf Stream",
+        "SVM",
+        "rent exemption"
+      ]
+    },
+    {
+      "id": "cross_chain_bridges_relayers",
+      "name": "Cross-Chain Bridges & Relayer Security",
+      "description": "Lock-and-mint, burn-and-mint, liquidity pool bridges, relayer incentive networks, and bridge security threat models.",
+      "keywords": [
+        "cross-chain bridge",
+        "lock and mint",
+        "burn and mint",
+        "relayer",
+        "bridge security",
+        "wormhole",
+        "layerzero"
+      ]
+    },
+    {
+      "id": "interoperability_protocols_ccip_ibc",
+      "name": "Cross-Chain Interoperability Protocols (CCIP, IBC)",
+      "description": "Standardized cross-chain communication protocols: Chainlink Cross-Chain Interoperability Protocol (CCIP), Cosmos Inter-Blockchain Communication (IBC), and cross-chain token transfers.",
+      "keywords": [
+        "Chainlink CCIP",
+        "IBC",
+        "Cosmos",
+        "cross-chain messaging",
+        "programmable token transfer",
+        "risk management network"
+      ]
+    },
+    {
+      "id": "alt_vm_chains_move_tvm_wasm",
+      "name": "Alt-VM Ecosystems (Move, TVM, CosmWasm)",
+      "description": "Non-EVM smart contract platforms: Move VM (Aptos, Sui), TON Virtual Machine (TVM), and CosmWasm/Near WASM runtimes.",
+      "keywords": [
+        "Move VM",
+        "Sui",
+        "Aptos",
+        "TVM",
+        "TON blockchain",
+        "CosmWasm",
+        "WASM smart contracts",
+        "resource-oriented programming"
+      ]
+    },
+    {
+      "id": "modular_blockchains_celestia_avail",
+      "name": "Modular Blockchain Architecture & Data Availability",
+      "description": "Decoupling execution, settlement, consensus, and data availability; sovereign rollups; and Data Availability (DA) layers (Celestia, EigenDA, Avail).",
+      "keywords": [
+        "modular blockchain",
+        "Celestia",
+        "EigenDA",
+        "Avail",
+        "Data Availability Sampling",
+        "sovereign rollup",
+        "settlement layer"
+      ]
     }
   ],
   "evidence": {
     "github": [
       {
-        "signal": "Multi-chain deployment scripts, hardhat.config with multiple network definitions, or chain-specific configuration",
+        "signal": "Multi-network deployment scripts and RPC configuration matrices",
         "detection": "content_analysis",
-        "pattern": "chainId|networks.*polygon|networks.*bsc|networks.*avalanche|networks.*arbitrum|networks.*fantom|networks.*moonbeam|RPC_URL|CHAIN_ID",
-        "strength": 0.8,
+        "pattern": "networks:\\s*\\{\\s*sepolia:|arbitrum:|optimism:|polygon:|mainnet:",
+        "strength": 0.85,
         "maps_to": [
-          "blockchain_networks.evm_based_chains",
-          "blockchain_networks.l2_arbitrum"
+          "blockchain_networks.evm_based_chains_ethereum_polygon",
+          "blockchain_networks.testnets_faucets_rpc_providers",
+          "blockchain_networks.l2_rollups_arbitrum_optimism_base"
         ]
       },
       {
-        "signal": "Bridge integration, cross-chain messaging, or interoperability protocol usage",
+        "signal": "Solana Anchor program configurations and SVM account deserialization",
+        "detection": "file_presence",
+        "pattern": "Anchor\\.toml|declare_id!|@solana/web3\\.js",
+        "strength": 0.9,
+        "maps_to": [
+          "blockchain_networks.solana_sealevel_architecture",
+          "blockchain_networks.block_explorers_network_monitoring"
+        ]
+      },
+      {
+        "signal": "Chainlink CCIP cross-chain token transfer scripts, IBC configs, and Move/WASM modules",
         "detection": "content_analysis",
-        "pattern": "LayerZero|Wormhole|CCIP|IBC|bridge|cross-chain|HTLC|atomic swap|omnichain|lock-and-mint",
+        "pattern": "IRouterClient|ccipReceive|Move\\.toml|Celestia|EigenDA|IL2ToL1MessagePasser",
         "strength": 0.9,
         "maps_to": [
-          "blockchain_networks.interoperability"
-        ]
-      },
-      {
-        "signal": "TON, Everscale, or TVM-related smart contract files (FunC, Tact, Fift)",
-        "detection": "file_presence",
-        "pattern": "\\.fc$|\\.tact$|\\.fif$|ton-core|@ton/|everscale|tonlib",
-        "strength": 0.9,
-        "maps_to": [
-          "blockchain_networks.tvm_based_chains"
-        ]
-      },
-      {
-        "signal": "Solana programs in Rust or Anchor framework projects",
-        "detection": "file_presence",
-        "pattern": "Anchor\\.toml|programs/.*\\.rs|@solana/web3\\.js|@project-serum/anchor|solana_program|declare_id!",
-        "strength": 0.9,
-        "maps_to": [
-          "blockchain_networks.solana"
+          "blockchain_networks.cross_chain_bridges_relayers",
+          "blockchain_networks.interoperability_protocols_ccip_ibc",
+          "blockchain_networks.alt_vm_chains_move_tvm_wasm",
+          "blockchain_networks.modular_blockchains_celestia_avail"
         ]
       }
     ],
     "cv": [
       {
-        "signal": "Deployed contracts or built dApps on multiple EVM chains (Polygon, BSC, Avalanche, Fantom, etc.)",
-        "strength": 0.8,
+        "signal": "Deployed multi-chain smart contracts across Ethereum, Arbitrum, Optimism, Base, and Solana",
+        "strength": 0.6,
         "maps_to": [
-          "blockchain_networks.evm_based_chains",
-          "blockchain_networks.interoperability"
+          "blockchain_networks.evm_based_chains_ethereum_polygon",
+          "blockchain_networks.l2_rollups_arbitrum_optimism_base",
+          "blockchain_networks.solana_sealevel_architecture",
+          "blockchain_networks.testnets_faucets_rpc_providers"
         ]
       },
       {
-        "signal": "Built on TON, Everscale, or TVM-based networks",
-        "strength": 0.85,
+        "signal": "Architected cross-chain token transfers with Chainlink CCIP and integrated modular DA layers with Celestia",
+        "strength": 0.6,
         "maps_to": [
-          "blockchain_networks.tvm_based_chains"
-        ]
-      },
-      {
-        "signal": "Solana program development, Anchor framework, or SPL token work",
-        "strength": 0.85,
-        "maps_to": [
-          "blockchain_networks.solana"
-        ]
-      },
-      {
-        "signal": "Cross-chain bridge development, interoperability protocol integration, or multi-chain architecture",
-        "strength": 0.9,
-        "maps_to": [
-          "blockchain_networks.interoperability",
-          "blockchain_networks.l2_arbitrum"
+          "blockchain_networks.cross_chain_bridges_relayers",
+          "blockchain_networks.interoperability_protocols_ccip_ibc",
+          "blockchain_networks.alt_vm_chains_move_tvm_wasm",
+          "blockchain_networks.modular_blockchains_celestia_avail",
+          "blockchain_networks.block_explorers_network_monitoring"
         ]
       }
     ],
     "linkedin": [
       {
-        "signal": "Polygon, BSC, Avalanche, Fantom, or multi-chain development endorsed",
-        "strength": 0.5,
+        "signal": "Endorsements in Multi-Chain Architecture, Layer 2 Solutions, Solana Development, and Cross-Chain Protocols",
+        "strength": 0.4,
         "maps_to": [
-          "blockchain_networks.evm_based_chains"
+          "blockchain_networks.evm_based_chains_ethereum_polygon",
+          "blockchain_networks.testnets_faucets_rpc_providers",
+          "blockchain_networks.block_explorers_network_monitoring",
+          "blockchain_networks.l2_rollups_arbitrum_optimism_base",
+          "blockchain_networks.solana_sealevel_architecture",
+          "blockchain_networks.cross_chain_bridges_relayers",
+          "blockchain_networks.interoperability_protocols_ccip_ibc",
+          "blockchain_networks.alt_vm_chains_move_tvm_wasm",
+          "blockchain_networks.modular_blockchains_celestia_avail"
         ]
-      },
+      }
+    ],
+    "assessment": [
       {
-        "signal": "Solana, TON, or cross-chain interoperability mentioned",
-        "strength": 0.6,
+        "signal": "Passes comprehensive multi-chain networks assessment covering OP Stack rollups, Solana Sealevel, CCIP cross-chain messaging, and Celestia modular DA",
+        "strength": 1.0,
         "maps_to": [
-          "blockchain_networks.solana",
-          "blockchain_networks.tvm_based_chains",
-          "blockchain_networks.interoperability"
-        ]
-      },
-      {
-        "signal": "Arbitrum, Layer 2, or rollup development mentioned",
-        "strength": 0.6,
-        "maps_to": [
-          "blockchain_networks.l2_arbitrum"
+          "blockchain_networks.evm_based_chains_ethereum_polygon",
+          "blockchain_networks.testnets_faucets_rpc_providers",
+          "blockchain_networks.block_explorers_network_monitoring",
+          "blockchain_networks.l2_rollups_arbitrum_optimism_base",
+          "blockchain_networks.solana_sealevel_architecture",
+          "blockchain_networks.cross_chain_bridges_relayers",
+          "blockchain_networks.interoperability_protocols_ccip_ibc",
+          "blockchain_networks.alt_vm_chains_move_tvm_wasm",
+          "blockchain_networks.modular_blockchains_celestia_avail"
         ]
       }
     ]
   },
   "levels": {
     "junior": {
-      "expected_subskills": ["evm_based_chains"],
-      "description": "Understands the EVM specification and can deploy Solidity contracts on at least one EVM chain; knows chain IDs, RPC endpoints, and the differences in gas/finality between major EVM networks."
+      "expected_subskills": [
+        "evm_based_chains_ethereum_polygon",
+        "testnets_faucets_rpc_providers",
+        "block_explorers_network_monitoring"
+      ],
+      "description": "Configures RPC providers for EVM networks, uses testnet faucets, and inspects transactions on block explorers."
     },
     "mid": {
-      "expected_subskills": ["l2_arbitrum", "solana", "interoperability"],
-      "description": "Deploys on L2s (Arbitrum), has meaningful experience with at least one non-EVM chain (Solana or TVM), and understands cross-chain bridge mechanics and risks."
+      "expected_subskills": [
+        "l2_rollups_arbitrum_optimism_base",
+        "solana_sealevel_architecture",
+        "cross_chain_bridges_relayers"
+      ],
+      "description": "Deploys onto OP Stack/Arbitrum rollups, builds programs on Solana runtime, and configures bridge relay mechanisms."
     },
     "senior": {
-      "expected_subskills": ["tvm_based_chains"],
-      "description": "Architects multi-chain systems, evaluates interoperability protocol security trade-offs, and can develop on both EVM and TVM/Solana ecosystems with production experience."
+      "expected_subskills": [
+        "interoperability_protocols_ccip_ibc",
+        "alt_vm_chains_move_tvm_wasm",
+        "modular_blockchains_celestia_avail"
+      ],
+      "description": "Architects cross-chain messaging with CCIP/IBC, develops on Move/Alt-VM platforms, and designs modular Celestia/EigenDA stacks."
     }
   }
 }

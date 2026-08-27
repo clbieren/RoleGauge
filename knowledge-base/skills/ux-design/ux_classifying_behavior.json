@@ -1,117 +1,221 @@
 {
   "skill_id": "ux_classifying_behavior",
-  "name": "Classifying Behavior & Understanding the Product",
-  "category": "ux_research_strategy",
-  "description": "The analytical groundwork before any design intervention begins. Covers product clarification (defining the product's purpose, target outcome, target actor, and target action) and target user definition via personas. Without accurately classifying the target behavior and understanding who performs it, behavioral interventions are misdirected.",
+  "name": "Behavioral Discovery & User Segmentation",
+  "category": "ux_behavioral_science",
+  "description": "Methods for discovering and defining target behaviors: Target Outcome vs Action, Actor profiling, Personas, Jobs-to-be-Done (JTBD), behavioral clustering, and dynamic intent state modeling.",
   "subskills": [
     {
       "id": "clarify_product",
-      "name": "Clarify the Product",
-      "description": "Articulating what the product does at a fundamental level — its core value proposition, problem domain, and category. Ensures alignment across stakeholders before behavior classification begins. Often involves a product brief, one-sentence elevator pitch, or problem statement workshop.",
-      "keywords": ["product clarification", "value proposition", "problem statement", "product brief", "elevator pitch", "product scope", "core functionality", "stakeholder alignment"]
-    },
-    {
-      "id": "target_outcome",
-      "name": "Define Target Outcome",
-      "description": "Identifying the specific, measurable state the product aims to bring the user to. The target outcome is distinct from the product's features — it describes the user's world after successful interaction. Requires distinguishing between business outcomes (revenue, retention) and user outcomes (skill gained, task completed).",
-      "keywords": ["target outcome", "desired state", "user outcome", "business outcome", "success state", "OKR alignment", "outcome vs output", "behavioral goal", "goal-directed design"]
-    },
-    {
-      "id": "target_actor",
-      "name": "Define Target Actor",
-      "description": "Identifying who performs the target behavior — their role, context, motivation level, existing habits, and relationship with the product. Involves segmentation by behavioral profile rather than just demographic data. Distinct from personas in that it focuses on behavioral capacity and motivation.",
-      "keywords": ["target actor", "behavioral segmentation", "user role", "actor context", "motivation level", "ability assessment", "user capacity", "behavioral profile", "who performs the behavior"]
-    },
-    {
-      "id": "target_action",
-      "name": "Define Target Action",
-      "description": "Specifying the exact behavior the design intervention aims to produce — as a concrete, observable, single action rather than a vague intention. Applies Fogg's behavior classification to determine if the action is a one-time, recurring, or permanent behavior.",
-      "keywords": ["target action", "specific behavior", "observable action", "single behavior", "Fogg behavior classification", "behavior specification", "action definition", "concrete behavior", "behavioral precision"]
+      "name": "Product Clarification & Value Scope",
+      "description": "Articulating the core value proposition and boundary scope of the product.",
+      "keywords": [
+        "clarify product",
+        "product scope",
+        "value proposition",
+        "core value",
+        "product definition"
+      ]
     },
     {
       "id": "user_personas",
-      "name": "Define Target Users — Personas",
-      "description": "Creating behavioral personas that capture user goals, motivations, pain points, mental models, and behavioral tendencies. Distinguishes between proto-personas (assumption-based) and research-backed personas. Covers Jobs-to-be-Done (JTBD) as an alternative framing focused on functional and emotional jobs.",
-      "keywords": ["personas", "user persona", "proto-persona", "behavioral persona", "Jobs-to-be-Done", "JTBD", "user goals", "user motivations", "pain points", "mental model", "empathy map", "user archetype"]
+      "name": "User Personas & Empathy Mapping",
+      "description": "Creating evidence-based personas, empathy maps, and behavioral archetypes.",
+      "keywords": [
+        "personas",
+        "empathy map",
+        "user archetype",
+        "behavioral persona",
+        "demographic vs behavioral"
+      ]
+    },
+    {
+      "id": "jobs_to_be_done_framework",
+      "name": "Jobs-to-be-Done (JTBD) Theory",
+      "description": "Formulating JTBD statements: Situation -> Motivation -> Desired Outcome.",
+      "keywords": [
+        "Jobs to be Done",
+        "JTBD",
+        "customer jobs",
+        "job statement",
+        "functional job",
+        "emotional job",
+        "social job"
+      ]
+    },
+    {
+      "id": "target_outcome",
+      "name": "Target Outcome Definition & Metrics",
+      "description": "Defining the measurable business and user outcomes the product aims to achieve.",
+      "keywords": [
+        "target outcome",
+        "outcome metric",
+        "business goal",
+        "user goal",
+        "success metric"
+      ]
+    },
+    {
+      "id": "target_actor",
+      "name": "Target Actor & Stakeholder Profiling",
+      "description": "Identifying the specific individual or stakeholder who must perform the target action.",
+      "keywords": [
+        "target actor",
+        "actor profiling",
+        "stakeholder",
+        "decision maker",
+        "primary actor"
+      ]
+    },
+    {
+      "id": "target_action",
+      "name": "Target Action Specification & Granularity",
+      "description": "Defining specific, observable, and measurable target actions (when, where, how).",
+      "keywords": [
+        "target action",
+        "observable action",
+        "action specification",
+        "action granularity",
+        "discrete behavior"
+      ]
+    },
+    {
+      "id": "behavioral_segmentation_clustering",
+      "name": "Behavioral Segmentation & Quantitative Clustering",
+      "description": "Segmenting users by usage patterns, frequency, and friction points rather than purely demographic attributes.",
+      "keywords": [
+        "behavioral segmentation",
+        "clustering",
+        "usage frequency",
+        "power users vs casual",
+        "cohort segmentation"
+      ]
+    },
+    {
+      "id": "cross_actor_ecosystem_mapping",
+      "name": "Multi-Sided Platform Actor Ecosystems",
+      "description": "Mapping interconnected behaviors in multi-sided platforms (e.g. buyers, sellers, admins).",
+      "keywords": [
+        "multi-sided platform",
+        "ecosystem mapping",
+        "cross-actor interactions",
+        "two-sided marketplace UX"
+      ]
+    },
+    {
+      "id": "intent_state_modeling",
+      "name": "Dynamic Intent State Modeling",
+      "description": "Modeling dynamic user intent transitions (exploratory, goal-directed, transactional, disengaged).",
+      "keywords": [
+        "intent states",
+        "dynamic intent",
+        "exploratory intent",
+        "transactional intent",
+        "state transition UX"
+      ]
     }
   ],
   "evidence": {
     "github": [
       {
-        "signal": "Persona documents, JTBD artifacts, or behavioral segmentation frameworks in repository",
-        "detection": "file_presence",
-        "pattern": "persona|proto-persona|jobs-to-be-done|JTBD|target-actor|target-outcome|behavioral-segmentation",
-        "strength": 0.8,
-        "maps_to": [
-          "ux_classifying_behavior.user_personas",
-          "ux_classifying_behavior.target_actor",
-          "ux_classifying_behavior.target_outcome"
-        ]
-      },
-      {
-        "signal": "Product brief, problem statement, or design scope documentation",
+        "signal": "Persona profiles, JTBD job maps, and behavioral segmentation models in design docs",
         "detection": "content_analysis",
-        "pattern": "target outcome|target actor|target action|product brief|value proposition|problem statement",
-        "strength": 0.7,
+        "pattern": "Persona|JTBD|JobsToBeDone|TargetAction|BehavioralSegment|IntentState",
+        "strength": 0.85,
         "maps_to": [
           "ux_classifying_behavior.clarify_product",
+          "ux_classifying_behavior.user_personas",
+          "ux_classifying_behavior.jobs_to_be_done_framework",
           "ux_classifying_behavior.target_outcome",
-          "ux_classifying_behavior.target_action"
+          "ux_classifying_behavior.target_actor",
+          "ux_classifying_behavior.target_action",
+          "ux_classifying_behavior.behavioral_segmentation_clustering",
+          "ux_classifying_behavior.cross_actor_ecosystem_mapping",
+          "ux_classifying_behavior.intent_state_modeling"
         ]
       }
     ],
     "cv": [
       {
-        "signal": "Conducted user research, persona creation, or behavioral segmentation for product teams",
-        "strength": 0.8,
+        "signal": "Conducted user research formulating JTBD frameworks, behavioral personas, and target action specifications",
+        "strength": 0.6,
         "maps_to": [
+          "ux_classifying_behavior.clarify_product",
           "ux_classifying_behavior.user_personas",
-          "ux_classifying_behavior.target_actor",
+          "ux_classifying_behavior.jobs_to_be_done_framework",
           "ux_classifying_behavior.target_outcome"
         ]
       },
       {
-        "signal": "Defined product scope, target behaviors, or behavioral goals for design projects",
-        "strength": 0.75,
+        "signal": "Designed multi-sided platform actor ecosystems and implemented behavioral clustering with dynamic intent modeling",
+        "strength": 0.6,
         "maps_to": [
-          "ux_classifying_behavior.clarify_product",
+          "ux_classifying_behavior.target_actor",
           "ux_classifying_behavior.target_action",
-          "ux_classifying_behavior.target_outcome"
+          "ux_classifying_behavior.behavioral_segmentation_clustering",
+          "ux_classifying_behavior.cross_actor_ecosystem_mapping",
+          "ux_classifying_behavior.intent_state_modeling"
         ]
       }
     ],
     "linkedin": [
       {
-        "signal": "User research, persona design, or Jobs-to-be-Done endorsed",
-        "strength": 0.5,
-        "maps_to": [
-          "ux_classifying_behavior.user_personas",
-          "ux_classifying_behavior.target_actor"
-        ]
-      },
-      {
-        "signal": "Product strategy, behavioral design, or outcome-based design mentioned",
-        "strength": 0.5,
+        "signal": "Endorsements in User Personas, Jobs-to-be-Done (JTBD), Behavioral Research, and Customer Discovery",
+        "strength": 0.4,
         "maps_to": [
           "ux_classifying_behavior.clarify_product",
+          "ux_classifying_behavior.user_personas",
+          "ux_classifying_behavior.jobs_to_be_done_framework",
           "ux_classifying_behavior.target_outcome",
-          "ux_classifying_behavior.target_action"
+          "ux_classifying_behavior.target_actor",
+          "ux_classifying_behavior.target_action",
+          "ux_classifying_behavior.behavioral_segmentation_clustering",
+          "ux_classifying_behavior.cross_actor_ecosystem_mapping",
+          "ux_classifying_behavior.intent_state_modeling"
+        ]
+      }
+    ],
+    "assessment": [
+      {
+        "signal": "Passes behavioral classification assessment covering JTBD statements, target action definitions, behavioral clustering, and multi-sided actor ecosystems",
+        "strength": 1.0,
+        "maps_to": [
+          "ux_classifying_behavior.clarify_product",
+          "ux_classifying_behavior.user_personas",
+          "ux_classifying_behavior.jobs_to_be_done_framework",
+          "ux_classifying_behavior.target_outcome",
+          "ux_classifying_behavior.target_actor",
+          "ux_classifying_behavior.target_action",
+          "ux_classifying_behavior.behavioral_segmentation_clustering",
+          "ux_classifying_behavior.cross_actor_ecosystem_mapping",
+          "ux_classifying_behavior.intent_state_modeling"
         ]
       }
     ]
   },
   "levels": {
     "junior": {
-      "expected_subskills": ["clarify_product", "user_personas"],
-      "description": "Can articulate the product's purpose clearly and create research-backed or proto-personas capturing user goals and motivations."
+      "expected_subskills": [
+        "clarify_product",
+        "user_personas",
+        "jobs_to_be_done_framework"
+      ],
+      "description": "Articulates core product value, creates evidence-based personas, and writes JTBD job statements."
     },
     "mid": {
-      "expected_subskills": ["target_outcome", "target_actor", "target_action"],
-      "description": "Precisely defines target outcomes (user vs business), specifies behavioral actors by motivation and capacity, and articulates single observable target actions."
+      "expected_subskills": [
+        "target_outcome",
+        "target_actor",
+        "target_action"
+      ],
+      "description": "Defines discrete target actions, profiles target actors, and sets measurable outcome metrics."
     },
     "senior": {
-      "expected_subskills": [],
-      "description": "Facilitates cross-functional alignment workshops on product purpose and behavioral goals; champions outcome-over-output design culture; integrates JTBD as organizational standard."
+      "expected_subskills": [
+        "behavioral_segmentation_clustering",
+        "cross_actor_ecosystem_mapping",
+        "intent_state_modeling"
+      ],
+      "description": "Executes quantitative behavioral segmentation, maps multi-sided marketplace ecosystems, and models dynamic intent states."
     }
   }
 }

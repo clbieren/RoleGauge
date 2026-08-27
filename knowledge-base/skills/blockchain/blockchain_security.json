@@ -1,199 +1,254 @@
 {
   "skill_id": "blockchain_security",
-  "name": "Blockchain Security",
-  "category": "blockchain_engineering",
-  "description": "The security discipline unique to smart contracts and decentralized systems, where code is immutable after deployment and bugs can lead to irreversible loss of funds. Covers automated analysis tools (fuzz testing, static analysis), the taxonomy of known smart contract vulnerabilities, randomness manipulation attacks, and the professional security toolkit (Slither, Manticore, MythX, Echidna, OpenZeppelin). Also covers version control practices essential for collaborative smart contract development.",
+  "name": "Smart Contract Security & Vulnerability Auditing",
+  "category": "blockchain_security",
+  "description": "Auditing smart contracts against common threat vectors (reentrancy, oracle manipulation, frontrunning), utilizing static analysis tools (Slither), fuzz testing (Echidna), symbolic execution (Manticore), and OpenZeppelin security standards.",
   "subskills": [
     {
-      "id": "fuzz_testing_static_analysis",
-      "name": "Fuzz Testing & Static Analysis",
-      "description": "Automated techniques for finding smart contract vulnerabilities before deployment. Static analysis: examining bytecode or source code without executing it to find known patterns (Slither, Semgrep-for-Solidity). Fuzz testing / property-based testing: generating random inputs to find states that violate invariants (Echidna for property testing, Foundry forge fuzz/invariant tests). Coverage-guided fuzzing. Mutation testing (checking if tests catch intentionally broken code). The difference between finding bugs (fuzzing) and proving absence of bugs (formal verification).",
-      "keywords": ["fuzz testing", "property-based testing", "static analysis", "Slither", "Echidna", "Foundry fuzzing", "forge fuzz", "invariant testing", "mutation testing", "coverage-guided fuzzing", "formal verification", "Semgrep", "bytecode analysis", "vulnerability pattern"]
-    },
-    {
       "id": "common_threat_vectors",
-      "name": "Common Smart Contract Threat Vectors",
-      "description": "The canonical taxonomy of smart contract vulnerabilities: Reentrancy (The DAO hack — malicious fallback calls back into victim before state update; mitigated by Checks-Effects-Interactions pattern and ReentrancyGuard), Integer Overflow/Underflow (pre-Solidity 0.8.x, mitigated by SafeMath / Solidity 0.8 built-in checks), Access Control failures (missing onlyOwner modifiers, tx.origin vs msg.sender), Front-running / MEV (transaction ordering manipulation), Flash Loan attacks (manipulating protocol state within atomic transaction), Improper Delegatecall (storage collision with proxies), Uninitialized Proxies, Oracle Manipulation (Mango Markets exploit — $100M), Signature Replay attacks, Denial of Service (griefing, block gas limit attacks).",
-      "keywords": ["reentrancy", "The DAO hack", "Checks-Effects-Interactions", "ReentrancyGuard", "integer overflow", "SafeMath", "access control", "tx.origin", "msg.sender", "front-running", "MEV", "flash loan attack", "delegatecall storage collision", "oracle manipulation", "signature replay", "denial of service", "griefing"]
+      "name": "Common Smart Contract Vulnerabilities (OWASP Top 10)",
+      "description": "Reentrancy, integer overflow/underflow, access control bypass (tx.origin), signature replay, denial of service, and uninitialized proxies.",
+      "keywords": [
+        "reentrancy",
+        "Checks-Effects-Interactions",
+        "tx.origin",
+        "access control",
+        "integer overflow",
+        "uninitialized proxy",
+        "replay attack"
+      ]
     },
     {
-      "id": "randomness_attacks",
-      "name": "Randomness Attacks",
-      "description": "The challenge of generating unpredictable randomness in a deterministic, public blockchain environment. Blockhash-based randomness is manipulable by miners/validators (they can withhold blocks). block.timestamp is manipulable within ~15 seconds. RANDAO (Ethereum's post-Merge randomness beacon) is better but still gameable over a 1-epoch lookahead. Commit-reveal schemes (two-phase: commit hash of secret, then reveal). Chainlink VRF v2 as the production standard for verifiable, manipulation-resistant randomness in NFT mints, games, and lotteries.",
-      "keywords": ["randomness attack", "blockhash manipulation", "block.timestamp", "miner manipulation", "RANDAO", "commit-reveal", "Chainlink VRF", "verifiable randomness", "predictable randomness", "front-run mint", "NFT randomness", "on-chain randomness pitfall"]
+      "id": "openzeppelin_security_contracts",
+      "name": "OpenZeppelin Security Architecture & Contracts",
+      "description": "Leveraging audited security building blocks: ReentrancyGuard, Ownable2Step, AccessControl, Pausable, and SafeERC20.",
+      "keywords": [
+        "OpenZeppelin",
+        "ReentrancyGuard",
+        "Ownable2Step",
+        "AccessControl",
+        "Pausable",
+        "SafeERC20",
+        "ECDSA library"
+      ]
     },
     {
-      "id": "slither",
-      "name": "Slither — Static Analysis",
-      "description": "Trail of Bits' Slither is the leading open-source Solidity static analysis framework. Runs 90+ built-in detectors covering: reentrancy, unused return values, arbitrary send, unchecked transfers, suicidal/self-destruct, incorrect ERC-20 implementations, and more. Outputs findings by severity (High/Medium/Low/Informational). Integrates with CI/CD pipelines. Slither-read-storage for reading contract storage slots. Slither's printer module for inheritance graphs, call graphs, and variable dependency analysis.",
-      "keywords": ["Slither", "static analysis", "Trail of Bits", "detector", "reentrancy detector", "CI/CD security", "slither-read-storage", "inheritance graph", "call graph", "severity", "High/Medium/Low", "automated audit", "Solidity linting"]
+      "id": "version_control_smart_contracts",
+      "name": "Security-Conscious Solidity Pragma & Compiler Versioning",
+      "description": "Managing compiler versions, strict pragma locking, floating pragma risks, and compiler bug advisories.",
+      "keywords": [
+        "pragma solidity",
+        "locked pragma",
+        "compiler bugs",
+        "SafeMath",
+        "Solidity 0.8.x",
+        "overflow checks"
+      ]
     },
     {
-      "id": "manticore",
-      "name": "Manticore — Symbolic Execution",
-      "description": "Trail of Bits' Manticore is a symbolic execution tool for EVM bytecode and binary analysis. Symbolic execution explores all possible execution paths by treating inputs as symbolic variables, finding inputs that cause assertion violations or unexpected states. Useful for finding subtle bugs that fuzzing misses. More resource-intensive than static analysis. Manticore's API for writing custom analyses, and how symbolic execution complements fuzzing and manual review in a professional audit workflow.",
-      "keywords": ["Manticore", "symbolic execution", "Trail of Bits", "EVM analysis", "assertion violation", "path exploration", "SMT solver", "Z3", "symbolic variable", "bug finding", "formal analysis", "audit workflow", "bytecode analysis"]
+      "id": "slither_static_analysis",
+      "name": "Static Analysis with Slither",
+      "description": "Configuring and running Slither static analyzer, writing custom Slither detectors, and interpreting control flow graphs (CFG).",
+      "keywords": [
+        "Slither",
+        "static analysis",
+        "detector",
+        "Slither CFG",
+        "crytic-compile",
+        "vulnerability scan",
+        "automated security"
+      ]
     },
     {
-      "id": "mythx",
-      "name": "MythX — Security Analysis Platform",
-      "description": "ConsenSys' MythX is a cloud-based smart contract security analysis platform combining multiple analysis techniques (static analysis, symbolic execution, fuzzing) into an API-accessible service. Integrates with Hardhat (hardhat-plugin-mythx), Truffle, and Remix. Provides a security score and vulnerability report. MythX Pro for deeper analysis. Distinction between MythX (commercial platform) and Mythril (open-source underlying tool — individual symbolic execution engine). Used in CI/CD for automated pre-deployment security scans.",
-      "keywords": ["MythX", "Mythril", "ConsenSys", "security platform", "automated scan", "Hardhat MythX plugin", "security score", "vulnerability report", "cloud analysis", "CI/CD security scan", "hardhat-plugin-mythx", "symbolic execution", "multi-technique"]
+      "id": "randomness_attacks_frontrunning",
+      "name": "MEV, Frontrunning & Randomness Exploits",
+      "description": "Miner/Maximal Extractable Value (MEV), sandwich attacks, block timestamp manipulation, on-chain pseudo-randomness exploits, and commit-reveal schemes.",
+      "keywords": [
+        "MEV",
+        "frontrunning",
+        "sandwich attack",
+        "block.timestamp",
+        "pseudo-randomness",
+        "commit-reveal",
+        "private mempools",
+        "Flashbots"
+      ]
     },
     {
-      "id": "echidna",
-      "name": "Echidna — Property-Based Fuzzer",
-      "description": "Trail of Bits' Echidna is the leading Solidity property-based fuzzer. Developers write invariant properties (Solidity functions prefixed echidna_) that should always hold, and Echidna generates inputs to try to violate them. Covers: writing meaningful invariants, corpus management, coverage-guided fuzzing, Echidna's configuration (testLimit, seqLen, shrinkLimit), and running Echidna in Docker or CI. Distinction between assertion testing and property testing modes. How Echidna's findings complement Slither's static analysis.",
-      "keywords": ["Echidna", "property-based fuzzing", "invariant testing", "echidna_ prefix", "Trail of Bits", "corpus", "coverage-guided", "testLimit", "seqLen", "assertion mode", "property mode", "shrinking", "Docker", "CI fuzzing"]
+      "id": "fuzz_testing_unit_security",
+      "name": "Property-Based Unit Fuzzing in Foundry",
+      "description": "Writing stateless and stateful property-based fuzz tests in Foundry (vm.assume, fuzz runs, bound functions, invariant testing).",
+      "keywords": [
+        "Foundry fuzzing",
+        "property-based testing",
+        "vm.assume",
+        "invariant",
+        "stateless fuzzing",
+        "fuzz runs",
+        "bound()"
+      ]
     },
     {
-      "id": "openzeppelin",
-      "name": "OpenZeppelin Contracts & Defender",
-      "description": "OpenZeppelin Contracts: the industry-standard audited library for ERC tokens, access control (Ownable, AccessControl, Roles), security utilities (ReentrancyGuard, Pausable, PullPayment), governance (Governor, Timelock), upgradeability (TransparentUpgradeableProxy, UUPS), and math utilities. Always prefer audited OpenZeppelin implementations over custom ones. OpenZeppelin Defender: cloud-based smart contract operations platform — Relayer (gas-managed transaction signing), Sentinel (alert on events/transactions), Autotask (serverless functions), Upgrade (secure proxy upgrades with multi-sig).",
-      "keywords": ["OpenZeppelin Contracts", "Ownable", "AccessControl", "ReentrancyGuard", "Pausable", "Governor", "Timelock", "UUPS", "TransparentProxy", "audited library", "OpenZeppelin Defender", "Relayer", "Sentinel", "Autotask", "Upgrade", "multi-sig upgrade"]
+      "id": "echidna_property_testing",
+      "name": "Advanced Invariant Fuzzing with Echidna",
+      "description": "Configuring Echidna property-based fuzzer, defining contract invariants in Solidity, corpus generation, and automated break testing.",
+      "keywords": [
+        "Echidna",
+        "property testing",
+        "invariant",
+        "echidna_config.yaml",
+        "assertion mode",
+        "corpus generation",
+        "crytic"
+      ]
     },
     {
-      "id": "version_control",
-      "name": "Version Control for Smart Contract Projects",
-      "description": "Git-based workflows for smart contract development: Gitflow (feature branches, release branches) vs trunk-based development, conventional commits for changelog automation, GitHub Actions / GitLab CI for automated Solidity compilation, linting (solhint), testing, coverage, and security scanning (Slither in CI). .gitignore for blockchain projects (node_modules, artifacts/, cache/, out/, .env). Semantic versioning for contract ABIs and libraries. Monorepo patterns (Turborepo, nx) for protocol + frontend + subgraph codebases.",
-      "keywords": ["Git", "GitHub", "GitLab", "Bitbucket", "Gitflow", "trunk-based development", "conventional commits", "GitHub Actions", "GitLab CI", "solhint", "CI/CD", ".gitignore", "semantic versioning", "monorepo", "Turborepo", "nx", "ABI versioning"]
+      "id": "manticore_symbolic_execution",
+      "name": "Symbolic Execution with Manticore",
+      "description": "Applying symbolic execution to explore all reachable program paths, generate constraint models (Z3 solver), and prove invariant validity.",
+      "keywords": [
+        "Manticore",
+        "symbolic execution",
+        "Z3 solver",
+        "path exploration",
+        "constraint solving",
+        "formal reachability"
+      ]
+    },
+    {
+      "id": "mythx_formal_audit_workflows",
+      "name": "Professional Security Auditing & Threat Modeling",
+      "description": "Conducting manual audits, threat modeling, writing comprehensive audit reports, calculating CVSS scores, and managing remediations.",
+      "keywords": [
+        "security audit",
+        "threat modeling",
+        "audit report",
+        "CVSS score",
+        "MythX",
+        "remediation verification",
+        "competitive audits",
+        "Code4rena"
+      ]
     }
   ],
   "evidence": {
     "github": [
       {
-        "signal": "Slither, Echidna, Manticore, or MythX configuration files or CI security scan jobs",
+        "signal": "Slither configs, Echidna invariant test files, and custom security modifiers",
         "detection": "file_presence",
-        "pattern": "\\.slither\\.config\\.json|echidna\\.yaml|echidna\\.config\\.yaml|\\.mythx|\\.manticore|hardhat-plugin-mythx|slither\\.txt",
+        "pattern": "slither\\.config\\.json|echidna.*\\.ya?ml|test/invariants/.*\\.sol|test/fuzz/.*\\.sol",
         "strength": 0.9,
         "maps_to": [
-          "blockchain_security.slither",
-          "blockchain_security.echidna",
-          "blockchain_security.manticore",
-          "blockchain_security.mythx"
+          "blockchain_security.slither_static_analysis",
+          "blockchain_security.echidna_property_testing",
+          "blockchain_security.fuzz_testing_unit_security"
         ]
       },
       {
-        "signal": "Property-based fuzz tests (Echidna invariants or Foundry fuzz tests)",
+        "signal": "OpenZeppelin ReentrancyGuard, Ownable2Step, and SafeERC20 inheritance",
         "detection": "content_analysis",
-        "pattern": "echidna_|function invariant_|forge fuzz|--fuzz-runs|testFuzz|statefulFuzz",
-        "strength": 0.9,
-        "maps_to": [
-          "blockchain_security.fuzz_testing_static_analysis",
-          "blockchain_security.echidna"
-        ]
-      },
-      {
-        "signal": "OpenZeppelin contracts imported or Defender configuration present",
-        "detection": "content_analysis",
-        "pattern": "@openzeppelin/contracts|OpenZeppelin|ReentrancyGuard|Ownable|AccessControl|Pausable|Governor|Timelock|defender",
-        "strength": 0.8,
-        "maps_to": [
-          "blockchain_security.openzeppelin"
-        ]
-      },
-      {
-        "signal": "Security-focused comments, audit reports, or known vulnerability mitigations in code",
-        "detection": "content_analysis",
-        "pattern": "reentrancy|Checks-Effects-Interactions|CEI|tx\\.origin|front-run|flash loan|oracle manipulation|access control|SECURITY\\.md",
-        "strength": 0.8,
-        "maps_to": [
-          "blockchain_security.common_threat_vectors",
-          "blockchain_security.randomness_attacks"
-        ]
-      },
-      {
-        "signal": "Commit-reveal scheme or Chainlink VRF integration for randomness",
-        "detection": "content_analysis",
-        "pattern": "commit-reveal|VRFConsumerBaseV2|VRFCoordinatorV2|requestRandomWords|RANDAO|blockhash.*randomness",
+        "pattern": "import\\s+['\"].*openzeppelin/contracts/security/ReentrancyGuard|import\\s+['\"].*openzeppelin/contracts/access/Ownable2Step|nonReentrant",
         "strength": 0.85,
         "maps_to": [
-          "blockchain_security.randomness_attacks"
+          "blockchain_security.openzeppelin_security_contracts",
+          "blockchain_security.common_threat_vectors",
+          "blockchain_security.version_control_smart_contracts"
         ]
       },
       {
-        "signal": "GitHub Actions workflows with Slither or security scan steps",
-        "detection": "file_presence",
-        "pattern": "\\.github/workflows/.*\\.yml",
-        "strength": 0.7,
+        "signal": "Flashbots RPC configs, commit-reveal contracts, and Manticore symbolic scripts",
+        "detection": "content_analysis",
+        "pattern": "flashbots|relay\\.flashbots\\.net|commitHash|Manticore\\(|manticore\\.ethereum",
+        "strength": 0.9,
         "maps_to": [
-          "blockchain_security.version_control",
-          "blockchain_security.slither",
-          "blockchain_security.fuzz_testing_static_analysis"
+          "blockchain_security.randomness_attacks_frontrunning",
+          "blockchain_security.manticore_symbolic_execution",
+          "blockchain_security.mythx_formal_audit_workflows"
         ]
       }
     ],
     "cv": [
       {
-        "signal": "Conducted smart contract security audits or implemented security best practices",
-        "strength": 0.9,
+        "signal": "Conducted smart contract security audits and resolved critical reentrancy and access control vulnerabilities",
+        "strength": 0.6,
         "maps_to": [
           "blockchain_security.common_threat_vectors",
-          "blockchain_security.slither",
-          "blockchain_security.openzeppelin"
+          "blockchain_security.openzeppelin_security_contracts",
+          "blockchain_security.version_control_smart_contracts",
+          "blockchain_security.slither_static_analysis"
         ]
       },
       {
-        "signal": "Used Slither, Echidna, Manticore, or MythX for smart contract security analysis",
-        "strength": 0.9,
+        "signal": "Built invariant fuzzing suites with Echidna/Foundry and performed symbolic execution with Manticore on top DeFi protocols",
+        "strength": 0.6,
         "maps_to": [
-          "blockchain_security.slither",
-          "blockchain_security.echidna",
-          "blockchain_security.manticore",
-          "blockchain_security.mythx",
-          "blockchain_security.fuzz_testing_static_analysis"
-        ]
-      },
-      {
-        "signal": "Implemented reentrancy protection, access control, or known vulnerability mitigations",
-        "strength": 0.8,
-        "maps_to": [
-          "blockchain_security.common_threat_vectors",
-          "blockchain_security.openzeppelin"
-        ]
-      },
-      {
-        "signal": "Implemented secure randomness with Chainlink VRF or commit-reveal schemes",
-        "strength": 0.85,
-        "maps_to": [
-          "blockchain_security.randomness_attacks"
+          "blockchain_security.fuzz_testing_unit_security",
+          "blockchain_security.echidna_property_testing",
+          "blockchain_security.manticore_symbolic_execution",
+          "blockchain_security.randomness_attacks_frontrunning",
+          "blockchain_security.mythx_formal_audit_workflows"
         ]
       }
     ],
     "linkedin": [
       {
-        "signal": "Smart contract security, security audit, or blockchain security endorsed",
-        "strength": 0.5,
+        "signal": "Certified Smart Contract Security Auditor, Code4rena / Sherlock contest competitor",
+        "strength": 0.4,
         "maps_to": [
           "blockchain_security.common_threat_vectors",
-          "blockchain_security.slither",
-          "blockchain_security.openzeppelin"
+          "blockchain_security.openzeppelin_security_contracts",
+          "blockchain_security.version_control_smart_contracts",
+          "blockchain_security.slither_static_analysis",
+          "blockchain_security.randomness_attacks_frontrunning",
+          "blockchain_security.fuzz_testing_unit_security",
+          "blockchain_security.echidna_property_testing",
+          "blockchain_security.manticore_symbolic_execution",
+          "blockchain_security.mythx_formal_audit_workflows"
         ]
-      },
+      }
+    ],
+    "assessment": [
       {
-        "signal": "Slither, Echidna, MythX, or formal verification mentioned",
-        "strength": 0.7,
+        "signal": "Passes comprehensive smart contract security assessment covering reentrancy, MEV defense, Echidna invariant fuzzing, Slither CFG, and formal verification",
+        "strength": 1.0,
         "maps_to": [
-          "blockchain_security.slither",
-          "blockchain_security.echidna",
-          "blockchain_security.mythx",
-          "blockchain_security.manticore"
+          "blockchain_security.common_threat_vectors",
+          "blockchain_security.openzeppelin_security_contracts",
+          "blockchain_security.version_control_smart_contracts",
+          "blockchain_security.slither_static_analysis",
+          "blockchain_security.randomness_attacks_frontrunning",
+          "blockchain_security.fuzz_testing_unit_security",
+          "blockchain_security.echidna_property_testing",
+          "blockchain_security.manticore_symbolic_execution",
+          "blockchain_security.mythx_formal_audit_workflows"
         ]
       }
     ]
   },
   "levels": {
     "junior": {
-      "expected_subskills": ["common_threat_vectors", "openzeppelin", "version_control"],
-      "description": "Knows the canonical vulnerability taxonomy (reentrancy, overflow, access control, front-running), uses OpenZeppelin audited contracts defensively, and follows Git workflows with CI."
+      "expected_subskills": [
+        "common_threat_vectors",
+        "openzeppelin_security_contracts",
+        "version_control_smart_contracts"
+      ],
+      "description": "Identifies common OWASP smart contract vulnerabilities (reentrancy, access control) and integrates OpenZeppelin security contracts."
     },
     "mid": {
-      "expected_subskills": ["slither", "randomness_attacks", "fuzz_testing_static_analysis"],
-      "description": "Integrates Slither in CI pipelines, implements secure randomness (VRF/commit-reveal), and writes property-based fuzz tests using Echidna or Foundry."
+      "expected_subskills": [
+        "slither_static_analysis",
+        "randomness_attacks_frontrunning",
+        "fuzz_testing_unit_security"
+      ],
+      "description": "Runs Slither static analysis, mitigates MEV frontrunning and on-chain randomness risks, and writes property fuzz tests in Foundry."
     },
     "senior": {
-      "expected_subskills": ["echidna", "manticore", "mythx"],
-      "description": "Architects full security pipelines (Slither + Echidna + MythX), performs threat modeling for novel DeFi protocols, uses symbolic execution for deep vulnerability analysis, and leads pre-audit security reviews."
+      "expected_subskills": [
+        "echidna_property_testing",
+        "manticore_symbolic_execution",
+        "mythx_formal_audit_workflows"
+      ],
+      "description": "Authors mathematical invariant test suites with Echidna, executes Manticore symbolic verification, and leads professional protocol audit reviews."
     }
   }
 }

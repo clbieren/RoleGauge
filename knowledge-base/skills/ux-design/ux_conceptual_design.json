@@ -1,130 +1,224 @@
 {
   "skill_id": "ux_conceptual_design",
-  "name": "Conceptual Design & UX Principles",
+  "name": "Conceptual Design & Architecture Principles",
   "category": "ux_design_craft",
-  "description": "Translating behavioral goals and business context into a structured product concept. Covers Product Backlog management, User Story authoring, and the core UX design principles that govern behavioral product design: keeping interactions short and simple, making progress visible, ensuring success is prominent, and scaffolding user confidence incrementally.",
+  "description": "Translating user research into conceptual structures: User Stories, Backlog, Scaffolding, Simplicity principles, Mental Model System Architecture, Design System Tokens, and Service Blueprinting.",
   "subskills": [
-    {
-      "id": "product_backlog",
-      "name": "Product Backlog Management",
-      "description": "Structuring, prioritizing, and maintaining a product backlog derived from behavioral goals and user research insights. Covers backlog grooming, dependency mapping, MoSCoW prioritization, impact-effort matrices, and ensuring behavioral design requirements appear as explicit backlog items rather than being absorbed into engineering tickets.",
-      "keywords": ["product backlog", "backlog grooming", "backlog refinement", "MoSCoW", "impact-effort matrix", "prioritization", "epic", "feature", "story", "sprint planning", "Agile backlog", "behavioral design requirement"]
-    },
     {
       "id": "user_stories",
       "name": "User Stories & Acceptance Criteria",
-      "description": "Writing behaviorally-grounded user stories in the format 'As a [actor], I want to [action], so that [outcome]'. Includes defining clear, testable acceptance criteria, writing Given/When/Then BDD scenarios, and ensuring stories capture the behavioral intent (not just feature functionality).",
-      "keywords": ["user story", "acceptance criteria", "Given/When/Then", "BDD", "Gherkin", "story format", "actor", "action", "outcome", "Definition of Done", "story splitting", "behavioral intent"]
+      "description": "Writing user stories (As a... I want... So that...) with Gherkin acceptance criteria.",
+      "keywords": [
+        "user stories",
+        "acceptance criteria",
+        "Gherkin",
+        "Given When Then",
+        "INVEST criteria"
+      ]
     },
     {
       "id": "ux_principle_short_simple",
-      "name": "UX Principle — Keep It Short and Simple",
-      "description": "Minimizing cognitive load and friction in interaction design. Applies Miller's Law (7±2 chunks), progressive disclosure, chunking complex tasks into steps, eliminating unnecessary form fields, and reducing decision fatigue. Measured by task completion rates and time-on-task.",
-      "keywords": ["Keep it short and simple", "KISS", "cognitive load", "Miller's Law", "progressive disclosure", "chunking", "friction reduction", "minimalism", "decision fatigue", "form simplification", "Hick's Law"]
+      "name": "Simplicity & Cognitive Load Minimization",
+      "description": "Designing short, focused, minimal-step interactions (Hick's Law).",
+      "keywords": [
+        "short and simple",
+        "Hick's law",
+        "cognitive load",
+        "minimalism",
+        "step reduction"
+      ]
     },
     {
       "id": "ux_principle_progress_visible",
-      "name": "UX Principle — Make Progress Visible",
-      "description": "Designing feedback mechanisms that show users how far they have come and how far they have to go. Covers progress bars, step indicators, completion percentages, achievement unlocks, skill trees, and streaks. Grounded in Goal Gradient Effect (Kivetz et al.) — people accelerate effort as they approach a goal.",
-      "keywords": ["progress visible", "progress bar", "step indicator", "completion percentage", "streak", "achievement", "skill tree", "Goal Gradient Effect", "Endowed Progress Effect", "feedback loop", "momentum", "near-completion effect"]
+      "name": "Visibility of System Status & Progress",
+      "description": "Providing real-time visual progress feedback, steppers, and breadcrumbs.",
+      "keywords": [
+        "progress visible",
+        "system status",
+        "steppers",
+        "breadcrumbs",
+        "loading states",
+        "Nielsen heuristic 1"
+      ]
+    },
+    {
+      "id": "product_backlog",
+      "name": "Product Backlog Prioritization (MoSCoW / RICE)",
+      "description": "Prioritizing UX features using MoSCoW, RICE, or Kano models.",
+      "keywords": [
+        "product backlog",
+        "MoSCoW",
+        "RICE scoring",
+        "Kano model",
+        "feature prioritization"
+      ]
     },
     {
       "id": "ux_principle_success_prominent",
-      "name": "UX Principle — Make Success Prominent",
-      "description": "Ensuring users feel the reward of task completion clearly. Includes celebration moments (confetti, animations, congratulations screens), success state design, positive reinforcement copy, and social sharing prompts at peak completion moments. Connects to Nir Eyal's 'reward of the self' and dopamine-driven engagement.",
-      "keywords": ["success prominent", "celebration", "confetti animation", "congratulations screen", "positive reinforcement", "completion reward", "dopamine", "peak moment", "success state", "wow moment", "aha moment"]
+      "name": "Prominent Success Feedback & Celebrations",
+      "description": "Making task completion immediately clear with prominent confirmations and positive reinforcement.",
+      "keywords": [
+        "success feedback",
+        "confirmation state",
+        "positive reinforcement",
+        "celebration animation",
+        "feedback loop"
+      ]
     },
     {
       "id": "ux_principle_scaffolding",
-      "name": "UX Principle — Scaffold User Confidence Incrementally",
-      "description": "Introducing complexity gradually as users build competence and confidence. Applies Vygotsky's Zone of Proximal Development, scaffolded onboarding, beginner modes, contextual help that fades as expertise grows, and progressive feature revelation. Prevents overwhelm while growing user capability.",
-      "keywords": ["scaffolding", "progressive disclosure", "beginner mode", "Zone of Proximal Development", "incremental complexity", "contextual help", "fading scaffolding", "feature revelation", "user confidence", "competence building", "onboarding scaffold"]
+      "name": "Scaffolding & Progressive Skill Building",
+      "description": "Providing temporary support structures that fall away as the user gains competence.",
+      "keywords": [
+        "scaffolding",
+        "progressive disclosure",
+        "skill building",
+        "onboarding ramp",
+        "advanced mode toggle"
+      ]
+    },
+    {
+      "id": "mental_model_system_architecture",
+      "name": "Mental Model System Architecture",
+      "description": "Aligning product conceptual models with user mental models to eliminate conceptual dissonance.",
+      "keywords": [
+        "mental model",
+        "conceptual model",
+        "conceptual dissonance",
+        "system image",
+        "information architecture",
+        "Norman"
+      ]
+    },
+    {
+      "id": "design_system_tokens_governance",
+      "name": "Design System Tokens & Multi-Brand Governance",
+      "description": "Architecting Design Tokens (color, typography, spacing, elevation) in Figma and code, multi-brand theming, and token governance.",
+      "keywords": [
+        "Design Tokens",
+        "design system governance",
+        "Style Dictionary",
+        "Figma Variables",
+        "multi-brand theming",
+        "component library"
+      ]
+    },
+    {
+      "id": "service_blueprint_orchestration",
+      "name": "Service Blueprinting & Cross-Functional Touchpoints",
+      "description": "Orchestrating frontstage customer actions with backstage employee processes and supporting technical systems.",
+      "keywords": [
+        "Service Blueprint",
+        "frontstage",
+        "backstage",
+        "line of visibility",
+        "support processes",
+        "touchpoint orchestration"
+      ]
     }
   ],
   "evidence": {
     "github": [
       {
-        "signal": "User story documents, acceptance criteria, or BDD scenarios in design/product repositories",
+        "signal": "Design token JSON definitions, Service Blueprint schemas, and User Story specifications",
         "detection": "content_analysis",
-        "pattern": "user story|As a.*I want|acceptance criteria|Given.*When.*Then|BDD|Gherkin|product backlog",
-        "strength": 0.8,
+        "pattern": "design-tokens\\.json|tokens/.*\\.json|ServiceBlueprint|UserStory|AcceptanceCriteria",
+        "strength": 0.9,
         "maps_to": [
           "ux_conceptual_design.user_stories",
-          "ux_conceptual_design.product_backlog"
-        ]
-      },
-      {
-        "signal": "UX principles documentation, design system guidelines, or interaction design rationale",
-        "detection": "content_analysis",
-        "pattern": "progress bar|Goal Gradient|progressive disclosure|scaffolding|cognitive load|KISS|success state|celebration",
-        "strength": 0.7,
-        "maps_to": [
-          "ux_conceptual_design.ux_principle_progress_visible",
           "ux_conceptual_design.ux_principle_short_simple",
+          "ux_conceptual_design.ux_principle_progress_visible",
+          "ux_conceptual_design.product_backlog",
           "ux_conceptual_design.ux_principle_success_prominent",
-          "ux_conceptual_design.ux_principle_scaffolding"
+          "ux_conceptual_design.ux_principle_scaffolding",
+          "ux_conceptual_design.mental_model_system_architecture",
+          "ux_conceptual_design.design_system_tokens_governance",
+          "ux_conceptual_design.service_blueprint_orchestration"
         ]
       }
     ],
     "cv": [
       {
-        "signal": "Authored user stories, defined acceptance criteria, or managed product backlogs",
-        "strength": 0.8,
+        "signal": "Wrote user stories with Gherkin acceptance criteria and prioritized backlogs with RICE scoring",
+        "strength": 0.6,
         "maps_to": [
           "ux_conceptual_design.user_stories",
+          "ux_conceptual_design.ux_principle_short_simple",
+          "ux_conceptual_design.ux_principle_progress_visible",
           "ux_conceptual_design.product_backlog"
         ]
       },
       {
-        "signal": "Applied progressive disclosure, onboarding scaffolding, or cognitive load reduction in designs",
-        "strength": 0.75,
-        "maps_to": [
-          "ux_conceptual_design.ux_principle_short_simple",
-          "ux_conceptual_design.ux_principle_scaffolding",
-          "ux_conceptual_design.ux_principle_progress_visible"
-        ]
-      },
-      {
-        "signal": "Designed success states, celebration moments, or achievement systems for products",
-        "strength": 0.75,
+        "signal": "Architected enterprise Design Tokens in Figma and mapped end-to-end Service Blueprints for omni-channel platforms",
+        "strength": 0.6,
         "maps_to": [
           "ux_conceptual_design.ux_principle_success_prominent",
-          "ux_conceptual_design.ux_principle_progress_visible"
+          "ux_conceptual_design.ux_principle_scaffolding",
+          "ux_conceptual_design.mental_model_system_architecture",
+          "ux_conceptual_design.design_system_tokens_governance",
+          "ux_conceptual_design.service_blueprint_orchestration"
         ]
       }
     ],
     "linkedin": [
       {
-        "signal": "User story writing, backlog management, or Agile UX endorsed",
-        "strength": 0.5,
+        "signal": "Endorsements in Conceptual Design, Design Systems, Service Design, and Information Architecture",
+        "strength": 0.4,
         "maps_to": [
           "ux_conceptual_design.user_stories",
-          "ux_conceptual_design.product_backlog"
-        ]
-      },
-      {
-        "signal": "UX principles, interaction design, or cognitive load reduction mentioned",
-        "strength": 0.5,
-        "maps_to": [
           "ux_conceptual_design.ux_principle_short_simple",
           "ux_conceptual_design.ux_principle_progress_visible",
-          "ux_conceptual_design.ux_principle_scaffolding"
+          "ux_conceptual_design.product_backlog",
+          "ux_conceptual_design.ux_principle_success_prominent",
+          "ux_conceptual_design.ux_principle_scaffolding",
+          "ux_conceptual_design.mental_model_system_architecture",
+          "ux_conceptual_design.design_system_tokens_governance",
+          "ux_conceptual_design.service_blueprint_orchestration"
+        ]
+      }
+    ],
+    "assessment": [
+      {
+        "signal": "Passes conceptual design assessment covering RICE backlog prioritization, Design Tokens tokenomics, Service Blueprinting, and mental model architecture",
+        "strength": 1.0,
+        "maps_to": [
+          "ux_conceptual_design.user_stories",
+          "ux_conceptual_design.ux_principle_short_simple",
+          "ux_conceptual_design.ux_principle_progress_visible",
+          "ux_conceptual_design.product_backlog",
+          "ux_conceptual_design.ux_principle_success_prominent",
+          "ux_conceptual_design.ux_principle_scaffolding",
+          "ux_conceptual_design.mental_model_system_architecture",
+          "ux_conceptual_design.design_system_tokens_governance",
+          "ux_conceptual_design.service_blueprint_orchestration"
         ]
       }
     ]
   },
   "levels": {
     "junior": {
-      "expected_subskills": ["user_stories", "ux_principle_short_simple", "ux_principle_progress_visible"],
-      "description": "Writes clear behaviorally-grounded user stories with acceptance criteria, applies KISS principle, and designs visible progress indicators."
+      "expected_subskills": [
+        "user_stories",
+        "ux_principle_short_simple",
+        "ux_principle_progress_visible"
+      ],
+      "description": "Writes user stories with acceptance criteria, simplifies complex forms, and integrates progress steppers."
     },
     "mid": {
-      "expected_subskills": ["product_backlog", "ux_principle_success_prominent", "ux_principle_scaffolding"],
-      "description": "Manages prioritized backlogs with behavioral design items, designs compelling success states, and scaffolds onboarding flows for progressive competence."
+      "expected_subskills": [
+        "product_backlog",
+        "ux_principle_success_prominent",
+        "ux_principle_scaffolding"
+      ],
+      "description": "Prioritizes backlogs with RICE/MoSCoW, creates scaffolding for new users, and crafts clear success confirmations."
     },
     "senior": {
-      "expected_subskills": [],
-      "description": "Establishes behavioral UX principles as design system standards; trains teams on Goal Gradient, scaffolding, and cognitive load theory; integrates principles into design review governance."
+      "expected_subskills": [
+        "mental_model_system_architecture",
+        "design_system_tokens_governance",
+        "service_blueprint_orchestration"
+      ],
+      "description": "Architects enterprise Design Tokens across multi-brand systems, maps comprehensive Service Blueprints, and eliminates mental model dissonance."
     }
   }
 }

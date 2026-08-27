@@ -1,162 +1,1148 @@
 {
   "source_id": "assessment",
   "name": "Adaptive Technical Assessment - Blockchain Developer",
-  "description": "Adaptive assessment question bank for Blockchain Developer skills. Questions are scenario-based, code-review, and practical-task formats that evaluate deep understanding of EVM mechanics, smart contract security, decentralized architectures, and protocol design tradeoffs.",
+  "description": "Adaptive technical and practical assessment questions to evaluate blockchain competencies across fundamentals, core cryptography, smart contracts, L2 scaling, security auditing, tooling, and full-stack DApps.",
   "sample_questions_by_composite_key": {
     "blockchain_fundamentals.what_is_blockchain": [
       {
         "level": "junior",
-        "type": "conceptual",
-        "question": "Explain the difference between a public permissionless blockchain (like Ethereum) and a permissioned consortium blockchain (like Hyperledger Fabric). Provide an example use case where a consortium blockchain is fundamentally a better choice than a public one.",
-        "expected_answer_keywords": ["permissionless", "permissioned", "consortium", "validator selection", "access control", "throughput", "privacy", "enterprise", "supply chain", "KYC"]
-      }
-    ],
-    "blockchain_fundamentals.decentralization_why_it_matters": [
-      {
-        "level": "mid",
         "type": "scenario",
-        "question": "A team wants to build a fully decentralized limit order book DEX on Ethereum L1, aiming to process 1,000 transactions per second. Using the Blockchain Trilemma framework, explain why this design is fundamentally flawed on Ethereum L1 and what the architectural trade-offs would be to make it work.",
-        "expected_answer_keywords": ["blockchain trilemma", "scalability", "decentralization", "security", "Ethereum L1 TPS", "gas cost", "order book vs AMM", "Layer 2", "centralized sequencer", "trade-off"]
+        "question": "A team proposes replacing an internal PostgreSQL audit database with a permissionless blockchain. Contrast the throughput, latency, and operational cost tradeoffs of an append-only cryptographic ledger versus an immutable SQL table (e.g. Amazon QLDB).",
+        "expected_answer_keywords": [
+          "append-only",
+          "immutability",
+          "throughput limits TPS",
+          "transaction finality",
+          "consensus overhead",
+          "centralized vs decentralized"
+        ]
       }
     ],
-    "blockchain_fundamentals.blockchain_structure": [
+    "blockchain_fundamentals.decentralization_principles": [
       {
         "level": "junior",
-        "type": "conceptual",
-        "question": "Explain the role of a Merkle Tree in a block header. How does a Light Client use the Merkle Root to verify that a specific transaction was included in a block without downloading the entire block?",
-        "expected_answer_keywords": ["Merkle tree", "Merkle root", "block header", "light client", "Merkle proof", "hash path", "verify inclusion", "without downloading full block", "O(log n)"]
+        "type": "trade_off_analysis",
+        "question": "Explain how Nakamoto consensus aligns miner/validator incentives through economic rewards and why censorship resistance fails if a single entity controls >50% of the active stake or hash rate.",
+        "expected_answer_keywords": [
+          "Nakamoto consensus",
+          "censorship resistance",
+          "51% attack",
+          "economic incentive alignment",
+          "permissionless participation",
+          "block reorganization"
+        ]
       }
     ],
-    "blockchain_core_concepts.consensus_protocols": [
-      {
-        "level": "mid",
-        "type": "scenario",
-        "question": "Compare the finality guarantees of a Nakamoto consensus chain (like Bitcoin PoW) with a BFT-based PoS chain (like Tendermint). How does 'probabilistic finality' differ from 'deterministic finality', and how does this difference affect the design of cross-chain bridges connecting the two?",
-        "expected_answer_keywords": ["probabilistic finality", "deterministic finality", "Nakamoto consensus", "BFT", "Tendermint", "Proof of Work", "Proof of Stake", "reorg", "bridge security", "confirmation time", "waiting for blocks"]
-      }
-    ],
-    "blockchain_core_concepts.forking": [
-      {
-        "level": "mid",
-        "type": "scenario",
-        "question": "Ethereum is undergoing a contentious hard fork, splitting into Chain A and Chain B. You run a DeFi protocol where users deposit collateral. Explain the mechanics of a 'replay attack' across these two chains and describe how EIP-155 (Chain ID) mitigates this risk at the protocol level.",
-        "expected_answer_keywords": ["hard fork", "chain split", "replay attack", "signature reuse", "same transaction", "EIP-155", "Chain ID", "v, r, s", "transaction signing", "network ID"]
-      }
-    ],
-    "blockchain_networks.evm_based_chains": [
+    "blockchain_fundamentals.blockchain_data_structure": [
       {
         "level": "junior",
-        "type": "practical_task",
-        "question": "You have a Solidity contract deployed on Ethereum Mainnet. You now need to deploy the exact same compiled bytecode to Polygon and Avalanche C-Chain. What two configuration values must change in your deployment script (e.g., in Hardhat/Foundry) for each network, and why might the gas fee logic (EIP-1559 vs Legacy) behave differently across them?",
-        "expected_answer_keywords": ["Chain ID", "RPC URL", "RPC endpoint", "Polygon", "Avalanche", "EVM compatibility", "EIP-1559 support", "baseFee", "maxPriorityFeePerGas", "legacy transactions"]
+        "type": "code_review",
+        "question": "Inspect an Ethereum block header data structure. Explain the distinct roles of the stateRoot, transactionsRoot, receiptsRoot, and the parentHash in verifying block integrity.",
+        "expected_answer_keywords": [
+          "stateRoot",
+          "transactionsRoot",
+          "receiptsRoot",
+          "parentHash",
+          "block header",
+          "Merkle Patricia Trie",
+          "cryptographic hash linking"
+        ]
       }
     ],
-    "blockchain_networks.l2_arbitrum": [
+    "blockchain_fundamentals.utxo_vs_account_model": [
+      {
+        "level": "junior",
+        "type": "calculation_and_mechanics",
+        "question": "Compare Bitcoin's UTXO model against Ethereum's Account/Nonce model: How does concurrency differ between UTXO parallel validation and Ethereum's sequential nonce ordering? How does state bloat manifest in each?",
+        "expected_answer_keywords": [
+          "UTXO",
+          "Account model",
+          "nonce sequencing",
+          "concurrency parallel validation",
+          "state bloat",
+          "coinbase outputs",
+          "replay protection"
+        ]
+      }
+    ],
+    "blockchain_fundamentals.p2p_network_gossip": [
       {
         "level": "mid",
         "type": "scenario",
-        "question": "You are building a cross-chain messaging app. A message is sent from Arbitrum to Ethereum L1. Explain the role of the Optimistic Rollup 'challenge period' (7 days). Why does a withdrawal take 7 days natively, and how do fast liquidity bridges bypass this limitation for token transfers?",
-        "expected_answer_keywords": ["Optimistic Rollup", "challenge period", "fraud proof", "Sequencer", "7 days", "dispute window", "L2 to L1", "fast bridge", "liquidity provider", "taking on risk", "fee for instant withdrawal"]
+        "question": "Describe how Ethereum nodes discover peers using Kademlia DHT (discv5) and propagate new blocks via libp2p/devp2p gossipsub. How does the network prevent eclipse attacks?",
+        "expected_answer_keywords": [
+          "Kademlia DHT",
+          "discv5",
+          "gossipsub",
+          "peer discovery",
+          "eclipse attack mitigation",
+          "block propagation latency",
+          "devp2p"
+        ]
       }
     ],
-    "blockchain_oracles.hybrid_smart_contracts": [
+    "blockchain_fundamentals.transaction_lifecycle_mempool": [
       {
         "level": "mid",
-        "type": "conceptual",
-        "question": "What is the 'Oracle Problem' in smart contracts? Explain why a smart contract cannot simply make an HTTP GET request to an external API like Binance to fetch the price of ETH during transaction execution.",
-        "expected_answer_keywords": ["Oracle Problem", "determinism", "consensus", "HTTP request", "external state", "different results for different nodes", "breaking consensus", "off-chain data", "push vs pull"]
+        "type": "calculation_and_mechanics",
+        "question": "A transaction with nonce 12 and gasPrice 30 gwei is stuck in the mempool during a gas spike (baseFee = 50 gwei). Describe the exact steps and parameters required to replace it using Replace-By-Fee (RBF) or speed-up mechanics without triggering nonce collisions.",
+        "expected_answer_keywords": [
+          "Replace-By-Fee",
+          "mempool replacement",
+          "10% gasPrice increase rule",
+          "same nonce 12",
+          "EIP-1559 maxFeePerGas",
+          "nonce collision avoidance"
+        ]
       }
     ],
-    "blockchain_oracles.chainlink": [
+    "blockchain_fundamentals.cryptographic_hashing_merkle_trees": [
+      {
+        "level": "mid",
+        "type": "practical_implementation",
+        "question": "Construct a Merkle Tree with 4 leaf nodes [tx0, tx1, tx2, tx3] using Keccak-256. Provide the cryptographic proof (audit path) required to prove to a smart contract that tx2 is included in the Merkle root.",
+        "expected_answer_keywords": [
+          "Merkle tree",
+          "Keccak-256",
+          "audit path proof",
+          "sibling hash",
+          "Merkle root verification",
+          "O(log N) verification"
+        ]
+      }
+    ],
+    "blockchain_fundamentals.byzantine_fault_tolerance_theory": [
+      {
+        "level": "senior",
+        "type": "trade_off_analysis",
+        "question": "Analyze the FLP Impossibility result in asynchronous distributed networks. How do modern PoS consensus engines (e.g. Casper FFG / Tendermint) balance safety vs liveness during a 34% network partition?",
+        "expected_answer_keywords": [
+          "FLP impossibility",
+          "safety vs liveness",
+          "Byzantine Fault Tolerance",
+          "34% validator stall",
+          "inactivity leak",
+          "Casper FFG",
+          "asynchronous consensus"
+        ]
+      }
+    ],
+    "blockchain_fundamentals.trilemma_tradeoff_analysis": [
+      {
+        "level": "senior",
+        "type": "trade_off_analysis",
+        "question": "A new Layer 1 claims 50,000 TPS, instant finality, and 1,000 validators with 100ms block times on standard consumer hardware. Apply the Blockchain Trilemma and bandwidth physics to critique the validity of these claims.",
+        "expected_answer_keywords": [
+          "Blockchain Trilemma",
+          "bandwidth propagation limit",
+          "validator hardware requirements",
+          "centralization risk",
+          "state growth bottleneck",
+          "execution vs consensus limits"
+        ]
+      }
+    ],
+    "blockchain_core_concepts.asymmetric_cryptography_signatures": [
+      {
+        "level": "junior",
+        "type": "code_review",
+        "question": "Review a Solidity contract verifying an off-chain ECDSA signature using `ecrecover`. Identify the signature malleability vulnerability (s-value in upper half of secp256k1 curve order) and explain how OpenZeppelin's `ECDSA.recover` mitigates it.",
+        "expected_answer_keywords": [
+          "ecrecover",
+          "ECDSA",
+          "signature malleability",
+          "s-value upper curve order n/2",
+          "OpenZeppelin ECDSA",
+          "secp256k1",
+          "zero address check"
+        ]
+      }
+    ],
+    "blockchain_core_concepts.crypto_wallets_key_management": [
+      {
+        "level": "junior",
+        "type": "calculation_and_mechanics",
+        "question": "Given a 12-word BIP-39 mnemonic seed, explain the cryptographic derivation path `m/44'/60'/0'/0/0` (purpose, coin_type, account, change, address_index) and how child private keys are generated via HMAC-SHA512.",
+        "expected_answer_keywords": [
+          "BIP-39",
+          "BIP-44",
+          "derivation path",
+          "coin_type 60 Ethereum",
+          "HMAC-SHA512",
+          "child key derivation",
+          "master seed"
+        ]
+      }
+    ],
+    "blockchain_core_concepts.cryptocurrency_tokenomics_basics": [
+      {
+        "level": "junior",
+        "type": "calculation_and_mechanics",
+        "question": "Calculate the net annual inflation/deflation rate of an Ethereum-like asset with 120M total supply, annual staking issuance of 600,000 ETH (0.5%), and an average daily EIP-1559 baseFee burn of 2,000 ETH.",
+        "expected_answer_keywords": [
+          "EIP-1559 burn",
+          "730,000 ETH burned annually",
+          "net deflation -130,000 ETH",
+          "-0.108% deflation rate",
+          "issuance vs burn",
+          "circulating supply"
+        ]
+      }
+    ],
+    "blockchain_core_concepts.mining_and_validator_incentives": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "Explain the exact staking mechanics of Ethereum's Proof of Stake: How does effective balance capping (32 ETH) work, and what are the exact slashing consequences for double signing versus surround voting?",
+        "expected_answer_keywords": [
+          "effective balance 32 ETH",
+          "slashing",
+          "double signing",
+          "surround voting",
+          "attestation rewards",
+          "inactivity leak penalty",
+          "withdrawal credentials"
+        ]
+      }
+    ],
+    "blockchain_core_concepts.hard_and_soft_forks": [
+      {
+        "level": "mid",
+        "type": "trade_off_analysis",
+        "question": "Compare hard forks versus soft forks in terms of node backward compatibility: Why do soft forks tighten validation rules while hard forks loosen them, and what mechanisms prevent replay attacks across split chains (EIP-155)?",
+        "expected_answer_keywords": [
+          "hard fork",
+          "soft fork",
+          "backward compatibility",
+          "tightening rules",
+          "EIP-155 replay protection",
+          "Chain ID in signature",
+          "chain split"
+        ]
+      }
+    ],
+    "blockchain_core_concepts.sybil_resistance_mechanisms": [
+      {
+        "level": "mid",
+        "type": "trade_off_analysis",
+        "question": "Compare Proof of Work (PoW) hash power allocation against Proof of Stake (PoS) capital locking and Proof of Authority (PoA) reputation in defending against Sybil attacks in enterprise consortiums versus public chains.",
+        "expected_answer_keywords": [
+          "Sybil resistance",
+          "PoW hash rate",
+          "PoS capital lockup",
+          "PoA reputation",
+          "consortium governance",
+          "energy expenditure",
+          "capital efficiency"
+        ]
+      }
+    ],
+    "blockchain_core_concepts.advanced_consensus_mechanisms": [
       {
         "level": "senior",
         "type": "scenario",
-        "question": "You are integrating a Chainlink Price Feed (AggregatorV3Interface) into a lending protocol. Write a pseudocode snippet showing how you fetch the latest price, and explicitly identify three checks you must perform on the returned data to prevent oracle staleness or manipulation attacks (e.g., LUNA crash scenario).",
-        "expected_answer_keywords": ["latestRoundData", "answeredInRound", "updatedAt", "staleness check", "block.timestamp", "heartbeat", "min/max circuit breaker", "price deviation", "aggregator", "oracle manipulation"]
+        "question": "Contrast the finality guarantees and leader election mechanisms of Tendermint PBFT (instant deterministic finality) with Solana's Proof of History (VDF slot sequencing) and Ethereum's Casper FFG (probabilistic slot + epoch finality).",
+        "expected_answer_keywords": [
+          "Tendermint PBFT",
+          "Proof of History VDF",
+          "Casper FFG epoch finality",
+          "deterministic finality",
+          "slashing quorum 2/3",
+          "leader rotation"
+        ]
       }
     ],
-    "smart_contract_development.solidity": [
+    "blockchain_core_concepts.zero_knowledge_primitives_foundations": [
       {
-        "level": "junior",
-        "type": "practical_task",
-        "question": "In Solidity, what is the difference between `memory`, `storage`, and `calldata` data locations? Give an example of when you would specifically use `calldata` over `memory` for a function parameter and explain the gas implications.",
-        "expected_answer_keywords": ["memory", "storage", "calldata", "read-only", "immutable parameter", "gas optimization", "avoiding copying", "external function", "persistent state", "temporary variable"]
-      },
-      {
-        "level": "mid",
-        "type": "conceptual",
-        "question": "Explain how the EVM stores mapping data (e.g., `mapping(address => uint256) balances`). How is the storage slot for a specific address's balance calculated, and why is it impossible to iterate over a standard mapping without an auxiliary array?",
-        "expected_answer_keywords": ["mapping", "storage slot", "keccak256", "hash", "key", "slot number", "concatenation", "iteration impossible", "keys not stored", "EnumerableMap"]
+        "level": "senior",
+        "type": "practical_implementation",
+        "question": "Explain how an arithmetic circuit is converted to Rank-1 Constraint Systems (R1CS) and Quadratic Arithmetic Programs (QAP). What is the difference between Groth16 (requiring trusted setup) and PLONK / STARKs (universal/transparent setup)?",
+        "expected_answer_keywords": [
+          "R1CS",
+          "QAP",
+          "arithmetic circuit",
+          "Groth16 trusted setup",
+          "PLONK universal setup",
+          "zk-STARK transparent",
+          "polynomial commitments"
+        ]
       }
     ],
-    "smart_contract_development.upgrades": [
+    "blockchain_core_concepts.state_machine_replication": [
       {
         "level": "senior",
         "type": "scenario",
-        "question": "You are upgrading a UUPS proxy contract. In the new implementation contract, you accidentally declare a new state variable above an existing state variable. Explain exactly what happens to the contract's state when the proxy delegates calls to this new implementation. What is this vulnerability called, and how do tools like OpenZeppelin Upgrades prevent it?",
-        "expected_answer_keywords": ["storage collision", "storage layout", "UUPS", "delegatecall", "state corruption", "variables appended", "OpenZeppelin upgrades plugin", "storage gaps", "__gap", "overwrite existing data"]
+        "question": "Architect a deterministic state machine replication pipeline for a high-throughput blockchain execution layer: Address transaction dependency DAG scheduling, state root trie hashing, and snapshot state sync (warp sync).",
+        "expected_answer_keywords": [
+          "State Machine Replication",
+          "deterministic execution",
+          "dependency DAG",
+          "state root trie",
+          "snapshot sync",
+          "state rollback",
+          "re-entrancy isolation"
+        ]
       }
     ],
-    "smart_contract_development.erc_tokens": [
+    "blockchain_networks.evm_based_chains_ethereum_polygon": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "A dApp deployed on Ethereum mainnet (Chain ID 1) is being ported to Polygon PoS (Chain ID 137). What differences in block time, gas token (POL/MATIC vs ETH), re-org depth, and RPC endpoints must the developer configure?",
+        "expected_answer_keywords": [
+          "Chain ID 137",
+          "gas token POL MATIC",
+          "block time 2 seconds",
+          "re-org depth finality",
+          "JSON-RPC endpoint",
+          "multi-chain config"
+        ]
+      }
+    ],
+    "blockchain_networks.testnets_faucets_rpc_providers": [
+      {
+        "level": "junior",
+        "type": "practical_implementation",
+        "question": "Set up a resilient multi-provider RPC client configuration in TypeScript (using Viem or Ethers) that handles rate limits (HTTP 429) and automatically fails over between Alchemy, Infura, and a public Sepolia testnet endpoint.",
+        "expected_answer_keywords": [
+          "fallback provider",
+          "Viem fallback()",
+          "HTTP 429 rate limit",
+          "Alchemy Infura fallback",
+          "Sepolia testnet",
+          "quorum verification"
+        ]
+      }
+    ],
+    "blockchain_networks.block_explorers_network_monitoring": [
+      {
+        "level": "junior",
+        "type": "code_review",
+        "question": "A DeFi transaction reverts with custom error `0x815e1d64`. How do you use Etherscan / Blockscout internal transaction traces and ABI decoding to decode the revert reason and trace the failing contract call?",
+        "expected_answer_keywords": [
+          "Etherscan parity trace",
+          "internal transactions",
+          "custom error 4-byte selector",
+          "ABI decode",
+          "revert trace",
+          "Blockscout"
+        ]
+      }
+    ],
+    "blockchain_networks.l2_rollups_arbitrum_optimism_base": [
+      {
+        "level": "mid",
+        "type": "trade_off_analysis",
+        "question": "Compare Arbitrum Nitro with Optimism Bedrock (OP Stack): How do their L1-to-L2 message queuing, sequencer gas estimation (L1 data fee + L2 execution fee), and two-phase deposit mechanics differ?",
+        "expected_answer_keywords": [
+          "Arbitrum Nitro",
+          "Optimism Bedrock",
+          "OP Stack",
+          "L1 data fee",
+          "sequencer batch posting",
+          "L1CrossDomainMessenger",
+          "retryable tickets"
+        ]
+      }
+    ],
+    "blockchain_networks.solana_sealevel_architecture": [
+      {
+        "level": "mid",
+        "type": "code_review",
+        "question": "Explain Solana's Sealevel parallel execution engine: Why must every instruction explicitly declare all read-only and read-write accounts in advance, and how does this prevent global state lock contention compared to the EVM?",
+        "expected_answer_keywords": [
+          "Sealevel runtime",
+          "parallel execution",
+          "read-write account locking",
+          "AccountInfo",
+          "Program Derived Address",
+          "no global state lock",
+          "SVM vs EVM"
+        ]
+      }
+    ],
+    "blockchain_networks.cross_chain_bridges_relayers": [
+      {
+        "level": "mid",
+        "type": "security_audit",
+        "question": "Audit a Lock-and-Mint cross-chain bridge architecture: Analyze the threat vectors of relayer key compromise, proof forgery on the destination chain, and infinite mint vulnerabilities on destination tokens.",
+        "expected_answer_keywords": [
+          "Lock-and-Mint",
+          "relayer compromise",
+          "proof forgery",
+          "infinite mint exploit",
+          "multisig threshold",
+          "timelock emergency pause",
+          "proof of reserve"
+        ]
+      }
+    ],
+    "blockchain_networks.interoperability_protocols_ccip_ibc": [
+      {
+        "level": "senior",
+        "type": "practical_implementation",
+        "question": "Write a cross-chain programmable token transfer receiver contract using Chainlink CCIP (`CCIPReceiver.sol`). Implement strict sender contract validation, destination gas limits, and handle failed cross-chain token unlocks.",
+        "expected_answer_keywords": [
+          "CCIPReceiver",
+          "_ccipReceive",
+          "Client.Any2EVMMessage",
+          "sender validation",
+          "source chain selector",
+          "token transfer refund",
+          "Risk Management Network"
+        ]
+      }
+    ],
+    "blockchain_networks.alt_vm_chains_move_tvm_wasm": [
+      {
+        "level": "senior",
+        "type": "trade_off_analysis",
+        "question": "Contrast Move's resource-oriented programming model (linear types, struct capabilities: copy, drop, store, key) with Solidity's EVM storage model. How does Move eliminate reentrancy and unauthorized token duplication at the language level?",
+        "expected_answer_keywords": [
+          "Move language",
+          "linear types",
+          "resource capabilities",
+          "no dynamic dispatch",
+          "elimination of reentrancy",
+          "Sui / Aptos",
+          "struct key store"
+        ]
+      }
+    ],
+    "blockchain_networks.modular_blockchains_celestia_avail": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "Architect a sovereign rollup using Celestia for Data Availability and OP Stack / Polygon CDK for execution: Detail Data Availability Sampling (DAS), 2D Reed-Solomon erasure coding, and settlement dispute verification on sovereign chains.",
+        "expected_answer_keywords": [
+          "modular blockchain",
+          "Celestia DA",
+          "Data Availability Sampling",
+          "2D Reed-Solomon",
+          "sovereign rollup",
+          "settlement layer",
+          "namespaced Merkle trees"
+        ]
+      }
+    ],
+    "blockchain_scaling.state_and_payment_channels": [
+      {
+        "level": "junior",
+        "type": "calculation_and_mechanics",
+        "question": "Explain the lifecycle of a Lightning Network state channel: On-chain funding transaction, off-chain state updates via Hash Time-Locked Contracts (HTLCs), and closing settlement with dispute challenge window.",
+        "expected_answer_keywords": [
+          "state channel",
+          "HTLC",
+          "timelock",
+          "commitment transaction",
+          "revocation key",
+          "closing transaction",
+          "dispute period"
+        ]
+      }
+    ],
+    "blockchain_scaling.data_availability_basics": [
+      {
+        "level": "junior",
+        "type": "calculation_and_mechanics",
+        "question": "Why is posting rollup transaction data as calldata expensive on Ethereum L1, and how does gzip/brotli or custom bit-packing compression of signatures and nonces reduce L1 publication overhead?",
+        "expected_answer_keywords": [
+          "calldata gas cost 16 gas per non-zero byte",
+          "zero byte 4 gas",
+          "calldata compression",
+          "signature aggregation",
+          "L1 batch posting"
+        ]
+      }
+    ],
+    "blockchain_scaling.gas_optimization_fundamentals": [
+      {
+        "level": "junior",
+        "type": "code_review",
+        "question": "Review a Solidity contract with unoptimized storage layout: Refactor 4 variables (`uint256 a`, `uint128 b`, `bool c`, `uint128 d`) into packed 32-byte storage slots and explain the SLOAD/SSTORE gas savings.",
+        "expected_answer_keywords": [
+          "storage packing",
+          "32-byte slot",
+          "uint128 + uint128 = 1 slot",
+          "SLOAD gas reduction",
+          "cold storage access 2100 gas",
+          "warm storage 100 gas"
+        ]
+      }
+    ],
+    "blockchain_scaling.optimistic_rollups_fraud_proofs": [
+      {
+        "level": "mid",
+        "type": "trade_off_analysis",
+        "question": "Contrast single-round interactive fraud proofs with Arbitrum's multi-round bisection game (Cannon/BOLD): How does multi-round bisection isolate the single instruction in dispute to minimize on-chain verification gas?",
+        "expected_answer_keywords": [
+          "multi-round fraud proof",
+          "bisection game",
+          "one step execution WAVM",
+          "on-chain verification gas",
+          "Arbitrum BOLD",
+          "7-day challenge window"
+        ]
+      }
+    ],
+    "blockchain_scaling.zk_rollups_validity_proofs": [
       {
         "level": "mid",
         "type": "scenario",
-        "question": "A user wants a DeFi protocol smart contract to transfer ERC-20 tokens on their behalf. Describe the exact two-step transaction process required (using standard ERC-20 functions). What is the 'infinite approval' pattern, and what security risk does it introduce if the protocol is compromised?",
-        "expected_answer_keywords": ["approve", "transferFrom", "two-step", "allowance", "infinite approval", "type(uint256).max", "security risk", "contract compromised", "drain user funds", "revoke approval"]
+        "question": "Explain the life of a transaction in a ZK-Rollup (e.g. zkSync Era / Scroll): Sequencer batching, off-chain witness generation, proving circuit execution (Groth16/Plonky2), and on-chain verification in `verifyProof()`.",
+        "expected_answer_keywords": [
+          "ZK-Rollup",
+          "validity proof",
+          "witness generation",
+          "prover network",
+          "verifyProof()",
+          "state transition root update",
+          "instant finality"
+        ]
       }
     ],
-    "smart_contract_tooling.foundry": [
+    "blockchain_scaling.validium_and_sidechains": [
       {
         "level": "mid",
-        "type": "practical_task",
-        "question": "In a Foundry test (`.t.sol`), you need to test a function that reverts if the caller is not the owner, and you need to simulate this happening 100 blocks in the future. Explain which three Foundry cheatcodes (e.g., `vm.*`) you would use to set up and execute this test.",
-        "expected_answer_keywords": ["Foundry", "cheatcodes", "vm.prank", "vm.expectRevert", "vm.roll", "vm.warp", "simulate caller", "simulate block number", "test revert"]
+        "type": "trade_off_analysis",
+        "question": "Compare Validium (off-chain DA with on-chain ZK validity proofs) against Volition (hybrid user-selected DA) and traditional sidechains: What are the security tradeoffs if the Data Availability Committee (DAC) withholds state data?",
+        "expected_answer_keywords": [
+          "Validium",
+          "Data Availability Committee DAC",
+          "Volition",
+          "state withholding attack",
+          "frozen funds risk",
+          "sidechain validator consensus"
+        ]
+      }
+    ],
+    "blockchain_scaling.proto_danksharding_eip4844": [
+      {
+        "level": "senior",
+        "type": "calculation_and_mechanics",
+        "question": "Explain EIP-4844 Proto-Danksharding: What is the format of a type-3 blob transaction, how does the point evaluation precompile (`0x0a`) verify KZG commitments, and why do blobs get pruned after ~18 days?",
+        "expected_answer_keywords": [
+          "EIP-4844",
+          "type-3 transaction",
+          "blob gas market",
+          "KZG commitment",
+          "point evaluation precompile 0x0a",
+          "18-day pruning",
+          "data availability"
+        ]
+      }
+    ],
+    "blockchain_scaling.zk_evm_architecture_circuits": [
+      {
+        "level": "senior",
+        "type": "trade_off_analysis",
+        "question": "Analyze Vitalik's zkEVM spectrum: Type-1 (Ethereum-equivalent, e.g. Taiko), Type-2 (EVM-equivalent, e.g. Scroll/Linea), and Type-4 (High-level language, e.g. Starknet Cairo). Compare prover generation time, circuit complexity, and EVM compatibility.",
+        "expected_answer_keywords": [
+          "Type-1 zkEVM",
+          "Type-2 zkEVM",
+          "Type-4 Cairo zkSync",
+          "prover generation latency",
+          "EVM opcode circuit complexity",
+          "keccak circuit proving"
+        ]
+      }
+    ],
+    "blockchain_scaling.sharding_and_parallel_execution": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "Design a parallel EVM transaction execution engine (e.g. Monad / Sei approach): Explain how optimistic concurrency execution (Block-STM) detects read/write conflicts across transactions and rolls back conflicting state transitions.",
+        "expected_answer_keywords": [
+          "Parallel EVM",
+          "Block-STM",
+          "Optimistic concurrency",
+          "read-write conflict detection",
+          "multi-version state",
+          "rollback and re-execution",
+          "Monad Sei"
+        ]
       }
     ],
     "blockchain_security.common_threat_vectors": [
       {
         "level": "junior",
+        "type": "security_audit",
+        "question": "Audit a vulnerable bank contract: The withdraw function sends ETH via `msg.sender.call{value: amount}(\"\")` before updating `balances[msg.sender] -= amount`. Provide the exploit contract exploiting reentrancy and the corrected CEI implementation.",
+        "expected_answer_keywords": [
+          "reentrancy attack",
+          "fallback function exploit",
+          "Checks-Effects-Interactions pattern",
+          "ReentrancyGuard",
+          "balance update before external call"
+        ]
+      }
+    ],
+    "blockchain_security.openzeppelin_security_contracts": [
+      {
+        "level": "junior",
         "type": "code_review",
-        "question": "Review this pseudocode: `function withdraw(uint amount) public { require(balances[msg.sender] >= amount); (bool success, ) = msg.sender.call{value: amount}(\"\"); require(success); balances[msg.sender] -= amount; }`. Identify the critical vulnerability, explain how an attacker exploits it, and rewrite the function using the Checks-Effects-Interactions pattern.",
-        "expected_answer_keywords": ["reentrancy", "fallback function", "Checks-Effects-Interactions", "CEI", "state update after call", "drain contract", "msg.sender.call", "balances[msg.sender] -= amount before call", "ReentrancyGuard"]
-      },
+        "question": "Why is `Ownable2Step` safer than standard `Ownable` in critical smart contract deployments? Detail the risk of accidental ownership loss to an unrecoverable dead address and how the two-step acceptance pattern solves it.",
+        "expected_answer_keywords": [
+          "Ownable2Step",
+          "pendingOwner",
+          "acceptOwnership",
+          "accidental address loss",
+          "access control",
+          "two-step transfer pattern"
+        ]
+      }
+    ],
+    "blockchain_security.version_control_smart_contracts": [
+      {
+        "level": "junior",
+        "type": "code_review",
+        "question": "Explain the risks of using floating compiler pragmas (`pragma solidity ^0.8.0;`) in production contract deployments and why locking exact versions (e.g. `pragma solidity 0.8.24;`) protects against compiler optimization bugs.",
+        "expected_answer_keywords": [
+          "locked pragma",
+          "floating pragma risk",
+          "compiler bug advisories",
+          "deterministic bytecode",
+          "Solidity 0.8.24",
+          "reproducible builds"
+        ]
+      }
+    ],
+    "blockchain_security.slither_static_analysis": [
+      {
+        "level": "mid",
+        "type": "practical_implementation",
+        "question": "Configure a `slither.config.json` file for a multi-contract DeFi repository: Exclude informational detectors, filter out mock/test contracts, and write a custom triage script to flag uninitialized state variables and unchecked return values.",
+        "expected_answer_keywords": [
+          "slither.config.json",
+          "detectors_to_run",
+          "filter_paths",
+          "uninitialized-state",
+          "unchecked-lowlevel",
+          "static analysis triage"
+        ]
+      }
+    ],
+    "blockchain_security.randomness_attacks_frontrunning": [
+      {
+        "level": "mid",
+        "type": "security_audit",
+        "question": "A lotto contract calculates winning tickets using `uint256(keccak256(abi.encodePacked(block.timestamp, block.prevrandao, msg.sender)))`. Explain how a miner/validator or searcher can manipulate `block.timestamp` or revert losing bids in the same transaction.",
+        "expected_answer_keywords": [
+          "pseudo-randomness vulnerability",
+          "block.timestamp manipulation",
+          "miner exploit",
+          "atomic revert in attacker contract",
+          "Chainlink VRF mitigation",
+          "prevrandao bias"
+        ]
+      }
+    ],
+    "blockchain_security.fuzz_testing_unit_security": [
+      {
+        "level": "mid",
+        "type": "practical_implementation",
+        "question": "Write a property-based fuzz test in Foundry (`forge test`): Test an ERC-4626 vault deposit/withdraw cycle for any arbitrary deposit amount `x` (using `vm.assume(x > 0 && x < type(uint128).max)`), asserting invariant `sharesToAssets(assetsToShares(x)) <= x`.",
+        "expected_answer_keywords": [
+          "Foundry fuzz test",
+          "vm.assume",
+          "property-based testing",
+          "ERC-4626 vault invariant",
+          "rounding in favor of protocol",
+          "inflation attack test"
+        ]
+      }
+    ],
+    "blockchain_security.echidna_property_testing": [
+      {
+        "level": "senior",
+        "type": "practical_implementation",
+        "question": "Configure an Echidna invariant testing suite (`echidna-config.yaml`): Define boolean property functions `echidna_total_supply_matches_balance()` and `echidna_solvency()`, set up multi-actor sender pools, and run 50,000 test sequences.",
+        "expected_answer_keywords": [
+          "Echidna",
+          "invariant property",
+          "echidna_config.yaml",
+          "sender pool",
+          "solvency invariant",
+          "corpus generation",
+          "crytic-compile"
+        ]
+      }
+    ],
+    "blockchain_security.manticore_symbolic_execution": [
       {
         "level": "senior",
         "type": "scenario",
-        "question": "A DeFi lending protocol uses an AMM (e.g., Uniswap V2) spot price to value collateral for liquidations. Explain how an attacker can use a Flash Loan to execute a profitable price manipulation exploit against this protocol. How should the protocol architecture be changed to mitigate this (e.g., TWAP)?",
-        "expected_answer_keywords": ["flash loan", "price manipulation", "spot price", "Uniswap V2", "borrow large amount", "skew pool ratio", "trigger liquidation", "TWAP", "Time-Weighted Average Price", "Chainlink Oracle", "manipulate reserves"]
+        "question": "Apply Manticore symbolic execution in Python to analyze a token bridge contract: Define symbolic input addresses and amounts, execute all execution paths, and query Z3 solver to prove whether an unauthorized address can trigger `unlockTokens()`.",
+        "expected_answer_keywords": [
+          "Manticore",
+          "symbolic execution",
+          "Z3 solver",
+          "make_symbolic_value",
+          "path constraints",
+          "unauthorized state transition proof"
+        ]
       }
     ],
-    "blockchain_security.randomness_attacks": [
+    "blockchain_security.mythx_formal_audit_workflows": [
+      {
+        "level": "senior",
+        "type": "security_audit",
+        "question": "Conduct a formal threat modeling session for a cross-chain lending protocol: Identify trust boundaries, construct a CVSS 3.1 severity scoring matrix for an oracle stale price exploit (Attack Vector, Complexity, Impact), and draft the remediation verification checklist.",
+        "expected_answer_keywords": [
+          "threat modeling",
+          "CVSS 3.1 score",
+          "trust boundaries",
+          "oracle stale price exploit",
+          "remediation verification",
+          "Code4rena audit report"
+        ]
+      }
+    ],
+    "dapp_development.web3_wallet_integration_wagmi_ethers": [
+      {
+        "level": "junior",
+        "type": "practical_implementation",
+        "question": "Write a React component using Wagmi v2 and Viem that handles wallet connection (MetaMask, WalletConnect), displays current connected account and ETH balance, and gracefully prompts the user to switch networks if not on Sepolia.",
+        "expected_answer_keywords": [
+          "Wagmi v2",
+          "useAccount",
+          "useConnect",
+          "useSwitchChain",
+          "useBalance",
+          "Sepolia chainId",
+          "Viem client"
+        ]
+      }
+    ],
+    "dapp_development.frontend_dapp_frameworks": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "Design an optimistic UI update pattern in Next.js for a token transfer dApp: Instantly update the UI balance on user confirmation, display pending transaction hash, and handle rollback if the transaction reverts on-chain.",
+        "expected_answer_keywords": [
+          "optimistic UI",
+          "useWaitForTransactionReceipt",
+          "transaction hash toast",
+          "state rollback on revert",
+          "Next.js React state",
+          "Web3 UX"
+        ]
+      }
+    ],
+    "dapp_development.node_as_a_service_rpc_infura_alchemy": [
+      {
+        "level": "junior",
+        "type": "practical_implementation",
+        "question": "Set up a WebSocket event listener using Alchemy SDK to monitor real-time `Transfer(address,address,uint256)` events on a USDC contract. How do you handle dropped WebSocket connections and reconnection backoffs?",
+        "expected_answer_keywords": [
+          "Alchemy SDK",
+          "WebSocket eth_subscribe",
+          "Transfer event listener",
+          "exponential backoff reconnect",
+          "heartbeat ping pong"
+        ]
+      }
+    ],
+    "dapp_development.defi_protocols_integration_uniswap_aave": [
+      {
+        "level": "mid",
+        "type": "code_review",
+        "question": "Write a Solidity integration with Uniswap v3 `ISwapRouter`: Implement an `exactInputSingle` swap from WETH to USDC with 0.3% fee tier, setting appropriate slippage limits (`amountOutMinimum`) and deadline protection.",
+        "expected_answer_keywords": [
+          "ISwapRouter",
+          "exactInputSingle",
+          "ExactInputSingleParams",
+          "amountOutMinimum slippage",
+          "deadline check",
+          "WETH to USDC",
+          "Uniswap v3"
+        ]
+      }
+    ],
+    "dapp_development.nft_standards_metadata_ipfs": [
+      {
+        "level": "mid",
+        "type": "practical_implementation",
+        "question": "Build an NFT minting backend workflow: Upload JSON metadata conforming to OpenSea metadata standards (attributes, image IPFS CID) to Pinata/Arweave, generate the immutable `tokenURI`, and execute gas-optimized batch minting.",
+        "expected_answer_keywords": [
+          "IPFS CID",
+          "Pinata API",
+          "tokenURI",
+          "ERC-721 metadata schema",
+          "attributes traits",
+          "Arweave permanent storage",
+          "batch minting"
+        ]
+      }
+    ],
+    "dapp_development.dao_governance_voting_snapshot": [
       {
         "level": "mid",
         "type": "scenario",
-        "question": "An NFT minting contract uses `uint256(keccak256(abi.encodePacked(block.timestamp, msg.sender))) % 10000` to determine the rarity of the minted NFT. Explain two distinct ways this can be exploited by an attacker or a malicious miner to guarantee they mint a rare NFT.",
-        "expected_answer_keywords": ["block.timestamp", "predictable randomness", "miner manipulation", "withhold block", "front-running", "revert if not rare", "smart contract caller", "Chainlink VRF", "commit-reveal"]
+        "question": "Architect a hybrid DAO governance mechanism: Off-chain gasless sentiment voting on Snapshot (using ERC-20 votes strategy and cryptographic signatures) triggering on-chain execution via Gnosis Safe and Zodiac Reality module.",
+        "expected_answer_keywords": [
+          "Snapshot gasless voting",
+          "ERC-20 votes strategy",
+          "Gnosis Safe",
+          "Zodiac Reality module",
+          "timelock execution",
+          "on-chain execution trigger"
+        ]
       }
     ],
-    "dapp_development.defi": [
+    "dapp_development.full_node_client_rpc_architecture": [
       {
         "level": "senior",
         "type": "scenario",
-        "question": "Explain the mechanics of 'Impermanent Loss' (Divergence Loss) for a Liquidity Provider in a Constant Product AMM (like Uniswap V2). Under what price movement conditions does the LP lose value compared to simply holding the two tokens in their wallet?",
-        "expected_answer_keywords": ["Impermanent Loss", "Divergence Loss", "AMM", "Constant Product", "x*y=k", "price change", "arbitrage", "rebalancing", "opportunity cost", "loss vs holding", "price divergence in either direction"]
+        "question": "Architect an enterprise-grade Ethereum RPC infrastructure: Configure a cluster of Geth/Reth execution clients paired with Lighthouse consensus clients, Engine API authentication (jwt.hex), load balancing, and health check fallbacks.",
+        "expected_answer_keywords": [
+          "Geth Reth execution client",
+          "Lighthouse consensus client",
+          "Engine API jwt.hex",
+          "load balancing RPC",
+          "health check endpoints",
+          "state snapshotting"
+        ]
       }
     ],
-    "dapp_development.frontend_frameworks": [
-      {
-        "level": "mid",
-        "type": "practical_task",
-        "question": "When building a React dApp with `wagmi`, you need to read a user's token balance and update it automatically when it changes on-chain. Which wagmi hooks would you use, and how do you configure the hook to listen for new blocks or events to ensure the UI stays synchronized?",
-        "expected_answer_keywords": ["wagmi", "useBalance", "useReadContract", "useWatchContractEvent", "watch: true", "React component", "auto-refresh", "block listener", "ethers provider"]
-      }
-    ],
-    "blockchain_scaling.zk_rollups": [
+    "dapp_development.indexer_subgraphs_the_graph_envio": [
       {
         "level": "senior",
-        "type": "conceptual",
-        "question": "Explain the difference between a Type 1 zkEVM (Ethereum-equivalent) and a Type 4 zkEVM (High-level-language equivalent, like zkSync Era). What are the trade-offs regarding developer experience, compatibility with existing Ethereum tooling, and prover performance (proof generation time)?",
-        "expected_answer_keywords": ["Type 1 zkEVM", "Type 4 zkEVM", "Ethereum equivalent", "language equivalent", "Vitalik taxonomy", "prover performance", "proof generation time", "tooling compatibility", "EVM opcodes", "LLVM compiler", "custom VM"]
+        "type": "practical_implementation",
+        "question": "Write a GraphQL `schema.graphql` and AssemblyScript event mapping for The Graph: Index a multi-pool AMM protocol, track daily volume entities (`DailyPoolVolume`), calculate cumulative fee statistics, and handle chain re-organizations cleanly.",
+        "expected_answer_keywords": [
+          "The Graph",
+          "schema.graphql",
+          "AssemblyScript mapping",
+          "handlePoolCreated",
+          "handleSwap",
+          "re-org handling",
+          "BigInt aggregation"
+        ]
+      }
+    ],
+    "dapp_development.account_abstraction_erc4337_bundlers": [
+      {
+        "level": "senior",
+        "type": "practical_implementation",
+        "question": "Construct an ERC-4337 Account Abstraction user flow: Assemble a `UserOperation` struct, calculate `callGasLimit` and `verificationGasLimit`, sponsor transaction gas using a Paymaster contract, sign with a Passkey (WebAuthn), and submit to a Bundler.",
+        "expected_answer_keywords": [
+          "ERC-4337",
+          "UserOperation struct",
+          "EntryPoint 0.6/0.7",
+          "Paymaster gas sponsorship",
+          "Bundler submission",
+          "WebAuthn Passkeys",
+          "ECDSA session key"
+        ]
+      }
+    ],
+    "smart_contract_development.solidity_core_and_advanced_syntax": [
+      {
+        "level": "junior",
+        "type": "code_review",
+        "question": "Review a Solidity 0.8.24 contract: Explain the difference between `custom error InsufficientBalance(uint256 available, uint256 required)` vs `require(balance >= required, \"Insufficient balance\")` in runtime gas cost and ABI decoding.",
+        "expected_answer_keywords": [
+          "custom error",
+          "revert InsufficientBalance",
+          "gas savings vs require string",
+          "4-byte selector encoding",
+          "Solidity 0.8.4+",
+          "ABI decoding"
+        ]
+      }
+    ],
+    "smart_contract_development.erc_token_standards_20_721_1155": [
+      {
+        "level": "junior",
+        "type": "practical_implementation",
+        "question": "Write an ERC-4626 Tokenized Vault implementation in Solidity: Implement `deposit()`, `withdraw()`, `totalAssets()`, and `convertToShares()` while ensuring mathematical rounding favors the vault to prevent share inflation attacks.",
+        "expected_answer_keywords": [
+          "ERC-4626",
+          "tokenized vault",
+          "totalAssets",
+          "convertToShares",
+          "rounding favor vault",
+          "inflation attack defense",
+          "virtual shares/assets"
+        ]
+      }
+    ],
+    "smart_contract_development.contract_unit_and_integration_testing": [
+      {
+        "level": "junior",
+        "type": "practical_implementation",
+        "question": "Write a Foundry integration test (`testFork_liquidation()`) that forks Ethereum mainnet at a specific block number, prank simulates a whale account with `vm.prank`, warps time with `vm.warp`, and asserts successful liquidation of an underwater loan.",
+        "expected_answer_keywords": [
+          "Foundry fork test",
+          "vm.createSelectFork",
+          "vm.prank",
+          "vm.warp",
+          "assertEq",
+          "liquidation simulation",
+          "mainnet state fork"
+        ]
+      }
+    ],
+    "smart_contract_development.contract_deployment_and_verification": [
+      {
+        "level": "junior",
+        "type": "practical_implementation",
+        "question": "Write a Foundry deployment script (`Deploy.s.sol`) using `CREATE2` to deploy a contract to the identical address across Ethereum, Arbitrum, and Polygon. Detail how salt mining and constructor arguments affect the precomputed contract address.",
+        "expected_answer_keywords": [
+          "CREATE2 deployment",
+          "forge script",
+          "salt mining",
+          "deterministic address",
+          "keccak256 bytecode hash",
+          "multi-chain same address"
+        ]
+      }
+    ],
+    "smart_contract_development.oracle_data_feeds_and_vrf_randomness": [
+      {
+        "level": "mid",
+        "type": "security_audit",
+        "question": "Audit a Chainlink Price Feed integration in Solidity: A contract calls `(, int price, , ,) = priceFeed.latestRoundData();`. Identify 3 missing security validations (stale price check `updatedAt`, `price > 0`, round completion `answeredInRound >= roundId`) and provide the secure implementation.",
+        "expected_answer_keywords": [
+          "AggregatorV3Interface",
+          "latestRoundData",
+          "stale price validation updatedAt",
+          "heartbeat threshold",
+          "price > 0 check",
+          "answeredInRound check",
+          "Chainlink oracle security"
+        ]
+      }
+    ],
+    "smart_contract_development.upgradeable_contracts_proxy_patterns": [
+      {
+        "level": "mid",
+        "type": "code_review",
+        "question": "Compare Universal Upgradeable Proxy Standard (UUPS - ERC-1822) with Transparent Proxy Pattern: Why is the upgrade logic placed in the implementation contract for UUPS, and how does this eliminate admin routing gas overhead on user transactions?",
+        "expected_answer_keywords": [
+          "UUPS",
+          "ERC-1967",
+          "Transparent Proxy",
+          "upgradeToAndCall",
+          "storage collision prevention",
+          "gas savings in UUPS",
+          "delegatecall"
+        ]
+      }
+    ],
+    "smart_contract_development.vyper_and_alternative_smart_contract_languages": [
+      {
+        "level": "mid",
+        "type": "code_review",
+        "question": "Explain how Vyper's intentional language design choices (no modifier support, no class inheritance, no recursive calls, no infinite loops) enhance auditability and eliminate entire classes of EVM reentrancy vulnerabilities.",
+        "expected_answer_keywords": [
+          "Vyper language",
+          "no inheritance",
+          "no recursive calls",
+          "bounded loops",
+          "fixed-point arithmetic",
+          "auditability",
+          "Curve Finance"
+        ]
+      }
+    ],
+    "smart_contract_development.gas_optimization_assembly_yul": [
+      {
+        "level": "mid",
+        "type": "practical_implementation",
+        "question": "Write an optimized transfer function in inline assembly (Yul) for an ERC-20 token: Execute the transfer using direct `sload`/`sstore` on hashed storage slots and emit the `Transfer` event using `log3`, bypassing Solidity compiler overhead.",
+        "expected_answer_keywords": [
+          "Yul inline assembly",
+          "sload sstore",
+          "keccak256 storage slot calculation",
+          "log3 event emission",
+          "Solady library patterns",
+          "gas optimization"
+        ]
+      }
+    ],
+    "smart_contract_development.rust_smart_contracts_solana_near": [
+      {
+        "level": "senior",
+        "type": "practical_implementation",
+        "question": "Write a Solana smart contract in Rust using Anchor framework: Implement an Escrow program with state initialization, PDA (Program Derived Address) vault holding, and Cross-Program Invocation (CPI) to the SPL Token program.",
+        "expected_answer_keywords": [
+          "Solana Anchor framework",
+          "Program Derived Address PDA",
+          "CPI cross program invocation",
+          "Context Accounts struct",
+          "SPL Token transfer",
+          "Rust smart contract"
+        ]
+      }
+    ],
+    "smart_contract_development.hybrid_smart_contracts_offchain_computation": [
+      {
+        "level": "senior",
+        "type": "practical_implementation",
+        "question": "Design a Hybrid Smart Contract using Chainlink Functions and Chainlink Automation: Fetch live flight delay data from a Web2 aviation API, compute consensus across Decentralized Oracle Nodes, and autonomously trigger parametric insurance payouts via `performUpkeep()`.",
+        "expected_answer_keywords": [
+          "Chainlink Functions",
+          "Chainlink Automation",
+          "Decentralized Oracle Networks DON",
+          "performUpkeep",
+          "checkUpkeep",
+          "Web2 API oracle",
+          "hybrid smart contract"
+        ]
+      }
+    ],
+    "smart_contract_development.formal_verification_and_invariant_testing": [
+      {
+        "level": "senior",
+        "type": "practical_implementation",
+        "question": "Write a Certora Verification Language (CVL) rule for an automated market maker: Formally prove the constant product invariant `rule k_must_increase_or_stay_constant()` for all possible swaps, flash loans, and liquidity operations across all reachable states.",
+        "expected_answer_keywords": [
+          "Certora Verification Language CVL",
+          "formal verification",
+          "constant product invariant x*y=k",
+          "rule verification",
+          "mathematical proof",
+          "Certora Prover"
+        ]
+      }
+    ],
+    "smart_contract_tooling.hardhat_framework_plugins": [
+      {
+        "level": "junior",
+        "type": "practical_implementation",
+        "question": "Configure a `hardhat.config.ts` setup: Integrate `@typechain/hardhat`, `@nomicfoundation/hardhat-toolbox`, custom networks (Sepolia, Mainnet fork), and a custom Hardhat task to query ERC-20 balances from the CLI.",
+        "expected_answer_keywords": [
+          "hardhat.config.ts",
+          "typechain",
+          "hardhat-toolbox",
+          "custom Hardhat tasks",
+          "task('balance')",
+          "network configuration"
+        ]
+      }
+    ],
+    "smart_contract_tooling.foundry_forge_cast_anvil": [
+      {
+        "level": "junior",
+        "type": "practical_implementation",
+        "question": "Demonstrate the Foundry CLI toolchain: Compile contracts with `forge build`, run a specific test matching regex with `forge test -vvvv --match-test`, send a raw transaction with `cast send`, and spawn a local fork using `anvil --fork-url`.",
+        "expected_answer_keywords": [
+          "Foundry",
+          "forge build",
+          "forge test -vvvv",
+          "cast send",
+          "cast call",
+          "anvil local fork",
+          "foundry.toml"
+        ]
+      }
+    ],
+    "smart_contract_tooling.crypto_wallets_development_faucets": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "How do you securely manage testnet private keys in developer environments using `.env` and Foundry keystore (`cast wallet import`) to avoid leaking deployment keys in Git repositories?",
+        "expected_answer_keywords": [
+          "cast wallet import",
+          "encrypted keystore",
+          ".env gitignore",
+          "private key security",
+          "hardware wallet ledger forge",
+          "faucet management"
+        ]
+      }
+    ],
+    "smart_contract_tooling.decentralized_storage_ipfs_arweave": [
+      {
+        "level": "mid",
+        "type": "practical_implementation",
+        "question": "Write a Node.js script using Pinata SDK or Irys/Bundlr to upload dynamic JSON metadata and assets to IPFS and Arweave, verify the returned CID/transaction ID, and test gateway accessibility.",
+        "expected_answer_keywords": [
+          "IPFS CID",
+          "Pinata SDK",
+          "Irys Arweave SDK",
+          "permanent storage",
+          "gateway verification",
+          "metadata upload"
+        ]
+      }
+    ],
+    "smart_contract_tooling.evm_trace_debuggers_tenderly": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "A production transaction fails on mainnet with an obscure out-of-gas or subcall revert. Describe how you import the transaction hash into Tenderly, analyze the call trace, inspect storage state differences, and test a simulated patch on a Tenderly Virtual TestNet.",
+        "expected_answer_keywords": [
+          "Tenderly trace debugger",
+          "call trace analysis",
+          "state diff inspection",
+          "Virtual TestNet simulation",
+          "gas estimation debugging"
+        ]
+      }
+    ],
+    "smart_contract_tooling.contract_verification_blockscout_etherscan": [
+      {
+        "level": "mid",
+        "type": "practical_implementation",
+        "question": "Execute multi-chain automated contract verification using `forge verify-contract` across Etherscan and Blockscout: Provide the CLI command including compiler version, optimizer runs, constructor args ABI-encoded, and API key flags.",
+        "expected_answer_keywords": [
+          "forge verify-contract",
+          "constructor-args",
+          "compiler-version",
+          "optimizer-runs",
+          "Etherscan API",
+          "Blockscout API",
+          "Standard-JSON-Input"
+        ]
+      }
+    ],
+    "smart_contract_tooling.ci_cd_smart_contract_automation": [
+      {
+        "level": "senior",
+        "type": "practical_implementation",
+        "question": "Author a complete GitHub Actions workflow (`.github/workflows/contract-ci.yml`): Run solhint/prettier linting, execute `forge test` with gas reports, run `forge snapshot --check` to fail PRs that exceed gas regression thresholds, and run Slither in CI.",
+        "expected_answer_keywords": [
+          "GitHub Actions",
+          "forge test",
+          "forge snapshot --check",
+          "gas regression gate",
+          "slither-action",
+          "solhint",
+          "CI/CD pipeline"
+        ]
+      }
+    ],
+    "smart_contract_tooling.fuzzing_invariant_tooling_echidna_medusa": [
+      {
+        "level": "senior",
+        "type": "practical_implementation",
+        "question": "Configure Medusa fuzzer for an automated lending protocol security pipeline (`medusa.json`): Set up target contracts, compilation options, call sequences, assertion modes, and integrate into Nightly GitHub Actions matrix builds.",
+        "expected_answer_keywords": [
+          "Medusa fuzzer",
+          "medusa.json",
+          "invariant testing",
+          "assertion mode",
+          "nightly CI build",
+          "automated security tooling"
+        ]
+      }
+    ],
+    "smart_contract_tooling.gas_profilers_snapshot_testing": [
+      {
+        "level": "senior",
+        "type": "calculation_and_mechanics",
+        "question": "Establish a continuous gas budgeting and snapshot regression policy for a DeFi protocol: How do you parse `.gas-snapshot` output in CI, calculate percentage differentials against baseline, and enforce hard gas limits on critical user pathways (e.g. `swap()` < 110,000 gas)?",
+        "expected_answer_keywords": [
+          ".gas-snapshot",
+          "forge snapshot --diff",
+          "gas budget ceiling",
+          "hard gas limit gate",
+          "opcode level optimization",
+          "continuous benchmarking"
+        ]
       }
     ]
   }

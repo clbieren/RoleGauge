@@ -1,161 +1,135 @@
 {
   "source_id": "github",
   "name": "GitHub Repository Analysis - UX Designer",
-  "description": "Parsing rules for GitHub repositories belonging to UX Designer candidates. UX design work is significantly less code-dense than engineering roles — the primary GitHub signals for UX Designers are design system code contributions, design tooling scripts, exported design artifacts, documentation of behavioral design processes, and UX-adjacent development work (front-end prototypes, data analysis scripts for A/B tests). NOTE: Specific evidence mappings (regex patterns and maps_to composite keys) are stored within individual skill files under evidence.github, NOT here.",
-  "preprocessing_pipeline": {
-    "steps": [
+  "description": "Global parsing rules for UX Design deliverables, design system tokens, Storybook stories, usability test scripts, and UI prototypes.",
+  "signal_mapping": {
+    "patterns": [
       {
-        "step": 1,
-        "name": "file_tree_scan",
-        "target_files": [
-          {
-            "pattern": "*.fig|*.sketch|*.xd|figma-export|design-tokens",
-            "skills": ["ux_deliverables_prototyping"],
-            "priority": "high",
-            "notes": "Exported Figma/Sketch files, design token files, or design system exports indicate active tooling proficiency"
-          },
-          {
-            "pattern": "journey-map*|experience-map*|customer-journey*|cx-map*",
-            "skills": ["ux_deliverables_prototyping"],
-            "priority": "high",
-            "notes": "Customer experience maps or journey map artifacts in any format (PDF, PNG, MD)"
-          },
-          {
-            "pattern": "*.bpmn|*.epc|bpmn-diagram*|process-model*",
-            "skills": ["ux_deliverables_prototyping"],
-            "priority": "high",
-            "notes": "BPMN or EPC process model files (camunda .bpmn XML, draw.io exports)"
-          },
-          {
-            "pattern": "persona*|proto-persona*|user-research*|jtbd*|jobs-to-be-done*",
-            "skills": ["ux_classifying_behavior"],
-            "priority": "high",
-            "notes": "User persona documents, JTBD artifacts, or behavioral research outputs"
-          },
-          {
-            "pattern": "wireframe*|mockup*|lo-fi*|hi-fi*|prototype*|clickable*",
-            "skills": ["ux_deliverables_prototyping"],
-            "priority": "high",
-            "notes": "Wireframe exports, mockup images, or prototype documentation"
-          },
-          {
-            "pattern": "ab-test*|experiment*|hypothesis*|conversion*|funnel-analysis*",
-            "skills": ["ux_measuring_impact"],
-            "priority": "high",
-            "notes": "A/B test documentation, experiment hypotheses, or funnel analysis scripts"
-          },
-          {
-            "pattern": "design-system*|component-library*|storybook*|tokens*",
-            "skills": ["ux_deliverables_prototyping", "ux_conceptual_design"],
-            "priority": "medium",
-            "notes": "Design system contributions indicate systematic, scalable design thinking"
-          },
-          {
-            "pattern": "*.py|*.ipynb|*.R|*.sql",
-            "skills": ["ux_measuring_impact"],
-            "priority": "medium",
-            "notes": "Data analysis scripts for behavioral metrics, funnel analysis, or A/B test result processing"
-          },
-          {
-            "pattern": "case-study*|design-case*|ux-portfolio*|behavioral-design*",
-            "skills": ["ux_behavior_frameworks", "ux_behavior_strategies", "ux_patterns_best_practices"],
-            "priority": "high",
-            "notes": "Written UX case studies documenting behavioral design process and rationale"
-          },
-          {
-            "pattern": "BPMN|bpmn|EPC|epc|flowchart|process-flow",
-            "skills": ["ux_deliverables_prototyping"],
-            "priority": "medium",
-            "notes": "Process modeling documentation in any format"
-          }
+        "pattern": "StreakCounter|BadgeProgress|Gamification|NotificationBell|CallToAction|ProductTour|OnboardingTutorial|useDeviceSync|HabitTracker",
+        "maps_to": [
+          "ux_attention_context.fleeting_attention_cta",
+          "ux_attention_context.fleeting_attention_status_reports",
+          "ux_attention_context.fleeting_attention_tips",
+          "ux_attention_context.many_chances_gamification",
+          "ux_attention_context.many_chances_planners",
+          "ux_attention_context.many_chances_tutorials",
+          "ux_attention_context.many_chances_social_sharing",
+          "ux_attention_context.multi_device_attention_continuity",
+          "ux_attention_context.cognitive_overload_mitigation_calm_tech"
         ]
       },
       {
-        "step": 2,
-        "name": "content_analysis",
-        "behavioral_framework_signals": [
-          {
-            "pattern": "Fogg|B=MAP|Hook Model|CREATE Action|Dual Process|System 1|System 2|Nudge Theory|Behavioral Economics|habit loop|Cue-Routine-Reward",
-            "skills": ["ux_behavior_frameworks"],
-            "priority": "high",
-            "notes": "Named behavioral frameworks in design documentation, READMEs, or case studies"
-          },
-          {
-            "pattern": "social proof|loss aversion|authority|urgency|scarcity|peer comparison|implementation intention|gamification|leaderboard|streak|badge",
-            "skills": ["ux_patterns_best_practices", "ux_attention_context"],
-            "priority": "high",
-            "notes": "Persuasive pattern terminology in design documentation or code comments"
-          },
-          {
-            "pattern": "A/B test|split test|p-value|confidence interval|statistical significance|multivariate|HEART framework|North Star",
-            "skills": ["ux_measuring_impact"],
-            "priority": "high",
-            "notes": "Experimentation and metrics terminology in documentation or analysis scripts"
-          },
-          {
-            "pattern": "Business Model Canvas|Lean Canvas|SWOT|Five Forces|competitor analysis|Porter",
-            "skills": ["ux_business_model"],
-            "priority": "medium",
-            "notes": "Strategic framework references in product strategy or design discovery documentation"
-          },
-          {
-            "pattern": "user story|acceptance criteria|product backlog|Given.*When.*Then|MoSCoW|progressive disclosure|cognitive load|Goal Gradient",
-            "skills": ["ux_conceptual_design"],
-            "priority": "medium",
-            "notes": "UX planning and principles terminology in design process documentation"
-          },
-          {
-            "pattern": "defaulting|opt-out|opt-in|incidental|habit formation|behavior change|educate.*user|encourage.*action|avoid.*cue|replace.*routine",
-            "skills": ["ux_behavior_strategies"],
-            "priority": "high",
-            "notes": "Behavior change strategy terminology in design documentation"
-          }
+        "pattern": "Fogg|B=MAP|HookModel|VariableReward|DarkPatterns|CREATEFunnel|System1|System2",
+        "maps_to": [
+          "ux_behavior_frameworks.fogg_behavior_model",
+          "ux_behavior_frameworks.dual_process_theory",
+          "ux_behavior_frameworks.behavioral_buzzwords",
+          "ux_behavior_frameworks.hook_model",
+          "ux_behavior_frameworks.create_action_funnel",
+          "ux_behavior_frameworks.cue_routine_reward",
+          "ux_behavior_frameworks.fogg_behavior_grid",
+          "ux_behavior_frameworks.spectrum_of_thinking_interventions",
+          "ux_behavior_frameworks.behavioral_ethics_dark_patterns_defense"
         ]
       },
       {
-        "step": 3,
-        "name": "repository_type_classification",
-        "repository_types": [
-          {
-            "type": "design_system_repo",
-            "signals": ["design-tokens", "storybook", "component-library", "style-guide"],
-            "skills": ["ux_deliverables_prototyping", "ux_conceptual_design"],
-            "strength_multiplier": 1.2,
-            "notes": "Design system ownership is a strong signal of systematic, scalable UX practice"
-          },
-          {
-            "type": "ux_portfolio_repo",
-            "signals": ["case-study", "ux-portfolio", "portfolio-site"],
-            "skills": ["ux_behavior_frameworks", "ux_deliverables_prototyping"],
-            "strength_multiplier": 1.3,
-            "notes": "Portfolio sites with embedded case studies are high-value UX evidence"
-          },
-          {
-            "type": "data_analysis_repo",
-            "signals": ["*.ipynb", "funnel", "retention", "cohort", "behavioral-data"],
-            "skills": ["ux_measuring_impact"],
-            "strength_multiplier": 1.1,
-            "notes": "Data analysis repositories demonstrate quantitative UX measurement capability"
-          },
-          {
-            "type": "prototype_repo",
-            "signals": ["prototype", "interactive", "react", "vue", "svelte", "next"],
-            "skills": ["ux_deliverables_prototyping"],
-            "strength_multiplier": 1.0,
-            "notes": "Code-based prototypes demonstrate design implementation depth"
-          }
+        "pattern": "PricingTier|SmartDefault|ConfirmModal|SpeedBump|HabitLoop|ChoiceArchitecture|ConstructiveFriction",
+        "maps_to": [
+          "ux_behavior_strategies.educate_encourage",
+          "ux_behavior_strategies.defaulting",
+          "ux_behavior_strategies.choice_architecture_framing",
+          "ux_behavior_strategies.help_think_about_action",
+          "ux_behavior_strategies.making_it_incidental",
+          "ux_behavior_strategies.automate_new_behavior",
+          "ux_behavior_strategies.disrupt_existing_habit",
+          "ux_behavior_strategies.systemic_habit_ecosystem_design",
+          "ux_behavior_strategies.friction_engineering_intentional_friction"
+        ]
+      },
+      {
+        "pattern": "LeanCanvas|ValueProposition|PLG|TimeToValue|PricingTable|CompetitorMatrix|BusinessModelCanvas",
+        "maps_to": [
+          "ux_business_model.business_model_canvas",
+          "ux_business_model.competitor_analysis",
+          "ux_business_model.value_proposition_design_canvas",
+          "ux_business_model.lean_canvas",
+          "ux_business_model.inspirator_analysis",
+          "ux_business_model.swot_analysis",
+          "ux_business_model.five_forces",
+          "ux_business_model.unit_economics_ux_monetization",
+          "ux_business_model.product_led_growth_ux_mechanics"
+        ]
+      },
+      {
+        "pattern": "Persona|JTBD|JobsToBeDone|TargetAction|BehavioralSegment|IntentState|EmpathyMap",
+        "maps_to": [
+          "ux_classifying_behavior.clarify_product",
+          "ux_classifying_behavior.user_personas",
+          "ux_classifying_behavior.jobs_to_be_done_framework",
+          "ux_classifying_behavior.target_outcome",
+          "ux_classifying_behavior.target_actor",
+          "ux_classifying_behavior.target_action",
+          "ux_classifying_behavior.behavioral_segmentation_clustering",
+          "ux_classifying_behavior.cross_actor_ecosystem_mapping",
+          "ux_classifying_behavior.intent_state_modeling"
+        ]
+      },
+      {
+        "pattern": "design-tokens\\.json|tokens/.*\\.json|ServiceBlueprint|UserStory|AcceptanceCriteria|DesignTokens",
+        "maps_to": [
+          "ux_conceptual_design.user_stories",
+          "ux_conceptual_design.ux_principle_short_simple",
+          "ux_conceptual_design.ux_principle_progress_visible",
+          "ux_conceptual_design.product_backlog",
+          "ux_conceptual_design.ux_principle_success_prominent",
+          "ux_conceptual_design.ux_principle_scaffolding",
+          "ux_conceptual_design.mental_model_system_architecture",
+          "ux_conceptual_design.design_system_tokens_governance",
+          "ux_conceptual_design.service_blueprint_orchestration"
+        ]
+      },
+      {
+        "pattern": "\\.storybook/|\\.stories\\.(tsx|jsx|js)|aria-label|contrast-ratio|DesignSpecs|BPMN|EPC",
+        "maps_to": [
+          "ux_deliverables_prototyping.wireframing_tools",
+          "ux_deliverables_prototyping.simple_flowchart",
+          "ux_deliverables_prototyping.layout_rules",
+          "ux_deliverables_prototyping.customer_experience_map",
+          "ux_deliverables_prototyping.bpmn_diagram",
+          "ux_deliverables_prototyping.interactive_high_fidelity_prototyping",
+          "ux_deliverables_prototyping.epc_diagram",
+          "ux_deliverables_prototyping.design_to_code_handoff_tokens",
+          "ux_deliverables_prototyping.accessibility_wcag_design_specs"
+        ]
+      },
+      {
+        "pattern": "Statsig|LaunchDarkly|mixpanel\\.track|posthog\\.capture|ABTest|HEARTFramework|SUSScore",
+        "maps_to": [
+          "ux_measuring_impact.ab_testing",
+          "ux_measuring_impact.ux_metrics",
+          "ux_measuring_impact.usability_testing_heuristics_sus",
+          "ux_measuring_impact.statistical_interpretation",
+          "ux_measuring_impact.integrating_test_results",
+          "ux_measuring_impact.funnel_dropoff_cohort_analytics",
+          "ux_measuring_impact.multivariate_testing",
+          "ux_measuring_impact.longitudinal_ux_impact_heart_framework",
+          "ux_measuring_impact.algorithmic_personalization_impact"
+        ]
+      },
+      {
+        "pattern": "SocialProof|TrustBadges|CountdownTimer|OneClickCheckout|IfThenPlanner|PeerComparison",
+        "maps_to": [
+          "ux_patterns_best_practices.get_attention_patterns",
+          "ux_patterns_best_practices.positive_impression_patterns",
+          "ux_patterns_best_practices.social_proof",
+          "ux_patterns_best_practices.authority",
+          "ux_patterns_best_practices.loss_aversion",
+          "ux_patterns_best_practices.peer_comparison",
+          "ux_patterns_best_practices.urgency_scarcity",
+          "ux_patterns_best_practices.implementation_intentions",
+          "ux_patterns_best_practices.friction_reduction_defaulting"
         ]
       }
-    ]
-  },
-  "ai_analysis_instructions": {
-    "tasks": [
-      "Prioritize qualitative content analysis over file-type scanning — UX GitHub repos are documentation and artifact-heavy rather than code-heavy",
-      "Flag repositories with behavioral framework terminology in READMEs or documentation as high-relevance",
-      "Distinguish between UX portfolio repos (case studies) and engineering repos a UX designer contributed to — the former is primary UX evidence",
-      "When Jupyter notebooks or Python scripts are present, check if they analyze UX/behavioral data (funnel analysis, cohort analysis, A/B test results) vs unrelated data science work",
-      "Look for evidence of cross-disciplinary work: UX designers who commit to design system repos or contribute HTML/CSS to prototypes show fuller craft depth",
-      "Process modeling files (.bpmn, draw.io exports) are strong UX deliverable evidence — note their presence and complexity"
     ]
   }
 }

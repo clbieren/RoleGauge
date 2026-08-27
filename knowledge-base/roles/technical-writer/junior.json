@@ -1,0 +1,65 @@
+{
+  "role_id": "technical_writer",
+  "level": "junior",
+  "title": "Junior Technical Writer",
+  "description": "Entry-level technical writer specializing in clear, active-voice product guides, API endpoint references, Keep a Changelog release notes, developer quickstarts, and Markdown/MDX authoring in Git workflows under senior editorial guidance.",
+  "experience_range": "0-2 years",
+  "skills": [
+    {
+      "skill_id": "tw_fundamentals_writing_craft",
+      "importance": 0.95,
+      "rationale": "Must master plain English, active voice, Google/Microsoft style guides, and user persona empathy."
+    },
+    {
+      "skill_id": "tw_developer_documentation",
+      "importance": 0.9,
+      "rationale": "Core ability to write accurate REST API references, OAS/Swagger schemas, cURL commands, and getting started tutorials."
+    },
+    {
+      "skill_id": "tw_product_support_content",
+      "importance": 0.85,
+      "rationale": "Writing step-by-step how-to articles, FAQ entries, and structured release notes."
+    },
+    {
+      "skill_id": "tw_tooling_analytics_distribution",
+      "importance": 0.8,
+      "rationale": "Proficiency in Markdown/MDX, Git branching/PR reviews, and building docs locally with Docusaurus/MkDocs."
+    },
+    {
+      "skill_id": "tw_content_research_strategy",
+      "importance": 0.75,
+      "rationale": "Conducting SME interviews with developers and reading PRDs/code diffs to discover feature requirements."
+    },
+    {
+      "skill_id": "tw_content_marketing_seo",
+      "importance": 0.65,
+      "rationale": "Authoring technical blog posts, meta tags, and conducting basic technical keyword research."
+    }
+  ],
+  "scoring": {
+    "method": "weighted_average",
+    "description": "Weighted average of skill readiness scores multiplied by importance weights.",
+    "thresholds": {
+      "not_ready": {
+        "min": 0.0,
+        "max": 0.35,
+        "description": "Lacks fundamental clarity, struggles with style guide conventions, or cannot document basic REST APIs."
+      },
+      "partially_ready": {
+        "min": 0.35,
+        "max": 0.6,
+        "description": "Writes acceptable prose but requires heavy supervision for OpenAPI schemas and complex Git workflows."
+      },
+      "ready": {
+        "min": 0.6,
+        "max": 0.85,
+        "description": "Solid junior technical writer capable of authoring end-user guides, API references, and changelogs independently."
+      },
+      "exceeds": {
+        "min": 0.85,
+        "max": 1.0,
+        "description": "Demonstrates advanced grasp of Docs-as-Code tooling, CI/CD linters, and complex SDK documentation."
+      }
+    }
+  }
+}

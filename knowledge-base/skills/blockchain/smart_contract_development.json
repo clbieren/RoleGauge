@@ -1,217 +1,306 @@
 {
   "skill_id": "smart_contract_development",
-  "name": "Smart Contract Development",
-  "category": "blockchain_engineering",
-  "description": "The core engineering discipline of writing, testing, deploying, monitoring, and upgrading smart contracts. Covers the three primary smart contract languages (Solidity, Vyper, Rust-for-blockchain), the full testing pyramid (unit, integration, coverage), deployment workflows and verification, on-chain monitoring, upgrade patterns (proxy patterns, transparent proxies, UUPS), and the ERC token standard ecosystem.",
+  "name": "Smart Contract Architecture & Engineering",
+  "category": "smart_contracts",
+  "description": "End-to-end smart contract development in Solidity/Vyper/Rust: ERC token standards, testing frameworks, proxy upgrade patterns, Yul inline assembly, Chainlink Data Feeds / VRF randomness, Chainlink Functions / Automation, and formal verification.",
   "subskills": [
     {
-      "id": "solidity",
-      "name": "Solidity",
-      "description": "The dominant EVM smart contract language. Covers: type system (value types, reference types, mappings, arrays, structs, enums), visibility modifiers (public/private/internal/external), function modifiers, inheritance and interfaces, events and indexed topics, error handling (require/revert/custom errors), payable functions, fallback and receive functions, assembly (inline Yul), ABI encoding, memory vs storage vs calldata, gas optimization patterns (packing slots, unchecked math, immutable/constant variables), and reentrancy guard patterns. Solidity versions and breaking changes.",
-      "keywords": ["Solidity", "EVM", "mapping", "struct", "modifier", "event", "indexed", "require", "revert", "custom error", "fallback", "receive", "Yul", "assembly", "ABI", "memory", "storage", "calldata", "gas optimization", "slot packing", "reentrancy guard", "OpenZeppelin"]
+      "id": "solidity_core_and_advanced_syntax",
+      "name": "Solidity Core & Advanced Syntax",
+      "description": "Solidity object-oriented patterns, custom errors, storage layouts, function visibility, immutability, constant caching, and events.",
+      "keywords": [
+        "Solidity",
+        "custom errors",
+        "storage layout",
+        "memory vs storage",
+        "immutable",
+        "constant",
+        "events",
+        "function modifiers"
+      ]
     },
     {
-      "id": "vyper",
-      "name": "Vyper",
-      "description": "Python-inspired EVM smart contract language designed for security and auditability. Key differences from Solidity: no inheritance (promotes clarity), no function overloading, no recursive calling (prevents reentrancy patterns), bounded loops, explicit overflow checking. Used in security-critical contracts (Curve Finance uses Vyper). Covers Vyper syntax, decorators (@external, @view, @payable), Vyper data structures, and its security philosophy trade-offs vs Solidity expressiveness.",
-      "keywords": ["Vyper", "no inheritance", "no recursion", "bounded loops", "overflow check", "Curve Finance", "@external", "@view", "@payable", "Vyper security philosophy", "Python-like syntax", "auditability", "simplicity over expressiveness"]
+      "id": "erc_token_standards_20_721_1155",
+      "name": "ERC Standards Implementation (ERC-20, 721, 1155, 4626)",
+      "description": "Authoring compliant ERC-20 fungible tokens, ERC-721/1155 non-fungible tokens, and ERC-4626 Tokenized Vault standard.",
+      "keywords": [
+        "ERC-20",
+        "ERC-721",
+        "ERC-1155",
+        "ERC-4626",
+        "tokenized vault",
+        "transferFrom",
+        "permit ERC-2612",
+        "allowance"
+      ]
     },
     {
-      "id": "rust_blockchain",
-      "name": "Rust for Blockchain (Solana/NEAR/Substrate)",
-      "description": "Rust as the primary language for Solana programs and Substrate pallets (Polkadot/Kusama). Solana program model: accounts as data stores, instructions as operations, program derived addresses (PDAs), cross-program invocations (CPI), the Anchor framework (IDL generation, account validation macros). NEAR smart contracts in Rust (near-sdk-rs). Substrate runtime development with FRAME pallets. Rust's ownership model and how it applies to safe on-chain state management.",
-      "keywords": ["Rust", "Solana program", "PDA", "program derived address", "CPI", "cross-program invocation", "Anchor", "IDL", "NEAR", "near-sdk-rs", "Substrate", "FRAME", "pallet", "Polkadot", "ownership model", "borsh serialization"]
+      "id": "contract_unit_and_integration_testing",
+      "name": "Contract Unit & Fork Testing (Foundry / Hardhat)",
+      "description": "Writing test suites in Solidity (Foundry `forge test`) and TypeScript, mainnet forking, time travel (`vm.warp`), and address prank simulation (`vm.prank`).",
+      "keywords": [
+        "Foundry",
+        "forge test",
+        "vm.prank",
+        "vm.warp",
+        "vm.roll",
+        "fork testing",
+        "unit tests",
+        "integration tests"
+      ]
     },
     {
-      "id": "testing",
-      "name": "Smart Contract Testing (Unit / Integration / Coverage)",
-      "description": "Test pyramid for smart contracts: unit tests (individual function behavior, edge cases, revert conditions — using Hardhat/ethers or Foundry's forge test), integration tests (multi-contract interactions, fork testing against mainnet state using hardhat-forked or foundry fork), fuzz tests (property-based testing), and coverage measurement (solidity-coverage, forge coverage). Writing tests with Mocha/Chai, Waffle, or Foundry's Solidity test DSL. Testing events, reverts with custom errors, and time manipulation (evm_increaseTime).",
-      "keywords": ["unit test", "integration test", "coverage", "Hardhat test", "forge test", "Foundry testing", "Mocha", "Chai", "Waffle", "solidity-coverage", "forge coverage", "fork testing", "mainnet fork", "evm_increaseTime", "expect revert", "fuzz test", "invariant test"]
+      "id": "contract_deployment_and_verification",
+      "name": "Contract Deployment & Multi-Chain Verification",
+      "description": "Deterministic deployments with CREATE2 (`CREATE2` factory, salt mining), constructor initialization, and programmatic verification across block explorers.",
+      "keywords": [
+        "CREATE2",
+        "deterministic deployment",
+        "forge script",
+        "salt mining",
+        "constructor",
+        "bytecode verification",
+        "Etherscan API"
+      ]
     },
     {
-      "id": "deployment",
-      "name": "Smart Contract Deployment",
-      "description": "Deployment workflows: compiling artifacts, constructor arguments, deployment scripts (Hardhat scripts, Foundry scripts, Brownie scripts), deterministic deployment (CREATE2 for same address across chains), contract verification on Etherscan/Sourcify (hardhat-etherscan, forge verify-contract), environment variable management for private keys and RPC URLs, multi-sig deployment workflows (Gnosis Safe), and deployment to testnets (Sepolia, Mumbai) before mainnet.",
-      "keywords": ["deployment script", "CREATE2", "deterministic address", "Etherscan verification", "Sourcify", "hardhat-etherscan", "forge verify-contract", "constructor arguments", "ABI", "bytecode", "testnet", "Sepolia", "Mumbai", "Gnosis Safe deployment", "private key management", ".env"]
+      "id": "oracle_data_feeds_and_vrf_randomness",
+      "name": "Oracle Data Feeds & Verifiable Randomness (Chainlink, Pyth)",
+      "description": "Integrating Chainlink Price Feeds (AggregatorV3Interface, heartbeat, deviation threshold), Pyth Network real-time prices, and Chainlink VRF v2.5 for provably fair randomness.",
+      "keywords": [
+        "Chainlink Data Feeds",
+        "AggregatorV3Interface",
+        "Chainlink VRF",
+        "VRFConsumerBaseV2",
+        "Pyth Network",
+        "verifiable randomness",
+        "stale price check"
+      ]
     },
     {
-      "id": "monitoring",
-      "name": "Smart Contract Monitoring",
-      "description": "Observing deployed contracts in production: event indexing and querying (The Graph protocol — subgraph development with GraphQL), alert systems for suspicious activity (OpenZeppelin Defender Sentinels, Tenderly Alerts), on-chain analytics (Dune Analytics, Nansen, Flipside), transaction monitoring for MEV exposure, and emergency pause mechanisms.",
-      "keywords": ["The Graph", "subgraph", "GraphQL", "event indexing", "OpenZeppelin Defender", "Defender Sentinel", "Tenderly", "Dune Analytics", "Nansen", "Flipside", "MEV", "Flashbots", "monitoring", "alert", "emergency pause", "circuit breaker"]
+      "id": "upgradeable_contracts_proxy_patterns",
+      "name": "Upgradeable Smart Contracts & Proxy Patterns",
+      "description": "Architecting upgradeability: Transparent Proxy, Universal Upgradeable Proxy Standard (UUPS - ERC-1822), Beacon Proxies, and Diamond Multi-Facet Proxy (ERC-2535).",
+      "keywords": [
+        "UUPS",
+        "Transparent Proxy",
+        "Diamond Pattern",
+        "ERC-2535",
+        "ERC-1967",
+        "storage collision",
+        "delegatecall",
+        "initializer"
+      ]
     },
     {
-      "id": "upgrades",
-      "name": "Smart Contract Upgrades",
-      "description": "Patterns for making immutable smart contracts upgradeable: Transparent Proxy Pattern (admin vs user calls different implementations), UUPS (Universal Upgradeable Proxy Standard — upgrade logic in implementation, more gas-efficient), Beacon Proxy (multiple proxies sharing one implementation beacon), Diamond Pattern (EIP-2535 — multiple implementation facets per proxy). Storage collision risks, initializer vs constructor, and OpenZeppelin's upgrades-plugin for Hardhat/Foundry. Governance-controlled upgrades via Timelock.",
-      "keywords": ["upgradeable contract", "Transparent Proxy", "UUPS", "Beacon Proxy", "Diamond Pattern", "EIP-2535", "storage collision", "initializer", "OpenZeppelin upgrades-plugin", "Timelock", "ProxyAdmin", "implementation contract", "delegatecall", "storage layout", "upgrade safety check"]
+      "id": "vyper_and_alternative_smart_contract_languages",
+      "name": "Vyper & Alternative Smart Contract Languages",
+      "description": "Writing secure Pythonic smart contracts in Vyper, understanding syntax differences, elimination of recursion/infinite loops, and gas optimizations in Curve contracts.",
+      "keywords": [
+        "Vyper",
+        "Pythonic smart contracts",
+        "no recursion",
+        "Curve Finance",
+        "vyper compiler",
+        "fixed point decimals"
+      ]
     },
     {
-      "id": "erc_tokens",
-      "name": "ERC Token Standards",
-      "description": "The ERC (Ethereum Request for Comment) token standard ecosystem: ERC-20 (fungible tokens — transfer, approve, allowance, transferFrom), ERC-721 (non-fungible tokens — unique token IDs, tokenURI, safeTransferFrom), ERC-1155 (multi-token standard — batch transfers, fungible + non-fungible in one contract), ERC-777 (operator-based transfers), ERC-4626 (tokenized vault standard for DeFi yield vaults), ERC-4337 (account abstraction). OpenZeppelin implementations, extensions (Mintable, Burnable, Pausable, Votes, Snapshot), and token security considerations.",
-      "keywords": ["ERC-20", "ERC-721", "ERC-1155", "ERC-777", "ERC-4626", "ERC-4337", "fungible token", "non-fungible token", "NFT", "tokenURI", "safeTransferFrom", "approve", "allowance", "OpenZeppelin ERC", "Mintable", "Burnable", "Pausable", "tokenized vault"]
+      "id": "gas_optimization_assembly_yul",
+      "name": "Inline Assembly & Yul Gas Optimization",
+      "description": "Writing inline assembly (Yul) in Solidity: custom memory pointers, bitwise shifts, custom storage slot access (`sload`/`sstore`), and bypass of compiler overhead.",
+      "keywords": [
+        "Yul",
+        "inline assembly",
+        "mload",
+        "mstore",
+        "sload",
+        "sstore",
+        "gas optimization",
+        "bitwise operations",
+        "Solady"
+      ]
+    },
+    {
+      "id": "rust_smart_contracts_solana_near",
+      "name": "Rust Smart Contracts (Solana Anchor & NEAR)",
+      "description": "Writing Rust smart contracts using Anchor framework on Solana (Accounts validation struct, instructions, cross-program invocations - CPI) and NEAR SDK.",
+      "keywords": [
+        "Rust smart contract",
+        "Anchor framework",
+        "Solana",
+        "CPI",
+        "AccountInfo",
+        "Context",
+        "NEAR SDK",
+        "Borsh serialization"
+      ]
+    },
+    {
+      "id": "hybrid_smart_contracts_offchain_computation",
+      "name": "Hybrid Smart Contracts & Off-Chain Automation",
+      "description": "Chainlink Functions for fetching arbitrary Web2 APIs with consensus, Chainlink Automation (Keepers) for autonomous cron execution, and Decentralized Oracle Networks.",
+      "keywords": [
+        "hybrid smart contract",
+        "Chainlink Functions",
+        "Chainlink Automation",
+        "Keepers",
+        "DON",
+        "checkUpkeep",
+        "performUpkeep",
+        "Web2 API oracle"
+      ]
+    },
+    {
+      "id": "formal_verification_and_invariant_testing",
+      "name": "Formal Verification & Mathematical Invariants",
+      "description": "Proving correctness with formal verification tools (Certora Prover, Halmos, SMTChecker), defining rules/invariants in CVL (Certora Verification Language).",
+      "keywords": [
+        "formal verification",
+        "Certora",
+        "CVL",
+        "Halmos",
+        "SMTChecker",
+        "mathematical proof",
+        "state space exploration",
+        "invariant rule"
+      ]
     }
   ],
   "evidence": {
     "github": [
       {
-        "signal": "Solidity smart contract files (.sol) with meaningful business logic",
+        "signal": "Solidity/Vyper contract files, ERC-20/721/1155/4626 implementations, and Foundry tests",
         "detection": "file_presence",
-        "pattern": "\\.sol$",
-        "strength": 0.8,
+        "pattern": "contracts/.*\\.sol|src/.*\\.sol|contracts/.*\\.vy|test/.*\\.t\\.sol",
+        "strength": 0.95,
         "maps_to": [
-          "smart_contract_development.solidity"
+          "smart_contract_development.solidity_core_and_advanced_syntax",
+          "smart_contract_development.erc_token_standards_20_721_1155",
+          "smart_contract_development.contract_unit_and_integration_testing",
+          "smart_contract_development.contract_deployment_and_verification",
+          "smart_contract_development.vyper_and_alternative_smart_contract_languages"
         ]
       },
       {
-        "signal": "Vyper smart contract files (.vy)",
-        "detection": "file_presence",
-        "pattern": "\\.vy$",
-        "strength": 0.9,
-        "maps_to": [
-          "smart_contract_development.vyper"
-        ]
-      },
-      {
-        "signal": "Rust Solana programs or Substrate pallets",
-        "detection": "file_presence",
-        "pattern": "Anchor\\.toml|programs/.*\\.rs|solana_program|substrate|FRAME|pallet",
-        "strength": 0.9,
-        "maps_to": [
-          "smart_contract_development.rust_blockchain"
-        ]
-      },
-      {
-        "signal": "Smart contract test files (Hardhat Mocha, Foundry, Waffle)",
-        "detection": "file_presence",
-        "pattern": "test/.*\\.js|test/.*\\.ts|test/.*\\.sol|.*\\.t\\.sol|spec/.*\\.js",
-        "strength": 0.8,
-        "maps_to": [
-          "smart_contract_development.testing"
-        ]
-      },
-      {
-        "signal": "Deployment scripts for smart contracts",
-        "detection": "file_presence",
-        "pattern": "scripts/deploy|deploy\\.js|deploy\\.ts|script/Deploy\\.s\\.sol|migrations/",
-        "strength": 0.8,
-        "maps_to": [
-          "smart_contract_development.deployment"
-        ]
-      },
-      {
-        "signal": "The Graph subgraph definitions or OpenZeppelin Defender configuration",
-        "detection": "file_presence",
-        "pattern": "subgraph\\.yaml|schema\\.graphql|mappings/.*\\.ts|defender/|sentinel",
-        "strength": 0.85,
-        "maps_to": [
-          "smart_contract_development.monitoring"
-        ]
-      },
-      {
-        "signal": "Upgradeable proxy contracts or OpenZeppelin upgrades plugin configuration",
+        "signal": "Chainlink Price Feed AggregatorV3, VRFConsumerBase, Automation, and Functions imports",
         "detection": "content_analysis",
-        "pattern": "UUPSUpgradeable|TransparentUpgradeableProxy|BeaconProxy|Diamond|EIP2535|initializer|upgrades\\.deployProxy",
+        "pattern": "AggregatorV3Interface|VRFConsumerBaseV2|FunctionsClient|AutomationCompatible|checkUpkeep|fulfillRandomWords",
         "strength": 0.9,
         "maps_to": [
-          "smart_contract_development.upgrades"
+          "smart_contract_development.oracle_data_feeds_and_vrf_randomness",
+          "smart_contract_development.hybrid_smart_contracts_offchain_computation"
         ]
       },
       {
-        "signal": "ERC token implementations (ERC-20, ERC-721, ERC-1155, ERC-4626)",
+        "signal": "UUPS proxy patterns, Yul inline assembly blocks, Solana Anchor programs, and Certora specs",
         "detection": "content_analysis",
-        "pattern": "ERC20|ERC721|ERC1155|ERC4626|ERC4337|IERC20|IERC721|tokenURI|safeTransferFrom",
-        "strength": 0.8,
+        "pattern": "UUPSUpgradeable|ERC1967Proxy|assembly\\s*\\{|anchor_lang|#[account]|certora/.*\\.spec|rule\\s+[A-Za-z0-9_]+",
+        "strength": 0.9,
         "maps_to": [
-          "smart_contract_development.erc_tokens"
+          "smart_contract_development.upgradeable_contracts_proxy_patterns",
+          "smart_contract_development.gas_optimization_assembly_yul",
+          "smart_contract_development.rust_smart_contracts_solana_near",
+          "smart_contract_development.formal_verification_and_invariant_testing"
         ]
       }
     ],
     "cv": [
       {
-        "signal": "Wrote Solidity smart contracts for DeFi, NFT, DAO, or other blockchain applications",
-        "strength": 0.85,
+        "signal": "Developed and deployed production ERC-20/721/4626 smart contracts in Solidity with Foundry unit/fork testing",
+        "strength": 0.6,
         "maps_to": [
-          "smart_contract_development.solidity",
-          "smart_contract_development.erc_tokens"
+          "smart_contract_development.solidity_core_and_advanced_syntax",
+          "smart_contract_development.erc_token_standards_20_721_1155",
+          "smart_contract_development.contract_unit_and_integration_testing",
+          "smart_contract_development.contract_deployment_and_verification"
         ]
       },
       {
-        "signal": "Implemented comprehensive smart contract test suites (unit, integration, coverage)",
-        "strength": 0.85,
+        "signal": "Integrated Chainlink Price Feeds & VRF randomness, built UUPS upgradeable proxies, and optimized gas with inline Yul assembly",
+        "strength": 0.6,
         "maps_to": [
-          "smart_contract_development.testing"
+          "smart_contract_development.oracle_data_feeds_and_vrf_randomness",
+          "smart_contract_development.upgradeable_contracts_proxy_patterns",
+          "smart_contract_development.gas_optimization_assembly_yul",
+          "smart_contract_development.hybrid_smart_contracts_offchain_computation"
         ]
       },
       {
-        "signal": "Deployed and verified smart contracts on mainnet or testnets",
-        "strength": 0.8,
+        "signal": "Built Solana smart contracts in Rust (Anchor) and conducted formal verification using Certora Prover",
+        "strength": 0.6,
         "maps_to": [
-          "smart_contract_development.deployment"
-        ]
-      },
-      {
-        "signal": "Implemented upgradeable proxy patterns (UUPS, Transparent, Diamond) for production contracts",
-        "strength": 0.9,
-        "maps_to": [
-          "smart_contract_development.upgrades",
-          "smart_contract_development.deployment"
-        ]
-      },
-      {
-        "signal": "Built smart contract monitoring with The Graph, Tenderly, or OpenZeppelin Defender",
-        "strength": 0.85,
-        "maps_to": [
-          "smart_contract_development.monitoring"
-        ]
-      },
-      {
-        "signal": "Developed Solana programs in Rust/Anchor or Substrate pallets",
-        "strength": 0.9,
-        "maps_to": [
-          "smart_contract_development.rust_blockchain"
+          "smart_contract_development.rust_smart_contracts_solana_near",
+          "smart_contract_development.formal_verification_and_invariant_testing",
+          "smart_contract_development.vyper_and_alternative_smart_contract_languages"
         ]
       }
     ],
     "linkedin": [
       {
-        "signal": "Solidity, smart contract development, or EVM programming endorsed",
-        "strength": 0.5,
+        "signal": "Recognized for Solidity Architecture, Smart Contract Engineering, Yul Optimization, and Oracle Integrations",
+        "strength": 0.4,
         "maps_to": [
-          "smart_contract_development.solidity",
-          "smart_contract_development.erc_tokens"
+          "smart_contract_development.solidity_core_and_advanced_syntax",
+          "smart_contract_development.erc_token_standards_20_721_1155",
+          "smart_contract_development.contract_unit_and_integration_testing",
+          "smart_contract_development.contract_deployment_and_verification",
+          "smart_contract_development.oracle_data_feeds_and_vrf_randomness",
+          "smart_contract_development.upgradeable_contracts_proxy_patterns",
+          "smart_contract_development.vyper_and_alternative_smart_contract_languages",
+          "smart_contract_development.gas_optimization_assembly_yul",
+          "smart_contract_development.rust_smart_contracts_solana_near",
+          "smart_contract_development.hybrid_smart_contracts_offchain_computation",
+          "smart_contract_development.formal_verification_and_invariant_testing"
         ]
-      },
+      }
+    ],
+    "assessment": [
       {
-        "signal": "Smart contract testing, Hardhat, Foundry, or contract coverage mentioned",
-        "strength": 0.6,
+        "signal": "Passes comprehensive smart contract architecture assessment covering ERC-4626 vaults, Chainlink VRF integration, UUPS proxies, Yul assembly, and Certora formal proofs",
+        "strength": 1.0,
         "maps_to": [
-          "smart_contract_development.testing",
-          "smart_contract_development.deployment"
-        ]
-      },
-      {
-        "signal": "Upgradeable contracts, proxy patterns, or smart contract architecture mentioned",
-        "strength": 0.6,
-        "maps_to": [
-          "smart_contract_development.upgrades"
+          "smart_contract_development.solidity_core_and_advanced_syntax",
+          "smart_contract_development.erc_token_standards_20_721_1155",
+          "smart_contract_development.contract_unit_and_integration_testing",
+          "smart_contract_development.contract_deployment_and_verification",
+          "smart_contract_development.oracle_data_feeds_and_vrf_randomness",
+          "smart_contract_development.upgradeable_contracts_proxy_patterns",
+          "smart_contract_development.vyper_and_alternative_smart_contract_languages",
+          "smart_contract_development.gas_optimization_assembly_yul",
+          "smart_contract_development.rust_smart_contracts_solana_near",
+          "smart_contract_development.hybrid_smart_contracts_offchain_computation",
+          "smart_contract_development.formal_verification_and_invariant_testing"
         ]
       }
     ]
   },
   "levels": {
     "junior": {
-      "expected_subskills": ["solidity", "erc_tokens", "testing", "deployment"],
-      "description": "Writes correct Solidity contracts using OpenZeppelin standards, implements ERC-20/721 tokens, writes unit tests with Hardhat or Foundry, and deploys/verifies contracts on testnets."
+      "expected_subskills": [
+        "solidity_core_and_advanced_syntax",
+        "erc_token_standards_20_721_1155",
+        "contract_unit_and_integration_testing",
+        "contract_deployment_and_verification"
+      ],
+      "description": "Writes production Solidity, implements standard ERC token interfaces, tests with Foundry, and executes deployment scripts."
     },
     "mid": {
-      "expected_subskills": ["upgrades", "monitoring", "vyper"],
-      "description": "Implements upgradeable proxy patterns (UUPS/Transparent), sets up production monitoring (The Graph, Defender), and has meaningful exposure to Vyper or Rust for blockchain."
+      "expected_subskills": [
+        "oracle_data_feeds_and_vrf_randomness",
+        "upgradeable_contracts_proxy_patterns",
+        "vyper_and_alternative_smart_contract_languages",
+        "gas_optimization_assembly_yul"
+      ],
+      "description": "Integrates Chainlink Data Feeds and VRF randomness, builds UUPS proxy architectures, and writes custom Yul assembly for gas reduction."
     },
     "senior": {
-      "expected_subskills": ["rust_blockchain"],
-      "description": "Architects multi-contract systems with upgradeable governance, designs production monitoring and alert stacks, and develops in Rust for Solana/Substrate in addition to Solidity."
+      "expected_subskills": [
+        "rust_smart_contracts_solana_near",
+        "hybrid_smart_contracts_offchain_computation",
+        "formal_verification_and_invariant_testing"
+      ],
+      "description": "Develops Rust programs on Solana/Anchor, orchestrates hybrid smart contract automation with Chainlink Functions, and proves invariants via Certora."
     }
   }
 }

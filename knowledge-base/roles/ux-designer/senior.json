@@ -1,89 +1,79 @@
 {
   "role_id": "ux_designer",
   "level": "senior",
-  "title": "Senior UX Designer / Behavioral Design Lead",
-  "description": "Senior UX Designer leading behavioral design strategy: selecting interventions across the full Spectrum with ethical rigor; designing habit disruption systems; architecting social influence ecosystems; applying Five Forces; designing multivariate experiments; governing ethical persuasive pattern use; and mentoring mid-level designers.",
+  "title": "Senior UX Designer / Product Design Lead",
+  "description": "Lead/Senior UX Architect who directs behavioral design strategies, audits deceptive design and dark patterns, architects multi-brand Design System Tokens, maps cross-departmental Service Blueprints, aligns UX with SaaS unit economics and PLG, and enforces WCAG 2.1 AAA accessibility.",
   "experience_range": "5+ years",
   "skills": [
     {
-      "skill_id": "ux_measuring_impact",
+      "skill_id": "ux_conceptual_design",
       "importance": 0.95,
-      "rationale": "Leading multivariate experiments, HTE analysis, experimentation culture, and behavioral metrics in OKRs."
+      "rationale": "Architecting Design System Tokens in Figma and code, eliminating mental model dissonance, and mapping Service Blueprints."
     },
     {
-      "skill_id": "ux_patterns_best_practices",
+      "skill_id": "ux_deliverables_prototyping",
       "importance": 0.95,
-      "rationale": "Governing ethical persuasive pattern use at org level; optimizing complex conversion funnels."
+      "rationale": "Enforcing WCAG 2.1 AAA accessibility and establishing zero-defect Storybook design-to-code pipelines."
+    },
+    {
+      "skill_id": "ux_business_model",
+      "importance": 0.9,
+      "rationale": "Aligning UX design with SaaS unit economics (LTV/CAC) and orchestrating Product-Led Growth conversion mechanics."
     },
     {
       "skill_id": "ux_behavior_frameworks",
       "importance": 0.9,
-      "rationale": "Behavior Grid classification and full Spectrum reasoning with ethical judgment."
+      "rationale": "Auditing dark patterns, protecting user agency, and selecting interventions across the 15-cell Fogg Grid."
+    },
+    {
+      "skill_id": "ux_measuring_impact",
+      "importance": 0.9,
+      "rationale": "Leading Google HEART framework attribution, multivariate testing, and evaluating ML personalization UX."
     },
     {
       "skill_id": "ux_behavior_strategies",
-      "importance": 0.9,
-      "rationale": "Designing multi-strategy habit disruption programs at product and population scale."
-    },
-    {
-      "skill_id": "ux_attention_context",
-      "importance": 0.9,
-      "rationale": "Architecting social influence ecosystems, viral sharing mechanics, and community-driven engagement."
-    },
-    {
-      "skill_id": "ux_business_model",
       "importance": 0.85,
-      "rationale": "Porter's Five Forces for competitive moat identification and long-term UX strategy investment."
-    },
-    {
-      "skill_id": "ux_deliverables_prototyping",
-      "importance": 0.8,
-      "rationale": "EPC enterprise process models and cross-team deliverable standard governance."
-    },
-    {
-      "skill_id": "ux_conceptual_design",
-      "importance": 0.8,
-      "rationale": "Establishing behavioral UX principles as design system standards and review governance."
+      "rationale": "Engineering constructive friction for high-stakes actions and designing long-term habit ecosystems."
     },
     {
       "skill_id": "ux_classifying_behavior",
-      "importance": 0.75,
-      "rationale": "Facilitating cross-functional behavioral alignment workshops and championing outcome-over-output culture."
+      "importance": 0.85,
+      "rationale": "Executing quantitative behavioral clustering and modeling dynamic user intent states."
+    },
+    {
+      "skill_id": "ux_attention_context",
+      "importance": 0.8,
+      "rationale": "Architecting calm tech notification hierarchies and cross-device contextual continuity."
+    },
+    {
+      "skill_id": "ux_patterns_best_practices",
+      "importance": 0.8,
+      "rationale": "Designing Gollwitzer if-then planning pre-commitments and 1-click effortless checkout flows."
     }
   ],
   "scoring": {
     "method": "weighted_average",
-    "description": "Each skill score is multiplied by its importance weight. Final score is sum divided by sum of weights.",
+    "description": "Weighted average of skill readiness scores multiplied by importance weights.",
     "thresholds": {
       "not_ready": {
         "min": 0.0,
-        "max": 0.3,
-        "label": "Not Ready",
-        "description": "Significant gaps in strategic behavioral design, experimentation leadership, or ethical governance."
+        "max": 0.4,
+        "description": "Lacks strategic design leadership, Design System governance, and business alignment."
       },
-      "developing": {
-        "min": 0.3,
-        "max": 0.5,
-        "label": "Developing",
-        "description": "Strong mid-level skills; lacks MVT, habit disruption systems, and strategic business model depth."
-      },
-      "approaching": {
-        "min": 0.5,
-        "max": 0.7,
-        "label": "Approaching Ready",
-        "description": "Leads behavioral design for product teams; refining MVT, social ecosystem design, and Porter's frameworks."
+      "partially_ready": {
+        "min": 0.4,
+        "max": 0.65,
+        "description": "Skilled senior designer but lacks Service Blueprinting, PLG monetization modeling, or WCAG AAA governance."
       },
       "ready": {
-        "min": 0.7,
+        "min": 0.65,
         "max": 0.85,
-        "label": "Ready",
-        "description": "Leads behavioral design strategy, governs ethical patterns, runs MVT, mentors mid-level designers."
+        "description": "Accomplished UX architect delivering multi-brand Design Tokens, PLG mechanics, dark pattern audits, and HEART framework ROI."
       },
       "exceeds": {
         "min": 0.85,
         "max": 1.0,
-        "label": "Exceeds Expectations",
-        "description": "Principal/Staff Behavioral Design impact across multi-product organizations; recognized thought leadership."
+        "description": "Visionary design leader recognized across the industry for transformative product experiences and behavioral systems."
       }
     }
   }

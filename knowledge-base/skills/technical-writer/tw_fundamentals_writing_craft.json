@@ -1,0 +1,302 @@
+{
+  "skill_id": "tw_fundamentals_writing_craft",
+  "name": "Technical Writing Fundamentals & Craft",
+  "category": "writing_craft",
+  "description": "Core writing and editing principles for technical communication: clarity, conciseness, active voice, audience-first framing, style guide adherence (Google/Microsoft), minimalism, readability metrics, and terminology management.",
+  "subskills": [
+    {
+      "id": "clarity_conciseness_active_voice",
+      "name": "Clarity, Conciseness & Active Voice",
+      "description": "Writing with active voice, direct sentence structures, strong verbs, and eliminating jargon, filler words, and nominalizations.",
+      "keywords": [
+        "active voice",
+        "conciseness",
+        "nominalization",
+        "plain language",
+        "direct address",
+        "strong verbs",
+        "readability",
+        "sentence length",
+        "filler words",
+        "clarity"
+      ]
+    },
+    {
+      "id": "style_guides_standards",
+      "name": "Technical Style Guides & Standards",
+      "description": "Adherence and application of major tech style guides such as Google Developer Documentation Style Guide, Microsoft Writing Style Guide, and Chicago Manual of Style.",
+      "keywords": [
+        "Google Developer Documentation Style Guide",
+        "Microsoft Writing Style Guide",
+        "Chicago Manual of Style",
+        "Vale style rules",
+        "casing conventions",
+        "UI text formatting",
+        "punctuation rules",
+        "Oxford comma"
+      ]
+    },
+    {
+      "id": "audience_persona_analysis",
+      "name": "Audience & Developer Persona Analysis",
+      "description": "Analyzing audience technical proficiency, mental models, job-to-be-done (JTBD), and tailoring vocabulary, depth, and pacing to developers, admins, or end-users.",
+      "keywords": [
+        "audience analysis",
+        "developer persona",
+        "technical proficiency",
+        "mental model",
+        "JTBD",
+        "user empathy",
+        "reader persona",
+        "onboarding path",
+        "cognitive load"
+      ]
+    },
+    {
+      "id": "information_architecture_hierarchy",
+      "name": "Information Architecture & Document Hierarchy",
+      "description": "Structuring complex technical documents using semantic heading hierarchies, progressive disclosure, chunking, breadcrumbs, and scannable layouts.",
+      "keywords": [
+        "information architecture",
+        "progressive disclosure",
+        "heading hierarchy",
+        "chunking",
+        "scannability",
+        "parallel construction",
+        "bulleted lists",
+        "visual hierarchy",
+        "table of contents"
+      ]
+    },
+    {
+      "id": "dita_topic_based_authoring",
+      "name": "Topic-Based Authoring & DITA Paradigms",
+      "description": "Topic-based authoring paradigms (Concept, Task, Reference, Troubleshooting) separating procedural instructions from conceptual explanations and reference data.",
+      "keywords": [
+        "topic-based authoring",
+        "DITA",
+        "concept topic",
+        "task topic",
+        "reference topic",
+        "troubleshooting topic",
+        "modular documentation",
+        "single sourcing",
+        "information typing"
+      ]
+    },
+    {
+      "id": "terminology_glossary_management",
+      "name": "Terminology, Taxonomy & Glossary Governance",
+      "description": "Creating and governing consistent product taxonomies, controlled vocabularies, enterprise glossaries, and deprecated term tracking.",
+      "keywords": [
+        "controlled vocabulary",
+        "glossary",
+        "taxonomy",
+        "termbase",
+        "product nomenclature",
+        "consistency",
+        "synonym management",
+        "deprecation notices",
+        "standardization"
+      ]
+    },
+    {
+      "id": "readability_scoring_editing",
+      "name": "Readability Scoring & Substantive Editing",
+      "description": "Applying formal readability formulas (Flesch-Kincaid, Gunning Fog, Coleman-Liau) and editorial tiers (copyediting, developmental editing, substantive editing).",
+      "keywords": [
+        "Flesch-Kincaid",
+        "Gunning Fog",
+        "developmental editing",
+        "copyediting",
+        "substantive editing",
+        "editorial review",
+        "proofreading",
+        "peer review rubric",
+        "sentence complexity"
+      ]
+    },
+    {
+      "id": "inclusive_accessible_language",
+      "name": "Inclusive, Accessible & Global English",
+      "description": "Implementing global English, accessible technical writing (WCAG 2.1 text alternatives, color-agnostic directions), gender-neutral phrasing, and localization-friendly writing.",
+      "keywords": [
+        "localization-friendly",
+        "global English",
+        "accessible documentation",
+        "WCAG 2.1",
+        "gender-neutral",
+        "alt text",
+        "screen reader accessibility",
+        "translatability",
+        "plain English"
+      ]
+    },
+    {
+      "id": "doc_governance_style_creation",
+      "name": "Documentation Governance & Style Creation",
+      "description": "Designing organizational style guides, writing tenets, editorial governance workflows, and automated style linting rules (Vale rule definitions).",
+      "keywords": [
+        "doc governance",
+        "style guide authoring",
+        "Vale rules",
+        "writing tenets",
+        "doc standards",
+        "editorial workflow",
+        "voice and tone guidelines",
+        "linter customization",
+        "peer review SLA"
+      ]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "Vale style guide configuration and automated prose rule definitions",
+        "detection": "content_analysis",
+        "pattern": "\\.vale\\.ini|styles/Vocab/.*|BasedOnStyles\\s*=|MinAlertLevel\\s*=",
+        "strength": 0.9,
+        "maps_to": [
+          "tw_fundamentals_writing_craft.style_guides_standards",
+          "tw_fundamentals_writing_craft.doc_governance_style_creation"
+        ]
+      },
+      {
+        "signal": "Markdown heading hierarchy and structured scannability",
+        "detection": "content_analysis",
+        "pattern": "^#{1,4}\\s+[A-Z0-9]|<TableOfContents|<toc|sidebar_position:",
+        "strength": 0.8,
+        "maps_to": [
+          "tw_fundamentals_writing_craft.information_architecture_hierarchy",
+          "tw_fundamentals_writing_craft.clarity_conciseness_active_voice"
+        ]
+      },
+      {
+        "signal": "Topic-based authoring structure (Concept, Task, Reference, Troubleshooting)",
+        "detection": "directory_structure",
+        "pattern": "docs/(concepts|tasks|reference|troubleshooting|guides)/",
+        "strength": 0.85,
+        "maps_to": [
+          "tw_fundamentals_writing_craft.dita_topic_based_authoring"
+        ]
+      },
+      {
+        "signal": "Centralized glossary and taxonomy definition files",
+        "detection": "file_presence",
+        "pattern": "docs/glossary\\.md|docs/terminology\\.md|docs/taxonomy\\.ya?ml",
+        "strength": 0.85,
+        "maps_to": [
+          "tw_fundamentals_writing_craft.terminology_glossary_management"
+        ]
+      },
+      {
+        "signal": "Readability and editorial review checklists in pull request templates",
+        "detection": "content_analysis",
+        "pattern": "\\.github/PULL_REQUEST_TEMPLATE\\.md|Flesch-Kincaid|readability score|editorial review checklist",
+        "strength": 0.75,
+        "maps_to": [
+          "tw_fundamentals_writing_craft.readability_scoring_editing"
+        ]
+      },
+      {
+        "signal": "Accessibility standards in docs (WCAG alt-text, color-neutral markup)",
+        "detection": "content_analysis",
+        "pattern": "!\\[[^\\]]{10,}\\]\\([^\\)]+\\)|<img\\s+[^>]*alt=\"[^\"]{10,}\"|aria-label=",
+        "strength": 0.8,
+        "maps_to": [
+          "tw_fundamentals_writing_craft.inclusive_accessible_language",
+          "tw_fundamentals_writing_craft.audience_persona_analysis"
+        ]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "Authored and maintained enterprise technical style guides and enforced Google/Microsoft developer documentation standards",
+        "strength": 0.6,
+        "maps_to": [
+          "tw_fundamentals_writing_craft.style_guides_standards",
+          "tw_fundamentals_writing_craft.doc_governance_style_creation",
+          "tw_fundamentals_writing_craft.terminology_glossary_management"
+        ]
+      },
+      {
+        "signal": "Improved technical documentation readability scores (Flesch-Kincaid) and restructured information architecture for developer portals",
+        "strength": 0.5,
+        "maps_to": [
+          "tw_fundamentals_writing_craft.clarity_conciseness_active_voice",
+          "tw_fundamentals_writing_craft.information_architecture_hierarchy",
+          "tw_fundamentals_writing_craft.readability_scoring_editing"
+        ]
+      },
+      {
+        "signal": "Implemented topic-based authoring (DITA) and accessibility standards (WCAG) across multi-product technical libraries",
+        "strength": 0.5,
+        "maps_to": [
+          "tw_fundamentals_writing_craft.dita_topic_based_authoring",
+          "tw_fundamentals_writing_craft.inclusive_accessible_language",
+          "tw_fundamentals_writing_craft.audience_persona_analysis"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Endorsements and publications on Technical Writing Craft, Plain Language, DITA, and Information Architecture",
+        "strength": 0.4,
+        "maps_to": [
+          "tw_fundamentals_writing_craft.clarity_conciseness_active_voice",
+          "tw_fundamentals_writing_craft.style_guides_standards",
+          "tw_fundamentals_writing_craft.audience_persona_analysis",
+          "tw_fundamentals_writing_craft.information_architecture_hierarchy",
+          "tw_fundamentals_writing_craft.dita_topic_based_authoring",
+          "tw_fundamentals_writing_craft.terminology_glossary_management",
+          "tw_fundamentals_writing_craft.readability_scoring_editing",
+          "tw_fundamentals_writing_craft.inclusive_accessible_language",
+          "tw_fundamentals_writing_craft.doc_governance_style_creation"
+        ]
+      }
+    ],
+    "assessment": [
+      {
+        "signal": "Passes comprehensive technical writing craft assessment covering style guidelines, topic modeling, editorial reviews, and accessibility",
+        "strength": 1.0,
+        "maps_to": [
+          "tw_fundamentals_writing_craft.clarity_conciseness_active_voice",
+          "tw_fundamentals_writing_craft.style_guides_standards",
+          "tw_fundamentals_writing_craft.audience_persona_analysis",
+          "tw_fundamentals_writing_craft.information_architecture_hierarchy",
+          "tw_fundamentals_writing_craft.dita_topic_based_authoring",
+          "tw_fundamentals_writing_craft.terminology_glossary_management",
+          "tw_fundamentals_writing_craft.readability_scoring_editing",
+          "tw_fundamentals_writing_craft.inclusive_accessible_language",
+          "tw_fundamentals_writing_craft.doc_governance_style_creation"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "clarity_conciseness_active_voice",
+        "style_guides_standards",
+        "audience_persona_analysis"
+      ],
+      "description": "Writes clear, concise, active-voice documentation adhering to established Google/Microsoft style guides and basic persona needs."
+    },
+    "mid": {
+      "expected_subskills": [
+        "information_architecture_hierarchy",
+        "dita_topic_based_authoring",
+        "terminology_glossary_management"
+      ],
+      "description": "Structures multi-page documentation with topic-based authoring (DITA), manages controlled glossaries, and designs scannable information architectures."
+    },
+    "senior": {
+      "expected_subskills": [
+        "readability_scoring_editing",
+        "inclusive_accessible_language",
+        "doc_governance_style_creation"
+      ],
+      "description": "Establishes enterprise documentation governance, authors custom Vale linting rules, leads editorial reviews, and enforces global WCAG accessibility standards."
+    }
+  }
+}

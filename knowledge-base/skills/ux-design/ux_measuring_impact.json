@@ -1,123 +1,230 @@
 {
   "skill_id": "ux_measuring_impact",
-  "name": "Measuring UX & Behavioral Impact",
-  "category": "ux_research_strategy",
-  "description": "Rigorous methods for evaluating whether UX and behavioral design interventions are achieving their intended outcomes. Covers quantitative experimentation (A/B testing, multivariate testing), interpreting test results correctly (statistical significance, practical significance, confidence intervals), and integrating findings back into the design cycle. UX designers who measure impact close the design-behavior feedback loop.",
+  "name": "UX Analytics, Usability Testing & Impact Measurement",
+  "category": "ux_analytics",
+  "description": "Quantitative and qualitative UX measurement: A/B testing, multivariate testing, statistical significance, Usability Testing (SUS), funnel drop-off analytics, HEART framework ROI, and algorithmic personalization.",
   "subskills": [
     {
       "id": "ab_testing",
-      "name": "A/B Testing",
-      "description": "Controlled experiments comparing two variants (A=control, B=treatment) on a randomly split user population. Covers experiment design (hypothesis formulation, primary and guardrail metrics, minimum detectable effect), traffic splitting, sample size calculation, and avoiding common pitfalls (peeking, novelty effect, multiple testing problem).",
-      "keywords": ["A/B testing", "split testing", "control variant", "treatment variant", "hypothesis", "primary metric", "guardrail metric", "minimum detectable effect", "sample size calculation", "peeking problem", "novelty effect", "statistical significance", "p-value", "confidence interval"]
-    },
-    {
-      "id": "multivariate_testing",
-      "name": "Multivariate Testing (MVT)",
-      "description": "Experiments testing multiple variables simultaneously to understand interaction effects between design elements. Covers full factorial vs fractional factorial designs, Taguchi methods, and interpreting interaction effects. Distinguishes MVT from sequential A/B tests and explains when each approach is appropriate (traffic volume requirements, timeline, hypothesis complexity).",
-      "keywords": ["multivariate testing", "MVT", "factorial design", "interaction effect", "Taguchi", "full factorial", "fractional factorial", "design variables", "traffic volume requirement", "element combination", "simultaneous testing"]
-    },
-    {
-      "id": "statistical_interpretation",
-      "name": "Statistical Interpretation & Result Analysis",
-      "description": "Correctly interpreting experiment results without common misinterpretations. Covers statistical significance vs practical significance, Type I errors (false positive), Type II errors (false negative), power analysis, effect size (Cohen's d), Bayesian vs frequentist approaches to testing, and confidence intervals vs p-values. Includes how to present results to non-technical stakeholders.",
-      "keywords": ["statistical significance", "practical significance", "Type I error", "Type II error", "false positive", "false negative", "power analysis", "effect size", "Cohen's d", "Bayesian testing", "frequentist", "confidence interval", "p-value misinterpretation", "p-hacking"]
-    },
-    {
-      "id": "integrating_test_results",
-      "name": "Integrating Test Results into Design",
-      "description": "The process of translating experiment outcomes into actionable design decisions. Covers shipping winners, rolling back losers, analyzing segment-level heterogeneous treatment effects (HTE), deciding what to learn from failed experiments, documenting institutional knowledge, and building an experimentation culture that values learning over success rates.",
-      "keywords": ["shipping winners", "experiment rollback", "heterogeneous treatment effects", "HTE", "segment analysis", "experiment documentation", "learning culture", "design iteration", "failed experiment", "institutional knowledge", "experiment backlog", "continuous experimentation"]
+      "name": "A/B Testing Methodology & Hypothesis Formulation",
+      "description": "Formulating testable hypotheses, defining primary/secondary metrics, and running A/B experiments.",
+      "keywords": [
+        "A/B testing",
+        "hypothesis formulation",
+        "control vs variant",
+        "conversion rate",
+        "experiment design"
+      ]
     },
     {
       "id": "ux_metrics",
-      "name": "UX & Behavioral Metrics Framework",
-      "description": "Defining and tracking the right metrics for behavioral design outcomes. Covers HEART framework (Happiness, Engagement, Adoption, Retention, Task Success), North Star Metric, leading vs lagging indicators, behavioral funnels (activation → engagement → retention → revenue), and custom behavioral metrics that measure the specific target action.",
-      "keywords": ["HEART framework", "North Star Metric", "leading indicator", "lagging indicator", "behavioral funnel", "activation", "engagement", "retention", "task success rate", "NPS", "CSAT", "session length", "DAU/MAU ratio", "behavioral metric"]
+      "name": "UX KPIs & Core Metrics (CSAT, CES, NPS, TTR)",
+      "description": "Tracking Customer Satisfaction (CSAT), Customer Effort Score (CES), Net Promoter Score (NPS), and Time-to-Resolution.",
+      "keywords": [
+        "CSAT",
+        "CES",
+        "NPS",
+        "TTR",
+        "Customer Effort Score",
+        "UX KPIs",
+        "task completion rate"
+      ]
+    },
+    {
+      "id": "usability_testing_heuristics_sus",
+      "name": "Usability Testing Protocols & System Usability Scale (SUS)",
+      "description": "Conducting moderated/unmoderated usability tests, Nielsen's 10 heuristics evaluations, and standard SUS scoring.",
+      "keywords": [
+        "usability testing",
+        "System Usability Scale",
+        "SUS score",
+        "heuristics evaluation",
+        "Nielsen 10 heuristics",
+        "moderated test"
+      ]
+    },
+    {
+      "id": "statistical_interpretation",
+      "name": "Statistical Significance, P-Values & Sample Sizing",
+      "description": "Calculating statistical significance (p < 0.05), confidence intervals, statistical power (1 - beta), and minimum sample sizes.",
+      "keywords": [
+        "statistical significance",
+        "p-value",
+        "confidence interval",
+        "sample size calculator",
+        "MDE",
+        "Type I error",
+        "Type II error"
+      ]
+    },
+    {
+      "id": "integrating_test_results",
+      "name": "Synthesizing Test Results & Iterative UX Roadmaps",
+      "description": "Triangulating qualitative feedback with quantitative test metrics to drive iterative design roadmaps.",
+      "keywords": [
+        "test synthesis",
+        "qual-quant triangulation",
+        "iterative design",
+        "design recommendations",
+        "insight report"
+      ]
+    },
+    {
+      "id": "funnel_dropoff_cohort_analytics",
+      "name": "Funnel Drop-Off Analytics & Behavioral Cohorts",
+      "description": "Analyzing conversion funnels, drop-off milestones, cohort retention curves (Mixpanel, Amplitude, PostHog), and session replay insights.",
+      "keywords": [
+        "funnel analytics",
+        "drop-off analysis",
+        "cohort retention",
+        "Mixpanel",
+        "Amplitude",
+        "PostHog",
+        "session recording"
+      ]
+    },
+    {
+      "id": "multivariate_testing",
+      "name": "Multivariate (MVT) & Fractional Factorial Testing",
+      "description": "Testing multiple element combinations simultaneously using fractional factorial experimental design.",
+      "keywords": [
+        "multivariate testing",
+        "MVT",
+        "fractional factorial",
+        "interaction effects",
+        "high-traffic optimization"
+      ]
+    },
+    {
+      "id": "longitudinal_ux_impact_heart_framework",
+      "name": "Google HEART Framework & UX ROI Attribution",
+      "description": "Measuring long-term impact with Google HEART (Happiness, Engagement, Adoption, Retention, Task Success) and calculating UX ROI.",
+      "keywords": [
+        "HEART framework",
+        "Google HEART",
+        "Happiness",
+        "Engagement",
+        "Adoption",
+        "Retention",
+        "Task Success",
+        "UX ROI"
+      ]
+    },
+    {
+      "id": "algorithmic_personalization_impact",
+      "name": "Algorithmic & Adaptive UX Impact Measurement",
+      "description": "Measuring the user impact of ML-driven adaptive UI personalization, recommendation algorithms, and algorithmic bias testing.",
+      "keywords": [
+        "adaptive UX",
+        "personalization impact",
+        "recommendation algorithm UX",
+        "algorithmic bias",
+        "dynamic personalization"
+      ]
     }
   ],
   "evidence": {
     "github": [
       {
-        "signal": "A/B test design documents, experiment tracking, or statistical analysis scripts",
+        "signal": "Experimentation configs (LaunchDarkly, Statsig), PostHog/Mixpanel tracking events, and usability test plans",
         "detection": "content_analysis",
-        "pattern": "A/B test|split test|experiment|hypothesis|p-value|confidence interval|statistical significance|multivariate|control.*treatment",
-        "strength": 0.8,
+        "pattern": "Statsig|LaunchDarkly|mixpanel\\.track|posthog\\.capture|ABTest|HEARTFramework",
+        "strength": 0.85,
         "maps_to": [
           "ux_measuring_impact.ab_testing",
-          "ux_measuring_impact.multivariate_testing",
-          "ux_measuring_impact.statistical_interpretation"
-        ]
-      },
-      {
-        "signal": "UX metrics dashboards, HEART framework documentation, or behavioral funnel analysis",
-        "detection": "content_analysis",
-        "pattern": "HEART framework|North Star|behavioral funnel|activation|retention|NPS|CSAT|DAU|MAU|task success",
-        "strength": 0.7,
-        "maps_to": [
           "ux_measuring_impact.ux_metrics",
-          "ux_measuring_impact.integrating_test_results"
+          "ux_measuring_impact.usability_testing_heuristics_sus",
+          "ux_measuring_impact.statistical_interpretation",
+          "ux_measuring_impact.integrating_test_results",
+          "ux_measuring_impact.funnel_dropoff_cohort_analytics",
+          "ux_measuring_impact.multivariate_testing",
+          "ux_measuring_impact.longitudinal_ux_impact_heart_framework",
+          "ux_measuring_impact.algorithmic_personalization_impact"
         ]
       }
     ],
     "cv": [
       {
-        "signal": "Designed and ran A/B tests or multivariate experiments to validate UX decisions",
-        "strength": 0.85,
+        "signal": "Formulated A/B test hypotheses and conducted SUS usability evaluations improving task completion rate from 62% to 91%",
+        "strength": 0.6,
         "maps_to": [
           "ux_measuring_impact.ab_testing",
-          "ux_measuring_impact.multivariate_testing",
+          "ux_measuring_impact.ux_metrics",
+          "ux_measuring_impact.usability_testing_heuristics_sus",
           "ux_measuring_impact.statistical_interpretation"
         ]
       },
       {
-        "signal": "Translated experiment results into design iterations and shipped validated improvements",
-        "strength": 0.8,
+        "signal": "Implemented Google HEART framework tracking longitudinal retention and analyzed funnel cohorts in Amplitude/Mixpanel",
+        "strength": 0.6,
         "maps_to": [
           "ux_measuring_impact.integrating_test_results",
-          "ux_measuring_impact.ab_testing"
-        ]
-      },
-      {
-        "signal": "Defined UX metrics, HEART framework, or behavioral KPIs for product teams",
-        "strength": 0.75,
-        "maps_to": [
-          "ux_measuring_impact.ux_metrics",
-          "ux_measuring_impact.integrating_test_results"
+          "ux_measuring_impact.funnel_dropoff_cohort_analytics",
+          "ux_measuring_impact.multivariate_testing",
+          "ux_measuring_impact.longitudinal_ux_impact_heart_framework",
+          "ux_measuring_impact.algorithmic_personalization_impact"
         ]
       }
     ],
     "linkedin": [
       {
-        "signal": "A/B testing, experimentation, or conversion optimization endorsed",
-        "strength": 0.5,
+        "signal": "Endorsements in UX Research, A/B Testing, Usability Testing (SUS), Product Analytics, and HEART Framework",
+        "strength": 0.4,
         "maps_to": [
           "ux_measuring_impact.ab_testing",
-          "ux_measuring_impact.multivariate_testing",
-          "ux_measuring_impact.statistical_interpretation"
-        ]
-      },
-      {
-        "signal": "UX metrics, HEART framework, or data-driven design mentioned",
-        "strength": 0.5,
-        "maps_to": [
           "ux_measuring_impact.ux_metrics",
-          "ux_measuring_impact.integrating_test_results"
+          "ux_measuring_impact.usability_testing_heuristics_sus",
+          "ux_measuring_impact.statistical_interpretation",
+          "ux_measuring_impact.integrating_test_results",
+          "ux_measuring_impact.funnel_dropoff_cohort_analytics",
+          "ux_measuring_impact.multivariate_testing",
+          "ux_measuring_impact.longitudinal_ux_impact_heart_framework",
+          "ux_measuring_impact.algorithmic_personalization_impact"
+        ]
+      }
+    ],
+    "assessment": [
+      {
+        "signal": "Passes UX analytics assessment covering sample size calculations, SUS usability scoring, funnel cohort retention, and HEART framework ROI",
+        "strength": 1.0,
+        "maps_to": [
+          "ux_measuring_impact.ab_testing",
+          "ux_measuring_impact.ux_metrics",
+          "ux_measuring_impact.usability_testing_heuristics_sus",
+          "ux_measuring_impact.statistical_interpretation",
+          "ux_measuring_impact.integrating_test_results",
+          "ux_measuring_impact.funnel_dropoff_cohort_analytics",
+          "ux_measuring_impact.multivariate_testing",
+          "ux_measuring_impact.longitudinal_ux_impact_heart_framework",
+          "ux_measuring_impact.algorithmic_personalization_impact"
         ]
       }
     ]
   },
   "levels": {
     "junior": {
-      "expected_subskills": ["ab_testing", "ux_metrics"],
-      "description": "Understands A/B test mechanics and can define primary behavioral metrics using the HEART framework."
+      "expected_subskills": [
+        "ab_testing",
+        "ux_metrics",
+        "usability_testing_heuristics_sus"
+      ],
+      "description": "Formulates testable A/B hypotheses, tracks CSAT/NPS KPIs, and conducts SUS usability tests."
     },
     "mid": {
-      "expected_subskills": ["statistical_interpretation", "integrating_test_results"],
-      "description": "Interprets experiment results correctly (avoiding p-value misinterpretation), translates outcomes into design decisions, and documents learnings systematically."
+      "expected_subskills": [
+        "statistical_interpretation",
+        "integrating_test_results",
+        "funnel_dropoff_cohort_analytics"
+      ],
+      "description": "Calculates statistical significance/p-values, analyzes funnel drop-off cohorts, and synthesizes qualitative/quantitative insights."
     },
     "senior": {
-      "expected_subskills": ["multivariate_testing"],
-      "description": "Designs and analyzes multivariate experiments with interaction effects, leads experimentation culture, and integrates behavioral metrics into organizational OKR frameworks."
+      "expected_subskills": [
+        "multivariate_testing",
+        "longitudinal_ux_impact_heart_framework",
+        "algorithmic_personalization_impact"
+      ],
+      "description": "Directs multivariate testing, establishes Google HEART framework tracking, and measures adaptive ML personalization impact."
     }
   }
 }

@@ -1,223 +1,263 @@
 {
   "skill_id": "dapp_development",
-  "name": "Decentralized Application (dApp) Development",
-  "category": "blockchain_engineering",
-  "description": "Building full-stack decentralized applications that connect users to smart contracts through web or mobile interfaces. Covers the major dApp categories (DeFi, DAOs, NFTs, Payments, Insurance), node-as-a-service providers that replace running your own node, backend language options (JavaScript/TypeScript, Python, Go), frontend framework integration, client libraries for blockchain interaction (ethers.js, web3.js, Moralis), and client node types for teams who do run their own infrastructure.",
+  "name": "Full-Stack DApp Development & Web3 Integration",
+  "category": "dapp_development",
+  "description": "Building full-stack decentralized applications: Web3 wallet connections (Wagmi, RainbowKit), DeFi protocol integrations (Uniswap, Aave), NFT standards, DAO governance, decentralized indexers (The Graph), and ERC-4337 Account Abstraction.",
   "subskills": [
     {
-      "id": "defi",
-      "name": "DeFi Applications",
-      "description": "Decentralized Finance: on-chain protocols replacing traditional financial intermediaries. Key DeFi primitives: Automated Market Makers (AMMs — Uniswap v2/v3, Curve, Balancer), lending protocols (Aave, Compound — collateralized borrowing, liquidation mechanics, interest rate models), yield aggregators (Yearn Finance — ERC-4626 vaults), stablecoins (MakerDAO DAI — CDP/Vault model, algorithmic), perpetual DEXes (GMX, dYdX), liquid staking (Lido, Rocket Pool — stETH), flash loans (Aave — atomic, uncollateralized). Understanding TVL, composability (money legos), protocol governance via tokens.",
-      "keywords": ["DeFi", "AMM", "Uniswap", "Curve", "Balancer", "Aave", "Compound", "liquidation", "yield aggregator", "Yearn", "ERC-4626", "MakerDAO", "DAI", "CDP", "flash loan", "TVL", "composability", "money legos", "stETH", "liquid staking", "GMX"]
+      "id": "web3_wallet_integration_wagmi_ethers",
+      "name": "Web3 Wallet Connectors (Wagmi, Viem, RainbowKit)",
+      "description": "Integrating browser wallets (MetaMask, Coinbase Wallet, WalletConnect), handling chain switching, signature requests, and reactive contract hooks.",
+      "keywords": [
+        "Wagmi",
+        "Viem",
+        "RainbowKit",
+        "WalletConnect",
+        "MetaMask",
+        "useAccount",
+        "useConnect",
+        "signMessage"
+      ]
     },
     {
-      "id": "daos",
-      "name": "DAOs (Decentralized Autonomous Organizations)",
-      "description": "On-chain governance structures where token holders vote on protocol decisions. Covers: governance token distribution, proposal lifecycle (creation → voting period → timelock → execution), quorum and voting thresholds, OpenZeppelin Governor framework (GovernorBravo), Compound governance fork, Snapshot (off-chain signaling with on-chain execution), Gnosis Safe multi-sig for treasury management, Tally and Boardroom for DAO UIs, veto and emergency mechanisms, delegate voting, and quadratic voting.",
-      "keywords": ["DAO", "governance token", "proposal", "voting period", "quorum", "Timelock", "GovernorBravo", "Compound governance", "Snapshot", "Gnosis Safe", "Tally", "Boardroom", "delegate voting", "quadratic voting", "on-chain governance", "off-chain signaling", "treasury management"]
+      "id": "frontend_dapp_frameworks",
+      "name": "Frontend DApp Frameworks & State Architecture",
+      "description": "Building responsive DApps with Next.js/React, handling asynchronous blockchain latency, optimistic UI updates, and transaction toast notifications.",
+      "keywords": [
+        "Next.js",
+        "React",
+        "optimistic UI",
+        "transaction toast",
+        "useWaitForTransactionReceipt",
+        "DApp frontend",
+        "Web3 UI"
+      ]
     },
     {
-      "id": "nfts",
-      "name": "NFTs (Non-Fungible Tokens)",
-      "description": "ERC-721 and ERC-1155 token implementations for unique digital assets. Covers: metadata standards (JSON schema, on-chain vs IPFS vs Arweave storage), lazy minting, Dutch auction minting, allowlist (Merkle tree-based whitelists), royalties (ERC-2981 on-chain royalty standard), NFT marketplaces (OpenSea, Blur, LooksRare APIs and seaport protocol), soulbound tokens (ERC-5192 non-transferable), dynamic NFTs (metadata updated by oracles or time), generative art (EVM-based randomness for traits), and NFT fractionalization.",
-      "keywords": ["NFT", "ERC-721", "ERC-1155", "metadata standard", "on-chain metadata", "IPFS metadata", "lazy minting", "Dutch auction", "Merkle allowlist", "ERC-2981", "royalty", "OpenSea", "Blur", "seaport", "soulbound token", "ERC-5192", "dynamic NFT", "generative art", "fractionalization"]
+      "id": "node_as_a_service_rpc_infura_alchemy",
+      "name": "RPC Infrastructure & WebSocket Event Subscriptions",
+      "description": "Connecting to node infrastructure (Alchemy, Infura, QuickNode), managing WebSocket subscriptions (`eth_subscribe`), and batching JSON-RPC requests.",
+      "keywords": [
+        "Alchemy",
+        "Infura",
+        "WebSocket",
+        "eth_subscribe",
+        "JSON-RPC batching",
+        "RPC rate limits",
+        "live event feed"
+      ]
     },
     {
-      "id": "payments_insurance",
-      "name": "Payments & Insurance dApps",
-      "description": "Payment-focused applications: crypto payment gateways (Coinbase Commerce, BTCPay Server), recurring payments via ERC-20 approve-based subscriptions, streaming payments (Superfluid — per-second token streams, SABLIER), request financing (Request Network), stablecoin payments, and Lightning Network for Bitcoin micropayments. Parametric insurance on-chain: smart contracts that automatically pay out when oracle-verified conditions are met (flight delay insurance, crop insurance, protocol cover — Nexus Mutual, InsurAce).",
-      "keywords": ["crypto payments", "Coinbase Commerce", "BTCPay", "streaming payments", "Superfluid", "Sablier", "Request Network", "Lightning Network", "subscription", "parametric insurance", "Nexus Mutual", "InsurAce", "automated payout", "oracle condition", "stablecoin payments"]
+      "id": "defi_protocols_integration_uniswap_aave",
+      "name": "DeFi Protocol Integrations (Uniswap, Aave, Curve)",
+      "description": "Integrating with decentralized exchanges (Uniswap v2/v3/v4 routers, flash swaps) and lending protocols (Aave v3 flash loans, aTokens, collateral health factors).",
+      "keywords": [
+        "Uniswap Router",
+        "Aave v3",
+        "flash loan",
+        "liquidity pool",
+        "exactInputSingle",
+        "health factor",
+        "Curve Finance",
+        "DeFi integration"
+      ]
     },
     {
-      "id": "node_as_a_service",
-      "name": "Node-as-a-Service Providers",
-      "description": "Infrastructure providers offering managed blockchain node RPC endpoints so developers don't need to run their own nodes. Alchemy (leading provider: Enhanced APIs for NFT metadata, transaction history, Notify webhooks, Transact for gas-optimized transaction sending, Alchemy SDK), Infura (ConsenSys, IPFS gateway included, broad network support), Moralis (Web3 data API — wallet activity, token balances, NFT metadata, Streams for real-time events — abstraction layer over RPC), QuickNode (high-performance RPC, add-ons marketplace), Ankr (decentralized RPC). Comparing rate limits, costs, supported chains, and enhanced APIs.",
-      "keywords": ["Alchemy", "Infura", "Moralis", "QuickNode", "Ankr", "RPC endpoint", "node-as-a-service", "Enhanced API", "NFT metadata API", "Notify webhook", "Moralis Streams", "rate limit", "supported chains", "Web3 data API", "managed node"]
+      "id": "nft_standards_metadata_ipfs",
+      "name": "NFT Minting, IPFS Metadata & Marketplaces",
+      "description": "Decentralized metadata storage (IPFS, Arweave), ERC-721/ERC-1155 minting dapps, royalties (ERC-2981), and OpenSea/Reservoir API integrations.",
+      "keywords": [
+        "ERC-721",
+        "ERC-1155",
+        "IPFS",
+        "Arweave",
+        "tokenURI",
+        "ERC-2981 royalty",
+        "NFT minting DApp",
+        "Pinata"
+      ]
     },
     {
-      "id": "backend_languages",
-      "name": "Backend Languages for dApps (JS, Python, Go)",
-      "description": "Server-side code that interacts with blockchains for indexing, automation, and API serving. JavaScript/TypeScript with ethers.js or viem for event listeners, transaction sending, and API servers (Next.js API routes, Express). Python with web3.py for data analysis, bot development, and scripting (DeFi bots, arbitrage). Go with go-ethereum (geth) for high-performance blockchain interaction, building custom indexers, MEV bots, and validator infrastructure. The Graph (subgraph AssemblyScript) for decentralized event indexing.",
-      "keywords": ["ethers.js", "viem", "web3.py", "go-ethereum", "geth RPC", "event listener", "blockchain API server", "DeFi bot", "arbitrage", "MEV bot", "Go blockchain", "Next.js API", "Express blockchain", "AssemblyScript", "subgraph", "indexer"]
+      "id": "dao_governance_voting_snapshot",
+      "name": "DAO Governance, Multi-Sig & Off-Chain Voting",
+      "description": "Integrating on-chain Governor contracts (Compound Governor Bravo, OpenZeppelin Governor), Safe (Gnosis Safe) multi-sig transactions, and off-chain Snapshot gasless voting.",
+      "keywords": [
+        "DAO governance",
+        "Governor Bravo",
+        "Snapshot",
+        "Gnosis Safe",
+        "Safe Apps SDK",
+        "gasless voting",
+        "delegation"
+      ]
     },
     {
-      "id": "frontend_frameworks",
-      "name": "Frontend Frameworks for dApps",
-      "description": "Web frameworks adapted for blockchain frontends. React is dominant: wagmi (React hooks for Ethereum — useAccount, useBalance, useContractRead, useContractWrite, useWaitForTransaction), RainbowKit (wallet connection UI built on wagmi), Viem (TypeScript-first, tree-shakeable ethers.js alternative underlying wagmi v2). Vue with useWeb3 or viem direct. Angular with Web3.js or ethers. Next.js for SSR/SSG of dApp UIs (server-side rendering compatible with client-only wallet connection). React Query for async blockchain state management.",
-      "keywords": ["React", "wagmi", "useAccount", "useBalance", "useContractRead", "useContractWrite", "RainbowKit", "viem", "ConnectKit", "Vue", "Angular", "Next.js", "SSR dApp", "React Query", "blockchain frontend", "wallet connection UI", "useWaitForTransaction"]
+      "id": "full_node_client_rpc_architecture",
+      "name": "Self-Hosted Full Nodes & Client Architecture (Geth, Reth)",
+      "description": "Running and maintaining Ethereum execution clients (Geth, Nethermind, Reth, Besu) and consensus clients (Lighthouse, Prysm) for high-throughput RPC clusters.",
+      "keywords": [
+        "Geth",
+        "Reth",
+        "Nethermind",
+        "Lighthouse",
+        "Prysm",
+        "Execution Client",
+        "Consensus Client",
+        "self-hosted node",
+        "Engine API"
+      ]
     },
     {
-      "id": "ethers_js",
-      "name": "Client Libraries — ethers.js, web3.js, Moralis",
-      "description": "JavaScript libraries for blockchain interaction. ethers.js v6: Provider (read-only blockchain connection), Signer (transaction signing), Contract (typed contract interaction with ABI), Wallet, utils (parseEther, formatEther, keccak256, solidityKeccak256, hexlify). Viem as the modern TypeScript alternative (public client, wallet client, type-safe ABI). web3.js v4 (older, less favored). Moralis SDK: abstraction layer offering token balances, NFT metadata, transaction history, and real-time streams without direct RPC calls. wagmi/core for framework-agnostic wallet management.",
-      "keywords": ["ethers.js", "Provider", "Signer", "Contract", "parseEther", "formatEther", "keccak256", "viem", "publicClient", "walletClient", "web3.js", "Moralis SDK", "wagmi/core", "ABI", "BigNumber", "event filter", "getLogs", "sendTransaction"]
+      "id": "indexer_subgraphs_the_graph_envio",
+      "name": "Decentralized Indexing & Subgraphs (The Graph, Envio)",
+      "description": "Authoring custom GraphQL subgraphs with The Graph (AssemblyScript mapping handlers, entity schemas) and Envio hyper-indexers for fast querying.",
+      "keywords": [
+        "The Graph",
+        "subgraph.yaml",
+        "schema.graphql",
+        "AssemblyScript mapping",
+        "Envio",
+        "GraphQL",
+        "blockchain indexing",
+        "Goldsky"
+      ]
     },
     {
-      "id": "client_nodes",
-      "name": "Client Nodes (Geth, Besu, Nethermind, Substrate)",
-      "description": "Running your own Ethereum or Substrate nodes for maximum control, privacy, and performance. Ethereum execution clients: Geth (Go — most popular, full node, light node, snap sync, archive node), Besu (Java — ConsenSys enterprise client, EEA private transactions, privacy groups, PoA networks), Nethermind (.NET — fast sync, Prometheus metrics, plugin system). Consensus layer clients: Prysm, Lighthouse, Lodestar (for post-Merge validator node operation). Substrate node for Polkadot/Kusama parachain development. Node sync modes, archive vs pruned, and JSON-RPC API.",
-      "keywords": ["Geth", "Besu", "Nethermind", "Substrate", "Prysm", "Lighthouse", "full node", "archive node", "snap sync", "fast sync", "Ethereum client", "consensus client", "execution client", "JSON-RPC", "node sync", "private transactions", "EEA", "validator node"]
+      "id": "account_abstraction_erc4337_bundlers",
+      "name": "ERC-4337 Account Abstraction & Paymasters",
+      "description": "ERC-4337 smart accounts: UserOperations, EntryPoint contract mechanics, Bundlers (Alto, Rundler), Paymasters (gas sponsorship in ERC-20), and Session Keys (Passkeys).",
+      "keywords": [
+        "ERC-4337",
+        "Account Abstraction",
+        "UserOperation",
+        "EntryPoint",
+        "Paymaster",
+        "Bundler",
+        "Passkeys",
+        "gas sponsorship",
+        "Biconomy",
+        "ZeroDev"
+      ]
     }
   ],
   "evidence": {
     "github": [
       {
-        "signal": "DeFi protocol implementation (AMM, lending, vault, stablecoin)",
+        "signal": "Wagmi, Viem, and RainbowKit configuration and custom Web3 hooks",
         "detection": "content_analysis",
-        "pattern": "AMM|UniswapV2|UniswapV3|IUniswapV2|swap|addLiquidity|borrow|liquidate|harvest|vault|ERC4626|DAI|CDP|flash.*loan",
+        "pattern": "createConfig\\(|createPublicClient\\(|http\\(\\)|@rainbow-me/rainbowkit|wagmi",
+        "strength": 0.85,
+        "maps_to": [
+          "dapp_development.web3_wallet_integration_wagmi_ethers",
+          "dapp_development.frontend_dapp_frameworks",
+          "dapp_development.node_as_a_service_rpc_infura_alchemy"
+        ]
+      },
+      {
+        "signal": "The Graph subgraph definitions, schema.graphql, and AssemblyScript handlers",
+        "detection": "file_presence",
+        "pattern": "subgraph\\.ya?ml|schema\\.graphql|src/mapping\\.ts",
         "strength": 0.9,
         "maps_to": [
-          "dapp_development.defi"
+          "dapp_development.indexer_subgraphs_the_graph_envio"
         ]
       },
       {
-        "signal": "DAO governance contracts or Snapshot/Governor integration",
+        "signal": "Uniswap/Aave integrations, NFT IPFS minting, Safe transactions, and ERC-4337 UserOperations",
         "detection": "content_analysis",
-        "pattern": "Governor|GovernorBravo|TimelockController|Snapshot|propose|castVote|queue|execute.*proposal|votingPeriod|quorumNumerator",
+        "pattern": "ISwapRouter|IPoolAddressesProvider|pinata\\.pinJSONToIPFS|SafeAppsSDK|getUserOperationHash|SimpleAccountFactory",
         "strength": 0.9,
         "maps_to": [
-          "dapp_development.daos"
-        ]
-      },
-      {
-        "signal": "NFT project with minting, allowlist, or metadata code",
-        "detection": "content_analysis",
-        "pattern": "ERC721|ERC1155|tokenURI|_safeMint|merkleProof|MerkleTree|allowlist|whitelist|Dutch.*auction|ERC2981|royalty",
-        "strength": 0.85,
-        "maps_to": [
-          "dapp_development.nfts"
-        ]
-      },
-      {
-        "signal": "ethers.js, viem, or web3.js imports in frontend or backend code",
-        "detection": "content_analysis",
-        "pattern": "ethers|viem|web3\\.js|useContractRead|useContractWrite|publicClient|walletClient|parseEther|formatEther",
-        "strength": 0.85,
-        "maps_to": [
-          "dapp_development.ethers_js",
-          "dapp_development.frontend_frameworks"
-        ]
-      },
-      {
-        "signal": "Alchemy, Infura, Moralis, or QuickNode API usage",
-        "detection": "content_analysis",
-        "pattern": "alchemy\\.com|infura\\.io|moralis\\.io|quicknode\\.pro|ALCHEMY_API|INFURA_API|Moralis\\.start|AlchemyProvider|InfuraProvider",
-        "strength": 0.8,
-        "maps_to": [
-          "dapp_development.node_as_a_service"
-        ]
-      },
-      {
-        "signal": "React wagmi hooks or RainbowKit/ConnectKit in frontend",
-        "detection": "content_analysis",
-        "pattern": "wagmi|useAccount|useBalance|RainbowKit|ConnectKit|WagmiConfig|createConfig",
-        "strength": 0.85,
-        "maps_to": [
-          "dapp_development.frontend_frameworks"
-        ]
-      },
-      {
-        "signal": "go-ethereum or web3.py imports for server-side blockchain interaction",
-        "detection": "content_analysis",
-        "pattern": "go-ethereum|github\\.com/ethereum|ethclient\\.Dial|web3\\.py|from web3 import|Web3\\(",
-        "strength": 0.85,
-        "maps_to": [
-          "dapp_development.backend_languages"
-        ]
-      },
-      {
-        "signal": "Geth, Besu, Nethermind, or Substrate node configuration",
-        "detection": "content_analysis",
-        "pattern": "geth|besu|nethermind|substrate-node|--syncmode|--datadir|--http|--ws|JSON-RPC",
-        "strength": 0.85,
-        "maps_to": [
-          "dapp_development.client_nodes"
+          "dapp_development.defi_protocols_integration_uniswap_aave",
+          "dapp_development.nft_standards_metadata_ipfs",
+          "dapp_development.dao_governance_voting_snapshot",
+          "dapp_development.full_node_client_rpc_architecture",
+          "dapp_development.account_abstraction_erc4337_bundlers"
         ]
       }
     ],
     "cv": [
       {
-        "signal": "Built DeFi protocols, AMMs, lending platforms, or yield vaults",
-        "strength": 0.9,
+        "signal": "Built responsive full-stack Web3 applications with Next.js, Wagmi, Viem, and Uniswap/Aave protocol integrations",
+        "strength": 0.6,
         "maps_to": [
-          "dapp_development.defi"
+          "dapp_development.web3_wallet_integration_wagmi_ethers",
+          "dapp_development.frontend_dapp_frameworks",
+          "dapp_development.node_as_a_service_rpc_infura_alchemy",
+          "dapp_development.defi_protocols_integration_uniswap_aave"
         ]
       },
       {
-        "signal": "Developed DAO governance systems or participated in protocol governance development",
-        "strength": 0.85,
+        "signal": "Engineered custom GraphQL subgraphs with The Graph and implemented ERC-4337 Account Abstraction paymaster gas sponsorship",
+        "strength": 0.6,
         "maps_to": [
-          "dapp_development.daos"
-        ]
-      },
-      {
-        "signal": "Built NFT projects with minting mechanisms, metadata pipelines, or marketplace integrations",
-        "strength": 0.85,
-        "maps_to": [
-          "dapp_development.nfts"
-        ]
-      },
-      {
-        "signal": "Built dApp frontends with React/wagmi, ethers.js, or viem",
-        "strength": 0.8,
-        "maps_to": [
-          "dapp_development.frontend_frameworks",
-          "dapp_development.ethers_js"
-        ]
-      },
-      {
-        "signal": "Used Alchemy, Infura, Moralis, or QuickNode for node infrastructure",
-        "strength": 0.75,
-        "maps_to": [
-          "dapp_development.node_as_a_service"
-        ]
-      },
-      {
-        "signal": "Operated Ethereum nodes (Geth, Besu, Nethermind) or validator infrastructure",
-        "strength": 0.85,
-        "maps_to": [
-          "dapp_development.client_nodes"
+          "dapp_development.indexer_subgraphs_the_graph_envio",
+          "dapp_development.account_abstraction_erc4337_bundlers",
+          "dapp_development.nft_standards_metadata_ipfs",
+          "dapp_development.dao_governance_voting_snapshot",
+          "dapp_development.full_node_client_rpc_architecture"
         ]
       }
     ],
     "linkedin": [
       {
-        "signal": "DeFi development, AMM, or yield protocol endorsed",
-        "strength": 0.6,
+        "signal": "Expertise in Full-Stack DApp Engineering, Web3 UI/UX, The Graph Subgraphs, and Account Abstraction (ERC-4337)",
+        "strength": 0.4,
         "maps_to": [
-          "dapp_development.defi"
+          "dapp_development.web3_wallet_integration_wagmi_ethers",
+          "dapp_development.frontend_dapp_frameworks",
+          "dapp_development.node_as_a_service_rpc_infura_alchemy",
+          "dapp_development.defi_protocols_integration_uniswap_aave",
+          "dapp_development.nft_standards_metadata_ipfs",
+          "dapp_development.dao_governance_voting_snapshot",
+          "dapp_development.full_node_client_rpc_architecture",
+          "dapp_development.indexer_subgraphs_the_graph_envio",
+          "dapp_development.account_abstraction_erc4337_bundlers"
         ]
-      },
+      }
+    ],
+    "assessment": [
       {
-        "signal": "NFT development, marketplace integration, or ERC-721 endorsed",
-        "strength": 0.5,
+        "signal": "Passes full-stack DApp development assessment covering Wagmi hooks, Uniswap flash swaps, The Graph schema design, and ERC-4337 Paymasters",
+        "strength": 1.0,
         "maps_to": [
-          "dapp_development.nfts"
-        ]
-      },
-      {
-        "signal": "ethers.js, wagmi, React dApp, or Alchemy/Infura mentioned",
-        "strength": 0.5,
-        "maps_to": [
-          "dapp_development.ethers_js",
-          "dapp_development.frontend_frameworks",
-          "dapp_development.node_as_a_service"
+          "dapp_development.web3_wallet_integration_wagmi_ethers",
+          "dapp_development.frontend_dapp_frameworks",
+          "dapp_development.node_as_a_service_rpc_infura_alchemy",
+          "dapp_development.defi_protocols_integration_uniswap_aave",
+          "dapp_development.nft_standards_metadata_ipfs",
+          "dapp_development.dao_governance_voting_snapshot",
+          "dapp_development.full_node_client_rpc_architecture",
+          "dapp_development.indexer_subgraphs_the_graph_envio",
+          "dapp_development.account_abstraction_erc4337_bundlers"
         ]
       }
     ]
   },
   "levels": {
     "junior": {
-      "expected_subskills": ["ethers_js", "frontend_frameworks", "node_as_a_service", "nfts"],
-      "description": "Builds dApp frontends with React/wagmi and ethers.js/viem, connects to Alchemy/Infura RPC, and deploys ERC-721/1155 NFT contracts with IPFS metadata."
+      "expected_subskills": [
+        "web3_wallet_integration_wagmi_ethers",
+        "frontend_dapp_frameworks",
+        "node_as_a_service_rpc_infura_alchemy"
+      ],
+      "description": "Integrates browser wallets via Wagmi/RainbowKit, builds reactive Next.js frontends, and connects to Alchemy/Infura RPCs."
     },
     "mid": {
-      "expected_subskills": ["defi", "daos", "backend_languages", "payments_insurance"],
-      "description": "Builds DeFi integrations (AMM interactions, lending protocols), implements DAO governance contracts, and writes server-side blockchain interaction in TypeScript or Python."
+      "expected_subskills": [
+        "defi_protocols_integration_uniswap_aave",
+        "nft_standards_metadata_ipfs",
+        "dao_governance_voting_snapshot"
+      ],
+      "description": "Integrates Uniswap routers, handles IPFS NFT metadata pinning, and coordinates Gnosis Safe/Snapshot governance."
     },
     "senior": {
-      "expected_subskills": ["client_nodes"],
-      "description": "Operates Ethereum full/archive nodes (Geth, Besu, Nethermind), designs validator infrastructure, and architects multi-layer dApp systems combining custom nodes, indexers, and API layers."
+      "expected_subskills": [
+        "full_node_client_rpc_architecture",
+        "indexer_subgraphs_the_graph_envio",
+        "account_abstraction_erc4337_bundlers"
+      ],
+      "description": "Architects custom GraphQL indexing subgraphs, configures high-throughput execution clients, and deploys ERC-4337 smart accounts."
     }
   }
 }

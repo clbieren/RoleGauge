@@ -1,115 +1,231 @@
 {
   "skill_id": "ux_business_model",
-  "name": "Business Model Analysis for UX",
-  "category": "ux_research_strategy",
-  "description": "Understanding the business context in which UX design operates. Covers both analysis of existing business models (Business Model Canvas, Lean Canvas) and evaluation of competitive and strategic landscape for new ventures (Inspirator, Competitor Analysis, Porter's Five Forces, SWOT). UX designers who understand business model fundamentals make design decisions that are commercially viable, not just user-desirable.",
+  "name": "UX Business Modeling & Product Strategy",
+  "category": "ux_business_strategy",
+  "description": "Aligning user experience with business models: Business Model Canvas, Lean Canvas, Value Proposition Canvas, competitor analysis, unit economics, and Product-Led Growth (PLG).",
   "subskills": [
     {
       "id": "business_model_canvas",
-      "name": "Business Model Canvas (BMC)",
-      "description": "Osterwalder's 9-block framework for mapping an existing business: Customer Segments, Value Propositions, Channels, Customer Relationships, Revenue Streams, Key Resources, Key Activities, Key Partnerships, and Cost Structure. UX designers use BMC to understand which user segments generate value, what the core proposition is, and how customer relationships shape interaction design.",
-      "keywords": ["Business Model Canvas", "BMC", "Osterwalder", "customer segments", "value proposition", "channels", "customer relationships", "revenue streams", "key resources", "key activities", "key partnerships", "cost structure"]
-    },
-    {
-      "id": "lean_canvas",
-      "name": "Lean Canvas",
-      "description": "Ash Maurya's startup-focused adaptation of the BMC, replacing partner/activity/resource blocks with Problem, Solution, Key Metrics, and Unfair Advantage. Suited for early-stage product discovery. UX designers use it to align design sprints with validated problem-solution fit hypotheses.",
-      "keywords": ["Lean Canvas", "Ash Maurya", "Running Lean", "problem-solution fit", "unique value proposition", "unfair advantage", "key metrics", "early adopters", "cost structure", "revenue streams", "startup canvas"]
-    },
-    {
-      "id": "inspirator_analysis",
-      "name": "Inspirator Analysis",
-      "description": "Identifying non-competing products or services that excel at the behavioral mechanics the new product aims to achieve. Inspirators are studied for their engagement patterns, habit loops, and UX innovations that could be adapted. Differs from competitor analysis in that inspirators may come from entirely different industries.",
-      "keywords": ["Inspirator", "analogous inspiration", "cross-industry inspiration", "behavioral reference", "engagement pattern", "design benchmark", "UX inspiration", "non-competitor inspiration"]
+      "name": "Business Model Canvas (Osterwalder)",
+      "description": "Mapping product vision across 9 building blocks: value propositions, customer segments, channels, revenue streams, and cost structures.",
+      "keywords": [
+        "Business Model Canvas",
+        "Osterwalder",
+        "value proposition",
+        "customer segments",
+        "revenue streams",
+        "channels",
+        "cost structure"
+      ]
     },
     {
       "id": "competitor_analysis",
-      "name": "Competitor Analysis",
-      "description": "Systematic evaluation of direct competitors' UX, features, pricing, positioning, strengths, and weaknesses. Covers feature matrix comparisons, UX teardowns (heuristic evaluation of competitor interfaces), and identifying market gaps that represent UX opportunities.",
-      "keywords": ["competitor analysis", "competitive landscape", "feature matrix", "UX teardown", "heuristic evaluation", "market positioning", "competitive gap", "direct competitor", "indirect competitor", "SWOT competitor"]
+      "name": "Competitive UX Benchmarking & Feature Matrix",
+      "description": "Analyzing competitor flows, heuristic benchmarking, and feature differentiation matrices.",
+      "keywords": [
+        "competitor analysis",
+        "competitive UX",
+        "benchmarking",
+        "feature matrix",
+        "direct competitors",
+        "indirect competitors"
+      ]
     },
     {
-      "id": "five_forces",
-      "name": "Porter's Five Forces",
-      "description": "Strategic framework analyzing industry competitiveness across five dimensions: competitive rivalry, supplier power, buyer power, threat of new entrants, and threat of substitutes. Informs UX decisions about product stickiness, switching cost design, and where to invest in differentiation.",
-      "keywords": ["Porter's Five Forces", "competitive rivalry", "supplier power", "buyer power", "threat of new entrants", "threat of substitutes", "industry analysis", "switching costs", "product stickiness", "competitive moat"]
+      "id": "value_proposition_design_canvas",
+      "name": "Value Proposition Design & Customer Profile Mapping",
+      "description": "Mapping customer jobs, pains, and gains to product pain relievers and gain creators.",
+      "keywords": [
+        "Value Proposition Canvas",
+        "customer jobs",
+        "pains and gains",
+        "pain relievers",
+        "gain creators",
+        "problem-solution fit"
+      ]
+    },
+    {
+      "id": "lean_canvas",
+      "name": "Lean Canvas (Ash Maurya)",
+      "description": "Fast-iteration canvas focusing on problem, solution, unique value proposition, unfair advantage, and early adopters.",
+      "keywords": [
+        "Lean Canvas",
+        "Ash Maurya",
+        "unfair advantage",
+        "early adopters",
+        "UVP",
+        "lean startup"
+      ]
+    },
+    {
+      "id": "inspirator_analysis",
+      "name": "Inspirator Analysis & Cross-Industry Analogues",
+      "description": "Drawing analog UX patterns from non-competing industries (e.g. applying gaming onboarding to fintech).",
+      "keywords": [
+        "inspirator analysis",
+        "cross-industry analogues",
+        "analogous design",
+        "inspirational benchmarks",
+        "pattern borrowing"
+      ]
     },
     {
       "id": "swot_analysis",
-      "name": "SWOT Analysis",
-      "description": "Strengths-Weaknesses-Opportunities-Threats framework applied to product or organization context. UX teams use SWOT to identify internal design capabilities and external market opportunities that shape the product strategy and interaction design priorities.",
-      "keywords": ["SWOT", "Strengths", "Weaknesses", "Opportunities", "Threats", "strategic analysis", "internal factors", "external factors", "product strategy", "design opportunity", "risk assessment"]
+      "name": "UX SWOT Analysis",
+      "description": "Assessing product experience Strengths, Weaknesses, Opportunities, and Threats against market trends.",
+      "keywords": [
+        "SWOT analysis",
+        "strengths",
+        "weaknesses",
+        "opportunities",
+        "threats",
+        "strategic UX"
+      ]
+    },
+    {
+      "id": "five_forces",
+      "name": "Porter's Five Forces & Industry UX Defensibility",
+      "description": "Evaluating industry competitiveness, buyer power, substitution threat, and switching costs in UX design.",
+      "keywords": [
+        "Five Forces",
+        "Porter",
+        "switching costs",
+        "buyer power",
+        "threat of substitution",
+        "defensibility"
+      ]
+    },
+    {
+      "id": "unit_economics_ux_monetization",
+      "name": "SaaS Unit Economics & Monetization UX",
+      "description": "Aligning UX design with SaaS unit economics: Customer Acquisition Cost (CAC), Lifetime Value (LTV), payback period, and churn reduction.",
+      "keywords": [
+        "unit economics",
+        "CAC",
+        "LTV",
+        "payback period",
+        "churn reduction",
+        "monetization UX",
+        "pricing psychology"
+      ]
+    },
+    {
+      "id": "product_led_growth_ux_mechanics",
+      "name": "Product-Led Growth (PLG) & Time-to-Value (TTV)",
+      "description": "Designing frictionless self-service onboarding, virality loops, freemium-to-paid conversion thresholds, and minimizing TTV.",
+      "keywords": [
+        "Product-Led Growth",
+        "PLG",
+        "Time-to-Value",
+        "TTV",
+        "freemium conversion",
+        "viral loop",
+        "self-service onboarding"
+      ]
     }
   ],
   "evidence": {
     "github": [
       {
-        "signal": "Business model, competitive analysis, or strategic framework documentation in design repository",
+        "signal": "Product strategy docs, Value Proposition Canvas files, and pricing tier UX components",
         "detection": "content_analysis",
-        "pattern": "Business Model Canvas|Lean Canvas|SWOT|Five Forces|competitor analysis|inspirator|competitive landscape",
-        "strength": 0.8,
+        "pattern": "LeanCanvas|ValueProposition|PLG|TimeToValue|PricingTable|CompetitorMatrix",
+        "strength": 0.85,
         "maps_to": [
           "ux_business_model.business_model_canvas",
+          "ux_business_model.competitor_analysis",
+          "ux_business_model.value_proposition_design_canvas",
           "ux_business_model.lean_canvas",
-          "ux_business_model.competitor_analysis",
+          "ux_business_model.inspirator_analysis",
           "ux_business_model.swot_analysis",
-          "ux_business_model.five_forces"
-        ]
-      },
-      {
-        "signal": "Feature comparison matrices, UX teardown reports, or competitor benchmarking files",
-        "detection": "file_presence",
-        "pattern": "competitor-analysis|competitive-audit|feature-matrix|ux-teardown|benchmark",
-        "strength": 0.7,
-        "maps_to": [
-          "ux_business_model.competitor_analysis",
-          "ux_business_model.inspirator_analysis"
+          "ux_business_model.five_forces",
+          "ux_business_model.unit_economics_ux_monetization",
+          "ux_business_model.product_led_growth_ux_mechanics"
         ]
       }
     ],
     "cv": [
       {
-        "signal": "Conducted competitive analysis, UX benchmarking, or market research for product teams",
-        "strength": 0.8,
+        "signal": "Formulated Lean Canvases and mapped Value Proposition Canvases driving product-market fit for B2B SaaS",
+        "strength": 0.6,
         "maps_to": [
+          "ux_business_model.business_model_canvas",
           "ux_business_model.competitor_analysis",
-          "ux_business_model.inspirator_analysis"
+          "ux_business_model.value_proposition_design_canvas",
+          "ux_business_model.lean_canvas"
         ]
       },
       {
-        "signal": "Used Business Model Canvas, Lean Canvas, or SWOT in product discovery or strategy sessions",
-        "strength": 0.75,
+        "signal": "Led Product-Led Growth (PLG) UX redesign decreasing Time-to-Value from 3 days to 8 minutes and boosting LTV/CAC",
+        "strength": 0.6,
         "maps_to": [
-          "ux_business_model.business_model_canvas",
-          "ux_business_model.lean_canvas",
-          "ux_business_model.swot_analysis"
+          "ux_business_model.inspirator_analysis",
+          "ux_business_model.swot_analysis",
+          "ux_business_model.five_forces",
+          "ux_business_model.unit_economics_ux_monetization",
+          "ux_business_model.product_led_growth_ux_mechanics"
         ]
       }
     ],
     "linkedin": [
       {
-        "signal": "Business strategy, competitive analysis, or product discovery endorsed",
-        "strength": 0.5,
+        "signal": "Endorsements in Product Strategy, Business Model Innovation, Product-Led Growth, and SaaS Unit Economics",
+        "strength": 0.4,
         "maps_to": [
-          "ux_business_model.competitor_analysis",
           "ux_business_model.business_model_canvas",
-          "ux_business_model.swot_analysis"
+          "ux_business_model.competitor_analysis",
+          "ux_business_model.value_proposition_design_canvas",
+          "ux_business_model.lean_canvas",
+          "ux_business_model.inspirator_analysis",
+          "ux_business_model.swot_analysis",
+          "ux_business_model.five_forces",
+          "ux_business_model.unit_economics_ux_monetization",
+          "ux_business_model.product_led_growth_ux_mechanics"
+        ]
+      }
+    ],
+    "assessment": [
+      {
+        "signal": "Passes UX business model assessment covering Osterwalder Canvas, Value Proposition mapping, SaaS unit economics, and PLG onboarding funnels",
+        "strength": 1.0,
+        "maps_to": [
+          "ux_business_model.business_model_canvas",
+          "ux_business_model.competitor_analysis",
+          "ux_business_model.value_proposition_design_canvas",
+          "ux_business_model.lean_canvas",
+          "ux_business_model.inspirator_analysis",
+          "ux_business_model.swot_analysis",
+          "ux_business_model.five_forces",
+          "ux_business_model.unit_economics_ux_monetization",
+          "ux_business_model.product_led_growth_ux_mechanics"
         ]
       }
     ]
   },
   "levels": {
     "junior": {
-      "expected_subskills": ["business_model_canvas", "competitor_analysis"],
-      "description": "Reads and interprets a Business Model Canvas and can conduct structured competitor UX teardowns."
+      "expected_subskills": [
+        "business_model_canvas",
+        "competitor_analysis",
+        "value_proposition_design_canvas"
+      ],
+      "description": "Maps Osterwalder Business Model Canvases, analyzes competitor flows, and matches pains to gain creators."
     },
     "mid": {
-      "expected_subskills": ["lean_canvas", "inspirator_analysis", "swot_analysis"],
-      "description": "Uses Lean Canvas for problem-solution fit discovery, finds cross-industry behavioral inspirators, and synthesizes SWOT insights into design priorities."
+      "expected_subskills": [
+        "lean_canvas",
+        "inspirator_analysis",
+        "swot_analysis"
+      ],
+      "description": "Builds Lean Canvases for rapid validation, conducts cross-industry inspirator analyses, and executes SWOT assessments."
     },
     "senior": {
-      "expected_subskills": ["five_forces"],
-      "description": "Applies Five Forces analysis to identify competitive moats, switching cost opportunities, and product differentiation vectors that guide long-term UX strategy."
+      "expected_subskills": [
+        "five_forces",
+        "unit_economics_ux_monetization",
+        "product_led_growth_ux_mechanics"
+      ],
+      "description": "Aligns product UX with SaaS unit economics (LTV/CAC), optimizes PLG self-service conversion, and builds switching cost defensibility."
     }
   }
 }

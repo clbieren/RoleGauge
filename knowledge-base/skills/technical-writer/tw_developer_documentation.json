@@ -1,0 +1,357 @@
+{
+  "skill_id": "tw_developer_documentation",
+  "name": "Developer Documentation & API Reference",
+  "category": "developer_docs",
+  "description": "Authoring comprehensive developer-facing content: REST/GraphQL/gRPC API references, OpenAPI/Swagger specifications, quickstarts, tutorials, code samples in multiple languages, SDK guides, and CLI references.",
+  "subskills": [
+    {
+      "id": "openapi_swagger_spec_authoring",
+      "name": "OpenAPI & Swagger Spec Authoring",
+      "description": "Writing and editing OpenAPI Specification (OAS 3.0/3.1) and Swagger YAML/JSON files with schemas, parameters, request bodies, and response codes.",
+      "keywords": [
+        "OpenAPI",
+        "OAS 3.0",
+        "OAS 3.1",
+        "Swagger",
+        "openapi.yaml",
+        "swagger.json",
+        "schema definition",
+        "status codes",
+        "requestBody",
+        "response objects"
+      ]
+    },
+    {
+      "id": "api_reference_writing",
+      "name": "REST API Endpoint Reference Documentation",
+      "description": "Crafting accurate REST endpoint documentation: HTTP methods, path/query/header parameters, pagination, rate limits, authentication (Bearer, OAuth2, API Keys), and error models.",
+      "keywords": [
+        "REST API reference",
+        "HTTP methods",
+        "query parameters",
+        "path variables",
+        "Bearer token",
+        "OAuth2",
+        "rate limiting",
+        "4xx/5xx status codes",
+        "pagination",
+        "headers"
+      ]
+    },
+    {
+      "id": "curl_code_sample_authoring",
+      "name": "Multi-Language Code Samples & cURL Snippets",
+      "description": "Writing clean, executable code snippets and cURL commands across multiple programming languages (Python, JavaScript/TypeScript, Go, Java, cURL).",
+      "keywords": [
+        "cURL command",
+        "code snippets",
+        "request payload",
+        "JSON response",
+        "multi-language samples",
+        "SDK snippet",
+        "executable example",
+        "API request example"
+      ]
+    },
+    {
+      "id": "developer_quickstarts_tutorials",
+      "name": "Developer Quickstarts & Sandbox Tutorials",
+      "description": "Authoring step-by-step developer quickstarts ('Hello World' to first API call in under 5 minutes), interactive tutorials, and sandbox guides.",
+      "keywords": [
+        "developer quickstart",
+        "tutorial",
+        "5-minute quickstart",
+        "sandbox environment",
+        "getting started guide",
+        "sample app walkthrough",
+        "API onboarding",
+        "first API call"
+      ]
+    },
+    {
+      "id": "sdk_library_documentation",
+      "name": "Client SDKs & Package Documentation",
+      "description": "Documenting client SDKs, package installation (npm, pip, cargo, maven), client initialization, exception handling, and idiomatic usage patterns.",
+      "keywords": [
+        "SDK documentation",
+        "client libraries",
+        "npm package",
+        "pip install",
+        "client initialization",
+        "error handling",
+        "idiomatic code examples",
+        "wrapper library"
+      ]
+    },
+    {
+      "id": "graphql_grpc_asyncapi_docs",
+      "name": "GraphQL, gRPC & Event-Driven AsyncAPI Docs",
+      "description": "Documenting non-REST architectures: GraphQL schemas (queries, mutations, subscriptions), gRPC/Protobuf service definitions, and event-driven AsyncAPI/Webhooks.",
+      "keywords": [
+        "GraphQL documentation",
+        "schema",
+        "queries",
+        "mutations",
+        "gRPC",
+        "Protobuf docs",
+        "AsyncAPI",
+        "webhooks",
+        "payload schemas",
+        "event streaming",
+        "subscriptions"
+      ]
+    },
+    {
+      "id": "cli_command_reference",
+      "name": "CLI Command Reference & Terminal Guides",
+      "description": "Writing comprehensive CLI references: commands, subcommands, flags/options, environment variables, exit codes, and shell completion instructions.",
+      "keywords": [
+        "CLI reference",
+        "command line docs",
+        "flags",
+        "options",
+        "exit codes",
+        "subcommands",
+        "man pages",
+        "shell completion",
+        "terminal examples",
+        "CLI help"
+      ]
+    },
+    {
+      "id": "api_error_handling_troubleshooting",
+      "name": "API Error Handling & Diagnostic Catalogs",
+      "description": "Documenting comprehensive error catalogs, machine-readable error codes, RFC 7807 Problem Details, root causes, and programmatic resolution steps.",
+      "keywords": [
+        "error catalog",
+        "RFC 7807",
+        "problem details",
+        "error codes",
+        "HTTP error matrix",
+        "troubleshooting steps",
+        "debugging guides",
+        "error handling"
+      ]
+    },
+    {
+      "id": "devportal_architecture_experience",
+      "name": "Developer Portal Architecture & DX Design",
+      "description": "Designing developer portal user experience (DX), interactive API consoles (Swagger UI, Redoc, Stoplight, Scalar, ReadMe), and code snippet generators.",
+      "keywords": [
+        "developer portal",
+        "DX",
+        "Swagger UI",
+        "Redoc",
+        "Stoplight",
+        "Scalar",
+        "ReadMe.com",
+        "API explorer",
+        "interactive console",
+        "developer hub",
+        "API playground"
+      ]
+    },
+    {
+      "id": "versioning_breaking_changes_migration",
+      "name": "API Versioning, Deprecation & Migration Guides",
+      "description": "Authoring API versioning strategies, deprecation notices, breaking change policies, and step-by-step version migration guides.",
+      "keywords": [
+        "API versioning",
+        "deprecation policy",
+        "breaking changes",
+        "migration guide",
+        "semantic versioning",
+        "sunsetting API",
+        "backwards compatibility",
+        "upgrade path"
+      ]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "OpenAPI / Swagger 3.0/3.1 specification files and schema definitions",
+        "detection": "file_presence",
+        "pattern": "openapi\\.ya?ml|swagger\\.json|openapi/.*\\.ya?ml",
+        "strength": 0.95,
+        "maps_to": [
+          "tw_developer_documentation.openapi_swagger_spec_authoring"
+        ]
+      },
+      {
+        "signal": "REST endpoint reference documentation with HTTP methods and headers",
+        "detection": "content_analysis",
+        "pattern": "### (GET|POST|PUT|DELETE|PATCH)\\s+/|Authorization:\\s*Bearer|X-RateLimit-|HTTP/1\\.1\\s+[245][0-9]{2}",
+        "strength": 0.9,
+        "maps_to": [
+          "tw_developer_documentation.api_reference_writing"
+        ]
+      },
+      {
+        "signal": "Multi-language executable code snippets and cURL commands",
+        "detection": "content_analysis",
+        "pattern": "```(curl|bash)\\s+curl\\s+-X|```(python|typescript|javascript|go|java)\\s+(import|const|package)",
+        "strength": 0.85,
+        "maps_to": [
+          "tw_developer_documentation.curl_code_sample_authoring"
+        ]
+      },
+      {
+        "signal": "5-minute developer quickstart guides and sample onboarding walkthroughs",
+        "detection": "content_analysis",
+        "pattern": "docs/quickstart\\.md|5-minute quickstart|Send your first|Your First API Call",
+        "strength": 0.85,
+        "maps_to": [
+          "tw_developer_documentation.developer_quickstarts_tutorials"
+        ]
+      },
+      {
+        "signal": "Official client SDK package documentation and installation guides",
+        "detection": "content_analysis",
+        "pattern": "npm install @|pip install|cargo add|new AcmeClient\\(|client = Acme\\(",
+        "strength": 0.85,
+        "maps_to": [
+          "tw_developer_documentation.sdk_library_documentation"
+        ]
+      },
+      {
+        "signal": "GraphQL, gRPC, Protobuf, or AsyncAPI webhook documentation",
+        "detection": "file_presence",
+        "pattern": "schema\\.graphql|.*\\.proto|asyncapi\\.ya?ml|docs/(graphql|grpc|webhooks)/",
+        "strength": 0.9,
+        "maps_to": [
+          "tw_developer_documentation.graphql_grpc_asyncapi_docs"
+        ]
+      },
+      {
+        "signal": "CLI command reference pages and terminal options",
+        "detection": "content_analysis",
+        "pattern": "```bash\\s+[a-z]+ctl\\s+[a-z]+|--[a-z0-9-]+|Exit Codes|Environment Variables",
+        "strength": 0.8,
+        "maps_to": [
+          "tw_developer_documentation.cli_command_reference"
+        ]
+      },
+      {
+        "signal": "RFC 7807 problem details and API error troubleshooting catalog",
+        "detection": "content_analysis",
+        "pattern": "application/problem\\+json|\"type\":\\s*\"https://|\"invalid_params\"|HTTP 429 Too Many Requests",
+        "strength": 0.85,
+        "maps_to": [
+          "tw_developer_documentation.api_error_handling_troubleshooting"
+        ]
+      },
+      {
+        "signal": "Developer portal theme customization and interactive API console configs",
+        "detection": "content_analysis",
+        "pattern": "@scalar/docusaurus|docusaurus-theme-openapi|redoc-express|swagger-ui-react|stoplight/elements",
+        "strength": 0.9,
+        "maps_to": [
+          "tw_developer_documentation.devportal_architecture_experience"
+        ]
+      },
+      {
+        "signal": "API migration guides, breaking change policies, and version sunset notices",
+        "detection": "content_analysis",
+        "pattern": "docs/migrations/|Migrating from v1 to v2|Breaking Changes|Deprecation Policy",
+        "strength": 0.85,
+        "maps_to": [
+          "tw_developer_documentation.versioning_breaking_changes_migration"
+        ]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "Designed and published REST/GraphQL/gRPC developer documentation and OpenAPI 3.0 specs for public developer portals",
+        "strength": 0.6,
+        "maps_to": [
+          "tw_developer_documentation.openapi_swagger_spec_authoring",
+          "tw_developer_documentation.api_reference_writing",
+          "tw_developer_documentation.graphql_grpc_asyncapi_docs",
+          "tw_developer_documentation.devportal_architecture_experience"
+        ]
+      },
+      {
+        "signal": "Authored interactive 5-minute quickstarts, client SDK reference guides, and multi-language executable code samples (Python, JS, Go)",
+        "strength": 0.6,
+        "maps_to": [
+          "tw_developer_documentation.curl_code_sample_authoring",
+          "tw_developer_documentation.developer_quickstarts_tutorials",
+          "tw_developer_documentation.sdk_library_documentation",
+          "tw_developer_documentation.cli_command_reference"
+        ]
+      },
+      {
+        "signal": "Authored API error catalogs (RFC 7807) and managed major API version migration guides and breaking change policies",
+        "strength": 0.5,
+        "maps_to": [
+          "tw_developer_documentation.api_error_handling_troubleshooting",
+          "tw_developer_documentation.versioning_breaking_changes_migration"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Recognized for expertise in Developer Experience (DX), API Documentation, OpenAPI/Swagger, and SDK Documentation",
+        "strength": 0.4,
+        "maps_to": [
+          "tw_developer_documentation.openapi_swagger_spec_authoring",
+          "tw_developer_documentation.api_reference_writing",
+          "tw_developer_documentation.curl_code_sample_authoring",
+          "tw_developer_documentation.developer_quickstarts_tutorials",
+          "tw_developer_documentation.sdk_library_documentation",
+          "tw_developer_documentation.graphql_grpc_asyncapi_docs",
+          "tw_developer_documentation.cli_command_reference",
+          "tw_developer_documentation.api_error_handling_troubleshooting",
+          "tw_developer_documentation.devportal_architecture_experience",
+          "tw_developer_documentation.versioning_breaking_changes_migration"
+        ]
+      }
+    ],
+    "assessment": [
+      {
+        "signal": "Passes technical developer documentation assessment covering OpenAPI schemas, REST reference entries, SDK guides, and migration paths",
+        "strength": 1.0,
+        "maps_to": [
+          "tw_developer_documentation.openapi_swagger_spec_authoring",
+          "tw_developer_documentation.api_reference_writing",
+          "tw_developer_documentation.curl_code_sample_authoring",
+          "tw_developer_documentation.developer_quickstarts_tutorials",
+          "tw_developer_documentation.sdk_library_documentation",
+          "tw_developer_documentation.graphql_grpc_asyncapi_docs",
+          "tw_developer_documentation.cli_command_reference",
+          "tw_developer_documentation.api_error_handling_troubleshooting",
+          "tw_developer_documentation.devportal_architecture_experience",
+          "tw_developer_documentation.versioning_breaking_changes_migration"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "openapi_swagger_spec_authoring",
+        "api_reference_writing",
+        "curl_code_sample_authoring",
+        "developer_quickstarts_tutorials"
+      ],
+      "description": "Writes OpenAPI YAML specs, REST endpoint reference docs, cURL/code snippets, and 5-minute developer quickstarts."
+    },
+    "mid": {
+      "expected_subskills": [
+        "sdk_library_documentation",
+        "graphql_grpc_asyncapi_docs",
+        "cli_command_reference",
+        "api_error_handling_troubleshooting"
+      ],
+      "description": "Documents client SDKs, GraphQL/gRPC/AsyncAPI schemas, command line tools, and detailed error troubleshooting catalogs."
+    },
+    "senior": {
+      "expected_subskills": [
+        "devportal_architecture_experience",
+        "versioning_breaking_changes_migration"
+      ],
+      "description": "Architects developer portal experiences (DX), establishes API deprecation policies, and authors complex breaking change migration guides."
+    }
+  }
+}

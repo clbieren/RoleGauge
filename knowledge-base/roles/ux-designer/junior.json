@@ -2,88 +2,78 @@
   "role_id": "ux_designer",
   "level": "junior",
   "title": "Junior UX Designer",
-  "description": "Entry-level UX designer focused on foundational behavioral frameworks (Fogg B=MAP, Dual Process Theory), structured user research (proto-personas, user stories), lo-fi wireframes and simple flowcharts, core UX principles (KISS, progress visibility), effective CTAs and contextual help, and basic social proof patterns.",
+  "description": "Entry-level UX designer focusing on foundational user research, wireframing in Figma, designing user flows, formulating JTBD job stories, and applying behavioral principles like Fogg's B=MAP and smart defaults.",
   "experience_range": "0-2 years",
   "skills": [
     {
+      "skill_id": "ux_deliverables_prototyping",
+      "importance": 0.95,
+      "rationale": "Creating clear wireframes, user flowcharts, and applying 8pt grid auto-layout in Figma is essential for daily design delivery."
+    },
+    {
       "skill_id": "ux_behavior_frameworks",
       "importance": 0.9,
-      "rationale": "Foundational B=MAP, System 1/2, and behavioral vocabulary is essential for grounding design decisions from day one."
-    },
-    {
-      "skill_id": "ux_classifying_behavior",
-      "importance": 0.9,
-      "rationale": "Correctly defining product purpose, target outcome, and users (personas) is the prerequisite for any behavioral design work."
-    },
-    {
-      "skill_id": "ux_deliverables_prototyping",
-      "importance": 0.9,
-      "rationale": "Wireframes, flowcharts, and layout principles are the core craft output for daily contribution."
+      "rationale": "Applying BJ Fogg's B=MAP, Dual Process Theory, and behavioral heuristics."
     },
     {
       "skill_id": "ux_conceptual_design",
       "importance": 0.85,
-      "rationale": "User stories and UX principles (KISS, progress visibility) ground design work in user needs."
+      "rationale": "Writing clear user stories with acceptance criteria and simplifying complex multi-step forms."
+    },
+    {
+      "skill_id": "ux_classifying_behavior",
+      "importance": 0.85,
+      "rationale": "Building evidence-based user personas, empathy maps, and formulating JTBD job statements."
     },
     {
       "skill_id": "ux_behavior_strategies",
       "importance": 0.8,
-      "rationale": "Educating users, encouraging action, and applying basic defaults are essential junior skills."
+      "rationale": "Setting smart defaults and structuring basic choice architectures."
     },
     {
       "skill_id": "ux_attention_context",
       "importance": 0.75,
-      "rationale": "Designing CTAs, tooltips, and status indicators for fleeting attention is a high-frequency junior task."
+      "rationale": "Designing glanceable CTAs and contextual micro-tips."
     },
     {
       "skill_id": "ux_patterns_best_practices",
       "importance": 0.75,
-      "rationale": "Visual salience, trust signals, and social proof patterns are core to any seniority level."
+      "rationale": "Applying visual saliency and integrating customer reviews and social proof."
     },
     {
       "skill_id": "ux_business_model",
-      "importance": 0.65,
-      "rationale": "Reading a BMC and doing a basic competitor analysis aligns design with business context."
+      "importance": 0.7,
+      "rationale": "Understanding the Osterwalder Business Model Canvas and Value Proposition mapping."
     },
     {
       "skill_id": "ux_measuring_impact",
-      "importance": 0.6,
-      "rationale": "Understanding A/B test basics and HEART establishes data literacy for design discussions."
+      "importance": 0.65,
+      "rationale": "Formulating A/B test hypotheses and running standard SUS usability tests."
     }
   ],
   "scoring": {
     "method": "weighted_average",
-    "description": "Each skill score is multiplied by its importance weight. Final score is sum divided by sum of weights.",
+    "description": "Weighted average of skill readiness scores multiplied by importance weights.",
     "thresholds": {
       "not_ready": {
         "min": 0.0,
-        "max": 0.3,
-        "label": "Not Ready",
-        "description": "Significant gaps in behavioral fundamentals, wireframing craft, or user research."
+        "max": 0.35,
+        "description": "Lacks wireframing and user research fundamentals."
       },
-      "developing": {
-        "min": 0.3,
-        "max": 0.5,
-        "label": "Developing",
-        "description": "Can produce wireframes and user stories with guidance; needs coaching on behavioral framework application."
-      },
-      "approaching": {
-        "min": 0.5,
-        "max": 0.7,
-        "label": "Approaching Ready",
-        "description": "Solid Figma skills, understands B=MAP and dual process theory, produces user research artifacts with minimal coaching."
+      "partially_ready": {
+        "min": 0.35,
+        "max": 0.6,
+        "description": "Produces basic layouts but struggles with user flows or behavioral heuristics."
       },
       "ready": {
-        "min": 0.7,
+        "min": 0.6,
         "max": 0.85,
-        "label": "Ready",
-        "description": "Independently runs user research, designs behaviorally-grounded wireframes, writes user stories, and applies core persuasive patterns."
+        "description": "Competent junior UX designer producing clean Figma wireframes, personas, and behavioral flows."
       },
       "exceeds": {
         "min": 0.85,
         "max": 1.0,
-        "label": "Exceeds Expectations",
-        "description": "Exceeds junior expectations with early mid-level proficiency in competitor analysis, gamification basics, and A/B test participation."
+        "description": "Exceeds junior expectations with strong interactive prototyping and A/B test skills."
       }
     }
   }

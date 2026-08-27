@@ -1,179 +1,123 @@
 {
   "source_id": "cv",
   "name": "CV / Resume Analysis - Blockchain Developer",
-  "description": "Extraction rules and signal mappings for Blockchain Developer CVs/resumes. Blockchain development has unusually strong GitHub evidence — working code, deployed contract addresses, and verified contracts on Etherscan are primary sources. CV corroborates GitHub signals and provides deployment scale, team context, and business impact. NOTE: Specific maps_to composite keys are stored within individual skill files under evidence.cv.",
-  "extraction_rules": {
-    "sections": {
-      "work_experience": {
-        "priority": "high",
-        "base_strength": 0.6,
-        "quality_indicators": [
-          "Named protocols with deployed contract addresses or Etherscan links",
-          "TVL figures (e.g., 'secured $5M TVL in first month') or transaction volume metrics",
-          "Specific vulnerability mitigations implemented (e.g., 'resolved reentrancy identified in audit')",
-          "Named security tools used in professional context (Slither, Echidna, MythX, OpenZeppelin Defender)",
-          "Multi-chain deployment experience with specific chain names",
-          "Quantified test coverage metrics (e.g., '98% line coverage, 500+ fuzz test iterations')",
-          "Audit firm names if contracts were professionally audited (Trail of Bits, OpenZeppelin, ConsenSys Diligence)"
-        ]
-      },
-      "projects": {
-        "priority": "high",
-        "base_strength": 0.55,
-        "quality_indicators": [
-          "GitHub repository link with meaningful commit history",
-          "Mainnet or testnet contract addresses for verification",
-          "Etherscan/Sourcify verification status",
-          "Described architectural decisions (why specific proxy pattern was chosen, why Foundry over Hardhat)",
-          "DeFi TVL, NFT mint volume, DAO proposal count, or other on-chain impact metrics"
-        ]
-      },
-      "skills_list": {
-        "priority": "medium",
-        "base_strength": 0.25,
-        "notes": "Listing 'Solidity' without project context provides low signal. Framework names (Hardhat, Foundry) without test counts or deployment history are low strength. Security tool names (Slither, Echidna) with no evidence of use are weak."
-      },
-      "certifications": {
-        "priority": "medium",
-        "base_strength": 0.4,
-        "recognized_certifications": [
-          "Certified Blockchain Developer (CBD) — Blockchain Training Alliance",
-          "Ethereum Developer Certification — Ethereum Foundation / ConsenSys Academy",
-          "Alchemy University — Ethereum Bootcamp",
-          "Patrick Collins Solidity/Foundry/Hardhat Courses (Cyfrin Updraft)",
-          "Chainlink Developer Expert",
-          "OpenZeppelin Smart Contract Developer Course",
-          "RareSkills Security Bootcamp",
-          "Secureum Bootcamp (RACE series)"
-        ]
-      },
-      "education": {
-        "priority": "low",
-        "base_strength": 0.2,
-        "relevant_degrees": [
-          "Computer Science",
-          "Software Engineering",
-          "Cryptography / Applied Cryptography",
-          "Distributed Systems",
-          "Mathematics / Applied Mathematics",
-          "Information Security / Cybersecurity"
-        ]
-      }
-    }
-  },
+  "description": "Extraction rules for Blockchain and Smart Contract developer CVs, analyzing production smart contract deployments, DeFi protocol architectures, and security audits.",
   "signal_mapping": {
     "patterns": [
       {
-        "pattern": "Developed and deployed Solidity smart contracts on Ethereum mainnet or EVM-compatible chains",
+        "pattern": "Demonstrated deep understanding of distributed ledger mechanics, Merkle proofs, and consensus economics",
         "maps_to": [
-          "smart_contract_development.solidity",
-          "smart_contract_development.deployment",
-          "blockchain_networks.evm_based_chains"
-        ],
-        "strength_modifier": 1.2
+          "blockchain_fundamentals.what_is_blockchain",
+          "blockchain_fundamentals.decentralization_principles",
+          "blockchain_fundamentals.blockchain_data_structure",
+          "blockchain_fundamentals.utxo_vs_account_model",
+          "blockchain_fundamentals.p2p_network_gossip",
+          "blockchain_fundamentals.transaction_lifecycle_mempool",
+          "blockchain_fundamentals.cryptographic_hashing_merkle_trees",
+          "blockchain_fundamentals.byzantine_fault_tolerance_theory",
+          "blockchain_fundamentals.trilemma_tradeoff_analysis"
+        ]
       },
       {
-        "pattern": "Wrote unit tests, integration tests, or property-based fuzz tests for smart contracts",
+        "pattern": "Designed cryptographic wallet recovery schemes and implemented signature verification algorithms (ECDSA, BLS)",
         "maps_to": [
-          "smart_contract_development.testing",
-          "blockchain_security.fuzz_testing_static_analysis"
-        ],
-        "strength_modifier": 1.1
+          "blockchain_core_concepts.asymmetric_cryptography_signatures",
+          "blockchain_core_concepts.crypto_wallets_key_management",
+          "blockchain_core_concepts.cryptocurrency_tokenomics_basics",
+          "blockchain_core_concepts.mining_and_validator_incentives",
+          "blockchain_core_concepts.hard_and_soft_forks",
+          "blockchain_core_concepts.sybil_resistance_mechanisms",
+          "blockchain_core_concepts.advanced_consensus_mechanisms",
+          "blockchain_core_concepts.zero_knowledge_primitives_foundations",
+          "blockchain_core_concepts.state_machine_replication"
+        ]
       },
       {
-        "pattern": "Implemented ERC-20, ERC-721, ERC-1155, or ERC-4626 token standards",
+        "pattern": "Deployed multi-chain smart contracts across Ethereum, Arbitrum, Optimism, Base, and Solana with CCIP",
         "maps_to": [
-          "smart_contract_development.erc_tokens",
-          "dapp_development.nfts",
-          "dapp_development.defi"
-        ],
-        "strength_modifier": 1.0
+          "blockchain_networks.evm_based_chains_ethereum_polygon",
+          "blockchain_networks.testnets_faucets_rpc_providers",
+          "blockchain_networks.block_explorers_network_monitoring",
+          "blockchain_networks.l2_rollups_arbitrum_optimism_base",
+          "blockchain_networks.solana_sealevel_architecture",
+          "blockchain_networks.cross_chain_bridges_relayers",
+          "blockchain_networks.interoperability_protocols_ccip_ibc",
+          "blockchain_networks.alt_vm_chains_move_tvm_wasm",
+          "blockchain_networks.modular_blockchains_celestia_avail"
+        ]
       },
       {
-        "pattern": "Used Hardhat, Foundry, Truffle, or Brownie as development framework",
+        "pattern": "Architected L2 scaling strategies across Optimistic and ZK rollups with EIP-4844 and gas profiling",
         "maps_to": [
-          "smart_contract_tooling.hardhat",
-          "smart_contract_tooling.foundry",
-          "smart_contract_tooling.truffle",
-          "smart_contract_tooling.brownie",
-          "smart_contract_tooling.faucets",
-          "smart_contract_tooling.ides"
-        ],
-        "strength_modifier": 1.0
+          "blockchain_scaling.state_and_payment_channels",
+          "blockchain_scaling.data_availability_basics",
+          "blockchain_scaling.gas_optimization_fundamentals",
+          "blockchain_scaling.optimistic_rollups_fraud_proofs",
+          "blockchain_scaling.zk_rollups_validity_proofs",
+          "blockchain_scaling.validium_and_sidechains",
+          "blockchain_scaling.proto_danksharding_eip4844",
+          "blockchain_scaling.zk_evm_architecture_circuits",
+          "blockchain_scaling.sharding_and_parallel_execution"
+        ]
       },
       {
-        "pattern": "Integrated Chainlink Data Feeds, VRF, Automation, or CCIP",
+        "pattern": "Conducted smart contract security audits, invariant testing with Echidna, and static analysis with Slither",
         "maps_to": [
-          "blockchain_oracles.chainlink",
-          "blockchain_oracles.hybrid_smart_contracts"
-        ],
-        "strength_modifier": 1.2
+          "blockchain_security.common_threat_vectors",
+          "blockchain_security.openzeppelin_security_contracts",
+          "blockchain_security.version_control_smart_contracts",
+          "blockchain_security.slither_static_analysis",
+          "blockchain_security.randomness_attacks_frontrunning",
+          "blockchain_security.fuzz_testing_unit_security",
+          "blockchain_security.echidna_property_testing",
+          "blockchain_security.manticore_symbolic_execution",
+          "blockchain_security.mythx_formal_audit_workflows"
+        ]
       },
       {
-        "pattern": "Conducted security analysis using Slither, Echidna, MythX, or Manticore",
+        "pattern": "Built full-stack DApps with Next.js, Wagmi, Uniswap/Aave integrations, The Graph subgraphs, and ERC-4337",
         "maps_to": [
-          "blockchain_security.slither",
-          "blockchain_security.echidna",
-          "blockchain_security.mythx",
-          "blockchain_security.manticore",
-          "blockchain_security.fuzz_testing_static_analysis"
-        ],
-        "strength_modifier": 1.3
+          "dapp_development.web3_wallet_integration_wagmi_ethers",
+          "dapp_development.frontend_dapp_frameworks",
+          "dapp_development.node_as_a_service_rpc_infura_alchemy",
+          "dapp_development.defi_protocols_integration_uniswap_aave",
+          "dapp_development.nft_standards_metadata_ipfs",
+          "dapp_development.dao_governance_voting_snapshot",
+          "dapp_development.full_node_client_rpc_architecture",
+          "dapp_development.indexer_subgraphs_the_graph_envio",
+          "dapp_development.account_abstraction_erc4337_bundlers"
+        ]
       },
       {
-        "pattern": "Implemented upgradeable proxy patterns (UUPS, Transparent, Beacon, Diamond)",
+        "pattern": "Engineered production Solidity/Vyper smart contracts, Chainlink Oracle integrations, UUPS proxies, and Yul assembly",
         "maps_to": [
-          "smart_contract_development.upgrades"
-        ],
-        "strength_modifier": 1.2
+          "smart_contract_development.solidity_core_and_advanced_syntax",
+          "smart_contract_development.erc_token_standards_20_721_1155",
+          "smart_contract_development.contract_unit_and_integration_testing",
+          "smart_contract_development.contract_deployment_and_verification",
+          "smart_contract_development.oracle_data_feeds_and_vrf_randomness",
+          "smart_contract_development.upgradeable_contracts_proxy_patterns",
+          "smart_contract_development.vyper_and_alternative_smart_contract_languages",
+          "smart_contract_development.gas_optimization_assembly_yul",
+          "smart_contract_development.rust_smart_contracts_solana_near",
+          "smart_contract_development.hybrid_smart_contracts_offchain_computation",
+          "smart_contract_development.formal_verification_and_invariant_testing"
+        ]
       },
       {
-        "pattern": "Deployed on L2 networks (Arbitrum, Optimism, zkSync, StarkNet, Base, Polygon zkEVM)",
+        "pattern": "Built CI/CD testing pipelines with Foundry/Hardhat, gas regression snapshots, and Tenderly simulations",
         "maps_to": [
-          "blockchain_scaling.optimistic_rollups",
-          "blockchain_scaling.zk_rollups",
-          "blockchain_networks.l2_arbitrum"
-        ],
-        "strength_modifier": 1.1
-      },
-      {
-        "pattern": "Built DeFi protocols, AMM integrations, lending systems, or yield vaults",
-        "maps_to": [
-          "dapp_development.defi",
-          "smart_contract_development.erc_tokens"
-        ],
-        "strength_modifier": 1.2
-      },
-      {
-        "pattern": "Developed Solana programs with Anchor framework or Substrate pallets in Rust",
-        "maps_to": [
-          "smart_contract_development.rust_blockchain",
-          "blockchain_networks.solana"
-        ],
-        "strength_modifier": 1.3
-      },
-      {
-        "pattern": "Built DAO governance contracts or implemented on-chain voting systems",
-        "maps_to": [
-          "dapp_development.daos"
-        ],
-        "strength_modifier": 1.1
-      },
-      {
-        "pattern": "Set up smart contract monitoring with The Graph, Tenderly, or OpenZeppelin Defender",
-        "maps_to": [
-          "smart_contract_development.monitoring"
-        ],
-        "strength_modifier": 1.1
+          "smart_contract_tooling.hardhat_framework_plugins",
+          "smart_contract_tooling.foundry_forge_cast_anvil",
+          "smart_contract_tooling.crypto_wallets_development_faucets",
+          "smart_contract_tooling.decentralized_storage_ipfs_arweave",
+          "smart_contract_tooling.evm_trace_debuggers_tenderly",
+          "smart_contract_tooling.contract_verification_blockscout_etherscan",
+          "smart_contract_tooling.ci_cd_smart_contract_automation",
+          "smart_contract_tooling.fuzzing_invariant_tooling_echidna_medusa",
+          "smart_contract_tooling.gas_profilers_snapshot_testing"
+        ]
       }
     ]
-  },
-  "important_notes": [
-    "Etherscan-verified mainnet contract addresses mentioned in CV are the strongest CV evidence — they are independently verifiable",
-    "TVL and on-chain transaction volume are the blockchain equivalent of production traffic metrics — weight them highly",
-    "Security audit participation (as developer preparing for audit, or as reviewer) is a strong senior signal",
-    "Rust proficiency for Solana or Substrate development is significantly rarer and higher value than Solidity alone",
-    "Participation in on-chain governance, hackathon wins, or bug bounty payouts are high-signal credibility indicators",
-    "CTF (Capture the Flag) competition wins or Ethernaut/Damn Vulnerable DeFi completion indicate security depth"
-  ]
+  }
 }

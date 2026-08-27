@@ -1,89 +1,74 @@
 {
   "role_id": "blockchain_developer",
   "level": "senior",
-  "title": "Senior Blockchain Developer / Protocol Engineer",
-  "description": "Senior blockchain developer and protocol architect responsible for: multi-chain and cross-chain system design (EVM, TVM, Solana, bridges, interoperability); deep security engineering (Echidna property testing, Manticore symbolic execution, MythX, full pre-audit security reviews); ZK Rollup architecture and proof system understanding (zkSNARKs, zkSTARKs, zkEVM types); Ethereum 2.0 validator infrastructure; non-EVM chain development (Rust/Anchor for Solana, FunC/Tact for TON); Ethereum roadmap evaluation (Danksharding, EIP-4844, Verge/Purge); and oracle network selection and security design.",
+  "title": "Senior Blockchain Developer / Protocol Architect",
+  "description": "Staff/Senior blockchain architect who designs mission-critical DeFi protocols, conducts formal verification (Certora) and Echidna invariant testing, architects EIP-4844/zkEVM scaling solutions, deploys ERC-4337 Account Abstraction paymasters, and directs cross-chain CCIP/IBC interoperability.",
   "experience_range": "5+ years",
   "skills": [
     {
       "skill_id": "blockchain_security",
       "importance": 0.95,
-      "rationale": "Leading full security pipelines (Slither + Echidna + MythX + Manticore), performing threat modeling for novel DeFi protocols, and driving pre-audit engineering reviews — security leadership is the defining senior characteristic."
+      "rationale": "Leading invariant fuzzing (Echidna), symbolic execution (Manticore), and professional protocol audits."
+    },
+    {
+      "skill_id": "smart_contract_development",
+      "importance": 0.95,
+      "rationale": "Formal verification (Certora), Rust/Solana Anchor programs, and hybrid Chainlink Functions architectures."
     },
     {
       "skill_id": "blockchain_scaling",
-      "importance": 0.95,
-      "rationale": "Evaluating L1/L2/L3 architecture trade-offs, understanding ZK proof circuits, advising on rollup selection (Optimistic vs ZK), and tracking Ethereum's Danksharding roadmap for infrastructure planning."
+      "importance": 0.9,
+      "rationale": "Proto-Danksharding (EIP-4844), zkEVM circuit evaluation, and parallel EVM execution engines."
     },
     {
       "skill_id": "blockchain_networks",
       "importance": 0.9,
-      "rationale": "Multi-chain architecture design spanning EVM, TVM, and Solana ecosystems; cross-chain bridge security evaluation; and interoperability protocol selection (LayerZero, CCIP, IBC) with explicit risk analysis."
-    },
-    {
-      "skill_id": "smart_contract_development",
-      "importance": 0.9,
-      "rationale": "Full-depth Solidity mastery including Yul assembly optimization, complex upgrade architectures (Diamond EIP-2535), Rust for Solana/Substrate, production monitoring stacks, and governance-controlled upgrade flows."
+      "rationale": "Cross-chain interoperability with CCIP/IBC, Alt-VM architectures (Move/WASM), and modular Celestia DA."
     },
     {
       "skill_id": "dapp_development",
       "importance": 0.85,
-      "rationale": "Architecting multi-layer dApp systems (custom indexers, API layers, client node infrastructure), building novel DeFi primitives, and operating production validator or archive node infrastructure."
-    },
-    {
-      "skill_id": "blockchain_oracles",
-      "importance": 0.85,
-      "rationale": "Designing oracle security strategies: evaluating Chainlink vs Pyth vs API3 for specific use-cases, mitigating flash loan price manipulation, implementing oracle circuit breakers, and auditing oracle dependencies in DeFi protocols."
-    },
-    {
-      "skill_id": "blockchain_core_concepts",
-      "importance": 0.8,
-      "rationale": "Protocol-level reasoning about consensus safety thresholds, fork migration strategies, replay attack mitigation during hard forks, and cryptographic primitive security assumptions."
+      "rationale": "ERC-4337 Account Abstraction paymasters, self-hosted node clusters (Geth/Reth), and Envio indexers."
     },
     {
       "skill_id": "smart_contract_tooling",
-      "importance": 0.75,
-      "rationale": "Navigating legacy Brownie/Truffle codebases, making framework selection decisions for new protocols, and contributing to or evaluating toolchain choices for engineering teams."
+      "importance": 0.85,
+      "rationale": "CI/CD smart contract pipelines, automated Medusa fuzzer suites, and gas snapshot gates."
+    },
+    {
+      "skill_id": "blockchain_core_concepts",
+      "importance": 0.85,
+      "rationale": "Advanced consensus (Tendermint/PBFT), zk-SNARK primitives, and deterministic state replication."
     },
     {
       "skill_id": "blockchain_fundamentals",
-      "importance": 0.7,
-      "rationale": "At senior level, fundamentals are assumed and applied at strategic depth — advising on blockchain adoption decisions, designing systems with explicit trilemma trade-off reasoning."
+      "importance": 0.75,
+      "rationale": "BFT theoretical limits and blockchain trilemma tradeoffs."
     }
   ],
   "scoring": {
     "method": "weighted_average",
-    "description": "Each skill score is multiplied by its importance weight. Final score is sum divided by sum of weights.",
+    "description": "Weighted average of skill readiness scores multiplied by importance weights.",
     "thresholds": {
       "not_ready": {
         "min": 0.0,
-        "max": 0.3,
-        "label": "Not Ready",
-        "description": "Significant gaps in security engineering, scaling architecture, or cross-chain system design — cannot lead protocol-level decisions."
+        "max": 0.4,
+        "description": "Lacks protocol-level architectural depth, invariant testing, and multi-chain leadership."
       },
-      "developing": {
-        "min": 0.3,
-        "max": 0.5,
-        "label": "Developing",
-        "description": "Strong mid-level blockchain engineer; building depth in security tooling, ZK rollup architecture, and cross-chain bridge design."
-      },
-      "approaching": {
-        "min": 0.5,
-        "max": 0.7,
-        "label": "Approaching Ready",
-        "description": "Leads protocol development teams, conducts pre-audit security reviews, deploys on multiple L2s, and is developing ZK proof and multi-chain bridge expertise."
+      "partially_ready": {
+        "min": 0.4,
+        "max": 0.65,
+        "description": "Strong developer but lacks formal verification, zk-Rollup internals, and Account Abstraction architecture."
       },
       "ready": {
-        "min": 0.7,
+        "min": 0.65,
         "max": 0.85,
-        "label": "Ready",
-        "description": "Meets all senior expectations: leads security-first protocol engineering, architects cross-chain systems, evaluates scaling solutions, operates validator infrastructure, and mentors mid-level engineers."
+        "description": "Seasoned blockchain architect delivering formally verified contracts, L2 scaling, and robust DeFi protocols."
       },
       "exceeds": {
         "min": 0.85,
         "max": 1.0,
-        "label": "Exceeds Expectations",
-        "description": "Exceeds senior expectations: Principal/Staff Protocol Engineer impact — contributes to EIPs, designs novel ZK circuits, leads cross-protocol security research, or architects multi-chain protocol standards."
+        "description": "Exceptional protocol engineer recognized across the crypto ecosystem for state-of-the-art Web3 architecture."
       }
     }
   }

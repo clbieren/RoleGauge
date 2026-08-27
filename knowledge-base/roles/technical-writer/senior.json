@@ -1,0 +1,65 @@
+{
+  "role_id": "technical_writer",
+  "level": "senior",
+  "title": "Senior Technical Writer",
+  "description": "Staff/Senior technical writing lead and documentation architect who establishes organizational style guides, defines API versioning and deprecation governance, architects single-sourcing content systems, drives support ticket deflection (KCS), and optimizes technical SEO / doc analytics.",
+  "experience_range": "5+ years",
+  "skills": [
+    {
+      "skill_id": "tw_developer_documentation",
+      "importance": 0.95,
+      "rationale": "Architecting developer portal UX (DX), interactive consoles, and orchestrating breaking change migration strategies."
+    },
+    {
+      "skill_id": "tw_fundamentals_writing_craft",
+      "importance": 0.95,
+      "rationale": "Defining company-wide documentation style governance, custom Vale linter rules, and WCAG accessibility standards."
+    },
+    {
+      "skill_id": "tw_content_research_strategy",
+      "importance": 0.9,
+      "rationale": "Designing single-sourcing content reuse architectures, enterprise content rot audits, and federated knowledge hubs."
+    },
+    {
+      "skill_id": "tw_tooling_analytics_distribution",
+      "importance": 0.9,
+      "rationale": "Architecting multi-version doc release matrices, Crowdin localization pipelines, and telemetry analytics."
+    },
+    {
+      "skill_id": "tw_product_support_content",
+      "importance": 0.85,
+      "rationale": "Driving support ticket deflection strategies (KCS), disaster recovery runbooks, and in-doc CSAT feedback loops."
+    },
+    {
+      "skill_id": "tw_content_marketing_seo",
+      "importance": 0.85,
+      "rationale": "Directing technical SEO crawl architecture, organic conversion attribution, and authoring industry benchmark reports."
+    }
+  ],
+  "scoring": {
+    "method": "weighted_average",
+    "description": "Weighted average of skill readiness scores multiplied by importance weights.",
+    "thresholds": {
+      "not_ready": {
+        "min": 0.0,
+        "max": 0.4,
+        "description": "Lacks the architectural leadership, governance experience, and strategic cross-functional influence expected of a senior writer."
+      },
+      "partially_ready": {
+        "min": 0.4,
+        "max": 0.65,
+        "description": "Strong individual writer but lacks experience in documentation system architecture, ticket deflection ROI, and localization pipelines."
+      },
+      "ready": {
+        "min": 0.65,
+        "max": 0.85,
+        "description": "Seasoned senior technical writer capable of setting company doc standards, driving KCS deflection, and architecting developer hubs."
+      },
+      "exceeds": {
+        "min": 0.85,
+        "max": 1.0,
+        "description": "Exceptional doc strategist recognized across the industry for state-of-the-art Docs-as-Code engineering and thought leadership."
+      }
+    }
+  }
+}

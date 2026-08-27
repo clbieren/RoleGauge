@@ -1,0 +1,286 @@
+{
+  "skill_id": "tw_content_research_strategy",
+  "name": "Content Strategy & Technical Research",
+  "category": "content_strategy",
+  "description": "Researching technical subjects through SME interviews, reading source code and PRDs, content auditing, documentation strategy, information mapping, lifecycle management, and content gap analysis.",
+  "subskills": [
+    {
+      "id": "sme_interviewing_elicitation",
+      "name": "SME Interviewing & Knowledge Elicitation",
+      "description": "Conducting structured interviews with software engineers, product managers, and architects to extract complex technical nuances efficiently.",
+      "keywords": [
+        "SME interview",
+        "subject matter expert",
+        "engineering interview",
+        "knowledge elicitation",
+        "question preparation",
+        "technical debrief",
+        "recorded demo transcription",
+        "engineering partnership"
+      ]
+    },
+    {
+      "id": "source_code_spec_reading",
+      "name": "Source Code, Spec & PRD Analysis",
+      "description": "Reading codebase pull requests, Jira tickets, RFCs, PRDs, architecture decision records (ADRs), and protobuf/schema definitions to uncover undocumented features.",
+      "keywords": [
+        "PRD analysis",
+        "RFC review",
+        "reading pull requests",
+        "Git diff analysis",
+        "ADR",
+        "architectural specs",
+        "Jira ticket analysis",
+        "schema parsing",
+        "code exploration"
+      ]
+    },
+    {
+      "id": "content_gap_analysis",
+      "name": "Content Gap Analysis & User Needs Discovery",
+      "description": "Auditing existing documentation to identify missing topics, outdated workflows, broken prerequisites, and unanswered user questions.",
+      "keywords": [
+        "content gap analysis",
+        "documentation audit",
+        "missing guides",
+        "outdated content identification",
+        "documentation inventory",
+        "user feedback triage",
+        "support ticket analysis"
+      ]
+    },
+    {
+      "id": "content_lifecycle_management",
+      "name": "Content Lifecycle & Evergreen Maintenance",
+      "description": "Managing the end-to-end documentation lifecycle: draft, review, publish, maintain, deprecate, and archive (evergreen content maintenance).",
+      "keywords": [
+        "content lifecycle",
+        "deprecation workflow",
+        "doc freshness",
+        "content sunsetting",
+        "archiving",
+        "evergreen documentation",
+        "versioned docs maintenance",
+        "staleness review"
+      ]
+    },
+    {
+      "id": "information_mapping_user_journeys",
+      "name": "Information Mapping & User Journey Paths",
+      "description": "Mapping user onboarding journeys, developer learning paths, task workflows, and decision trees to structured documentation navigation.",
+      "keywords": [
+        "user journey mapping",
+        "learning paths",
+        "developer onboarding funnel",
+        "decision tree",
+        "workflow mapping",
+        "task flow",
+        "docs navigation design",
+        "customer onboarding"
+      ]
+    },
+    {
+      "id": "docs_as_product_strategy",
+      "name": "Docs-as-a-Product Strategy & Roadmapping",
+      "description": "Treating documentation as a core product with discovery, backlog grooming, OKRs, sprint planning, and cross-functional release alignment.",
+      "keywords": [
+        "docs as a product",
+        "doc roadmap",
+        "documentation OKRs",
+        "sprint backlog",
+        "docs release planning",
+        "cross-functional alignment",
+        "product launch readiness",
+        "KPI tracking"
+      ]
+    },
+    {
+      "id": "content_reuse_single_sourcing",
+      "name": "Content Reuse & Single-Sourcing Architecture",
+      "description": "Designing single-sourcing architectures, snippet reuse, variables/placeholders, conditional content rendering, and componentized doc structures.",
+      "keywords": [
+        "single-sourcing",
+        "content reuse",
+        "snippets",
+        "partials",
+        "conditional text",
+        "transclusion",
+        "variables",
+        "reusable admonitions",
+        "modular content"
+      ]
+    },
+    {
+      "id": "enterprise_doc_auditing",
+      "name": "Enterprise Content Auditing & Rot Analysis",
+      "description": "Executing qualitative and quantitative content audits across massive documentation repositories, assessing technical debt, readability, and content rot.",
+      "keywords": [
+        "content audit",
+        "content rot",
+        "doc debt",
+        "quantitative audit",
+        "qualitative audit",
+        "inventory matrix",
+        "rot score",
+        "consolidation strategy",
+        "technical debt"
+      ]
+    },
+    {
+      "id": "knowledge_base_federation",
+      "name": "Knowledge Base Federation & Unification",
+      "description": "Architecting unified documentation ecosystems across engineering, internal wikis (Confluence/Notion), public developer docs, and customer support hubs.",
+      "keywords": [
+        "federated docs",
+        "knowledge federation",
+        "enterprise search indexing",
+        "Confluence migration",
+        "cross-portal taxonomy",
+        "knowledge base unification",
+        "content ecosystem"
+      ]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "Architectural decision records and RFC review involvement",
+        "detection": "file_presence",
+        "pattern": "rfcs/.*\\.md|docs/adr/.*\\.md|docs/architecture/.*\\.md",
+        "strength": 0.85,
+        "maps_to": [
+          "tw_content_research_strategy.source_code_spec_reading",
+          "tw_content_research_strategy.sme_interviewing_elicitation"
+        ]
+      },
+      {
+        "signal": "Single-sourcing component reuse, snippets, and partial imports in docs",
+        "detection": "content_analysis",
+        "pattern": "import\\s+.*\\s+from\\s+['\"]@site/docs/partials/|import\\s+Snippet|include::|{% include",
+        "strength": 0.9,
+        "maps_to": [
+          "tw_content_research_strategy.content_reuse_single_sourcing"
+        ]
+      },
+      {
+        "signal": "Documentation roadmaps, OKR tracking, and content sprint backlogs",
+        "detection": "file_presence",
+        "pattern": "docs/roadmap\\.md|docs/content-strategy\\.md|docs/backlog\\.md",
+        "strength": 0.8,
+        "maps_to": [
+          "tw_content_research_strategy.docs_as_product_strategy",
+          "tw_content_research_strategy.content_gap_analysis"
+        ]
+      },
+      {
+        "signal": "User journey maps and guided learning paths",
+        "detection": "content_analysis",
+        "pattern": "docs/(learning-paths|getting-started|user-journeys)/|learningPath:|sidebar_label:\\s*Step",
+        "strength": 0.8,
+        "maps_to": [
+          "tw_content_research_strategy.information_mapping_user_journeys",
+          "tw_content_research_strategy.content_lifecycle_management"
+        ]
+      },
+      {
+        "signal": "Content rot audits, deprecation notices, and federated knowledge configs",
+        "detection": "content_analysis",
+        "pattern": "deprecated:\\s*true|:::caution\\s+Deprecated|docs/audit|sync-docs\\.ya?ml",
+        "strength": 0.85,
+        "maps_to": [
+          "tw_content_research_strategy.enterprise_doc_auditing",
+          "tw_content_research_strategy.knowledge_base_federation"
+        ]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "Led content strategy and documentation audits for enterprise SaaS platforms, reducing content rot by 45%",
+        "strength": 0.6,
+        "maps_to": [
+          "tw_content_research_strategy.content_gap_analysis",
+          "tw_content_research_strategy.enterprise_doc_auditing",
+          "tw_content_research_strategy.docs_as_product_strategy"
+        ]
+      },
+      {
+        "signal": "Collaborated directly with engineering SMEs and parsed PRDs/RFCs/codebases to create developer learning journeys",
+        "strength": 0.5,
+        "maps_to": [
+          "tw_content_research_strategy.sme_interviewing_elicitation",
+          "tw_content_research_strategy.source_code_spec_reading",
+          "tw_content_research_strategy.information_mapping_user_journeys"
+        ]
+      },
+      {
+        "signal": "Architected single-sourcing content reuse framework and federated internal knowledge bases with public docs",
+        "strength": 0.5,
+        "maps_to": [
+          "tw_content_research_strategy.content_lifecycle_management",
+          "tw_content_research_strategy.content_reuse_single_sourcing",
+          "tw_content_research_strategy.knowledge_base_federation"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Proven track record in Content Strategy, Technical Research, Information Architecture, and Knowledge Management",
+        "strength": 0.4,
+        "maps_to": [
+          "tw_content_research_strategy.sme_interviewing_elicitation",
+          "tw_content_research_strategy.source_code_spec_reading",
+          "tw_content_research_strategy.content_gap_analysis",
+          "tw_content_research_strategy.content_lifecycle_management",
+          "tw_content_research_strategy.information_mapping_user_journeys",
+          "tw_content_research_strategy.docs_as_product_strategy",
+          "tw_content_research_strategy.content_reuse_single_sourcing",
+          "tw_content_research_strategy.enterprise_doc_auditing",
+          "tw_content_research_strategy.knowledge_base_federation"
+        ]
+      }
+    ],
+    "assessment": [
+      {
+        "signal": "Passes comprehensive content strategy and technical research assessment covering SME elicitation, single sourcing, and doc auditing",
+        "strength": 1.0,
+        "maps_to": [
+          "tw_content_research_strategy.sme_interviewing_elicitation",
+          "tw_content_research_strategy.source_code_spec_reading",
+          "tw_content_research_strategy.content_gap_analysis",
+          "tw_content_research_strategy.content_lifecycle_management",
+          "tw_content_research_strategy.information_mapping_user_journeys",
+          "tw_content_research_strategy.docs_as_product_strategy",
+          "tw_content_research_strategy.content_reuse_single_sourcing",
+          "tw_content_research_strategy.enterprise_doc_auditing",
+          "tw_content_research_strategy.knowledge_base_federation"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "sme_interviewing_elicitation",
+        "source_code_spec_reading",
+        "content_gap_analysis"
+      ],
+      "description": "Conducts initial SME interviews, reads code diffs/PRDs to identify undocumented features, and spots content gaps."
+    },
+    "mid": {
+      "expected_subskills": [
+        "content_lifecycle_management",
+        "information_mapping_user_journeys",
+        "docs_as_product_strategy"
+      ],
+      "description": "Manages content freshness lifecycles, maps user onboarding journeys, and aligns doc sprints with product launch roadmaps."
+    },
+    "senior": {
+      "expected_subskills": [
+        "content_reuse_single_sourcing",
+        "enterprise_doc_auditing",
+        "knowledge_base_federation"
+      ],
+      "description": "Architects reusable single-sourcing components, conducts qualitative rot audits across large repos, and federates cross-team knowledge bases."
+    }
+  }
+}

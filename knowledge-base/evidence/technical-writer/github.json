@@ -1,0 +1,172 @@
+{
+  "source_id": "github",
+  "name": "GitHub Repository Documentation Analysis - Technical Writer",
+  "description": "Global parsing rules for Technical Writer and Docs-as-Code repositories. Evaluates documentation directory structures (docs/), Markdown/MDX quality, SSG configurations (Docusaurus, MkDocs, Sphinx, GitBook), style linter configs (.vale.ini), README quality, CHANGELOG formatting, and OpenAPI specs.",
+  "preprocessing_pipeline": {
+    "steps": [
+      {
+        "step": 1,
+        "name": "docs_tree_and_structure_scan",
+        "target_files": [
+          {
+            "pattern": "docs/.*\\.md|docs/.*\\.mdx",
+            "skills": [
+              "tw_fundamentals_writing_craft",
+              "tw_tooling_analytics_distribution"
+            ],
+            "priority": "high",
+            "notes": "Evaluates heading depth hierarchy (#, ##, ###), bullet formatting, callout admonitions, and code block language fencing"
+          },
+          {
+            "pattern": "docusaurus\\.config\\.*|mkdocs\\.yml|conf\\.py|\\.gitbook\\.yaml|book\\.json|astro\\.config\\.*|nextra\\.config\\.*",
+            "skills": [
+              "tw_tooling_analytics_distribution"
+            ],
+            "priority": "high",
+            "notes": "Static site generator (SSG) configuration and documentation theme customization"
+          },
+          {
+            "pattern": "openapi\\.ya?ml|swagger\\.json|asyncapi\\.ya?ml|docs/api/.*|docs/reference/.*",
+            "skills": [
+              "tw_developer_documentation"
+            ],
+            "priority": "high",
+            "notes": "OpenAPI OAS 3.0/3.1 specs, Swagger JSON definitions, endpoint parameters, and error schemas"
+          },
+          {
+            "pattern": "README\\.md",
+            "skills": [
+              "tw_fundamentals_writing_craft",
+              "tw_developer_documentation",
+              "tw_product_support_content"
+            ],
+            "priority": "high",
+            "notes": "Scans README structure: clear H1 project title, badges, quickstart instructions, prerequisites, code examples, troubleshooting, and license"
+          },
+          {
+            "pattern": "CHANGELOG\\.md",
+            "skills": [
+              "tw_product_support_content"
+            ],
+            "priority": "high",
+            "notes": "Keep a Changelog compliance: Added, Changed, Deprecated, Removed, Fixed, Security sections under semver version tags"
+          },
+          {
+            "pattern": "\\.vale\\.ini|styles/.*\\.ya?ml|\\.markdownlint\\.json|\\.markdownlint\\.ya?ml|\\.textlintrc",
+            "skills": [
+              "tw_tooling_analytics_distribution",
+              "tw_fundamentals_writing_craft"
+            ],
+            "priority": "high",
+            "notes": "Automated style guide linting rules (Vale, markdownlint) and custom editorial dictionaries"
+          },
+          {
+            "pattern": "\\.github/workflows/*doc*\\.ya?ml|\\.github/workflows/*deploy*\\.ya?ml",
+            "skills": [
+              "tw_tooling_analytics_distribution"
+            ],
+            "priority": "high",
+            "notes": "Docs CI/CD pipelines: automated linting, broken link checking (lychee), and deployment to Vercel/Netlify/GitHub Pages"
+          },
+          {
+            "pattern": "blog/.*\\.md|static/sitemap.*\\.xml|static/robots\\.txt",
+            "skills": [
+              "tw_content_marketing_seo"
+            ],
+            "priority": "medium",
+            "notes": "Technical blog posts, metadata headers, sitemap generation, and SEO configuration"
+          }
+        ]
+      }
+    ]
+  },
+  "signal_mapping": {
+    "patterns": [
+      {
+        "pattern": "docs/.*\\.md|docs/.*\\.mdx|styles/.*\\.ya?ml|\\.vale\\.ini",
+        "maps_to": [
+          "tw_fundamentals_writing_craft.clarity_conciseness_active_voice",
+          "tw_fundamentals_writing_craft.style_guides_standards",
+          "tw_fundamentals_writing_craft.audience_persona_analysis",
+          "tw_fundamentals_writing_craft.information_architecture_hierarchy",
+          "tw_fundamentals_writing_craft.dita_topic_based_authoring",
+          "tw_fundamentals_writing_craft.terminology_glossary_management",
+          "tw_fundamentals_writing_craft.readability_scoring_editing",
+          "tw_fundamentals_writing_craft.inclusive_accessible_language",
+          "tw_fundamentals_writing_craft.doc_governance_style_creation"
+        ]
+      },
+      {
+        "pattern": "rfcs/.*\\.md|docs/architecture/.*\\.md|docs/audits/.*\\.md",
+        "maps_to": [
+          "tw_content_research_strategy.sme_interviewing_elicitation",
+          "tw_content_research_strategy.source_code_spec_reading",
+          "tw_content_research_strategy.content_gap_analysis",
+          "tw_content_research_strategy.content_lifecycle_management",
+          "tw_content_research_strategy.information_mapping_user_journeys",
+          "tw_content_research_strategy.docs_as_product_strategy",
+          "tw_content_research_strategy.content_reuse_single_sourcing",
+          "tw_content_research_strategy.enterprise_doc_auditing",
+          "tw_content_research_strategy.knowledge_base_federation"
+        ]
+      },
+      {
+        "pattern": "openapi\\.ya?ml|swagger\\.json|asyncapi\\.ya?ml|docs/api/.*\\.md|docs/reference/.*\\.md",
+        "maps_to": [
+          "tw_developer_documentation.openapi_swagger_spec_authoring",
+          "tw_developer_documentation.api_reference_writing",
+          "tw_developer_documentation.curl_code_sample_authoring",
+          "tw_developer_documentation.developer_quickstarts_tutorials",
+          "tw_developer_documentation.sdk_library_documentation",
+          "tw_developer_documentation.graphql_grpc_asyncapi_docs",
+          "tw_developer_documentation.cli_command_reference",
+          "tw_developer_documentation.api_error_handling_troubleshooting",
+          "tw_developer_documentation.devportal_architecture_experience",
+          "tw_developer_documentation.versioning_breaking_changes_migration"
+        ]
+      },
+      {
+        "pattern": "CHANGELOG\\.md|docs/guides/.*\\.md|docs/troubleshooting/.*\\.md|docs/admin/.*\\.md",
+        "maps_to": [
+          "tw_product_support_content.how_to_procedural_guides",
+          "tw_product_support_content.release_notes_changelogs",
+          "tw_product_support_content.faq_self_service_articles",
+          "tw_product_support_content.troubleshooting_root_cause_guides",
+          "tw_product_support_content.admin_configuration_manuals",
+          "tw_product_support_content.ui_ux_microcopy_in_product_help",
+          "tw_product_support_content.support_ticket_deflection_strategy",
+          "tw_product_support_content.disaster_recovery_runbooks",
+          "tw_product_support_content.user_feedback_loops_csat"
+        ]
+      },
+      {
+        "pattern": "blog/.*\\.md|docs/blog/.*\\.md|static/robots\\.txt|static/sitemap.*\\.xml",
+        "maps_to": [
+          "tw_content_marketing_seo.technical_blog_post_authoring",
+          "tw_content_marketing_seo.metadata_schema_seo_basics",
+          "tw_content_marketing_seo.keyword_research_search_intent",
+          "tw_content_marketing_seo.technical_whitepapers_ebooks",
+          "tw_content_marketing_seo.case_studies_customer_stories",
+          "tw_content_marketing_seo.developer_advocacy_community_content",
+          "tw_content_marketing_seo.technical_seo_information_architecture",
+          "tw_content_marketing_seo.organic_traffic_analytics_conversion",
+          "tw_content_marketing_seo.thought_leadership_industry_reports"
+        ]
+      },
+      {
+        "pattern": "docusaurus\\.config\\.*|mkdocs\\.yml|conf\\.py|\\.gitbook\\.yaml|\\.vale\\.ini|\\.markdownlint\\.json|\\.github/workflows/*doc*\\.ya?ml",
+        "maps_to": [
+          "tw_tooling_analytics_distribution.markdown_mdx_mastery",
+          "tw_tooling_analytics_distribution.git_github_docs_workflow",
+          "tw_tooling_analytics_distribution.static_site_generators_ssg",
+          "tw_tooling_analytics_distribution.automated_style_linting",
+          "tw_tooling_analytics_distribution.ci_cd_docs_pipelines",
+          "tw_tooling_analytics_distribution.site_search_indexing",
+          "tw_tooling_analytics_distribution.headless_cms_knowledge_tools",
+          "tw_tooling_analytics_distribution.docs_analytics_telemetry",
+          "tw_tooling_analytics_distribution.multi_version_localization_builds"
+        ]
+      }
+    ]
+  }
+}
