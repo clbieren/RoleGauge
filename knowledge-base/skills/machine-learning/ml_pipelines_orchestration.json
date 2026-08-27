@@ -1,0 +1,224 @@
+{
+  "skill_id": "ml_pipelines_orchestration",
+  "name": "ML Pipelines, Feature Stores & MLOps",
+  "category": "mlops",
+  "description": "End-to-end MLOps: experiment tracking and model registry (MLflow), pipeline orchestration (Kubeflow Pipelines, Metaflow), feature stores (Feast), data version control (DVC), and automated CI/CD for machine learning (CML).",
+  "subskills": [
+    {
+      "id": "mlflow_tracking_model_registry",
+      "name": "MLflow Tracking, Model Registry & Artifacts",
+      "description": "Logging parameters, metrics, and model artifacts with mlflow.log_*, model signatures, Model Registry stages (Staging, Production, Archived), and version transitions.",
+      "keywords": [
+        "MLflow",
+        "Model Registry",
+        "mlflow.log_metric",
+        "mlflow.log_param",
+        "model signature",
+        "mlflow.pyfunc",
+        "model stage",
+        "artifact store"
+      ]
+    },
+    {
+      "id": "dvc_data_version_control",
+      "name": "Data Version Control (DVC) & Reproducibility",
+      "description": "Version controlling gigabyte datasets and model weights using Git and remote storage (S3/GCS) with DVC, dvc.yaml pipeline stages.",
+      "keywords": [
+        "DVC",
+        "dvc.yaml",
+        "dvc repro",
+        "dvc push",
+        "dvc pull",
+        "data versioning",
+        "remote storage",
+        "reproducibility",
+        ".dvc"
+      ]
+    },
+    {
+      "id": "feature_store_feast_architecture",
+      "name": "Feature Stores (Feast) - Online & Offline Stores",
+      "description": "Feature definitions, entities, offline store for historical point-in-time correct training joins, and low-latency online store (Redis) for real-time inference.",
+      "keywords": [
+        "Feast",
+        "Feature Store",
+        "offline store",
+        "online store",
+        "point-in-time join",
+        "time-travel feature join",
+        "entity",
+        "feature view",
+        "Redis"
+      ]
+    },
+    {
+      "id": "kubeflow_pipelines_kfp_components",
+      "name": "Kubeflow Pipelines (KFP) & Component Design",
+      "description": "Containerized pipeline components in Kubeflow, @dsl.pipeline, @dsl.component, input/output artifacts, pipeline compiling, and KFP on Kubernetes.",
+      "keywords": [
+        "Kubeflow",
+        "KFP",
+        "Kubeflow Pipelines",
+        "@dsl.component",
+        "@dsl.pipeline",
+        "pipeline compilation",
+        "kfp.v2",
+        "containerized pipeline"
+      ]
+    },
+    {
+      "id": "metaflow_human_centric_ml_workflows",
+      "name": "Metaflow Human-Centric ML Workflows",
+      "description": "Developing ML workflows with Metaflow @step, branching, foreach parallel execution, resuming failed runs, and AWS/Kubernetes integration.",
+      "keywords": [
+        "Metaflow",
+        "@step",
+        "FlowSpec",
+        "foreach",
+        "self.next",
+        "Metaflow artifacts",
+        "Netflix Metaflow",
+        "step resumption"
+      ]
+    },
+    {
+      "id": "ci_cd_cml_continuous_machine_learning",
+      "name": "Continuous Machine Learning (CML) & GitHub Actions",
+      "description": "Automated training on PRs, generating markdown model evaluation report comments in pull requests using CML and GitHub Actions.",
+      "keywords": [
+        "CML",
+        "Continuous Machine Learning",
+        "Iterative CML",
+        "PR model report",
+        "cml send-comment",
+        "GitHub Actions for ML",
+        "automated benchmark PR"
+      ]
+    },
+    {
+      "id": "automated_continuous_training_ct_triggers",
+      "name": "Continuous Training (CT) Triggers & Retraining Loops",
+      "description": "Event-driven vs schedule-based automated retraining triggers, model gate evaluation against current production model, and automated deployment.",
+      "keywords": [
+        "Continuous Training",
+        "CT",
+        "retraining trigger",
+        "champion challenger",
+        "model gate",
+        "automated retraining",
+        "production promotion"
+      ]
+    },
+    {
+      "id": "docker_gpu_containers_cuda_drivers",
+      "name": "GPU Containerization (Docker, NVIDIA Container Toolkit)",
+      "description": "Configuring Dockerfiles with CUDA/cuDNN base images, NVIDIA Container Toolkit (--gpus all), multi-stage builds for ML, and CUDA compatibility.",
+      "keywords": [
+        "NVIDIA Container Toolkit",
+        "--gpus all",
+        "CUDA base image",
+        "cuDNN",
+        "Dockerfile for ML",
+        "GPU container",
+        "CUDA driver compatibility"
+      ]
+    },
+    {
+      "id": "model_catalog_governance_lineage",
+      "name": "Model Governance, Lineage & Compliance Cards",
+      "description": "Documenting Model Cards (intended use, training dataset, limitations), model lineage from raw data commit to production binary, and audit trails.",
+      "keywords": [
+        "Model Card",
+        "model governance",
+        "model lineage",
+        "audit trail",
+        "compliance",
+        "training data provenance",
+        "intended use"
+      ]
+    }
+  ],
+  "evidence_patterns": {
+    "cv": [
+      {
+        "signal": "Built end-to-end MLOps platform using MLflow, Feast Feature Store, and Kubeflow Pipelines with automated Continuous Training",
+        "strength": 0.5,
+        "maps_to": [
+          "ml_pipelines_orchestration.mlflow_tracking_model_registry",
+          "ml_pipelines_orchestration.feature_store_feast_architecture",
+          "ml_pipelines_orchestration.kubeflow_pipelines_kfp_components"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "MLOps, MLflow, and Kubeflow specialist endorsements",
+        "strength": 0.3,
+        "maps_to": [
+          "ml_pipelines_orchestration.dvc_data_version_control",
+          "ml_pipelines_orchestration.ci_cd_cml_continuous_machine_learning"
+        ]
+      }
+    ],
+    "github": [
+      {
+        "pattern": "*mlflow*|*pipeline*.py|dvc.yaml|feature_store.yaml|kfp*.py",
+        "strength": 1.0,
+        "maps_to": [
+          "ml_pipelines_orchestration.mlflow_tracking_model_registry",
+          "ml_pipelines_orchestration.dvc_data_version_control",
+          "ml_pipelines_orchestration.feature_store_feast_architecture",
+          "ml_pipelines_orchestration.kubeflow_pipelines_kfp_components",
+          "ml_pipelines_orchestration.metaflow_human_centric_ml_workflows",
+          "ml_pipelines_orchestration.ci_cd_cml_continuous_machine_learning",
+          "ml_pipelines_orchestration.automated_continuous_training_ct_triggers",
+          "ml_pipelines_orchestration.docker_gpu_containers_cuda_drivers",
+          "ml_pipelines_orchestration.model_catalog_governance_lineage"
+        ]
+      }
+    ],
+    "assessment": [
+      {
+        "signal": "Passes ML Pipelines, Feature Stores & MLOps Technical Assessment",
+        "strength": 1.0,
+        "maps_to": [
+          "ml_pipelines_orchestration.mlflow_tracking_model_registry",
+          "ml_pipelines_orchestration.dvc_data_version_control",
+          "ml_pipelines_orchestration.feature_store_feast_architecture",
+          "ml_pipelines_orchestration.kubeflow_pipelines_kfp_components",
+          "ml_pipelines_orchestration.metaflow_human_centric_ml_workflows",
+          "ml_pipelines_orchestration.ci_cd_cml_continuous_machine_learning",
+          "ml_pipelines_orchestration.automated_continuous_training_ct_triggers",
+          "ml_pipelines_orchestration.docker_gpu_containers_cuda_drivers",
+          "ml_pipelines_orchestration.model_catalog_governance_lineage"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "mlflow_tracking_model_registry",
+        "dvc_data_version_control",
+        "docker_gpu_containers_cuda_drivers"
+      ],
+      "description": "Logs runs and models to MLflow, version controls datasets with DVC, and builds GPU Docker containers."
+    },
+    "mid": {
+      "expected_subskills": [
+        "feature_store_feast_architecture",
+        "kubeflow_pipelines_kfp_components",
+        "ci_cd_cml_continuous_machine_learning",
+        "metaflow_human_centric_ml_workflows"
+      ],
+      "description": "Operates Feast feature stores, authors Kubeflow / Metaflow pipelines, and automates PR evaluation reports with CML."
+    },
+    "senior": {
+      "expected_subskills": [
+        "automated_continuous_training_ct_triggers",
+        "model_catalog_governance_lineage"
+      ],
+      "description": "Architects enterprise Continuous Training (CT) feedback loops, champion/challenger gates, and governs corporate model compliance."
+    }
+  }
+}

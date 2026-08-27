@@ -1,0 +1,85 @@
+{
+  "role_id": "data_engineer",
+  "level": "senior",
+  "title": "Senior Data Engineer / Data Architect",
+  "description": "Senior technical leadership position driving data architecture, distributed systems scaling (Spark, Flink, Kafka), multi-engine Lakehouse strategy, cost governance (FinOps), enterprise DataOps, and company-wide data quality & privacy compliance.",
+  "experience_range": "5+ years",
+  "skills": [
+    {
+      "skill_id": "de_distributed_computing",
+      "importance": 0.95,
+      "rationale": "Deep distributed internals, solving heavy shuffle data skew, memory tuning, and Structured Streaming at scale."
+    },
+    {
+      "skill_id": "de_data_warehousing",
+      "importance": 0.95,
+      "rationale": "Designing multi-warehouse topologies, semantic layers, and comprehensive cost governance."
+    },
+    {
+      "skill_id": "de_data_lakes_storage",
+      "importance": 0.95,
+      "rationale": "Lakehouse governance, Apache Iceberg / Hudi upsert architecture, and compaction lifecycles."
+    },
+    {
+      "skill_id": "de_sql_advanced",
+      "importance": 0.9,
+      "rationale": "Cost-based execution plan optimization, internal storage engines, and enterprise database tuning."
+    },
+    {
+      "skill_id": "de_streaming_realtime",
+      "importance": 0.9,
+      "rationale": "Stateful stream processing with Apache Flink, Exactly-Once semantics, and RocksDB state tuning."
+    },
+    {
+      "skill_id": "de_data_pipelines_orchestration",
+      "importance": 0.9,
+      "rationale": "Asset-based orchestration in Dagster, distributed Kubernetes executors, and high-availability design."
+    },
+    {
+      "skill_id": "de_data_quality_governance",
+      "importance": 0.85,
+      "rationale": "Architecting Data Observability platforms, cross-team Data Contracts, and regulatory compliance."
+    },
+    {
+      "skill_id": "de_cloud_infrastructure_dataops",
+      "importance": 0.85,
+      "rationale": "Kubernetes data operators, multi-region disaster recovery, and FinOps budgeting."
+    },
+    {
+      "skill_id": "de_programming",
+      "importance": 0.85,
+      "rationale": "Profiling long-running memory bottlenecks, JVM optimization, and core systems architecture."
+    },
+    {
+      "skill_id": "de_data_modeling_transformation",
+      "importance": 0.8,
+      "rationale": "Enterprise semantic layer design, virtual data engines (SQLMesh), and transformation governance."
+    }
+  ],
+  "scoring": {
+    "method": "weighted_average",
+    "description": "Each skill score is multiplied by its importance weight. Final score is the sum of weighted scores divided by sum of weights.",
+    "thresholds": {
+      "not_ready": {
+        "min": 0.0,
+        "max": 0.45,
+        "description": "Does not meet the architectural depth, distributed tuning, or system leadership required for senior roles."
+      },
+      "partially_ready": {
+        "min": 0.45,
+        "max": 0.7,
+        "description": "Strong pipeline builder but lacks distributed system internals, streaming EOS, or FinOps architectural experience."
+      },
+      "ready": {
+        "min": 0.7,
+        "max": 0.9,
+        "description": "Proven senior engineer with comprehensive data platform design, distributed tuning, and governance mastery."
+      },
+      "exceeds": {
+        "min": 0.9,
+        "max": 1.0,
+        "description": "Outstanding data architect capable of setting enterprise-wide standards, cutting cloud costs, and building petabyte-scale platforms."
+      }
+    }
+  }
+}

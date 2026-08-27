@@ -1,0 +1,249 @@
+{
+  "skill_id": "de_distributed_computing",
+  "name": "Distributed Computing & Apache Spark",
+  "category": "processing",
+  "description": "Large-scale distributed data processing using Apache Spark (PySpark & Scala), Catalyst optimizer, Tungsten execution engine, partitioning, shuffling, caching, and memory tuning.",
+  "subskills": [
+    {
+      "id": "spark_architecture_cluster_managers",
+      "name": "Spark Cluster Architecture & Resource Managers",
+      "description": "Driver, Executor, Master/Worker nodes, Task, Stage, Job breakdown, and cluster managers (Kubernetes, YARN, Standalone).",
+      "keywords": [
+        "Spark Driver",
+        "Spark Executor",
+        "Spark Stage",
+        "DAGScheduler",
+        "TaskScheduler",
+        "YARN",
+        "Kubernetes Spark",
+        "spark-submit",
+        "cluster mode",
+        "client mode"
+      ]
+    },
+    {
+      "id": "rdd_vs_dataframe_dataset",
+      "name": "RDDs vs DataFrames vs Datasets APIs",
+      "description": "Understanding Low-level RDD transformations/actions vs high-level DataFrame and typed Dataset APIs, immutability, and lazy evaluation.",
+      "keywords": [
+        "RDD",
+        "DataFrame",
+        "Dataset",
+        "lazy evaluation",
+        "transformations",
+        "actions",
+        "map",
+        "flatMap",
+        "filter",
+        "collect",
+        "count"
+      ]
+    },
+    {
+      "id": "spark_sql_catalyst_optimizer",
+      "name": "Spark SQL & Catalyst Optimizer",
+      "description": "Analysis, Logical Optimization, Physical Planning, Code Generation (Tungsten), Whole-Stage CodeGen, and cost-based optimization (CBO).",
+      "keywords": [
+        "Catalyst Optimizer",
+        "Tungsten",
+        "Logical Plan",
+        "Physical Plan",
+        "Whole-Stage CodeGen",
+        "CBO",
+        "Adaptive Query Execution",
+        "AQE",
+        "predicate pushdown"
+      ]
+    },
+    {
+      "id": "partitioning_bucketing_coalesce",
+      "name": "Partition Management: Coalesce, Repartition & Bucketing",
+      "description": "Controlling parallelism with repartition vs coalesce, partition sizes, bucketing on high-cardinality keys, and avoiding narrow/wide shuffle hazards.",
+      "keywords": [
+        "repartition",
+        "coalesce",
+        "bucketing",
+        "spark.sql.shuffle.partitions",
+        "partition size",
+        "hash partitioning",
+        "range partitioning",
+        "bucketBy"
+      ]
+    },
+    {
+      "id": "shuffling_skew_repartition",
+      "name": "Shuffle Operations & Data Skew Mitigation",
+      "description": "Understanding Shuffle Read/Write, Wide transformations, salting skewed keys, Adaptive Query Execution skew join handling, and isolate bad keys.",
+      "keywords": [
+        "shuffle",
+        "data skew",
+        "salting",
+        "AQE skew join",
+        "shuffle partitions",
+        "SortMergeJoin",
+        "ShuffleHashJoin",
+        "spill to disk"
+      ]
+    },
+    {
+      "id": "broadcast_joins_accumulators",
+      "name": "Broadcast Joins, Broadcast Variables & Accumulators",
+      "description": "BroadcastHashJoin optimization (spark.sql.autoBroadcastJoinThreshold), distributing read-only lookups, and distributed accumulators.",
+      "keywords": [
+        "BroadcastHashJoin",
+        "broadcast()",
+        "autoBroadcastJoinThreshold",
+        "Broadcast Variable",
+        "Accumulator",
+        "BHJ",
+        "lookup table"
+      ]
+    },
+    {
+      "id": "spark_caching_persistence",
+      "name": "Caching, Checkpointing & Storage Levels",
+      "description": "cache() vs persist(), StorageLevel (MEMORY_ONLY, MEMORY_AND_DISK, SER), unpersisting, and breaking lineage with local/reliable checkpointing.",
+      "keywords": [
+        "cache",
+        "persist",
+        "StorageLevel",
+        "MEMORY_AND_DISK",
+        "unpersist",
+        "checkpoint",
+        "lineage truncation",
+        "recomputation"
+      ]
+    },
+    {
+      "id": "spark_memory_tuning_oom",
+      "name": "Spark Memory Tuning & OOM Troubleshooting",
+      "description": "Executor memory breakdown (Storage vs Execution memory, Reserved memory, User memory), Off-Heap memory, JVM garbage collection (G1GC), and diagnosing OutOfMemory (OOM) errors.",
+      "keywords": [
+        "spark.executor.memory",
+        "spark.memory.fraction",
+        "spark.memory.storageFraction",
+        "spark.executor.memoryOverhead",
+        "OOM",
+        "GC pause",
+        "G1GC",
+        "off-heap"
+      ]
+    },
+    {
+      "id": "spark_structured_streaming",
+      "name": "Spark Structured Streaming Engine",
+      "description": "Micro-batch processing, Continuous processing, streaming DataFrames, trigger policies, watermarking, stateful streaming, and streaming sinks.",
+      "keywords": [
+        "Structured Streaming",
+        "micro-batch",
+        "watermark",
+        "Trigger.AvailableNow",
+        "outputMode",
+        "stateStore",
+        "checkpointLocation",
+        "streaming join"
+      ]
+    },
+    {
+      "id": "pyspark_udfs_vectorization",
+      "name": "PySpark Vectorized UDFs & PyArrow / Pandas API",
+      "description": "Python UDF overhead, PySpark Pandas UDFs (@pandas_udf) with Apache Arrow serialization, and pyspark.pandas (formerly Koalas).",
+      "keywords": [
+        "pandas_udf",
+        "PyArrow",
+        "vectorized UDF",
+        "Apache Arrow",
+        "Python UDF",
+        "pyspark.pandas",
+        "SeriesToSeries",
+        "Iterator"
+      ]
+    }
+  ],
+  "evidence_patterns": {
+    "cv": [
+      {
+        "signal": "Engineered terabyte-scale distributed data pipelines using PySpark on Kubernetes",
+        "strength": 0.5,
+        "maps_to": [
+          "de_distributed_computing.spark_architecture_cluster_managers",
+          "de_distributed_computing.spark_sql_catalyst_optimizer",
+          "de_distributed_computing.shuffling_skew_repartition"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Apache Spark certified developer or Databricks Data Engineer Associate/Professional",
+        "strength": 0.3,
+        "maps_to": [
+          "de_distributed_computing.rdd_vs_dataframe_dataset",
+          "de_distributed_computing.broadcast_joins_accumulators"
+        ]
+      }
+    ],
+    "github": [
+      {
+        "pattern": "*spark*.py|*pyspark*|spark-submit*.sh|jobs/**/*.scala|jobs/**/*.py",
+        "strength": 1.0,
+        "maps_to": [
+          "de_distributed_computing.spark_architecture_cluster_managers",
+          "de_distributed_computing.rdd_vs_dataframe_dataset",
+          "de_distributed_computing.spark_sql_catalyst_optimizer",
+          "de_distributed_computing.partitioning_bucketing_coalesce",
+          "de_distributed_computing.shuffling_skew_repartition",
+          "de_distributed_computing.broadcast_joins_accumulators",
+          "de_distributed_computing.spark_caching_persistence",
+          "de_distributed_computing.spark_memory_tuning_oom",
+          "de_distributed_computing.spark_structured_streaming",
+          "de_distributed_computing.pyspark_udfs_vectorization"
+        ]
+      }
+    ],
+    "assessment": [
+      {
+        "signal": "Passes Apache Spark Distributed Computing & Performance Optimization Assessment",
+        "strength": 1.0,
+        "maps_to": [
+          "de_distributed_computing.spark_architecture_cluster_managers",
+          "de_distributed_computing.rdd_vs_dataframe_dataset",
+          "de_distributed_computing.spark_sql_catalyst_optimizer",
+          "de_distributed_computing.partitioning_bucketing_coalesce",
+          "de_distributed_computing.shuffling_skew_repartition",
+          "de_distributed_computing.broadcast_joins_accumulators",
+          "de_distributed_computing.spark_caching_persistence",
+          "de_distributed_computing.spark_memory_tuning_oom",
+          "de_distributed_computing.spark_structured_streaming",
+          "de_distributed_computing.pyspark_udfs_vectorization"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "rdd_vs_dataframe_dataset",
+        "spark_sql_catalyst_optimizer",
+        "spark_architecture_cluster_managers"
+      ],
+      "description": "Writes PySpark/Spark SQL queries, operates with DataFrames, and understands cluster master/worker anatomy."
+    },
+    "mid": {
+      "expected_subskills": [
+        "partitioning_bucketing_coalesce",
+        "broadcast_joins_accumulators",
+        "spark_caching_persistence",
+        "pyspark_udfs_vectorization"
+      ],
+      "description": "Optimizes joins with broadcasting, writes vectorized Arrow/Pandas UDFs, manages persistence storage levels, and tunes partition counts."
+    },
+    "senior": {
+      "expected_subskills": [
+        "shuffling_skew_repartition",
+        "spark_memory_tuning_oom",
+        "spark_structured_streaming"
+      ],
+      "description": "Eliminates heavy shuffle data skews with salting/AQE, diagnoses executor OOM memory dumps, and designs stateful Structured Streaming pipelines."
+    }
+  }
+}

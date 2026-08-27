@@ -1,0 +1,227 @@
+{
+  "skill_id": "de_data_warehousing",
+  "name": "Data Warehousing & Dimensional Modeling",
+  "category": "architecture",
+  "description": "Dimensional data modeling (Kimball & Inmon), Star and Snowflake schemas, Fact and Dimension design, Slowly Changing Dimensions (SCD), and Cloud Data Warehouses (Snowflake, BigQuery, Redshift).",
+  "subskills": [
+    {
+      "id": "dimensional_star_snowflake",
+      "name": "Dimensional Modeling & Star/Snowflake Schemas",
+      "description": "Kimball methodology, Star schema vs Snowflake schema, normalized vs denormalized analytical modeling, and grain definition.",
+      "keywords": [
+        "Kimball",
+        "star schema",
+        "snowflake schema",
+        "dimensional modeling",
+        "grain",
+        "denormalization",
+        "conformed dimension"
+      ]
+    },
+    {
+      "id": "fact_dimension_design",
+      "name": "Fact & Dimension Table Architecture",
+      "description": "Transaction, Periodic Snapshot, and Accumulating Snapshot fact tables, Degenerate, Junk, Role-Playing, and Conformed dimensions.",
+      "keywords": [
+        "fact table",
+        "dimension table",
+        "surrogate key",
+        "degenerate dimension",
+        "junk dimension",
+        "role-playing dimension",
+        "accumulating snapshot",
+        "periodic snapshot"
+      ]
+    },
+    {
+      "id": "scd_type_management",
+      "name": "Slowly Changing Dimensions (SCD Types 0-6)",
+      "description": "Designing and implementing SCD Type 1 (overwrite), Type 2 (historical versioning with valid_from/valid_to/is_current), Type 3 (previous column), and hybrid types.",
+      "keywords": [
+        "SCD Type 1",
+        "SCD Type 2",
+        "SCD Type 3",
+        "valid_from",
+        "valid_to",
+        "is_current",
+        "surrogate key",
+        "historical tracking",
+        "dimension evolution"
+      ]
+    },
+    {
+      "id": "snowflake_architecture",
+      "name": "Snowflake Cloud Warehouse Architecture",
+      "description": "Multi-cluster shared data architecture, virtual warehouses, auto-suspend/resume, zero-copy cloning, time travel, fail-safe, and micro-partitions.",
+      "keywords": [
+        "Snowflake",
+        "virtual warehouse",
+        "micro-partitions",
+        "zero-copy clone",
+        "time travel",
+        "fail-safe",
+        "clustering keys",
+        "Snowpipe",
+        "Stages"
+      ]
+    },
+    {
+      "id": "bigquery_architecture",
+      "name": "Google BigQuery Serverless Warehouse",
+      "description": "Dremel execution engine, Capacitor storage, slot allocation, partitioning by date/integer, clustering, BI Engine, and reservation management.",
+      "keywords": [
+        "BigQuery",
+        "slots",
+        "Dremel",
+        "Capacitor",
+        "partitioning",
+        "clustering",
+        "sharded tables",
+        "BigQuery BI Engine",
+        "dry-run"
+      ]
+    },
+    {
+      "id": "redshift_architecture",
+      "name": "AWS Redshift & Distributed Storage",
+      "description": "Leader vs Compute nodes, distribution styles (KEY, ALL, EVEN, AUTO), sort keys (compound vs interleaved), vacuum, and Redshift Serverless.",
+      "keywords": [
+        "Redshift",
+        "distribution key",
+        "sort key",
+        "DISTSTYLE",
+        "SORTKEY",
+        "Redshift Serverless",
+        "RA3 instances",
+        "Redshift Spectrum",
+        "WLM"
+      ]
+    },
+    {
+      "id": "columnar_storage_compression",
+      "name": "Columnar Storage Formats & Compression Encoding",
+      "description": "Columnar projection, dictionary encoding, run-length encoding (RLE), ZSTD, Snappy, and I/O minimization during aggregation.",
+      "keywords": [
+        "columnar storage",
+        "compression encoding",
+        "ZSTD",
+        "Snappy",
+        "dictionary encoding",
+        "RLE",
+        "block size",
+        "I/O pruning"
+      ]
+    },
+    {
+      "id": "semantic_layer_metrics",
+      "name": "Semantic Layers & Metric Store Architecture",
+      "description": "Building centralized semantic layers, consistent business metrics definition, Cube.js, dbt Semantic Layer, and BI integration.",
+      "keywords": [
+        "semantic layer",
+        "metrics store",
+        "dbt Semantic Layer",
+        "Cube.js",
+        "metric definition",
+        "business glossary",
+        "dimensions and measures"
+      ]
+    },
+    {
+      "id": "warehouse_cost_optimization",
+      "name": "Warehouse Cost Optimization & Workload Management",
+      "description": "Monitoring compute consumption, query tagging, warehouse sizing, auto-scaling policies, query queuing, and FinOps for data warehouses.",
+      "keywords": [
+        "cost optimization",
+        "warehouse sizing",
+        "auto-scaling",
+        "credit consumption",
+        "query tagging",
+        "FinOps",
+        "concurrency scaling"
+      ]
+    }
+  ],
+  "evidence_patterns": {
+    "cv": [
+      {
+        "signal": "Designed enterprise star-schema data models and managed Snowflake/BigQuery warehouses",
+        "strength": 0.5,
+        "maps_to": [
+          "de_data_warehousing.dimensional_star_snowflake",
+          "de_data_warehousing.scd_type_management",
+          "de_data_warehousing.snowflake_architecture"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Certified Data Warehouse Specialist or Snowflake SnowPro Core",
+        "strength": 0.3,
+        "maps_to": [
+          "de_data_warehousing.snowflake_architecture",
+          "de_data_warehousing.fact_dimension_design"
+        ]
+      }
+    ],
+    "github": [
+      {
+        "pattern": "*.sql|models/**/*.sql|schemas/**/*.sql|snowflake/*.sql|bigquery/*.sql",
+        "strength": 1.0,
+        "maps_to": [
+          "de_data_warehousing.dimensional_star_snowflake",
+          "de_data_warehousing.fact_dimension_design",
+          "de_data_warehousing.scd_type_management",
+          "de_data_warehousing.snowflake_architecture",
+          "de_data_warehousing.bigquery_architecture",
+          "de_data_warehousing.redshift_architecture",
+          "de_data_warehousing.columnar_storage_compression",
+          "de_data_warehousing.semantic_layer_metrics",
+          "de_data_warehousing.warehouse_cost_optimization"
+        ]
+      }
+    ],
+    "assessment": [
+      {
+        "signal": "Passes Data Warehousing and Dimensional Modeling Architecture Assessment",
+        "strength": 1.0,
+        "maps_to": [
+          "de_data_warehousing.dimensional_star_snowflake",
+          "de_data_warehousing.fact_dimension_design",
+          "de_data_warehousing.scd_type_management",
+          "de_data_warehousing.snowflake_architecture",
+          "de_data_warehousing.bigquery_architecture",
+          "de_data_warehousing.redshift_architecture",
+          "de_data_warehousing.columnar_storage_compression",
+          "de_data_warehousing.semantic_layer_metrics",
+          "de_data_warehousing.warehouse_cost_optimization"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "dimensional_star_snowflake",
+        "fact_dimension_design",
+        "scd_type_management"
+      ],
+      "description": "Models star/snowflake schemas, designs fact and dimension tables, and implements SCD Type 1 & 2 logic."
+    },
+    "mid": {
+      "expected_subskills": [
+        "snowflake_architecture",
+        "bigquery_architecture",
+        "columnar_storage_compression"
+      ],
+      "description": "Configures and manages cloud data warehouses (Snowflake, BigQuery), tunes clustering, and optimizes columnar storage compression."
+    },
+    "senior": {
+      "expected_subskills": [
+        "redshift_architecture",
+        "semantic_layer_metrics",
+        "warehouse_cost_optimization"
+      ],
+      "description": "Architects multi-warehouse enterprise topologies, establishes unified semantic metric layers, and governs warehouse compute costs."
+    }
+  }
+}

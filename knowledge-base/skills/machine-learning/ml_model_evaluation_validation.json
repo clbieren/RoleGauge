@@ -1,0 +1,228 @@
+{
+  "skill_id": "ml_model_evaluation_validation",
+  "name": "Model Evaluation, Cross-Validation & Diagnostics",
+  "category": "validation",
+  "description": "Rigorous validation strategies (K-Fold, Stratified, TimeSeriesSplit), classification & regression metrics, ROC-AUC, Precision-Recall curves, probability calibration, bias-variance tradeoff, and data leakage diagnostics.",
+  "subskills": [
+    {
+      "id": "cross_validation_strategies_leakage",
+      "name": "Cross-Validation Strategies & Leakage Prevention",
+      "description": "K-Fold, StratifiedKFold, GroupKFold, TimeSeriesSplit, Purged/Embargoed CV for financial/temporal data, and preventing train-test data leakage.",
+      "keywords": [
+        "K-Fold",
+        "StratifiedKFold",
+        "GroupKFold",
+        "TimeSeriesSplit",
+        "cross-validation",
+        "data leakage",
+        "train test split",
+        "purging",
+        "embargo"
+      ]
+    },
+    {
+      "id": "classification_metrics_pr_roc",
+      "name": "Classification Metrics (ROC-AUC, PR-AUC, F1, Log-Loss)",
+      "description": "Confusion matrix, Precision, Recall, Specificity, F1-Score, F-beta, ROC Curve & AUC, Precision-Recall Curve & Average Precision, and Log-Loss.",
+      "keywords": [
+        "ROC-AUC",
+        "PR-AUC",
+        "Precision",
+        "Recall",
+        "F1-Score",
+        "F-beta",
+        "Log-Loss",
+        "Confusion Matrix",
+        "Average Precision",
+        "Specificity"
+      ]
+    },
+    {
+      "id": "regression_metrics_residual_analysis",
+      "name": "Regression Metrics & Residual Diagnostics",
+      "description": "MSE, RMSE, MAE, MAPE, SMAPE, R-squared (R2), Adjusted R2, homoscedasticity vs heteroscedasticity, and residual Q-Q plots.",
+      "keywords": [
+        "RMSE",
+        "MAE",
+        "MAPE",
+        "R-squared",
+        "Adjusted R2",
+        "residual plot",
+        "heteroscedasticity",
+        "Q-Q plot",
+        "error distribution"
+      ]
+    },
+    {
+      "id": "probability_calibration_platt_isotonic",
+      "name": "Probability Calibration (Platt Scaling, Isotonic Regression)",
+      "description": "Calibration curves / reliability diagrams, Brier score, Platt scaling (logistic calibration), and non-parametric Isotonic Regression.",
+      "keywords": [
+        "calibration curve",
+        "Platt scaling",
+        "Isotonic Regression",
+        "reliability diagram",
+        "Brier score",
+        "predicted probability",
+        "CalibratedClassifierCV"
+      ]
+    },
+    {
+      "id": "bias_variance_tradeoff_learning_curves",
+      "name": "Bias-Variance Tradeoff & Learning Curves",
+      "description": "Decomposing error into bias, variance, and irreducible noise, plotting learning curves to diagnose underfitting vs overfitting.",
+      "keywords": [
+        "bias-variance tradeoff",
+        "learning curve",
+        "underfitting",
+        "overfitting",
+        "high bias",
+        "high variance",
+        "training curve",
+        "validation curve"
+      ]
+    },
+    {
+      "id": "imbalanced_data_handling_smote",
+      "name": "Imbalanced Learning (SMOTE, Class Weights, Focal Loss)",
+      "description": "Random oversampling/undersampling, SMOTE (Synthetic Minority Over-sampling Technique), ADASYN, class_weight='balanced', and cost-sensitive learning.",
+      "keywords": [
+        "SMOTE",
+        "ADASYN",
+        "imbalanced data",
+        "class_weight",
+        "undersampling",
+        "oversampling",
+        "cost-sensitive",
+        "minority class"
+      ]
+    },
+    {
+      "id": "threshold_tuning_cost_matrices",
+      "name": "Decision Threshold Tuning & Cost-Benefit Matrices",
+      "description": "Selecting optimal classification thresholds based on business cost matrices (cost of False Positive vs False Negative) rather than default 0.5.",
+      "keywords": [
+        "threshold tuning",
+        "cost matrix",
+        "optimal threshold",
+        "business impact",
+        "False Positive cost",
+        "False Negative cost",
+        "decision boundary"
+      ]
+    },
+    {
+      "id": "ranking_recommendation_metrics",
+      "name": "Ranking & Retrieval Metrics (NDCG, MAP, MRR)",
+      "description": "Evaluating search and recommendation models: Normalized Discounted Cumulative Gain (NDCG@K), Mean Average Precision (MAP@K), and Mean Reciprocal Rank (MRR).",
+      "keywords": [
+        "NDCG",
+        "MAP@K",
+        "MRR",
+        "Mean Reciprocal Rank",
+        "ranking metrics",
+        "top-k metrics",
+        "Precision@K",
+        "Recall@K"
+      ]
+    },
+    {
+      "id": "ab_testing_online_evaluation",
+      "name": "Online Model Evaluation & A/B Testing Design",
+      "description": "Designing online A/B tests, sample size determination, minimum detectable effect (MDE), counterfactual evaluation, and shadow deployment metrics.",
+      "keywords": [
+        "A/B testing",
+        "MDE",
+        "minimum detectable effect",
+        "sample size",
+        "online evaluation",
+        "shadow deployment",
+        "counterfactual",
+        "statistical power"
+      ]
+    }
+  ],
+  "evidence_patterns": {
+    "cv": [
+      {
+        "signal": "Designed custom metric evaluation pipelines with Stratified TimeSeriesSplit and probability calibration",
+        "strength": 0.5,
+        "maps_to": [
+          "ml_model_evaluation_validation.cross_validation_strategies_leakage",
+          "ml_model_evaluation_validation.classification_metrics_pr_roc",
+          "ml_model_evaluation_validation.probability_calibration_platt_isotonic"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Model Evaluation, Validation & Statistical Testing endorsements",
+        "strength": 0.3,
+        "maps_to": [
+          "ml_model_evaluation_validation.regression_metrics_residual_analysis",
+          "ml_model_evaluation_validation.bias_variance_tradeoff_learning_curves"
+        ]
+      }
+    ],
+    "github": [
+      {
+        "pattern": "*eval*.py|*metrics*.py|*validate*.py|evaluation/**/*.py",
+        "strength": 1.0,
+        "maps_to": [
+          "ml_model_evaluation_validation.cross_validation_strategies_leakage",
+          "ml_model_evaluation_validation.classification_metrics_pr_roc",
+          "ml_model_evaluation_validation.regression_metrics_residual_analysis",
+          "ml_model_evaluation_validation.probability_calibration_platt_isotonic",
+          "ml_model_evaluation_validation.bias_variance_tradeoff_learning_curves",
+          "ml_model_evaluation_validation.imbalanced_data_handling_smote",
+          "ml_model_evaluation_validation.threshold_tuning_cost_matrices",
+          "ml_model_evaluation_validation.ranking_recommendation_metrics",
+          "ml_model_evaluation_validation.ab_testing_online_evaluation"
+        ]
+      }
+    ],
+    "assessment": [
+      {
+        "signal": "Passes Model Evaluation, Cross-Validation & Diagnostics Technical Assessment",
+        "strength": 1.0,
+        "maps_to": [
+          "ml_model_evaluation_validation.cross_validation_strategies_leakage",
+          "ml_model_evaluation_validation.classification_metrics_pr_roc",
+          "ml_model_evaluation_validation.regression_metrics_residual_analysis",
+          "ml_model_evaluation_validation.probability_calibration_platt_isotonic",
+          "ml_model_evaluation_validation.bias_variance_tradeoff_learning_curves",
+          "ml_model_evaluation_validation.imbalanced_data_handling_smote",
+          "ml_model_evaluation_validation.threshold_tuning_cost_matrices",
+          "ml_model_evaluation_validation.ranking_recommendation_metrics",
+          "ml_model_evaluation_validation.ab_testing_online_evaluation"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "classification_metrics_pr_roc",
+        "regression_metrics_residual_analysis",
+        "bias_variance_tradeoff_learning_curves"
+      ],
+      "description": "Calculates standard classification and regression metrics, generates ROC/PR curves, and analyzes learning curves for overfitting."
+    },
+    "mid": {
+      "expected_subskills": [
+        "cross_validation_strategies_leakage",
+        "probability_calibration_platt_isotonic",
+        "imbalanced_data_handling_smote",
+        "threshold_tuning_cost_matrices"
+      ],
+      "description": "Designs leak-free cross-validation splits, calibrates model probabilities (Platt/Isotonic), handles extreme imbalance (SMOTE), and tunes decision thresholds."
+    },
+    "senior": {
+      "expected_subskills": [
+        "ranking_recommendation_metrics",
+        "ab_testing_online_evaluation"
+      ],
+      "description": "Establishes online A/B testing frameworks, evaluates ranking models with NDCG/MAP, and designs statistical validation standards across company models."
+    }
+  }
+}

@@ -1,0 +1,212 @@
+{
+  "skill_id": "mlops_cost_finops_resource_optimization",
+  "name": "GPU FinOps, Resource Sharing & Cost Optimization",
+  "category": "finops",
+  "description": "Maximizing GPU hardware efficiency and minimizing cloud spend: NVIDIA Multi-Instance GPU (MIG), GPU time-slicing, Spot instance orchestration, interruption handling, FinOps cost allocation, and model right-sizing.",
+  "subskills": [
+    {
+      "id": "multi_instance_gpu_mig_partitioning",
+      "name": "NVIDIA Multi-Instance GPU (MIG) Partitioning",
+      "description": "Partitioning A100/H100 GPUs into isolated hardware instances (e.g. 1g.10gb, 3g.40gb) with dedicated compute, memory, and hardware QoS.",
+      "keywords": [
+        "MIG",
+        "Multi-Instance GPU",
+        "A100 partitioning",
+        "H100 MIG",
+        "GPU hardware slice",
+        "nvidia.com/mig-*",
+        "hardware QoS"
+      ]
+    },
+    {
+      "id": "gpu_time_slicing_sharing",
+      "name": "GPU Time-Slicing & Fractional GPU Sharing",
+      "description": "Configuring Kubernetes GPU time-slicing configurations to share non-MIG GPUs across multiple inference microservice pods.",
+      "keywords": [
+        "GPU time-slicing",
+        "fractional GPU",
+        "GPU sharing",
+        "timeSlicing.resources",
+        "over-subscription",
+        "cost reduction"
+      ]
+    },
+    {
+      "id": "spot_instance_orchestration_checkpoints",
+      "name": "Spot Instance Orchestration & Fault Tolerance",
+      "description": "Running training jobs on cheap Spot/Preemptible instances with automated checkpointing, spot interruption notice listeners, and auto-resumption.",
+      "keywords": [
+        "Spot instances",
+        "Preemptible VMs",
+        "spot interruption",
+        "2-minute warning handler",
+        "automated checkpointing",
+        "spot cost savings"
+      ]
+    },
+    {
+      "id": "gpu_utilization_profiling_dcgm",
+      "name": "GPU Utilization Profiling (NVIDIA DCGM / Nsight)",
+      "description": "Monitoring GPU duty cycle, memory bandwidth utilization, tensor core activity, and identifying underutilized 'zombie' GPU allocations with DCGM.",
+      "keywords": [
+        "DCGM",
+        "NVIDIA Nsight",
+        "GPU duty cycle",
+        "tensor core utilization",
+        "memory bandwidth",
+        "underutilized GPU",
+        "profiling"
+      ]
+    },
+    {
+      "id": "finops_cost_allocation_kubecost",
+      "name": "FinOps Cost Allocation & Kubecost for ML",
+      "description": "Allocating GPU/CPU compute costs per team, project, and model using Kubecost, AWS Cost Explorer tags, and tracking cost-per-inference.",
+      "keywords": [
+        "FinOps",
+        "Kubecost",
+        "cost allocation",
+        "cost-per-inference",
+        "cost tagging",
+        "team chargeback",
+        "cloud spend dashboard"
+      ]
+    },
+    {
+      "id": "inference_right_sizing_cpu_vs_gpu",
+      "name": "Inference Right-Sizing (CPU vs GPU vs Specialized ASICs)",
+      "description": "Benchmarking workloads to determine the most cost-effective hardware: modern CPUs (Intel Xeon AVX-512), cost-efficient GPUs (T4, L4), or AWS Inferentia / Trainium.",
+      "keywords": [
+        "right-sizing",
+        "CPU vs GPU inference",
+        "AWS Inferentia",
+        "AWS Trainium",
+        "NVIDIA T4",
+        "NVIDIA L4",
+        "cost-performance ratio"
+      ]
+    },
+    {
+      "id": "auto_termination_idle_compute_clusters",
+      "name": "Auto-Termination of Idle Clusters & Development Pods",
+      "description": "Implementing automated shutdown of idle Jupyter/training pods and scaling development inference endpoints to zero after business hours.",
+      "keywords": [
+        "auto-termination",
+        "idle cluster shutdown",
+        "scale-to-zero off-hours",
+        "idle reaper",
+        "cost governance",
+        "scheduled shutdown"
+      ]
+    },
+    {
+      "id": "model_compaction_for_lower_gpu_tier",
+      "name": "Model Compaction for Lower GPU Tiers (A100 -> L4/T4)",
+      "description": "Applying INT8/FP16 quantization to compress models so they fit on cost-effective 24GB L4/T4 GPUs instead of expensive 80GB A100s.",
+      "keywords": [
+        "model compaction",
+        "L4 migration",
+        "T4 GPU",
+        "fit on smaller VRAM",
+        "quantize for cost",
+        "80GB to 24GB reduction"
+      ]
+    },
+    {
+      "id": "cloud_savings_plans_reserved_instances",
+      "name": "Savings Plans, Reserved Instances & Capacity Blocks",
+      "description": "Strategic commitment modeling: Compute Savings Plans, 1-year/3-year Reserved Instances, and AWS EC2 Capacity Blocks for ML training reservations.",
+      "keywords": [
+        "Savings Plans",
+        "Reserved Instances",
+        "EC2 Capacity Blocks",
+        "GPU reservation",
+        "commitment discount",
+        "FinOps strategy"
+      ]
+    }
+  ],
+  "evidence_patterns": {
+    "cv": [
+      {
+        "signal": "Reduced cloud ML spend by 60% by implementing Multi-Instance GPU (MIG), Spot orchestration, and Kubecost FinOps",
+        "strength": 0.5,
+        "maps_to": [
+          "mlops_cost_finops_resource_optimization.multi_instance_gpu_mig_partitioning",
+          "mlops_cost_finops_resource_optimization.spot_instance_orchestration_checkpoints",
+          "mlops_cost_finops_resource_optimization.finops_cost_allocation_kubecost"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "GPU FinOps, Cloud Cost Optimization, and MIG endorsements",
+        "strength": 0.3,
+        "maps_to": [
+          "mlops_cost_finops_resource_optimization.gpu_time_slicing_sharing",
+          "mlops_cost_finops_resource_optimization.inference_right_sizing_cpu_vs_gpu"
+        ]
+      }
+    ],
+    "github": [
+      {
+        "pattern": "*finops*|*kubecost*|*mig*.yml|spot/**/*.py|cost/**/*.yml",
+        "strength": 1.0,
+        "maps_to": [
+          "mlops_cost_finops_resource_optimization.multi_instance_gpu_mig_partitioning",
+          "mlops_cost_finops_resource_optimization.gpu_time_slicing_sharing",
+          "mlops_cost_finops_resource_optimization.spot_instance_orchestration_checkpoints",
+          "mlops_cost_finops_resource_optimization.gpu_utilization_profiling_dcgm",
+          "mlops_cost_finops_resource_optimization.finops_cost_allocation_kubecost",
+          "mlops_cost_finops_resource_optimization.inference_right_sizing_cpu_vs_gpu",
+          "mlops_cost_finops_resource_optimization.auto_termination_idle_compute_clusters",
+          "mlops_cost_finops_resource_optimization.model_compaction_for_lower_gpu_tier",
+          "mlops_cost_finops_resource_optimization.cloud_savings_plans_reserved_instances"
+        ]
+      }
+    ],
+    "assessment": [
+      {
+        "signal": "Passes GPU FinOps, Resource Sharing & Cost Optimization Assessment",
+        "strength": 1.0,
+        "maps_to": [
+          "mlops_cost_finops_resource_optimization.multi_instance_gpu_mig_partitioning",
+          "mlops_cost_finops_resource_optimization.gpu_time_slicing_sharing",
+          "mlops_cost_finops_resource_optimization.spot_instance_orchestration_checkpoints",
+          "mlops_cost_finops_resource_optimization.gpu_utilization_profiling_dcgm",
+          "mlops_cost_finops_resource_optimization.finops_cost_allocation_kubecost",
+          "mlops_cost_finops_resource_optimization.inference_right_sizing_cpu_vs_gpu",
+          "mlops_cost_finops_resource_optimization.auto_termination_idle_compute_clusters",
+          "mlops_cost_finops_resource_optimization.model_compaction_for_lower_gpu_tier",
+          "mlops_cost_finops_resource_optimization.cloud_savings_plans_reserved_instances"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "gpu_utilization_profiling_dcgm",
+        "auto_termination_idle_compute_clusters",
+        "model_compaction_for_lower_gpu_tier"
+      ],
+      "description": "Monitors GPU utilization with DCGM, configures auto-termination of idle dev pods, and quantizes models to fit smaller VRAM."
+    },
+    "mid": {
+      "expected_subskills": [
+        "gpu_time_slicing_sharing",
+        "spot_instance_orchestration_checkpoints",
+        "finops_cost_allocation_kubecost",
+        "inference_right_sizing_cpu_vs_gpu"
+      ],
+      "description": "Configures GPU time-slicing sharing, runs resilient training on Spot instances with automated checkpoints, and tracks Kubecost cost-per-inference."
+    },
+    "senior": {
+      "expected_subskills": [
+        "multi_instance_gpu_mig_partitioning",
+        "cloud_savings_plans_reserved_instances"
+      ],
+      "description": "Architects NVIDIA MIG hardware partitioning for high-density serving and formulates enterprise GPU reservation & Savings Plan strategies."
+    }
+  }
+}

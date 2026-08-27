@@ -1,0 +1,220 @@
+{
+  "skill_id": "mlops_lifecycle_governance",
+  "name": "MLOps Lifecycle, Maturity & Governance",
+  "category": "governance",
+  "description": "MLOps maturity levels (Level 0 Manual to Level 2 Automated CI/CD/CT), Model Governance, Model Cards, training reproducibility, audit trails, ethical gates, and regulatory compliance.",
+  "subskills": [
+    {
+      "id": "mlops_maturity_levels_0_to_2",
+      "name": "MLOps Maturity Framework (Levels 0, 1, 2)",
+      "description": "Google MLOps maturity model: Level 0 (manual workflow), Level 1 (automated ML pipeline / CT), Level 2 (CI/CD pipeline automated deployment).",
+      "keywords": [
+        "MLOps maturity",
+        "Level 0",
+        "Level 1",
+        "Level 2",
+        "manual workflow",
+        "automated pipeline",
+        "CI/CD/CT automation",
+        "Google MLOps"
+      ]
+    },
+    {
+      "id": "model_cards_standardized_documentation",
+      "name": "Model Cards & Standardized Documentation",
+      "description": "Authoring standardized Model Cards: model details, intended use, factors, evaluation datasets, quantitative metrics, and ethical considerations.",
+      "keywords": [
+        "Model Card",
+        "documentation",
+        "intended use",
+        "limitations",
+        "evaluation metrics",
+        "training data provenance",
+        "ethical considerations"
+      ]
+    },
+    {
+      "id": "model_lineage_data_code_provenance",
+      "name": "End-to-End Model Lineage & Provenance Tracking",
+      "description": "Tracing deployed model binary back to exact Git commit hash, DVC dataset hash, training environment parameters, and container image digest.",
+      "keywords": [
+        "model lineage",
+        "data provenance",
+        "Git commit hash",
+        "DVC hash",
+        "container digest",
+        "reproducibility",
+        "audit trail"
+      ]
+    },
+    {
+      "id": "model_governance_approval_workflows",
+      "name": "Model Governance, Review & Approval Gates",
+      "description": "Role-based model approval gates before production promotion (Data Scientist -> ML Engineer -> Risk/Compliance Officer sign-off).",
+      "keywords": [
+        "model governance",
+        "approval gate",
+        "promotion workflow",
+        "compliance sign-off",
+        "risk review",
+        "RBAC model access",
+        "stage transition"
+      ]
+    },
+    {
+      "id": "ethical_ai_fairness_compliance_gates",
+      "name": "Ethical AI, Bias Auditing & Compliance Gates",
+      "description": "Enforcing automated bias and fairness gates in CI/CD (disparate impact, equalized odds) using Fairlearn / AIF360 before model release.",
+      "keywords": [
+        "bias gate",
+        "fairness check",
+        "disparate impact",
+        "Equalized Odds",
+        "Fairlearn",
+        "AIF360",
+        "compliance gate",
+        "automated audit"
+      ]
+    },
+    {
+      "id": "model_catalog_metadata_management",
+      "name": "Enterprise Model Catalog & Metadata Management",
+      "description": "Centralizing model catalog assets in DataHub / MLflow, tracking model status, owners, input/output schemas, and SLAs across business units.",
+      "keywords": [
+        "model catalog",
+        "metadata management",
+        "DataHub",
+        "MLflow catalog",
+        "schema definition",
+        "asset tracking",
+        "business ownership"
+      ]
+    },
+    {
+      "id": "training_reproducibility_seed_environments",
+      "name": "Deterministic Training & Environment Isolation",
+      "description": "Ensuring bitwise training reproducibility: setting global random seeds (PyTorch/CUDA/NumPy), pinning dependencies, and deterministic CUDA ops.",
+      "keywords": [
+        "reproducibility",
+        "random seed",
+        "torch.use_deterministic_algorithms",
+        "CUDA determinism",
+        "pinned environment",
+        "seedWorker"
+      ]
+    },
+    {
+      "id": "regulatory_compliance_ai_act_gdpr",
+      "name": "Regulatory Compliance (EU AI Act, GDPR, HIPAA)",
+      "description": "High-risk AI system compliance, Right to Explanation under GDPR, model auditing, data residency, and algorithmic impact assessments.",
+      "keywords": [
+        "EU AI Act",
+        "GDPR",
+        "HIPAA",
+        "Right to Explanation",
+        "high-risk AI",
+        "impact assessment",
+        "regulatory audit",
+        "data residency"
+      ]
+    },
+    {
+      "id": "incident_postmortem_model_failure_runbooks",
+      "name": "Model Incident Response & Post-Mortem Runbooks",
+      "description": "Authoring post-mortem runbooks for silent model failure, feedback loops, data corruption, and establishing emergency rollback procedures.",
+      "keywords": [
+        "post-mortem",
+        "runbook",
+        "incident response",
+        "silent failure",
+        "feedback loop",
+        "emergency rollback",
+        "circuit breaker",
+        "SRE for ML"
+      ]
+    }
+  ],
+  "evidence_patterns": {
+    "cv": [
+      {
+        "signal": "Established enterprise MLOps governance, standardized Model Cards, and automated compliance gates",
+        "strength": 0.5,
+        "maps_to": [
+          "mlops_lifecycle_governance.model_cards_standardized_documentation",
+          "mlops_lifecycle_governance.model_governance_approval_workflows",
+          "mlops_lifecycle_governance.model_lineage_data_code_provenance"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "MLOps Governance, Model Management, and AI Compliance endorsements",
+        "strength": 0.3,
+        "maps_to": [
+          "mlops_lifecycle_governance.mlops_maturity_levels_0_to_2",
+          "mlops_lifecycle_governance.ethical_ai_fairness_compliance_gates"
+        ]
+      }
+    ],
+    "github": [
+      {
+        "pattern": "*model_card*.md|governance/**/*.py|compliance/**/*.yml",
+        "strength": 1.0,
+        "maps_to": [
+          "mlops_lifecycle_governance.mlops_maturity_levels_0_to_2",
+          "mlops_lifecycle_governance.model_cards_standardized_documentation",
+          "mlops_lifecycle_governance.model_lineage_data_code_provenance",
+          "mlops_lifecycle_governance.model_governance_approval_workflows",
+          "mlops_lifecycle_governance.ethical_ai_fairness_compliance_gates",
+          "mlops_lifecycle_governance.model_catalog_metadata_management",
+          "mlops_lifecycle_governance.training_reproducibility_seed_environments",
+          "mlops_lifecycle_governance.regulatory_compliance_ai_act_gdpr",
+          "mlops_lifecycle_governance.incident_postmortem_model_failure_runbooks"
+        ]
+      }
+    ],
+    "assessment": [
+      {
+        "signal": "Passes MLOps Lifecycle, Maturity & Governance Assessment",
+        "strength": 1.0,
+        "maps_to": [
+          "mlops_lifecycle_governance.mlops_maturity_levels_0_to_2",
+          "mlops_lifecycle_governance.model_cards_standardized_documentation",
+          "mlops_lifecycle_governance.model_lineage_data_code_provenance",
+          "mlops_lifecycle_governance.model_governance_approval_workflows",
+          "mlops_lifecycle_governance.ethical_ai_fairness_compliance_gates",
+          "mlops_lifecycle_governance.model_catalog_metadata_management",
+          "mlops_lifecycle_governance.training_reproducibility_seed_environments",
+          "mlops_lifecycle_governance.regulatory_compliance_ai_act_gdpr",
+          "mlops_lifecycle_governance.incident_postmortem_model_failure_runbooks"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "mlops_maturity_levels_0_to_2",
+        "model_cards_standardized_documentation",
+        "training_reproducibility_seed_environments"
+      ],
+      "description": "Understands MLOps maturity stages, authors standardized Model Cards, and sets up deterministic seed environments."
+    },
+    "mid": {
+      "expected_subskills": [
+        "model_lineage_data_code_provenance",
+        "model_governance_approval_workflows",
+        "ethical_ai_fairness_compliance_gates",
+        "model_catalog_metadata_management"
+      ],
+      "description": "Tracks full model lineage from data to binary, enforces CI/CD fairness gates, and integrates assets into enterprise model catalogs."
+    },
+    "senior": {
+      "expected_subskills": [
+        "regulatory_compliance_ai_act_gdpr",
+        "incident_postmortem_model_failure_runbooks"
+      ],
+      "description": "Architects EU AI Act/GDPR regulatory compliance frameworks, establishes model risk runbooks, and drives enterprise MLOps transformation."
+    }
+  }
+}

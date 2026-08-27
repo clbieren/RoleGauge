@@ -1,0 +1,236 @@
+{
+  "skill_id": "de_sql_advanced",
+  "name": "Advanced SQL & Database Internals",
+  "category": "database",
+  "description": "Advanced analytical querying, complex joins, window functions, recursive CTEs, query optimization, indexing strategies, and database execution internals.",
+  "subskills": [
+    {
+      "id": "complex_joins_subqueries",
+      "name": "Complex Joins, Sets & Correlated Subqueries",
+      "description": "Inner, outer, cross, anti-joins, semi-joins, set operations (UNION, INTERSECT, EXCEPT), and correlated subquery optimization.",
+      "keywords": [
+        "LEFT JOIN",
+        "INNER JOIN",
+        "FULL OUTER JOIN",
+        "CROSS JOIN",
+        "ANTI JOIN",
+        "SEMI JOIN",
+        "UNION ALL",
+        "INTERSECT",
+        "EXCEPT",
+        "correlated subquery"
+      ]
+    },
+    {
+      "id": "window_functions_analytical",
+      "name": "Window Functions & Analytical Aggregations",
+      "description": "OVER clause, PARTITION BY, ORDER BY, framing (ROWS/RANGE BETWEEN), ranking (ROW_NUMBER, RANK, DENSE_RANK), navigation (LEAD, LAG), and running aggregates.",
+      "keywords": [
+        "ROW_NUMBER",
+        "RANK",
+        "DENSE_RANK",
+        "NTILE",
+        "LEAD",
+        "LAG",
+        "FIRST_VALUE",
+        "LAST_VALUE",
+        "PARTITION BY",
+        "ROWS BETWEEN",
+        "UNBOUNDED PRECEDING"
+      ]
+    },
+    {
+      "id": "ctes_recursive_queries",
+      "name": "Common Table Expressions & Recursive Queries",
+      "description": "Modular CTEs, WITH clauses, recursive queries for hierarchical data traversal, and query modularity.",
+      "keywords": [
+        "CTE",
+        "WITH RECURSIVE",
+        "hierarchical queries",
+        "graph traversal SQL",
+        "anchor member",
+        "recursive member",
+        "table expression"
+      ]
+    },
+    {
+      "id": "indexing_b_tree_strategies",
+      "name": "Indexing Strategies & Internal Structures",
+      "description": "B-Tree, Hash, GiST, GIN, Bitmap indexes, composite indexes, covering indexes, partial indexes, and index selectivity.",
+      "keywords": [
+        "B-Tree",
+        "GIN",
+        "GiST",
+        "Bitmap index",
+        "composite index",
+        "covering index",
+        "INCLUDE clause",
+        "partial index",
+        "index selectivity"
+      ]
+    },
+    {
+      "id": "query_execution_plans",
+      "name": "Query Execution Plans & Cost-Based Optimization",
+      "description": "Analyzing EXPLAIN / EXPLAIN ANALYZE, cost metrics, Seq Scan vs Index Scan, Hash Join vs Merge Join vs Nested Loop, and cardinality estimation.",
+      "keywords": [
+        "EXPLAIN ANALYZE",
+        "Query Plan",
+        "Seq Scan",
+        "Index Scan",
+        "Index Only Scan",
+        "Hash Join",
+        "Merge Join",
+        "Nested Loop",
+        "cost estimation",
+        "cardinality"
+      ]
+    },
+    {
+      "id": "partitioning_sharding",
+      "name": "Table Partitioning & Database Sharding",
+      "description": "Range, List, and Hash partitioning, partition pruning, dynamic partition elimination, and horizontal sharding strategies.",
+      "keywords": [
+        "partitioning",
+        "RANGE partitioning",
+        "LIST partitioning",
+        "HASH partitioning",
+        "partition pruning",
+        "sharding",
+        "distributed tables",
+        "subpartitioning"
+      ]
+    },
+    {
+      "id": "transactions_acid_isolation",
+      "name": "Transactions, ACID Properties & Isolation Levels",
+      "description": "ACID compliance, transaction management, isolation levels (Read Committed, Repeatable Read, Serializable), MVCC, and deadlocks.",
+      "keywords": [
+        "ACID",
+        "isolation levels",
+        "Read Committed",
+        "Repeatable Read",
+        "Serializable",
+        "dirty read",
+        "phantom read",
+        "MVCC",
+        "deadlock",
+        "WAL"
+      ]
+    },
+    {
+      "id": "stored_procedures_udfs",
+      "name": "Stored Procedures, Triggers & User-Defined Functions",
+      "description": "PL/pgSQL, T-SQL, procedural control flow, triggers, table-valued functions, and custom SQL UDFs.",
+      "keywords": [
+        "PL/pgSQL",
+        "stored procedure",
+        "trigger",
+        "UDF",
+        "table-valued function",
+        "control flow",
+        "cursor",
+        "dynamic SQL"
+      ]
+    },
+    {
+      "id": "db_performance_tuning",
+      "name": "Database Performance Tuning & Statistics",
+      "description": "ANALYZE, VACUUM, buffer cache hit ratio, connection pooling, temporary spill to disk, work_mem, and maintenance_work_mem tuning.",
+      "keywords": [
+        "VACUUM",
+        "ANALYZE",
+        "work_mem",
+        "buffer cache",
+        "connection pooling",
+        "PgBouncer",
+        "disk spill",
+        "statistics collector",
+        "query tuning"
+      ]
+    }
+  ],
+  "evidence_patterns": {
+    "cv": [
+      {
+        "signal": "Optimized slow-running analytical SQL queries and database indexes",
+        "strength": 0.5,
+        "maps_to": [
+          "de_sql_advanced.query_execution_plans",
+          "de_sql_advanced.indexing_b_tree_strategies",
+          "de_sql_advanced.db_performance_tuning"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Endorsements for Advanced SQL, PostgreSQL, and Query Optimization",
+        "strength": 0.3,
+        "maps_to": [
+          "de_sql_advanced.window_functions_analytical",
+          "de_sql_advanced.complex_joins_subqueries"
+        ]
+      }
+    ],
+    "github": [
+      {
+        "pattern": "*.sql|queries/*.sql|migrations/*.sql|schema/*.sql",
+        "strength": 1.0,
+        "maps_to": [
+          "de_sql_advanced.complex_joins_subqueries",
+          "de_sql_advanced.window_functions_analytical",
+          "de_sql_advanced.ctes_recursive_queries",
+          "de_sql_advanced.indexing_b_tree_strategies",
+          "de_sql_advanced.query_execution_plans",
+          "de_sql_advanced.partitioning_sharding",
+          "de_sql_advanced.transactions_acid_isolation",
+          "de_sql_advanced.stored_procedures_udfs",
+          "de_sql_advanced.db_performance_tuning"
+        ]
+      }
+    ],
+    "assessment": [
+      {
+        "signal": "Passes comprehensive Advanced SQL query and database optimization assessment",
+        "strength": 1.0,
+        "maps_to": [
+          "de_sql_advanced.complex_joins_subqueries",
+          "de_sql_advanced.window_functions_analytical",
+          "de_sql_advanced.ctes_recursive_queries",
+          "de_sql_advanced.indexing_b_tree_strategies",
+          "de_sql_advanced.query_execution_plans",
+          "de_sql_advanced.partitioning_sharding",
+          "de_sql_advanced.transactions_acid_isolation",
+          "de_sql_advanced.stored_procedures_udfs",
+          "de_sql_advanced.db_performance_tuning"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "complex_joins_subqueries",
+        "window_functions_analytical",
+        "ctes_recursive_queries"
+      ],
+      "description": "Writes complex multi-table queries, analytical window functions, and recursive/modular CTEs."
+    },
+    "mid": {
+      "expected_subskills": [
+        "indexing_b_tree_strategies",
+        "partitioning_sharding",
+        "transactions_acid_isolation",
+        "stored_procedures_udfs"
+      ],
+      "description": "Designs indexing strategies, partitions large tables, manages transaction isolation levels, and writes stored procedures."
+    },
+    "senior": {
+      "expected_subskills": [
+        "query_execution_plans",
+        "db_performance_tuning"
+      ],
+      "description": "Interprets complex EXPLAIN ANALYZE cost trees, tunes database memory/buffers, and resolves execution bottlenecks across distributed databases."
+    }
+  }
+}

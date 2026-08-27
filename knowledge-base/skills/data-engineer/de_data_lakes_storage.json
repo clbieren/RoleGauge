@@ -1,0 +1,230 @@
+{
+  "skill_id": "de_data_lakes_storage",
+  "name": "Data Lakes & Open Table Formats",
+  "category": "storage",
+  "description": "Modern Data Lake and Lakehouse architecture, object storage (S3, GCS, ADLS), open table formats (Delta Lake, Apache Iceberg, Apache Hudi), ACID on data lakes, time travel, and file compaction.",
+  "subskills": [
+    {
+      "id": "object_storage_s3_gcs_blob",
+      "name": "Cloud Object Storage & IAM Access Patterns",
+      "description": "AWS S3, Google Cloud Storage, Azure Data Lake Storage Gen2 (ADLS), storage tiers, lifecycle rules, bucket policies, and high-throughput prefixes.",
+      "keywords": [
+        "AWS S3",
+        "GCS",
+        "ADLS Gen2",
+        "object storage",
+        "multipart upload",
+        "lifecycle policies",
+        "storage classes",
+        "S3 Select",
+        "prefix partitioning"
+      ]
+    },
+    {
+      "id": "parquet_orc_file_formats",
+      "name": "Columnar File Formats (Parquet, ORC, Avro)",
+      "description": "Parquet file anatomy (Header, Data Pages, Column Chunks, Footer/Metadata), dictionary pages, statistics (min/max), and Avro row-based schema.",
+      "keywords": [
+        "Parquet",
+        "ORC",
+        "Avro",
+        "footer metadata",
+        "row group",
+        "column chunk",
+        "dictionary page",
+        "min/max statistics",
+        "predicate pushdown"
+      ]
+    },
+    {
+      "id": "delta_lake_acid",
+      "name": "Delta Lake & Transaction Logs",
+      "description": "Delta Lake ACID transactions, _delta_log JSON transaction log, checkpoint parquet files, optimistic concurrency control, and merge operations.",
+      "keywords": [
+        "Delta Lake",
+        "_delta_log",
+        "ACID",
+        "optimistic concurrency",
+        "MERGE INTO",
+        "Delta checkpoint",
+        "vacuum",
+        "optimize",
+        "Databricks Delta"
+      ]
+    },
+    {
+      "id": "apache_iceberg_architecture",
+      "name": "Apache Iceberg Open Table Format",
+      "description": "Iceberg architecture: Iceberg Catalog, Metadata File (JSON), Manifest List (Avro), Manifest Files (Avro), data files, snapshot isolation, and hidden partitioning.",
+      "keywords": [
+        "Apache Iceberg",
+        "Iceberg Catalog",
+        "Manifest List",
+        "Manifest File",
+        "snapshot isolation",
+        "hidden partitioning",
+        "schema evolution",
+        "Nessie",
+        "REST Catalog"
+      ]
+    },
+    {
+      "id": "apache_hudi_upserts",
+      "name": "Apache Hudi & Upsert Architecture",
+      "description": "Hudi Copy-on-Write (CoW) vs Merge-on-Read (MoR), timeline metadata, key-based record indexing, file sizing, and incremental data consumption.",
+      "keywords": [
+        "Apache Hudi",
+        "Copy-on-Write",
+        "Merge-on-Read",
+        "Hudi timeline",
+        "upsert",
+        "HoodieKey",
+        "file groups",
+        "incremental query"
+      ]
+    },
+    {
+      "id": "partitioning_z_ordering",
+      "name": "Data Skipping, Partitioning & Z-Ordering",
+      "description": "Multi-dimensional clustering with Z-Order Curves, Hilbert curves, partition pruning, min/max file skipping, and avoiding over-partitioning.",
+      "keywords": [
+        "Z-Order",
+        "Z-Ordering",
+        "data skipping",
+        "clustering",
+        "partition pruning",
+        "over-partitioning",
+        "Hilbert curve",
+        "bloom filters"
+      ]
+    },
+    {
+      "id": "small_files_compaction",
+      "name": "Small File Problem & Automated Compaction",
+      "description": "Mitigating the small files problem in streaming/batch ingest, bin-packing, OPTIMIZE compaction jobs, and maintenance procedures.",
+      "keywords": [
+        "small file problem",
+        "compaction",
+        "bin-packing",
+        "OPTIMIZE",
+        "VACUUM",
+        "file rewrite",
+        "maintenance job",
+        "target file size"
+      ]
+    },
+    {
+      "id": "lakehouse_medallion_architecture",
+      "name": "Medallion Architecture (Bronze / Silver / Gold)",
+      "description": "Designing Bronze (raw, append-only), Silver (cleaned, deduplicated, enriched), and Gold (aggregated, business-level dimensional) lakehouse layers.",
+      "keywords": [
+        "Medallion architecture",
+        "Bronze layer",
+        "Silver layer",
+        "Gold layer",
+        "raw data",
+        "conformed layer",
+        "curated data",
+        "Lakehouse"
+      ]
+    },
+    {
+      "id": "time_travel_schema_evolution",
+      "name": "Time Travel, Rollback & Schema Evolution",
+      "description": "Querying historical snapshots (TIMESTAMP AS OF / VERSION AS OF), rollbacks, additive vs breaking schema changes, and column renaming.",
+      "keywords": [
+        "time travel",
+        "VERSION AS OF",
+        "TIMESTAMP AS OF",
+        "schema evolution",
+        "schema enforcement",
+        "rollback",
+        "audit history",
+        "add column"
+      ]
+    }
+  ],
+  "evidence_patterns": {
+    "cv": [
+      {
+        "signal": "Built enterprise Lakehouse using Delta Lake and Apache Iceberg with Medallion architecture",
+        "strength": 0.5,
+        "maps_to": [
+          "de_data_lakes_storage.delta_lake_acid",
+          "de_data_lakes_storage.lakehouse_medallion_architecture",
+          "de_data_lakes_storage.apache_iceberg_architecture"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Hands-on experience with Delta Lake, Apache Iceberg, and AWS S3 storage",
+        "strength": 0.3,
+        "maps_to": [
+          "de_data_lakes_storage.parquet_orc_file_formats",
+          "de_data_lakes_storage.object_storage_s3_gcs_blob"
+        ]
+      }
+    ],
+    "github": [
+      {
+        "pattern": "*iceberg*|*delta*|*.parquet|lakehouse/**/*.py|storage/**/*.tf",
+        "strength": 1.0,
+        "maps_to": [
+          "de_data_lakes_storage.object_storage_s3_gcs_blob",
+          "de_data_lakes_storage.parquet_orc_file_formats",
+          "de_data_lakes_storage.delta_lake_acid",
+          "de_data_lakes_storage.apache_iceberg_architecture",
+          "de_data_lakes_storage.apache_hudi_upserts",
+          "de_data_lakes_storage.partitioning_z_ordering",
+          "de_data_lakes_storage.small_files_compaction",
+          "de_data_lakes_storage.lakehouse_medallion_architecture",
+          "de_data_lakes_storage.time_travel_schema_evolution"
+        ]
+      }
+    ],
+    "assessment": [
+      {
+        "signal": "Passes Data Lakes & Open Table Formats Technical Assessment",
+        "strength": 1.0,
+        "maps_to": [
+          "de_data_lakes_storage.object_storage_s3_gcs_blob",
+          "de_data_lakes_storage.parquet_orc_file_formats",
+          "de_data_lakes_storage.delta_lake_acid",
+          "de_data_lakes_storage.apache_iceberg_architecture",
+          "de_data_lakes_storage.apache_hudi_upserts",
+          "de_data_lakes_storage.partitioning_z_ordering",
+          "de_data_lakes_storage.small_files_compaction",
+          "de_data_lakes_storage.lakehouse_medallion_architecture",
+          "de_data_lakes_storage.time_travel_schema_evolution"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "object_storage_s3_gcs_blob",
+        "parquet_orc_file_formats",
+        "lakehouse_medallion_architecture"
+      ],
+      "description": "Interacts with cloud object storage, writes optimized Parquet datasets, and organizes data along Medallion (Bronze/Silver/Gold) stages."
+    },
+    "mid": {
+      "expected_subskills": [
+        "delta_lake_acid",
+        "apache_iceberg_architecture",
+        "partitioning_z_ordering",
+        "time_travel_schema_evolution"
+      ],
+      "description": "Implements ACID table formats (Delta/Iceberg), manages snapshot isolation, time travel queries, and configures Z-ordering."
+    },
+    "senior": {
+      "expected_subskills": [
+        "apache_hudi_upserts",
+        "small_files_compaction"
+      ],
+      "description": "Architects high-throughput lakehouse upserts with Hudi/Iceberg, designs automated compaction strategies, and governs lakehouse metadata integrity."
+    }
+  }
+}

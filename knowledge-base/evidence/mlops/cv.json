@@ -1,0 +1,123 @@
+{
+  "source_id": "cv",
+  "name": "CV / Resume Parser - MLOps Engineering",
+  "description": "Extraction and scoring rules for MLOps Engineer CVs/Resumes based on section base strengths and keyword associations.",
+  "sections": [
+    {
+      "section_id": "work_experience",
+      "name": "Work Experience",
+      "base_strength": 0.5,
+      "description": "Professional MLOps roles, production pipeline orchestration, and model platform deployments.",
+      "signal_extractors": [
+        {
+          "pattern": "Kubeflow|Flyte|Argo Workflows|Airflow",
+          "strength": 0.5,
+          "maps_to": [
+            "mlops_pipeline_orchestration.kubeflow_pipelines_kfp_v2_dsl",
+            "mlops_pipeline_orchestration.flyte_orchestration_type_safety",
+            "mlops_pipeline_orchestration.gpu_resource_allocation_node_affinity"
+          ]
+        },
+        {
+          "pattern": "KServe|vLLM|Ray Serve|Triton|Seldon",
+          "strength": 0.5,
+          "maps_to": [
+            "mlops_model_serving_infrastructure.kserve_inferenceservice_crd",
+            "mlops_model_serving_infrastructure.vllm_tgi_high_throughput_llm_serving",
+            "mlops_model_serving_infrastructure.gpu_autoscaling_keda_prometheus"
+          ]
+        },
+        {
+          "pattern": "Feast|Hopsworks|DVC|Feature Store|Data Versioning",
+          "strength": 0.5,
+          "maps_to": [
+            "mlops_data_feature_management.feast_feature_store_architecture",
+            "mlops_data_feature_management.point_in_time_correct_historical_joins",
+            "mlops_data_feature_management.dvc_data_versioning_s3_gcs"
+          ]
+        },
+        {
+          "pattern": "MLflow|Weights & Biases|Model Registry|Experiment Tracking",
+          "strength": 0.5,
+          "maps_to": [
+            "mlops_experiment_tracking_registry.mlflow_tracking_server_backend_setup",
+            "mlops_experiment_tracking_registry.mlflow_model_registry_lifecycle",
+            "mlops_experiment_tracking_registry.custom_mlflow_pyfunc_wrappers"
+          ]
+        },
+        {
+          "pattern": "CML|Continuous Training|Argo Rollouts|Champion Challenger|Canary",
+          "strength": 0.5,
+          "maps_to": [
+            "mlops_ci_cd_continuous_training.cml_github_actions_pull_request_reports",
+            "mlops_ci_cd_continuous_training.champion_challenger_evaluation_framework",
+            "mlops_ci_cd_continuous_training.canary_blue_green_model_rollouts"
+          ]
+        },
+        {
+          "pattern": "Evidently AI|Prometheus|Grafana|Data Drift|Concept Drift",
+          "strength": 0.5,
+          "maps_to": [
+            "mlops_monitoring_drift_observability.prometheus_grafana_ml_metrics_scraping",
+            "mlops_monitoring_drift_observability.evidently_ai_automated_drift_dashboards",
+            "mlops_monitoring_drift_observability.statistical_drift_tests_ks_psi_wasserstein"
+          ]
+        },
+        {
+          "pattern": "Terraform|Karpenter|EKS|GKE|Kubernetes|IRSA",
+          "strength": 0.5,
+          "maps_to": [
+            "mlops_infrastructure_iac_cloud.terraform_ml_infrastructure_modules",
+            "mlops_infrastructure_iac_cloud.karpenter_just_in_time_gpu_node_provisioning",
+            "mlops_infrastructure_iac_cloud.kubernetes_gpu_device_plugin_setup"
+          ]
+        },
+        {
+          "pattern": "Multi-Instance GPU|MIG|Spot Instances|FinOps|Kubecost",
+          "strength": 0.5,
+          "maps_to": [
+            "mlops_cost_finops_resource_optimization.multi_instance_gpu_mig_partitioning",
+            "mlops_cost_finops_resource_optimization.spot_instance_orchestration_checkpoints",
+            "mlops_cost_finops_resource_optimization.finops_cost_allocation_kubecost"
+          ]
+        },
+        {
+          "pattern": "BentoML|Docker GPU|Trivy|SafeTensors|CUDA",
+          "strength": 0.5,
+          "maps_to": [
+            "mlops_model_packaging_containerization.docker_multistage_gpu_builds",
+            "mlops_model_packaging_containerization.bentoml_model_packaging_framework",
+            "mlops_model_packaging_containerization.model_artifact_packaging_formats_safetensors"
+          ]
+        },
+        {
+          "pattern": "MLOps Governance|Model Cards|EU AI Act|Lineage|Audit",
+          "strength": 0.5,
+          "maps_to": [
+            "mlops_lifecycle_governance.model_cards_standardized_documentation",
+            "mlops_lifecycle_governance.model_lineage_data_code_provenance",
+            "mlops_lifecycle_governance.model_governance_approval_workflows"
+          ]
+        }
+      ]
+    },
+    {
+      "section_id": "projects",
+      "name": "Projects",
+      "base_strength": 0.5,
+      "description": "MLOps platform repositories and production pipeline architectures."
+    },
+    {
+      "section_id": "skills_list",
+      "name": "Skills List",
+      "base_strength": 0.3,
+      "description": "Self-reported MLOps tools and platforms."
+    },
+    {
+      "section_id": "education",
+      "name": "Education & Certifications",
+      "base_strength": 0.3,
+      "description": "Degrees and cloud/Kubernetes/MLOps certifications."
+    }
+  ]
+}

@@ -1,0 +1,230 @@
+{
+  "skill_id": "ml_mathematics_foundations",
+  "name": "Mathematics, Linear Algebra & Optimization",
+  "category": "mathematics",
+  "description": "Mathematical foundations for machine learning: linear algebra, multivariable calculus, gradients, Jacobians/Hessians, probability distributions, Bayesian inference, and optimization algorithms.",
+  "subskills": [
+    {
+      "id": "matrix_operations_decompositions",
+      "name": "Linear Algebra & Matrix Decompositions",
+      "description": "Vectors, matrices, dot products, eigenvalues, eigenvectors, Singular Value Decomposition (SVD), QR decomposition, and matrix rank.",
+      "keywords": [
+        "SVD",
+        "eigenvalue",
+        "eigenvector",
+        "Singular Value Decomposition",
+        "matrix multiplication",
+        "dot product",
+        "matrix rank",
+        "determinant",
+        "orthogonal matrix"
+      ]
+    },
+    {
+      "id": "calculus_gradients_hessians",
+      "name": "Multivariate Calculus, Gradients & Jacobians",
+      "description": "Partial derivatives, chain rule in multivariate calculus, gradient vectors, Jacobian matrices, Hessian matrices, and Taylor approximations.",
+      "keywords": [
+        "partial derivative",
+        "chain rule",
+        "gradient vector",
+        "Jacobian",
+        "Hessian",
+        "Taylor series",
+        "directional derivative",
+        "convexity"
+      ]
+    },
+    {
+      "id": "probability_distributions_bayes",
+      "name": "Probability Distributions & Bayesian Inference",
+      "description": "Gaussian/Normal, Bernoulli, Poisson, Exponential distributions, Bayes theorem, prior/posterior/likelihood, and Maximum A Posteriori (MAP).",
+      "keywords": [
+        "Bayes theorem",
+        "prior",
+        "posterior",
+        "likelihood",
+        "Gaussian distribution",
+        "MAP",
+        "Bernoulli",
+        "conditional probability",
+        "expectation",
+        "variance"
+      ]
+    },
+    {
+      "id": "maximum_likelihood_estimation",
+      "name": "Maximum Likelihood Estimation (MLE)",
+      "description": "Log-likelihood formulation, finding optimal parameter estimators analytically and numerically, and relationship to cross-entropy loss.",
+      "keywords": [
+        "MLE",
+        "Maximum Likelihood Estimation",
+        "log-likelihood",
+        "score function",
+        "estimator",
+        "cross-entropy",
+        "parameter estimation"
+      ]
+    },
+    {
+      "id": "first_order_optimization_sgd_adam",
+      "name": "First-Order Optimization (GD, SGD, Momentum, Adam)",
+      "description": "Batch Gradient Descent, Stochastic Gradient Descent (SGD), Mini-batch GD, Momentum, RMSprop, Adam, AdamW, and learning rate dynamics.",
+      "keywords": [
+        "SGD",
+        "Mini-batch GD",
+        "Adam",
+        "AdamW",
+        "RMSprop",
+        "Momentum",
+        "learning rate",
+        "gradient descent",
+        "saddle points",
+        "local minima"
+      ]
+    },
+    {
+      "id": "second_order_constrained_optimization",
+      "name": "Second-Order & Constrained Optimization",
+      "description": "Newton-Raphson, quasi-Newton (BFGS / L-BFGS), Lagrange multipliers, KKT conditions, and primal-dual optimization.",
+      "keywords": [
+        "L-BFGS",
+        "Newton-Raphson",
+        "Lagrange multipliers",
+        "KKT conditions",
+        "primal dual",
+        "constrained optimization",
+        "second-order optimization"
+      ]
+    },
+    {
+      "id": "information_theory_entropy",
+      "name": "Information Theory, Entropy & KL Divergence",
+      "description": "Shannon entropy, joint entropy, conditional entropy, mutual information, cross-entropy, and Kullback-Leibler (KL) divergence.",
+      "keywords": [
+        "Shannon entropy",
+        "KL divergence",
+        "Kullback-Leibler",
+        "cross-entropy",
+        "mutual information",
+        "information gain",
+        "relative entropy"
+      ]
+    },
+    {
+      "id": "statistical_hypothesis_testing",
+      "name": "Statistical Hypothesis Testing & A/B Testing Math",
+      "description": "Null/alternative hypothesis, p-values, z-test, t-test, ANOVA, Chi-Square test, Type I / Type II errors, and power analysis.",
+      "keywords": [
+        "p-value",
+        "hypothesis testing",
+        "t-test",
+        "z-test",
+        "Chi-Square",
+        "Type I error",
+        "Type II error",
+        "statistical significance",
+        "power analysis"
+      ]
+    },
+    {
+      "id": "loss_functions_mathematics",
+      "name": "Loss Functions & Convexity Analysis",
+      "description": "MSE, MAE, Huber loss, Hinge loss, Focal loss, Triplet loss, Bregman divergences, and verifying objective function convexity.",
+      "keywords": [
+        "loss function",
+        "Huber loss",
+        "Hinge loss",
+        "Focal loss",
+        "MSE",
+        "MAE",
+        "convexity",
+        "strict convexity",
+        "Lipschitz continuity"
+      ]
+    }
+  ],
+  "evidence_patterns": {
+    "cv": [
+      {
+        "signal": "Designed custom loss functions and derived analytical optimization solutions for ML models",
+        "strength": 0.5,
+        "maps_to": [
+          "ml_mathematics_foundations.first_order_optimization_sgd_adam",
+          "ml_mathematics_foundations.loss_functions_mathematics",
+          "ml_mathematics_foundations.matrix_operations_decompositions"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Endorsed for Machine Learning Mathematics, Linear Algebra, and Statistics",
+        "strength": 0.3,
+        "maps_to": [
+          "ml_mathematics_foundations.probability_distributions_bayes",
+          "ml_mathematics_foundations.calculus_gradients_hessians"
+        ]
+      }
+    ],
+    "github": [
+      {
+        "pattern": "*loss*.py|*optim*.py|*math*.py|notebooks/*derivation*.ipynb",
+        "strength": 1.0,
+        "maps_to": [
+          "ml_mathematics_foundations.matrix_operations_decompositions",
+          "ml_mathematics_foundations.calculus_gradients_hessians",
+          "ml_mathematics_foundations.probability_distributions_bayes",
+          "ml_mathematics_foundations.maximum_likelihood_estimation",
+          "ml_mathematics_foundations.first_order_optimization_sgd_adam",
+          "ml_mathematics_foundations.second_order_constrained_optimization",
+          "ml_mathematics_foundations.information_theory_entropy",
+          "ml_mathematics_foundations.statistical_hypothesis_testing",
+          "ml_mathematics_foundations.loss_functions_mathematics"
+        ]
+      }
+    ],
+    "assessment": [
+      {
+        "signal": "Passes ML Mathematics, Linear Algebra & Optimization Assessment",
+        "strength": 1.0,
+        "maps_to": [
+          "ml_mathematics_foundations.matrix_operations_decompositions",
+          "ml_mathematics_foundations.calculus_gradients_hessians",
+          "ml_mathematics_foundations.probability_distributions_bayes",
+          "ml_mathematics_foundations.maximum_likelihood_estimation",
+          "ml_mathematics_foundations.first_order_optimization_sgd_adam",
+          "ml_mathematics_foundations.second_order_constrained_optimization",
+          "ml_mathematics_foundations.information_theory_entropy",
+          "ml_mathematics_foundations.statistical_hypothesis_testing",
+          "ml_mathematics_foundations.loss_functions_mathematics"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "matrix_operations_decompositions",
+        "calculus_gradients_hessians",
+        "probability_distributions_bayes"
+      ],
+      "description": "Understands matrix algebra, computes partial gradients using chain rule, and works with standard probability distributions."
+    },
+    "mid": {
+      "expected_subskills": [
+        "maximum_likelihood_estimation",
+        "first_order_optimization_sgd_adam",
+        "statistical_hypothesis_testing",
+        "loss_functions_mathematics"
+      ],
+      "description": "Formulates MLE problems, tunes first-order optimizers (Adam/SGD), runs statistical hypothesis tests, and selects appropriate loss functions."
+    },
+    "senior": {
+      "expected_subskills": [
+        "second_order_constrained_optimization",
+        "information_theory_entropy"
+      ],
+      "description": "Applies second-order optimization and quasi-Newton methods, analyzes information-theoretic KL divergence, and proves algorithmic convexity."
+    }
+  }
+}

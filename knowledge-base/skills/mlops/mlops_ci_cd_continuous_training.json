@@ -1,0 +1,210 @@
+{
+  "skill_id": "mlops_ci_cd_continuous_training",
+  "name": "CI/CD for Machine Learning & Continuous Training",
+  "category": "ci_cd",
+  "description": "Continuous Integration, Continuous Delivery, and Continuous Training (CT) for ML: automated PR testing with CML, model validation gates, Champion-Challenger evaluation, Canary rollouts, and rollback automation.",
+  "subskills": [
+    {
+      "id": "cml_github_actions_pull_request_reports",
+      "name": "CML (Continuous Machine Learning) PR Reports",
+      "description": "Using CML in GitHub Actions/GitLab CI to train benchmark models on pull requests, generate markdown reports with loss curves, and post PR comments.",
+      "keywords": [
+        "CML",
+        "Continuous Machine Learning",
+        "GitHub Actions",
+        "cml send-comment",
+        "PR model evaluation",
+        "automated training in CI",
+        "markdown metrics"
+      ]
+    },
+    {
+      "id": "model_validation_gates_threshold_checks",
+      "name": "Automated Model Validation Gates & Thresholds",
+      "description": "Blocking automated deployment if model metrics (F1, AUC, latency, memory footprint) fail minimum acceptance thresholds in CI.",
+      "keywords": [
+        "validation gate",
+        "threshold check",
+        "minimum AUC threshold",
+        "latency gate",
+        "block deployment",
+        "automated quality gate"
+      ]
+    },
+    {
+      "id": "champion_challenger_evaluation_framework",
+      "name": "Champion-Challenger Shadow & Live Comparison",
+      "description": "Comparing newly trained Challenger model against live Champion model on fresh production data slices before approving promotion.",
+      "keywords": [
+        "Champion-Challenger",
+        "Champion model",
+        "Challenger model",
+        "shadow comparison",
+        "statistical superiority",
+        "model promotion"
+      ]
+    },
+    {
+      "id": "automated_continuous_training_triggers",
+      "name": "Continuous Training (CT) Trigger Architecture",
+      "description": "Event-driven retraining triggers (data drift alert, new data arrival in lakehouse) vs scheduled cron triggers, and idempotency.",
+      "keywords": [
+        "Continuous Training",
+        "CT trigger",
+        "event-driven retraining",
+        "drift trigger",
+        "cron schedule",
+        "automated retraining pipeline"
+      ]
+    },
+    {
+      "id": "canary_blue_green_model_rollouts",
+      "name": "Canary & Blue/Green Model Rollout Pipelines",
+      "description": "Automating progressive traffic shifting (1% -> 10% -> 50% -> 100%) with Argo Rollouts or Flagger based on error rates and latency percentiles.",
+      "keywords": [
+        "Argo Rollouts",
+        "Flagger",
+        "Canary rollout",
+        "Blue-Green deployment",
+        "progressive traffic shift",
+        "automated promotion"
+      ]
+    },
+    {
+      "id": "automated_rollback_health_probes",
+      "name": "Automated Rollback & Model Health Probes",
+      "description": "Instant automated rollback to previous model version if live error rate exceeds threshold (5xx spikes, high latency, prediction drift).",
+      "keywords": [
+        "automated rollback",
+        "health probes",
+        "error rate spike",
+        "instant rollback",
+        "previous model version",
+        "fail-safe"
+      ]
+    },
+    {
+      "id": "data_pipeline_unit_integration_testing",
+      "name": "Data Pipeline Unit & Integration Testing in CI",
+      "description": "Running pytest test suites with Great Expectations and synthetic mock data on feature extraction code before training pipeline execution.",
+      "keywords": [
+        "pytest",
+        "pipeline testing",
+        "synthetic mock",
+        "Great Expectations in CI",
+        "unit testing ML",
+        "integration testing"
+      ]
+    },
+    {
+      "id": "gitops_for_ml_argo_flux",
+      "name": "GitOps for Machine Learning (Argo CD / Flux)",
+      "description": "Managing declarative Model Serving manifests in Git repositories and synchronizing state to Kubernetes clusters via Argo CD.",
+      "keywords": [
+        "GitOps",
+        "Argo CD",
+        "Flux",
+        "declarative manifest",
+        "Git as single source of truth",
+        "K8s sync",
+        "GitOps for ML"
+      ]
+    },
+    {
+      "id": "infrastructure_ci_cd_terraform_github_actions",
+      "name": "Infrastructure CI/CD with Terraform & GitHub Actions",
+      "description": "Automating Terraform plan and apply in pull request pipelines to provision cloud compute, S3 buckets, and EKS/GKE clusters.",
+      "keywords": [
+        "Terraform in CI",
+        "terraform plan PR",
+        "terraform apply",
+        "GitHub Actions IaC",
+        "infrastructure automation",
+        "automated provisioning"
+      ]
+    }
+  ],
+  "evidence_patterns": {
+    "cv": [
+      {
+        "signal": "Built enterprise CI/CD/CT pipelines with GitHub Actions, CML, Argo Rollouts, and automated Champion-Challenger validation",
+        "strength": 0.5,
+        "maps_to": [
+          "mlops_ci_cd_continuous_training.cml_github_actions_pull_request_reports",
+          "mlops_ci_cd_continuous_training.champion_challenger_evaluation_framework",
+          "mlops_ci_cd_continuous_training.canary_blue_green_model_rollouts"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Continuous Training, CI/CD for Machine Learning, and GitOps endorsements",
+        "strength": 0.3,
+        "maps_to": [
+          "mlops_ci_cd_continuous_training.automated_continuous_training_triggers",
+          "mlops_ci_cd_continuous_training.gitops_for_ml_argo_flux"
+        ]
+      }
+    ],
+    "github": [
+      {
+        "pattern": ".github/workflows/*.yml|.gitlab-ci.yml|cml*.sh|rollout*.yml",
+        "strength": 1.0,
+        "maps_to": [
+          "mlops_ci_cd_continuous_training.cml_github_actions_pull_request_reports",
+          "mlops_ci_cd_continuous_training.model_validation_gates_threshold_checks",
+          "mlops_ci_cd_continuous_training.champion_challenger_evaluation_framework",
+          "mlops_ci_cd_continuous_training.automated_continuous_training_triggers",
+          "mlops_ci_cd_continuous_training.canary_blue_green_model_rollouts",
+          "mlops_ci_cd_continuous_training.automated_rollback_health_probes",
+          "mlops_ci_cd_continuous_training.data_pipeline_unit_integration_testing",
+          "mlops_ci_cd_continuous_training.gitops_for_ml_argo_flux",
+          "mlops_ci_cd_continuous_training.infrastructure_ci_cd_terraform_github_actions"
+        ]
+      }
+    ],
+    "assessment": [
+      {
+        "signal": "Passes CI/CD for Machine Learning & Continuous Training Assessment",
+        "strength": 1.0,
+        "maps_to": [
+          "mlops_ci_cd_continuous_training.cml_github_actions_pull_request_reports",
+          "mlops_ci_cd_continuous_training.model_validation_gates_threshold_checks",
+          "mlops_ci_cd_continuous_training.champion_challenger_evaluation_framework",
+          "mlops_ci_cd_continuous_training.automated_continuous_training_triggers",
+          "mlops_ci_cd_continuous_training.canary_blue_green_model_rollouts",
+          "mlops_ci_cd_continuous_training.automated_rollback_health_probes",
+          "mlops_ci_cd_continuous_training.data_pipeline_unit_integration_testing",
+          "mlops_ci_cd_continuous_training.gitops_for_ml_argo_flux",
+          "mlops_ci_cd_continuous_training.infrastructure_ci_cd_terraform_github_actions"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "cml_github_actions_pull_request_reports",
+        "model_validation_gates_threshold_checks",
+        "data_pipeline_unit_integration_testing"
+      ],
+      "description": "Configures CML PR reports, writes unit tests for data transforms, and establishes model validation threshold checks."
+    },
+    "mid": {
+      "expected_subskills": [
+        "champion_challenger_evaluation_framework",
+        "automated_continuous_training_triggers",
+        "canary_blue_green_model_rollouts",
+        "automated_rollback_health_probes"
+      ],
+      "description": "Builds Champion-Challenger validation gates, triggers automated retraining, and manages Canary rollouts with health probes."
+    },
+    "senior": {
+      "expected_subskills": [
+        "gitops_for_ml_argo_flux",
+        "infrastructure_ci_cd_terraform_github_actions"
+      ],
+      "description": "Establishes enterprise GitOps (Argo CD) for machine learning fleets and automates full-stack cloud infrastructure pipelines."
+    }
+  }
+}

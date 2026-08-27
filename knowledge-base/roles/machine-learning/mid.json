@@ -1,0 +1,85 @@
+{
+  "role_id": "machine_learning",
+  "level": "mid",
+  "title": "Mid-Level Machine Learning Engineer",
+  "description": "Mid-level machine learning engineering position focused on building production-grade ML systems, deep learning architectures (CNN, LSTM, Transformers), Bayesian hyperparameter optimization (Optuna), model serving microservices (gRPC/TorchScript), data/concept drift monitoring, and feature store integration.",
+  "experience_range": "2-5 years",
+  "skills": [
+    {
+      "skill_id": "ml_classical_algorithms",
+      "importance": 0.95,
+      "rationale": "Expert tuning and custom ensembling of gradient boosted trees (XGBoost, LightGBM, CatBoost)."
+    },
+    {
+      "skill_id": "ml_deep_learning_architectures",
+      "importance": 0.9,
+      "rationale": "Developing custom PyTorch architectures, loss functions, and CNN/sequence models."
+    },
+    {
+      "skill_id": "ml_model_evaluation_validation",
+      "importance": 0.9,
+      "rationale": "Designing leak-free cross-validation, probability calibration, and business threshold tuning."
+    },
+    {
+      "skill_id": "ml_model_deployment_serving",
+      "importance": 0.85,
+      "rationale": "Building robust model serving services, TorchScript export, load testing, and Canary deployments."
+    },
+    {
+      "skill_id": "ml_hyperparameter_optimization",
+      "importance": 0.85,
+      "rationale": "Conducting Bayesian optimization with Optuna TPE samplers and pruning unpromising trials."
+    },
+    {
+      "skill_id": "ml_pipelines_orchestration",
+      "importance": 0.85,
+      "rationale": "Building automated training pipelines with Kubeflow/Metaflow and integrating Feast feature stores."
+    },
+    {
+      "skill_id": "ml_monitoring_drift_observability",
+      "importance": 0.8,
+      "rationale": "Implementing Evidently AI drift monitoring, delayed ground truth tracking, and SHAP explainability."
+    },
+    {
+      "skill_id": "ml_feature_engineering_preprocessing",
+      "importance": 0.8,
+      "rationale": "Constructing complex ColumnTransformer pipelines and handling severe class imbalance."
+    },
+    {
+      "skill_id": "ml_mathematics_foundations",
+      "importance": 0.75,
+      "rationale": "Formulating MLE objectives, tuning Adam/AdamW optimizers, and conducting hypothesis tests."
+    },
+    {
+      "skill_id": "ml_model_optimization_compression",
+      "importance": 0.7,
+      "rationale": "Applying Knowledge Distillation, weight pruning, and Quantization-Aware Training (QAT)."
+    }
+  ],
+  "scoring": {
+    "method": "weighted_average",
+    "description": "Each skill score is multiplied by its importance weight. Final score is the sum of weighted scores divided by sum of weights.",
+    "thresholds": {
+      "not_ready": {
+        "min": 0.0,
+        "max": 0.4,
+        "description": "Lacks production ML deployment experience or deep understanding of optimization."
+      },
+      "partially_ready": {
+        "min": 0.4,
+        "max": 0.65,
+        "description": "Competent model builder but needs supervision on production serving and drift monitoring."
+      },
+      "ready": {
+        "min": 0.65,
+        "max": 0.88,
+        "description": "Fully autonomous ML engineer delivering production-grade models, robust serving APIs, and MLOps workflows."
+      },
+      "exceeds": {
+        "min": 0.88,
+        "max": 1.0,
+        "description": "Demonstrates advanced technical leadership in distributed training, hardware acceleration, and system design."
+      }
+    }
+  }
+}

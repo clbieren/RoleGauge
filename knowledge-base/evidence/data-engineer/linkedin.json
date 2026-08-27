@@ -1,0 +1,27 @@
+{
+  "source_id": "linkedin",
+  "name": "LinkedIn Profile Signals - Data Engineering",
+  "description": "Signals and skill mappings derived from LinkedIn profiles.",
+  "sections": [
+    {
+      "section_id": "experience",
+      "base_strength": 0.5,
+      "description": "Job titles, responsibilities, and achievements in data engineering roles."
+    },
+    {
+      "section_id": "headline_summary",
+      "base_strength": 0.3,
+      "description": "Profile headline and professional summary keywords."
+    },
+    {
+      "section_id": "skills_endorsements",
+      "base_strength": 0.3,
+      "description": "Endorsed skills related to big data, SQL, cloud warehouses, and pipeline orchestration."
+    },
+    {
+      "section_id": "recommendations",
+      "base_strength": 0.5,
+      "description": "Colleague recommendations highlighting data engineering impact."
+    }
+  ]
+}

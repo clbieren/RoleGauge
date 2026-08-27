@@ -1,0 +1,221 @@
+{
+  "skill_id": "ml_model_optimization_compression",
+  "name": "Model Compression, Quantization & Acceleration",
+  "category": "optimization",
+  "description": "Reducing model size and latency without sacrificing accuracy: Post-Training Quantization (PTQ), Quantization-Aware Training (QAT), Structured/Unstructured Pruning, Knowledge Distillation, TensorRT, and hardware compilation.",
+  "subskills": [
+    {
+      "id": "post_training_quantization_ptq",
+      "name": "Post-Training Quantization (PTQ - INT8 / FP16)",
+      "description": "Quantization mechanics (scale, zero-point, dynamic vs static quantization), calibration datasets, and converting FP32 weights to INT8.",
+      "keywords": [
+        "PTQ",
+        "Post-Training Quantization",
+        "INT8",
+        "FP16",
+        "scale factor",
+        "zero-point",
+        "dynamic quantization",
+        "static quantization",
+        "calibration"
+      ]
+    },
+    {
+      "id": "quantization_aware_training_qat",
+      "name": "Quantization-Aware Training (QAT)",
+      "description": "Simulating fake quantization during backpropagation, straight-through estimators (STE), and retaining full accuracy at INT8 precision.",
+      "keywords": [
+        "QAT",
+        "Quantization-Aware Training",
+        "fake quantization",
+        "straight-through estimator",
+        "STE",
+        "torch.ao.quantization",
+        "accuracy preservation"
+      ]
+    },
+    {
+      "id": "structural_unstructured_weight_pruning",
+      "name": "Weight Pruning (Structured & Unstructured)",
+      "description": "Magnitude-based pruning, L1-norm channel pruning, structured pruning for hardware acceleration, iterative prune-and-finetune schedules.",
+      "keywords": [
+        "pruning",
+        "weight pruning",
+        "structured pruning",
+        "unstructured pruning",
+        "channel pruning",
+        "sparsity",
+        "fine-tuning",
+        "torch.nn.utils.prune"
+      ]
+    },
+    {
+      "id": "knowledge_distillation_teacher_student",
+      "name": "Knowledge Distillation (Teacher-Student Frameworks)",
+      "description": "Soft targets, temperature scaling, Kullback-Leibler distillation loss, feature map distillation, and training compact student models.",
+      "keywords": [
+        "Knowledge Distillation",
+        "teacher model",
+        "student model",
+        "soft targets",
+        "temperature",
+        "distillation loss",
+        "model compression"
+      ]
+    },
+    {
+      "id": "tensorrt_gpu_acceleration",
+      "name": "NVIDIA TensorRT GPU Acceleration & Kernel Fusion",
+      "description": "Building TensorRT engines from ONNX, layer fusion, kernel auto-tuning, precision calibration (FP16/INT8), and execution profiles.",
+      "keywords": [
+        "TensorRT",
+        "layer fusion",
+        "kernel auto-tuning",
+        "TRT engine",
+        "NVIDIA GPU acceleration",
+        "polygraphy",
+        "trtexec"
+      ]
+    },
+    {
+      "id": "openvino_cpu_optimization",
+      "name": "Intel OpenVINO & CPU Inference Acceleration",
+      "description": "Optimizing neural networks for x86 Intel CPUs, VNNI / AVX-512 instructions, OpenVINO Model Optimizer, and asynchronous execution.",
+      "keywords": [
+        "OpenVINO",
+        "AVX-512",
+        "VNNI",
+        "Model Optimizer",
+        "Intel CPU acceleration",
+        "heterogeneous plugin",
+        "inference engine"
+      ]
+    },
+    {
+      "id": "model_compilation_torch_compile_tvm",
+      "name": "Model Compilation (torch.compile & Apache TVM)",
+      "description": "PyTorch 2.0 torch.compile, TorchDynamo, AOTAutograd, Inductor backend, graph capture, and Apache TVM tensor compilation.",
+      "keywords": [
+        "torch.compile",
+        "TorchDynamo",
+        "TorchInductor",
+        "AOTAutograd",
+        "Apache TVM",
+        "graph capture",
+        "JIT compilation",
+        "PyTorch 2.0"
+      ]
+    },
+    {
+      "id": "low_rank_matrix_factorization_weights",
+      "name": "Low-Rank Weight Factorization & LoRA Mechanics",
+      "description": "Decomposing heavy weight matrices using SVD or low-rank adapters (LoRA / QLoRA rank matrices A and B), parameter reduction.",
+      "keywords": [
+        "Low-Rank Factorization",
+        "LoRA",
+        "SVD decomposition",
+        "rank reduction",
+        "weight matrix decomposition",
+        "adapter parameter reduction"
+      ]
+    },
+    {
+      "id": "memory_bandwidth_cache_optimization",
+      "name": "Memory Bandwidth, Cache Locality & Kernel Tuning",
+      "description": "Analyzing memory-bound vs compute-bound layers (Roofline model), SRAM cache utilization, and FlashAttention I/O awareness.",
+      "keywords": [
+        "Roofline model",
+        "memory-bound",
+        "compute-bound",
+        "SRAM",
+        "cache locality",
+        "FlashAttention",
+        "IO awareness",
+        "kernel fusion"
+      ]
+    }
+  ],
+  "evidence_patterns": {
+    "cv": [
+      {
+        "signal": "Optimized neural network inference via INT8 Quantization and TensorRT compilation, reducing latency by 4x",
+        "strength": 0.5,
+        "maps_to": [
+          "ml_model_optimization_compression.post_training_quantization_ptq",
+          "ml_model_optimization_compression.tensorrt_gpu_acceleration",
+          "ml_model_optimization_compression.knowledge_distillation_teacher_student"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Model Quantization, TensorRT, and Model Compression endorsements",
+        "strength": 0.3,
+        "maps_to": [
+          "ml_model_optimization_compression.structural_unstructured_weight_pruning",
+          "ml_model_optimization_compression.model_compilation_torch_compile_tvm"
+        ]
+      }
+    ],
+    "github": [
+      {
+        "pattern": "*quant*.py|*prune*.py|*distill*.py|*tensorrt*|*compile*.py",
+        "strength": 1.0,
+        "maps_to": [
+          "ml_model_optimization_compression.post_training_quantization_ptq",
+          "ml_model_optimization_compression.quantization_aware_training_qat",
+          "ml_model_optimization_compression.structural_unstructured_weight_pruning",
+          "ml_model_optimization_compression.knowledge_distillation_teacher_student",
+          "ml_model_optimization_compression.tensorrt_gpu_acceleration",
+          "ml_model_optimization_compression.openvino_cpu_optimization",
+          "ml_model_optimization_compression.model_compilation_torch_compile_tvm",
+          "ml_model_optimization_compression.low_rank_matrix_factorization_weights",
+          "ml_model_optimization_compression.memory_bandwidth_cache_optimization"
+        ]
+      }
+    ],
+    "assessment": [
+      {
+        "signal": "Passes Model Compression, Quantization & Acceleration Assessment",
+        "strength": 1.0,
+        "maps_to": [
+          "ml_model_optimization_compression.post_training_quantization_ptq",
+          "ml_model_optimization_compression.quantization_aware_training_qat",
+          "ml_model_optimization_compression.structural_unstructured_weight_pruning",
+          "ml_model_optimization_compression.knowledge_distillation_teacher_student",
+          "ml_model_optimization_compression.tensorrt_gpu_acceleration",
+          "ml_model_optimization_compression.openvino_cpu_optimization",
+          "ml_model_optimization_compression.model_compilation_torch_compile_tvm",
+          "ml_model_optimization_compression.low_rank_matrix_factorization_weights",
+          "ml_model_optimization_compression.memory_bandwidth_cache_optimization"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "post_training_quantization_ptq",
+        "model_compilation_torch_compile_tvm",
+        "openvino_cpu_optimization"
+      ],
+      "description": "Applies post-training dynamic quantization (PTQ) and compiles standard PyTorch models with torch.compile."
+    },
+    "mid": {
+      "expected_subskills": [
+        "structural_unstructured_weight_pruning",
+        "knowledge_distillation_teacher_student",
+        "low_rank_matrix_factorization_weights",
+        "quantization_aware_training_qat"
+      ],
+      "description": "Trains student models via Knowledge Distillation, prunes weights with iterative finetuning, and implements QAT fake quantization."
+    },
+    "senior": {
+      "expected_subskills": [
+        "tensorrt_gpu_acceleration",
+        "memory_bandwidth_cache_optimization"
+      ],
+      "description": "Builds optimized TensorRT engines with custom layer fusions and optimizes hardware memory bandwidth using the Roofline model."
+    }
+  }
+}

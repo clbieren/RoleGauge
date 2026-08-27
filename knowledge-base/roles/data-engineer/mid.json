@@ -1,0 +1,85 @@
+{
+  "role_id": "data_engineer",
+  "level": "mid",
+  "title": "Mid-Level Data Engineer",
+  "description": "Mid-level data engineering position focused on building scalable, production-grade ETL/ELT pipelines, distributed data processing with PySpark, dimensional data warehousing, ACID Lakehouse formats, Kafka streaming, and robust DataOps practices.",
+  "experience_range": "2-5 years",
+  "skills": [
+    {
+      "skill_id": "de_sql_advanced",
+      "importance": 0.95,
+      "rationale": "Mastery of database indexing, table partitioning, transactions, and execution plan optimization."
+    },
+    {
+      "skill_id": "de_programming",
+      "importance": 0.9,
+      "rationale": "Writing high-concurrency, functional, type-safe Python/Scala data processing services."
+    },
+    {
+      "skill_id": "de_distributed_computing",
+      "importance": 0.9,
+      "rationale": "Developing and tuning Spark jobs, partition management, broadcast joins, and caching."
+    },
+    {
+      "skill_id": "de_data_warehousing",
+      "importance": 0.9,
+      "rationale": "Architecting Snowflake/BigQuery warehouses, clustering, and managing complex SCD Type 2 logic."
+    },
+    {
+      "skill_id": "de_data_pipelines_orchestration",
+      "importance": 0.85,
+      "rationale": "Designing robust idempotent Airflow/Prefect pipelines, handling backfills, and managing SLAs."
+    },
+    {
+      "skill_id": "de_data_modeling_transformation",
+      "importance": 0.85,
+      "rationale": "Authoring enterprise dbt incremental models, reusable Jinja macros, and custom tests."
+    },
+    {
+      "skill_id": "de_data_lakes_storage",
+      "importance": 0.85,
+      "rationale": "Operating Delta Lake / Iceberg tables, managing time travel, and Z-Order optimization."
+    },
+    {
+      "skill_id": "de_streaming_realtime",
+      "importance": 0.75,
+      "rationale": "Building Kafka Streams / ksqlDB pipelines and handling event time windowing."
+    },
+    {
+      "skill_id": "de_cloud_infrastructure_dataops",
+      "importance": 0.75,
+      "rationale": "Provisioning data infrastructure with Terraform, IAM security, and automated CI/CD."
+    },
+    {
+      "skill_id": "de_data_quality_governance",
+      "importance": 0.7,
+      "rationale": "Implementing OpenLineage metadata, DataHub catalogs, and PII anonymization policies."
+    }
+  ],
+  "scoring": {
+    "method": "weighted_average",
+    "description": "Each skill score is multiplied by its importance weight. Final score is the sum of weighted scores divided by sum of weights.",
+    "thresholds": {
+      "not_ready": {
+        "min": 0.0,
+        "max": 0.4,
+        "description": "Lacks production experience with distributed processing and Lakehouse table formats."
+      },
+      "partially_ready": {
+        "min": 0.4,
+        "max": 0.65,
+        "description": "Competent in batch ETL but requires guidance on Spark tuning and streaming architectures."
+      },
+      "ready": {
+        "min": 0.65,
+        "max": 0.88,
+        "description": "Fully autonomous data engineer capable of delivering reliable enterprise data pipelines and optimizing cloud compute."
+      },
+      "exceeds": {
+        "min": 0.88,
+        "max": 1.0,
+        "description": "Demonstrates senior-level technical leadership, distributed internals mastery, and architectural vision."
+      }
+    }
+  }
+}

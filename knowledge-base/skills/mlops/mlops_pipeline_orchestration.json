@@ -1,0 +1,216 @@
+{
+  "skill_id": "mlops_pipeline_orchestration",
+  "name": "ML Pipeline Orchestration (Kubeflow, Flyte, Argo)",
+  "category": "orchestration",
+  "description": "Workflow scheduling and orchestration for ML pipelines: Kubeflow Pipelines (KFP v2), Flyte, Argo Workflows, Metaflow, containerized components, caching, GPU node selectors, and fault tolerance.",
+  "subskills": [
+    {
+      "id": "kubeflow_pipelines_kfp_v2_dsl",
+      "name": "Kubeflow Pipelines (KFP v2) & @dsl Component Authoring",
+      "description": "Authoring KFP v2 pipelines with @dsl.component, @dsl.pipeline, container_component, passing Input/Output artifacts, and pipeline compilation.",
+      "keywords": [
+        "Kubeflow",
+        "KFP v2",
+        "@dsl.component",
+        "@dsl.pipeline",
+        "kfp.compiler",
+        "pipeline.yaml",
+        "Input[Artifact]",
+        "Output[Model]"
+      ]
+    },
+    {
+      "id": "flyte_orchestration_type_safety",
+      "name": "Flyte Type-Safe Workflow Orchestration",
+      "description": "Flyte tasks (@task) and workflows (@workflow), strong type checking, FlyteFile/FlyteDirectory, dynamic workflows, and Flytekit SDK.",
+      "keywords": [
+        "Flyte",
+        "@task",
+        "@workflow",
+        "Flytekit",
+        "FlyteDirectory",
+        "FlyteFile",
+        "dynamic workflow",
+        "type safety"
+      ]
+    },
+    {
+      "id": "argo_workflows_declarative_k8s",
+      "name": "Argo Workflows Declarative YAML Pipelines",
+      "description": "Kubernetes CRD-based workflow orchestration, Argo WorkflowTemplate, steps, DAG templates, volume mounts, and artifact repositories.",
+      "keywords": [
+        "Argo Workflows",
+        "WorkflowTemplate",
+        "DAG template",
+        "CRD",
+        "Argo CLI",
+        "argo submit",
+        "artifact repository",
+        "K8s native"
+      ]
+    },
+    {
+      "id": "pipeline_step_caching_memoization",
+      "name": "Pipeline Step Caching & Memoization",
+      "description": "Configuring step memoization keys in KFP / Flyte, reusing cached outputs for unchanged steps, and speeding up pipeline iterations.",
+      "keywords": [
+        "caching",
+        "memoization",
+        "enable_caching",
+        "cache_key",
+        "reusable step output",
+        "skip redundant compute"
+      ]
+    },
+    {
+      "id": "gpu_resource_allocation_node_affinity",
+      "name": "GPU Resource Allocation & Node Affinity in Pipelines",
+      "description": "Setting container resource requests/limits (nvidia.com/gpu: 1), tolerations for tainted GPU nodes, and nodeAffinity selectors in pipeline tasks.",
+      "keywords": [
+        "nvidia.com/gpu",
+        "nodeAffinity",
+        "tolerations",
+        "taints",
+        "resource limits",
+        "GPU scheduling",
+        "k8s node selector"
+      ]
+    },
+    {
+      "id": "airflow_for_ml_operators_sensors",
+      "name": "Apache Airflow for ML Orchestration & Providers",
+      "description": "Airflow providers (Astronomer Cosmos for dbt/ML, Amazon SageMaker operators, Google Vertex AI operators), and triggering external ML training jobs.",
+      "keywords": [
+        "Airflow for ML",
+        "SageMakerOperator",
+        "VertexAIOperator",
+        "Astronomer Cosmos",
+        "trigger ML job",
+        "Airflow DAG for ML"
+      ]
+    },
+    {
+      "id": "pipeline_error_handling_retry_policies",
+      "name": "Pipeline Error Handling, Retries & Fallbacks",
+      "description": "Configuring task retry policies, exponential backoff, on_exit handler steps for cleanup, and alerting notifications upon pipeline failures.",
+      "keywords": [
+        "retry policy",
+        "exponential backoff",
+        "on_exit handler",
+        "cleanup task",
+        "pipeline error handling",
+        "failure alerting"
+      ]
+    },
+    {
+      "id": "distributed_training_operators_k8s_kubeflow",
+      "name": "Kubeflow Training Operator (PyTorchJob, TFJob)",
+      "description": "Deploying PyTorchJob and TFJob Custom Resources for multi-node distributed training, master/worker pods, and gang scheduling with Volcano.",
+      "keywords": [
+        "Training Operator",
+        "PyTorchJob",
+        "TFJob",
+        "Kubeflow Training",
+        "multi-node distributed training",
+        "gang scheduling",
+        "Volcano"
+      ]
+    },
+    {
+      "id": "metaflow_production_deployments_argo",
+      "name": "Metaflow Deployment to Argo Workflows / AWS Step Functions",
+      "description": "Compiling Metaflow workflows to Argo Workflows (metaflow argo-workflows create) or AWS Step Functions for scheduled production execution.",
+      "keywords": [
+        "Metaflow",
+        "argo-workflows create",
+        "AWS Step Functions",
+        "production scheduler",
+        "FlowSpec export",
+        "seamless deployment"
+      ]
+    }
+  ],
+  "evidence_patterns": {
+    "cv": [
+      {
+        "signal": "Engineered distributed ML pipelines on Kubeflow Pipelines and Flyte with GPU dynamic scheduling and step caching",
+        "strength": 0.5,
+        "maps_to": [
+          "mlops_pipeline_orchestration.kubeflow_pipelines_kfp_v2_dsl",
+          "mlops_pipeline_orchestration.flyte_orchestration_type_safety",
+          "mlops_pipeline_orchestration.gpu_resource_allocation_node_affinity"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Kubeflow, Flyte, and ML Pipeline Orchestration endorsements",
+        "strength": 0.3,
+        "maps_to": [
+          "mlops_pipeline_orchestration.argo_workflows_declarative_k8s",
+          "mlops_pipeline_orchestration.airflow_for_ml_operators_sensors"
+        ]
+      }
+    ],
+    "github": [
+      {
+        "pattern": "pipeline.yaml|*kfp*.py|*flyte*.py|argo/**/*.yml|workflows/**/*.py",
+        "strength": 1.0,
+        "maps_to": [
+          "mlops_pipeline_orchestration.kubeflow_pipelines_kfp_v2_dsl",
+          "mlops_pipeline_orchestration.flyte_orchestration_type_safety",
+          "mlops_pipeline_orchestration.argo_workflows_declarative_k8s",
+          "mlops_pipeline_orchestration.pipeline_step_caching_memoization",
+          "mlops_pipeline_orchestration.gpu_resource_allocation_node_affinity",
+          "mlops_pipeline_orchestration.airflow_for_ml_operators_sensors",
+          "mlops_pipeline_orchestration.pipeline_error_handling_retry_policies",
+          "mlops_pipeline_orchestration.distributed_training_operators_k8s_kubeflow",
+          "mlops_pipeline_orchestration.metaflow_production_deployments_argo"
+        ]
+      }
+    ],
+    "assessment": [
+      {
+        "signal": "Passes ML Pipeline Orchestration (Kubeflow, Flyte, Argo) Technical Assessment",
+        "strength": 1.0,
+        "maps_to": [
+          "mlops_pipeline_orchestration.kubeflow_pipelines_kfp_v2_dsl",
+          "mlops_pipeline_orchestration.flyte_orchestration_type_safety",
+          "mlops_pipeline_orchestration.argo_workflows_declarative_k8s",
+          "mlops_pipeline_orchestration.pipeline_step_caching_memoization",
+          "mlops_pipeline_orchestration.gpu_resource_allocation_node_affinity",
+          "mlops_pipeline_orchestration.airflow_for_ml_operators_sensors",
+          "mlops_pipeline_orchestration.pipeline_error_handling_retry_policies",
+          "mlops_pipeline_orchestration.distributed_training_operators_k8s_kubeflow",
+          "mlops_pipeline_orchestration.metaflow_production_deployments_argo"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "kubeflow_pipelines_kfp_v2_dsl",
+        "pipeline_step_caching_memoization",
+        "airflow_for_ml_operators_sensors"
+      ],
+      "description": "Authors basic KFP v2 pipelines with @dsl.component, configures step caching, and schedules runs via Airflow."
+    },
+    "mid": {
+      "expected_subskills": [
+        "flyte_orchestration_type_safety",
+        "argo_workflows_declarative_k8s",
+        "gpu_resource_allocation_node_affinity",
+        "pipeline_error_handling_retry_policies"
+      ],
+      "description": "Develops type-safe workflows in Flyte, writes Argo WorkflowTemplates, manages GPU node affinities, and implements retry policies."
+    },
+    "senior": {
+      "expected_subskills": [
+        "distributed_training_operators_k8s_kubeflow",
+        "metaflow_production_deployments_argo"
+      ],
+      "description": "Architects multi-node PyTorchJob training clusters with gang scheduling and compiles enterprise workflows to Argo / Step Functions."
+    }
+  }
+}

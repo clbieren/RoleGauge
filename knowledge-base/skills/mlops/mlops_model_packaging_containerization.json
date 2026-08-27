@@ -1,0 +1,213 @@
+{
+  "skill_id": "mlops_model_packaging_containerization",
+  "name": "Model Packaging & GPU Containerization",
+  "category": "packaging",
+  "description": "Standardized model packaging formats, BentoML bento bundles, Triton model repository structure, Docker multi-stage GPU builds, CUDA driver compatibility, and ONNX/TorchScript artifacts.",
+  "subskills": [
+    {
+      "id": "docker_multistage_gpu_builds",
+      "name": "Multi-Stage Dockerfiles for CUDA/GPU Workloads",
+      "description": "Building lean multi-stage GPU Docker containers with NVIDIA CUDA base images, non-root security, layer caching, and minimizing image footprint.",
+      "keywords": [
+        "Dockerfile",
+        "multi-stage build",
+        "nvidia/cuda",
+        "devel vs runtime base",
+        "non-root user",
+        "layer caching",
+        "slim image"
+      ]
+    },
+    {
+      "id": "bentoml_model_packaging_framework",
+      "name": "BentoML Model Packaging & Service Definitions",
+      "description": "bentoml.Service, bentoml.models.save_model(), defining runners, BentoCloud deployment, bentofile.yaml specifications, and containerizing bentos.",
+      "keywords": [
+        "BentoML",
+        "bentoml.Service",
+        "bentofile.yaml",
+        "bento build",
+        "BentoCloud",
+        "model runners",
+        "bentoml.containerize"
+      ]
+    },
+    {
+      "id": "triton_model_repository_configuration",
+      "name": "Triton Model Repository Layout & config.pbtxt",
+      "description": "Structuring Triton directory trees (model_name/1/model.onnx), writing config.pbtxt with input/output tensors, backend types, and versioning.",
+      "keywords": [
+        "Triton repository",
+        "config.pbtxt",
+        "model.onnx",
+        "platform: onnxruntime_onnx",
+        "max_batch_size",
+        "input tensor shape",
+        "output tensor shape"
+      ]
+    },
+    {
+      "id": "onnx_torchscript_artifact_packaging",
+      "name": "ONNX & TorchScript Serialization Standards",
+      "description": "Exporting models to standardized ONNX/TorchScript formats with embedded metadata, dynamic shapes, and verifying parity against PyTorch baseline.",
+      "keywords": [
+        "ONNX export",
+        "TorchScript",
+        "torch.onnx.export",
+        "dynamic shapes",
+        "numerical parity test",
+        "serialized artifact"
+      ]
+    },
+    {
+      "id": "container_registry_vulnerability_scanning",
+      "name": "Container Registry Security & Trivy Scanning",
+      "description": "Pushing images to ECR/GCR/Harbor, scanning ML containers for CVE vulnerabilities with Trivy / Clair, and signing images with Cosign.",
+      "keywords": [
+        "Trivy",
+        "CVE scan",
+        "container security",
+        "Cosign",
+        "image signature",
+        "Harbor",
+        "ECR",
+        "vulnerability patching"
+      ]
+    },
+    {
+      "id": "conda_poetry_lockfile_pinning",
+      "name": "Conda, Poetry & uv Hermetic Dependency Pinning",
+      "description": "Hermetic dependency isolation: creating reproducible conda environment.yaml or poetry.lock / uv.lock files for exact build parity.",
+      "keywords": [
+        "poetry.lock",
+        "uv.lock",
+        "conda environment.yaml",
+        "hermetic build",
+        "dependency pinning",
+        "deterministic environment"
+      ]
+    },
+    {
+      "id": "nvidia_container_toolkit_cuda_compatibility",
+      "name": "NVIDIA Container Toolkit & CUDA Driver Forward Compatibility",
+      "description": "Configuring nvidia-container-runtime, CUDA driver vs toolkit compatibility matrices, and passing GPU capabilities (--gpus all).",
+      "keywords": [
+        "NVIDIA Container Toolkit",
+        "nvidia-docker",
+        "CUDA driver compatibility",
+        "libnvidia-container",
+        "--gpus all",
+        "CUDA forward compatibility"
+      ]
+    },
+    {
+      "id": "model_artifact_packaging_formats_safetensors",
+      "name": "SafeTensors & Modern Weight Serialization",
+      "description": "Using SafeTensors for zero-copy deserialization, preventing arbitrary code execution exploits inherent in Python pickle files.",
+      "keywords": [
+        "SafeTensors",
+        "pickle vulnerability",
+        "zero-copy deserialization",
+        "safe weight serialization",
+        "Hugging Face safetensors",
+        "fast loading"
+      ]
+    },
+    {
+      "id": "caching_wheel_compilation_speedups",
+      "name": "BuildKit Cache Mounts & Wheel Pre-Compilation",
+      "description": "Accelerating ML Docker builds using BuildKit --mount=type=cache for pip/apt and pre-building complex C++ wheels (flash-attn, vllm).",
+      "keywords": [
+        "BuildKit",
+        "--mount=type=cache",
+        "pip cache",
+        "pre-compiled wheel",
+        "flash-attn build",
+        "Docker build optimization"
+      ]
+    }
+  ],
+  "evidence_patterns": {
+    "cv": [
+      {
+        "signal": "Built production GPU container images and BentoML services with zero-copy SafeTensors and Trivy security scanning",
+        "strength": 0.5,
+        "maps_to": [
+          "mlops_model_packaging_containerization.docker_multistage_gpu_builds",
+          "mlops_model_packaging_containerization.bentoml_model_packaging_framework",
+          "mlops_model_packaging_containerization.model_artifact_packaging_formats_safetensors"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Docker GPU, BentoML, and Model Packaging endorsements",
+        "strength": 0.3,
+        "maps_to": [
+          "mlops_model_packaging_containerization.triton_model_repository_configuration",
+          "mlops_model_packaging_containerization.nvidia_container_toolkit_cuda_compatibility"
+        ]
+      }
+    ],
+    "github": [
+      {
+        "pattern": "Dockerfile*|bentofile.yaml|config.pbtxt|environment.yaml|*.safetensors",
+        "strength": 1.0,
+        "maps_to": [
+          "mlops_model_packaging_containerization.docker_multistage_gpu_builds",
+          "mlops_model_packaging_containerization.bentoml_model_packaging_framework",
+          "mlops_model_packaging_containerization.triton_model_repository_configuration",
+          "mlops_model_packaging_containerization.onnx_torchscript_artifact_packaging",
+          "mlops_model_packaging_containerization.container_registry_vulnerability_scanning",
+          "mlops_model_packaging_containerization.conda_poetry_lockfile_pinning",
+          "mlops_model_packaging_containerization.nvidia_container_toolkit_cuda_compatibility",
+          "mlops_model_packaging_containerization.model_artifact_packaging_formats_safetensors",
+          "mlops_model_packaging_containerization.caching_wheel_compilation_speedups"
+        ]
+      }
+    ],
+    "assessment": [
+      {
+        "signal": "Passes Model Packaging & GPU Containerization Technical Assessment",
+        "strength": 1.0,
+        "maps_to": [
+          "mlops_model_packaging_containerization.docker_multistage_gpu_builds",
+          "mlops_model_packaging_containerization.bentoml_model_packaging_framework",
+          "mlops_model_packaging_containerization.triton_model_repository_configuration",
+          "mlops_model_packaging_containerization.onnx_torchscript_artifact_packaging",
+          "mlops_model_packaging_containerization.container_registry_vulnerability_scanning",
+          "mlops_model_packaging_containerization.conda_poetry_lockfile_pinning",
+          "mlops_model_packaging_containerization.nvidia_container_toolkit_cuda_compatibility",
+          "mlops_model_packaging_containerization.model_artifact_packaging_formats_safetensors",
+          "mlops_model_packaging_containerization.caching_wheel_compilation_speedups"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "docker_multistage_gpu_builds",
+        "conda_poetry_lockfile_pinning",
+        "onnx_torchscript_artifact_packaging"
+      ],
+      "description": "Writes multi-stage GPU Dockerfiles, pins lockfiles, and packages models into ONNX/TorchScript artifacts."
+    },
+    "mid": {
+      "expected_subskills": [
+        "bentoml_model_packaging_framework",
+        "triton_model_repository_configuration",
+        "container_registry_vulnerability_scanning",
+        "model_artifact_packaging_formats_safetensors"
+      ],
+      "description": "Packages BentoML services, structures Triton repositories with config.pbtxt, scans with Trivy, and utilizes SafeTensors."
+    },
+    "senior": {
+      "expected_subskills": [
+        "nvidia_container_toolkit_cuda_compatibility",
+        "caching_wheel_compilation_speedups"
+      ],
+      "description": "Architects high-speed BuildKit caching pipelines, builds custom C++ wheels, and ensures forward CUDA driver compatibility across GPU fleets."
+    }
+  }
+}

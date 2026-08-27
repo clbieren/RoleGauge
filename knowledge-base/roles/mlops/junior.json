@@ -1,0 +1,85 @@
+{
+  "role_id": "mlops",
+  "level": "junior",
+  "title": "Junior MLOps Engineer",
+  "description": "Entry-level MLOps engineering position focused on experiment tracking (MLflow), dataset versioning (DVC), GPU Docker containerization, basic Kubeflow/Airflow DAGs, and model validation checks under guidance.",
+  "experience_range": "0-2 years",
+  "skills": [
+    {
+      "skill_id": "mlops_experiment_tracking_registry",
+      "importance": 0.95,
+      "rationale": "Tracking runs, model signatures, and metric histories in MLflow or W&B is a core daily activity."
+    },
+    {
+      "skill_id": "mlops_model_packaging_containerization",
+      "importance": 0.9,
+      "rationale": "Building multi-stage GPU Docker containers and managing dependency lockfiles."
+    },
+    {
+      "skill_id": "mlops_data_feature_management",
+      "importance": 0.85,
+      "rationale": "Version controlling datasets with DVC and defining basic Feast feature views."
+    },
+    {
+      "skill_id": "mlops_pipeline_orchestration",
+      "importance": 0.85,
+      "rationale": "Writing containerized KFP v2 components and configuring pipeline step caching."
+    },
+    {
+      "skill_id": "mlops_ci_cd_continuous_training",
+      "importance": 0.8,
+      "rationale": "Configuring CML PR reports and automated model quality validation gates in GitHub Actions."
+    },
+    {
+      "skill_id": "mlops_monitoring_drift_observability",
+      "importance": 0.7,
+      "rationale": "Instrumenting prediction endpoints with Prometheus metrics and generating Evidently AI drift reports."
+    },
+    {
+      "skill_id": "mlops_model_serving_infrastructure",
+      "importance": 0.65,
+      "rationale": "Deploying standard KServe InferenceServices and implementing Redis prediction caches."
+    },
+    {
+      "skill_id": "mlops_infrastructure_iac_cloud",
+      "importance": 0.6,
+      "rationale": "Managing Helm charts, GPU device plugins, and cloud IAM service accounts."
+    },
+    {
+      "skill_id": "mlops_lifecycle_governance",
+      "importance": 0.55,
+      "rationale": "Authoring standardized Model Cards and configuring reproducible seed environments."
+    },
+    {
+      "skill_id": "mlops_cost_finops_resource_optimization",
+      "importance": 0.45,
+      "rationale": "Profiling GPU utilization with DCGM and shutting down idle development compute."
+    }
+  ],
+  "scoring": {
+    "method": "weighted_average",
+    "description": "Each skill score is multiplied by its importance weight. Final score is the sum of weighted scores divided by sum of weights.",
+    "thresholds": {
+      "not_ready": {
+        "min": 0.0,
+        "max": 0.35,
+        "description": "Insufficient foundational understanding of containerization and experiment tracking."
+      },
+      "partially_ready": {
+        "min": 0.35,
+        "max": 0.6,
+        "description": "Can build Docker images and log runs but lacks automated pipeline and serving experience."
+      },
+      "ready": {
+        "min": 0.6,
+        "max": 0.85,
+        "description": "Solid junior MLOps engineer capable of automating ML pipelines and managing model registries under guidance."
+      },
+      "exceeds": {
+        "min": 0.85,
+        "max": 1.0,
+        "description": "Exceeds junior expectations with strong Kubernetes serving and feature store skills."
+      }
+    }
+  }
+}

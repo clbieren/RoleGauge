@@ -1,0 +1,27 @@
+{
+  "source_id": "linkedin",
+  "name": "LinkedIn Profile Signals - Machine Learning Engineering",
+  "description": "Signals and skill endorsements extracted from candidate LinkedIn profiles.",
+  "sections": [
+    {
+      "section_id": "experience",
+      "base_strength": 0.5,
+      "description": "Professional experience in Machine Learning Engineer, MLOps Engineer, or Research Engineer roles."
+    },
+    {
+      "section_id": "headline_summary",
+      "base_strength": 0.3,
+      "description": "Profile headline and summary keywords."
+    },
+    {
+      "section_id": "skills_endorsements",
+      "base_strength": 0.3,
+      "description": "Endorsed skills related to PyTorch, Scikit-Learn, XGBoost, Model Serving, and MLOps."
+    },
+    {
+      "section_id": "recommendations",
+      "base_strength": 0.5,
+      "description": "Colleague recommendations validating machine learning capabilities."
+    }
+  ]
+}

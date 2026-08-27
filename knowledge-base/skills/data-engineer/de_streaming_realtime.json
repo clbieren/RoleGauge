@@ -1,0 +1,227 @@
+{
+  "skill_id": "de_streaming_realtime",
+  "name": "Real-Time Streaming & Event Processing",
+  "category": "streaming",
+  "description": "Real-time event stream processing using Apache Kafka, Apache Flink, Kafka Streams, Schema Registry, event time watermarks, stream windowing, and exactly-once semantics.",
+  "subskills": [
+    {
+      "id": "kafka_architecture_topics_partitions",
+      "name": "Kafka Cluster Architecture, Topics & Partitions",
+      "description": "Brokers, Controller / KRaft mode (KRaft vs ZooKeeper), topic partition distribution, replication factor, ISR (In-Sync Replicas), and leader election.",
+      "keywords": [
+        "Apache Kafka",
+        "broker",
+        "KRaft",
+        "ZooKeeper",
+        "topic",
+        "partition",
+        "replication factor",
+        "ISR",
+        "in-sync replicas",
+        "leader election"
+      ]
+    },
+    {
+      "id": "producer_consumer_consumer_groups",
+      "name": "Producers, Consumers & Consumer Group Rebalancing",
+      "description": "Producer acks (0, 1, all), batch size, linger.ms, consumer groups, partition assignment strategies (Range, RoundRobin, CooperativeSticky), and commit offsets.",
+      "keywords": [
+        "KafkaProducer",
+        "KafkaConsumer",
+        "consumer group",
+        "rebalance",
+        "CooperativeSticky",
+        "acks=all",
+        "linger.ms",
+        "enable.auto.commit",
+        "commitSync"
+      ]
+    },
+    {
+      "id": "kafka_schema_registry_avro_protobuf",
+      "name": "Confluent Schema Registry & Schema Evolution",
+      "description": "Schema Registry integration, Avro / Protobuf serialization, schema compatibility modes (BACKWARD, FORWARD, FULL), and preventing schema drift.",
+      "keywords": [
+        "Schema Registry",
+        "Confluent",
+        "Avro schema",
+        "Protobuf",
+        "schema compatibility",
+        "BACKWARD compatibility",
+        "FULL compatibility",
+        "schema drift"
+      ]
+    },
+    {
+      "id": "kafka_streams_ksqldb",
+      "name": "Kafka Streams & ksqlDB Stream Processing",
+      "description": "KStream, KTable, GlobalKTable, stateless vs stateful operations, RocksDB state stores, and real-time SQL stream analysis with ksqlDB.",
+      "keywords": [
+        "Kafka Streams",
+        "KStream",
+        "KTable",
+        "GlobalKTable",
+        "RocksDB",
+        "ksqlDB",
+        "CREATE STREAM",
+        "CREATE TABLE",
+        "topology"
+      ]
+    },
+    {
+      "id": "apache_flink_stream_processing",
+      "name": "Apache Flink Architecture & Stateful Stream Processing",
+      "description": "JobManager, TaskManager, slots, DataStream API, stateful transformations (ValueState, ListState, MapState), and Flink SQL.",
+      "keywords": [
+        "Apache Flink",
+        "JobManager",
+        "TaskManager",
+        "DataStream API",
+        "Flink SQL",
+        "ValueState",
+        "keyed stream",
+        "operator state"
+      ]
+    },
+    {
+      "id": "event_time_watermarks_late_data",
+      "name": "Event Time, Processing Time & Watermarks",
+      "description": "Event Time vs Processing Time vs Ingestion Time, watermark generation strategies (bounded-out-of-orderness, punctuated), and handling late-arriving records with side outputs.",
+      "keywords": [
+        "event time",
+        "processing time",
+        "watermark",
+        "bounded out-of-orderness",
+        "late data",
+        "side output",
+        "allowed lateness"
+      ]
+    },
+    {
+      "id": "windowing_tumbling_sliding_session",
+      "name": "Stream Windowing (Tumbling, Sliding, Session)",
+      "description": "Tumbling windows (fixed, non-overlapping), Sliding/Hopping windows (overlapping), Session windows (gap-based), and custom window triggers/evictors.",
+      "keywords": [
+        "tumbling window",
+        "sliding window",
+        "session window",
+        "window trigger",
+        "window evictor",
+        "gap duration",
+        "time window"
+      ]
+    },
+    {
+      "id": "exactly_once_semantics_transactions",
+      "name": "Exactly-Once Semantics (EOS) & Two-Phase Commit",
+      "description": "At-least-once vs At-most-once vs Exactly-Once (EOS), transactional producers, Two-Phase Commit (2PC) sinks in Flink/Kafka, and idempotent writes.",
+      "keywords": [
+        "Exactly-Once",
+        "EOS",
+        "Two-Phase Commit",
+        "2PC",
+        "transactional producer",
+        "isolation.level=read_committed",
+        "idempotent producer",
+        "at-least-once"
+      ]
+    },
+    {
+      "id": "stream_state_backends_checkpointing",
+      "name": "State Backends, Checkpointing & Savepoints",
+      "description": "Flink state backends (HashMapStateBackend, EmbeddedRocksDBStateBackend), Chandy-Lamport distributed checkpointing, unaligned checkpoints, and manual savepoints.",
+      "keywords": [
+        "checkpointing",
+        "savepoint",
+        "RocksDB state backend",
+        "Chandy-Lamport",
+        "unaligned checkpoint",
+        "state recovery",
+        "checkpoint interval"
+      ]
+    }
+  ],
+  "evidence_patterns": {
+    "cv": [
+      {
+        "signal": "Engineered real-time streaming pipelines using Kafka, Schema Registry, and Apache Flink",
+        "strength": 0.5,
+        "maps_to": [
+          "de_streaming_realtime.kafka_architecture_topics_partitions",
+          "de_streaming_realtime.apache_flink_stream_processing",
+          "de_streaming_realtime.exactly_once_semantics_transactions"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Confluent Certified Developer for Apache Kafka (CCDAK)",
+        "strength": 0.3,
+        "maps_to": [
+          "de_streaming_realtime.producer_consumer_consumer_groups",
+          "de_streaming_realtime.kafka_schema_registry_avro_protobuf"
+        ]
+      }
+    ],
+    "github": [
+      {
+        "pattern": "*kafka*.py|*producer*.py|*consumer*.py|*flink*.py|*flink*.scala",
+        "strength": 1.0,
+        "maps_to": [
+          "de_streaming_realtime.kafka_architecture_topics_partitions",
+          "de_streaming_realtime.producer_consumer_consumer_groups",
+          "de_streaming_realtime.kafka_schema_registry_avro_protobuf",
+          "de_streaming_realtime.kafka_streams_ksqldb",
+          "de_streaming_realtime.apache_flink_stream_processing",
+          "de_streaming_realtime.event_time_watermarks_late_data",
+          "de_streaming_realtime.windowing_tumbling_sliding_session",
+          "de_streaming_realtime.exactly_once_semantics_transactions",
+          "de_streaming_realtime.stream_state_backends_checkpointing"
+        ]
+      }
+    ],
+    "assessment": [
+      {
+        "signal": "Passes Real-Time Event Streaming & Stream Processing Architecture Assessment",
+        "strength": 1.0,
+        "maps_to": [
+          "de_streaming_realtime.kafka_architecture_topics_partitions",
+          "de_streaming_realtime.producer_consumer_consumer_groups",
+          "de_streaming_realtime.kafka_schema_registry_avro_protobuf",
+          "de_streaming_realtime.kafka_streams_ksqldb",
+          "de_streaming_realtime.apache_flink_stream_processing",
+          "de_streaming_realtime.event_time_watermarks_late_data",
+          "de_streaming_realtime.windowing_tumbling_sliding_session",
+          "de_streaming_realtime.exactly_once_semantics_transactions",
+          "de_streaming_realtime.stream_state_backends_checkpointing"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "kafka_architecture_topics_partitions",
+        "producer_consumer_consumer_groups",
+        "kafka_schema_registry_avro_protobuf"
+      ],
+      "description": "Produces and consumes messages from Kafka topics, avoids basic consumer lag, and enforces schema registry Avro schemas."
+    },
+    "mid": {
+      "expected_subskills": [
+        "kafka_streams_ksqldb",
+        "event_time_watermarks_late_data",
+        "windowing_tumbling_sliding_session"
+      ],
+      "description": "Develops stream applications with Kafka Streams / ksqlDB, defines watermarks for out-of-order records, and implements tumbling/sliding time windows."
+    },
+    "senior": {
+      "expected_subskills": [
+        "apache_flink_stream_processing",
+        "exactly_once_semantics_transactions",
+        "stream_state_backends_checkpointing"
+      ],
+      "description": "Architects end-to-end Exactly-Once stateful stream pipelines using Apache Flink, tunes RocksDB state backends, and designs zero-downtime savepoint upgrades."
+    }
+  }
+}

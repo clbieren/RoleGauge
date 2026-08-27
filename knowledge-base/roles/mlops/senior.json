@@ -1,0 +1,85 @@
+{
+  "role_id": "mlops",
+  "level": "senior",
+  "title": "Senior MLOps Engineer / ML Platform Architect",
+  "description": "Senior technical leadership position driving enterprise MLOps strategy: Karpenter just-in-time GPU scaling, NVIDIA Multi-Instance GPU (MIG) hardware partitioning, closed-loop Continuous Training (CT) self-healing pipelines, GitOps platform synchronization, and EU AI Act regulatory compliance.",
+  "experience_range": "5+ years",
+  "skills": [
+    {
+      "skill_id": "mlops_model_serving_infrastructure",
+      "importance": 0.95,
+      "rationale": "Architecting event-driven KEDA GPU autoscaling on DCGM metrics and sub-millisecond cold start optimization."
+    },
+    {
+      "skill_id": "mlops_cost_finops_resource_optimization",
+      "importance": 0.95,
+      "rationale": "Architecting NVIDIA MIG hardware partitioning, GPU reservation planning, and cutting cloud ML spend."
+    },
+    {
+      "skill_id": "mlops_ci_cd_continuous_training",
+      "importance": 0.95,
+      "rationale": "Establishing enterprise GitOps (Argo CD) for machine learning fleets and multi-region Canary automation."
+    },
+    {
+      "skill_id": "mlops_infrastructure_iac_cloud",
+      "importance": 0.9,
+      "rationale": "Architecting Karpenter just-in-time GPU node provisioning and multi-region disaster recovery systems."
+    },
+    {
+      "skill_id": "mlops_pipeline_orchestration",
+      "importance": 0.9,
+      "rationale": "Scaling multi-node PyTorchJob distributed training clusters with Volcano gang scheduling."
+    },
+    {
+      "skill_id": "mlops_monitoring_drift_observability",
+      "importance": 0.9,
+      "rationale": "Architecting Out-of-Distribution (OOD) protection gates and drift-triggered automated self-healing loops."
+    },
+    {
+      "skill_id": "mlops_lifecycle_governance",
+      "importance": 0.85,
+      "rationale": "Leading EU AI Act/GDPR compliance architectures and enterprise model failure post-mortem runbooks."
+    },
+    {
+      "skill_id": "mlops_data_feature_management",
+      "importance": 0.85,
+      "rationale": "Governing enterprise multi-tenant feature store topologies and dataset cryptographic immutability."
+    },
+    {
+      "skill_id": "mlops_experiment_tracking_registry",
+      "importance": 0.85,
+      "rationale": "Automating global Model Registry webhooks and enterprise artifact retention lifecycles."
+    },
+    {
+      "skill_id": "mlops_model_packaging_containerization",
+      "importance": 0.8,
+      "rationale": "Optimizing BuildKit wheel compilation and forward CUDA driver compatibility across GPU clusters."
+    }
+  ],
+  "scoring": {
+    "method": "weighted_average",
+    "description": "Each skill score is multiplied by its importance weight. Final score is the sum of weighted scores divided by sum of weights.",
+    "thresholds": {
+      "not_ready": {
+        "min": 0.0,
+        "max": 0.45,
+        "description": "Does not meet the architectural depth, GPU FinOps, or platform leadership required for senior roles."
+      },
+      "partially_ready": {
+        "min": 0.45,
+        "max": 0.7,
+        "description": "Strong pipeline builder but lacks hardware partitioning (MIG), Karpenter autoscaling, or enterprise MLOps architecture."
+      },
+      "ready": {
+        "min": 0.7,
+        "max": 0.9,
+        "description": "Proven senior MLOps engineer with comprehensive platform design, GPU FinOps, and production serving mastery."
+      },
+      "exceeds": {
+        "min": 0.9,
+        "max": 1.0,
+        "description": "Visionary ML platform architect capable of building enterprise-scale, cost-optimized AI infrastructure."
+      }
+    }
+  }
+}

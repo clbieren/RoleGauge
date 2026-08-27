@@ -1,0 +1,218 @@
+{
+  "skill_id": "ml_hyperparameter_optimization",
+  "name": "Hyperparameter Optimization & Tuning",
+  "category": "experimentation",
+  "description": "Automated hyperparameter search strategies: Grid Search, Random Search, Bayesian Optimization (Optuna, Hyperopt, TPE), early stopping pruning, Multi-Fidelity tuning, and learning rate scheduling.",
+  "subskills": [
+    {
+      "id": "grid_random_search_tuning",
+      "name": "Grid Search & Randomized Search",
+      "description": "Exhaustive parameter grids with GridSearchCV, RandomizedSearchCV probability distributions, budget allocation, and search space definition.",
+      "keywords": [
+        "GridSearchCV",
+        "RandomizedSearchCV",
+        "parameter grid",
+        "search space",
+        "exhaustive search",
+        "random sampling",
+        "Scikit-Learn tuning"
+      ]
+    },
+    {
+      "id": "bayesian_optimization_tpe_optuna",
+      "name": "Bayesian Optimization & Optuna TPE Sampler",
+      "description": "Tree-structured Parzen Estimators (TPE), Gaussian Process surrogate models, Expected Improvement (EI), and study optimization with Optuna.",
+      "keywords": [
+        "Optuna",
+        "TPE",
+        "Tree-structured Parzen Estimator",
+        "Bayesian Optimization",
+        "Expected Improvement",
+        "study.optimize",
+        "suggest_float",
+        "suggest_int"
+      ]
+    },
+    {
+      "id": "early_stopping_pruning_strategies",
+      "name": "Early Stopping & Automated Trial Pruning",
+      "description": "Median pruner, Hyperband, Successive Halving (ASHA), trial.should_prune(), and terminating unpromising hyperparameter trials early.",
+      "keywords": [
+        "pruning",
+        "Hyperband",
+        "ASHA",
+        "Successive Halving",
+        "MedianPruner",
+        "trial.should_prune()",
+        "early stopping",
+        "resource conservation"
+      ]
+    },
+    {
+      "id": "learning_rate_schedulers_warmup",
+      "name": "Learning Rate Schedulers & Warmup Dynamics",
+      "description": "Cosine Annealing, OneCycleLR, ExponentialLR, ReduceLROnPlateau, linear warmup steps, and cyclic learning rates.",
+      "keywords": [
+        "CosineAnnealingLR",
+        "OneCycleLR",
+        "ReduceLROnPlateau",
+        "warmup steps",
+        "learning rate scheduler",
+        "cyclic learning rate",
+        "lr_finder"
+      ]
+    },
+    {
+      "id": "multi_objective_optimization",
+      "name": "Multi-Objective Hyperparameter Optimization",
+      "description": "Pareto frontiers, simultaneously optimizing accuracy vs latency vs model size, and non-dominated sorting in Optuna.",
+      "keywords": [
+        "multi-objective",
+        "Pareto frontier",
+        "Pareto optimal",
+        "accuracy vs latency",
+        "non-dominated sorting",
+        "NSGA-II",
+        "Optuna directions"
+      ]
+    },
+    {
+      "id": "distributed_hyperparameter_tuning_ray",
+      "name": "Distributed Hyperparameter Tuning (Ray Tune)",
+      "description": "Scaling tuning across clusters using Ray Tune, population-based training (PBT), distributed trial scheduling, and checkpoint synchronization.",
+      "keywords": [
+        "Ray Tune",
+        "Population Based Training",
+        "PBT",
+        "distributed tuning",
+        "Ray cluster",
+        "trial concurrency",
+        "search algorithm"
+      ]
+    },
+    {
+      "id": "search_space_design_hyperparameter_types",
+      "name": "Search Space Design & Parameter Sensitivity",
+      "description": "Log-scale sampling for learning rates/regularization, categorical choices, conditional hyperparameter spaces, and Sobol sensitivity analysis.",
+      "keywords": [
+        "log-scale sampling",
+        "conditional search space",
+        "parameter sensitivity",
+        "Sobol indices",
+        "hyperparameter importance",
+        "Optuna visualization"
+      ]
+    },
+    {
+      "id": "k_fold_integrated_hpo",
+      "name": "Nested Cross-Validation for Hyperparameter Selection",
+      "description": "Inner loop for hyperparameter tuning, outer loop for unbiased generalization performance estimation, and avoiding optimism bias.",
+      "keywords": [
+        "Nested CV",
+        "inner loop",
+        "outer loop",
+        "unbiased evaluation",
+        "optimism bias",
+        "nested cross-validation",
+        "model selection"
+      ]
+    },
+    {
+      "id": "experiment_tracking_wandb_mlflow_hpo",
+      "name": "HPO Experiment Tracking & Sweep Logging (W&B, MLflow)",
+      "description": "Logging hyperparameter sweeps in Weights & Biases (W&B) or MLflow, parallel coordinates plots, correlation charts, and artifact linking.",
+      "keywords": [
+        "Weights & Biases",
+        "W&B sweeps",
+        "MLflow experiments",
+        "parallel coordinates",
+        "hyperparameter tracking",
+        "sweep config",
+        "run artifacts"
+      ]
+    }
+  ],
+  "evidence_patterns": {
+    "cv": [
+      {
+        "signal": "Implemented Bayesian hyperparameter tuning with Optuna and Ray Tune, improving model AUC while halving compute costs",
+        "strength": 0.5,
+        "maps_to": [
+          "ml_hyperparameter_optimization.bayesian_optimization_tpe_optuna",
+          "ml_hyperparameter_optimization.early_stopping_pruning_strategies",
+          "ml_hyperparameter_optimization.multi_objective_optimization"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Hyperparameter Optimization, Optuna, and Ray Tune endorsements",
+        "strength": 0.3,
+        "maps_to": [
+          "ml_hyperparameter_optimization.grid_random_search_tuning",
+          "ml_hyperparameter_optimization.learning_rate_schedulers_warmup"
+        ]
+      }
+    ],
+    "github": [
+      {
+        "pattern": "*optuna*|*sweep*|*tune*.py|configs/*hpo*.yml",
+        "strength": 1.0,
+        "maps_to": [
+          "ml_hyperparameter_optimization.grid_random_search_tuning",
+          "ml_hyperparameter_optimization.bayesian_optimization_tpe_optuna",
+          "ml_hyperparameter_optimization.early_stopping_pruning_strategies",
+          "ml_hyperparameter_optimization.learning_rate_schedulers_warmup",
+          "ml_hyperparameter_optimization.multi_objective_optimization",
+          "ml_hyperparameter_optimization.distributed_hyperparameter_tuning_ray",
+          "ml_hyperparameter_optimization.search_space_design_hyperparameter_types",
+          "ml_hyperparameter_optimization.k_fold_integrated_hpo",
+          "ml_hyperparameter_optimization.experiment_tracking_wandb_mlflow_hpo"
+        ]
+      }
+    ],
+    "assessment": [
+      {
+        "signal": "Passes Hyperparameter Optimization & Tuning Technical Assessment",
+        "strength": 1.0,
+        "maps_to": [
+          "ml_hyperparameter_optimization.grid_random_search_tuning",
+          "ml_hyperparameter_optimization.bayesian_optimization_tpe_optuna",
+          "ml_hyperparameter_optimization.early_stopping_pruning_strategies",
+          "ml_hyperparameter_optimization.learning_rate_schedulers_warmup",
+          "ml_hyperparameter_optimization.multi_objective_optimization",
+          "ml_hyperparameter_optimization.distributed_hyperparameter_tuning_ray",
+          "ml_hyperparameter_optimization.search_space_design_hyperparameter_types",
+          "ml_hyperparameter_optimization.k_fold_integrated_hpo",
+          "ml_hyperparameter_optimization.experiment_tracking_wandb_mlflow_hpo"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "grid_random_search_tuning",
+        "learning_rate_schedulers_warmup",
+        "experiment_tracking_wandb_mlflow_hpo"
+      ],
+      "description": "Performs grid and random searches, configures learning rate schedulers (Cosine/ReduceLROnPlateau), and tracks runs in MLflow/W&B."
+    },
+    "mid": {
+      "expected_subskills": [
+        "bayesian_optimization_tpe_optuna",
+        "early_stopping_pruning_strategies",
+        "search_space_design_hyperparameter_types",
+        "k_fold_integrated_hpo"
+      ],
+      "description": "Conducts Bayesian optimization with Optuna TPE samplers, configures ASHA/Hyperband pruning, and performs nested cross-validation."
+    },
+    "senior": {
+      "expected_subskills": [
+        "multi_objective_optimization",
+        "distributed_hyperparameter_tuning_ray"
+      ],
+      "description": "Architects multi-objective Pareto optimization (accuracy vs latency) and scales distributed hyperparameter sweeps across clusters with Ray Tune."
+    }
+  }
+}

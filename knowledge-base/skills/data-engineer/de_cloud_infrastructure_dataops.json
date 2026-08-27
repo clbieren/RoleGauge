@@ -1,0 +1,229 @@
+{
+  "skill_id": "de_cloud_infrastructure_dataops",
+  "name": "Cloud Infrastructure & DataOps CI/CD",
+  "category": "infrastructure",
+  "description": "Infrastructure as Code (Terraform) for data platforms, IAM security, Docker containerization for data pipelines, Kubernetes orchestration, CI/CD with GitHub Actions, synthetic test data generation, and FinOps cloud cost management.",
+  "subskills": [
+    {
+      "id": "cloud_iam_service_accounts_security",
+      "name": "Cloud IAM, Service Accounts & Secret Management",
+      "description": "IAM roles, least privilege policies, assume-role delegation, AWS Secrets Manager, GCP Secret Manager, and HashiCorp Vault.",
+      "keywords": [
+        "IAM role",
+        "service account",
+        "least privilege",
+        "AWS Secrets Manager",
+        "GCP Secret Manager",
+        "Vault",
+        "KMS encryption",
+        "assume role"
+      ]
+    },
+    {
+      "id": "terraform_iac_data_infrastructure",
+      "name": "Terraform Infrastructure as Code for Data Stacks",
+      "description": "Provisioning S3/GCS buckets, Snowflake/BigQuery resources, Kafka clusters, RDS databases, Terraform state management, and reusable data modules.",
+      "keywords": [
+        "Terraform",
+        "IaC",
+        "terraform apply",
+        "terraform plan",
+        "remote state",
+        "Terraform modules",
+        "HCL",
+        "provider snowflake",
+        "provider aws"
+      ]
+    },
+    {
+      "id": "docker_containers_for_data",
+      "name": "Docker Containerization for Data Workloads",
+      "description": "Multi-stage Dockerfiles for Python/Spark/dbt applications, container security, non-root users, caching dependencies, and minimizing image sizes.",
+      "keywords": [
+        "Dockerfile",
+        "multi-stage build",
+        "Docker Compose",
+        "containerization",
+        "non-root user",
+        "slim image",
+        "container registry",
+        "ECR",
+        "GCR"
+      ]
+    },
+    {
+      "id": "kubernetes_data_workloads",
+      "name": "Kubernetes for Data Engineering (Spark on K8s, Airflow)",
+      "description": "Deploying data workloads on K8s, Spark-on-K8s operator, pod resource requests/limits, persistent volumes, node selectors, and spot instances.",
+      "keywords": [
+        "Kubernetes",
+        "Spark on K8s",
+        "SparkOperator",
+        "Helm",
+        "resource limits",
+        "pod affinity",
+        "spot instances",
+        "PVC",
+        "k8s namespace"
+      ]
+    },
+    {
+      "id": "ci_cd_pipelines_for_data_github_actions",
+      "name": "CI/CD Pipelines for Data Pipelines (GitHub Actions / GitLab)",
+      "description": "Automated linting (sqlfluff, ruff, black), unit test suites, staging environment promotion, dbt slim CI, and automated deployment pipelines.",
+      "keywords": [
+        "GitHub Actions",
+        "GitLab CI",
+        "CI/CD",
+        "sqlfluff",
+        "ruff",
+        "dbt slim CI",
+        "state:modified+",
+        "automated deployment",
+        "PR validation"
+      ]
+    },
+    {
+      "id": "unit_integration_testing_data_pipelines",
+      "name": "Unit & Integration Testing for Data Pipelines",
+      "description": "Writing pytest suites for data transformations, mocking databases and cloud storage with Moto/Testcontainers, and end-to-end integration tests.",
+      "keywords": [
+        "pytest",
+        "Testcontainers",
+        "moto",
+        "mocking",
+        "integration test",
+        "unit test",
+        "fixtures",
+        "data transformation testing"
+      ]
+    },
+    {
+      "id": "data_mocking_synthetic_generation",
+      "name": "Synthetic Data Generation & Test Fixtures",
+      "description": "Generating realistic synthetic test datasets using Faker, synthetic data generators, anonymized production samples, and deterministic test fixtures.",
+      "keywords": [
+        "Faker",
+        "synthetic data",
+        "mock data",
+        "test fixture",
+        "deterministic mock",
+        "sample data generator"
+      ]
+    },
+    {
+      "id": "cloud_cost_governance_finops",
+      "name": "Data Cloud FinOps & Cost Governance",
+      "description": "Tagging cloud data assets, tracking compute/storage costs, identifying idle clusters, auto-scaling down off-hours, and FinOps budgeting.",
+      "keywords": [
+        "FinOps",
+        "cost allocation",
+        "cost tagging",
+        "idle cluster",
+        "auto-termination",
+        "spot instances",
+        "AWS Cost Explorer",
+        "BigQuery cost optimization"
+      ]
+    },
+    {
+      "id": "disaster_recovery_backup_data_systems",
+      "name": "Disaster Recovery, High Availability & Backups",
+      "description": "Multi-region data replication, point-in-time recovery (PITR), automated database backups, RTO/RPO targets, and failover runbooks.",
+      "keywords": [
+        "Disaster Recovery",
+        "PITR",
+        "RTO",
+        "RPO",
+        "multi-region replication",
+        "failover",
+        "backup strategy",
+        "runbook",
+        "high availability"
+      ]
+    }
+  ],
+  "evidence_patterns": {
+    "cv": [
+      {
+        "signal": "Provisioned multi-environment cloud data platform via Terraform and GitHub Actions CI/CD",
+        "strength": 0.5,
+        "maps_to": [
+          "de_cloud_infrastructure_dataops.terraform_iac_data_infrastructure",
+          "de_cloud_infrastructure_dataops.ci_cd_pipelines_for_data_github_actions",
+          "de_cloud_infrastructure_dataops.cloud_iam_service_accounts_security"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "AWS Certified Data Engineer or HashiCorp Terraform Associate",
+        "strength": 0.3,
+        "maps_to": [
+          "de_cloud_infrastructure_dataops.terraform_iac_data_infrastructure",
+          "de_cloud_infrastructure_dataops.docker_containers_for_data"
+        ]
+      }
+    ],
+    "github": [
+      {
+        "pattern": "*.tf|terraform/**/*.tf|.github/workflows/*.yml|Dockerfile|docker-compose.yml",
+        "strength": 1.0,
+        "maps_to": [
+          "de_cloud_infrastructure_dataops.cloud_iam_service_accounts_security",
+          "de_cloud_infrastructure_dataops.terraform_iac_data_infrastructure",
+          "de_cloud_infrastructure_dataops.docker_containers_for_data",
+          "de_cloud_infrastructure_dataops.kubernetes_data_workloads",
+          "de_cloud_infrastructure_dataops.ci_cd_pipelines_for_data_github_actions",
+          "de_cloud_infrastructure_dataops.unit_integration_testing_data_pipelines",
+          "de_cloud_infrastructure_dataops.data_mocking_synthetic_generation",
+          "de_cloud_infrastructure_dataops.cloud_cost_governance_finops",
+          "de_cloud_infrastructure_dataops.disaster_recovery_backup_data_systems"
+        ]
+      }
+    ],
+    "assessment": [
+      {
+        "signal": "Passes Cloud Data Infrastructure & DataOps CI/CD Assessment",
+        "strength": 1.0,
+        "maps_to": [
+          "de_cloud_infrastructure_dataops.cloud_iam_service_accounts_security",
+          "de_cloud_infrastructure_dataops.terraform_iac_data_infrastructure",
+          "de_cloud_infrastructure_dataops.docker_containers_for_data",
+          "de_cloud_infrastructure_dataops.kubernetes_data_workloads",
+          "de_cloud_infrastructure_dataops.ci_cd_pipelines_for_data_github_actions",
+          "de_cloud_infrastructure_dataops.unit_integration_testing_data_pipelines",
+          "de_cloud_infrastructure_dataops.data_mocking_synthetic_generation",
+          "de_cloud_infrastructure_dataops.cloud_cost_governance_finops",
+          "de_cloud_infrastructure_dataops.disaster_recovery_backup_data_systems"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "docker_containers_for_data",
+        "ci_cd_pipelines_for_data_github_actions",
+        "unit_integration_testing_data_pipelines"
+      ],
+      "description": "Containerizes data applications with Docker, configures GitHub Actions CI workflows, and writes pytest suites with mocks."
+    },
+    "mid": {
+      "expected_subskills": [
+        "cloud_iam_service_accounts_security",
+        "terraform_iac_data_infrastructure",
+        "data_mocking_synthetic_generation"
+      ],
+      "description": "Provisions data infrastructure with Terraform, manages least privilege cloud IAM security, and generates synthetic test fixtures."
+    },
+    "senior": {
+      "expected_subskills": [
+        "kubernetes_data_workloads",
+        "cloud_cost_governance_finops",
+        "disaster_recovery_backup_data_systems"
+      ],
+      "description": "Orchestrates distributed workloads (Spark) on Kubernetes, manages FinOps cloud cost optimization, and architects multi-region disaster recovery systems."
+    }
+  }
+}

@@ -1,0 +1,225 @@
+{
+  "skill_id": "de_data_quality_governance",
+  "name": "Data Quality, Governance & Observability",
+  "category": "governance",
+  "description": "Automated data quality validation (Great Expectations, Soda), anomaly detection, end-to-end data lineage (OpenLineage), metadata catalogs (DataHub, Amundsen), Data Observability, data contracts, and GDPR/PII masking.",
+  "subskills": [
+    {
+      "id": "data_validation_great_expectations_soda",
+      "name": "Data Quality Validation (Great Expectations & Soda)",
+      "description": "Expectation Suites in Great Expectations (GX), Checkpoints, Data Docs, Soda Core / SodaCL checks, and pipeline assertion gates.",
+      "keywords": [
+        "Great Expectations",
+        "GX",
+        "Expectation Suite",
+        "Checkpoint",
+        "Data Docs",
+        "SodaCL",
+        "Soda Core",
+        "automated data validation",
+        "data quality gates"
+      ]
+    },
+    {
+      "id": "data_profiling_anomaly_detection",
+      "name": "Data Profiling & Volume/Schema Anomaly Detection",
+      "description": "Automated statistical profiling (ydata-profiling), missingness rates, distribution drift, volume drop detection, and fresh data checks.",
+      "keywords": [
+        "data profiling",
+        "anomaly detection",
+        "volume anomaly",
+        "freshness check",
+        "distribution drift",
+        "ydata-profiling",
+        "z-score anomaly",
+        "IQR"
+      ]
+    },
+    {
+      "id": "data_lineage_metadata_openlineage",
+      "name": "Data Lineage & OpenLineage Standard",
+      "description": "Dataset and job-level lineage collection, OpenLineage specification, Marquez backend, tracking lineage across Airflow, Spark, and dbt.",
+      "keywords": [
+        "data lineage",
+        "OpenLineage",
+        "Marquez",
+        "column-level lineage",
+        "dataset lineage",
+        "job run facets",
+        "lineage metadata"
+      ]
+    },
+    {
+      "id": "data_catalog_amundsen_datahub",
+      "name": "Enterprise Data Catalogs (DataHub, Amundsen)",
+      "description": "Metadata ingestion, automated schema harvesting, data ownership tagging, business glossary management, and search in DataHub or Amundsen.",
+      "keywords": [
+        "DataHub",
+        "Amundsen",
+        "data catalog",
+        "metadata ingestion",
+        "data discovery",
+        "business glossary",
+        "data stewardship",
+        "glossary terms"
+      ]
+    },
+    {
+      "id": "data_observability_montecarl_metaplane",
+      "name": "Data Observability Pillars & Incident Management",
+      "description": "Five pillars of data observability (Freshness, Distribution, Volume, Schema, Lineage), root-cause analysis, Monte Carlo, and automated incident alerts.",
+      "keywords": [
+        "Data Observability",
+        "Monte Carlo",
+        "Metaplane",
+        "five pillars",
+        "data downtime",
+        "root-cause analysis",
+        "data incident response",
+        "SLA monitoring"
+      ]
+    },
+    {
+      "id": "data_contract_schemas_enforcement",
+      "name": "Data Contracts & Producer-Consumer Schemas",
+      "description": "Defining Data Contracts between software engineers and data teams (YAML schema, SLAs, semantics), contract CI validation, and breaking change prevention.",
+      "keywords": [
+        "Data Contract",
+        "producer-consumer agreement",
+        "schema contract",
+        "contract enforcement",
+        "breaking change prevention",
+        "data contract CLI"
+      ]
+    },
+    {
+      "id": "gdpr_pii_anonymization_masking",
+      "name": "Data Privacy, GDPR Compliance & PII Masking",
+      "description": "Right to be Forgotten implementations, pseudonymization, hashing (SHA-256 with salt), dynamic data masking, tokenization, and PII detection.",
+      "keywords": [
+        "GDPR",
+        "PII",
+        "data masking",
+        "dynamic data masking",
+        "pseudonymization",
+        "tokenization",
+        "Right to be Forgotten",
+        "salt hashing",
+        "anonymization"
+      ]
+    },
+    {
+      "id": "data_access_rbac_abac_policies",
+      "name": "Data Access Governance (RBAC & ABAC Policies)",
+      "description": "Role-Based Access Control (RBAC), Attribute-Based Access Control (ABAC), row-level security (RLS), column-level masking policies, and Apache Ranger.",
+      "keywords": [
+        "RBAC",
+        "ABAC",
+        "row-level security",
+        "RLS",
+        "column masking policy",
+        "Apache Ranger",
+        "Immuta",
+        "Privacera",
+        "least privilege"
+      ]
+    },
+    {
+      "id": "data_retention_archival_policies",
+      "name": "Data Retention, Archival & Purge Lifecycles",
+      "description": "Designing legal data retention periods, automated cold tier archival, scheduled purge routines, and compliance auditing.",
+      "keywords": [
+        "data retention",
+        "archival policy",
+        "purge policy",
+        "cold storage",
+        "glacier archival",
+        "audit logging",
+        "compliance lifecycle"
+      ]
+    }
+  ],
+  "evidence_patterns": {
+    "cv": [
+      {
+        "signal": "Implemented enterprise data quality framework with Great Expectations and established DataHub catalog",
+        "strength": 0.5,
+        "maps_to": [
+          "de_data_quality_governance.data_validation_great_expectations_soda",
+          "de_data_quality_governance.data_catalog_amundsen_datahub",
+          "de_data_quality_governance.gdpr_pii_anonymization_masking"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Data Governance, Quality & Compliance specialist endorsement",
+        "strength": 0.3,
+        "maps_to": [
+          "de_data_quality_governance.data_profiling_anomaly_detection",
+          "de_data_quality_governance.data_lineage_metadata_openlineage"
+        ]
+      }
+    ],
+    "github": [
+      {
+        "pattern": "*expectations*|*soda*|contracts/**/*.yml|governance/**/*.py",
+        "strength": 1.0,
+        "maps_to": [
+          "de_data_quality_governance.data_validation_great_expectations_soda",
+          "de_data_quality_governance.data_profiling_anomaly_detection",
+          "de_data_quality_governance.data_lineage_metadata_openlineage",
+          "de_data_quality_governance.data_catalog_amundsen_datahub",
+          "de_data_quality_governance.data_observability_montecarl_metaplane",
+          "de_data_quality_governance.data_contract_schemas_enforcement",
+          "de_data_quality_governance.gdpr_pii_anonymization_masking",
+          "de_data_quality_governance.data_access_rbac_abac_policies",
+          "de_data_quality_governance.data_retention_archival_policies"
+        ]
+      }
+    ],
+    "assessment": [
+      {
+        "signal": "Passes Data Quality, Governance, Observability & Privacy Assessment",
+        "strength": 1.0,
+        "maps_to": [
+          "de_data_quality_governance.data_validation_great_expectations_soda",
+          "de_data_quality_governance.data_profiling_anomaly_detection",
+          "de_data_quality_governance.data_lineage_metadata_openlineage",
+          "de_data_quality_governance.data_catalog_amundsen_datahub",
+          "de_data_quality_governance.data_observability_montecarl_metaplane",
+          "de_data_quality_governance.data_contract_schemas_enforcement",
+          "de_data_quality_governance.gdpr_pii_anonymization_masking",
+          "de_data_quality_governance.data_access_rbac_abac_policies",
+          "de_data_quality_governance.data_retention_archival_policies"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "data_validation_great_expectations_soda",
+        "data_profiling_anomaly_detection",
+        "data_retention_archival_policies"
+      ],
+      "description": "Writes automated test assertions with Great Expectations / Soda, profiles statistical data distributions, and enforces retention rules."
+    },
+    "mid": {
+      "expected_subskills": [
+        "data_lineage_metadata_openlineage",
+        "data_catalog_amundsen_datahub",
+        "gdpr_pii_anonymization_masking",
+        "data_access_rbac_abac_policies"
+      ],
+      "description": "Connects lineage metadata with OpenLineage, registers assets in DataHub, masks PII to ensure GDPR compliance, and implements row/column security policies."
+    },
+    "senior": {
+      "expected_subskills": [
+        "data_observability_montecarl_metaplane",
+        "data_contract_schemas_enforcement"
+      ],
+      "description": "Architects end-to-end Data Observability frameworks, establishes cross-team Data Contracts, and leads enterprise data governance initiatives."
+    }
+  }
+}

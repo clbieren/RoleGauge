@@ -1,0 +1,27 @@
+{
+  "source_id": "linkedin",
+  "name": "LinkedIn Profile Signals - MLOps Engineering",
+  "description": "Signals and skill endorsements extracted from candidate LinkedIn profiles for MLOps roles.",
+  "sections": [
+    {
+      "section_id": "experience",
+      "base_strength": 0.5,
+      "description": "Professional experience in MLOps Engineer, ML Platform Engineer, or AI Infrastructure roles."
+    },
+    {
+      "section_id": "headline_summary",
+      "base_strength": 0.3,
+      "description": "Profile headline and summary keywords."
+    },
+    {
+      "section_id": "skills_endorsements",
+      "base_strength": 0.3,
+      "description": "Endorsed skills related to Kubeflow, MLflow, Kubernetes, KServe, Feast, and GPU Infrastructure."
+    },
+    {
+      "section_id": "recommendations",
+      "base_strength": 0.5,
+      "description": "Colleague recommendations validating MLOps delivery."
+    }
+  ]
+}

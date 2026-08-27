@@ -1,0 +1,85 @@
+{
+  "role_id": "machine_learning",
+  "level": "senior",
+  "title": "Senior Machine Learning Engineer / ML Architect",
+  "description": "Senior technical leadership position driving end-to-end machine learning strategy: distributed multi-GPU training (DDP/FSDP), high-throughput Triton serving clusters, INT8 quantization & TensorRT compilation, automated Continuous Training (CT) feedback loops, Out-of-Distribution security, and enterprise ML governance.",
+  "experience_range": "5+ years",
+  "skills": [
+    {
+      "skill_id": "ml_deep_learning_architectures",
+      "importance": 0.95,
+      "rationale": "Architecting Transformer self-attention mechanisms and scaling multi-GPU distributed training (DDP/FSDP)."
+    },
+    {
+      "skill_id": "ml_model_deployment_serving",
+      "importance": 0.95,
+      "rationale": "Architecting Triton multi-model inference clusters with dynamic batching and sub-10ms P99 latency."
+    },
+    {
+      "skill_id": "ml_model_optimization_compression",
+      "importance": 0.95,
+      "rationale": "Building TensorRT engines, memory bandwidth kernel tuning, and hardware acceleration."
+    },
+    {
+      "skill_id": "ml_pipelines_orchestration",
+      "importance": 0.9,
+      "rationale": "Establishing enterprise Continuous Training loops, champion/challenger gates, and model governance."
+    },
+    {
+      "skill_id": "ml_monitoring_drift_observability",
+      "importance": 0.9,
+      "rationale": "Architecting Out-of-Distribution (OOD) protection gates, model bias auditing, and automated incident response."
+    },
+    {
+      "skill_id": "ml_hyperparameter_optimization",
+      "importance": 0.85,
+      "rationale": "Scaling distributed tuning with Ray Tune and multi-objective Pareto optimization (accuracy vs latency)."
+    },
+    {
+      "skill_id": "ml_mathematics_foundations",
+      "importance": 0.85,
+      "rationale": "Second-order optimization, KL divergence analysis, and custom loss mathematical formulations."
+    },
+    {
+      "skill_id": "ml_classical_algorithms",
+      "importance": 0.85,
+      "rationale": "Non-spherical density clustering (HDBSCAN), kernel methods, and custom ensemble algorithms."
+    },
+    {
+      "skill_id": "ml_model_evaluation_validation",
+      "importance": 0.85,
+      "rationale": "Company-wide online A/B testing design and ranking/retrieval evaluation frameworks."
+    },
+    {
+      "skill_id": "ml_feature_engineering_preprocessing",
+      "importance": 0.8,
+      "rationale": "Designing automated feature selection engines and high-dimensional interaction pipelines."
+    }
+  ],
+  "scoring": {
+    "method": "weighted_average",
+    "description": "Each skill score is multiplied by its importance weight. Final score is the sum of weighted scores divided by sum of weights.",
+    "thresholds": {
+      "not_ready": {
+        "min": 0.0,
+        "max": 0.45,
+        "description": "Does not meet the architectural depth, distributed scaling, or acceleration leadership required for senior roles."
+      },
+      "partially_ready": {
+        "min": 0.45,
+        "max": 0.7,
+        "description": "Strong pipeline practitioner but lacks hardware acceleration (TensorRT), distributed DDP, or enterprise MLOps architecture."
+      },
+      "ready": {
+        "min": 0.7,
+        "max": 0.9,
+        "description": "Proven senior ML engineer with comprehensive platform architecture, distributed tuning, and production acceleration mastery."
+      },
+      "exceeds": {
+        "min": 0.9,
+        "max": 1.0,
+        "description": "World-class ML architect capable of building multi-billion parameter inference systems and enterprise AI platforms."
+      }
+    }
+  }
+}

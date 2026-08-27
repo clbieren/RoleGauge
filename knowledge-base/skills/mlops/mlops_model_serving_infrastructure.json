@@ -1,0 +1,215 @@
+{
+  "skill_id": "mlops_model_serving_infrastructure",
+  "name": "Model Serving Platforms & GPU Inference",
+  "category": "serving",
+  "description": "Cloud-native model serving on Kubernetes: KServe, Seldon Core, Ray Serve, vLLM / TGI high-throughput LLM engines, dynamic GPU autoscaling, ingress routing, and service mesh.",
+  "subskills": [
+    {
+      "id": "kserve_inferenceservice_crd",
+      "name": "KServe & InferenceService Custom Resource (CRD)",
+      "description": "Deploying models using KServe InferenceService CRDs, predictor, transformer, explainer components, serverless scale-to-zero with Knative, and storageInitializer.",
+      "keywords": [
+        "KServe",
+        "InferenceService",
+        "Knative",
+        "scale-to-zero",
+        "storageInitializer",
+        "predictor pod",
+        "transformer component"
+      ]
+    },
+    {
+      "id": "seldon_core_advanced_graphs",
+      "name": "Seldon Core & Complex Inference Graphs",
+      "description": "SeldonDeployment CRD, building multi-model inference pipelines (Combiners, Routers, Ensembles), shadow deployments, and AB testing.",
+      "keywords": [
+        "Seldon Core",
+        "SeldonDeployment",
+        "inference graph",
+        "Combiner",
+        "Router",
+        "multi-model pipeline",
+        "shadow routing"
+      ]
+    },
+    {
+      "id": "ray_serve_distributed_inference",
+      "name": "Ray Serve Distributed Serving & Deployments",
+      "description": "Ray Serve @serve.deployment, managing replica actors, dynamic batching, actor concurrency, and scaling across heterogeneous Ray clusters.",
+      "keywords": [
+        "Ray Serve",
+        "@serve.deployment",
+        "serve.run",
+        "Ray actor",
+        "replica scaling",
+        "fractional GPU allocation",
+        "distributed inference"
+      ]
+    },
+    {
+      "id": "vllm_tgi_high_throughput_llm_serving",
+      "name": "High-Throughput Serving Engines (vLLM & TGI)",
+      "description": "Operating vLLM (PagedAttention) and Text Generation Inference (TGI), continuous batching, tensor parallelism, and OpenAI-compatible endpoints.",
+      "keywords": [
+        "vLLM",
+        "PagedAttention",
+        "TGI",
+        "continuous batching",
+        "tensor parallelism",
+        "OpenAI-compatible server",
+        "KV cache management"
+      ]
+    },
+    {
+      "id": "gpu_autoscaling_keda_prometheus",
+      "name": "GPU Autoscaling with KEDA & Prometheus Metrics",
+      "description": "Configuring Kubernetes Event-driven Autoscaling (KEDA) on GPU metrics (DCGM GPU duty cycle, queue latency, request backlog) rather than basic CPU/memory.",
+      "keywords": [
+        "KEDA",
+        "GPU autoscaling",
+        "DCGM metrics",
+        "queue length scaler",
+        "PrometheusScaledObject",
+        "rapid scale up",
+        "HPA for GPU"
+      ]
+    },
+    {
+      "id": "dynamic_batching_triton_inference",
+      "name": "Dynamic Batching & Concurrent Model Execution",
+      "description": "Triton dynamic batch scheduler, max_queue_delay_microseconds, multi-model GPU memory sharing, and maximizing inference throughput.",
+      "keywords": [
+        "dynamic batching",
+        "Triton",
+        "max_queue_delay",
+        "GPU memory sharing",
+        "throughput maximization",
+        "queue scheduler"
+      ]
+    },
+    {
+      "id": "istio_service_mesh_traffic_splitting",
+      "name": "Istio Service Mesh & Canary Traffic Splitting",
+      "description": "Using Istio VirtualService and DestinationRule to split live prediction traffic (90% v1 / 10% v2) and mirror traffic for shadow evaluation.",
+      "keywords": [
+        "Istio",
+        "VirtualService",
+        "DestinationRule",
+        "traffic splitting",
+        "Canary routing",
+        "mirror traffic",
+        "Service Mesh for ML"
+      ]
+    },
+    {
+      "id": "inference_caching_semantic_redis",
+      "name": "Inference Caching (Redis & Semantic Cache)",
+      "description": "Caching frequent prediction requests in Redis, vector semantic caching (GPTCache), and sub-millisecond response for repeat queries.",
+      "keywords": [
+        "inference cache",
+        "Redis cache",
+        "GPTCache",
+        "semantic caching",
+        "sub-millisecond latency",
+        "cost reduction",
+        "cache hit ratio"
+      ]
+    },
+    {
+      "id": "cold_start_latency_reduction_gpu",
+      "name": "GPU Cold Start Latency Reduction & Pre-Warming",
+      "description": "Techniques to eliminate GPU cold start: pre-pulled daemonset container images, warm pools, memory-mapped weights, and rapid model hydration.",
+      "keywords": [
+        "cold start",
+        "GPU pre-warming",
+        "daemonset image pre-pull",
+        "mmap weights",
+        "rapid hydration",
+        "serverless GPU optimization"
+      ]
+    }
+  ],
+  "evidence_patterns": {
+    "cv": [
+      {
+        "signal": "Deployed and scaled KServe and vLLM inference platforms on Kubernetes with KEDA GPU autoscaling and Istio traffic splitting",
+        "strength": 0.5,
+        "maps_to": [
+          "mlops_model_serving_infrastructure.kserve_inferenceservice_crd",
+          "mlops_model_serving_infrastructure.vllm_tgi_high_throughput_llm_serving",
+          "mlops_model_serving_infrastructure.gpu_autoscaling_keda_prometheus"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "KServe, Ray Serve, vLLM, and Model Serving endorsements",
+        "strength": 0.3,
+        "maps_to": [
+          "mlops_model_serving_infrastructure.ray_serve_distributed_inference",
+          "mlops_model_serving_infrastructure.seldon_core_advanced_graphs"
+        ]
+      }
+    ],
+    "github": [
+      {
+        "pattern": "*inferenceservice*.yml|*seldon*.yml|*ray_serve*.py|*keda*.yml|istio/**/*.yml",
+        "strength": 1.0,
+        "maps_to": [
+          "mlops_model_serving_infrastructure.kserve_inferenceservice_crd",
+          "mlops_model_serving_infrastructure.seldon_core_advanced_graphs",
+          "mlops_model_serving_infrastructure.ray_serve_distributed_inference",
+          "mlops_model_serving_infrastructure.vllm_tgi_high_throughput_llm_serving",
+          "mlops_model_serving_infrastructure.gpu_autoscaling_keda_prometheus",
+          "mlops_model_serving_infrastructure.dynamic_batching_triton_inference",
+          "mlops_model_serving_infrastructure.istio_service_mesh_traffic_splitting",
+          "mlops_model_serving_infrastructure.inference_caching_semantic_redis",
+          "mlops_model_serving_infrastructure.cold_start_latency_reduction_gpu"
+        ]
+      }
+    ],
+    "assessment": [
+      {
+        "signal": "Passes Model Serving Platforms & GPU Inference Technical Assessment",
+        "strength": 1.0,
+        "maps_to": [
+          "mlops_model_serving_infrastructure.kserve_inferenceservice_crd",
+          "mlops_model_serving_infrastructure.seldon_core_advanced_graphs",
+          "mlops_model_serving_infrastructure.ray_serve_distributed_inference",
+          "mlops_model_serving_infrastructure.vllm_tgi_high_throughput_llm_serving",
+          "mlops_model_serving_infrastructure.gpu_autoscaling_keda_prometheus",
+          "mlops_model_serving_infrastructure.dynamic_batching_triton_inference",
+          "mlops_model_serving_infrastructure.istio_service_mesh_traffic_splitting",
+          "mlops_model_serving_infrastructure.inference_caching_semantic_redis",
+          "mlops_model_serving_infrastructure.cold_start_latency_reduction_gpu"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "kserve_inferenceservice_crd",
+        "dynamic_batching_triton_inference",
+        "inference_caching_semantic_redis"
+      ],
+      "description": "Deploys standard KServe InferenceServices, configures dynamic batching, and implements Redis prediction caching."
+    },
+    "mid": {
+      "expected_subskills": [
+        "seldon_core_advanced_graphs",
+        "ray_serve_distributed_inference",
+        "vllm_tgi_high_throughput_llm_serving",
+        "istio_service_mesh_traffic_splitting"
+      ],
+      "description": "Builds complex Seldon inference graphs, operates Ray Serve and vLLM clusters, and routes traffic via Istio Canary rules."
+    },
+    "senior": {
+      "expected_subskills": [
+        "gpu_autoscaling_keda_prometheus",
+        "cold_start_latency_reduction_gpu"
+      ],
+      "description": "Architects event-driven KEDA GPU autoscaling on DCGM metrics and eliminates cold start bottlenecks across multi-region serverless GPU fleets."
+    }
+  }
+}

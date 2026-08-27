@@ -1,0 +1,215 @@
+{
+  "skill_id": "mlops_data_feature_management",
+  "name": "Feature Stores & Data Versioning (Feast / DVC)",
+  "category": "data_management",
+  "description": "Feature store architecture (Feast, Hopsworks), online/offline stores, point-in-time correctness, feature views, Data Version Control (DVC), dataset lineage, and preventing training-serving skew.",
+  "subskills": [
+    {
+      "id": "feast_feature_store_architecture",
+      "name": "Feast Feature Store Core Architecture",
+      "description": "Configuring feature_store.yaml, Entity definitions, Feature Views, batch sources (Parquet/Snowflake/BigQuery), and Feast repository setup.",
+      "keywords": [
+        "Feast",
+        "feature_store.yaml",
+        "Entity",
+        "FeatureView",
+        "BatchSource",
+        "feast apply",
+        "feature repository"
+      ]
+    },
+    {
+      "id": "point_in_time_correct_historical_joins",
+      "name": "Point-in-Time Correct Historical Feature Joins",
+      "description": "Time-travel joins in Feast (get_historical_features), preventing future data leakage, entity timestamps, and observation frames.",
+      "keywords": [
+        "point-in-time join",
+        "time travel join",
+        "get_historical_features",
+        "data leakage prevention",
+        "entity_df",
+        "timestamp join"
+      ]
+    },
+    {
+      "id": "online_feature_store_redis_dynamo",
+      "name": "Online Feature Stores (Redis, DynamoDB) & Materialization",
+      "description": "feast materialize, materialization intervals, ultra-low latency online feature retrieval with get_online_features(), and cache TTLs.",
+      "keywords": [
+        "feast materialize",
+        "online store",
+        "Redis",
+        "DynamoDB",
+        "get_online_features",
+        "sub-millisecond retrieval",
+        "feature cache"
+      ]
+    },
+    {
+      "id": "on_demand_streaming_feature_views",
+      "name": "On-Demand & Streaming Feature Transformations",
+      "description": "OnDemandFeatureView with Python/Pandas logic, RequestSource transformations, and streaming ingestion from Kafka into Feast.",
+      "keywords": [
+        "OnDemandFeatureView",
+        "RequestSource",
+        "streaming feature view",
+        "real-time transformation",
+        "Kafka ingestion",
+        "push source"
+      ]
+    },
+    {
+      "id": "dvc_data_versioning_s3_gcs",
+      "name": "Data Version Control (DVC) with S3/GCS Remotes",
+      "description": "Initializing DVC, dvc add, dvc remote add s3, tracking large training datasets, .dvc files in Git, and dvc push/pull.",
+      "keywords": [
+        "DVC",
+        "dvc add",
+        "dvc remote",
+        "dvc push",
+        "dvc pull",
+        "S3 remote",
+        ".dvc pointer",
+        "dataset versioning"
+      ]
+    },
+    {
+      "id": "dvc_pipeline_stages_dvc_yaml",
+      "name": "DVC Pipelines & Reproducible Stages (dvc.yaml)",
+      "description": "Authoring dvc.yaml with deps, outs, params, and metrics, building reproducible dependency graphs with dvc repro.",
+      "keywords": [
+        "dvc.yaml",
+        "dvc repro",
+        "pipeline stages",
+        "deps",
+        "outs",
+        "params.yaml",
+        "dvc metrics",
+        "reproducible pipeline"
+      ]
+    },
+    {
+      "id": "training_serving_feature_skew_mitigation",
+      "name": "Training-Serving Feature Skew Mitigation",
+      "description": "Ensuring identical transformation code between training and inference paths, shared feature definitions, and drift monitoring.",
+      "keywords": [
+        "training-serving skew",
+        "shared transformation",
+        "consistency",
+        "feature parity",
+        "skew detection",
+        "feature store contract"
+      ]
+    },
+    {
+      "id": "hopsworks_feature_store_enterprise",
+      "name": "Enterprise Feature Stores (Hopsworks, Tecton)",
+      "description": "Enterprise feature store features: feature sharing across teams, access control, automated feature monitoring, and pipeline orchestration.",
+      "keywords": [
+        "Hopsworks",
+        "Tecton",
+        "enterprise feature store",
+        "feature catalog",
+        "feature sharing",
+        "access control",
+        "feature monitoring"
+      ]
+    },
+    {
+      "id": "dataset_checksums_immutability_archival",
+      "name": "Dataset Checksums, Immutability & Archival",
+      "description": "Cryptographic dataset hashing (SHA-256), immutable S3 object locks, dataset lifecycle archival, and compliance auditing.",
+      "keywords": [
+        "dataset checksum",
+        "SHA-256 hash",
+        "immutable dataset",
+        "S3 Object Lock",
+        "dataset archival",
+        "compliance audit"
+      ]
+    }
+  ],
+  "evidence_patterns": {
+    "cv": [
+      {
+        "signal": "Architected enterprise Feast Feature Store and DVC data pipelines eliminating training-serving skew",
+        "strength": 0.5,
+        "maps_to": [
+          "mlops_data_feature_management.feast_feature_store_architecture",
+          "mlops_data_feature_management.point_in_time_correct_historical_joins",
+          "mlops_data_feature_management.training_serving_feature_skew_mitigation"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Feature Stores, Feast, DVC, and Data Management endorsements",
+        "strength": 0.3,
+        "maps_to": [
+          "mlops_data_feature_management.online_feature_store_redis_dynamo",
+          "mlops_data_feature_management.dvc_data_versioning_s3_gcs"
+        ]
+      }
+    ],
+    "github": [
+      {
+        "pattern": "feature_store.yaml|dvc.yaml|.dvc|features/**/*.py|dvc.lock",
+        "strength": 1.0,
+        "maps_to": [
+          "mlops_data_feature_management.feast_feature_store_architecture",
+          "mlops_data_feature_management.point_in_time_correct_historical_joins",
+          "mlops_data_feature_management.online_feature_store_redis_dynamo",
+          "mlops_data_feature_management.on_demand_streaming_feature_views",
+          "mlops_data_feature_management.dvc_data_versioning_s3_gcs",
+          "mlops_data_feature_management.dvc_pipeline_stages_dvc_yaml",
+          "mlops_data_feature_management.training_serving_feature_skew_mitigation",
+          "mlops_data_feature_management.hopsworks_feature_store_enterprise",
+          "mlops_data_feature_management.dataset_checksums_immutability_archival"
+        ]
+      }
+    ],
+    "assessment": [
+      {
+        "signal": "Passes Feature Stores & Data Versioning Technical Assessment",
+        "strength": 1.0,
+        "maps_to": [
+          "mlops_data_feature_management.feast_feature_store_architecture",
+          "mlops_data_feature_management.point_in_time_correct_historical_joins",
+          "mlops_data_feature_management.online_feature_store_redis_dynamo",
+          "mlops_data_feature_management.on_demand_streaming_feature_views",
+          "mlops_data_feature_management.dvc_data_versioning_s3_gcs",
+          "mlops_data_feature_management.dvc_pipeline_stages_dvc_yaml",
+          "mlops_data_feature_management.training_serving_feature_skew_mitigation",
+          "mlops_data_feature_management.hopsworks_feature_store_enterprise",
+          "mlops_data_feature_management.dataset_checksums_immutability_archival"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "feast_feature_store_architecture",
+        "dvc_data_versioning_s3_gcs",
+        "dvc_pipeline_stages_dvc_yaml"
+      ],
+      "description": "Defines basic Feast feature views, tracks dataset versions with DVC, and authors reproducible dvc.yaml pipelines."
+    },
+    "mid": {
+      "expected_subskills": [
+        "point_in_time_correct_historical_joins",
+        "online_feature_store_redis_dynamo",
+        "on_demand_streaming_feature_views",
+        "training_serving_feature_skew_mitigation"
+      ],
+      "description": "Executes point-in-time correct historical joins, materializes online Redis feature caches, and eliminates training-serving skew."
+    },
+    "senior": {
+      "expected_subskills": [
+        "hopsworks_feature_store_enterprise",
+        "dataset_checksums_immutability_archival"
+      ],
+      "description": "Architects enterprise multi-tenant feature store platforms, implements streaming Kafka feature views, and governs dataset immutability."
+    }
+  }
+}

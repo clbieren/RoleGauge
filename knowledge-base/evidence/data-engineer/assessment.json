@@ -1,0 +1,1439 @@
+{
+  "source_id": "assessment",
+  "name": "Data Engineering Adaptive Technical Assessment",
+  "description": "Comprehensive technical question bank and adaptive testing engine for evaluating Data Engineer candidate proficiency across all 91 composite subskills.",
+  "trigger_conditions": {
+    "rules": [
+      "When a subskill has status 'not_yet_evidenced' (confidence = 0.0) for a target role level",
+      "When a subskill has status 'insufficient_evidence' and confidence < 0.4",
+      "When CV/LinkedIn claims a skill but GitHub code has no supporting implementation",
+      "When a skill is critical for the target role (importance >= 0.80) and evidence is ambiguous"
+    ]
+  },
+  "question_types": [
+    {
+      "type": "conceptual",
+      "strength": 0.6,
+      "description": "Tests deep theoretical and architectural understanding."
+    },
+    {
+      "type": "scenario",
+      "strength": 0.8,
+      "description": "Tests practical problem-solving and production troubleshooting."
+    },
+    {
+      "type": "practical_task",
+      "strength": 1.0,
+      "description": "Hands-on implementation task validating production code."
+    }
+  ],
+  "sample_questions_by_composite_key": {
+    "de_programming.python_core_oop": [
+      {
+        "level": "junior",
+        "type": "conceptual",
+        "question": "How do Python generators conserve memory when processing large data files compared to lists?",
+        "expected_answer_keywords": [
+          "yield",
+          "lazy evaluation",
+          "iterator",
+          "memory efficient",
+          "stream",
+          "one item at a time"
+        ]
+      }
+    ],
+    "de_programming.typing_data_structures": [
+      {
+        "level": "junior",
+        "type": "conceptual",
+        "question": "Why is Pydantic and typing module preferred over raw dicts for parsing incoming data payload records?",
+        "expected_answer_keywords": [
+          "type validation",
+          "BaseModel",
+          "schema enforcement",
+          "data parsing",
+          "type hints",
+          "runtime validation"
+        ]
+      }
+    ],
+    "de_programming.functional_programming": [
+      {
+        "level": "mid",
+        "type": "conceptual",
+        "question": "What is a pure function in functional programming and why is immutability crucial in distributed data processing?",
+        "expected_answer_keywords": [
+          "pure function",
+          "no side effects",
+          "deterministic",
+          "immutability",
+          "concurrency safe",
+          "cacheable"
+        ]
+      }
+    ],
+    "de_programming.concurrency_multiprocessing": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "When would you choose Python's multiprocessing module over threading for a data transformation pipeline?",
+        "expected_answer_keywords": [
+          "GIL",
+          "Global Interpreter Lock",
+          "CPU-bound",
+          "multi-core",
+          "ProcessPoolExecutor",
+          "parallel execution"
+        ]
+      }
+    ],
+    "de_programming.memory_management_profiling": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "How would you identify and fix a memory leak in a long-running batch ingestion daemon in Python?",
+        "expected_answer_keywords": [
+          "tracemalloc",
+          "memory_profiler",
+          "gc",
+          "garbage collection",
+          "circular reference",
+          "heap dump"
+        ]
+      }
+    ],
+    "de_programming.serialization_protocols": [
+      {
+        "level": "mid",
+        "type": "conceptual",
+        "question": "What are the structural advantages of Apache Avro or Protocol Buffers over JSON in high-throughput data streams?",
+        "expected_answer_keywords": [
+          "binary format",
+          "schema evolution",
+          "compact size",
+          "serialization speed",
+          "strongly typed"
+        ]
+      }
+    ],
+    "de_programming.scala_jvm_ecosystem": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "How do case classes and pattern matching in Scala simplify building complex distributed ETL transformations?",
+        "expected_answer_keywords": [
+          "case class",
+          "pattern matching",
+          "immutability",
+          "type safety",
+          "unapply",
+          "ADT"
+        ]
+      }
+    ],
+    "de_programming.data_structures_algorithms": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "How would you perform a topological sort on a set of interdependent pipeline tasks to determine valid execution order?",
+        "expected_answer_keywords": [
+          "topological sort",
+          "DAG",
+          "indegree",
+          "Kahn's algorithm",
+          "cycle detection",
+          "dependency graph"
+        ]
+      }
+    ],
+    "de_programming.package_dependency_management": [
+      {
+        "level": "junior",
+        "type": "conceptual",
+        "question": "Why is lockfile pinning (e.g. poetry.lock or uv.lock) critical in deterministic data pipeline deployments?",
+        "expected_answer_keywords": [
+          "reproducibility",
+          "lockfile",
+          "deterministic build",
+          "dependency resolution",
+          "pyproject.toml",
+          "version pinning"
+        ]
+      }
+    ],
+    "de_sql_advanced.complex_joins_subqueries": [
+      {
+        "level": "junior",
+        "type": "conceptual",
+        "question": "What is the difference between a LEFT JOIN and a LEFT ANTI JOIN in SQL, and when would you use an anti-join?",
+        "expected_answer_keywords": [
+          "LEFT ANTI JOIN",
+          "NOT EXISTS",
+          "IS NULL",
+          "filter non-matching",
+          "exclusion",
+          "subquery"
+        ]
+      }
+    ],
+    "de_sql_advanced.window_functions_analytical": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "How do you compute a running 7-day average of transactions using SQL window functions?",
+        "expected_answer_keywords": [
+          "AVG()",
+          "OVER",
+          "PARTITION BY",
+          "ORDER BY",
+          "ROWS BETWEEN 6 PRECEDING AND CURRENT ROW",
+          "window frame"
+        ]
+      }
+    ],
+    "de_sql_advanced.ctes_recursive_queries": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "How does a WITH RECURSIVE query traverse an organizational hierarchy table (manager_id -> employee_id)?",
+        "expected_answer_keywords": [
+          "WITH RECURSIVE",
+          "anchor member",
+          "UNION ALL",
+          "recursive member",
+          "termination condition",
+          "parent-child"
+        ]
+      }
+    ],
+    "de_sql_advanced.indexing_b_tree_strategies": [
+      {
+        "level": "mid",
+        "type": "conceptual",
+        "question": "What is a covering index and how does the INCLUDE clause enable Index-Only Scans?",
+        "expected_answer_keywords": [
+          "covering index",
+          "Index-Only Scan",
+          "INCLUDE clause",
+          "leaf node",
+          "avoid table lookup",
+          "B-Tree"
+        ]
+      }
+    ],
+    "de_sql_advanced.query_execution_plans": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "When analyzing EXPLAIN ANALYZE output, what indicates that a planner chose a Hash Join over a Merge Join, and when is that optimal?",
+        "expected_answer_keywords": [
+          "Hash Join",
+          "Merge Join",
+          "hash table in memory",
+          "unsorted input",
+          "work_mem",
+          "cardinality estimation"
+        ]
+      }
+    ],
+    "de_sql_advanced.partitioning_sharding": [
+      {
+        "level": "mid",
+        "type": "conceptual",
+        "question": "How does partition pruning improve analytical query performance on billion-row date-partitioned tables?",
+        "expected_answer_keywords": [
+          "partition pruning",
+          "skip partitions",
+          "filter condition",
+          "WHERE clause",
+          "I/O reduction",
+          "range partition"
+        ]
+      }
+    ],
+    "de_sql_advanced.transactions_acid_isolation": [
+      {
+        "level": "mid",
+        "type": "conceptual",
+        "question": "What is the difference between Read Committed and Repeatable Read isolation levels, and what anomaly does Repeatable Read prevent?",
+        "expected_answer_keywords": [
+          "isolation level",
+          "Read Committed",
+          "Repeatable Read",
+          "non-repeatable read",
+          "phantom read",
+          "MVCC snapshot"
+        ]
+      }
+    ],
+    "de_sql_advanced.stored_procedures_udfs": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "What are the performance trade-offs of using scalar SQL User-Defined Functions (UDFs) vs inline set-based operations?",
+        "expected_answer_keywords": [
+          "row-by-row execution",
+          "RBAR",
+          "black box optimizer",
+          "set-based",
+          "inlining",
+          "performance penalty"
+        ]
+      }
+    ],
+    "de_sql_advanced.db_performance_tuning": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "How do you detect and resolve disk-spill sorting bottlenecks in analytical database queries?",
+        "expected_answer_keywords": [
+          "work_mem",
+          "temporary file spill",
+          "disk sort",
+          "buffer cache",
+          "EXPLAIN ANALYZE Sort Method",
+          "memory allocation"
+        ]
+      }
+    ],
+    "de_data_warehousing.dimensional_star_snowflake": [
+      {
+        "level": "junior",
+        "type": "conceptual",
+        "question": "Compare Star Schema and Snowflake Schema in terms of normalization, query complexity, and analytical performance.",
+        "expected_answer_keywords": [
+          "star schema",
+          "snowflake schema",
+          "normalization",
+          "denormalization",
+          "join complexity",
+          "query performance",
+          "grain"
+        ]
+      }
+    ],
+    "de_data_warehousing.fact_dimension_design": [
+      {
+        "level": "junior",
+        "type": "conceptual",
+        "question": "What is the difference between a Transaction Fact table, Periodic Snapshot Fact table, and Accumulating Snapshot Fact table?",
+        "expected_answer_keywords": [
+          "transaction fact",
+          "periodic snapshot",
+          "accumulating snapshot",
+          "milestones",
+          "grain",
+          "time interval"
+        ]
+      }
+    ],
+    "de_data_warehousing.scd_type_management": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "Explain how an SCD Type 2 dimension tracks history with surrogate keys, valid_from, valid_to, and is_current columns.",
+        "expected_answer_keywords": [
+          "SCD Type 2",
+          "surrogate key",
+          "valid_from",
+          "valid_to",
+          "is_current",
+          "versioning",
+          "historical tracking"
+        ]
+      }
+    ],
+    "de_data_warehousing.snowflake_architecture": [
+      {
+        "level": "mid",
+        "type": "conceptual",
+        "question": "How does Snowflake's separation of storage and compute enable independent scaling and zero-copy cloning?",
+        "expected_answer_keywords": [
+          "separation of storage and compute",
+          "virtual warehouse",
+          "micro-partitions",
+          "zero-copy cloning",
+          "metadata pointers",
+          "centralized storage"
+        ]
+      }
+    ],
+    "de_data_warehousing.bigquery_architecture": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "How does BigQuery slot allocation and table clustering optimize query performance and reduce scanned bytes?",
+        "expected_answer_keywords": [
+          "slots",
+          "clustering",
+          "partitioning",
+          "pruning",
+          "scanned bytes",
+          "Dremel engine",
+          "cost reduction"
+        ]
+      }
+    ],
+    "de_data_warehousing.redshift_architecture": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "When designing an Amazon Redshift table, how do you select between KEY, ALL, and EVEN distribution styles to prevent network broadcast?",
+        "expected_answer_keywords": [
+          "DISTSTYLE",
+          "DISTKEY",
+          "distribution style",
+          "KEY distribution",
+          "colocated join",
+          "EVEN",
+          "ALL",
+          "network shuffle"
+        ]
+      }
+    ],
+    "de_data_warehousing.columnar_storage_compression": [
+      {
+        "level": "mid",
+        "type": "conceptual",
+        "question": "Why is Run-Length Encoding (RLE) and Dictionary Encoding highly effective on sorted columnar data?",
+        "expected_answer_keywords": [
+          "dictionary encoding",
+          "RLE",
+          "run-length encoding",
+          "sorted data",
+          "compression ratio",
+          "I/O pruning",
+          "columnar"
+        ]
+      }
+    ],
+    "de_data_warehousing.semantic_layer_metrics": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "What business problems does a centralized Semantic Layer solve compared to defining metrics directly in BI dashboards?",
+        "expected_answer_keywords": [
+          "semantic layer",
+          "single source of truth",
+          "metric consistency",
+          "governed metrics",
+          "dbt semantic layer",
+          "Cube.js",
+          "DRY"
+        ]
+      }
+    ],
+    "de_data_warehousing.warehouse_cost_optimization": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "How do you implement query tagging, auto-suspend policies, and warehouse right-sizing to reduce Snowflake credit consumption by 40%?",
+        "expected_answer_keywords": [
+          "auto-suspend",
+          "warehouse sizing",
+          "query tagging",
+          "credit monitoring",
+          "concurrency scaling",
+          "resource monitor",
+          "FinOps"
+        ]
+      }
+    ],
+    "de_data_lakes_storage.object_storage_s3_gcs_blob": [
+      {
+        "level": "junior",
+        "type": "conceptual",
+        "question": "Why is prefix partitioning and avoiding hot partition keys important when reading/writing petabytes of data to AWS S3?",
+        "expected_answer_keywords": [
+          "prefix partitioning",
+          "S3 TPS limits",
+          "request rate",
+          "hash prefix",
+          "multipart upload",
+          "object storage"
+        ]
+      }
+    ],
+    "de_data_lakes_storage.parquet_orc_file_formats": [
+      {
+        "level": "junior",
+        "type": "conceptual",
+        "question": "Explain the internal structure of a Parquet file: Row Groups, Column Chunks, and File Footer metadata.",
+        "expected_answer_keywords": [
+          "row group",
+          "column chunk",
+          "footer metadata",
+          "min/max statistics",
+          "predicate pushdown",
+          "Parquet anatomy"
+        ]
+      }
+    ],
+    "de_data_lakes_storage.delta_lake_acid": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "How does Delta Lake use the _delta_log transaction log and optimistic concurrency control to guarantee ACID transactions on S3?",
+        "expected_answer_keywords": [
+          "_delta_log",
+          "JSON commits",
+          "checkpoint Parquet",
+          "optimistic concurrency control",
+          "ACID",
+          "atomic commits"
+        ]
+      }
+    ],
+    "de_data_lakes_storage.apache_iceberg_architecture": [
+      {
+        "level": "mid",
+        "type": "conceptual",
+        "question": "Describe the hierarchical tree structure of Apache Iceberg: Iceberg Catalog, Metadata file, Manifest List, and Manifest files.",
+        "expected_answer_keywords": [
+          "Iceberg Catalog",
+          "Metadata JSON",
+          "Manifest List",
+          "Manifest file",
+          "snapshot isolation",
+          "hidden partitioning",
+          "Avro metadata"
+        ]
+      }
+    ],
+    "de_data_lakes_storage.apache_hudi_upserts": [
+      {
+        "level": "senior",
+        "type": "conceptual",
+        "question": "What is the architectural difference between Apache Hudi Copy-on-Write (CoW) and Merge-on-Read (MoR) storage types?",
+        "expected_answer_keywords": [
+          "Copy-on-Write",
+          "Merge-on-Read",
+          "CoW",
+          "MoR",
+          "log files",
+          "compaction",
+          "write amplification",
+          "read latency"
+        ]
+      }
+    ],
+    "de_data_lakes_storage.partitioning_z_ordering": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "How does Z-Ordering (multi-dimensional clustering) overcome the limitations of hierarchical directory partitioning?",
+        "expected_answer_keywords": [
+          "Z-Order curve",
+          "multi-dimensional clustering",
+          "data skipping",
+          "high cardinality",
+          "over-partitioning",
+          "file pruning"
+        ]
+      }
+    ],
+    "de_data_lakes_storage.small_files_compaction": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "Why does streaming ingestion cause the 'small file problem' on data lakes, and how do you design an automated compaction job?",
+        "expected_answer_keywords": [
+          "small file problem",
+          "bin-packing",
+          "OPTIMIZE",
+          "compaction",
+          "metadata overhead",
+          "target file size",
+          "VACUUM"
+        ]
+      }
+    ],
+    "de_data_lakes_storage.lakehouse_medallion_architecture": [
+      {
+        "level": "junior",
+        "type": "conceptual",
+        "question": "Describe the responsibility of Bronze, Silver, and Gold layers in a Medallion Lakehouse architecture.",
+        "expected_answer_keywords": [
+          "Bronze raw",
+          "Silver cleansed enriched",
+          "Gold business aggregated",
+          "Medallion",
+          "deduplication",
+          "single source of truth"
+        ]
+      }
+    ],
+    "de_data_lakes_storage.time_travel_schema_evolution": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "How do you query historical snapshot versions using time travel in Delta Lake or Apache Iceberg?",
+        "expected_answer_keywords": [
+          "VERSION AS OF",
+          "TIMESTAMP AS OF",
+          "time travel",
+          "snapshot id",
+          "audit",
+          "rollback",
+          "historical query"
+        ]
+      }
+    ],
+    "de_distributed_computing.spark_architecture_cluster_managers": [
+      {
+        "level": "junior",
+        "type": "conceptual",
+        "question": "Explain the roles of Spark Driver, Cluster Manager, and Executors during spark application execution.",
+        "expected_answer_keywords": [
+          "Spark Driver",
+          "Cluster Manager",
+          "Executor",
+          "DAGScheduler",
+          "TaskScheduler",
+          "tasks",
+          "stages"
+        ]
+      }
+    ],
+    "de_distributed_computing.rdd_vs_dataframe_dataset": [
+      {
+        "level": "junior",
+        "type": "conceptual",
+        "question": "Why are DataFrames significantly faster than raw RDDs in PySpark?",
+        "expected_answer_keywords": [
+          "Catalyst optimizer",
+          "Tungsten execution engine",
+          "serialization overhead",
+          "off-heap memory",
+          "schema awareness"
+        ]
+      }
+    ],
+    "de_distributed_computing.spark_sql_catalyst_optimizer": [
+      {
+        "level": "junior",
+        "type": "conceptual",
+        "question": "What stages does a Spark SQL query undergo in the Catalyst Optimizer before generating physical bytecode?",
+        "expected_answer_keywords": [
+          "Unresolved Logical Plan",
+          "Analyzed Logical Plan",
+          "Optimized Logical Plan",
+          "Physical Plan",
+          "Whole-Stage CodeGen",
+          "Catalyst"
+        ]
+      }
+    ],
+    "de_distributed_computing.partitioning_bucketing_coalesce": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "When should you use coalesce() instead of repartition() in PySpark, and what is the key difference?",
+        "expected_answer_keywords": [
+          "coalesce",
+          "repartition",
+          "avoid full shuffle",
+          "decrease partitions",
+          "repartition full shuffle",
+          "narrow dependency"
+        ]
+      }
+    ],
+    "de_distributed_computing.shuffling_skew_repartition": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "How do you detect and remediate severe data skew on a join key in Apache Spark using salting and AQE?",
+        "expected_answer_keywords": [
+          "data skew",
+          "salting",
+          "random salt key",
+          "AQE skew join",
+          "straggler tasks",
+          "Adaptive Query Execution"
+        ]
+      }
+    ],
+    "de_distributed_computing.broadcast_joins_accumulators": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "How does BroadcastHashJoin (BHJ) eliminate shuffle overhead when joining a small dimension table with a massive fact table?",
+        "expected_answer_keywords": [
+          "BroadcastHashJoin",
+          "broadcast()",
+          "autoBroadcastJoinThreshold",
+          "avoid shuffle",
+          "executor memory",
+          "hash table"
+        ]
+      }
+    ],
+    "de_distributed_computing.spark_caching_persistence": [
+      {
+        "level": "mid",
+        "type": "conceptual",
+        "question": "What is the difference between cache() and persist(StorageLevel.MEMORY_AND_DISK_SER) in Spark?",
+        "expected_answer_keywords": [
+          "cache",
+          "persist",
+          "MEMORY_ONLY",
+          "MEMORY_AND_DISK_SER",
+          "serialization",
+          "spill to disk",
+          "StorageLevel"
+        ]
+      }
+    ],
+    "de_distributed_computing.spark_memory_tuning_oom": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "How do you diagnose and fix Executor OOM (Container killed by YARN/K8s for exceeding memory limits) errors in Spark?",
+        "expected_answer_keywords": [
+          "spark.executor.memoryOverhead",
+          "spark.memory.fraction",
+          "off-heap memory",
+          "GC pause",
+          "G1GC",
+          "high partition size",
+          "OOM"
+        ]
+      }
+    ],
+    "de_distributed_computing.spark_structured_streaming": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "How does Spark Structured Streaming use watermarks and checkpointLocation to handle out-of-order data and ensure fault tolerance?",
+        "expected_answer_keywords": [
+          "watermark",
+          "checkpointLocation",
+          "write-ahead log",
+          "stateStore",
+          "late data",
+          "Trigger.AvailableNow"
+        ]
+      }
+    ],
+    "de_distributed_computing.pyspark_udfs_vectorization": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "Why are PySpark Pandas UDFs (@pandas_udf) orders of magnitude faster than standard Python UDFs?",
+        "expected_answer_keywords": [
+          "@pandas_udf",
+          "Apache Arrow",
+          "vectorized execution",
+          "PyArrow serialization",
+          "batch processing",
+          "zero-copy"
+        ]
+      }
+    ],
+    "de_data_pipelines_orchestration.airflow_dag_design_best_practices": [
+      {
+        "level": "junior",
+        "type": "conceptual",
+        "question": "Why should you never write top-level API requests or database queries inside an Airflow DAG file?",
+        "expected_answer_keywords": [
+          "DAG parsing loop",
+          "scheduler overhead",
+          "top-level code",
+          "delay parsing",
+          "database load",
+          "best practices"
+        ]
+      }
+    ],
+    "de_data_pipelines_orchestration.airflow_operators_hooks_sensors": [
+      {
+        "level": "junior",
+        "type": "conceptual",
+        "question": "What is the advantage of using mode='reschedule' over mode='poke' in Airflow sensors?",
+        "expected_answer_keywords": [
+          "mode='reschedule'",
+          "mode='poke'",
+          "free worker slot",
+          "resource exhaustion",
+          "sensor deadlock",
+          "reschedule slot"
+        ]
+      }
+    ],
+    "de_data_pipelines_orchestration.airflow_taskflow_api_xcoms": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "How does Airflow 2.x TaskFlow API (@task) handle data passing between tasks, and why should you avoid passing gigabyte DataFrames via XCom?",
+        "expected_answer_keywords": [
+          "TaskFlow API",
+          "@task",
+          "XCom",
+          "metadata database size",
+          "custom XCom backend",
+          "S3/GCS pointer"
+        ]
+      }
+    ],
+    "de_data_pipelines_orchestration.airflow_backfilling_catchup": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "Explain the role of logical_date (execution_date) and data_interval_start/end in Airflow historical backfills.",
+        "expected_answer_keywords": [
+          "logical_date",
+          "execution_date",
+          "data_interval_start",
+          "data_interval_end",
+          "airflow dags backfill",
+          "deterministic"
+        ]
+      }
+    ],
+    "de_data_pipelines_orchestration.prefect_orchestration": [
+      {
+        "level": "mid",
+        "type": "conceptual",
+        "question": "How do Prefect Flows, Tasks, and Work Pools provide dynamic orchestration compared to static DAG definitions?",
+        "expected_answer_keywords": [
+          "Prefect",
+          "@flow",
+          "@task",
+          "work pool",
+          "dynamic DAG",
+          "hybrid model",
+          "Prefect worker"
+        ]
+      }
+    ],
+    "de_data_pipelines_orchestration.dagster_software_defined_assets": [
+      {
+        "level": "senior",
+        "type": "conceptual",
+        "question": "How does Dagster's Software-Defined Assets (SDA) paradigm shift orchestration from task-centric to asset-centric data modeling?",
+        "expected_answer_keywords": [
+          "Software-Defined Assets",
+          "@asset",
+          "asset lineage",
+          "data asset",
+          "declarative orchestration",
+          "IOManager",
+          "reconciliation"
+        ]
+      }
+    ],
+    "de_data_pipelines_orchestration.idempotency_data_reprocessing": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "How do you design an idempotent ETL pipeline that safely reruns without producing duplicate records or corrupted partial states?",
+        "expected_answer_keywords": [
+          "idempotency",
+          "atomic write",
+          "staging table swap",
+          "partition overwrite",
+          "deterministic",
+          "delete and insert"
+        ]
+      }
+    ],
+    "de_data_pipelines_orchestration.pipeline_sla_alerting": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "How do you configure SLA miss callbacks and on_failure_callback notifications in Airflow for critical data deliverables?",
+        "expected_answer_keywords": [
+          "sla_miss_callback",
+          "on_failure_callback",
+          "Slack webhook",
+          "PagerDuty",
+          "SLA monitoring",
+          "callback context"
+        ]
+      }
+    ],
+    "de_data_pipelines_orchestration.distributed_executors_celery_k8s": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "Compare CeleryExecutor and KubernetesExecutor in terms of resource isolation, task startup latency, and cluster scaling.",
+        "expected_answer_keywords": [
+          "KubernetesExecutor",
+          "CeleryExecutor",
+          "pod isolation",
+          "startup latency",
+          "Celery workers",
+          "resource cleanup",
+          "autoscaling"
+        ]
+      }
+    ],
+    "de_streaming_realtime.kafka_architecture_topics_partitions": [
+      {
+        "level": "junior",
+        "type": "conceptual",
+        "question": "Explain how Kafka topic partitions enable consumer parallelization and ordering guarantees.",
+        "expected_answer_keywords": [
+          "partition",
+          "ordering within partition",
+          "consumer parallelization",
+          "message key",
+          "hash partitioning",
+          "offset"
+        ]
+      }
+    ],
+    "de_streaming_realtime.producer_consumer_consumer_groups": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "What happens when a new consumer joins an active Kafka consumer group, and how does CooperativeSticky rebalance reduce stop-the-world pauses?",
+        "expected_answer_keywords": [
+          "consumer group rebalance",
+          "CooperativeSticky",
+          "incremental rebalance",
+          "partition assignment",
+          "stop-the-world"
+        ]
+      }
+    ],
+    "de_streaming_realtime.kafka_schema_registry_avro_protobuf": [
+      {
+        "level": "junior",
+        "type": "conceptual",
+        "question": "How does Confluent Schema Registry enforce BACKWARD and FULL compatibility rules on evolving Avro event payloads?",
+        "expected_answer_keywords": [
+          "Schema Registry",
+          "BACKWARD compatibility",
+          "FULL compatibility",
+          "default values",
+          "schema evolution",
+          "Avro schema"
+        ]
+      }
+    ],
+    "de_streaming_realtime.kafka_streams_ksqldb": [
+      {
+        "level": "mid",
+        "type": "conceptual",
+        "question": "What is the duality between KStream and KTable in Kafka Streams, and how are changelogs maintained?",
+        "expected_answer_keywords": [
+          "KStream",
+          "KTable",
+          "stream table duality",
+          "changelog topic",
+          "state store",
+          "RocksDB",
+          "upsert semantics"
+        ]
+      }
+    ],
+    "de_streaming_realtime.apache_flink_stream_processing": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "How does Apache Flink maintain managed operator state (ValueState, ListState) across millions of keyed stream keys?",
+        "expected_answer_keywords": [
+          "Flink",
+          "ValueState",
+          "keyed stream",
+          "StateTtlConfig",
+          "RocksDB state backend",
+          "checkpointing",
+          "heap vs off-heap"
+        ]
+      }
+    ],
+    "de_streaming_realtime.event_time_watermarks_late_data": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "How do watermarks handle out-of-order event streams, and how do you capture late-arriving events using Flink Side Outputs?",
+        "expected_answer_keywords": [
+          "watermark",
+          "event time",
+          "bounded out-of-orderness",
+          "side output",
+          "allowed lateness",
+          "late event handling"
+        ]
+      }
+    ],
+    "de_streaming_realtime.windowing_tumbling_sliding_session": [
+      {
+        "level": "mid",
+        "type": "conceptual",
+        "question": "Compare Tumbling Windows, Sliding Windows, and Session Windows with concrete streaming use cases for each.",
+        "expected_answer_keywords": [
+          "tumbling window",
+          "sliding window",
+          "session window",
+          "inactivity gap",
+          "overlapping window",
+          "aggregation"
+        ]
+      }
+    ],
+    "de_streaming_realtime.exactly_once_semantics_transactions": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "How do Flink and Kafka achieve end-to-end Exactly-Once Semantics (EOS) using the Two-Phase Commit (2PC) protocol?",
+        "expected_answer_keywords": [
+          "Two-Phase Commit",
+          "2PC",
+          "Kafka transaction",
+          "Exactly-Once",
+          "pre-commit",
+          "commit",
+          "checkpoint barrier",
+          "EOS"
+        ]
+      }
+    ],
+    "de_streaming_realtime.stream_state_backends_checkpointing": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "Explain how the Chandy-Lamport algorithm enables non-blocking distributed checkpointing in Apache Flink.",
+        "expected_answer_keywords": [
+          "Chandy-Lamport",
+          "checkpoint barrier",
+          "non-blocking",
+          "RocksDB",
+          "snapshot",
+          "unaligned checkpoints",
+          "state recovery"
+        ]
+      }
+    ],
+    "de_data_modeling_transformation.dbt_models_ref_source": [
+      {
+        "level": "junior",
+        "type": "conceptual",
+        "question": "How does dbt use the ref() function to build automatic DAG dependency graphs between models?",
+        "expected_answer_keywords": [
+          "ref()",
+          "source()",
+          "DAG lineage",
+          "topological order",
+          "dependency resolution",
+          "dbt run"
+        ]
+      }
+    ],
+    "de_data_modeling_transformation.dbt_jinja_macros_packages": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "Write a Jinja macro in dbt to dynamically pivot payment methods from a column into separate aggregated sum columns.",
+        "expected_answer_keywords": [
+          "macro",
+          "Jinja",
+          "for loop",
+          "{% macro %}",
+          "dbt_utils.pivot",
+          "dynamic SQL",
+          "SUM(CASE)"
+        ]
+      }
+    ],
+    "de_data_modeling_transformation.dbt_materializations_incremental": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "How does dbt incremental materialization work using the is_incremental() macro and unique_key merge strategy?",
+        "expected_answer_keywords": [
+          "is_incremental()",
+          "incremental",
+          "unique_key",
+          "merge",
+          "lookback window",
+          "WHERE _loaded_at > max(_loaded_at)"
+        ]
+      }
+    ],
+    "de_data_modeling_transformation.dbt_testing_generic_singular": [
+      {
+        "level": "junior",
+        "type": "conceptual",
+        "question": "What are the four built-in generic schema tests in dbt, and when should you write a singular SQL test?",
+        "expected_answer_keywords": [
+          "unique",
+          "not_null",
+          "accepted_values",
+          "relationships",
+          "singular test",
+          "custom business rule"
+        ]
+      }
+    ],
+    "de_data_modeling_transformation.dbt_snapshots_scd": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "How do dbt snapshots automatically implement SCD Type 2 tables using the timestamp and check strategies?",
+        "expected_answer_keywords": [
+          "dbt snapshot",
+          "SCD Type 2",
+          "strategy='timestamp'",
+          "strategy='check'",
+          "dbt_valid_from",
+          "dbt_valid_to",
+          "check_cols"
+        ]
+      }
+    ],
+    "de_data_modeling_transformation.dbt_documentation_lineage": [
+      {
+        "level": "junior",
+        "type": "conceptual",
+        "question": "How does dbt generate documentation and interactive lineage graphs from doc blocks in schema.yml files?",
+        "expected_answer_keywords": [
+          "dbt docs generate",
+          "schema.yml",
+          "doc blocks",
+          "lineage graph",
+          "catalog.json",
+          "manifest.json"
+        ]
+      }
+    ],
+    "de_data_modeling_transformation.sqlmesh_alternative_engines": [
+      {
+        "level": "senior",
+        "type": "conceptual",
+        "question": "How does SQLMesh's Virtual Data Environments and automated plan evaluation improve upon traditional dbt CI/CD workflows?",
+        "expected_answer_keywords": [
+          "SQLMesh",
+          "Virtual Data Environments",
+          "sqlmesh plan",
+          "column-level lineage",
+          "zero-copy promotion",
+          "cost evaluation"
+        ]
+      }
+    ],
+    "de_data_modeling_transformation.modular_data_transformation_pipelines": [
+      {
+        "level": "mid",
+        "type": "conceptual",
+        "question": "Explain the architectural separation of Staging, Intermediate, and Marts layers in modern dbt modeling.",
+        "expected_answer_keywords": [
+          "staging layer",
+          "intermediate layer",
+          "marts layer",
+          "clean separation",
+          "business logic encapsulation",
+          "DRY"
+        ]
+      }
+    ],
+    "de_data_modeling_transformation.dbt_semantic_layer_metrics": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "How do you define semantic models, measures, and dimensions in MetricFlow / dbt Semantic Layer for cross-tool BI consistency?",
+        "expected_answer_keywords": [
+          "semantic_models",
+          "MetricFlow",
+          "measures",
+          "dimensions",
+          "entities",
+          "dbt Semantic Layer",
+          "consistent metrics"
+        ]
+      }
+    ],
+    "de_data_quality_governance.data_validation_great_expectations_soda": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "How do you define Expectation Suites in Great Expectations and block downstream pipeline execution upon validation failure?",
+        "expected_answer_keywords": [
+          "Expectation Suite",
+          "Checkpoint",
+          "Great Expectations",
+          "action_list",
+          "Data Docs",
+          "assertion gate",
+          "validation"
+        ]
+      }
+    ],
+    "de_data_quality_governance.data_profiling_anomaly_detection": [
+      {
+        "level": "junior",
+        "type": "conceptual",
+        "question": "How do statistical data profiling and volume anomaly detection flag silent data pipeline failures (e.g. 90% row drop)?",
+        "expected_answer_keywords": [
+          "volume anomaly",
+          "statistical profiling",
+          "missingness",
+          "distribution drift",
+          "row count check",
+          "silent failure"
+        ]
+      }
+    ],
+    "de_data_quality_governance.data_lineage_metadata_openlineage": [
+      {
+        "level": "mid",
+        "type": "conceptual",
+        "question": "How does the OpenLineage standard collect runtime dataset and job run facets across Airflow, Spark, and dbt?",
+        "expected_answer_keywords": [
+          "OpenLineage",
+          "Marquez",
+          "lineage facets",
+          "dataset lineage",
+          "job run event",
+          "metadata standard"
+        ]
+      }
+    ],
+    "de_data_quality_governance.data_catalog_amundsen_datahub": [
+      {
+        "level": "mid",
+        "type": "conceptual",
+        "question": "What are the core capabilities of enterprise metadata catalogs like DataHub and Amundsen for data discovery and governance?",
+        "expected_answer_keywords": [
+          "DataHub",
+          "Amundsen",
+          "data catalog",
+          "metadata harvesting",
+          "business glossary",
+          "data ownership",
+          "search discovery"
+        ]
+      }
+    ],
+    "de_data_quality_governance.data_observability_montecarl_metaplane": [
+      {
+        "level": "senior",
+        "type": "conceptual",
+        "question": "Explain the five pillars of Data Observability (Freshness, Volume, Distribution, Schema, Lineage) and how they reduce data downtime.",
+        "expected_answer_keywords": [
+          "Freshness",
+          "Volume",
+          "Distribution",
+          "Schema",
+          "Lineage",
+          "five pillars",
+          "data observability",
+          "data downtime",
+          "Monte Carlo"
+        ]
+      }
+    ],
+    "de_data_quality_governance.data_contract_schemas_enforcement": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "How do Data Contracts prevent upstream backend application migrations from breaking downstream analytical data pipelines?",
+        "expected_answer_keywords": [
+          "Data Contract",
+          "producer-consumer agreement",
+          "schema enforcement",
+          "breaking change prevention",
+          "CI validation",
+          "SLA"
+        ]
+      }
+    ],
+    "de_data_quality_governance.gdpr_pii_anonymization_masking": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "How do you implement dynamic data masking and salted cryptographic hashing to anonymize PII for GDPR compliance?",
+        "expected_answer_keywords": [
+          "GDPR",
+          "PII masking",
+          "dynamic data masking",
+          "salt hashing",
+          "SHA-256",
+          "pseudonymization",
+          "tokenization"
+        ]
+      }
+    ],
+    "de_data_quality_governance.data_access_rbac_abac_policies": [
+      {
+        "level": "mid",
+        "type": "conceptual",
+        "question": "How do Row-Level Security (RLS) and Attribute-Based Access Control (ABAC) restrict analytical data access by user department or region?",
+        "expected_answer_keywords": [
+          "Row-Level Security",
+          "RLS",
+          "ABAC",
+          "RBAC",
+          "column masking policy",
+          "least privilege",
+          "access governance"
+        ]
+      }
+    ],
+    "de_data_quality_governance.data_retention_archival_policies": [
+      {
+        "level": "junior",
+        "type": "conceptual",
+        "question": "Why is establishing automated data retention and cold storage archival lifecycles critical for compliance and cost control?",
+        "expected_answer_keywords": [
+          "data retention",
+          "archival lifecycle",
+          "cold storage",
+          "purge policy",
+          "compliance",
+          "cost reduction",
+          "S3 Glacier"
+        ]
+      }
+    ],
+    "de_cloud_infrastructure_dataops.cloud_iam_service_accounts_security": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "How do you configure least-privilege IAM roles and assume-role policies for Airflow / Spark jobs reading from S3 or GCS?",
+        "expected_answer_keywords": [
+          "least privilege",
+          "IAM role",
+          "assume role",
+          "service account",
+          "Secrets Manager",
+          "bucket policy",
+          "temporary credentials"
+        ]
+      }
+    ],
+    "de_cloud_infrastructure_dataops.terraform_iac_data_infrastructure": [
+      {
+        "level": "mid",
+        "type": "scenario",
+        "question": "How do you structure reusable Terraform modules to provision Snowflake warehouses, S3 lakehouse buckets, and Kafka clusters?",
+        "expected_answer_keywords": [
+          "Terraform",
+          "IaC",
+          "Terraform modules",
+          "remote state",
+          "HCL",
+          "variables",
+          "outputs",
+          "state management"
+        ]
+      }
+    ],
+    "de_cloud_infrastructure_dataops.docker_containers_for_data": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "How do you write a multi-stage Dockerfile for a Python/dbt application running as a secure non-root user?",
+        "expected_answer_keywords": [
+          "Dockerfile",
+          "multi-stage build",
+          "non-root user",
+          "USER appuser",
+          "slim image",
+          "build stage",
+          "layer caching"
+        ]
+      }
+    ],
+    "de_cloud_infrastructure_dataops.kubernetes_data_workloads": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "How do you deploy Apache Spark on Kubernetes using the Spark Operator with dynamic pod allocation and Spot instances?",
+        "expected_answer_keywords": [
+          "Spark on K8s",
+          "SparkOperator",
+          "CRD",
+          "spot instances",
+          "node affinity",
+          "tolerations",
+          "driver pod",
+          "executor pod"
+        ]
+      }
+    ],
+    "de_cloud_infrastructure_dataops.ci_cd_pipelines_for_data_github_actions": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "How do you design a GitHub Actions CI pipeline that lints SQL with sqlfluff, runs pytest, and triggers dbt slim CI on modified models?",
+        "expected_answer_keywords": [
+          "GitHub Actions",
+          "sqlfluff",
+          "pytest",
+          "dbt slim CI",
+          "state:modified+",
+          "manifest.json comparison",
+          "CI/CD"
+        ]
+      }
+    ],
+    "de_cloud_infrastructure_dataops.unit_integration_testing_data_pipelines": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "How do you use pytest, fixtures, and Moto/Testcontainers to unit and integration test data pipeline transformations without hitting live databases?",
+        "expected_answer_keywords": [
+          "pytest",
+          "Testcontainers",
+          "moto",
+          "fixtures",
+          "mocking",
+          "integration testing",
+          "in-memory database"
+        ]
+      }
+    ],
+    "de_cloud_infrastructure_dataops.data_mocking_synthetic_generation": [
+      {
+        "level": "mid",
+        "type": "conceptual",
+        "question": "How do you generate realistic, referentially intact synthetic test datasets using Python Faker and seed values?",
+        "expected_answer_keywords": [
+          "Faker",
+          "synthetic data",
+          "seed value",
+          "deterministic",
+          "referential integrity",
+          "mock datasets"
+        ]
+      }
+    ],
+    "de_cloud_infrastructure_dataops.cloud_cost_governance_finops": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "How do you establish FinOps tagging policies, identify zombie compute clusters, and implement auto-scaling to optimize cloud data spend?",
+        "expected_answer_keywords": [
+          "FinOps",
+          "cost allocation tags",
+          "zombie clusters",
+          "auto-termination",
+          "spot instances",
+          "cost governance",
+          "AWS Cost Explorer"
+        ]
+      }
+    ],
+    "de_cloud_infrastructure_dataops.disaster_recovery_backup_data_systems": [
+      {
+        "level": "senior",
+        "type": "scenario",
+        "question": "How do you design a multi-region disaster recovery and Point-In-Time Recovery (PITR) strategy for an enterprise data platform to satisfy RTO and RPO targets?",
+        "expected_answer_keywords": [
+          "Disaster Recovery",
+          "PITR",
+          "RTO",
+          "RPO",
+          "cross-region replication",
+          "failover runbook",
+          "backup strategy"
+        ]
+      }
+    ]
+  }
+}

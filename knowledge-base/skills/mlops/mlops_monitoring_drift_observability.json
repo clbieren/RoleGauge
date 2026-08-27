@@ -1,0 +1,211 @@
+{
+  "skill_id": "mlops_monitoring_drift_observability",
+  "name": "ML Observability, Drift & Prometheus Monitoring",
+  "category": "observability",
+  "description": "End-to-end production model observability: Prometheus scraping of model latency/throughput, Grafana dashboards, statistical drift detection (Evidently AI, whylogs), prediction drift, and automated incident alerting.",
+  "subskills": [
+    {
+      "id": "prometheus_grafana_ml_metrics_scraping",
+      "name": "Prometheus Metrics Scraping & Grafana Dashboards",
+      "description": "Instrumenting prediction APIs with prometheus_client (inference latency histograms, request count, error rates, model memory usage) and building Grafana dashboards.",
+      "keywords": [
+        "Prometheus",
+        "prometheus_client",
+        "Grafana",
+        "latency histogram",
+        "error rate counter",
+        "requests per second",
+        "ServiceMonitor"
+      ]
+    },
+    {
+      "id": "evidently_ai_automated_drift_dashboards",
+      "name": "Evidently AI Automated Drift Reports & Test Suites",
+      "description": "Generating scheduled Evidently AI HTML reports and JSON test suites to detect data drift, target drift, and data quality degradation.",
+      "keywords": [
+        "Evidently AI",
+        "Report",
+        "TestSuite",
+        "DataDriftPreset",
+        "TargetDriftPreset",
+        "HTML report",
+        "automated test suite",
+        "drift metrics"
+      ]
+    },
+    {
+      "id": "statistical_drift_tests_ks_psi_wasserstein",
+      "name": "Statistical Divergence Tests (PSI, KS-Test, Wasserstein)",
+      "description": "Applying Population Stability Index (PSI), Kolmogorov-Smirnov test, Cramer-von Mises, and Jensen-Shannon divergence to identify shifted features.",
+      "keywords": [
+        "PSI",
+        "KS-test",
+        "Kolmogorov-Smirnov",
+        "Wasserstein distance",
+        "Jensen-Shannon",
+        "statistical drift",
+        "distribution shift"
+      ]
+    },
+    {
+      "id": "prediction_output_distribution_monitoring",
+      "name": "Prediction Output & Confidence Drift Monitoring",
+      "description": "Tracking shifts in predicted class distribution probabilities, mean score drift, entropy of predictions, and detecting model confidence collapse.",
+      "keywords": [
+        "prediction drift",
+        "confidence collapse",
+        "class distribution shift",
+        "predicted probability drift",
+        "entropy tracking"
+      ]
+    },
+    {
+      "id": "delayed_ground_truth_performance_estimation",
+      "name": "Delayed Ground Truth & Performance Estimation (NannyML)",
+      "description": "Estimating production accuracy/F1 drops without ground truth labels using Confidence-based Performance Estimation (CBPE) in NannyML.",
+      "keywords": [
+        "NannyML",
+        "CBPE",
+        "delayed ground truth",
+        "performance estimation",
+        "unlabeled data monitoring",
+        "accuracy drop estimation"
+      ]
+    },
+    {
+      "id": "alertmanager_webhook_incident_triggers",
+      "name": "Alertmanager Rules & Automated Slack/PagerDuty Alerts",
+      "description": "Writing PrometheusRule alert expressions (e.g. P99 latency > 100ms for 5m, drift_score > 0.2) and dispatching via Alertmanager to PagerDuty/Slack.",
+      "keywords": [
+        "Alertmanager",
+        "PrometheusRule",
+        "PagerDuty",
+        "Slack alert",
+        "incident trigger",
+        "alert threshold",
+        "notification routing"
+      ]
+    },
+    {
+      "id": "model_logging_payload_capture_fluentd",
+      "name": "Model Request/Response Payload Logging (FluentBit / Kafka)",
+      "description": "Asynchronously capturing production input/output payloads to S3/Kafka via FluentBit/Fluentd for post-hoc analysis without blocking prediction latency.",
+      "keywords": [
+        "payload logging",
+        "FluentBit",
+        "Fluentd",
+        "Kafka payload capture",
+        "asynchronous logging",
+        "inference audit log"
+      ]
+    },
+    {
+      "id": "outlier_out_of_distribution_alerting",
+      "name": "Out-of-Distribution (OOD) & Anomaly Alerting",
+      "description": "Detecting corrupted or out-of-distribution input payloads using Mahalanobis distance / Isolation Forests and generating real-time security alerts.",
+      "keywords": [
+        "OOD alert",
+        "anomaly alert",
+        "Mahalanobis distance",
+        "corrupted input detection",
+        "Isolation Forest monitoring",
+        "input guardrail"
+      ]
+    },
+    {
+      "id": "automated_model_retraining_trigger_integration",
+      "name": "Automated Retraining Integration via Drift Webhooks",
+      "description": "Connecting drift detection pipeline outputs directly to Kubeflow / Airflow webhooks to automatically trigger retraining on fresh data.",
+      "keywords": [
+        "retraining webhook",
+        "drift-triggered training",
+        "automated pipeline invocation",
+        "closed-loop MLOps",
+        "self-healing ML"
+      ]
+    }
+  ],
+  "evidence_patterns": {
+    "cv": [
+      {
+        "signal": "Architected full-stack ML observability platform with Prometheus, Grafana, and Evidently AI drift-triggered retraining",
+        "strength": 0.5,
+        "maps_to": [
+          "mlops_monitoring_drift_observability.prometheus_grafana_ml_metrics_scraping",
+          "mlops_monitoring_drift_observability.evidently_ai_automated_drift_dashboards",
+          "mlops_monitoring_drift_observability.automated_model_retraining_trigger_integration"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Prometheus, Grafana, ML Observability, and Drift Detection endorsements",
+        "strength": 0.3,
+        "maps_to": [
+          "mlops_monitoring_drift_observability.statistical_drift_tests_ks_psi_wasserstein",
+          "mlops_monitoring_drift_observability.alertmanager_webhook_incident_triggers"
+        ]
+      }
+    ],
+    "github": [
+      {
+        "pattern": "*prometheus*|*grafana*|*drift*.py|*evidently*.py|alerts/**/*.yml",
+        "strength": 1.0,
+        "maps_to": [
+          "mlops_monitoring_drift_observability.prometheus_grafana_ml_metrics_scraping",
+          "mlops_monitoring_drift_observability.evidently_ai_automated_drift_dashboards",
+          "mlops_monitoring_drift_observability.statistical_drift_tests_ks_psi_wasserstein",
+          "mlops_monitoring_drift_observability.prediction_output_distribution_monitoring",
+          "mlops_monitoring_drift_observability.delayed_ground_truth_performance_estimation",
+          "mlops_monitoring_drift_observability.alertmanager_webhook_incident_triggers",
+          "mlops_monitoring_drift_observability.model_logging_payload_capture_fluentd",
+          "mlops_monitoring_drift_observability.outlier_out_of_distribution_alerting",
+          "mlops_monitoring_drift_observability.automated_model_retraining_trigger_integration"
+        ]
+      }
+    ],
+    "assessment": [
+      {
+        "signal": "Passes ML Observability, Drift & Prometheus Monitoring Assessment",
+        "strength": 1.0,
+        "maps_to": [
+          "mlops_monitoring_drift_observability.prometheus_grafana_ml_metrics_scraping",
+          "mlops_monitoring_drift_observability.evidently_ai_automated_drift_dashboards",
+          "mlops_monitoring_drift_observability.statistical_drift_tests_ks_psi_wasserstein",
+          "mlops_monitoring_drift_observability.prediction_output_distribution_monitoring",
+          "mlops_monitoring_drift_observability.delayed_ground_truth_performance_estimation",
+          "mlops_monitoring_drift_observability.alertmanager_webhook_incident_triggers",
+          "mlops_monitoring_drift_observability.model_logging_payload_capture_fluentd",
+          "mlops_monitoring_drift_observability.outlier_out_of_distribution_alerting",
+          "mlops_monitoring_drift_observability.automated_model_retraining_trigger_integration"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "prometheus_grafana_ml_metrics_scraping",
+        "evidently_ai_automated_drift_dashboards",
+        "statistical_drift_tests_ks_psi_wasserstein"
+      ],
+      "description": "Instruments APIs with Prometheus metrics, generates Evidently AI reports, and calculates PSI/KS-test drift scores."
+    },
+    "mid": {
+      "expected_subskills": [
+        "prediction_output_distribution_monitoring",
+        "delayed_ground_truth_performance_estimation",
+        "alertmanager_webhook_incident_triggers",
+        "model_logging_payload_capture_fluentd"
+      ],
+      "description": "Tracks prediction distribution shifts, estimates performance with NannyML, and sets up Alertmanager alerts and payload logging."
+    },
+    "senior": {
+      "expected_subskills": [
+        "outlier_out_of_distribution_alerting",
+        "automated_model_retraining_trigger_integration"
+      ],
+      "description": "Architects OOD detection guardrails and designs closed-loop self-healing retraining pipelines triggered by drift webhooks."
+    }
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "source_id": "github",
+  "name": "GitHub Repository Analysis - Data Engineering",
+  "description": "Automated code and manifest scanning rules for detecting data engineering proficiency.",
+  "preprocessing_pipeline": {
+    "steps": [
+      {
+        "step": 1,
+        "name": "repository_metadata",
+        "description": "Scans languages, dependencies, and commit activity."
+      },
+      {
+        "step": 2,
+        "name": "file_tree_scan",
+        "description": "Scans for pipeline definitions, dbt projects, IaC files, and SQL models.",
+        "target_files": [
+          {
+            "pattern": "dbt_project.yml|packages.yml",
+            "skill": "de_data_modeling_transformation",
+            "priority": "high"
+          },
+          {
+            "pattern": "dags/**/*.py|airflow.cfg",
+            "skill": "de_data_pipelines_orchestration",
+            "priority": "high"
+          },
+          {
+            "pattern": "*.tf|terraform.tfvars",
+            "skill": "de_cloud_infrastructure_dataops",
+            "priority": "high"
+          },
+          {
+            "pattern": "*spark*.py|build.sbt|*.scala",
+            "skill": "de_distributed_computing",
+            "priority": "high"
+          },
+          {
+            "pattern": "*.sql|migrations/*.sql",
+            "skill": "de_sql_advanced",
+            "priority": "high"
+          },
+          {
+            "pattern": "*kafka*|*flink*",
+            "skill": "de_streaming_realtime",
+            "priority": "high"
+          },
+          {
+            "pattern": "*great_expectations*|*soda*.yml",
+            "skill": "de_data_quality_governance",
+            "priority": "high"
+          }
+        ]
+      }
+    ]
+  }
+}

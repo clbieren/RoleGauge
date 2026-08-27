@@ -1,0 +1,85 @@
+{
+  "role_id": "mlops",
+  "level": "mid",
+  "title": "Mid-Level MLOps Engineer",
+  "description": "Mid-level MLOps engineering position focused on building production ML pipelines (Kubeflow/Flyte), Feast feature store materialization, model serving platforms (KServe/Ray Serve/vLLM), Canary deployments, drift observability, and Spot training orchestration.",
+  "experience_range": "2-5 years",
+  "skills": [
+    {
+      "skill_id": "mlops_pipeline_orchestration",
+      "importance": 0.95,
+      "rationale": "Developing type-safe Flyte workflows, Argo templates, and managing GPU node affinities."
+    },
+    {
+      "skill_id": "mlops_model_serving_infrastructure",
+      "importance": 0.9,
+      "rationale": "Operating high-throughput inference engines (vLLM, Ray Serve), KServe, and Istio Canary traffic splitting."
+    },
+    {
+      "skill_id": "mlops_ci_cd_continuous_training",
+      "importance": 0.9,
+      "rationale": "Designing Champion-Challenger validation gates, automated Continuous Training, and health probe rollbacks."
+    },
+    {
+      "skill_id": "mlops_data_feature_management",
+      "importance": 0.85,
+      "rationale": "Executing point-in-time correct historical joins in Feast and materializing low-latency online Redis stores."
+    },
+    {
+      "skill_id": "mlops_experiment_tracking_registry",
+      "importance": 0.85,
+      "rationale": "Provisioning remote MLflow tracking architectures and packaging custom PyFunc models."
+    },
+    {
+      "skill_id": "mlops_monitoring_drift_observability",
+      "importance": 0.8,
+      "rationale": "Tracking prediction distribution drift, NannyML performance estimation, and Alertmanager incident routing."
+    },
+    {
+      "skill_id": "mlops_model_packaging_containerization",
+      "importance": 0.8,
+      "rationale": "Deploying BentoML services, Triton repository structures, and Trivy security scanning."
+    },
+    {
+      "skill_id": "mlops_infrastructure_iac_cloud",
+      "importance": 0.75,
+      "rationale": "Provisioning Kubernetes ML infrastructure with Terraform, mounting FSx storage, and namespace isolation."
+    },
+    {
+      "skill_id": "mlops_cost_finops_resource_optimization",
+      "importance": 0.75,
+      "rationale": "Configuring GPU time-slicing sharing, Spot instance automated checkpointing, and Kubecost allocation."
+    },
+    {
+      "skill_id": "mlops_lifecycle_governance",
+      "importance": 0.7,
+      "rationale": "Enforcing full data-to-binary lineage, approval workflows, and automated bias compliance gates."
+    }
+  ],
+  "scoring": {
+    "method": "weighted_average",
+    "description": "Each skill score is multiplied by its importance weight. Final score is the sum of weighted scores divided by sum of weights.",
+    "thresholds": {
+      "not_ready": {
+        "min": 0.0,
+        "max": 0.4,
+        "description": "Lacks production Kubernetes inference or pipeline orchestration experience."
+      },
+      "partially_ready": {
+        "min": 0.4,
+        "max": 0.65,
+        "description": "Competent with standalone pipelines but needs guidance on Canary rollouts and GPU scaling."
+      },
+      "ready": {
+        "min": 0.65,
+        "max": 0.88,
+        "description": "Fully autonomous MLOps engineer delivering scalable ML pipelines, robust inference platforms, and drift monitoring."
+      },
+      "exceeds": {
+        "min": 0.88,
+        "max": 1.0,
+        "description": "Demonstrates advanced technical leadership in GPU FinOps, Karpenter autoscaling, and enterprise platform design."
+      }
+    }
+  }
+}

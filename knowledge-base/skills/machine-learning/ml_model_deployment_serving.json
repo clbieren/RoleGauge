@@ -1,0 +1,221 @@
+{
+  "skill_id": "ml_model_deployment_serving",
+  "name": "Model Serving & Inference Infrastructure",
+  "category": "deployment",
+  "description": "Deploying machine learning models in production: REST/gRPC microservices (FastAPI), Triton Inference Server, ONNX Runtime, TorchScript, dynamic batching, and low-latency serving.",
+  "subskills": [
+    {
+      "id": "fastapi_rest_model_microservices",
+      "name": "FastAPI & REST Model Microservices",
+      "description": "Building high-performance async prediction endpoints with FastAPI, Pydantic request/response schemas, dependency injection, and health checks.",
+      "keywords": [
+        "FastAPI",
+        "Pydantic",
+        "REST endpoint",
+        "async prediction",
+        "model serving",
+        "microservice",
+        "health check",
+        "JSON payload"
+      ]
+    },
+    {
+      "id": "grpc_protobuf_high_throughput_serving",
+      "name": "gRPC & Protocol Buffers for Low-Latency Serving",
+      "description": "Defining Proto service definitions, streaming predictions, low-latency binary serialization, and bidirectional gRPC communication.",
+      "keywords": [
+        "gRPC",
+        "Protobuf",
+        "Protocol Buffers",
+        "binary serialization",
+        "low-latency",
+        "streaming prediction",
+        "stub",
+        "RPC"
+      ]
+    },
+    {
+      "id": "triton_inference_server_management",
+      "name": "Triton Inference Server & Model Repositories",
+      "description": "NVIDIA Triton Inference Server, config.pbtxt model repository layout, multi-model concurrent execution, and dynamic batching.",
+      "keywords": [
+        "Triton",
+        "NVIDIA Triton",
+        "config.pbtxt",
+        "model repository",
+        "dynamic batching",
+        "concurrent model execution",
+        "ensemble scheduler"
+      ]
+    },
+    {
+      "id": "onnx_runtime_export_inference",
+      "name": "ONNX Export & ONNX Runtime (ORT) Execution",
+      "description": "Exporting PyTorch/Scikit-Learn models to Open Neural Network Exchange (ONNX), dynamic axes, and running inference with ONNX Runtime.",
+      "keywords": [
+        "ONNX",
+        "ONNX Runtime",
+        "torch.onnx.export",
+        "dynamic axes",
+        "ORT",
+        "cross-platform inference",
+        "onnxruntime-gpu"
+      ]
+    },
+    {
+      "id": "torchscript_trace_script_deployment",
+      "name": "TorchScript (Tracing & Scripting) for C++ Integration",
+      "description": "torch.jit.trace vs torch.jit.script, removing Python runtime dependency, and loading serialized models in high-performance C++ runtimes.",
+      "keywords": [
+        "TorchScript",
+        "torch.jit.trace",
+        "torch.jit.script",
+        "C++ inference",
+        "libtorch",
+        "no-Python runtime",
+        "JIT compilation"
+      ]
+    },
+    {
+      "id": "batch_vs_realtime_serving_architectures",
+      "name": "Batch vs Real-Time vs Streaming Inference Patterns",
+      "description": "Offline batch scoring at scale (Spark/Ray), online request-response serving, streaming event-driven inference, and cached predictions.",
+      "keywords": [
+        "batch scoring",
+        "real-time inference",
+        "streaming inference",
+        "offline prediction",
+        "online scoring",
+        "feature caching",
+        "Redis cache"
+      ]
+    },
+    {
+      "id": "dynamic_batching_concurrency_control",
+      "name": "Dynamic Batching, Queuing & Concurrency Control",
+      "description": "Grouping concurrent real-time requests into GPU/CPU batches, max_queue_delay_microseconds, and worker thread pool concurrency.",
+      "keywords": [
+        "dynamic batching",
+        "max_batch_size",
+        "queue delay",
+        "batch latency",
+        "concurrency control",
+        "throughput optimization",
+        "worker threads"
+      ]
+    },
+    {
+      "id": "model_canary_shadow_ab_deployment",
+      "name": "Deployment Strategies (Canary, Blue/Green, Shadow Deployments)",
+      "description": "Canary rollouts, Blue/Green deployments, Shadow / Dark launch (duplicating traffic for evaluation), and automated rollbacks on error spikes.",
+      "keywords": [
+        "Canary deployment",
+        "Blue-Green deployment",
+        "Shadow deployment",
+        "dark launch",
+        "traffic splitting",
+        "automated rollback",
+        "Seldon Core",
+        "KServe"
+      ]
+    },
+    {
+      "id": "latency_profiling_load_testing",
+      "name": "Latency Profiling (P95/P99) & Load Testing (Locust)",
+      "description": "Benchmarking inference endpoints with Locust / wrk, measuring P50/P95/P99 latency, profiling cold start, and memory leak testing under stress.",
+      "keywords": [
+        "P95 latency",
+        "P99 latency",
+        "Locust",
+        "load testing",
+        "benchmark",
+        "cold start",
+        "stress testing",
+        "throughput RPS"
+      ]
+    }
+  ],
+  "evidence_patterns": {
+    "cv": [
+      {
+        "signal": "Deployed production models on Triton Inference Server with dynamic batching and ONNX Runtime achieving sub-10ms P99 latency",
+        "strength": 0.5,
+        "maps_to": [
+          "ml_model_deployment_serving.triton_inference_server_management",
+          "ml_model_deployment_serving.onnx_runtime_export_inference",
+          "ml_model_deployment_serving.latency_profiling_load_testing"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Model Deployment, FastAPI, and Triton Inference Server endorsements",
+        "strength": 0.3,
+        "maps_to": [
+          "ml_model_deployment_serving.fastapi_rest_model_microservices",
+          "ml_model_deployment_serving.batch_vs_realtime_serving_architectures"
+        ]
+      }
+    ],
+    "github": [
+      {
+        "pattern": "*serve*.py|*app*.py|*triton*|service/**/*.py|config.pbtxt|*.onnx",
+        "strength": 1.0,
+        "maps_to": [
+          "ml_model_deployment_serving.fastapi_rest_model_microservices",
+          "ml_model_deployment_serving.grpc_protobuf_high_throughput_serving",
+          "ml_model_deployment_serving.triton_inference_server_management",
+          "ml_model_deployment_serving.onnx_runtime_export_inference",
+          "ml_model_deployment_serving.torchscript_trace_script_deployment",
+          "ml_model_deployment_serving.batch_vs_realtime_serving_architectures",
+          "ml_model_deployment_serving.dynamic_batching_concurrency_control",
+          "ml_model_deployment_serving.model_canary_shadow_ab_deployment",
+          "ml_model_deployment_serving.latency_profiling_load_testing"
+        ]
+      }
+    ],
+    "assessment": [
+      {
+        "signal": "Passes Model Serving & Inference Infrastructure Technical Assessment",
+        "strength": 1.0,
+        "maps_to": [
+          "ml_model_deployment_serving.fastapi_rest_model_microservices",
+          "ml_model_deployment_serving.grpc_protobuf_high_throughput_serving",
+          "ml_model_deployment_serving.triton_inference_server_management",
+          "ml_model_deployment_serving.onnx_runtime_export_inference",
+          "ml_model_deployment_serving.torchscript_trace_script_deployment",
+          "ml_model_deployment_serving.batch_vs_realtime_serving_architectures",
+          "ml_model_deployment_serving.dynamic_batching_concurrency_control",
+          "ml_model_deployment_serving.model_canary_shadow_ab_deployment",
+          "ml_model_deployment_serving.latency_profiling_load_testing"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "fastapi_rest_model_microservices",
+        "batch_vs_realtime_serving_architectures",
+        "onnx_runtime_export_inference"
+      ],
+      "description": "Wraps models into FastAPI prediction endpoints, exports models to ONNX, and implements batch scoring jobs."
+    },
+    "mid": {
+      "expected_subskills": [
+        "grpc_protobuf_high_throughput_serving",
+        "torchscript_trace_script_deployment",
+        "model_canary_shadow_ab_deployment",
+        "latency_profiling_load_testing"
+      ],
+      "description": "Implements gRPC model services, compiles models with TorchScript, runs Locust load tests, and coordinates Canary/Shadow deployments."
+    },
+    "senior": {
+      "expected_subskills": [
+        "triton_inference_server_management",
+        "dynamic_batching_concurrency_control"
+      ],
+      "description": "Architects enterprise Triton multi-model inference clusters, configures hardware dynamic batching, and guarantees sub-10ms P99 SLAs."
+    }
+  }
+}

@@ -1,0 +1,233 @@
+{
+  "skill_id": "ml_classical_algorithms",
+  "name": "Classical Supervised & Unsupervised Algorithms",
+  "category": "algorithms",
+  "description": "Implementation, mathematical mechanics, and tuning of classical machine learning algorithms: Linear/Logistic Regression, Tree Ensembles (XGBoost, LightGBM, CatBoost), SVMs, Naive Bayes, KNN, and Unsupervised Clustering.",
+  "subskills": [
+    {
+      "id": "linear_logistic_regression_regularization",
+      "name": "Linear & Logistic Regression with L1/L2 Regularization",
+      "description": "Ordinary Least Squares, Ridge (L2), Lasso (L1), ElasticNet, odds ratios, sigmoid activation, and log-odds interpretation.",
+      "keywords": [
+        "Linear Regression",
+        "Logistic Regression",
+        "Ridge",
+        "Lasso",
+        "ElasticNet",
+        "L1 regularization",
+        "L2 regularization",
+        "sigmoid",
+        "OLS",
+        "sparsity"
+      ]
+    },
+    {
+      "id": "decision_trees_splitting_criteria",
+      "name": "Decision Trees & Splitting Criteria (Gini, Entropy)",
+      "description": "CART, ID3, C4.5, Gini impurity, Information Gain, tree pruning (pre-pruning, cost-complexity post-pruning), and decision boundary behavior.",
+      "keywords": [
+        "Decision Tree",
+        "CART",
+        "Gini impurity",
+        "Information Gain",
+        "entropy",
+        "tree pruning",
+        "cost-complexity pruning",
+        "max_depth",
+        "min_samples_split"
+      ]
+    },
+    {
+      "id": "random_forests_bagging",
+      "name": "Random Forests & Bagging Ensembles",
+      "description": "Bootstrap aggregating (bagging), out-of-bag (OOB) error estimation, feature subspace sampling, and variance reduction.",
+      "keywords": [
+        "Random Forest",
+        "Bagging",
+        "Bootstrap aggregating",
+        "OOB error",
+        "out-of-bag",
+        "ensemble",
+        "variance reduction",
+        "feature subsampling"
+      ]
+    },
+    {
+      "id": "gradient_boosting_xgboost_lightgbm_catboost",
+      "name": "Gradient Boosting (XGBoost, LightGBM, CatBoost)",
+      "description": "Residual fitting, shrinkage, XGBoost exact/histogram split, LightGBM GOSS & EFB (Leaf-wise), CatBoost symmetric trees & target statistics.",
+      "keywords": [
+        "XGBoost",
+        "LightGBM",
+        "CatBoost",
+        "Gradient Boosting",
+        "GBDT",
+        "GOSS",
+        "EFB",
+        "histogram-based",
+        "leaf-wise",
+        "depth-wise",
+        "learning_rate"
+      ]
+    },
+    {
+      "id": "support_vector_machines_kernels",
+      "name": "Support Vector Machines & Kernel Trick",
+      "description": "Max-margin hyperplanes, soft margin (C parameter), kernel trick (RBF, Polynomial, Linear), dual formulation, and support vectors.",
+      "keywords": [
+        "SVM",
+        "Support Vector Machine",
+        "RBF kernel",
+        "kernel trick",
+        "max margin",
+        "slack variable",
+        "hyperplane",
+        "dual problem",
+        "support vectors"
+      ]
+    },
+    {
+      "id": "naive_bayes_knn",
+      "name": "Naive Bayes Classifiers & K-Nearest Neighbors (KNN)",
+      "description": "Gaussian/Multinomial/Bernoulli Naive Bayes, conditional independence assumption, KNN distance metrics (Euclidean, Manhattan, Cosine), and KD-Tree / Ball Tree indexing.",
+      "keywords": [
+        "Naive Bayes",
+        "KNN",
+        "K-Nearest Neighbors",
+        "conditional independence",
+        "KD-Tree",
+        "Ball Tree",
+        "Euclidean distance",
+        "Cosine distance"
+      ]
+    },
+    {
+      "id": "kmeans_hierarchical_clustering",
+      "name": "K-Means & Hierarchical Clustering",
+      "description": "K-Means Lloyd's algorithm, K-Means++, Elbow method, Silhouette score, Agglomerative clustering, linkage criteria (Ward, Complete, Single), and dendrograms.",
+      "keywords": [
+        "K-Means",
+        "K-Means++",
+        "Elbow method",
+        "Silhouette score",
+        "Hierarchical Clustering",
+        "Agglomerative",
+        "dendrogram",
+        "linkage Ward"
+      ]
+    },
+    {
+      "id": "density_clustering_dbscan_hdbscan",
+      "name": "Density-Based Clustering (DBSCAN & HDBSCAN)",
+      "description": "Core points, border points, noise points, eps and min_samples parameters, HDBSCAN varying density clustering, and non-spherical clusters.",
+      "keywords": [
+        "DBSCAN",
+        "HDBSCAN",
+        "core points",
+        "eps",
+        "min_samples",
+        "density clustering",
+        "noise points",
+        "non-spherical clusters"
+      ]
+    },
+    {
+      "id": "pca_dimensionality_reduction",
+      "name": "Principal Component Analysis (PCA) & t-SNE / UMAP",
+      "description": "Variance maximization, covariance matrix eigendecomposition, scree plot, explained variance ratio, t-SNE, and UMAP for non-linear manifold projection.",
+      "keywords": [
+        "PCA",
+        "Principal Component Analysis",
+        "explained variance ratio",
+        "scree plot",
+        "t-SNE",
+        "UMAP",
+        "dimensionality reduction",
+        "manifold learning"
+      ]
+    }
+  ],
+  "evidence_patterns": {
+    "cv": [
+      {
+        "signal": "Trained and deployed high-performance XGBoost and LightGBM models for production prediction",
+        "strength": 0.5,
+        "maps_to": [
+          "ml_classical_algorithms.gradient_boosting_xgboost_lightgbm_catboost",
+          "ml_classical_algorithms.random_forests_bagging",
+          "ml_classical_algorithms.linear_logistic_regression_regularization"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Skill endorsements in Scikit-Learn, XGBoost, and Machine Learning Algorithms",
+        "strength": 0.3,
+        "maps_to": [
+          "ml_classical_algorithms.decision_trees_splitting_criteria",
+          "ml_classical_algorithms.kmeans_hierarchical_clustering"
+        ]
+      }
+    ],
+    "github": [
+      {
+        "pattern": "*xgboost*|*lightgbm*|*sklearn*|models/**/*.py|notebooks/*model*.ipynb",
+        "strength": 1.0,
+        "maps_to": [
+          "ml_classical_algorithms.linear_logistic_regression_regularization",
+          "ml_classical_algorithms.decision_trees_splitting_criteria",
+          "ml_classical_algorithms.random_forests_bagging",
+          "ml_classical_algorithms.gradient_boosting_xgboost_lightgbm_catboost",
+          "ml_classical_algorithms.support_vector_machines_kernels",
+          "ml_classical_algorithms.naive_bayes_knn",
+          "ml_classical_algorithms.kmeans_hierarchical_clustering",
+          "ml_classical_algorithms.density_clustering_dbscan_hdbscan",
+          "ml_classical_algorithms.pca_dimensionality_reduction"
+        ]
+      }
+    ],
+    "assessment": [
+      {
+        "signal": "Passes Classical Supervised & Unsupervised Machine Learning Assessment",
+        "strength": 1.0,
+        "maps_to": [
+          "ml_classical_algorithms.linear_logistic_regression_regularization",
+          "ml_classical_algorithms.decision_trees_splitting_criteria",
+          "ml_classical_algorithms.random_forests_bagging",
+          "ml_classical_algorithms.gradient_boosting_xgboost_lightgbm_catboost",
+          "ml_classical_algorithms.support_vector_machines_kernels",
+          "ml_classical_algorithms.naive_bayes_knn",
+          "ml_classical_algorithms.kmeans_hierarchical_clustering",
+          "ml_classical_algorithms.density_clustering_dbscan_hdbscan",
+          "ml_classical_algorithms.pca_dimensionality_reduction"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "linear_logistic_regression_regularization",
+        "decision_trees_splitting_criteria",
+        "naive_bayes_knn"
+      ],
+      "description": "Applies linear and logistic regressions with L1/L2 regularization, trains decision trees, and implements KNN and Naive Bayes."
+    },
+    "mid": {
+      "expected_subskills": [
+        "random_forests_bagging",
+        "gradient_boosting_xgboost_lightgbm_catboost",
+        "kmeans_hierarchical_clustering",
+        "pca_dimensionality_reduction"
+      ],
+      "description": "Tunes tree ensembles (Random Forest, XGBoost, LightGBM), performs K-Means clustering, and reduces dimensions with PCA."
+    },
+    "senior": {
+      "expected_subskills": [
+        "support_vector_machines_kernels",
+        "density_clustering_dbscan_hdbscan"
+      ],
+      "description": "Formulates kernel SVM optimizations, solves complex non-spherical clustering problems with HDBSCAN, and designs custom ensemble architectures."
+    }
+  }
+}

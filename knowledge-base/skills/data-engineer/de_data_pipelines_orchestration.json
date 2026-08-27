@@ -1,0 +1,226 @@
+{
+  "skill_id": "de_data_pipelines_orchestration",
+  "name": "Data Pipeline Orchestration & Workflow Engines",
+  "category": "orchestration",
+  "description": "Workflow scheduling and orchestration with Apache Airflow, Prefect, Dagster, DAG authoring best practices, backfilling, idempotency, failure alerting, and distributed task execution.",
+  "subskills": [
+    {
+      "id": "airflow_dag_design_best_practices",
+      "name": "Airflow DAG Architecture & Design Best Practices",
+      "description": "DAG authoring, avoid top-level code execution in DAG files, dynamic DAG generation, schedule intervals, cron vs timetable expressions.",
+      "keywords": [
+        "Airflow DAG",
+        "DAG parsing",
+        "top-level code",
+        "schedule_interval",
+        "cron",
+        "timetable",
+        "dynamic DAG",
+        "start_date",
+        "catchup"
+      ]
+    },
+    {
+      "id": "airflow_operators_hooks_sensors",
+      "name": "Airflow Operators, Hooks & Custom Sensors",
+      "description": "Standard operators (Bash, Python, SQLExecute), cloud operators (S3, GCS, BigQuery, Snowflake), Hooks, and Poke vs Reschedule Sensors.",
+      "keywords": [
+        "PythonOperator",
+        "BashOperator",
+        "BaseHook",
+        "Sensor",
+        "mode=reschedule",
+        "poke",
+        "S3KeySensor",
+        "ExternalTaskSensor",
+        "custom operator"
+      ]
+    },
+    {
+      "id": "airflow_taskflow_api_xcoms",
+      "name": "Airflow 2.x TaskFlow API & XCom Backend",
+      "description": "Decorators (@dag, @task, @task.branch), TaskFlow API data passing, XCom limits, and configuring custom S3/GCS XCom backends.",
+      "keywords": [
+        "TaskFlow API",
+        "@task",
+        "@dag",
+        "XCom",
+        "custom XCom backend",
+        "task dependencies",
+        "bitshift operators >>",
+        "branching"
+      ]
+    },
+    {
+      "id": "airflow_backfilling_catchup",
+      "name": "Airflow Backfilling, Catchup & Reprocessing",
+      "description": "Historical backfilling via CLI, execution_date / logical_date vs data_interval_start/end, managing catchup=False safely, and rerun policies.",
+      "keywords": [
+        "airflow dags backfill",
+        "logical_date",
+        "execution_date",
+        "data_interval_start",
+        "catchup",
+        "reprocessing",
+        "clear task instances"
+      ]
+    },
+    {
+      "id": "prefect_orchestration",
+      "name": "Prefect Modern Flow Orchestration",
+      "description": "Prefect 2/3 architecture, flows, tasks, deployments, work pools, parameterization, and hybrid execution model.",
+      "keywords": [
+        "Prefect",
+        "@flow",
+        "@task",
+        "prefect deployment",
+        "work pool",
+        "prefect worker",
+        "subflow",
+        "Prefect Cloud"
+      ]
+    },
+    {
+      "id": "dagster_software_defined_assets",
+      "name": "Dagster & Software-Defined Assets (SDA)",
+      "description": "Dagster asset-oriented orchestration, @asset decorator, asset partitions, auto-materialize policies, IOManagers, and resource bindings.",
+      "keywords": [
+        "Dagster",
+        "Software-Defined Assets",
+        "@asset",
+        "IOManager",
+        "asset lineage",
+        "auto-materialize",
+        "Dagster partitions",
+        "Resources"
+      ]
+    },
+    {
+      "id": "idempotency_data_reprocessing",
+      "name": "Idempotent Pipeline Design & Atomic Swaps",
+      "description": "Ensuring deterministic pipeline re-runs, atomic partition replacement, temporary stage write and rename, and avoiding duplicate records.",
+      "keywords": [
+        "idempotency",
+        "atomic write",
+        "atomic partition swap",
+        "stage table",
+        "deduplication",
+        "deterministic",
+        "retry safety"
+      ]
+    },
+    {
+      "id": "pipeline_sla_alerting",
+      "name": "Pipeline SLA Monitoring, Callbacks & Alerting",
+      "description": "SLA missed callbacks, on_failure_callback, on_retry_callback, Slack/PagerDuty webhook alerting, and pipeline runtime tracking.",
+      "keywords": [
+        "SLA",
+        "sla_miss_callback",
+        "on_failure_callback",
+        "PagerDuty",
+        "Slack webhook",
+        "alerting",
+        "heartbeat",
+        "pipeline monitoring"
+      ]
+    },
+    {
+      "id": "distributed_executors_celery_k8s",
+      "name": "Airflow Distributed Executors (Celery, Kubernetes)",
+      "description": "Configuring CeleryExecutor with Redis/RabbitMQ, KubernetesExecutor (pod-per-task), CeleryKubernetesExecutor, worker autoscaling, and concurrency limits.",
+      "keywords": [
+        "KubernetesExecutor",
+        "CeleryExecutor",
+        "CeleryKubernetesExecutor",
+        "Redis",
+        "Airflow worker",
+        "concurrency limits",
+        "max_active_tasks",
+        "pod resource requests"
+      ]
+    }
+  ],
+  "evidence_patterns": {
+    "cv": [
+      {
+        "signal": "Architected mission-critical data pipelines in Apache Airflow with KubernetesExecutor",
+        "strength": 0.5,
+        "maps_to": [
+          "de_data_pipelines_orchestration.airflow_dag_design_best_practices",
+          "de_data_pipelines_orchestration.distributed_executors_celery_k8s",
+          "de_data_pipelines_orchestration.idempotency_data_reprocessing"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Expert in Apache Airflow, Prefect, and Workflow Orchestration",
+        "strength": 0.3,
+        "maps_to": [
+          "de_data_pipelines_orchestration.airflow_operators_hooks_sensors",
+          "de_data_pipelines_orchestration.airflow_taskflow_api_xcoms"
+        ]
+      }
+    ],
+    "github": [
+      {
+        "pattern": "dags/**/*.py|airflow/*.py|prefect*.py|dagster*.py",
+        "strength": 1.0,
+        "maps_to": [
+          "de_data_pipelines_orchestration.airflow_dag_design_best_practices",
+          "de_data_pipelines_orchestration.airflow_operators_hooks_sensors",
+          "de_data_pipelines_orchestration.airflow_taskflow_api_xcoms",
+          "de_data_pipelines_orchestration.airflow_backfilling_catchup",
+          "de_data_pipelines_orchestration.prefect_orchestration",
+          "de_data_pipelines_orchestration.dagster_software_defined_assets",
+          "de_data_pipelines_orchestration.idempotency_data_reprocessing",
+          "de_data_pipelines_orchestration.pipeline_sla_alerting",
+          "de_data_pipelines_orchestration.distributed_executors_celery_k8s"
+        ]
+      }
+    ],
+    "assessment": [
+      {
+        "signal": "Passes Workflow Orchestration & Data Pipeline Architecture Assessment",
+        "strength": 1.0,
+        "maps_to": [
+          "de_data_pipelines_orchestration.airflow_dag_design_best_practices",
+          "de_data_pipelines_orchestration.airflow_operators_hooks_sensors",
+          "de_data_pipelines_orchestration.airflow_taskflow_api_xcoms",
+          "de_data_pipelines_orchestration.airflow_backfilling_catchup",
+          "de_data_pipelines_orchestration.prefect_orchestration",
+          "de_data_pipelines_orchestration.dagster_software_defined_assets",
+          "de_data_pipelines_orchestration.idempotency_data_reprocessing",
+          "de_data_pipelines_orchestration.pipeline_sla_alerting",
+          "de_data_pipelines_orchestration.distributed_executors_celery_k8s"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "airflow_dag_design_best_practices",
+        "airflow_operators_hooks_sensors",
+        "airflow_taskflow_api_xcoms"
+      ],
+      "description": "Authors basic Airflow DAGs using TaskFlow API, configures standard hooks/operators, and passes state cleanly via XCom."
+    },
+    "mid": {
+      "expected_subskills": [
+        "airflow_backfilling_catchup",
+        "idempotency_data_reprocessing",
+        "pipeline_sla_alerting",
+        "prefect_orchestration"
+      ],
+      "description": "Implements idempotent pipelines, executes safe backfills without data duplication, configures SLA alerting, and develops with Prefect."
+    },
+    "senior": {
+      "expected_subskills": [
+        "dagster_software_defined_assets",
+        "distributed_executors_celery_k8s"
+      ],
+      "description": "Architects modern asset-based data platforms in Dagster, scales Kubernetes/Celery executors under heavy workload, and establishes enterprise orchestration governance."
+    }
+  }
+}

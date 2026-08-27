@@ -1,0 +1,66 @@
+{
+  "source_id": "github",
+  "name": "GitHub Repository Analysis - Machine Learning Engineering",
+  "description": "Automated code and pipeline scanning rules for validating Machine Learning Engineer implementations.",
+  "preprocessing_pipeline": {
+    "steps": [
+      {
+        "step": 1,
+        "name": "repository_metadata",
+        "description": "Inspects languages, dependencies, and commit cadence."
+      },
+      {
+        "step": 2,
+        "name": "file_tree_scan",
+        "description": "Scans for training scripts, PyTorch models, inference servers, and MLOps configs.",
+        "target_files": [
+          {
+            "pattern": "train*.py|models/**/*.py|*.pt|*.pth",
+            "skill": "ml_deep_learning_architectures",
+            "priority": "high"
+          },
+          {
+            "pattern": "*xgboost*|*lightgbm*|*sklearn*.py",
+            "skill": "ml_classical_algorithms",
+            "priority": "high"
+          },
+          {
+            "pattern": "config.pbtxt|*triton*|serve*.py|*.onnx",
+            "skill": "ml_model_deployment_serving",
+            "priority": "high"
+          },
+          {
+            "pattern": "*optuna*|*sweep*.py|configs/*hpo*.yml",
+            "skill": "ml_hyperparameter_optimization",
+            "priority": "high"
+          },
+          {
+            "pattern": "dvc.yaml|*mlflow*|feature_store.yaml|kfp*.py",
+            "skill": "ml_pipelines_orchestration",
+            "priority": "high"
+          },
+          {
+            "pattern": "*drift*.py|*shap*.py|*evidently*",
+            "skill": "ml_monitoring_drift_observability",
+            "priority": "high"
+          },
+          {
+            "pattern": "*tensorrt*|*quant*.py|*prune*.py",
+            "skill": "ml_model_optimization_compression",
+            "priority": "high"
+          },
+          {
+            "pattern": "*preprocess*.py|*pipeline*.py",
+            "skill": "ml_feature_engineering_preprocessing",
+            "priority": "high"
+          },
+          {
+            "pattern": "*eval*.py|*metrics*.py",
+            "skill": "ml_model_evaluation_validation",
+            "priority": "high"
+          }
+        ]
+      }
+    ]
+  }
+}

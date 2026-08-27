@@ -1,0 +1,85 @@
+{
+  "role_id": "data_engineer",
+  "level": "junior",
+  "title": "Junior Data Engineer",
+  "description": "Entry-level data engineering position focused on foundational SQL, Python script automation, data extraction, basic Airflow DAGs, dbt models, and automated data quality checks under guidance.",
+  "experience_range": "0-2 years",
+  "skills": [
+    {
+      "skill_id": "de_sql_advanced",
+      "importance": 0.95,
+      "rationale": "Writing clean analytical SQL, joins, CTEs, and window functions is non-negotiable for daily data tasks."
+    },
+    {
+      "skill_id": "de_programming",
+      "importance": 0.9,
+      "rationale": "Strong Python programming for data extraction, manipulation, and pipeline scripting."
+    },
+    {
+      "skill_id": "de_data_modeling_transformation",
+      "importance": 0.85,
+      "rationale": "Building dbt models, implementing tests, and documenting schemas is a core daily activity."
+    },
+    {
+      "skill_id": "de_data_pipelines_orchestration",
+      "importance": 0.8,
+      "rationale": "Creating and scheduling basic Airflow DAGs with TaskFlow API."
+    },
+    {
+      "skill_id": "de_data_warehousing",
+      "importance": 0.75,
+      "rationale": "Understanding dimensional modeling, star schemas, and fact/dimension concepts."
+    },
+    {
+      "skill_id": "de_data_lakes_storage",
+      "importance": 0.7,
+      "rationale": "Working with S3/GCS object storage, Parquet files, and Medallion architecture basics."
+    },
+    {
+      "skill_id": "de_data_quality_governance",
+      "importance": 0.65,
+      "rationale": "Writing data quality assertions with Great Expectations or Soda."
+    },
+    {
+      "skill_id": "de_cloud_infrastructure_dataops",
+      "importance": 0.6,
+      "rationale": "Dockerizing data jobs, writing unit tests with pytest, and using CI/CD."
+    },
+    {
+      "skill_id": "de_distributed_computing",
+      "importance": 0.5,
+      "rationale": "Basic PySpark DataFrame operations and understanding distributed architecture."
+    },
+    {
+      "skill_id": "de_streaming_realtime",
+      "importance": 0.4,
+      "rationale": "Foundational understanding of Kafka topics and producer/consumer mechanics."
+    }
+  ],
+  "scoring": {
+    "method": "weighted_average",
+    "description": "Each skill score is multiplied by its importance weight. Final score is the sum of weighted scores divided by sum of weights.",
+    "thresholds": {
+      "not_ready": {
+        "min": 0.0,
+        "max": 0.35,
+        "description": "Insufficient foundational knowledge in SQL and Python data manipulation."
+      },
+      "partially_ready": {
+        "min": 0.35,
+        "max": 0.6,
+        "description": "Meets basic scripting needs but lacks production orchestration and data modeling depth."
+      },
+      "ready": {
+        "min": 0.6,
+        "max": 0.85,
+        "description": "Solid junior engineer capable of writing ELT pipelines and maintaining dbt/Airflow workflows under guidance."
+      },
+      "exceeds": {
+        "min": 0.85,
+        "max": 1.0,
+        "description": "Exceeds junior requirements with strong grasp of distributed engines and data warehouse performance."
+      }
+    }
+  }
+}

@@ -1,0 +1,223 @@
+{
+  "skill_id": "ml_feature_engineering_preprocessing",
+  "name": "Feature Engineering, Preprocessing & Selection",
+  "category": "data_preparation",
+  "description": "Data preprocessing, handling missing values, categorical encoding strategies, feature scaling, outlier detection, interaction features, feature selection techniques, and scikit-learn pipeline construction.",
+  "subskills": [
+    {
+      "id": "missing_data_imputation_strategies",
+      "name": "Missing Data Imputation Strategies (MICE, KNN, Simple)",
+      "description": "MCAR, MAR, MNAR mechanisms, mean/median/mode imputation, KNNImputer, MICE (IterativeImputer), and indicator columns for missingness.",
+      "keywords": [
+        "imputation",
+        "KNNImputer",
+        "IterativeImputer",
+        "MICE",
+        "SimpleImputer",
+        "MCAR",
+        "MAR",
+        "MNAR",
+        "missingness indicator"
+      ]
+    },
+    {
+      "id": "categorical_encoding_target_ohe_embeddings",
+      "name": "Categorical Encoding (Target, One-Hot, Ordinal, Frequency)",
+      "description": "One-Hot Encoding, Ordinal/Label Encoding, Target/Mean Encoding with smoothing/regularization, Frequency Encoding, and Category Embeddings.",
+      "keywords": [
+        "One-Hot Encoding",
+        "Target Encoding",
+        "Mean Encoding",
+        "Ordinal Encoding",
+        "Frequency Encoding",
+        "smoothing",
+        "target leakage",
+        "high cardinality"
+      ]
+    },
+    {
+      "id": "feature_scaling_power_transformations",
+      "name": "Feature Scaling & Power Transformations",
+      "description": "StandardScaler, MinMaxScaler, RobustScaler (outlier-resistant), Box-Cox transformation, Yeo-Johnson transformation, and log transforms.",
+      "keywords": [
+        "StandardScaler",
+        "MinMaxScaler",
+        "RobustScaler",
+        "Box-Cox",
+        "Yeo-Johnson",
+        "log transform",
+        "normalizing",
+        "scaling"
+      ]
+    },
+    {
+      "id": "outlier_detection_treatment",
+      "name": "Outlier Detection & Treatment (IQR, Isolation Forest)",
+      "description": "Z-score, IQR capping/winsorization, Isolation Forest, Local Outlier Factor (LOF), EllipticEnvelope, and domain-specific thresholds.",
+      "keywords": [
+        "Isolation Forest",
+        "IQR",
+        "winsorization",
+        "capping",
+        "Local Outlier Factor",
+        "LOF",
+        "z-score",
+        "outlier detection",
+        "EllipticEnvelope"
+      ]
+    },
+    {
+      "id": "interaction_polynomial_features",
+      "name": "Interaction Terms & Polynomial Feature Generation",
+      "description": "PolynomialFeatures, crossing categorical features, multiplicative interaction terms, ratios, and domain-engineered features.",
+      "keywords": [
+        "PolynomialFeatures",
+        "feature crossing",
+        "interaction terms",
+        "feature creation",
+        "ratio features",
+        "domain features"
+      ]
+    },
+    {
+      "id": "temporal_datetime_cyclical_features",
+      "name": "Temporal, Datetime & Cyclical Feature Encoding",
+      "description": "Extracting datetime components (hour, day, week, month), sine/cosine cyclical encoding, rolling aggregations, and lag features.",
+      "keywords": [
+        "cyclical encoding",
+        "sine cosine encoding",
+        "lag features",
+        "rolling window",
+        "datetime features",
+        "time-based features"
+      ]
+    },
+    {
+      "id": "text_nlp_feature_extraction_tfidf_embeddings",
+      "name": "Text Feature Extraction (TF-IDF, Bag-of-Words, Word2Vec)",
+      "description": "CountVectorizer, TfidfVectorizer (sublinear tf, n-grams, min_df/max_df), Word2Vec, and dense embedding feature extraction.",
+      "keywords": [
+        "TF-IDF",
+        "TfidfVectorizer",
+        "CountVectorizer",
+        "n-grams",
+        "Bag of Words",
+        "Word2Vec",
+        "text features",
+        "sublinear_tf"
+      ]
+    },
+    {
+      "id": "feature_selection_filter_wrapper_embedded",
+      "name": "Feature Selection (Filter, Wrapper & Embedded Methods)",
+      "description": "Filter methods (VarianceThreshold, ANOVA F-test, Mutual Information), Wrapper methods (RFE, SequentialFeatureSelector), and Embedded methods (L1 Lasso, tree feature importances).",
+      "keywords": [
+        "feature selection",
+        "RFE",
+        "Recursive Feature Elimination",
+        "VarianceThreshold",
+        "Mutual Information",
+        "SelectKBest",
+        "SequentialFeatureSelector",
+        "L1 selection"
+      ]
+    },
+    {
+      "id": "sklearn_pipelines_columntransformer",
+      "name": "Scikit-Learn Pipelines & ColumnTransformer",
+      "description": "Building leak-free Pipeline and ColumnTransformer workflows, custom BaseEstimator / TransformerMixin classes, and pipeline serialization.",
+      "keywords": [
+        "Pipeline",
+        "ColumnTransformer",
+        "TransformerMixin",
+        "BaseEstimator",
+        "fit_transform",
+        "data leakage prevention",
+        "sklearn.pipeline"
+      ]
+    }
+  ],
+  "evidence_patterns": {
+    "cv": [
+      {
+        "signal": "Engineered automated feature transformation pipelines using Scikit-Learn ColumnTransformer and target encoding",
+        "strength": 0.5,
+        "maps_to": [
+          "ml_feature_engineering_preprocessing.categorical_encoding_target_ohe_embeddings",
+          "ml_feature_engineering_preprocessing.sklearn_pipelines_columntransformer",
+          "ml_feature_engineering_preprocessing.feature_selection_filter_wrapper_embedded"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Feature Engineering & Data Preprocessing endorsements",
+        "strength": 0.3,
+        "maps_to": [
+          "ml_feature_engineering_preprocessing.feature_scaling_power_transformations",
+          "ml_feature_engineering_preprocessing.missing_data_imputation_strategies"
+        ]
+      }
+    ],
+    "github": [
+      {
+        "pattern": "*feature*.py|*preprocess*.py|*pipeline*.py|transformers/**/*.py",
+        "strength": 1.0,
+        "maps_to": [
+          "ml_feature_engineering_preprocessing.missing_data_imputation_strategies",
+          "ml_feature_engineering_preprocessing.categorical_encoding_target_ohe_embeddings",
+          "ml_feature_engineering_preprocessing.feature_scaling_power_transformations",
+          "ml_feature_engineering_preprocessing.outlier_detection_treatment",
+          "ml_feature_engineering_preprocessing.interaction_polynomial_features",
+          "ml_feature_engineering_preprocessing.temporal_datetime_cyclical_features",
+          "ml_feature_engineering_preprocessing.text_nlp_feature_extraction_tfidf_embeddings",
+          "ml_feature_engineering_preprocessing.feature_selection_filter_wrapper_embedded",
+          "ml_feature_engineering_preprocessing.sklearn_pipelines_columntransformer"
+        ]
+      }
+    ],
+    "assessment": [
+      {
+        "signal": "Passes Feature Engineering, Preprocessing & Selection Technical Assessment",
+        "strength": 1.0,
+        "maps_to": [
+          "ml_feature_engineering_preprocessing.missing_data_imputation_strategies",
+          "ml_feature_engineering_preprocessing.categorical_encoding_target_ohe_embeddings",
+          "ml_feature_engineering_preprocessing.feature_scaling_power_transformations",
+          "ml_feature_engineering_preprocessing.outlier_detection_treatment",
+          "ml_feature_engineering_preprocessing.interaction_polynomial_features",
+          "ml_feature_engineering_preprocessing.temporal_datetime_cyclical_features",
+          "ml_feature_engineering_preprocessing.text_nlp_feature_extraction_tfidf_embeddings",
+          "ml_feature_engineering_preprocessing.feature_selection_filter_wrapper_embedded",
+          "ml_feature_engineering_preprocessing.sklearn_pipelines_columntransformer"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "missing_data_imputation_strategies",
+        "feature_scaling_power_transformations",
+        "text_nlp_feature_extraction_tfidf_embeddings"
+      ],
+      "description": "Performs data cleaning, implements imputation strategies, scales numerical features, and extracts basic TF-IDF text features."
+    },
+    "mid": {
+      "expected_subskills": [
+        "categorical_encoding_target_ohe_embeddings",
+        "outlier_detection_treatment",
+        "temporal_datetime_cyclical_features",
+        "sklearn_pipelines_columntransformer"
+      ],
+      "description": "Prevents target leakage with smoothed target encoding, detects outliers with Isolation Forests, encodes cyclical time features, and builds end-to-end ColumnTransformer pipelines."
+    },
+    "senior": {
+      "expected_subskills": [
+        "interaction_polynomial_features",
+        "feature_selection_filter_wrapper_embedded"
+      ],
+      "description": "Designs automated feature selection systems (RFE/Boruta), constructs high-order domain interaction terms, and builds production feature engineering engines."
+    }
+  }
+}

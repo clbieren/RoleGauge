@@ -1,0 +1,85 @@
+{
+  "role_id": "machine_learning",
+  "level": "junior",
+  "title": "Junior Machine Learning Engineer",
+  "description": "Entry-level machine learning engineering position focused on data preprocessing, feature engineering, training classical algorithms (Scikit-Learn, XGBoost), basic PyTorch neural networks, model evaluation metrics, and experiment tracking under guidance.",
+  "experience_range": "0-2 years",
+  "skills": [
+    {
+      "skill_id": "ml_feature_engineering_preprocessing",
+      "importance": 0.95,
+      "rationale": "High-quality data preparation, imputation, scaling, and feature encoding are non-negotiable foundations for model quality."
+    },
+    {
+      "skill_id": "ml_classical_algorithms",
+      "importance": 0.9,
+      "rationale": "Strong grasp of regression, decision trees, random forests, and gradient boosting algorithms."
+    },
+    {
+      "skill_id": "ml_model_evaluation_validation",
+      "importance": 0.9,
+      "rationale": "Accurate calculation of ROC-AUC, PR-AUC, F1 metrics, and diagnosing bias-variance tradeoff."
+    },
+    {
+      "skill_id": "ml_deep_learning_architectures",
+      "importance": 0.8,
+      "rationale": "Building and training basic neural networks with PyTorch and PyTorch Lightning."
+    },
+    {
+      "skill_id": "ml_mathematics_foundations",
+      "importance": 0.75,
+      "rationale": "Understanding gradient descent, linear algebra matrix operations, and probability distributions."
+    },
+    {
+      "skill_id": "ml_pipelines_orchestration",
+      "importance": 0.7,
+      "rationale": "Tracking runs with MLflow, dataset versioning with DVC, and containerizing with Docker."
+    },
+    {
+      "skill_id": "ml_hyperparameter_optimization",
+      "importance": 0.65,
+      "rationale": "Executing grid/random searches and learning rate schedulers."
+    },
+    {
+      "skill_id": "ml_model_deployment_serving",
+      "importance": 0.6,
+      "rationale": "Wrapping models into FastAPI prediction endpoints and exporting to ONNX."
+    },
+    {
+      "skill_id": "ml_monitoring_drift_observability",
+      "importance": 0.55,
+      "rationale": "Calculating statistical drift metrics (PSI, KS-test) and generating SHAP feature plots."
+    },
+    {
+      "skill_id": "ml_model_optimization_compression",
+      "importance": 0.45,
+      "rationale": "Applying standard post-training quantization and torch.compile."
+    }
+  ],
+  "scoring": {
+    "method": "weighted_average",
+    "description": "Each skill score is multiplied by its importance weight. Final score is the sum of weighted scores divided by sum of weights.",
+    "thresholds": {
+      "not_ready": {
+        "min": 0.0,
+        "max": 0.35,
+        "description": "Insufficient foundational understanding of machine learning algorithms and preprocessing."
+      },
+      "partially_ready": {
+        "min": 0.35,
+        "max": 0.6,
+        "description": "Able to train standard baseline models but lacks production pipeline and evaluation rigor."
+      },
+      "ready": {
+        "min": 0.6,
+        "max": 0.85,
+        "description": "Solid junior engineer capable of engineering features, training ML models, and tracking experiments under guidance."
+      },
+      "exceeds": {
+        "min": 0.85,
+        "max": 1.0,
+        "description": "Exceeds junior expectations with strong deep learning skills and production API deployment knowledge."
+      }
+    }
+  }
+}

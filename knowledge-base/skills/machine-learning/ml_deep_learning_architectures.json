@@ -1,0 +1,232 @@
+{
+  "skill_id": "ml_deep_learning_architectures",
+  "name": "Deep Learning Architectures & Frameworks (PyTorch / TF)",
+  "category": "deep_learning",
+  "description": "Deep learning fundamentals, PyTorch autograd and modules, CNNs, Sequence models (RNN/LSTM/GRU), Transformer self-attention mechanisms, Autoencoders, and custom layers/loss implementations.",
+  "subskills": [
+    {
+      "id": "pytorch_core_autograd_nn_module",
+      "name": "PyTorch Core, Tensors, Autograd & nn.Module",
+      "description": "Tensors, GPU memory allocation (cuda), autograd computation graph, forward pass, backward pass, zero_grad(), and torch.nn.Module.",
+      "keywords": [
+        "PyTorch",
+        "autograd",
+        "nn.Module",
+        "forward pass",
+        "backward()",
+        "optimizer.zero_grad()",
+        "torch.Tensor",
+        "cuda",
+        "computation graph"
+      ]
+    },
+    {
+      "id": "feedforward_regularization_batchnorm_dropout",
+      "name": "Feedforward Networks, BatchNorm & Dropout",
+      "description": "Multi-Layer Perceptrons (MLP), activations (ReLU, GELU, Swish), Batch Normalization, Layer Normalization, and Dropout regularization.",
+      "keywords": [
+        "MLP",
+        "BatchNorm",
+        "LayerNorm",
+        "Dropout",
+        "ReLU",
+        "GELU",
+        "Swish",
+        "activation function",
+        "weight initialization",
+        "He initialization"
+      ]
+    },
+    {
+      "id": "convolutional_neural_networks_cnn",
+      "name": "Convolutional Neural Networks (CNNs) & Computer Vision",
+      "description": "2D/3D Convolutions, kernels, stride, padding, pooling, ResNet residual blocks, ConvNeXt, and receptive field mechanics.",
+      "keywords": [
+        "CNN",
+        "Convolution",
+        "ResNet",
+        "residual connection",
+        "stride",
+        "padding",
+        "pooling",
+        "ConvNeXt",
+        "kernel",
+        "receptive field"
+      ]
+    },
+    {
+      "id": "recurrent_networks_lstm_gru",
+      "name": "Recurrent Neural Networks (RNN, LSTM & GRU)",
+      "description": "Vanishing/exploding gradient in RNNs, LSTM cell states, gates (forget, input, output), GRU update/reset gates, and bidirectional RNNs.",
+      "keywords": [
+        "RNN",
+        "LSTM",
+        "GRU",
+        "cell state",
+        "forget gate",
+        "vanishing gradient",
+        "gradient clipping",
+        "bidirectional LSTM",
+        "sequence modeling"
+      ]
+    },
+    {
+      "id": "transformer_self_attention_mechanisms",
+      "name": "Transformer Architecture & Scaled Dot-Product Attention",
+      "description": "Self-attention formula QK^T / sqrt(d_k), Multi-Head Attention, positional encodings (Sinusoidal, RoPE), and Encoder-Decoder blocks.",
+      "keywords": [
+        "Transformer",
+        "Self-Attention",
+        "Multi-Head Attention",
+        "Scaled Dot-Product",
+        "RoPE",
+        "positional encoding",
+        "Encoder",
+        "Decoder",
+        "Attention map"
+      ]
+    },
+    {
+      "id": "autoencoders_variational_ae",
+      "name": "Autoencoders & Variational Autoencoders (VAE)",
+      "description": "Bottleneck representations, reconstruction loss, Variational Autoencoders (VAE), latent space distribution, and reparameterization trick.",
+      "keywords": [
+        "Autoencoder",
+        "VAE",
+        "Variational Autoencoder",
+        "latent space",
+        "reparameterization trick",
+        "KL divergence loss",
+        "reconstruction loss",
+        "bottleneck"
+      ]
+    },
+    {
+      "id": "custom_layers_loss_functions_pytorch",
+      "name": "Custom PyTorch Layers & Differentiable Loss Functions",
+      "description": "Writing custom torch.autograd.Function with explicit forward/backward methods, custom loss functions, and parameterized module layers.",
+      "keywords": [
+        "custom loss",
+        "torch.autograd.Function",
+        "custom layer",
+        "forward backward implementation",
+        "differentiable",
+        "parameter registration"
+      ]
+    },
+    {
+      "id": "deep_learning_training_loop_lightning",
+      "name": "Training Loops, PyTorch Lightning & Callbacks",
+      "description": "Structuring clean training loops, PyTorch Lightning LightningModule & Trainer, EarlyStopping, ModelCheckpoint, and mixed-precision (AMP).",
+      "keywords": [
+        "PyTorch Lightning",
+        "LightningModule",
+        "Trainer",
+        "EarlyStopping",
+        "ModelCheckpoint",
+        "AMP",
+        "automatic mixed precision",
+        "training loop"
+      ]
+    },
+    {
+      "id": "distributed_training_ddp_fsdp",
+      "name": "Distributed Training (DDP, FSDP & DeepSpeed)",
+      "description": "DistributedDataParallel (DDP), gradient all-reduce, Fully Sharded Data Parallel (FSDP), ZeRO stages in DeepSpeed, and multi-GPU scaling.",
+      "keywords": [
+        "DDP",
+        "DistributedDataParallel",
+        "FSDP",
+        "DeepSpeed",
+        "ZeRO",
+        "all-reduce",
+        "multi-GPU",
+        "gradient accumulation",
+        "distributed training"
+      ]
+    }
+  ],
+  "evidence_patterns": {
+    "cv": [
+      {
+        "signal": "Built custom deep learning architectures in PyTorch with distributed training (DDP) across GPU clusters",
+        "strength": 0.5,
+        "maps_to": [
+          "ml_deep_learning_architectures.pytorch_core_autograd_nn_module",
+          "ml_deep_learning_architectures.distributed_training_ddp_fsdp",
+          "ml_deep_learning_architectures.transformer_self_attention_mechanisms"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "PyTorch, Deep Learning, and Neural Networks specialist endorsements",
+        "strength": 0.3,
+        "maps_to": [
+          "ml_deep_learning_architectures.feedforward_regularization_batchnorm_dropout",
+          "ml_deep_learning_architectures.convolutional_neural_networks_cnn"
+        ]
+      }
+    ],
+    "github": [
+      {
+        "pattern": "*torch*.py|*model*.py|*nn*.py|train.py|models/**/*.pt|models/**/*.pth",
+        "strength": 1.0,
+        "maps_to": [
+          "ml_deep_learning_architectures.pytorch_core_autograd_nn_module",
+          "ml_deep_learning_architectures.feedforward_regularization_batchnorm_dropout",
+          "ml_deep_learning_architectures.convolutional_neural_networks_cnn",
+          "ml_deep_learning_architectures.recurrent_networks_lstm_gru",
+          "ml_deep_learning_architectures.transformer_self_attention_mechanisms",
+          "ml_deep_learning_architectures.autoencoders_variational_ae",
+          "ml_deep_learning_architectures.custom_layers_loss_functions_pytorch",
+          "ml_deep_learning_architectures.deep_learning_training_loop_lightning",
+          "ml_deep_learning_architectures.distributed_training_ddp_fsdp"
+        ]
+      }
+    ],
+    "assessment": [
+      {
+        "signal": "Passes Deep Learning Architectures & PyTorch Frameworks Assessment",
+        "strength": 1.0,
+        "maps_to": [
+          "ml_deep_learning_architectures.pytorch_core_autograd_nn_module",
+          "ml_deep_learning_architectures.feedforward_regularization_batchnorm_dropout",
+          "ml_deep_learning_architectures.convolutional_neural_networks_cnn",
+          "ml_deep_learning_architectures.recurrent_networks_lstm_gru",
+          "ml_deep_learning_architectures.transformer_self_attention_mechanisms",
+          "ml_deep_learning_architectures.autoencoders_variational_ae",
+          "ml_deep_learning_architectures.custom_layers_loss_functions_pytorch",
+          "ml_deep_learning_architectures.deep_learning_training_loop_lightning",
+          "ml_deep_learning_architectures.distributed_training_ddp_fsdp"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "pytorch_core_autograd_nn_module",
+        "feedforward_regularization_batchnorm_dropout",
+        "deep_learning_training_loop_lightning"
+      ],
+      "description": "Writes PyTorch tensors and modules, configures standard layers (BatchNorm, Dropout), and manages training loops with PyTorch Lightning."
+    },
+    "mid": {
+      "expected_subskills": [
+        "convolutional_neural_networks_cnn",
+        "recurrent_networks_lstm_gru",
+        "autoencoders_variational_ae",
+        "custom_layers_loss_functions_pytorch"
+      ],
+      "description": "Constructs CNNs and LSTMs/GRUs, writes custom loss functions and autograd layers, and builds Variational Autoencoders."
+    },
+    "senior": {
+      "expected_subskills": [
+        "transformer_self_attention_mechanisms",
+        "distributed_training_ddp_fsdp"
+      ],
+      "description": "Architects custom Transformer multi-head attention systems and scales multi-GPU distributed training using DDP, FSDP, and DeepSpeed."
+    }
+  }
+}

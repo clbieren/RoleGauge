@@ -1,0 +1,253 @@
+{
+  "skill_id": "de_programming",
+  "name": "Data Engineering Programming & Systems",
+  "category": "programming",
+  "description": "Proficiency in core programming languages for data engineering (Python, Scala/Java, SQL), object-oriented and functional data processing, type safety, concurrency, memory management, and serialization protocols.",
+  "subskills": [
+    {
+      "id": "python_core_oop",
+      "name": "Python Core & Object-Oriented Design",
+      "description": "Data structures, generators, decorators, context managers, classes, abstract base classes, and clean architecture in Python.",
+      "keywords": [
+        "generator",
+        "yield",
+        "decorator",
+        "contextmanager",
+        "dunder methods",
+        "dataclass",
+        "pydantic",
+        "abc",
+        "protocol",
+        "OOP",
+        "inheritance",
+        "composition"
+      ]
+    },
+    {
+      "id": "typing_data_structures",
+      "name": "Type Safety & Specialized Data Structures",
+      "description": "Type hinting with typing module, Pydantic data validation, collections (deque, defaultdict, Counter), and efficient in-memory data structures.",
+      "keywords": [
+        "type hints",
+        "typing",
+        "Union",
+        "Optional",
+        "Literal",
+        "Pydantic",
+        "BaseModel",
+        "namedtuple",
+        "defaultdict",
+        "deque",
+        "Counter",
+        "dataclasses"
+      ]
+    },
+    {
+      "id": "functional_programming",
+      "name": "Functional Data Processing & Immutability",
+      "description": "Pure functions, immutability, map/filter/reduce, lambda expressions, itertools, functools, and functional pipelines.",
+      "keywords": [
+        "pure functions",
+        "immutability",
+        "map",
+        "filter",
+        "reduce",
+        "itertools",
+        "functools",
+        "partial",
+        "lru_cache",
+        "pipe",
+        "higher-order functions"
+      ]
+    },
+    {
+      "id": "concurrency_multiprocessing",
+      "name": "Concurrency, Multiprocessing & AsyncIO",
+      "description": "Thread vs Process vs Coroutine, ThreadPoolExecutor, ProcessPoolExecutor, asyncio for I/O-bound data fetching, and GIL implications.",
+      "keywords": [
+        "multiprocessing",
+        "threading",
+        "asyncio",
+        "ThreadPoolExecutor",
+        "ProcessPoolExecutor",
+        "GIL",
+        "locks",
+        "semaphores",
+        "queue",
+        "concurrent.futures"
+      ]
+    },
+    {
+      "id": "memory_management_profiling",
+      "name": "Memory Management & Performance Profiling",
+      "description": "Garbage collection, memory leaks in long-running jobs, memory profiling (memory_profiler, tracemalloc), cProfile, and CPU profiling.",
+      "keywords": [
+        "memory_profiler",
+        "tracemalloc",
+        "cProfile",
+        "garbage collection",
+        "gc",
+        "sys.getsizeof",
+        "memory leak",
+        "CPU profiling",
+        "line_profiler"
+      ]
+    },
+    {
+      "id": "serialization_protocols",
+      "name": "Data Serialization & Binary Protocols",
+      "description": "Working with JSON, Pickle, Protocol Buffers (protobuf), FlatBuffers, Avro, MessagePack, and schema evolution rules.",
+      "keywords": [
+        "protobuf",
+        "Protocol Buffers",
+        "Avro",
+        "MessagePack",
+        "Pickle",
+        "json serialization",
+        "binary encoding",
+        "schema evolution",
+        "gRPC"
+      ]
+    },
+    {
+      "id": "scala_jvm_ecosystem",
+      "name": "Scala & JVM Ecosystem for Big Data",
+      "description": "Scala syntax, case classes, pattern matching, traits, implicits, JVM memory tuning, and sbt build tool for big data engines.",
+      "keywords": [
+        "Scala",
+        "JVM",
+        "sbt",
+        "case class",
+        "pattern matching",
+        "traits",
+        "implicits",
+        "garbage collection tuning",
+        "heap size",
+        "JVM flags"
+      ]
+    },
+    {
+      "id": "data_structures_algorithms",
+      "name": "Algorithms & Data Structures for Scale",
+      "description": "Sorting, searching, hash maps, binary trees, graph traversals for DAG dependencies, and Big-O computational complexity.",
+      "keywords": [
+        "Big-O",
+        "hash table",
+        "binary search",
+        "graph traversal",
+        "topological sort",
+        "DAG",
+        "priority queue",
+        "heap",
+        "sliding window"
+      ]
+    },
+    {
+      "id": "package_dependency_management",
+      "name": "Packaging, Environments & Dependency Isolation",
+      "description": "Managing virtual environments (venv, uv, poetry), wheel builds, pyproject.toml, requirements locking, and private PyPI registries.",
+      "keywords": [
+        "poetry",
+        "uv",
+        "pip",
+        "pyproject.toml",
+        "virtualenv",
+        "wheel",
+        "conda",
+        "setup.py",
+        "requirements.txt",
+        "lockfile"
+      ]
+    }
+  ],
+  "evidence_patterns": {
+    "cv": [
+      {
+        "signal": "Designed high-throughput Python data pipelines and microservices",
+        "strength": 0.5,
+        "maps_to": [
+          "de_programming.python_core_oop",
+          "de_programming.concurrency_multiprocessing"
+        ]
+      },
+      {
+        "signal": "Developed big data processing jobs in Scala using JVM optimization",
+        "strength": 0.5,
+        "maps_to": [
+          "de_programming.scala_jvm_ecosystem",
+          "de_programming.memory_management_profiling"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Skill endorsements for Python, Scala, and Concurrency",
+        "strength": 0.3,
+        "maps_to": [
+          "de_programming.python_core_oop",
+          "de_programming.typing_data_structures"
+        ]
+      }
+    ],
+    "github": [
+      {
+        "pattern": "*.py|pyproject.toml|poetry.lock|*.scala|build.sbt",
+        "strength": 1.0,
+        "maps_to": [
+          "de_programming.python_core_oop",
+          "de_programming.typing_data_structures",
+          "de_programming.functional_programming",
+          "de_programming.concurrency_multiprocessing",
+          "de_programming.memory_management_profiling",
+          "de_programming.serialization_protocols",
+          "de_programming.scala_jvm_ecosystem",
+          "de_programming.data_structures_algorithms",
+          "de_programming.package_dependency_management"
+        ]
+      }
+    ],
+    "assessment": [
+      {
+        "signal": "Passes Python/Scala algorithms and concurrent data pipeline test",
+        "strength": 1.0,
+        "maps_to": [
+          "de_programming.python_core_oop",
+          "de_programming.typing_data_structures",
+          "de_programming.functional_programming",
+          "de_programming.concurrency_multiprocessing",
+          "de_programming.memory_management_profiling",
+          "de_programming.serialization_protocols",
+          "de_programming.scala_jvm_ecosystem",
+          "de_programming.data_structures_algorithms",
+          "de_programming.package_dependency_management"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "python_core_oop",
+        "typing_data_structures",
+        "package_dependency_management"
+      ],
+      "description": "Writes clean, type-annotated Python scripts, manages virtual environments, and builds OOP data extraction utilities."
+    },
+    "mid": {
+      "expected_subskills": [
+        "functional_programming",
+        "concurrency_multiprocessing",
+        "serialization_protocols",
+        "data_structures_algorithms"
+      ],
+      "description": "Builds high-throughput concurrent data applications, applies functional paradigms, and optimizes data serialization."
+    },
+    "senior": {
+      "expected_subskills": [
+        "memory_management_profiling",
+        "scala_jvm_ecosystem"
+      ],
+      "description": "Solves complex memory leaks, profiles CPU/memory bottlenecks in long-running jobs, and architects Scala/JVM data pipelines."
+    }
+  }
+}

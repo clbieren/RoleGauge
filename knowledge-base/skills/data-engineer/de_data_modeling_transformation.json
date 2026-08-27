@@ -1,0 +1,225 @@
+{
+  "skill_id": "de_data_modeling_transformation",
+  "name": "Data Transformation & dbt (Data Build Tool)",
+  "category": "transformation",
+  "description": "Modular SQL transformations, dbt (Data Build Tool), Jinja templating, incremental materializations, automated testing, dbt snapshots, data lineage, and semantic layers.",
+  "subskills": [
+    {
+      "id": "dbt_models_ref_source",
+      "name": "dbt Project Structure, ref() & source() Functions",
+      "description": "dbt project layout (models, staging, marts, intermediate), source freshness tests, and building dynamic DAGs with ref() and source() macros.",
+      "keywords": [
+        "dbt",
+        "dbt_project.yml",
+        "ref()",
+        "source()",
+        "staging models",
+        "marts",
+        "intermediate models",
+        "source freshness"
+      ]
+    },
+    {
+      "id": "dbt_jinja_macros_packages",
+      "name": "Jinja Templating, Custom Macros & dbt Packages",
+      "description": "Jinja control structures (for loops, if conditions), creating reusable SQL macros, using dbt-utils, dbt-expectations packages.",
+      "keywords": [
+        "Jinja",
+        "dbt macro",
+        "{% macro %}",
+        "dbt-utils",
+        "dbt-expectations",
+        "hub.getdbt.com",
+        "reusable SQL",
+        "dynamic SQL"
+      ]
+    },
+    {
+      "id": "dbt_materializations_incremental",
+      "name": "dbt Materializations & Incremental Strategies",
+      "description": "View, Table, Ephemeral, and Incremental materializations, is_incremental() macro, merge vs delete+insert vs append incremental strategies, and unique_key design.",
+      "keywords": [
+        "materialization",
+        "incremental",
+        "is_incremental()",
+        "merge strategy",
+        "delete+insert",
+        "unique_key",
+        "ephemeral",
+        "table materialization"
+      ]
+    },
+    {
+      "id": "dbt_testing_generic_singular",
+      "name": "dbt Testing (Generic, Singular & Custom Tests)",
+      "description": "Built-in generic tests (unique, not_null, accepted_values, relationships), writing singular SQL tests, store_failures, and test severity levels.",
+      "keywords": [
+        "dbt test",
+        "unique",
+        "not_null",
+        "accepted_values",
+        "relationships",
+        "singular test",
+        "generic test",
+        "store_failures",
+        "warn vs error"
+      ]
+    },
+    {
+      "id": "dbt_snapshots_scd",
+      "name": "dbt Snapshots & Automated SCD Type 2",
+      "description": "Automating Slowly Changing Dimension Type 2 tables with dbt snapshot, timestamp vs check strategies, target_schema, and dbt_valid_from/to.",
+      "keywords": [
+        "dbt snapshot",
+        "SCD Type 2",
+        "strategy='timestamp'",
+        "strategy='check'",
+        "updated_at",
+        "check_cols",
+        "dbt_valid_from",
+        "dbt_valid_to"
+      ]
+    },
+    {
+      "id": "dbt_documentation_lineage",
+      "name": "dbt Documentation, Column Descriptions & Lineage Graph",
+      "description": "Documenting models with schema.yml doc blocks, generating dbt docs, inspecting interactive lineage DAGs, and model selection syntax.",
+      "keywords": [
+        "dbt docs generate",
+        "schema.yml",
+        "doc blocks",
+        "lineage graph",
+        "model selection",
+        "+model_name+",
+        "tag:nightly",
+        "catalog.json"
+      ]
+    },
+    {
+      "id": "sqlmesh_alternative_engines",
+      "name": "SQLMesh & Next-Gen Transformation Engines",
+      "description": "Virtual data environments, column-level lineage, SQLMesh plan & apply, automated plan evaluations, and comparison with dbt-core.",
+      "keywords": [
+        "SQLMesh",
+        "virtual data environments",
+        "sqlmesh plan",
+        "column-level lineage",
+        "Tobiko",
+        "dbt alternative",
+        "environment promotion"
+      ]
+    },
+    {
+      "id": "modular_data_transformation_pipelines",
+      "name": "Modular ELT Pipeline Design & Layering",
+      "description": "Decoupled transformation design: Ingestion -> Raw Staging -> Base Layer -> Core Business Entities -> Aggregated Data Marts.",
+      "keywords": [
+        "ELT",
+        "modular design",
+        "staging layer",
+        "marts layer",
+        "business logic decoupling",
+        "dry code",
+        "clean analytical architecture"
+      ]
+    },
+    {
+      "id": "dbt_semantic_layer_metrics",
+      "name": "dbt Semantic Layer & MetricFlow Integration",
+      "description": "Defining semantic models, dimensions, entities, measures, cumulative metrics, derived metrics in MetricFlow, and downstream querying.",
+      "keywords": [
+        "dbt Semantic Layer",
+        "MetricFlow",
+        "semantic_models",
+        "measures",
+        "dimensions",
+        "cumulative metrics",
+        "derived metrics",
+        "dbt sl query"
+      ]
+    }
+  ],
+  "evidence_patterns": {
+    "cv": [
+      {
+        "signal": "Led migration of legacy SQL stored procedures to modular dbt Core pipelines with automated testing",
+        "strength": 0.5,
+        "maps_to": [
+          "de_data_modeling_transformation.dbt_models_ref_source",
+          "de_data_modeling_transformation.dbt_materializations_incremental",
+          "de_data_modeling_transformation.dbt_testing_generic_singular"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "dbt Certified Developer certification",
+        "strength": 0.3,
+        "maps_to": [
+          "de_data_modeling_transformation.dbt_jinja_macros_packages",
+          "de_data_modeling_transformation.dbt_snapshots_scd"
+        ]
+      }
+    ],
+    "github": [
+      {
+        "pattern": "dbt_project.yml|models/**/*.sql|macros/**/*.sql|snapshots/**/*.sql|schema.yml",
+        "strength": 1.0,
+        "maps_to": [
+          "de_data_modeling_transformation.dbt_models_ref_source",
+          "de_data_modeling_transformation.dbt_jinja_macros_packages",
+          "de_data_modeling_transformation.dbt_materializations_incremental",
+          "de_data_modeling_transformation.dbt_testing_generic_singular",
+          "de_data_modeling_transformation.dbt_snapshots_scd",
+          "de_data_modeling_transformation.dbt_documentation_lineage",
+          "de_data_modeling_transformation.sqlmesh_alternative_engines",
+          "de_data_modeling_transformation.modular_data_transformation_pipelines",
+          "de_data_modeling_transformation.dbt_semantic_layer_metrics"
+        ]
+      }
+    ],
+    "assessment": [
+      {
+        "signal": "Passes dbt Transformation & Modular Data Modeling Assessment",
+        "strength": 1.0,
+        "maps_to": [
+          "de_data_modeling_transformation.dbt_models_ref_source",
+          "de_data_modeling_transformation.dbt_jinja_macros_packages",
+          "de_data_modeling_transformation.dbt_materializations_incremental",
+          "de_data_modeling_transformation.dbt_testing_generic_singular",
+          "de_data_modeling_transformation.dbt_snapshots_scd",
+          "de_data_modeling_transformation.dbt_documentation_lineage",
+          "de_data_modeling_transformation.sqlmesh_alternative_engines",
+          "de_data_modeling_transformation.modular_data_transformation_pipelines",
+          "de_data_modeling_transformation.dbt_semantic_layer_metrics"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "dbt_models_ref_source",
+        "dbt_testing_generic_singular",
+        "dbt_documentation_lineage"
+      ],
+      "description": "Structures dbt projects, writes clean ref/source models, implements standard tests (unique, not_null), and generates documentation."
+    },
+    "mid": {
+      "expected_subskills": [
+        "dbt_jinja_macros_packages",
+        "dbt_materializations_incremental",
+        "dbt_snapshots_scd",
+        "modular_data_transformation_pipelines"
+      ],
+      "description": "Develops complex Jinja macros, builds high-performance incremental models, automates SCD Type 2 snapshots, and designs decoupled marts."
+    },
+    "senior": {
+      "expected_subskills": [
+        "sqlmesh_alternative_engines",
+        "dbt_semantic_layer_metrics"
+      ],
+      "description": "Evaluates and implements next-gen virtual data engines (SQLMesh), architects enterprise semantic metric layers, and establishes company-wide transformation standards."
+    }
+  }
+}

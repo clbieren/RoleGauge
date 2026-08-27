@@ -1,0 +1,214 @@
+{
+  "skill_id": "mlops_experiment_tracking_registry",
+  "name": "Experiment Tracking & Model Registry Platforms",
+  "category": "experimentation",
+  "description": "Logging parameters, metrics, and artifacts across distributed runs (MLflow, Weights & Biases, Comet), model signatures, Model Registry versioning, and stage transition workflows.",
+  "subskills": [
+    {
+      "id": "mlflow_tracking_server_backend_setup",
+      "name": "MLflow Tracking Server & Remote Backend Architecture",
+      "description": "Configuring central MLflow Tracking Server with PostgreSQL backend store and S3/GCS artifact root, authentication, and team tenancy.",
+      "keywords": [
+        "MLflow server",
+        "backend-store-uri",
+        "default-artifact-root",
+        "PostgreSQL backend",
+        "S3 artifact store",
+        "MLflow tracking",
+        "multi-tenancy"
+      ]
+    },
+    {
+      "id": "experiment_run_logging_artifacts",
+      "name": "Experiment Logging (Parameters, Metrics, Artifacts)",
+      "description": "mlflow.start_run(), mlflow.log_params(), mlflow.log_metrics() with step history, autologging (PyTorch, Scikit-Learn, XGBoost), and artifact upload.",
+      "keywords": [
+        "mlflow.log_params",
+        "mlflow.log_metrics",
+        "mlflow.autolog",
+        "mlflow.log_artifact",
+        "nested runs",
+        "step metrics",
+        "run tags"
+      ]
+    },
+    {
+      "id": "model_signatures_input_schemas",
+      "name": "Model Signatures, Input Examples & Schemas",
+      "description": "Enforcing MLflow model signatures (ColSpec, TensorSpec), input examples, schema validation, and preventing training-serving signature mismatches.",
+      "keywords": [
+        "infer_signature",
+        "ModelSignature",
+        "ColSpec",
+        "TensorSpec",
+        "input_example",
+        "schema validation",
+        "type checking"
+      ]
+    },
+    {
+      "id": "mlflow_model_registry_lifecycle",
+      "name": "MLflow Model Registry & Stage Transitions",
+      "description": "Registering models, semantic versioning, stage transitions (None -> Staging -> Production -> Archived), aliases, and model tags.",
+      "keywords": [
+        "Model Registry",
+        "mlflow.register_model",
+        "stage transition",
+        "Production stage",
+        "Staging stage",
+        "model version",
+        "model alias"
+      ]
+    },
+    {
+      "id": "weights_biases_experiment_sweeps",
+      "name": "Weights & Biases (W&B) Dashboarding & Sweeps",
+      "description": "Setting up W&B projects, wandb.init(), wandb.log(), running Bayesian hyperparameter sweeps via sweep.yaml, and team workspaces.",
+      "keywords": [
+        "Weights & Biases",
+        "wandb.init",
+        "wandb.log",
+        "wandb sweep",
+        "sweep.yaml",
+        "W&B dashboard",
+        "run comparison"
+      ]
+    },
+    {
+      "id": "custom_mlflow_pyfunc_wrappers",
+      "name": "Custom MLflow PyFunc Wrapper Modeling",
+      "description": "Subclassing mlflow.pyfunc.PythonModel, implementing load_context() and predict(), packaging pre/post-processing logic into self-contained models.",
+      "keywords": [
+        "PythonModel",
+        "mlflow.pyfunc",
+        "load_context",
+        "predict",
+        "custom pyfunc",
+        "pre-processing wrapper",
+        "self-contained model"
+      ]
+    },
+    {
+      "id": "artifact_storage_retention_lifecycle",
+      "name": "Artifact Storage Optimization & Retention Policies",
+      "description": "Managing terabytes of checkpoint artifacts, S3 lifecycle rules for old runs, deduplication, and automated artifact pruning.",
+      "keywords": [
+        "artifact retention",
+        "S3 lifecycle",
+        "checkpoint pruning",
+        "storage optimization",
+        "artifact cleanup",
+        "disk quota"
+      ]
+    },
+    {
+      "id": "model_registry_webhook_automation",
+      "name": "Model Registry Webhooks & CI/CD Integration",
+      "description": "Configuring MLflow webhooks on model transition events to trigger automated GitHub Actions / Jenkins deployment pipelines.",
+      "keywords": [
+        "MLflow webhook",
+        "registry webhook",
+        "event trigger",
+        "model promotion event",
+        "CI/CD trigger",
+        "automated deployment"
+      ]
+    },
+    {
+      "id": "run_comparison_metric_diffing",
+      "name": "Automated Run Comparison & Metric Diffing",
+      "description": "Programmatic run querying using MLflow search_runs(), filtering top-performing models by metric thresholds, and automated leaderboards.",
+      "keywords": [
+        "mlflow.search_runs",
+        "filter_string",
+        "metric diffing",
+        "run comparison",
+        "automated leaderboard",
+        "top model selection"
+      ]
+    }
+  ],
+  "evidence_patterns": {
+    "cv": [
+      {
+        "signal": "Designed enterprise MLflow Tracking & Model Registry infrastructure managing 500+ production models",
+        "strength": 0.5,
+        "maps_to": [
+          "mlops_experiment_tracking_registry.mlflow_tracking_server_backend_setup",
+          "mlops_experiment_tracking_registry.mlflow_model_registry_lifecycle",
+          "mlops_experiment_tracking_registry.custom_mlflow_pyfunc_wrappers"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "MLflow, Weights & Biases, and Experiment Tracking specialist endorsements",
+        "strength": 0.3,
+        "maps_to": [
+          "mlops_experiment_tracking_registry.experiment_run_logging_artifacts",
+          "mlops_experiment_tracking_registry.weights_biases_experiment_sweeps"
+        ]
+      }
+    ],
+    "github": [
+      {
+        "pattern": "*mlflow*|*wandb*|mlflow.yaml|sweep.yaml|tracking/**/*.py",
+        "strength": 1.0,
+        "maps_to": [
+          "mlops_experiment_tracking_registry.mlflow_tracking_server_backend_setup",
+          "mlops_experiment_tracking_registry.experiment_run_logging_artifacts",
+          "mlops_experiment_tracking_registry.model_signatures_input_schemas",
+          "mlops_experiment_tracking_registry.mlflow_model_registry_lifecycle",
+          "mlops_experiment_tracking_registry.weights_biases_experiment_sweeps",
+          "mlops_experiment_tracking_registry.custom_mlflow_pyfunc_wrappers",
+          "mlops_experiment_tracking_registry.artifact_storage_retention_lifecycle",
+          "mlops_experiment_tracking_registry.model_registry_webhook_automation",
+          "mlops_experiment_tracking_registry.run_comparison_metric_diffing"
+        ]
+      }
+    ],
+    "assessment": [
+      {
+        "signal": "Passes Experiment Tracking & Model Registry Platforms Assessment",
+        "strength": 1.0,
+        "maps_to": [
+          "mlops_experiment_tracking_registry.mlflow_tracking_server_backend_setup",
+          "mlops_experiment_tracking_registry.experiment_run_logging_artifacts",
+          "mlops_experiment_tracking_registry.model_signatures_input_schemas",
+          "mlops_experiment_tracking_registry.mlflow_model_registry_lifecycle",
+          "mlops_experiment_tracking_registry.weights_biases_experiment_sweeps",
+          "mlops_experiment_tracking_registry.custom_mlflow_pyfunc_wrappers",
+          "mlops_experiment_tracking_registry.artifact_storage_retention_lifecycle",
+          "mlops_experiment_tracking_registry.model_registry_webhook_automation",
+          "mlops_experiment_tracking_registry.run_comparison_metric_diffing"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "experiment_run_logging_artifacts",
+        "model_signatures_input_schemas",
+        "weights_biases_experiment_sweeps"
+      ],
+      "description": "Logs runs and parameters to MLflow/W&B, enforces input schemas/signatures, and configures experiment sweeps."
+    },
+    "mid": {
+      "expected_subskills": [
+        "mlflow_tracking_server_backend_setup",
+        "mlflow_model_registry_lifecycle",
+        "custom_mlflow_pyfunc_wrappers",
+        "run_comparison_metric_diffing"
+      ],
+      "description": "Provisions MLflow tracking servers, manages Model Registry stage lifecycles, and authors custom PyFunc model wrappers."
+    },
+    "senior": {
+      "expected_subskills": [
+        "artifact_storage_retention_lifecycle",
+        "model_registry_webhook_automation"
+      ],
+      "description": "Architects enterprise model registry automation with webhooks, CI/CD promotion pipelines, and global artifact retention governance."
+    }
+  }
+}

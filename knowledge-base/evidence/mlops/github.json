@@ -1,0 +1,71 @@
+{
+  "source_id": "github",
+  "name": "GitHub Repository Analysis - MLOps Engineering",
+  "description": "Automated code and pipeline scanning rules for validating MLOps Engineer implementations.",
+  "preprocessing_pipeline": {
+    "steps": [
+      {
+        "step": 1,
+        "name": "repository_metadata",
+        "description": "Inspects repositories for MLOps manifests, orchestration DAGs, and infrastructure definitions."
+      },
+      {
+        "step": 2,
+        "name": "file_tree_scan",
+        "description": "Scans for Kubeflow, Flyte, BentoML, KServe, Terraform, and MLflow pipeline configs.",
+        "target_files": [
+          {
+            "pattern": "pipeline.yaml|*kfp*.py|*flyte*.py",
+            "skill": "mlops_pipeline_orchestration",
+            "priority": "high"
+          },
+          {
+            "pattern": "*inferenceservice*.yml|*seldon*.yml|*ray_serve*.py",
+            "skill": "mlops_model_serving_infrastructure",
+            "priority": "high"
+          },
+          {
+            "pattern": "feature_store.yaml|dvc.yaml|.dvc",
+            "skill": "mlops_data_feature_management",
+            "priority": "high"
+          },
+          {
+            "pattern": "bentofile.yaml|config.pbtxt|Dockerfile*",
+            "skill": "mlops_model_packaging_containerization",
+            "priority": "high"
+          },
+          {
+            "pattern": "terraform/**/*.tf|karpenter*.yml|*.tfvars",
+            "skill": "mlops_infrastructure_iac_cloud",
+            "priority": "high"
+          },
+          {
+            "pattern": "*mlflow*|*wandb*|sweep.yaml",
+            "skill": "mlops_experiment_tracking_registry",
+            "priority": "high"
+          },
+          {
+            "pattern": "*drift*.py|*prometheus*|*evidently*.py",
+            "skill": "mlops_monitoring_drift_observability",
+            "priority": "high"
+          },
+          {
+            "pattern": ".github/workflows/*.yml|cml*.sh|rollout*.yml",
+            "skill": "mlops_ci_cd_continuous_training",
+            "priority": "high"
+          },
+          {
+            "pattern": "*finops*|*mig*.yml|spot/**/*.py",
+            "skill": "mlops_cost_finops_resource_optimization",
+            "priority": "high"
+          },
+          {
+            "pattern": "*model_card*.md|governance/**/*.py",
+            "skill": "mlops_lifecycle_governance",
+            "priority": "high"
+          }
+        ]
+      }
+    ]
+  }
+}

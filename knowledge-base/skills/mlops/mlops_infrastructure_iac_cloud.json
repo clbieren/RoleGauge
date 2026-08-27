@@ -1,0 +1,217 @@
+{
+  "skill_id": "mlops_infrastructure_iac_cloud",
+  "name": "Cloud Infrastructure & Kubernetes for ML (Terraform / K8s)",
+  "category": "infrastructure",
+  "description": "Infrastructure as Code (Terraform), Kubernetes cluster architecture for ML (EKS/GKE), Karpenter node provisioning, GPU device plugins, IAM roles & service accounts, and cluster networking.",
+  "subskills": [
+    {
+      "id": "terraform_ml_infrastructure_modules",
+      "name": "Terraform Modules for ML Platforms",
+      "description": "Authoring modular Terraform for ML: EKS/GKE clusters, S3/GCS model artifact buckets, IAM roles for service accounts (IRSA), and MLflow DBs.",
+      "keywords": [
+        "Terraform for ML",
+        "IRSA",
+        "Terraform module",
+        "EKS module",
+        "GKE module",
+        "S3 bucket IaC",
+        "remote state",
+        "HCL"
+      ]
+    },
+    {
+      "id": "kubernetes_gpu_device_plugin_setup",
+      "name": "NVIDIA GPU Device Plugin & Operator for K8s",
+      "description": "Installing NVIDIA GPU Operator on Kubernetes, nvidia-device-plugin DaemonSet, automatic driver injection, and GPU node tagging.",
+      "keywords": [
+        "NVIDIA GPU Operator",
+        "k8s-device-plugin",
+        "nvidia.com/gpu",
+        "GPU DaemonSet",
+        "driver container",
+        "GPU node discovery"
+      ]
+    },
+    {
+      "id": "karpenter_just_in_time_gpu_node_provisioning",
+      "name": "Karpenter Just-in-Time GPU Node Provisioning",
+      "description": "Configuring Karpenter NodePools and EC2NodeClasses for fast, dynamic GPU instance provisioning (g5, p4d) directly from pending pod specs.",
+      "keywords": [
+        "Karpenter",
+        "NodePool",
+        "EC2NodeClass",
+        "just-in-time provisioning",
+        "GPU instance provisioning",
+        "spot node provisioning",
+        "consolidation"
+      ]
+    },
+    {
+      "id": "iam_roles_service_accounts_irsa_security",
+      "name": "IAM Roles for Service Accounts (IRSA / Workload Identity)",
+      "description": "Binding Kubernetes ServiceAccounts to AWS IAM roles / GCP Workload Identity to grant least privilege S3/GCS bucket access without hardcoded keys.",
+      "keywords": [
+        "IRSA",
+        "Workload Identity",
+        "IAM role",
+        "ServiceAccount",
+        "least privilege",
+        "oidc provider",
+        "cloud security"
+      ]
+    },
+    {
+      "id": "helm_charts_mlops_platform_deployment",
+      "name": "Helm Charts for MLOps Tooling Deployments",
+      "description": "Deploying and managing MLOps platform components (MLflow, Feast, KServe, Prometheus) using custom and community Helm charts.",
+      "keywords": [
+        "Helm",
+        "values.yaml",
+        "helm upgrade",
+        "MLflow helm",
+        "KServe helm",
+        "chart repository",
+        "K8s package management"
+      ]
+    },
+    {
+      "id": "cluster_networking_ingress_cert_manager",
+      "name": "Cluster Ingress, TLS Termination & cert-manager",
+      "description": "Configuring Ingress-NGINX / Envoy Gateway, Let's Encrypt TLS certificates with cert-manager, and secure external domain routing.",
+      "keywords": [
+        "Ingress-NGINX",
+        "cert-manager",
+        "TLS termination",
+        "Let's Encrypt",
+        "Envoy Gateway",
+        "secure routing",
+        "external-dns"
+      ]
+    },
+    {
+      "id": "persistent_volumes_nfs_fast_model_loading",
+      "name": "High-Throughput Storage (EFS, FSx for Lustre, NVMe)",
+      "description": "Mounting high-throughput shared storage (Amazon FSx for Lustre, EFS, local NVMe CSI) to pods for multi-gigabyte model checkpoint loading.",
+      "keywords": [
+        "FSx for Lustre",
+        "EFS",
+        "NVMe CSI",
+        "PersistentVolume",
+        "StorageClass",
+        "high throughput storage",
+        "fast checkpoint loading"
+      ]
+    },
+    {
+      "id": "multi_tenant_cluster_isolation_namespaces",
+      "name": "Multi-Tenant Resource Quotas & NetworkPolicies",
+      "description": "Hard multi-tenancy in ML clusters: ResourceQuotas, LimitRanges per team namespace, NetworkPolicies for traffic isolation, and priority classes.",
+      "keywords": [
+        "ResourceQuota",
+        "LimitRange",
+        "NetworkPolicy",
+        "multi-tenancy",
+        "PriorityClass",
+        "namespace isolation",
+        "preemption"
+      ]
+    },
+    {
+      "id": "multi_region_cloud_disaster_recovery",
+      "name": "Multi-Region Cloud Failover & Disaster Recovery",
+      "description": "Cross-region S3 replication of model registries, multi-region Route 53 DNS failover, and automated cluster disaster recovery runbooks.",
+      "keywords": [
+        "Disaster Recovery",
+        "cross-region replication",
+        "Route 53 failover",
+        "multi-region EKS",
+        "RTO",
+        "RPO",
+        "backup runbook"
+      ]
+    }
+  ],
+  "evidence_patterns": {
+    "cv": [
+      {
+        "signal": "Provisioned multi-cluster Kubernetes ML platform using Terraform, Karpenter GPU autoscaling, and FSx for Lustre",
+        "strength": 0.5,
+        "maps_to": [
+          "mlops_infrastructure_iac_cloud.terraform_ml_infrastructure_modules",
+          "mlops_infrastructure_iac_cloud.karpenter_just_in_time_gpu_node_provisioning",
+          "mlops_infrastructure_iac_cloud.persistent_volumes_nfs_fast_model_loading"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Kubernetes for ML, Terraform, and Cloud Infrastructure endorsements",
+        "strength": 0.3,
+        "maps_to": [
+          "mlops_infrastructure_iac_cloud.kubernetes_gpu_device_plugin_setup",
+          "mlops_infrastructure_iac_cloud.iam_roles_service_accounts_irsa_security"
+        ]
+      }
+    ],
+    "github": [
+      {
+        "pattern": "terraform/**/*.tf|helm/**/*.yaml|karpenter*.yml|*.tfvars",
+        "strength": 1.0,
+        "maps_to": [
+          "mlops_infrastructure_iac_cloud.terraform_ml_infrastructure_modules",
+          "mlops_infrastructure_iac_cloud.kubernetes_gpu_device_plugin_setup",
+          "mlops_infrastructure_iac_cloud.karpenter_just_in_time_gpu_node_provisioning",
+          "mlops_infrastructure_iac_cloud.iam_roles_service_accounts_irsa_security",
+          "mlops_infrastructure_iac_cloud.helm_charts_mlops_platform_deployment",
+          "mlops_infrastructure_iac_cloud.cluster_networking_ingress_cert_manager",
+          "mlops_infrastructure_iac_cloud.persistent_volumes_nfs_fast_model_loading",
+          "mlops_infrastructure_iac_cloud.multi_tenant_cluster_isolation_namespaces",
+          "mlops_infrastructure_iac_cloud.multi_region_cloud_disaster_recovery"
+        ]
+      }
+    ],
+    "assessment": [
+      {
+        "signal": "Passes Cloud Infrastructure & Kubernetes for ML Technical Assessment",
+        "strength": 1.0,
+        "maps_to": [
+          "mlops_infrastructure_iac_cloud.terraform_ml_infrastructure_modules",
+          "mlops_infrastructure_iac_cloud.kubernetes_gpu_device_plugin_setup",
+          "mlops_infrastructure_iac_cloud.karpenter_just_in_time_gpu_node_provisioning",
+          "mlops_infrastructure_iac_cloud.iam_roles_service_accounts_irsa_security",
+          "mlops_infrastructure_iac_cloud.helm_charts_mlops_platform_deployment",
+          "mlops_infrastructure_iac_cloud.cluster_networking_ingress_cert_manager",
+          "mlops_infrastructure_iac_cloud.persistent_volumes_nfs_fast_model_loading",
+          "mlops_infrastructure_iac_cloud.multi_tenant_cluster_isolation_namespaces",
+          "mlops_infrastructure_iac_cloud.multi_region_cloud_disaster_recovery"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "kubernetes_gpu_device_plugin_setup",
+        "iam_roles_service_accounts_irsa_security",
+        "helm_charts_mlops_platform_deployment"
+      ],
+      "description": "Deploys NVIDIA GPU device plugins, configures least-privilege IRSA security, and manages Helm chart releases."
+    },
+    "mid": {
+      "expected_subskills": [
+        "terraform_ml_infrastructure_modules",
+        "cluster_networking_ingress_cert_manager",
+        "persistent_volumes_nfs_fast_model_loading",
+        "multi_tenant_cluster_isolation_namespaces"
+      ],
+      "description": "Provisions ML clusters with Terraform, mounts high-speed FSx/NVMe volumes, configures TLS cert-manager, and enforces namespace quotas."
+    },
+    "senior": {
+      "expected_subskills": [
+        "karpenter_just_in_time_gpu_node_provisioning",
+        "multi_region_cloud_disaster_recovery"
+      ],
+      "description": "Architects just-in-time GPU node provisioning with Karpenter and implements enterprise multi-region cloud disaster recovery."
+    }
+  }
+}
