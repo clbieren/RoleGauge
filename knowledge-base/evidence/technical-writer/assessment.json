@@ -1,0 +1,939 @@
+{
+  "source_id": "assessment",
+  "name": "Adaptive Technical Assessment - Technical Writer",
+  "description": "Adaptive scenario-based technical questions and practical tasks to verify technical writing competencies across craft fundamentals, content strategy, developer/API documentation, product support runbooks, content marketing & SEO, and Docs-as-Code tooling.",
+  "trigger_conditions": {
+    "description": "When to trigger assessment questions for a subskill.",
+    "rules": [
+      "When a subskill has status 'not_yet_evidenced' (confidence = 0.0) for a target Technical Writer role",
+      "When a subskill has status 'insufficient_evidence' and confidence < 0.4",
+      "When CV/LinkedIn claims a skill but GitHub has no supporting documentation repository evidence",
+      "When a skill is critical for the target role (importance >= 0.85) and evidence is ambiguous",
+      "User can also voluntarily request assessment to verify their writing portfolio and documentation engineering depth"
+    ]
+  },
+  "question_types": [
+    {
+      "type": "scenario",
+      "description": "Scenario-based writing, editorial revision, information architecture design, and persona adaptation tasks.",
+      "strength": 0.8
+    },
+    {
+      "type": "practical_task",
+      "description": "Hands-on drafting of OpenAPI YAML schemas, Keep a Changelog entries, cURL requests, Vale linter configs, or troubleshooting runbooks.",
+      "strength": 1.0
+    },
+    {
+      "type": "style_guide_decision",
+      "description": "Resolving complex style guide disputes, terminology governance, or accessibility/readability optimizations.",
+      "strength": 0.8
+    }
+  ],
+  "adaptive_logic": {
+    "description": "How the system selects and adapts questions based on user evidence.",
+    "rules": [
+      "Start with a scenario or style question matching the target subskill",
+      "If answered with high keyword completeness, escalate to a practical architecture or specification authoring task",
+      "If answered incorrectly or incompletely, mark as verified_gap and suggest specific technical writing learning resources",
+      "Difficulty matches the target level (junior, mid, senior)",
+      "Every question maps directly to a verified composite key ({skill_id}.{subskill_id})"
+    ]
+  },
+  "sample_questions_by_composite_key": {
+    "tw_fundamentals_writing_craft.clarity_conciseness_active_voice": [
+      {
+        "level": "junior",
+        "type": "scenario",
+        "question": "Rewrite the following passive, nominalized sentence for a developer guide: 'Utilization of the authorization header must be performed by the client application in order for the execution of requests to be facilitated without encountering authentication termination errors.' Provide the revised sentence and explain which nominalizations and passive constructions you eliminated.",
+        "expected_answer_keywords": [
+          "active voice",
+          "eliminate nominalizations",
+          "direct imperative",
+          "Include the Authorization header in your request",
+          "concise phrasing",
+          "plain language",
+          "clear instruction"
+        ]
+      }
+    ],
+    "tw_fundamentals_writing_craft.style_guides_standards": [
+      {
+        "level": "junior",
+        "type": "style_guide_decision",
+        "question": "According to the Google Developer Documentation Style Guide and Microsoft Writing Style Guide, resolve this style conflict: A writer wants to document a button click as 'Click on the \"Submit\" button.' Provide the standard-compliant version, formatting rules for UI elements, and explain the stance on using 'click on' vs 'click' and quotes vs bolding.",
+        "expected_answer_keywords": [
+          "Google Developer Style Guide",
+          "Microsoft Writing Style Guide",
+          "bold UI elements",
+          "select or click",
+          "eliminate on preposition",
+          "do not put quotes around button names",
+          "Click Submit"
+        ]
+      }
+    ],
+    "tw_fundamentals_writing_craft.audience_persona_analysis": [
+      {
+        "level": "junior",
+        "type": "persona_adaptation",
+        "question": "You need to explain OAuth2 Refresh Tokens. Outline how you would adapt the explanation differently for: (1) A junior frontend developer building a React SPA, and (2) A compliance auditor verifying token expiration policies. Specify the vocabulary, mental models, and key takeaways for each.",
+        "expected_answer_keywords": [
+          "frontend developer persona",
+          "silent token refresh",
+          "local storage security",
+          "compliance auditor persona",
+          "token TTL",
+          "revocation policy",
+          "cryptographic expiry",
+          "tailored vocabulary"
+        ]
+      }
+    ],
+    "tw_fundamentals_writing_craft.information_architecture_hierarchy": [
+      {
+        "level": "mid",
+        "type": "structural_design",
+        "question": "Given a 3,000-word monolithic document detailing Webhook integration, design a multi-tier heading hierarchy (H1 to H3) applying progressive disclosure, chunking, and scannable navigation.",
+        "expected_answer_keywords": [
+          "progressive disclosure",
+          "heading hierarchy",
+          "H1 Overview",
+          "H2 Prerequisites",
+          "H2 Setup Webhook Endpoint",
+          "H2 Verify Signatures",
+          "H2 Troubleshooting",
+          "chunking",
+          "scannability"
+        ]
+      }
+    ],
+    "tw_fundamentals_writing_craft.dita_topic_based_authoring": [
+      {
+        "level": "mid",
+        "type": "topic_authoring_scenario",
+        "question": "Differentiate how you would structure content for a 'Concept Topic' (What is Database Sharding?) versus a 'Task Topic' (How to Configure Shard Keys in MongoDB) and a 'Reference Topic' (MongoDB Shard Configuration Parameters). Detail the required structural elements of each topic type.",
+        "expected_answer_keywords": [
+          "topic-based authoring",
+          "DITA",
+          "concept topic explains why and what",
+          "task topic contains numbered steps and prerequisites",
+          "reference topic is tabular parameter data",
+          "minimalism",
+          "modular topics"
+        ]
+      }
+    ],
+    "tw_fundamentals_writing_craft.terminology_glossary_management": [
+      {
+        "level": "mid",
+        "type": "taxonomy_governance",
+        "question": "A product engineering team uses 'Workspace', 'Tenant', 'Organization', and 'Account' interchangeably across microservices. Draft a terminology governance proposal that establishes canonical definitions, deprecated aliases, and a migration plan for public documentation.",
+        "expected_answer_keywords": [
+          "controlled vocabulary",
+          "canonical definition",
+          "deprecated terms",
+          "synonym mapping",
+          "glossary entry",
+          "taxonomy alignment",
+          "terminology governance"
+        ]
+      }
+    ],
+    "tw_fundamentals_writing_craft.readability_scoring_editing": [
+      {
+        "level": "senior",
+        "type": "editorial_review",
+        "question": "Perform a substantive and copyediting review on a complex cloud architecture guide whose Flesch-Kincaid grade level is 16.4. What specific editorial techniques will you apply to lower the grade level to 9.0 without losing technical precision?",
+        "expected_answer_keywords": [
+          "Flesch-Kincaid",
+          "substantive editing",
+          "shorten sentence length",
+          "break multi-clause sentences",
+          "bulleted lists for conditions",
+          "plain language",
+          "active voice",
+          "grade level reduction"
+        ]
+      }
+    ],
+    "tw_fundamentals_writing_craft.inclusive_accessible_language": [
+      {
+        "level": "senior",
+        "type": "accessibility_audit",
+        "question": "Review a screenshot-heavy cloud provisioning tutorial for accessibility. What WCAG 2.1 AA requirements must you satisfy regarding alt text for architectural diagrams, non-visual directional cues (avoiding 'click the blue button on the right'), and color contrast in code syntax highlighting?",
+        "expected_answer_keywords": [
+          "WCAG 2.1",
+          "alt text for diagrams",
+          "descriptive image text",
+          "color-agnostic cues",
+          "avoid sensory characteristics",
+          "screen reader compatibility",
+          "inclusive language",
+          "accessible docs"
+        ]
+      }
+    ],
+    "tw_fundamentals_writing_craft.doc_governance_style_creation": [
+      {
+        "level": "senior",
+        "type": "governance_architecture",
+        "question": "Draft a custom Vale linting rule (in YAML) that flags and rejects the phrase 'easy to use' or 'simply' in technical documentation, explaining the philosophical rationale under your company's writing tenets.",
+        "expected_answer_keywords": [
+          "Vale rule",
+          "YAML linter config",
+          "avoid words like simply or easy",
+          "cognitive bias",
+          "user empathy",
+          "writing tenets",
+          "automated style enforcement",
+          "editorial governance"
+        ]
+      }
+    ],
+    "tw_content_research_strategy.sme_interviewing_elicitation": [
+      {
+        "level": "junior",
+        "type": "interview_strategy",
+        "question": "You have a 30-minute interview with a Principal Backend Engineer to document a new distributed idempotency key mechanism. Outline your pre-interview preparation, five high-yield questions, and how you will capture technical edge cases without wasting SME time.",
+        "expected_answer_keywords": [
+          "pre-interview PRD review",
+          "idempotency key lifecycle",
+          "TTL and expiration",
+          "concurrent duplicate requests",
+          "failure modes and replay attacks",
+          "structured questions",
+          "recorded demo transcription"
+        ]
+      }
+    ],
+    "tw_content_research_strategy.source_code_spec_reading": [
+      {
+        "level": "junior",
+        "type": "spec_investigation",
+        "question": "A pull request merges a new gRPC service without written documentation. How do you inspect the `.proto` protobuf file, message definitions, field options, and enum mappings to reconstruct a complete reference document?",
+        "expected_answer_keywords": [
+          "protobuf inspection",
+          ".proto file syntax",
+          "message types",
+          "rpc service definitions",
+          "field cardinality",
+          "enum default values",
+          "proto comments extraction"
+        ]
+      }
+    ],
+    "tw_content_research_strategy.content_gap_analysis": [
+      {
+        "level": "junior",
+        "type": "gap_audit",
+        "question": "Describe how you would combine documentation pageview drop-offs, internal site search zero-result logs, and monthly Zendesk support tickets to identify critical missing topics in an enterprise developer portal.",
+        "expected_answer_keywords": [
+          "content gap analysis",
+          "zero-result searches",
+          "support ticket driver categorization",
+          "pageview drop-off",
+          "unanswered user questions",
+          "triage matrix",
+          "documentation backlog"
+        ]
+      }
+    ],
+    "tw_content_research_strategy.content_lifecycle_management": [
+      {
+        "level": "mid",
+        "type": "lifecycle_planning",
+        "question": "Design an automated content staleness review workflow: What triggers a review (time-based vs git commit activity), how are doc owners alerted, and what is the multi-stage deprecation process for legacy API features?",
+        "expected_answer_keywords": [
+          "content lifecycle",
+          "staleness review",
+          "freshness SLA",
+          "deprecation notice banner",
+          "sunsetting schedule",
+          "content archiving",
+          "doc owner attribution"
+        ]
+      }
+    ],
+    "tw_content_research_strategy.information_mapping_user_journeys": [
+      {
+        "level": "mid",
+        "type": "journey_mapping",
+        "question": "Map out a 4-phase developer onboarding learning path for a Payment Processing SaaS: Discovery -> Sandbox Quickstart -> Production Activation -> Advanced Webhook Handling. Detail what content deliverables belong in each stage.",
+        "expected_answer_keywords": [
+          "learning path",
+          "developer onboarding funnel",
+          "sandbox quickstart",
+          "test credentials",
+          "production checklist",
+          "webhook retry handling",
+          "progressive onboarding"
+        ]
+      }
+    ],
+    "tw_content_research_strategy.docs_as_product_strategy": [
+      {
+        "level": "mid",
+        "type": "strategy_roadmap",
+        "question": "How do you apply product management methodologies to documentation? Outline how you define doc OKRs, prioritize documentation bugs vs feature guides in sprint planning, and measure launch readiness for major product releases.",
+        "expected_answer_keywords": [
+          "docs as a product",
+          "documentation OKRs",
+          "sprint backlog grooming",
+          "launch readiness criteria",
+          "KPI tracking",
+          "cross-functional release sync",
+          "user satisfaction metrics"
+        ]
+      }
+    ],
+    "tw_content_research_strategy.content_reuse_single_sourcing": [
+      {
+        "level": "senior",
+        "type": "single_sourcing_architecture",
+        "question": "Your company supports Cloud, On-Premise, and Hybrid deployment models sharing 70% common workflows. Design a single-sourcing component architecture (using MDX/Docusaurus or Antora/AsciiDoc) utilizing snippets, partials, and conditional rendering variables to eliminate duplication.",
+        "expected_answer_keywords": [
+          "single-sourcing",
+          "content reuse",
+          "MDX partials",
+          "conditional rendering",
+          "variable injection",
+          "transclusion",
+          "snippet maintenance",
+          "DRY documentation"
+        ]
+      }
+    ],
+    "tw_content_research_strategy.enterprise_doc_auditing": [
+      {
+        "level": "senior",
+        "type": "enterprise_audit",
+        "question": "You inherit an unmaintained 2,500-page enterprise documentation library. Outline your qualitative and quantitative audit framework (ROT analysis: Redundant, Outdated, Trivial), score criteria, consolidation strategy, and executive reporting metrics.",
+        "expected_answer_keywords": [
+          "enterprise content audit",
+          "ROT analysis",
+          "redundant outdated trivial",
+          "content inventory matrix",
+          "consolidation roadmap",
+          "redirect mapping 301",
+          "rot score"
+        ]
+      }
+    ],
+    "tw_content_research_strategy.knowledge_base_federation": [
+      {
+        "level": "senior",
+        "type": "federation_strategy",
+        "question": "Architect a federated knowledge governance model connecting engineering design docs in Notion/Confluence, external developer docs in Docusaurus, and support articles in Zendesk. How do you prevent fragmented silos and synchronize updates?",
+        "expected_answer_keywords": [
+          "knowledge base federation",
+          "single source of truth",
+          "unified search indexing",
+          "cross-portal synchronization",
+          "taxonomy alignment",
+          "content governance board",
+          "automated sync webhooks"
+        ]
+      }
+    ],
+    "tw_developer_documentation.openapi_swagger_spec_authoring": [
+      {
+        "level": "junior",
+        "type": "spec_authoring",
+        "question": "Write a complete OpenAPI 3.1 YAML snippet for a `POST /v1/webhooks` endpoint. Include request body schema with required fields (url, events array, secret), a 201 Created response with response schema, and a 422 Unprocessable Entity error schema.",
+        "expected_answer_keywords": [
+          "openapi 3.1",
+          "paths /v1/webhooks",
+          "post operation",
+          "requestBody application/json",
+          "required properties url events secret",
+          "responses 201",
+          "responses 422",
+          "schema components"
+        ]
+      }
+    ],
+    "tw_developer_documentation.api_reference_writing": [
+      {
+        "level": "junior",
+        "type": "api_reference_entry",
+        "question": "Draft an API endpoint reference document for `GET /v2/customers/{customer_id}/invoices`. Detail the path parameter, query parameters (`status`, `limit`, `starting_after`), HTTP headers (Authorization, Idempotency-Key), and full response payload representation.",
+        "expected_answer_keywords": [
+          "REST API reference",
+          "GET method",
+          "customer_id path parameter",
+          "cursor pagination starting_after",
+          "status filter query parameter",
+          "Authorization Bearer",
+          "JSON response structure",
+          "HTTP status codes"
+        ]
+      }
+    ],
+    "tw_developer_documentation.curl_code_sample_authoring": [
+      {
+        "level": "junior",
+        "type": "code_sample_creation",
+        "question": "Write an executable cURL snippet to authenticate against an OAuth2 token endpoint (`POST /oauth/token`) using `client_credentials` grant type, passing credentials via Basic Auth headers and body parameters, formatted with multi-line readability.",
+        "expected_answer_keywords": [
+          "curl -X POST",
+          "Basic Auth -u or Authorization header",
+          "-H Content-Type application/x-www-form-urlencoded",
+          "-d grant_type=client_credentials",
+          "-d scope=",
+          "multi-line formatting backslash",
+          "executable example"
+        ]
+      }
+    ],
+    "tw_developer_documentation.developer_quickstarts_tutorials": [
+      {
+        "level": "junior",
+        "type": "quickstart_tutorial",
+        "question": "Draft a '5-Minute Quickstart: Send Your First SMS via API'. Structure the guide with Prerequisites, Get API Key, Make the API Request (with cURL & Python snippet), and Verify Delivery in the Dashboard. Keep prose actionable and minimal.",
+        "expected_answer_keywords": [
+          "5-minute quickstart",
+          "action-oriented steps",
+          "prerequisites API credentials",
+          "cURL request",
+          "Python requests snippet",
+          "expected response JSON",
+          "verification step",
+          "next steps links"
+        ]
+      }
+    ],
+    "tw_developer_documentation.sdk_library_documentation": [
+      {
+        "level": "mid",
+        "type": "sdk_guide",
+        "question": "Write a guide for an official Node.js / TypeScript SDK client library: Cover installation (`npm install @acme/sdk`), client initialization with custom timeout and retries, handling SDK-specific exception classes (`RateLimitError`, `AuthenticationError`), and async/await usage.",
+        "expected_answer_keywords": [
+          "SDK documentation",
+          "npm install",
+          "client initialization",
+          "apiKey and timeout config",
+          "try/catch error handling",
+          "RateLimitError",
+          "TypeScript types and interfaces",
+          "async await pattern"
+        ]
+      }
+    ],
+    "tw_developer_documentation.graphql_grpc_asyncapi_docs": [
+      {
+        "level": "mid",
+        "type": "non_rest_docs",
+        "question": "Explain how you document a GraphQL Subscription endpoint (e.g. `orderStatusUpdated(orderId: ID!)`) versus a gRPC bi-directional streaming RPC. Detail schema documentation, connection lifecycle (WebSocket / HTTP/2), payload schemas, and client keep-alive requirements.",
+        "expected_answer_keywords": [
+          "GraphQL subscription",
+          "WebSocket connection lifecycle",
+          "gRPC bidirectional streaming",
+          "HTTP/2 multiplexing",
+          "Protobuf message contracts",
+          "keep-alive and heartbeats",
+          "payload schema definition"
+        ]
+      }
+    ],
+    "tw_developer_documentation.cli_command_reference": [
+      {
+        "level": "mid",
+        "type": "cli_reference",
+        "question": "Author a CLI command reference page for `acmectl cluster deploy`: Document command syntax, required flags (`--cluster-id`, `--image`), optional flags (`--replicas`, `--dry-run`, `--timeout`), environment variable overrides (`ACME_CLUSTER_ID`), exit codes (0, 1, 130), and three practical examples.",
+        "expected_answer_keywords": [
+          "CLI command syntax",
+          "required flags",
+          "optional flags",
+          "dry-run flag",
+          "environment variable overrides",
+          "exit codes explanation",
+          "practical terminal examples",
+          "shell output formatting"
+        ]
+      }
+    ],
+    "tw_developer_documentation.api_error_handling_troubleshooting": [
+      {
+        "level": "mid",
+        "type": "error_catalog_design",
+        "question": "Design an RFC 7807 (Problem Details for HTTP APIs) compliant error response catalog for an API. Detail the standard JSON fields (`type`, `title`, `status`, `detail`, `instance`, `invalid_params`), and write reference entries for 401, 403, 404, 409 Conflict, and 429 Rate Limit.",
+        "expected_answer_keywords": [
+          "RFC 7807",
+          "Problem Details JSON",
+          "error code catalog",
+          "HTTP 409 Conflict resolution",
+          "HTTP 429 Retry-After header",
+          "troubleshooting guidance",
+          "machine-readable error types"
+        ]
+      }
+    ],
+    "tw_developer_documentation.devportal_architecture_experience": [
+      {
+        "level": "senior",
+        "type": "devportal_dx_architecture",
+        "question": "Architect the Developer Experience (DX) for a modern developer hub: Detail interactive API explorer design (Swagger UI vs Redoc vs Scalar), automatic language snippet generation, personal API key injection in sandbox, and frictionless copy-paste ergonomics.",
+        "expected_answer_keywords": [
+          "developer portal DX",
+          "interactive API console",
+          "Scalar / Stoplight / Redoc",
+          "automated SDK code generator",
+          "sandbox credential injection",
+          "copy-to-clipboard ergonomics",
+          "developer onboarding metrics"
+        ]
+      }
+    ],
+    "tw_developer_documentation.versioning_breaking_changes_migration": [
+      {
+        "level": "senior",
+        "type": "migration_guide_authoring",
+        "question": "Draft an API Version Migration Guide for upgrading from `v1` to `v2` (where synchronous billing endpoints changed to asynchronous webhook events). Structure the guide with Breaking Changes Summary, Deprecation Timeline, Side-by-Side Code Diffs, and Compatibility Sandbox.",
+        "expected_answer_keywords": [
+          "API migration guide",
+          "breaking changes summary",
+          "deprecation timeline sunset",
+          "side-by-side code diffs",
+          "sync to async event migration",
+          "webhook handler implementation",
+          "rollback strategy"
+        ]
+      }
+    ],
+    "tw_product_support_content.how_to_procedural_guides": [
+      {
+        "level": "junior",
+        "type": "how_to_procedural",
+        "question": "Write a step-by-step How-To Guide: 'How to Configure Webhook Signatures in Acme Dashboard'. Include Prerequisites, Step 1 (Generate Signing Secret), Step 2 (Configure Endpoint URL), Step 3 (Select Event Subscriptions), Expected Result callout, and Verification test.",
+        "expected_answer_keywords": [
+          "numbered procedural steps",
+          "prerequisites callout",
+          "UI navigation path",
+          "signing secret generation",
+          "event subscription checkboxes",
+          "expected outcome",
+          "verification step"
+        ]
+      }
+    ],
+    "tw_product_support_content.release_notes_changelogs": [
+      {
+        "level": "junior",
+        "type": "release_notes",
+        "question": "Write a Keep a Changelog compliant `CHANGELOG.md` entry for Version `2.4.0` containing: 2 Added features, 1 Changed behavior, 1 Deprecated query parameter, 2 Fixed bugs, and 1 Security patch. Adhere strictly to semver standards.",
+        "expected_answer_keywords": [
+          "Keep a Changelog format",
+          "version 2.4.0 header with date",
+          "### Added section",
+          "### Changed section",
+          "### Deprecated section",
+          "### Fixed section",
+          "### Security section",
+          "semantic versioning"
+        ]
+      }
+    ],
+    "tw_product_support_content.faq_self_service_articles": [
+      {
+        "level": "junior",
+        "type": "faq_article",
+        "question": "Draft a concise, high-deflection Knowledge Base FAQ article answering: 'Why was my API request throttled with a 429 Too Many Requests error?'. Structure with Direct Answer, Rate Limit Tiers table, How to Check Your Current Usage, and Remediation (Exponential Backoff).",
+        "expected_answer_keywords": [
+          "FAQ self-service article",
+          "direct concise answer",
+          "HTTP 429 Too Many Requests",
+          "rate limit tiers table",
+          "X-RateLimit headers",
+          "exponential backoff with jitter",
+          "ticket deflection"
+        ]
+      }
+    ],
+    "tw_product_support_content.troubleshooting_root_cause_guides": [
+      {
+        "level": "mid",
+        "type": "troubleshooting_runbook",
+        "question": "Write a Troubleshooting Guide for 'Error: SSL/TLS Handshake Failed when connecting to Database Cluster'. Structure with Symptoms (error message strings), Root Cause Analysis (3 distinct causes), Step-by-Step Diagnostic Commands (openssl s_client), and Resolution steps.",
+        "expected_answer_keywords": [
+          "troubleshooting guide",
+          "symptoms and error logs",
+          "root cause analysis",
+          "expired CA certificate",
+          "TLS version mismatch",
+          "openssl s_client diagnostic command",
+          "remediation steps",
+          "verification"
+        ]
+      }
+    ],
+    "tw_product_support_content.admin_configuration_manuals": [
+      {
+        "level": "mid",
+        "type": "admin_manual",
+        "question": "Author an enterprise administrator configuration guide for 'Configuring SAML 2.0 Single Sign-On (SSO) with Okta'. Cover Identity Provider (IdP) metadata exchange, Assertion Consumer Service (ACS) URL, attribute mapping (email, firstName, roles), and SCIM provisioning.",
+        "expected_answer_keywords": [
+          "admin configuration guide",
+          "SAML 2.0 SSO setup",
+          "Okta IdP metadata XML",
+          "ACS URL and Entity ID",
+          "attribute assertion mapping",
+          "SCIM user provisioning",
+          "RBAC default role assignment"
+        ]
+      }
+    ],
+    "tw_product_support_content.ui_ux_microcopy_in_product_help": [
+      {
+        "level": "mid",
+        "type": "microcopy_design",
+        "question": "Design the UI microcopy strings for a destructive database deletion modal: Write the Modal Header, Body warning (with consequence of irreversible data loss), Confirmation input prompt (type database name to confirm), Cancel button label, and Confirm button label.",
+        "expected_answer_keywords": [
+          "UI microcopy",
+          "destructive action warning",
+          "modal header clarity",
+          "explicit consequences of deletion",
+          "type confirmation string to enable button",
+          "clear action verb buttons Delete Database",
+          "user error prevention"
+        ]
+      }
+    ],
+    "tw_product_support_content.support_ticket_deflection_strategy": [
+      {
+        "level": "senior",
+        "type": "deflection_strategy",
+        "question": "Develop a Knowledge-Centered Service (KCS) ticket deflection program: How do you identify top 10 support contact drivers, train support agents to create and refine knowledge articles during ticket resolution, and measure deflection ROI and MTTR reduction?",
+        "expected_answer_keywords": [
+          "Knowledge-Centered Service KCS",
+          "support ticket deflection",
+          "top contact driver categorization",
+          "knowledge capture workflow",
+          "MTTR reduction",
+          "deflection rate ROI calculation",
+          "continuous article feedback"
+        ]
+      }
+    ],
+    "tw_product_support_content.disaster_recovery_runbooks": [
+      {
+        "level": "senior",
+        "type": "disaster_recovery_runbook",
+        "question": "Author a high-severity Incident Response Runbook: 'SEV-1 Primary Database Region Failover'. Structure with Severity Classification, On-Call Escalation Matrix, Immediate Triage Checklist, Failover CLI Execution Commands, Data Consistency Verification, and Post-Mortem Template.",
+        "expected_answer_keywords": [
+          "incident response runbook",
+          "SEV-1 severity classification",
+          "on-call escalation matrix",
+          "failover execution commands",
+          "replica promotion CLI",
+          "data integrity verification",
+          "post-mortem template root cause"
+        ]
+      }
+    ],
+    "tw_product_support_content.user_feedback_loops_csat": [
+      {
+        "level": "senior",
+        "type": "csat_analytics",
+        "question": "Design an in-page documentation CSAT system: Define the voting widget UX ('Was this helpful? Yes/No'), secondary qualitative prompt triggers, telemetry aggregation in BigQuery, sentiment analysis on verbatim comments, and the weekly triage SLA.",
+        "expected_answer_keywords": [
+          "documentation CSAT",
+          "was this page helpful widget",
+          "verbatim qualitative feedback",
+          "DSAT root cause tagging",
+          "telemetry aggregation",
+          "actionable doc triage SLA",
+          "continuous doc improvement"
+        ]
+      }
+    ],
+    "tw_content_marketing_seo.technical_blog_post_authoring": [
+      {
+        "level": "junior",
+        "type": "technical_blog_post",
+        "question": "Draft an outline and introductory hook for an engineering blog post: 'How We Scaled Our WebSocket Architecture to 1 Million Concurrent Connections'. Structure the post with Problem Statement, Architectural Bottleneck, Implementation (Redis Pub/Sub & epoll), Benchmark Results, and Lessons Learned.",
+        "expected_answer_keywords": [
+          "engineering blog post",
+          "technical storytelling",
+          "compelling introductory hook",
+          "architectural bottleneck memory/connections",
+          "Redis Pub/Sub cluster",
+          "benchmark metrics RPS and latency",
+          "actionable engineering takeaways"
+        ]
+      }
+    ],
+    "tw_content_marketing_seo.metadata_schema_seo_basics": [
+      {
+        "level": "junior",
+        "type": "seo_metadata_markup",
+        "question": "Construct the HTML head metadata and JSON-LD `TechArticle` schema.org markup for a technical tutorial titled 'Deploying Next.js to Kubernetes with Helm'. Include title tag (<60 chars), meta description (<160 chars), Open Graph tags, canonical URL, and structured author/date data.",
+        "expected_answer_keywords": [
+          "title tag optimization",
+          "meta description",
+          "canonical URL",
+          "Open Graph og:title og:image",
+          "JSON-LD structured data",
+          "schema.org TechArticle",
+          "proficiencyLevel",
+          "dependencies"
+        ]
+      }
+    ],
+    "tw_content_marketing_seo.keyword_research_search_intent": [
+      {
+        "level": "junior",
+        "type": "keyword_research",
+        "question": "Perform a technical keyword research analysis for a new 'Distributed Tracing with OpenTelemetry' feature. Identify 3 informational keywords, 2 transactional keywords, analyze search intent, and determine target doc URLs for each cluster.",
+        "expected_answer_keywords": [
+          "technical keyword research",
+          "informational search intent",
+          "transactional search intent",
+          "OpenTelemetry distributed tracing guide",
+          "opentelemetry python sdk download",
+          "long-tail developer queries",
+          "keyword clustering"
+        ]
+      }
+    ],
+    "tw_content_marketing_seo.technical_whitepapers_ebooks": [
+      {
+        "level": "mid",
+        "type": "whitepaper_authoring",
+        "question": "Outline a 12-page enterprise technical whitepaper: 'Zero Trust Security Architecture for Cloud-Native Microservices'. Detail the structure: Executive Summary, Legacy Perimeter Security Flaws, Zero Trust Pillars (mTLS, SPIFFE/SPIRE, Identity-Aware Proxy), Architectural Blueprint, and Compliance Mapping.",
+        "expected_answer_keywords": [
+          "technical whitepaper",
+          "executive summary",
+          "zero trust pillars",
+          "mTLS mutual TLS encryption",
+          "SPIFFE SPIRE workload identity",
+          "architectural blueprint diagram",
+          "compliance mapping SOC2/HIPAA"
+        ]
+      }
+    ],
+    "tw_content_marketing_seo.case_studies_customer_stories": [
+      {
+        "level": "mid",
+        "type": "case_study_authoring",
+        "question": "Draft an engineering customer case study: 'How GlobalBank Migrated 50TB Cassandra to Managed CockroachDB with Zero Downtime'. Structure using the Challenge-Solution-Results framework, highlighting specific technical hurdles, migration tooling, and ROI metrics (40% latency reduction).",
+        "expected_answer_keywords": [
+          "customer case study",
+          "challenge solution results framework",
+          "technical migration hurdles",
+          "dual-writing shadow traffic",
+          "Cassandra to CockroachDB",
+          "quantifiable ROI metrics",
+          "engineering quotes"
+        ]
+      }
+    ],
+    "tw_content_marketing_seo.developer_advocacy_community_content": [
+      {
+        "level": "mid",
+        "type": "community_announcement",
+        "question": "Draft a 'Show HN' Hacker News technical launch post for a new open-source CLI database migration tool. Include a catchy title, direct TL;DR, technical explanation of why existing tools failed, code example in terminal formatting, and an open call for PRs.",
+        "expected_answer_keywords": [
+          "Show HN launch post",
+          "developer advocacy",
+          "concise technical TL;DR",
+          "problem with existing migration tools",
+          "terminal code example",
+          "open source repo link",
+          "invitation for feedback"
+        ]
+      }
+    ],
+    "tw_content_marketing_seo.technical_seo_information_architecture": [
+      {
+        "level": "senior",
+        "type": "technical_seo_audit",
+        "question": "Diagnose and resolve technical SEO crawl issues on a 10,000-page documentation site: How do you configure `robots.txt`, handle multi-version canonical tags to avoid duplicate content penalties, optimize XML sitemap generation, and ensure Core Web Vitals pass for fast rendering?",
+        "expected_answer_keywords": [
+          "technical SEO architecture",
+          "canonical URL versioning",
+          "prevent duplicate content penalties",
+          "robots.txt disallow staging",
+          "sitemap.xml prioritization",
+          "Core Web Vitals LCP/CLS",
+          "crawl budget optimization"
+        ]
+      }
+    ],
+    "tw_content_marketing_seo.organic_traffic_analytics_conversion": [
+      {
+        "level": "senior",
+        "type": "conversion_attribution",
+        "question": "Set up a Google Analytics 4 (GA4) attribution funnel for technical documentation: How do you track custom events (Copy Code snippet, API Explorer execute, Sandbox signup), determine documentation contribution to product signups, and report ROI to leadership?",
+        "expected_answer_keywords": [
+          "GA4 custom events",
+          "copy_code_snippet event",
+          "api_key_signup conversion",
+          "multi-touch attribution",
+          "doc-assisted conversions",
+          "funnel visualization",
+          "documentation ROI reporting"
+        ]
+      }
+    ],
+    "tw_content_marketing_seo.thought_leadership_industry_reports": [
+      {
+        "level": "senior",
+        "type": "industry_report_strategy",
+        "question": "Plan and author an annual 'State of API Security and Developer Experience Report'. Detail survey methodology, data analysis across 1,000 engineering respondents, key finding synthesis, infographic layout, and PR distribution strategy.",
+        "expected_answer_keywords": [
+          "industry benchmark report",
+          "thought leadership",
+          "survey methodology",
+          "data synthesis and statistical trends",
+          "infographic data visualization",
+          "executive takeaways",
+          "press release distribution"
+        ]
+      }
+    ],
+    "tw_tooling_analytics_distribution.markdown_mdx_mastery": [
+      {
+        "level": "junior",
+        "type": "mdx_authoring",
+        "question": "Author an MDX document utilizing interactive components: Include frontmatter metadata (`title`, `sidebar_position`, `tags`), import and render a `<Tabs>` component with multi-language code blocks (cURL, Python, Node.js), and use a custom `<Admonition type=\"caution\">` alert.",
+        "expected_answer_keywords": [
+          "MDX authoring",
+          "frontmatter metadata",
+          "import Tabs and TabItem",
+          "multi-language code blocks",
+          "syntax highlighting",
+          "Admonition caution callout",
+          "component rendering"
+        ]
+      }
+    ],
+    "tw_tooling_analytics_distribution.git_github_docs_workflow": [
+      {
+        "level": "junior",
+        "type": "git_workflow",
+        "question": "Describe the complete Git Docs-as-Code workflow for collaborating on a feature release: Creating a feature branch from `main`, writing docs using Conventional Commits (`docs(auth): add oauth2 refresh guide`), resolving a git rebase conflict in Markdown, and opening a GitHub Pull Request with a PR checklist.",
+        "expected_answer_keywords": [
+          "git branch creation",
+          "conventional commits format",
+          "git rebase main",
+          "merge conflict resolution in markdown",
+          "GitHub Pull Request",
+          "PR review checklist",
+          "squash and merge"
+        ]
+      }
+    ],
+    "tw_tooling_analytics_distribution.static_site_generators_ssg": [
+      {
+        "level": "junior",
+        "type": "ssg_configuration",
+        "question": "Configure a `docusaurus.config.js` or `mkdocs.yml` configuration file: Set site metadata, configure navbar links, setup docs sidebar auto-generation, configure dark mode theme toggles, and enable the Prism code syntax highlighter for TypeScript and Go.",
+        "expected_answer_keywords": [
+          "docusaurus.config.js or mkdocs.yml",
+          "navbar configuration",
+          "sidebar autogenerated",
+          "dark mode color mode",
+          "Prism syntax highlighting",
+          "plugins configuration",
+          "base URL and deployment config"
+        ]
+      }
+    ],
+    "tw_tooling_analytics_distribution.automated_style_linting": [
+      {
+        "level": "mid",
+        "type": "vale_linter_setup",
+        "question": "Write a `.vale.ini` configuration file that applies Google and Microsoft style packages to all `.md` and `.mdx` files in `docs/`. Include an exclusion for code blocks, set minimum alert level to `suggestion`, and configure custom vocabulary ignore list in `styles/Vocab/Acme/accept.txt`.",
+        "expected_answer_keywords": [
+          ".vale.ini configuration",
+          "StylesPath = styles",
+          "MinAlertLevel = suggestion",
+          "[*.{md,mdx}] glob",
+          "BasedOnStyles = Google, Microsoft, Vale",
+          "Vocab ignore accept.txt",
+          "code block exclusion"
+        ]
+      }
+    ],
+    "tw_tooling_analytics_distribution.ci_cd_docs_pipelines": [
+      {
+        "level": "mid",
+        "type": "ci_cd_pipeline",
+        "question": "Write a GitHub Actions workflow `.github/workflows/docs-ci.yml` that triggers on pull requests modifying `docs/**`. Steps must include: checkout repository, setup Node.js, install dependencies, run Vale style linter, execute broken link checker (Lychee), and build static site bundle.",
+        "expected_answer_keywords": [
+          "GitHub Actions workflow",
+          "on pull_request paths docs/**",
+          "actions/checkout",
+          "vale-action linter step",
+          "lychee broken link checker",
+          "npm run build static site",
+          "CI failure gating"
+        ]
+      }
+    ],
+    "tw_tooling_analytics_distribution.site_search_indexing": [
+      {
+        "level": "mid",
+        "type": "search_indexing",
+        "question": "Configure Algolia DocSearch (or Pagefind) for a documentation portal: Detail the scraper configuration selector hierarchy (`lvl0`, `lvl1`, `lvl2`, `lvl3`, `text`), search facet setup by doc version/product, and tuning search relevance for code terms and typos.",
+        "expected_answer_keywords": [
+          "Algolia DocSearch",
+          "scraper configuration",
+          "selectors hierarchy lvl0 lvl1 lvl2",
+          "version facet filtering",
+          "Pagefind static indexing",
+          "typo tolerance tuning",
+          "search ranking weights"
+        ]
+      }
+    ],
+    "tw_tooling_analytics_distribution.headless_cms_knowledge_tools": [
+      {
+        "level": "mid",
+        "type": "cms_integration",
+        "question": "Compare managing documentation via a headless CMS (Contentful/Sanity) versus a pure Git-based Docs-as-Code repository. When is headless CMS preferable, and how do you design webhook triggers to rebuild documentation when non-technical writers publish content?",
+        "expected_answer_keywords": [
+          "headless CMS vs docs as code",
+          "Contentful / Sanity structured content",
+          "non-technical authoring experience",
+          "webhook build trigger",
+          "static site rebuild webhook",
+          "content modeling schema",
+          "hybrid documentation architecture"
+        ]
+      }
+    ],
+    "tw_tooling_analytics_distribution.docs_analytics_telemetry": [
+      {
+        "level": "senior",
+        "type": "telemetry_analytics",
+        "question": "Implement an end-to-end documentation analytics dashboard using PostHog or GA4: Define event taxonomy (`doc_page_viewed`, `code_copied`, `feedback_submitted`, `zero_result_search`), scroll depth milestones (25%, 50%, 75%, 100%), and how to identify high-traffic but low-satisfaction pages.",
+        "expected_answer_keywords": [
+          "PostHog / GA4 telemetry",
+          "event taxonomy",
+          "code_copied event tracking",
+          "scroll depth tracking milestones",
+          "zero-result search analytics",
+          "high traffic low CSAT quadrant",
+          "dashboard visualization"
+        ]
+      }
+    ],
+    "tw_tooling_analytics_distribution.multi_version_localization_builds": [
+      {
+        "level": "senior",
+        "type": "multi_version_localization",
+        "question": "Architect a multi-version documentation release and localization matrix for a product supporting 4 active semver versions across 5 languages (English, Japanese, German, Spanish, French). Detail version branch isolation, Crowdin translation sync, and CDN routing/canonical tags.",
+        "expected_answer_keywords": [
+          "multi-version doc architecture",
+          "semver version dropdown",
+          "Crowdin / Lokalise localization sync",
+          "i18n directory structure",
+          "translation workflow automation",
+          "CDN edge routing",
+          "hreflang and canonical tags"
+        ]
+      }
+    ]
+  }
+}

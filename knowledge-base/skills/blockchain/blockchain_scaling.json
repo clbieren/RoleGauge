@@ -1,0 +1,255 @@
+{
+  "skill_id": "blockchain_scaling",
+  "name": "Layer 2 Scaling & Rollup Architecture",
+  "category": "blockchain_scaling",
+  "description": "Scalability techniques including state channels, Optimistic Rollups (fraud proofs), ZK Rollups (validity proofs), Validium, Proto-Danksharding (EIP-4844), zkEVM circuits, and parallel execution.",
+  "subskills": [
+    {
+      "id": "state_and_payment_channels",
+      "name": "State Channels & Payment Channel Networks",
+      "description": "Off-chain transaction channels (Bitcoin Lightning Network, Raiden), opening/closing state transactions, dispute periods, and multi-hop routing.",
+      "keywords": [
+        "state channel",
+        "payment channel",
+        "Lightning Network",
+        "dispute window",
+        "HTLC",
+        "off-chain state",
+        "channel closing"
+      ]
+    },
+    {
+      "id": "data_availability_basics",
+      "name": "Data Availability & CallData Optimization",
+      "description": "Data availability problem, calldata cost mechanics in rollups, compression algorithms, and zero-byte calldata optimization.",
+      "keywords": [
+        "data availability",
+        "calldata cost",
+        "calldata compression",
+        "zero byte optimization",
+        "DA problem",
+        "rollup batching"
+      ]
+    },
+    {
+      "id": "gas_optimization_fundamentals",
+      "name": "Gas Profiling & Execution Cost Fundamentals",
+      "description": "EVM opcodes gas costs, storage vs memory allocation, warm vs cold storage reads (EIP-2929), and gas profiling techniques.",
+      "keywords": [
+        "gas cost",
+        "EVM opcodes",
+        "SLOAD",
+        "SSTORE",
+        "EIP-2929",
+        "gas profiling",
+        "cold read",
+        "warm storage"
+      ]
+    },
+    {
+      "id": "optimistic_rollups_fraud_proofs",
+      "name": "Optimistic Rollups & Interactive Fraud Proofs",
+      "description": "Optimistic execution model, single-round vs multi-round interactive fraud proofs (Arbitrum BOLD, Cannon), and 7-day challenge periods.",
+      "keywords": [
+        "Optimistic Rollup",
+        "fraud proof",
+        "fault proof",
+        "challenge window",
+        "7-day withdrawal",
+        "sequencer",
+        "Cannon",
+        "BOLD"
+      ]
+    },
+    {
+      "id": "zk_rollups_validity_proofs",
+      "name": "ZK-Rollups & Validity Proof Verification",
+      "description": "ZK-Rollup architecture (Starknet, zkSync Era, Scroll, Linea), off-chain state transition proving, on-chain verification, and instant finality.",
+      "keywords": [
+        "ZK-Rollup",
+        "validity proof",
+        "zkSync Era",
+        "Starknet",
+        "Scroll",
+        "instant finality",
+        "verifier contract",
+        "prover network"
+      ]
+    },
+    {
+      "id": "validium_and_sidechains",
+      "name": "Validium, Volition & Sidechain Architectures",
+      "description": "Validium architectures (off-chain DA with validity proofs), Data Availability Committees (DACs), Volition hybrid models, and autonomous sidechains.",
+      "keywords": [
+        "Validium",
+        "Volition",
+        "DAC",
+        "Data Availability Committee",
+        "sidechain",
+        "Polygon CDK",
+        "hybrid scaling"
+      ]
+    },
+    {
+      "id": "proto_danksharding_eip4844",
+      "name": "Proto-Danksharding & Blob-Carrying Transactions (EIP-4844)",
+      "description": "EIP-4844 blob-carrying transactions, KZG polynomial commitments, temporary blob storage lifespan, and decoupled blob gas market.",
+      "keywords": [
+        "EIP-4844",
+        "Proto-Danksharding",
+        "blob transaction",
+        "KZG commitment",
+        "blob gas",
+        "data blobs",
+        "point evaluation precompile"
+      ]
+    },
+    {
+      "id": "zk_evm_architecture_circuits",
+      "name": "zkEVM Architecture & Types (Type 1 to Type 4)",
+      "description": "Vitalik's zkEVM classification (Type 1 Ethereum-equivalent to Type 4 high-level-language-equivalent), polynomial arithmetic, and circuit efficiency tradeoffs.",
+      "keywords": [
+        "zkEVM",
+        "Type 1 zkEVM",
+        "Type 2 zkEVM",
+        "Type 4 zkEVM",
+        "zk circuit",
+        "opcode translation",
+        "prover latency"
+      ]
+    },
+    {
+      "id": "sharding_and_parallel_execution",
+      "name": "Danksharding & Parallel EVM Execution Engines",
+      "description": "Full Danksharding roadmap, Monad/Sei parallel execution engines, software transactional memory (STM), and optimistic concurrency for EVM.",
+      "keywords": [
+        "Danksharding",
+        "parallel EVM",
+        "Monad",
+        "Sei",
+        "Software Transactional Memory",
+        "optimistic concurrency",
+        "state access conflict"
+      ]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "EIP-4844 blob transaction constructors and calldata compression scripts",
+        "detection": "content_analysis",
+        "pattern": "maxFeePerBlobGas|blobVersionedHashes|kzg|Blob|calldataCompress",
+        "strength": 0.9,
+        "maps_to": [
+          "blockchain_scaling.proto_danksharding_eip4844",
+          "blockchain_scaling.data_availability_basics",
+          "blockchain_scaling.gas_optimization_fundamentals"
+        ]
+      },
+      {
+        "signal": "Rollup deposit/withdrawal bridge contracts and fraud proof dispute game interactions",
+        "detection": "content_analysis",
+        "pattern": "proveFault|resolveDispute|initiateWithdrawal|finalizeWithdrawal|bridgeERC20",
+        "strength": 0.85,
+        "maps_to": [
+          "blockchain_scaling.optimistic_rollups_fraud_proofs",
+          "blockchain_scaling.state_and_payment_channels"
+        ]
+      },
+      {
+        "signal": "zkEVM verifier contracts, validity proof submissions, and Starknet/Cairo code",
+        "detection": "content_analysis",
+        "pattern": "verifyProof\\(|PlonkVerifier|Groth16Verifier|starknet|zksync",
+        "strength": 0.9,
+        "maps_to": [
+          "blockchain_scaling.zk_rollups_validity_proofs",
+          "blockchain_scaling.validium_and_sidechains",
+          "blockchain_scaling.zk_evm_architecture_circuits",
+          "blockchain_scaling.sharding_and_parallel_execution"
+        ]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "Optimized smart contract gas usage and integrated EIP-4844 blob-carrying transactions",
+        "strength": 0.6,
+        "maps_to": [
+          "blockchain_scaling.gas_optimization_fundamentals",
+          "blockchain_scaling.data_availability_basics",
+          "blockchain_scaling.proto_danksharding_eip4844"
+        ]
+      },
+      {
+        "signal": "Architected L2 scaling strategies across Optimistic (Arbitrum/OP) and ZK (zkSync/Starknet) rollups with zkEVM circuits",
+        "strength": 0.6,
+        "maps_to": [
+          "blockchain_scaling.optimistic_rollups_fraud_proofs",
+          "blockchain_scaling.zk_rollups_validity_proofs",
+          "blockchain_scaling.validium_and_sidechains",
+          "blockchain_scaling.zk_evm_architecture_circuits",
+          "blockchain_scaling.sharding_and_parallel_execution"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Expertise in Layer 2 Scaling, ZK-Rollups, Optimistic Rollups, EIP-4844, and zkEVM Architecture",
+        "strength": 0.4,
+        "maps_to": [
+          "blockchain_scaling.state_and_payment_channels",
+          "blockchain_scaling.data_availability_basics",
+          "blockchain_scaling.gas_optimization_fundamentals",
+          "blockchain_scaling.optimistic_rollups_fraud_proofs",
+          "blockchain_scaling.zk_rollups_validity_proofs",
+          "blockchain_scaling.validium_and_sidechains",
+          "blockchain_scaling.proto_danksharding_eip4844",
+          "blockchain_scaling.zk_evm_architecture_circuits",
+          "blockchain_scaling.sharding_and_parallel_execution"
+        ]
+      }
+    ],
+    "assessment": [
+      {
+        "signal": "Passes comprehensive blockchain scaling assessment covering fraud proofs, validity proofs, EIP-4844 blob gas, zkEVM types, and parallel EVM engines",
+        "strength": 1.0,
+        "maps_to": [
+          "blockchain_scaling.state_and_payment_channels",
+          "blockchain_scaling.data_availability_basics",
+          "blockchain_scaling.gas_optimization_fundamentals",
+          "blockchain_scaling.optimistic_rollups_fraud_proofs",
+          "blockchain_scaling.zk_rollups_validity_proofs",
+          "blockchain_scaling.validium_and_sidechains",
+          "blockchain_scaling.proto_danksharding_eip4844",
+          "blockchain_scaling.zk_evm_architecture_circuits",
+          "blockchain_scaling.sharding_and_parallel_execution"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "state_and_payment_channels",
+        "data_availability_basics",
+        "gas_optimization_fundamentals"
+      ],
+      "description": "Profiles EVM opcode gas costs, minimizes calldata footprint, and understands state channel lifecycle."
+    },
+    "mid": {
+      "expected_subskills": [
+        "optimistic_rollups_fraud_proofs",
+        "zk_rollups_validity_proofs",
+        "validium_and_sidechains"
+      ],
+      "description": "Deploys on Optimistic and ZK-Rollups, analyzes fraud/validity proof verification, and evaluates DAC validium models."
+    },
+    "senior": {
+      "expected_subskills": [
+        "proto_danksharding_eip4844",
+        "zk_evm_architecture_circuits",
+        "sharding_and_parallel_execution"
+      ],
+      "description": "Architects EIP-4844 blob-carrying transactions, evaluates zkEVM circuit tradeoffs, and designs parallel execution strategies."
+    }
+  }
+}

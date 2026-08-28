@@ -1,0 +1,1291 @@
+import os
+import json
+
+base_dir = os.path.abspath('knowledge-base')
+evidence_dir = os.path.join(base_dir, 'evidence', 'ux-designer')
+roles_dir = os.path.join(base_dir, 'roles', 'ux-designer')
+
+os.makedirs(evidence_dir, exist_ok=True)
+os.makedirs(roles_dir, exist_ok=True)
+
+# 1. UX ROLES (Junior, Mid, Senior)
+roles = {
+  "junior": {
+    "role_id": "ux_designer",
+    "level": "junior",
+    "title": "Junior UX Designer",
+    "description": "Entry-level UX designer focusing on foundational user research, wireframing in Figma, designing user flows, formulating JTBD job stories, and applying behavioral principles like Fogg's B=MAP and smart defaults.",
+    "experience_range": "0-2 years",
+    "skills": [
+      {
+        "skill_id": "ux_deliverables_prototyping",
+        "importance": 0.95,
+        "rationale": "Creating clear wireframes, user flowcharts, and applying 8pt grid auto-layout in Figma is essential for daily design delivery."
+      },
+      {
+        "skill_id": "ux_behavior_frameworks",
+        "importance": 0.90,
+        "rationale": "Applying BJ Fogg's B=MAP, Dual Process Theory, and behavioral heuristics."
+      },
+      {
+        "skill_id": "ux_conceptual_design",
+        "importance": 0.85,
+        "rationale": "Writing clear user stories with acceptance criteria and simplifying complex multi-step forms."
+      },
+      {
+        "skill_id": "ux_classifying_behavior",
+        "importance": 0.85,
+        "rationale": "Building evidence-based user personas, empathy maps, and formulating JTBD job statements."
+      },
+      {
+        "skill_id": "ux_behavior_strategies",
+        "importance": 0.80,
+        "rationale": "Setting smart defaults and structuring basic choice architectures."
+      },
+      {
+        "skill_id": "ux_attention_context",
+        "importance": 0.75,
+        "rationale": "Designing glanceable CTAs and contextual micro-tips."
+      },
+      {
+        "skill_id": "ux_patterns_best_practices",
+        "importance": 0.75,
+        "rationale": "Applying visual saliency and integrating customer reviews and social proof."
+      },
+      {
+        "skill_id": "ux_business_model",
+        "importance": 0.70,
+        "rationale": "Understanding the Osterwalder Business Model Canvas and Value Proposition mapping."
+      },
+      {
+        "skill_id": "ux_measuring_impact",
+        "importance": 0.65,
+        "rationale": "Formulating A/B test hypotheses and running standard SUS usability tests."
+      }
+    ],
+    "scoring": {
+      "method": "weighted_average",
+      "description": "Weighted average of skill readiness scores multiplied by importance weights.",
+      "thresholds": {
+        "not_ready": { "min": 0.0, "max": 0.35, "description": "Lacks wireframing and user research fundamentals." },
+        "partially_ready": { "min": 0.35, "max": 0.60, "description": "Produces basic layouts but struggles with user flows or behavioral heuristics." },
+        "ready": { "min": 0.60, "max": 0.85, "description": "Competent junior UX designer producing clean Figma wireframes, personas, and behavioral flows." },
+        "exceeds": { "min": 0.85, "max": 1.0, "description": "Exceeds junior expectations with strong interactive prototyping and A/B test skills." }
+      }
+    }
+  },
+  "mid": {
+    "role_id": "ux_designer",
+    "level": "mid",
+    "title": "Mid-level UX Designer",
+    "description": "Mid-level UX designer skilled in behavioral science interventions (Hook Model, CREATE funnel), customer experience journey mapping, interactive high-fidelity prototyping with Figma variables, statistical A/B test analysis, and Lean Canvas validation.",
+    "experience_range": "2-5 years",
+    "skills": [
+      {
+        "skill_id": "ux_deliverables_prototyping",
+        "importance": 0.95,
+        "rationale": "Constructing end-to-end customer journey maps, BPMN process flows, and high-fidelity interactive logic prototypes."
+      },
+      {
+        "skill_id": "ux_behavior_frameworks",
+        "importance": 0.90,
+        "rationale": "Designing variable reward habit loops with the Hook Model and diagnosing friction with CREATE funnels."
+      },
+      {
+        "skill_id": "ux_behavior_strategies",
+        "importance": 0.90,
+        "rationale": "Designing habit-stacking incidental actions, reflective prompts, and automated recurring rules."
+      },
+      {
+        "skill_id": "ux_measuring_impact",
+        "importance": 0.85,
+        "rationale": "Interpreting p-values, analyzing funnel drop-off cohorts in Mixpanel/Amplitude, and synthesizing user feedback."
+      },
+      {
+        "skill_id": "ux_patterns_best_practices",
+        "importance": 0.85,
+        "rationale": "Leveraging peer comparisons, authority badges, loss aversion, and ethical urgency."
+      },
+      {
+        "skill_id": "ux_conceptual_design",
+        "importance": 0.80,
+        "rationale": "Prioritizing feature backlogs using RICE/MoSCoW and scaffolding new user skill building."
+      },
+      {
+        "skill_id": "ux_business_model",
+        "importance": 0.80,
+        "rationale": "Building Lean Canvases and executing cross-industry inspirator analyses."
+      },
+      {
+        "skill_id": "ux_attention_context",
+        "importance": 0.75,
+        "rationale": "Designing progressive tutorials and gamification streak systems."
+      },
+      {
+        "skill_id": "ux_classifying_behavior",
+        "importance": 0.75,
+        "rationale": "Specifying observable target actions and profiling stakeholder actors."
+      }
+    ],
+    "scoring": {
+      "method": "weighted_average",
+      "description": "Weighted average of skill readiness scores multiplied by importance weights.",
+      "thresholds": {
+        "not_ready": { "min": 0.0, "max": 0.35, "description": "Lacks autonomous end-to-end UX workflow execution and behavioral strategy." },
+        "partially_ready": { "min": 0.35, "max": 0.60, "description": "Strong visual designer but struggles with behavioral science frameworks, journey maps, or statistical analytics." },
+        "ready": { "min": 0.60, "max": 0.85, "description": "Meets mid-level expectations: delivers journey maps, interactive logic prototypes, Hook Model loops, and A/B test synthesis." },
+        "exceeds": { "min": 0.85, "max": 1.0, "description": "Exceeds mid-level requirements with design token architecture and PLG growth mechanics." }
+      }
+    }
+  },
+  "senior": {
+    "role_id": "ux_designer",
+    "level": "senior",
+    "title": "Senior UX Designer / Product Design Lead",
+    "description": "Lead/Senior UX Architect who directs behavioral design strategies, audits deceptive design and dark patterns, architects multi-brand Design System Tokens, maps cross-departmental Service Blueprints, aligns UX with SaaS unit economics and PLG, and enforces WCAG 2.1 AAA accessibility.",
+    "experience_range": "5+ years",
+    "skills": [
+      {
+        "skill_id": "ux_conceptual_design",
+        "importance": 0.95,
+        "rationale": "Architecting Design System Tokens in Figma and code, eliminating mental model dissonance, and mapping Service Blueprints."
+      },
+      {
+        "skill_id": "ux_deliverables_prototyping",
+        "importance": 0.95,
+        "rationale": "Enforcing WCAG 2.1 AAA accessibility and establishing zero-defect Storybook design-to-code pipelines."
+      },
+      {
+        "skill_id": "ux_business_model",
+        "importance": 0.90,
+        "rationale": "Aligning UX design with SaaS unit economics (LTV/CAC) and orchestrating Product-Led Growth conversion mechanics."
+      },
+      {
+        "skill_id": "ux_behavior_frameworks",
+        "importance": 0.90,
+        "rationale": "Auditing dark patterns, protecting user agency, and selecting interventions across the 15-cell Fogg Grid."
+      },
+      {
+        "skill_id": "ux_measuring_impact",
+        "importance": 0.90,
+        "rationale": "Leading Google HEART framework attribution, multivariate testing, and evaluating ML personalization UX."
+      },
+      {
+        "skill_id": "ux_behavior_strategies",
+        "importance": 0.85,
+        "rationale": "Engineering constructive friction for high-stakes actions and designing long-term habit ecosystems."
+      },
+      {
+        "skill_id": "ux_classifying_behavior",
+        "importance": 0.85,
+        "rationale": "Executing quantitative behavioral clustering and modeling dynamic user intent states."
+      },
+      {
+        "skill_id": "ux_attention_context",
+        "importance": 0.80,
+        "rationale": "Architecting calm tech notification hierarchies and cross-device contextual continuity."
+      },
+      {
+        "skill_id": "ux_patterns_best_practices",
+        "importance": 0.80,
+        "rationale": "Designing Gollwitzer if-then planning pre-commitments and 1-click effortless checkout flows."
+      }
+    ],
+    "scoring": {
+      "method": "weighted_average",
+      "description": "Weighted average of skill readiness scores multiplied by importance weights.",
+      "thresholds": {
+        "not_ready": { "min": 0.0, "max": 0.40, "description": "Lacks strategic design leadership, Design System governance, and business alignment." },
+        "partially_ready": { "min": 0.40, "max": 0.65, "description": "Skilled senior designer but lacks Service Blueprinting, PLG monetization modeling, or WCAG AAA governance." },
+        "ready": { "min": 0.65, "max": 0.85, "description": "Accomplished UX architect delivering multi-brand Design Tokens, PLG mechanics, dark pattern audits, and HEART framework ROI." },
+        "exceeds": { "min": 0.85, "max": 1.0, "description": "Visionary design leader recognized across the industry for transformative product experiences and behavioral systems." }
+      }
+    }
+  }
+}
+
+for level_name, role_data in roles.items():
+    file_path = os.path.join(roles_dir, f"{level_name}.json")
+    with open(file_path, 'w', encoding='utf-8') as f:
+        json.dump(role_data, f, indent=2, ensure_ascii=False)
+    print(f"Generated UX role: {file_path}")
+
+# ==============================================================================
+# 2. UX DESIGN 81 ASSESSMENT QUESTIONS (Covering all 81 composite keys)
+# ==============================================================================
+questions = {
+  # 1. ux_attention_context (9)
+  "ux_attention_context.fleeting_attention_cta": [
+    {
+      "level": "junior",
+      "type": "scenario",
+      "question": "A mobile banking landing page has 4 competing primary action buttons (Open Account, Log In, Apply for Card, Learn More), causing high bounce rates. How do you redesign the above-the-fold hero section for fleeting attention, establishing a single primary focal CTA with visual hierarchy?",
+      "expected_answer_keywords": ["single focal CTA", "visual contrast", "primary vs secondary action", "above the fold", "Hick's Law", "glanceable hierarchy"]
+    }
+  ],
+  "ux_attention_context.fleeting_attention_status_reports": [
+    {
+      "level": "junior",
+      "type": "practical_implementation",
+      "question": "Design a glanceable weekly financial progress widget for a mobile dashboard: How do you present total spent, remaining budget, and goal trajectory in under 3 seconds of scanning time without overwhelming the user?",
+      "expected_answer_keywords": ["glanceable widget", "progress bar", "color-coded threshold", "remaining budget", "3-second scan", "micro-snapshot"]
+    }
+  ],
+  "ux_attention_context.fleeting_attention_tips": [
+    {
+      "level": "junior",
+      "type": "code_review",
+      "question": "An analytics dashboard injects 5 modal popups simultaneously upon user login. Critique this anti-pattern and refactor the guidance into contextual, dismissible just-in-time micro-tips placed next to relevant chart controls.",
+      "expected_answer_keywords": ["modal fatigue", "just-in-time micro-tips", "contextual help", "dismissible tooltip", "inline guidance", "non-blocking UX"]
+    }
+  ],
+  "ux_attention_context.many_chances_gamification": [
+    {
+      "level": "mid",
+      "type": "scenario",
+      "question": "Design a gamified language learning streak recovery mechanism: How do you balance motivating daily engagement with streak freezes and comeback challenges to prevent demoralization when a user breaks a 30-day streak?",
+      "expected_answer_keywords": ["streak freeze", "loss aversion", "comeback challenge", "gamification loop", "variable reward schedule", "milestone badge"]
+    }
+  ],
+  "ux_attention_context.many_chances_planners": [
+    {
+      "level": "mid",
+      "type": "practical_implementation",
+      "question": "Create an interactive weekly fitness planner flow: Detail how users drag-and-drop workout routines into calendar slots, configure smart reminders with custom lead times, and resolve schedule conflicts gracefully.",
+      "expected_answer_keywords": ["calendar drag-and-drop", "habit planner", "conflict resolution", "smart reminder lead time", "time blocking UX", "goal tracking"]
+    }
+  ],
+  "ux_attention_context.many_chances_tutorials": [
+    {
+      "level": "mid",
+      "type": "scenario",
+      "question": "Design an interactive, progressive onboarding tutorial for a complex video editing app: Contrast a static 7-screen swipeable modal carousel with an interactive sandbox where users perform one real trim action to advance.",
+      "expected_answer_keywords": ["interactive sandbox", "learning by doing", "progressive onboarding", "static modal carousel anti-pattern", "active engagement", "scaffolded task"]
+    }
+  ],
+  "ux_attention_context.many_chances_social_sharing": [
+    {
+      "level": "senior",
+      "type": "trade_off_analysis",
+      "question": "Analyze the viral mechanics of end-of-year review experiences (e.g. Spotify Wrapped): What visual formatting (vertical story format, personalized data stats, high contrast) and intrinsic motivation factors drive users to share achievements to external social networks?",
+      "expected_answer_keywords": ["Spotify Wrapped mechanic", "personalized data milestone", "vertical 9:16 story format", "social proof", "intrinsic identity expression", "viral distribution loop"]
+    }
+  ],
+  "ux_attention_context.multi_device_attention_continuity": [
+    {
+      "level": "senior",
+      "type": "scenario",
+      "question": "Architect a cross-device state continuity experience for an e-commerce checkout flow: A user starts selecting items on an Apple Watch, refines the cart on an iPhone, and completes payment on a desktop browser. Detail state preservation, interruption recovery, and cart sync.",
+      "expected_answer_keywords": ["cross-device state sync", "contextual handoff", "interruption recovery", "persistent cart state", "tokenized session", "omni-channel continuity"]
+    }
+  ],
+  "ux_attention_context.cognitive_overload_mitigation_calm_tech": [
+    {
+      "level": "senior",
+      "type": "design_audit",
+      "question": "Audit a mission-critical hospital patient monitoring dashboard displaying 40 live telemetry graphs simultaneously. Apply Calm Technology principles (Mark Weiser) and progressive disclosure to establish an attention budget with ambient alerts and triage prioritization.",
+      "expected_answer_keywords": ["Calm Technology", "Mark Weiser", "attention budget", "ambient alerts", "progressive disclosure", "triage hierarchy", "cognitive overload reduction"]
+    }
+  ],
+
+  # 2. ux_behavior_frameworks (9)
+  "ux_behavior_frameworks.fogg_behavior_model": [
+    {
+      "level": "junior",
+      "type": "scenario",
+      "question": "A user repeatedly fails to complete a 15-field registration form despite receiving daily email reminders. Using BJ Fogg's B=MAP (Behavior = Motivation x Ability x Prompt), explain why increasing prompts failed and how simplifying ability (social login / 2 fields) pushes the user above the action line.",
+      "expected_answer_keywords": ["B=MAP", "Motivation vs Ability vs Prompt", "action line", "ability bottleneck", "reducing cognitive effort", "social login", "Tiny Habits"]
+    }
+  ],
+  "ux_behavior_frameworks.dual_process_theory": [
+    {
+      "level": "junior",
+      "type": "trade_off_analysis",
+      "question": "Contrast System 1 (fast, automatic, heuristic) and System 2 (slow, deliberative, logical) thinking in checkout flows: How do visual icons and recognizable merchant badges leverage System 1, while detailed fee breakdowns engage System 2?",
+      "expected_answer_keywords": ["System 1 fast heuristic", "System 2 slow deliberative", "Kahneman", "cognitive fluency", "trust badges", "decision fatigue", "fee breakdown"]
+    }
+  ],
+  "ux_behavior_frameworks.behavioral_buzzwords": [
+    {
+      "level": "junior",
+      "type": "scenario",
+      "question": "Explain how the Anchoring effect and the Endowment effect can be applied ethically in a SaaS free trial: How does pre-populating sample user projects (Endowment) and displaying original enterprise pricing crossed out (Anchoring) influence conversion?",
+      "expected_answer_keywords": ["Anchoring effect", "Endowment effect", "sample project pre-population", "reference price", "psychological ownership", "conversion influence"]
+    }
+  ],
+  "ux_behavior_frameworks.hook_model": [
+    {
+      "level": "mid",
+      "type": "scenario",
+      "question": "Map the 4 phases of Nir Eyal's Hook Model (External/Internal Trigger -> Action -> Variable Reward -> Investment) for a productivity collaboration app (e.g. Slack / Notion), detailing how stored value makes subsequent triggers more effective.",
+      "expected_answer_keywords": ["Trigger internal/external", "Action minimum effort", "Variable Reward social/hunt/tribe", "Investment stored value", "Hook Model", "habit formation"]
+    }
+  ],
+  "ux_behavior_frameworks.create_action_funnel": [
+    {
+      "level": "mid",
+      "type": "scenario",
+      "question": "A user abandons a car insurance quote flow at the final pricing screen. Diagnose the drop-off using Stephen Wendel's CREATE action funnel (Cue, Reaction, Evaluation, Ability, Timing, Experience). Identify whether the failure occurred at Evaluation (sticker shock) or Timing (delaying decision).",
+      "expected_answer_keywords": ["CREATE action funnel", "Cue", "Reaction gut instinct", "Evaluation cost-benefit", "Ability friction", "Timing urgency", "Experience feedback"]
+    }
+  ],
+  "ux_behavior_frameworks.cue_routine_reward": [
+    {
+      "level": "mid",
+      "type": "practical_implementation",
+      "question": "Design a habit modification flow for a mindfulness app applying Charles Duhigg's Cue-Routine-Reward loop: Identify an existing daily cue (morning alarm), substitute the routine (scrolling social media -> 2-minute breathing exercise), and deliver an immediate satisfying reward.",
+      "expected_answer_keywords": ["Cue-Routine-Reward", "Charles Duhigg", "habit loop substitution", "golden rule of habit change", "craving satisfaction", "routine replacement"]
+    }
+  ],
+  "ux_behavior_frameworks.fogg_behavior_grid": [
+    {
+      "level": "senior",
+      "type": "trade_off_analysis",
+      "question": "Using BJ Fogg's Behavior Grid (15 behavior types), classify a 'Green Dot' behavior (doing a new behavior once, e.g. registering for a webinar) versus a 'Purple Path' behavior (increasing habit frequency, e.g. logging daily calories). Detail how your design interventions differ fundamentally between them.",
+      "expected_answer_keywords": ["Fogg Behavior Grid", "Green Dot one-time new behavior", "Purple Path increasing habit frequency", "15 behavior matrix", "trigger design", "habit scaffolding"]
+    }
+  ],
+  "ux_behavior_frameworks.spectrum_of_thinking_interventions": [
+    {
+      "level": "senior",
+      "type": "scenario",
+      "question": "Design a progressive intervention strategy along the Spectrum of Thinking: For a retirement savings platform, structure interventions ranging from unconscious defaults (auto-escalation of 1% savings) up to conscious deliberative tools (interactive lifestyle scenario simulators).",
+      "expected_answer_keywords": ["Spectrum of Thinking", "unconscious nudging", "conscious deliberation", "auto-escalation default", "interactive simulation tool", "persuasive intervention spectrum"]
+    }
+  ],
+  "ux_behavior_frameworks.behavioral_ethics_dark_patterns_defense": [
+    {
+      "level": "senior",
+      "type": "design_audit",
+      "question": "Audit a subscription cancellation flow guilty of 'Roach Motel' and 'Confirmshaming' dark patterns (hiding the cancel button behind 6 screens and labeling the exit 'No thanks, I hate saving money'). Redesign this into an ethical, transparent offboarding flow preserving user agency while gathering exit feedback.",
+      "expected_answer_keywords": ["dark patterns audit", "Roach Motel", "Confirmshaming", "ethical offboarding", "user agency", "transparent cancellation", "sludge elimination"]
+    }
+  ],
+
+  # 3. ux_behavior_strategies (9)
+  "ux_behavior_strategies.educate_encourage": [
+    {
+      "level": "junior",
+      "type": "scenario",
+      "question": "Write contextual micro-copy and encouragement banners for a two-factor authentication (2FA) setup prompt: How do you frame 2FA benefits positively (protecting account integrity) rather than inducing anxiety with technical jargon?",
+      "expected_answer_keywords": ["positive encouragement", "educational framing", "micro-copy", "2FA setup guidance", "plain language", "confidence building"]
+    }
+  ],
+  "ux_behavior_strategies.defaulting": [
+    {
+      "level": "junior",
+      "type": "code_review",
+      "question": "Evaluate an e-commerce checkout form where marketing newsletter opt-in is pre-checked by default: Contrast the ethical status quo bias of pre-selecting 'Digital receipt via email' with deceptive pre-checked subscription checkboxes under GDPR regulations.",
+      "expected_answer_keywords": ["defaulting", "status quo bias", "opt-in vs opt-out", "GDPR compliance", "ethical defaults", "pre-selected checkbox"]
+    }
+  ],
+  "ux_behavior_strategies.choice_architecture_framing": [
+    {
+      "level": "junior",
+      "type": "calculation_and_mechanics",
+      "question": "Design a 3-tier SaaS pricing table applying the Decoy Effect (Asymmetric Dominance): Structure Basic ($15/mo), Standard ($45/mo), and Pro ($49/mo) so that Standard acts as a decoy making Pro the dominant, high-conversion choice.",
+      "expected_answer_keywords": ["Decoy effect", "Asymmetric Dominance", "choice architecture", "anchoring tier", "perceived value maximization", "pricing table UX"]
+    }
+  ],
+  "ux_behavior_strategies.help_think_about_action": [
+    {
+      "level": "mid",
+      "type": "practical_implementation",
+      "question": "Design a reflective pause prompt for an investment trading app: When a retail user attempts to submit a market order during extreme market volatility (>10% drop in 1 hour), insert a decision support modal asking them to review their long-term thesis without blocking execution.",
+      "expected_answer_keywords": ["reflective pause", "decision support modal", "volatility warning", "cognitive speed bump", "non-blocking prompt", "help think about action"]
+    }
+  ],
+  "ux_behavior_strategies.making_it_incidental": [
+    {
+      "level": "mid",
+      "type": "scenario",
+      "question": "How do you pair a micro-donation behavior incidentally with a routine user action during an online food delivery checkout (e.g. 'Round up $18.40 to $19.00 to plant a tree') to maximize opt-in rates through zero-effort integration?",
+      "expected_answer_keywords": ["incidental action", "piggybacking", "round-up donation", "zero cognitive load", "habit stacking", "seamless checkout pairing"]
+    }
+  ],
+  "ux_behavior_strategies.automate_new_behavior": [
+    {
+      "level": "mid",
+      "type": "practical_implementation",
+      "question": "Design a 'Set-and-Forget' automated recurring savings rule flow in a fintech app (e.g. 'Save $5 every time my favorite sports team wins' or 'Save $20 every Friday'): Detail the trigger definition, frequency selection, safety overdraft limits, and instant pause controls.",
+      "expected_answer_keywords": ["automated rule", "set-and-forget", "trigger condition", "safety overdraft limit", "pause/cancel controls", "recurring behavior automation"]
+    }
+  ],
+  "ux_behavior_strategies.disrupt_existing_habit": [
+    {
+      "level": "senior",
+      "type": "scenario",
+      "question": "A workplace communication tool wants to disrupt the toxic habit of sending urgent @channel notifications after 8 PM. Design an automatic pattern interrupt that prompts senders to schedule delivery for 9 AM the next morning, displaying teammate local timezones.",
+      "expected_answer_keywords": ["habit disruption", "pattern interrupt", "scheduled send default", "timezone awareness prompt", "workplace boundary UX", "behavioral friction"]
+    }
+  ],
+  "ux_behavior_strategies.systemic_habit_ecosystem_design": [
+    {
+      "level": "senior",
+      "type": "scenario",
+      "question": "Architect an end-to-end habit ecosystem for a chronic health management platform: Map multi-touchpoint behavioral feedback loops connecting Bluetooth glucose monitors, push notification prompts, in-app doctor feedback, and monthly health trend scorecards.",
+      "expected_answer_keywords": ["habit ecosystem", "multi-touchpoint UX", "closed feedback loop", "IoT hardware sync", "longitudinal behavior change", "retention architecture"]
+    }
+  ],
+  "ux_behavior_strategies.friction_engineering_intentional_friction": [
+    {
+      "level": "senior",
+      "type": "practical_implementation",
+      "question": "Design a multi-factor constructive friction flow for deleting an enterprise cloud database containing production records: Implement typed confirmation ('delete production-db-east'), timed countdown lock (5-second hold), and multi-admin dual authorization approval.",
+      "expected_answer_keywords": ["constructive friction", "intentional friction", "destructive action safeguard", "typed confirmation string", "timed hold interaction", "dual authorization approval"]
+    }
+  ],
+
+  # 4. ux_business_model (9)
+  "ux_business_model.business_model_canvas": [
+    {
+      "level": "junior",
+      "type": "practical_implementation",
+      "question": "Fill out the 9 building blocks of Alexander Osterwalder's Business Model Canvas for an on-demand telemedicine platform, clearly mapping the Value Proposition for both patients and licensed physicians.",
+      "expected_answer_keywords": ["Business Model Canvas", "Osterwalder", "Value Propositions", "Customer Segments", "Channels", "Revenue Streams", "Key Activities", "Cost Structure"]
+    }
+  ],
+  "ux_business_model.competitor_analysis": [
+    {
+      "level": "junior",
+      "type": "design_audit",
+      "question": "Conduct a heuristic competitive benchmarking matrix across 3 top ride-sharing apps (Uber, Lyft, Bolt): Score driver tip selection flows, ride cancellation fee disclosures, and ETA accuracy visibility.",
+      "expected_answer_keywords": ["competitive benchmarking", "heuristic scoring", "feature matrix", "ETA transparency", "cancellation fee disclosure", "tipping UX comparison"]
+    }
+  ],
+  "ux_business_model.value_proposition_design_canvas": [
+    {
+      "level": "junior",
+      "type": "practical_implementation",
+      "question": "Map a Value Proposition Canvas for a freelance invoicing tool: On the Customer Profile side, detail 3 Jobs, 3 Pains, and 3 Gains; on the Value Map side, match them directly to specific Pain Relievers and Gain Creators.",
+      "expected_answer_keywords": ["Value Proposition Canvas", "Customer Profile (Jobs, Pains, Gains)", "Value Map (Products, Pain Relievers, Gain Creators)", "problem-solution fit"]
+    }
+  ],
+  "ux_business_model.lean_canvas": [
+    {
+      "level": "mid",
+      "type": "scenario",
+      "question": "Create a Lean Canvas for a new B2B AI meeting transcription startup: Define the Top 3 Problems, Unique Value Proposition (UVP), High-Level Concept, and identify a defensible Unfair Advantage against generic LLMs.",
+      "expected_answer_keywords": ["Lean Canvas", "Ash Maurya", "Unique Value Proposition UVP", "Unfair Advantage", "Early Adopters", "Key Metrics", "problem validation"]
+    }
+  ],
+  "ux_business_model.inspirator_analysis": [
+    {
+      "level": "mid",
+      "type": "scenario",
+      "question": "Perform an Inspirator Analysis for a B2B cybersecurity compliance audit dashboard: Borrow gamified progress and visual reward mechanics from video games (e.g. RPG quest logs, achievement unlocks) to transform boring security checklist compliance.",
+      "expected_answer_keywords": ["inspirator analysis", "cross-industry analogues", "RPG quest log pattern", "achievement mechanics", "gamified compliance", "analogous design"]
+    }
+  ],
+  "ux_business_model.swot_analysis": [
+    {
+      "level": "mid",
+      "type": "trade_off_analysis",
+      "question": "Conduct a UX SWOT analysis for a traditional retail banking mobile app facing competition from agile Neobanks (e.g. Revolut, Monzo): Evaluate legacy branch trust (Strength) vs clunky KYC onboarding (Weakness) and open banking APIs (Opportunity).",
+      "expected_answer_keywords": ["UX SWOT analysis", "Strengths", "Weaknesses", "Opportunities", "Threats", "Neobank competition", "legacy onboarding friction"]
+    }
+  ],
+  "ux_business_model.five_forces": [
+    {
+      "level": "senior",
+      "type": "trade_off_analysis",
+      "question": "Apply Porter's Five Forces to evaluate how UX design creates defensibility and switching costs for an enterprise design tool (e.g. Figma): How do collaborative multiplayer canvas files and community plugin ecosystems reduce Buyer Power and Threat of Substitutes?",
+      "expected_answer_keywords": ["Porter's Five Forces", "switching costs", "network effects", "buyer power mitigation", "ecosystem lock-in", "threat of substitutes defensibility"]
+    }
+  ],
+  "ux_business_model.unit_economics_ux_monetization": [
+    {
+      "level": "senior",
+      "type": "calculation_and_mechanics",
+      "question": "A SaaS product has a CAC of $400, average monthly ARPU of $50, and monthly churn of 5%. Calculate the LTV (ARPU / Churn) and LTV:CAC ratio. Explain how redesigning the Day 1 onboarding flow to reduce first-month churn from 5% to 2.5% doubles customer LTV.",
+      "expected_answer_keywords": ["LTV calculation ARPU/churn", "$1000 LTV", "2.5:1 LTV:CAC ratio", "churn reduction to 2.5% = $2000 LTV", "5:1 ratio", "SaaS unit economics UX"]
+    }
+  ],
+  "ux_business_model.product_led_growth_ux_mechanics": [
+    {
+      "level": "senior",
+      "type": "practical_implementation",
+      "question": "Design a Product-Led Growth (PLG) self-service onboarding architecture for an API developer platform: Eliminate mandatory credit card upfront, establish an 'Aha! moment' within 3 API calls, and design non-intrusive paywall thresholds triggered by usage volume.",
+      "expected_answer_keywords": ["Product-Led Growth PLG", "Time-to-Value TTV", "Aha! moment", "no credit card required", "usage-based paywall threshold", "self-service activation"]
+    }
+  ],
+
+  # 5. ux_classifying_behavior (9)
+  "ux_classifying_behavior.clarify_product": [
+    {
+      "level": "junior",
+      "type": "scenario",
+      "question": "A startup founder pitches a product as 'an AI tool that does everything for everyone.' Apply product clarification techniques to narrow the product scope to a concise, single-sentence value proposition for a specific primary user.",
+      "expected_answer_keywords": ["clarify product", "product boundary scope", "elevator pitch", "single-sentence value proposition", "primary user focus", "anti-scope"]
+    }
+  ],
+  "ux_classifying_behavior.user_personas": [
+    {
+      "level": "junior",
+      "type": "practical_implementation",
+      "question": "Create an evidence-based behavioral persona for an overworked ICU nurse using hospital software: Detail daily goals, technical literacy, physical work environment constraints, primary frustrations, and an Empathy Map quadrant.",
+      "expected_answer_keywords": ["behavioral persona", "Empathy Map (Says, Thinks, Does, Feels)", "environmental constraints", "task goals", "pain points", "evidence-based"]
+    }
+  ],
+  "ux_classifying_behavior.jobs_to_be_done_framework": [
+    {
+      "level": "junior",
+      "type": "practical_implementation",
+      "question": "Formulate 3 complete Jobs-to-be-Done (JTBD) statements for a meal kit delivery service using the standard format: 'When [Situation], I want to [Motivation], So I can [Expected Outcome]'. Distinguish the functional job from emotional/social jobs.",
+      "expected_answer_keywords": ["Jobs to be Done JTBD", "Situation Motivation Outcome format", "functional job", "emotional job", "social job", "outcome driven"]
+    }
+  ],
+  "ux_classifying_behavior.target_outcome": [
+    {
+      "level": "mid",
+      "type": "scenario",
+      "question": "Differentiate between a business outcome (e.g. 'Increase Q3 subscription revenue by $2M') and a user target outcome (e.g. 'File quarterly sales taxes in under 15 minutes without errors'). How do you establish lagging business KPIs driven by leading user behavioral outcomes?",
+      "expected_answer_keywords": ["business outcome vs user outcome", "leading vs lagging indicators", "user success metric", "revenue driver", "time-to-complete"]
+    }
+  ],
+  "ux_classifying_behavior.target_actor": [
+    {
+      "level": "mid",
+      "type": "scenario",
+      "question": "In an enterprise procurement software suite, map the distinct motivations and permissions of the 3 key Target Actors involved in purchasing equipment: The End-User Employee (Requisitioner), the Department Manager (Approver), and the Finance Officer (Payer).",
+      "expected_answer_keywords": ["Target Actor", "Requisitioner vs Approver vs Payer", "stakeholder mapping", "multi-actor workflow", "role-based UX needs"]
+    }
+  ],
+  "ux_classifying_behavior.target_action": [
+    {
+      "level": "mid",
+      "type": "code_review",
+      "question": "A product team states their target action is 'Users should engage with the platform.' Critique this vague goal and rewrite it into 3 discrete, observable, and measurable Target Actions with exact timing, context, and completion criteria.",
+      "expected_answer_keywords": ["target action granularity", "observable behavior", "discrete action", "who when where how", "measurable completion criteria"]
+    }
+  ],
+  "ux_classifying_behavior.behavioral_segmentation_clustering": [
+    {
+      "level": "senior",
+      "type": "trade_off_analysis",
+      "question": "Contrast demographic segmentation (age, gender, location) with behavioral clustering (feature adoption velocity, session frequency, power-user workflow shortcuts): How does K-means behavioral clustering inform tailored in-app feature onboarding paths?",
+      "expected_answer_keywords": ["behavioral segmentation", "demographic vs behavioral", "K-means clustering", "feature adoption velocity", "power users vs casual users", "tailored onboarding"]
+    }
+  ],
+  "ux_classifying_behavior.cross_actor_ecosystem_mapping": [
+    {
+      "level": "senior",
+      "type": "practical_implementation",
+      "question": "Map a multi-sided actor behavioral ecosystem for a healthcare telehealth platform: Diagram the interdependent actions and value exchanges between Patients, Doctors, Pharmacists, and Insurance Claim Adjusters.",
+      "expected_answer_keywords": ["multi-sided ecosystem map", "cross-actor value exchange", "interdependent workflows", "telehealth platform actors", "two-sided marketplace dynamics"]
+    }
+  ],
+  "ux_classifying_behavior.intent_state_modeling": [
+    {
+      "level": "senior",
+      "type": "scenario",
+      "question": "Design a dynamic intent state model for an e-commerce search engine: Classify and adapt the UI layout dynamically as the user transitions from 'Broad Exploration' (visual grid, filters) to 'High-Intent Comparison' (side-by-side spec table) to 'Transactional Purchase' (express checkout).",
+      "expected_answer_keywords": ["intent state modeling", "exploratory intent", "comparative intent", "transactional intent", "adaptive UI layout", "state transition triggers"]
+    }
+  ],
+
+  # 6. ux_conceptual_design (9)
+  "ux_conceptual_design.user_stories": [
+    {
+      "level": "junior",
+      "type": "practical_implementation",
+      "question": "Write a complete Agile User Story for a password reset flow following INVEST criteria, including 3 Gherkin acceptance test scenarios (Given / When / Then) covering valid email, unregistered email, and expired reset token.",
+      "expected_answer_keywords": ["User Story INVEST", "Gherkin syntax", "Given When Then", "acceptance criteria", "edge case expired token", "password reset"]
+    }
+  ],
+  "ux_conceptual_design.ux_principle_short_simple": [
+    {
+      "level": "junior",
+      "type": "code_review",
+      "question": "Apply Hick's Law and the Short & Simple principle to refactor a single-page checkout containing 35 visible form fields: Break it into a clean 3-step progressive flow with smart auto-fill and address lookup.",
+      "expected_answer_keywords": ["Hick's Law", "Short and Simple", "step reduction", "progressive disclosure", "address auto-complete", "cognitive load reduction"]
+    }
+  ],
+  "ux_conceptual_design.ux_principle_progress_visible": [
+    {
+      "level": "junior",
+      "type": "practical_implementation",
+      "question": "Design an animated multi-step loan application progress stepper: Detail how you visually represent Completed steps (green checkmark), Current active step (highlighted with step number), and Future pending steps (muted gray), ensuring Jakob Nielsen's Heuristic #1.",
+      "expected_answer_keywords": ["Nielsen Heuristic #1", "Visibility of system status", "progress stepper", "completed vs active vs pending", "breadcrumbs", "reassurance UX"]
+    }
+  ],
+  "ux_conceptual_design.product_backlog": [
+    {
+      "level": "mid",
+      "type": "calculation_and_mechanics",
+      "question": "Prioritize 4 candidate UX features using the RICE scoring model (Reach x Impact x Confidence / Effort): Feature A (R: 10k, I: 2, C: 80%, E: 4), Feature B (R: 2k, I: 3, C: 100%, E: 1), Feature C (R: 50k, I: 0.5, C: 50%, E: 5), Feature D (R: 5k, I: 3, C: 90%, E: 2). Rank the backlog accordingly.",
+      "expected_answer_keywords": ["RICE scoring", "Score A = 4000", "Score B = 6000", "Score C = 2500", "Score D = 6750", "Rank: D > B > A > C", "backlog prioritization"]
+    }
+  ],
+  "ux_conceptual_design.ux_principle_success_prominent": [
+    {
+      "level": "mid",
+      "type": "practical_implementation",
+      "question": "Design a high-delight, unambiguous success state for completing a complex tax submission: Combine a prominent confirmation card, downloadable PDF receipt, next-step expectations timeline, and tasteful micro-animation celebration.",
+      "expected_answer_keywords": ["prominent success state", "confirmation card", "downloadable receipt", "next steps expectation", "micro-animation celebration", "closure UX"]
+    }
+  ],
+  "ux_conceptual_design.ux_principle_scaffolding": [
+    {
+      "level": "mid",
+      "type": "scenario",
+      "question": "How do you implement progressive UX scaffolding in a pro audio mixing web app: Provide visual drag-and-drop presets for novice users, with progressive disclosure toggles that reveal raw frequency EQ parametric curves as users gain mastery?",
+      "expected_answer_keywords": ["UX scaffolding", "progressive disclosure", "novice presets vs expert controls", "skill building ramp", "parametric EQ toggle"]
+    }
+  ],
+  "ux_conceptual_design.mental_model_system_architecture": [
+    {
+      "level": "senior",
+      "type": "trade_off_analysis",
+      "question": "Explain Don Norman's concept of Conceptual Models vs User Mental Models: When designing a cloud storage app, analyze how exposing raw folder/file system hierarchies conflicts with user mental models organized by recency, project tags, and search semantics.",
+      "expected_answer_keywords": ["Don Norman", "mental model vs conceptual model", "system image", "conceptual dissonance", "folder hierarchy vs search semantics", "Information Architecture"]
+    }
+  ],
+  "ux_conceptual_design.design_system_tokens_governance": [
+    {
+      "level": "senior",
+      "type": "practical_implementation",
+      "question": "Architect a multi-tier Design Token taxonomy (Global/Primitive Tokens -> Semantic/Alias Tokens -> Component Tokens) in Figma Variables and Style Dictionary JSON: Provide concrete token examples and establish a change governance process across cross-platform mobile and web.",
+      "expected_answer_keywords": ["Design Tokens taxonomy", "Primitive vs Semantic vs Component tokens", "Figma Variables", "Style Dictionary", "token governance", "multi-brand theming"]
+    }
+  ],
+  "ux_conceptual_design.service_blueprint_orchestration": [
+    {
+      "level": "senior",
+      "type": "practical_implementation",
+      "question": "Construct a complete Service Blueprint for an airport baggage claim lost luggage incident: Map Customer Actions, Frontstage Touchpoints (help desk agent tablet), Backstage Actions (baggage handler barcode scan), and Support Processes (airline database lookups, SMS dispatch API).",
+      "expected_answer_keywords": ["Service Blueprint", "Customer Actions", "Frontstage interactions", "Backstage employee actions", "Support processes", "Line of Visibility", "Line of Internal Interaction"]
+    }
+  ],
+
+  # 7. ux_deliverables_prototyping (9)
+  "ux_deliverables_prototyping.wireframing_tools": [
+    {
+      "level": "junior",
+      "type": "practical_implementation",
+      "question": "Build a responsive low-fidelity wireframe layout in Figma for an enterprise dashboard: Include a collapsible sidebar navigation, top search bar, summary KPI stat cards, and a paginated data table using standard grayscale wireframe kits.",
+      "expected_answer_keywords": ["low-fidelity wireframe", "Figma layout", "collapsible sidebar", "KPI stat cards", "data table", "grayscale wireframing"]
+    }
+  ],
+  "ux_deliverables_prototyping.simple_flowchart": [
+    {
+      "level": "junior",
+      "type": "practical_implementation",
+      "question": "Create a user flowchart for an ATM cash withdrawal workflow: Diagram the start state, card insertion, PIN validation (with 3-attempt lock branch), balance check, cash dispensing, and receipt option terminating at card return.",
+      "expected_answer_keywords": ["user flowchart", "decision diamond", "PIN validation loop", "3-attempt lock branch", "cash dispensing flow", "standard flowchart symbols"]
+    }
+  ],
+  "ux_deliverables_prototyping.layout_rules": [
+    {
+      "level": "junior",
+      "type": "code_review",
+      "question": "Explain the mechanics of the 8pt spatial grid system in Figma Auto-Layout: Why should margin, padding, line heights, and component dimensions adhere to multiples of 8 (with 4pt half-grid for typography/icons) to ensure developer implementation fidelity?",
+      "expected_answer_keywords": ["8pt grid system", "4pt half-grid", "Figma Auto-Layout", "spacing scale (8, 16, 24, 32, 48)", "visual rhythm", "developer handoff fidelity"]
+    }
+  ],
+  "ux_deliverables_prototyping.customer_experience_map": [
+    {
+      "level": "mid",
+      "type": "practical_implementation",
+      "question": "Map a Customer Experience (CX) Journey Map for buying a home insurance policy online: Diagram the 5 stages (Awareness, Research, Application, Underwriting, Policy Issue) with User Goals, Touchpoints, Emotional Sentiment curve, Pain Points, and Opportunities.",
+      "expected_answer_keywords": ["CX Journey Map", "5 lifecycle stages", "emotional sentiment curve", "touchpoints", "pain points and friction", "design opportunities"]
+    }
+  ],
+  "ux_deliverables_prototyping.bpmn_diagram": [
+    {
+      "level": "mid",
+      "type": "practical_implementation",
+      "question": "Author a Business Process Model and Notation (BPMN 2.0) diagram for an insurance claim adjudication process: Use swimlanes for Customer, Claims Adjuster, and Fraud AI, including Exclusive (XOR) and Parallel (AND) gateways.",
+      "expected_answer_keywords": ["BPMN 2.0", "swimlanes", "Exclusive Gateway XOR", "Parallel Gateway AND", "Claims Adjuster lane", "start/end events"]
+    }
+  ],
+  "ux_deliverables_prototyping.interactive_high_fidelity_prototyping": [
+    {
+      "level": "mid",
+      "type": "practical_implementation",
+      "question": "Build an advanced interactive prototype in Figma using Variables and Conditional Logic: When a user increments the item quantity in a shopping cart, dynamically update the subtotal variable, calculate 8.5% sales tax, and show/hide a free shipping progress banner.",
+      "expected_answer_keywords": ["Figma Variables", "conditional logic", "dynamic string/number variables", "interactive prototype", "cart subtotal calculation", "micro-interaction"]
+    }
+  ],
+  "ux_deliverables_prototyping.epc_diagram": [
+    {
+      "level": "senior",
+      "type": "scenario",
+      "question": "Construct an Event-Driven Process Chain (EPC) diagram for an automated warehouse order fulfillment system: Model alternating Events (hexagons) and Functions (rounded rectangles) connected by logical operators (AND, OR, XOR) and organizational units.",
+      "expected_answer_keywords": ["EPC diagram", "Event-Driven Process Chain", "Events (hexagons)", "Functions (rectangles)", "logical operators AND OR XOR", "organizational units"]
+    }
+  ],
+  "ux_deliverables_prototyping.design_to_code_handoff_tokens": [
+    {
+      "level": "senior",
+      "type": "scenario",
+      "question": "Establish a zero-defect Design-to-Code handoff pipeline between Figma and React/Storybook: Detail Figma Dev Mode redline annotations, automated token syncing via GitHub Actions (Tokens Studio to CSS variables), and component props contract alignment.",
+      "expected_answer_keywords": ["Design-to-Code handoff", "Storybook", "Figma Dev Mode", "Tokens Studio", "automated token pipeline", "component props contract", "zero defect handoff"]
+    }
+  ],
+  "ux_deliverables_prototyping.accessibility_wcag_design_specs": [
+    {
+      "level": "senior",
+      "type": "design_audit",
+      "question": "Author a comprehensive WCAG 2.1 AAA accessibility design specification for a primary web app: Enforce 7:1 color contrast ratios, document tab focus order rings (2px solid offset), specify minimum 48x48px touch targets, and annotate aria-live regions for dynamic alerts.",
+      "expected_answer_keywords": ["WCAG 2.1 AAA", "7:1 contrast ratio", "focus order ring", "48x48px touch target", "aria-live annotations", "screen reader flow specs"]
+    }
+  ],
+
+  # 8. ux_measuring_impact (9)
+  "ux_measuring_impact.ab_testing": [
+    {
+      "level": "junior",
+      "type": "scenario",
+      "question": "Formulate a formal A/B testing experiment document for a landing page redesign: Define the core hypothesis ('If we replace the static hero banner with an interactive demo, then signups will increase...'), primary metric, secondary guardrail metrics, and control vs variant setup.",
+      "expected_answer_keywords": ["A/B testing hypothesis", "primary conversion metric", "guardrail metrics (churn, page speed)", "control vs variant A/B", "experiment documentation"]
+    }
+  ],
+  "ux_measuring_impact.ux_metrics": [
+    {
+      "level": "junior",
+      "type": "calculation_and_mechanics",
+      "question": "Explain the specific methodologies and survey questions used to measure CSAT (Customer Satisfaction), CES (Customer Effort Score - 'The app made it easy to resolve my issue'), and NPS (Net Promoter Score), and explain how CES correlates directly with user churn.",
+      "expected_answer_keywords": ["CSAT 1-5 scale", "CES Customer Effort Score 1-7", "NPS Promoters minus Detractors", "churn correlation", "task completion metrics"]
+    }
+  ],
+  "ux_measuring_impact.usability_testing_heuristics_sus": [
+    {
+      "level": "junior",
+      "type": "calculation_and_mechanics",
+      "question": "Calculate the System Usability Scale (SUS) score for a usability test participant who provided 10 responses on a 1-5 Likert scale. Explain the formula: (Sum of odd scores - 5) + (25 - Sum of even scores) multiplied by 2.5, and benchmark the result against the industry average of 68.",
+      "expected_answer_keywords": ["System Usability Scale SUS", "SUS calculation formula x2.5", "odd minus 1, 5 minus even", "industry average 68", "percentile ranking", "usability benchmarking"]
+    }
+  ],
+  "ux_measuring_impact.statistical_interpretation": [
+    {
+      "level": "mid",
+      "type": "calculation_and_mechanics",
+      "question": "In an A/B test with 20,000 visitors per variant, Variant A converts at 4.0% and Variant B converts at 4.5%. The calculated p-value is 0.012 with a 95% confidence interval [0.11%, 0.89%]. Interpret whether this result is statistically significant and explain the risk of a Type I error.",
+      "expected_answer_keywords": ["statistical significance", "p < 0.05", "p=0.012 significant", "confidence interval", "Type I false positive error", "statistical power", "sample size validity"]
+    }
+  ],
+  "ux_measuring_impact.integrating_test_results": [
+    {
+      "level": "mid",
+      "type": "scenario",
+      "question": "In an e-commerce redesign, quantitative metrics show a 12% drop in checkout conversion, while qualitative video sessions reveal users clicking repeatedly on a non-clickable shipping cost badge. Synthesize these conflicting findings into an actionable design remediation backlog.",
+      "expected_answer_keywords": ["qual-quant triangulation", "session recording synthesis", "rage click analysis", "actionable remediation backlog", "insight synthesis report"]
+    }
+  ],
+  "ux_measuring_impact.funnel_dropoff_cohort_analytics": [
+    {
+      "level": "mid",
+      "type": "practical_implementation",
+      "question": "Using Mixpanel or Amplitude cohort analytics, diagnose a 4-step onboarding funnel: Signup (100%) -> Profile Fill (82%) -> Connect Bank (34%) -> First Transaction (18%). Identify the primary friction drop-off point and design a contextual onboarding intervention to unblock it.",
+      "expected_answer_keywords": ["funnel dropoff analysis", "Connect Bank 58% dropoff friction", "cohort retention curve", "Mixpanel Amplitude", "contextual onboarding unblocker"]
+    }
+  ],
+  "ux_measuring_impact.multivariate_testing": [
+    {
+      "level": "senior",
+      "type": "trade_off_analysis",
+      "question": "When is a Multivariate Test (MVT) preferred over separate sequential A/B tests? Detail how fractional factorial experimental design tests interaction effects between headline copy (3 options) and CTA color/placement (4 options) simultaneously on high-traffic websites.",
+      "expected_answer_keywords": ["Multivariate testing MVT", "fractional factorial design", "interaction effects", "high traffic requirements", "statistical power scaling", "A/B vs MVT"]
+    }
+  ],
+  "ux_measuring_impact.longitudinal_ux_impact_heart_framework": [
+    {
+      "level": "senior",
+      "type": "practical_implementation",
+      "question": "Implement the Google HEART framework (Happiness, Engagement, Adoption, Retention, Task Success) for a B2B SaaS platform: Map each category to specific Goals, Signals, and Metrics (GSM process) and demonstrate how to attribute a $500k ARR expansion to improved Task Success.",
+      "expected_answer_keywords": ["Google HEART framework", "Goals Signals Metrics GSM", "Happiness (CSAT/NPS)", "Engagement (DAU/MAU)", "Adoption", "Retention", "Task Success (TTR)", "UX ROI attribution"]
+    }
+  ],
+  "ux_measuring_impact.algorithmic_personalization_impact": [
+    {
+      "level": "senior",
+      "type": "design_audit",
+      "question": "Design an evaluation framework to measure the UX impact of an ML-driven personalized home feed algorithm: Track user serendipity, filter bubble narrowing, algorithmic bias in recommendations, and compare long-term 90-day retention against a static chronological feed.",
+      "expected_answer_keywords": ["algorithmic UX evaluation", "filter bubble metric", "recommendation serendipity", "algorithmic bias testing", "long-term retention vs short-term engagement"]
+    }
+  ],
+
+  # 9. ux_patterns_best_practices (9)
+  "ux_patterns_best_practices.get_attention_patterns": [
+    {
+      "level": "junior",
+      "type": "code_review",
+      "question": "Explain how visual saliency, directional cues (arrows, human gaze direction), and high-contrast color accents guide user eye-tracking scan paths directly to the primary signup form in a landing page layout.",
+      "expected_answer_keywords": ["visual saliency", "directional cues", "gaze following", "F-pattern vs Z-pattern", "visual contrast accent", "focal hierarchy"]
+    }
+  ],
+  "ux_patterns_best_practices.positive_impression_patterns": [
+    {
+      "level": "junior",
+      "type": "scenario",
+      "question": "Explain the Aesthetic-Usability Effect (Kurosu & Kashimura): Why do users perceive visually attractive, well-crafted interfaces with subtle micro-animations as inherently more usable and forgiving of minor bugs during initial onboarding?",
+      "expected_answer_keywords": ["Aesthetic-Usability Effect", "Kurosu and Kashimura", "micro-animations", "emotional design", "trust building", "halo effect in UX"]
+    }
+  ],
+  "ux_patterns_best_practices.social_proof": [
+    {
+      "level": "junior",
+      "type": "practical_implementation",
+      "question": "Design an ethical social proof component for an online course platform: Display verified student reviews, dynamic enrolled student counts ('Join 12,450 designers'), and recent completion badges without using fake countdowns or fabricated notifications.",
+      "expected_answer_keywords": ["ethical social proof", "verified reviews", "real-time student count", "wisdom of crowds", "completion badge", "authenticity"]
+    }
+  ],
+  "ux_patterns_best_practices.authority": [
+    {
+      "level": "mid",
+      "type": "scenario",
+      "question": "Where and how should authority trust signals (SOC2 Type II compliance badges, ISO 27001 seals, industry analyst quotes, bank-grade 256-bit encryption badges) be placed in a B2B financial onboarding flow to eliminate user security hesitation?",
+      "expected_answer_keywords": ["authority bias", "SOC2 compliance seal", "ISO 27001", "encryption badge", "contextual trust signaling", "hesitation reduction at payment"]
+    }
+  ],
+  "ux_patterns_best_practices.loss_aversion": [
+    {
+      "level": "mid",
+      "type": "scenario",
+      "question": "Apply Kahneman & Tversky's Loss Aversion theory (losses feel 2x more impactful than equivalent gains) to reframe an energy conservation notification: Contrast 'Save $20/month by turning down heating' with 'You are losing $240/year in wasted energy'.",
+      "expected_answer_keywords": ["Loss Aversion", "Kahneman Tversky", "loss framing vs gain framing", "2x psychological weight", "energy conservation nudge", "sunk cost"]
+    }
+  ],
+  "ux_patterns_best_practices.peer_comparison": [
+    {
+      "level": "mid",
+      "type": "practical_implementation",
+      "question": "Design a peer comparison widget inspired by Robert Cialdini's social norms research (e.g. Opower energy reports): Show a household's energy usage compared to 'Similar Efficient Neighbors' with positive reinforcement icons (smiling leaf badge).",
+      "expected_answer_keywords": ["peer comparison", "Robert Cialdini", "descriptive social norms", "injunctive norms", "Opower model", "normative feedback"]
+    }
+  ],
+  "ux_patterns_best_practices.urgency_scarcity": [
+    {
+      "level": "mid",
+      "type": "design_audit",
+      "question": "Critique deceptive hotel booking scarcity tactics ('45 people are looking at this room, only 1 left!' when inventory is unlimited). Design an authentic, ethical scarcity signal (e.g. true live seat availability map on an airline booking UI).",
+      "expected_answer_keywords": ["ethical urgency vs dark scarcity", "authentic seat map", "deceptive inventory audit", "real-time transparency", "consumer trust preservation"]
+    }
+  ],
+  "ux_patterns_best_practices.implementation_intentions": [
+    {
+      "level": "senior",
+      "type": "practical_implementation",
+      "question": "Design a Peter Gollwitzer Implementation Intentions ('If-Then Planning') commitment flow for an online habit-building tool: Guide users to choose a specific Trigger ('If it is 8:00 AM on a weekday') and an Action ('Then I will open my journal for 5 minutes'), saving the plan to calendar sync.",
+      "expected_answer_keywords": ["Implementation Intentions", "Peter Gollwitzer", "If-Then planning", "action trigger pre-commitment", "calendar integration", "behavioral follow-through"]
+    }
+  ],
+  "ux_patterns_best_practices.friction_reduction_defaulting": [
+    {
+      "level": "senior",
+      "type": "practical_implementation",
+      "question": "Re-engineer an enterprise multi-step checkout into a radical 1-click frictionless flow: Leverage stored payment tokens (Apple Pay / Google Pay), biometric Passkey authentication, auto-populated shipping address via GPS/browser autofill, and post-purchase editable grace periods.",
+      "expected_answer_keywords": ["friction elimination", "1-click checkout", "Apple Pay Google Pay token", "Passkeys biometric auth", "post-purchase grace period", "effortless UX"]
+    }
+  ]
+}
+
+print(f"Total UX Assessment questions mapped: {len(questions)}")
+
+# --- GITHUB EVIDENCE ---
+github_evidence = {
+  "source_id": "github",
+  "name": "GitHub Repository Analysis - UX Designer",
+  "description": "Global parsing rules for UX Design deliverables, design system tokens, Storybook stories, usability test scripts, and UI prototypes.",
+  "signal_mapping": {
+    "patterns": [
+      {
+        "pattern": "StreakCounter|BadgeProgress|Gamification|NotificationBell|CallToAction|ProductTour|OnboardingTutorial|useDeviceSync|HabitTracker",
+        "maps_to": [
+          "ux_attention_context.fleeting_attention_cta",
+          "ux_attention_context.fleeting_attention_status_reports",
+          "ux_attention_context.fleeting_attention_tips",
+          "ux_attention_context.many_chances_gamification",
+          "ux_attention_context.many_chances_planners",
+          "ux_attention_context.many_chances_tutorials",
+          "ux_attention_context.many_chances_social_sharing",
+          "ux_attention_context.multi_device_attention_continuity",
+          "ux_attention_context.cognitive_overload_mitigation_calm_tech"
+        ]
+      },
+      {
+        "pattern": "Fogg|B=MAP|HookModel|VariableReward|DarkPatterns|CREATEFunnel|System1|System2",
+        "maps_to": [
+          "ux_behavior_frameworks.fogg_behavior_model",
+          "ux_behavior_frameworks.dual_process_theory",
+          "ux_behavior_frameworks.behavioral_buzzwords",
+          "ux_behavior_frameworks.hook_model",
+          "ux_behavior_frameworks.create_action_funnel",
+          "ux_behavior_frameworks.cue_routine_reward",
+          "ux_behavior_frameworks.fogg_behavior_grid",
+          "ux_behavior_frameworks.spectrum_of_thinking_interventions",
+          "ux_behavior_frameworks.behavioral_ethics_dark_patterns_defense"
+        ]
+      },
+      {
+        "pattern": "PricingTier|SmartDefault|ConfirmModal|SpeedBump|HabitLoop|ChoiceArchitecture|ConstructiveFriction",
+        "maps_to": [
+          "ux_behavior_strategies.educate_encourage",
+          "ux_behavior_strategies.defaulting",
+          "ux_behavior_strategies.choice_architecture_framing",
+          "ux_behavior_strategies.help_think_about_action",
+          "ux_behavior_strategies.making_it_incidental",
+          "ux_behavior_strategies.automate_new_behavior",
+          "ux_behavior_strategies.disrupt_existing_habit",
+          "ux_behavior_strategies.systemic_habit_ecosystem_design",
+          "ux_behavior_strategies.friction_engineering_intentional_friction"
+        ]
+      },
+      {
+        "pattern": "LeanCanvas|ValueProposition|PLG|TimeToValue|PricingTable|CompetitorMatrix|BusinessModelCanvas",
+        "maps_to": [
+          "ux_business_model.business_model_canvas",
+          "ux_business_model.competitor_analysis",
+          "ux_business_model.value_proposition_design_canvas",
+          "ux_business_model.lean_canvas",
+          "ux_business_model.inspirator_analysis",
+          "ux_business_model.swot_analysis",
+          "ux_business_model.five_forces",
+          "ux_business_model.unit_economics_ux_monetization",
+          "ux_business_model.product_led_growth_ux_mechanics"
+        ]
+      },
+      {
+        "pattern": "Persona|JTBD|JobsToBeDone|TargetAction|BehavioralSegment|IntentState|EmpathyMap",
+        "maps_to": [
+          "ux_classifying_behavior.clarify_product",
+          "ux_classifying_behavior.user_personas",
+          "ux_classifying_behavior.jobs_to_be_done_framework",
+          "ux_classifying_behavior.target_outcome",
+          "ux_classifying_behavior.target_actor",
+          "ux_classifying_behavior.target_action",
+          "ux_classifying_behavior.behavioral_segmentation_clustering",
+          "ux_classifying_behavior.cross_actor_ecosystem_mapping",
+          "ux_classifying_behavior.intent_state_modeling"
+        ]
+      },
+      {
+        "pattern": "design-tokens\\.json|tokens/.*\\.json|ServiceBlueprint|UserStory|AcceptanceCriteria|DesignTokens",
+        "maps_to": [
+          "ux_conceptual_design.user_stories",
+          "ux_conceptual_design.ux_principle_short_simple",
+          "ux_conceptual_design.ux_principle_progress_visible",
+          "ux_conceptual_design.product_backlog",
+          "ux_conceptual_design.ux_principle_success_prominent",
+          "ux_conceptual_design.ux_principle_scaffolding",
+          "ux_conceptual_design.mental_model_system_architecture",
+          "ux_conceptual_design.design_system_tokens_governance",
+          "ux_conceptual_design.service_blueprint_orchestration"
+        ]
+      },
+      {
+        "pattern": "\\.storybook/|\\.stories\\.(tsx|jsx|js)|aria-label|contrast-ratio|DesignSpecs|BPMN|EPC",
+        "maps_to": [
+          "ux_deliverables_prototyping.wireframing_tools",
+          "ux_deliverables_prototyping.simple_flowchart",
+          "ux_deliverables_prototyping.layout_rules",
+          "ux_deliverables_prototyping.customer_experience_map",
+          "ux_deliverables_prototyping.bpmn_diagram",
+          "ux_deliverables_prototyping.interactive_high_fidelity_prototyping",
+          "ux_deliverables_prototyping.epc_diagram",
+          "ux_deliverables_prototyping.design_to_code_handoff_tokens",
+          "ux_deliverables_prototyping.accessibility_wcag_design_specs"
+        ]
+      },
+      {
+        "pattern": "Statsig|LaunchDarkly|mixpanel\\.track|posthog\\.capture|ABTest|HEARTFramework|SUSScore",
+        "maps_to": [
+          "ux_measuring_impact.ab_testing",
+          "ux_measuring_impact.ux_metrics",
+          "ux_measuring_impact.usability_testing_heuristics_sus",
+          "ux_measuring_impact.statistical_interpretation",
+          "ux_measuring_impact.integrating_test_results",
+          "ux_measuring_impact.funnel_dropoff_cohort_analytics",
+          "ux_measuring_impact.multivariate_testing",
+          "ux_measuring_impact.longitudinal_ux_impact_heart_framework",
+          "ux_measuring_impact.algorithmic_personalization_impact"
+        ]
+      },
+      {
+        "pattern": "SocialProof|TrustBadges|CountdownTimer|OneClickCheckout|IfThenPlanner|PeerComparison",
+        "maps_to": [
+          "ux_patterns_best_practices.get_attention_patterns",
+          "ux_patterns_best_practices.positive_impression_patterns",
+          "ux_patterns_best_practices.social_proof",
+          "ux_patterns_best_practices.authority",
+          "ux_patterns_best_practices.loss_aversion",
+          "ux_patterns_best_practices.peer_comparison",
+          "ux_patterns_best_practices.urgency_scarcity",
+          "ux_patterns_best_practices.implementation_intentions",
+          "ux_patterns_best_practices.friction_reduction_defaulting"
+        ]
+      }
+    ]
+  }
+}
+
+with open(os.path.join(evidence_dir, 'github.json'), 'w', encoding='utf-8') as f:
+    json.dump(github_evidence, f, indent=2, ensure_ascii=False)
+print("Generated evidence/ux-designer/github.json")
+
+# --- CV EVIDENCE ---
+cv_evidence = {
+  "source_id": "cv",
+  "name": "CV / Resume Analysis - UX Designer",
+  "description": "Extraction rules for UX Designer and Behavioral Product Designer CVs, analyzing Figma deliverables, user research, Design Systems, and CRO impact.",
+  "signal_mapping": {
+    "patterns": [
+      {
+        "pattern": "Designed gamification loops, habit-tracking planners, and reduced notification dropoff by 35%",
+        "maps_to": [
+          "ux_attention_context.fleeting_attention_cta",
+          "ux_attention_context.fleeting_attention_status_reports",
+          "ux_attention_context.fleeting_attention_tips",
+          "ux_attention_context.many_chances_gamification",
+          "ux_attention_context.many_chances_planners",
+          "ux_attention_context.many_chances_tutorials",
+          "ux_attention_context.many_chances_social_sharing",
+          "ux_attention_context.multi_device_attention_continuity",
+          "ux_attention_context.cognitive_overload_mitigation_calm_tech"
+        ]
+      },
+      {
+        "pattern": "Applied Fogg B=MAP, Hook Model, and CREATE funnels to improve activation and retention metrics",
+        "maps_to": [
+          "ux_behavior_frameworks.fogg_behavior_model",
+          "ux_behavior_frameworks.dual_process_theory",
+          "ux_behavior_frameworks.behavioral_buzzwords",
+          "ux_behavior_frameworks.hook_model",
+          "ux_behavior_frameworks.create_action_funnel",
+          "ux_behavior_frameworks.cue_routine_reward",
+          "ux_behavior_frameworks.fogg_behavior_grid",
+          "ux_behavior_frameworks.spectrum_of_thinking_interventions",
+          "ux_behavior_frameworks.behavioral_ethics_dark_patterns_defense"
+        ]
+      },
+      {
+        "pattern": "Designed smart defaults and choice architecture increasing conversion by 28% while reducing checkout errors",
+        "maps_to": [
+          "ux_behavior_strategies.educate_encourage",
+          "ux_behavior_strategies.defaulting",
+          "ux_behavior_strategies.choice_architecture_framing",
+          "ux_behavior_strategies.help_think_about_action",
+          "ux_behavior_strategies.making_it_incidental",
+          "ux_behavior_strategies.automate_new_behavior",
+          "ux_behavior_strategies.disrupt_existing_habit",
+          "ux_behavior_strategies.systemic_habit_ecosystem_design",
+          "ux_behavior_strategies.friction_engineering_intentional_friction"
+        ]
+      },
+      {
+        "pattern": "Formulated Lean Canvases and mapped Value Proposition Canvases driving product-market fit for B2B SaaS",
+        "maps_to": [
+          "ux_business_model.business_model_canvas",
+          "ux_business_model.competitor_analysis",
+          "ux_business_model.value_proposition_design_canvas",
+          "ux_business_model.lean_canvas",
+          "ux_business_model.inspirator_analysis",
+          "ux_business_model.swot_analysis",
+          "ux_business_model.five_forces",
+          "ux_business_model.unit_economics_ux_monetization",
+          "ux_business_model.product_led_growth_ux_mechanics"
+        ]
+      },
+      {
+        "pattern": "Conducted user research formulating JTBD frameworks, behavioral personas, and target action specifications",
+        "maps_to": [
+          "ux_classifying_behavior.clarify_product",
+          "ux_classifying_behavior.user_personas",
+          "ux_classifying_behavior.jobs_to_be_done_framework",
+          "ux_classifying_behavior.target_outcome",
+          "ux_classifying_behavior.target_actor",
+          "ux_classifying_behavior.target_action",
+          "ux_classifying_behavior.behavioral_segmentation_clustering",
+          "ux_classifying_behavior.cross_actor_ecosystem_mapping",
+          "ux_classifying_behavior.intent_state_modeling"
+        ]
+      },
+      {
+        "pattern": "Wrote user stories with Gherkin acceptance criteria, architected Design Tokens, and mapped Service Blueprints",
+        "maps_to": [
+          "ux_conceptual_design.user_stories",
+          "ux_conceptual_design.ux_principle_short_simple",
+          "ux_conceptual_design.ux_principle_progress_visible",
+          "ux_conceptual_design.product_backlog",
+          "ux_conceptual_design.ux_principle_success_prominent",
+          "ux_conceptual_design.ux_principle_scaffolding",
+          "ux_conceptual_design.mental_model_system_architecture",
+          "ux_conceptual_design.design_system_tokens_governance",
+          "ux_conceptual_design.service_blueprint_orchestration"
+        ]
+      },
+      {
+        "pattern": "Built wireframes, interactive prototypes in Figma with variables, and authored WCAG 2.1 AAA accessibility specs",
+        "maps_to": [
+          "ux_deliverables_prototyping.wireframing_tools",
+          "ux_deliverables_prototyping.simple_flowchart",
+          "ux_deliverables_prototyping.layout_rules",
+          "ux_deliverables_prototyping.customer_experience_map",
+          "ux_deliverables_prototyping.bpmn_diagram",
+          "ux_deliverables_prototyping.interactive_high_fidelity_prototyping",
+          "ux_deliverables_prototyping.epc_diagram",
+          "ux_deliverables_prototyping.design_to_code_handoff_tokens",
+          "ux_deliverables_prototyping.accessibility_wcag_design_specs"
+        ]
+      },
+      {
+        "pattern": "Formulated A/B test hypotheses, conducted SUS usability tests, and measured Google HEART framework ROI",
+        "maps_to": [
+          "ux_measuring_impact.ab_testing",
+          "ux_measuring_impact.ux_metrics",
+          "ux_measuring_impact.usability_testing_heuristics_sus",
+          "ux_measuring_impact.statistical_interpretation",
+          "ux_measuring_impact.integrating_test_results",
+          "ux_measuring_impact.funnel_dropoff_cohort_analytics",
+          "ux_measuring_impact.multivariate_testing",
+          "ux_measuring_impact.longitudinal_ux_impact_heart_framework",
+          "ux_measuring_impact.algorithmic_personalization_impact"
+        ]
+      },
+      {
+        "pattern": "Implemented social proof, peer comparisons, and Peter Gollwitzer if-then implementation intentions",
+        "maps_to": [
+          "ux_patterns_best_practices.get_attention_patterns",
+          "ux_patterns_best_practices.positive_impression_patterns",
+          "ux_patterns_best_practices.social_proof",
+          "ux_patterns_best_practices.authority",
+          "ux_patterns_best_practices.loss_aversion",
+          "ux_patterns_best_practices.peer_comparison",
+          "ux_patterns_best_practices.urgency_scarcity",
+          "ux_patterns_best_practices.implementation_intentions",
+          "ux_patterns_best_practices.friction_reduction_defaulting"
+        ]
+      }
+    ]
+  }
+}
+
+with open(os.path.join(evidence_dir, 'cv.json'), 'w', encoding='utf-8') as f:
+    json.dump(cv_evidence, f, indent=2, ensure_ascii=False)
+print("Generated evidence/ux-designer/cv.json")
+
+# --- LINKEDIN EVIDENCE ---
+linkedin_evidence = {
+  "source_id": "linkedin",
+  "name": "LinkedIn Profile Analysis - UX Designer",
+  "description": "Extraction rules for UX Designer and Product Designer LinkedIn profiles and skills.",
+  "signal_mapping": {
+    "patterns": [
+      {
+        "pattern": "Endorsements in Behavioral UX, Gamification Design, User Attention Management, and Onboarding UX",
+        "maps_to": [
+          "ux_attention_context.fleeting_attention_cta",
+          "ux_attention_context.fleeting_attention_status_reports",
+          "ux_attention_context.fleeting_attention_tips",
+          "ux_attention_context.many_chances_gamification",
+          "ux_attention_context.many_chances_planners",
+          "ux_attention_context.many_chances_tutorials",
+          "ux_attention_context.many_chances_social_sharing",
+          "ux_attention_context.multi_device_attention_continuity",
+          "ux_attention_context.cognitive_overload_mitigation_calm_tech",
+          "ux_behavior_frameworks.fogg_behavior_model",
+          "ux_behavior_frameworks.dual_process_theory",
+          "ux_behavior_frameworks.behavioral_buzzwords",
+          "ux_behavior_frameworks.hook_model",
+          "ux_behavior_frameworks.create_action_funnel",
+          "ux_behavior_frameworks.cue_routine_reward",
+          "ux_behavior_frameworks.fogg_behavior_grid",
+          "ux_behavior_frameworks.spectrum_of_thinking_interventions",
+          "ux_behavior_frameworks.behavioral_ethics_dark_patterns_defense"
+        ]
+      },
+      {
+        "pattern": "Endorsements in Behavioral Nudges, Choice Architecture, Product Strategy, and Jobs-to-be-Done (JTBD)",
+        "maps_to": [
+          "ux_behavior_strategies.educate_encourage",
+          "ux_behavior_strategies.defaulting",
+          "ux_behavior_strategies.choice_architecture_framing",
+          "ux_behavior_strategies.help_think_about_action",
+          "ux_behavior_strategies.making_it_incidental",
+          "ux_behavior_strategies.automate_new_behavior",
+          "ux_behavior_strategies.disrupt_existing_habit",
+          "ux_behavior_strategies.systemic_habit_ecosystem_design",
+          "ux_behavior_strategies.friction_engineering_intentional_friction",
+          "ux_business_model.business_model_canvas",
+          "ux_business_model.competitor_analysis",
+          "ux_business_model.value_proposition_design_canvas",
+          "ux_business_model.lean_canvas",
+          "ux_business_model.inspirator_analysis",
+          "ux_business_model.swot_analysis",
+          "ux_business_model.five_forces",
+          "ux_business_model.unit_economics_ux_monetization",
+          "ux_business_model.product_led_growth_ux_mechanics",
+          "ux_classifying_behavior.clarify_product",
+          "ux_classifying_behavior.user_personas",
+          "ux_classifying_behavior.jobs_to_be_done_framework",
+          "ux_classifying_behavior.target_outcome",
+          "ux_classifying_behavior.target_actor",
+          "ux_classifying_behavior.target_action",
+          "ux_classifying_behavior.behavioral_segmentation_clustering",
+          "ux_classifying_behavior.cross_actor_ecosystem_mapping",
+          "ux_classifying_behavior.intent_state_modeling"
+        ]
+      },
+      {
+        "pattern": "Endorsements in Design Systems, Figma Prototyping, Usability Testing (SUS), WCAG, and HEART Framework",
+        "maps_to": [
+          "ux_conceptual_design.user_stories",
+          "ux_conceptual_design.ux_principle_short_simple",
+          "ux_conceptual_design.ux_principle_progress_visible",
+          "ux_conceptual_design.product_backlog",
+          "ux_conceptual_design.ux_principle_success_prominent",
+          "ux_conceptual_design.ux_principle_scaffolding",
+          "ux_conceptual_design.mental_model_system_architecture",
+          "ux_conceptual_design.design_system_tokens_governance",
+          "ux_conceptual_design.service_blueprint_orchestration",
+          "ux_deliverables_prototyping.wireframing_tools",
+          "ux_deliverables_prototyping.simple_flowchart",
+          "ux_deliverables_prototyping.layout_rules",
+          "ux_deliverables_prototyping.customer_experience_map",
+          "ux_deliverables_prototyping.bpmn_diagram",
+          "ux_deliverables_prototyping.interactive_high_fidelity_prototyping",
+          "ux_deliverables_prototyping.epc_diagram",
+          "ux_deliverables_prototyping.design_to_code_handoff_tokens",
+          "ux_deliverables_prototyping.accessibility_wcag_design_specs",
+          "ux_measuring_impact.ab_testing",
+          "ux_measuring_impact.ux_metrics",
+          "ux_measuring_impact.usability_testing_heuristics_sus",
+          "ux_measuring_impact.statistical_interpretation",
+          "ux_measuring_impact.integrating_test_results",
+          "ux_measuring_impact.funnel_dropoff_cohort_analytics",
+          "ux_measuring_impact.multivariate_testing",
+          "ux_measuring_impact.longitudinal_ux_impact_heart_framework",
+          "ux_measuring_impact.algorithmic_personalization_impact",
+          "ux_patterns_best_practices.get_attention_patterns",
+          "ux_patterns_best_practices.positive_impression_patterns",
+          "ux_patterns_best_practices.social_proof",
+          "ux_patterns_best_practices.authority",
+          "ux_patterns_best_practices.loss_aversion",
+          "ux_patterns_best_practices.peer_comparison",
+          "ux_patterns_best_practices.urgency_scarcity",
+          "ux_patterns_best_practices.implementation_intentions",
+          "ux_patterns_best_practices.friction_reduction_defaulting"
+        ]
+      }
+    ]
+  }
+}
+
+with open(os.path.join(evidence_dir, 'linkedin.json'), 'w', encoding='utf-8') as f:
+    json.dump(linkedin_evidence, f, indent=2, ensure_ascii=False)
+print("Generated evidence/ux-designer/linkedin.json")
+
+# --- ASSESSMENT EVIDENCE ---
+assessment_evidence = {
+  "source_id": "assessment",
+  "name": "Adaptive Technical Assessment - UX Designer",
+  "description": "Adaptive scenario-based assessments evaluating UX design competencies across behavioral frameworks, prototyping, design systems, usability analytics, and ethics.",
+  "sample_questions_by_composite_key": questions
+}
+
+with open(os.path.join(evidence_dir, 'assessment.json'), 'w', encoding='utf-8') as f:
+    json.dump(assessment_evidence, f, indent=2, ensure_ascii=False)
+print("Generated evidence/ux-designer/assessment.json")
+
+print("\nUX Designer KB Complete!")

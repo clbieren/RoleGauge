@@ -1,0 +1,256 @@
+{
+  "skill_id": "blockchain_fundamentals",
+  "name": "Blockchain Fundamentals & Distributed Systems",
+  "category": "blockchain_core",
+  "description": "Fundamental concepts of distributed ledgers, peer-to-peer networking, state transition systems, UTXO vs Account models, and cryptographic primitives.",
+  "subskills": [
+    {
+      "id": "what_is_blockchain",
+      "name": "Distributed Ledger Technology Foundations",
+      "description": "Understanding append-only distributed ledgers, immutability, cryptographic chaining, and centralized vs decentralized paradigms.",
+      "keywords": [
+        "distributed ledger",
+        "append-only",
+        "immutability",
+        "cryptographic chain",
+        "decentralization",
+        "trustless",
+        "DLT",
+        "double spending"
+      ]
+    },
+    {
+      "id": "decentralization_principles",
+      "name": "Decentralization Principles & Game Theory",
+      "description": "Nakamoto consensus principles, censorship resistance, game theoretic alignment, and permissionless network participation.",
+      "keywords": [
+        "censorship resistance",
+        "permissionless",
+        "game theory",
+        "Nakamoto consensus",
+        "trust minimization",
+        "node distribution"
+      ]
+    },
+    {
+      "id": "blockchain_data_structure",
+      "name": "Block Architecture & Header Structures",
+      "description": "Internal structure of blocks: block header, nonce, difficulty target, timestamp, state root, receipt root, and previous block hash.",
+      "keywords": [
+        "block header",
+        "nonce",
+        "difficulty target",
+        "block height",
+        "state root",
+        "receipts root",
+        "transactions root",
+        "parent hash"
+      ]
+    },
+    {
+      "id": "utxo_vs_account_model",
+      "name": "UTXO vs Account-Based State Models",
+      "description": "Comparison between Bitcoin's Unspent Transaction Output (UTXO) model and Ethereum's Account/Nonce state model.",
+      "keywords": [
+        "UTXO",
+        "account model",
+        "nonce",
+        "state transition",
+        "unspent output",
+        "coinbase transaction",
+        "account balance"
+      ]
+    },
+    {
+      "id": "p2p_network_gossip",
+      "name": "P2P Networking & Gossip Protocols",
+      "description": "Peer-to-peer communication, node discovery (Kademlia DHT, discv4/discv5), and transaction/block propagation via gossip protocols.",
+      "keywords": [
+        "P2P",
+        "gossip protocol",
+        "Kademlia DHT",
+        "discv5",
+        "libp2p",
+        "devp2p",
+        "block propagation",
+        "mempool broadcast"
+      ]
+    },
+    {
+      "id": "transaction_lifecycle_mempool",
+      "name": "Transaction Lifecycle & Mempool Dynamics",
+      "description": "Transaction creation, digital signature verification, mempool propagation, MEV dynamics, replacement-by-fee (RBF), and block inclusion.",
+      "keywords": [
+        "mempool",
+        "transaction lifecycle",
+        "RBF",
+        "gas price bidding",
+        "pending transactions",
+        "inclusion delay",
+        "nonce ordering"
+      ]
+    },
+    {
+      "id": "cryptographic_hashing_merkle_trees",
+      "name": "Cryptographic Hashing & Merkle Trees",
+      "description": "SHA-256, Keccak-256, RIPEMD-160, Merkle Trees, Merkle Patricia Tries, and cryptographic proof verification (Merkle proofs).",
+      "keywords": [
+        "Keccak-256",
+        "SHA-256",
+        "Merkle tree",
+        "Merkle proof",
+        "Merkle Patricia Trie",
+        "root hash",
+        "cryptographic inclusion proof"
+      ]
+    },
+    {
+      "id": "byzantine_fault_tolerance_theory",
+      "name": "Byzantine Fault Tolerance (BFT) Theory",
+      "description": "The Byzantine Generals Problem, crash fault tolerance vs Byzantine fault tolerance, safety vs liveness, and 33%/51% attack thresholds.",
+      "keywords": [
+        "Byzantine Fault Tolerance",
+        "BFT",
+        "safety vs liveness",
+        "FLP impossibility",
+        "51% attack",
+        "33% fault threshold",
+        "finality"
+      ]
+    },
+    {
+      "id": "trilemma_tradeoff_analysis",
+      "name": "Blockchain Trilemma & Tradeoff Analysis",
+      "description": "Analyzing the fundamental tradeoffs between Decentralization, Security, and Scalability across L1 and L2 architectures.",
+      "keywords": [
+        "Blockchain Trilemma",
+        "scalability",
+        "decentralization",
+        "security",
+        "L1 vs L2",
+        "block size debate",
+        "throughput limits"
+      ]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "Cryptographic hash functions, Merkle tree implementations, and block parsing scripts",
+        "detection": "content_analysis",
+        "pattern": "keccak256|sha256|MerkleTree|verifyProof|getMerkleRoot",
+        "strength": 0.85,
+        "maps_to": [
+          "blockchain_fundamentals.cryptographic_hashing_merkle_trees",
+          "blockchain_fundamentals.blockchain_data_structure"
+        ]
+      },
+      {
+        "signal": "Raw transaction serialization, signature validation, and mempool listeners",
+        "detection": "content_analysis",
+        "pattern": "signTransaction|serializeTransaction|eth_sendRawTransaction|on\\('pending'",
+        "strength": 0.85,
+        "maps_to": [
+          "blockchain_fundamentals.transaction_lifecycle_mempool",
+          "blockchain_fundamentals.utxo_vs_account_model"
+        ]
+      },
+      {
+        "signal": "P2P node setup, gossip config, or consensus simulation scripts",
+        "detection": "file_presence",
+        "pattern": "docker-compose\\.ya?ml|geth\\.toml|reth\\.toml",
+        "strength": 0.8,
+        "maps_to": [
+          "blockchain_fundamentals.p2p_network_gossip",
+          "blockchain_fundamentals.byzantine_fault_tolerance_theory",
+          "blockchain_fundamentals.trilemma_tradeoff_analysis",
+          "blockchain_fundamentals.what_is_blockchain",
+          "blockchain_fundamentals.decentralization_principles"
+        ]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "Demonstrated deep understanding of distributed ledger mechanics, Merkle proofs, and consensus economics",
+        "strength": 0.6,
+        "maps_to": [
+          "blockchain_fundamentals.what_is_blockchain",
+          "blockchain_fundamentals.decentralization_principles",
+          "blockchain_fundamentals.blockchain_data_structure",
+          "blockchain_fundamentals.utxo_vs_account_model",
+          "blockchain_fundamentals.cryptographic_hashing_merkle_trees"
+        ]
+      },
+      {
+        "signal": "Architected low-latency mempool monitors and evaluated BFT consensus models against blockchain trilemma constraints",
+        "strength": 0.6,
+        "maps_to": [
+          "blockchain_fundamentals.p2p_network_gossip",
+          "blockchain_fundamentals.transaction_lifecycle_mempool",
+          "blockchain_fundamentals.byzantine_fault_tolerance_theory",
+          "blockchain_fundamentals.trilemma_tradeoff_analysis"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Endorsements and publications in Blockchain Architecture, Distributed Systems, and Cryptography",
+        "strength": 0.4,
+        "maps_to": [
+          "blockchain_fundamentals.what_is_blockchain",
+          "blockchain_fundamentals.decentralization_principles",
+          "blockchain_fundamentals.blockchain_data_structure",
+          "blockchain_fundamentals.utxo_vs_account_model",
+          "blockchain_fundamentals.p2p_network_gossip",
+          "blockchain_fundamentals.transaction_lifecycle_mempool",
+          "blockchain_fundamentals.cryptographic_hashing_merkle_trees",
+          "blockchain_fundamentals.byzantine_fault_tolerance_theory",
+          "blockchain_fundamentals.trilemma_tradeoff_analysis"
+        ]
+      }
+    ],
+    "assessment": [
+      {
+        "signal": "Passes comprehensive blockchain fundamentals assessment covering Merkle proofs, mempool dynamics, BFT theory, and Trilemma tradeoffs",
+        "strength": 1.0,
+        "maps_to": [
+          "blockchain_fundamentals.what_is_blockchain",
+          "blockchain_fundamentals.decentralization_principles",
+          "blockchain_fundamentals.blockchain_data_structure",
+          "blockchain_fundamentals.utxo_vs_account_model",
+          "blockchain_fundamentals.p2p_network_gossip",
+          "blockchain_fundamentals.transaction_lifecycle_mempool",
+          "blockchain_fundamentals.cryptographic_hashing_merkle_trees",
+          "blockchain_fundamentals.byzantine_fault_tolerance_theory",
+          "blockchain_fundamentals.trilemma_tradeoff_analysis"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "what_is_blockchain",
+        "decentralization_principles",
+        "blockchain_data_structure",
+        "utxo_vs_account_model"
+      ],
+      "description": "Understands block header layouts, UTXO vs Account balance models, and fundamental decentralization principles."
+    },
+    "mid": {
+      "expected_subskills": [
+        "p2p_network_gossip",
+        "transaction_lifecycle_mempool",
+        "cryptographic_hashing_merkle_trees"
+      ],
+      "description": "Constructs and verifies Merkle inclusion proofs, analyzes mempool transaction propagation, and understands P2P gossip networks."
+    },
+    "senior": {
+      "expected_subskills": [
+        "byzantine_fault_tolerance_theory",
+        "trilemma_tradeoff_analysis"
+      ],
+      "description": "Evaluates BFT consensus resilience under adversary conditions and models architectural tradeoffs across the blockchain trilemma."
+    }
+  }
+}

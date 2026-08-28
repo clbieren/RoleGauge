@@ -1,0 +1,224 @@
+{
+  "skill_id": "ux_conceptual_design",
+  "name": "Conceptual Design & Architecture Principles",
+  "category": "ux_design_craft",
+  "description": "Translating user research into conceptual structures: User Stories, Backlog, Scaffolding, Simplicity principles, Mental Model System Architecture, Design System Tokens, and Service Blueprinting.",
+  "subskills": [
+    {
+      "id": "user_stories",
+      "name": "User Stories & Acceptance Criteria",
+      "description": "Writing user stories (As a... I want... So that...) with Gherkin acceptance criteria.",
+      "keywords": [
+        "user stories",
+        "acceptance criteria",
+        "Gherkin",
+        "Given When Then",
+        "INVEST criteria"
+      ]
+    },
+    {
+      "id": "ux_principle_short_simple",
+      "name": "Simplicity & Cognitive Load Minimization",
+      "description": "Designing short, focused, minimal-step interactions (Hick's Law).",
+      "keywords": [
+        "short and simple",
+        "Hick's law",
+        "cognitive load",
+        "minimalism",
+        "step reduction"
+      ]
+    },
+    {
+      "id": "ux_principle_progress_visible",
+      "name": "Visibility of System Status & Progress",
+      "description": "Providing real-time visual progress feedback, steppers, and breadcrumbs.",
+      "keywords": [
+        "progress visible",
+        "system status",
+        "steppers",
+        "breadcrumbs",
+        "loading states",
+        "Nielsen heuristic 1"
+      ]
+    },
+    {
+      "id": "product_backlog",
+      "name": "Product Backlog Prioritization (MoSCoW / RICE)",
+      "description": "Prioritizing UX features using MoSCoW, RICE, or Kano models.",
+      "keywords": [
+        "product backlog",
+        "MoSCoW",
+        "RICE scoring",
+        "Kano model",
+        "feature prioritization"
+      ]
+    },
+    {
+      "id": "ux_principle_success_prominent",
+      "name": "Prominent Success Feedback & Celebrations",
+      "description": "Making task completion immediately clear with prominent confirmations and positive reinforcement.",
+      "keywords": [
+        "success feedback",
+        "confirmation state",
+        "positive reinforcement",
+        "celebration animation",
+        "feedback loop"
+      ]
+    },
+    {
+      "id": "ux_principle_scaffolding",
+      "name": "Scaffolding & Progressive Skill Building",
+      "description": "Providing temporary support structures that fall away as the user gains competence.",
+      "keywords": [
+        "scaffolding",
+        "progressive disclosure",
+        "skill building",
+        "onboarding ramp",
+        "advanced mode toggle"
+      ]
+    },
+    {
+      "id": "mental_model_system_architecture",
+      "name": "Mental Model System Architecture",
+      "description": "Aligning product conceptual models with user mental models to eliminate conceptual dissonance.",
+      "keywords": [
+        "mental model",
+        "conceptual model",
+        "conceptual dissonance",
+        "system image",
+        "information architecture",
+        "Norman"
+      ]
+    },
+    {
+      "id": "design_system_tokens_governance",
+      "name": "Design System Tokens & Multi-Brand Governance",
+      "description": "Architecting Design Tokens (color, typography, spacing, elevation) in Figma and code, multi-brand theming, and token governance.",
+      "keywords": [
+        "Design Tokens",
+        "design system governance",
+        "Style Dictionary",
+        "Figma Variables",
+        "multi-brand theming",
+        "component library"
+      ]
+    },
+    {
+      "id": "service_blueprint_orchestration",
+      "name": "Service Blueprinting & Cross-Functional Touchpoints",
+      "description": "Orchestrating frontstage customer actions with backstage employee processes and supporting technical systems.",
+      "keywords": [
+        "Service Blueprint",
+        "frontstage",
+        "backstage",
+        "line of visibility",
+        "support processes",
+        "touchpoint orchestration"
+      ]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "Design token JSON definitions, Service Blueprint schemas, and User Story specifications",
+        "detection": "content_analysis",
+        "pattern": "design-tokens\\.json|tokens/.*\\.json|ServiceBlueprint|UserStory|AcceptanceCriteria",
+        "strength": 0.9,
+        "maps_to": [
+          "ux_conceptual_design.user_stories",
+          "ux_conceptual_design.ux_principle_short_simple",
+          "ux_conceptual_design.ux_principle_progress_visible",
+          "ux_conceptual_design.product_backlog",
+          "ux_conceptual_design.ux_principle_success_prominent",
+          "ux_conceptual_design.ux_principle_scaffolding",
+          "ux_conceptual_design.mental_model_system_architecture",
+          "ux_conceptual_design.design_system_tokens_governance",
+          "ux_conceptual_design.service_blueprint_orchestration"
+        ]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "Wrote user stories with Gherkin acceptance criteria and prioritized backlogs with RICE scoring",
+        "strength": 0.6,
+        "maps_to": [
+          "ux_conceptual_design.user_stories",
+          "ux_conceptual_design.ux_principle_short_simple",
+          "ux_conceptual_design.ux_principle_progress_visible",
+          "ux_conceptual_design.product_backlog"
+        ]
+      },
+      {
+        "signal": "Architected enterprise Design Tokens in Figma and mapped end-to-end Service Blueprints for omni-channel platforms",
+        "strength": 0.6,
+        "maps_to": [
+          "ux_conceptual_design.ux_principle_success_prominent",
+          "ux_conceptual_design.ux_principle_scaffolding",
+          "ux_conceptual_design.mental_model_system_architecture",
+          "ux_conceptual_design.design_system_tokens_governance",
+          "ux_conceptual_design.service_blueprint_orchestration"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Endorsements in Conceptual Design, Design Systems, Service Design, and Information Architecture",
+        "strength": 0.4,
+        "maps_to": [
+          "ux_conceptual_design.user_stories",
+          "ux_conceptual_design.ux_principle_short_simple",
+          "ux_conceptual_design.ux_principle_progress_visible",
+          "ux_conceptual_design.product_backlog",
+          "ux_conceptual_design.ux_principle_success_prominent",
+          "ux_conceptual_design.ux_principle_scaffolding",
+          "ux_conceptual_design.mental_model_system_architecture",
+          "ux_conceptual_design.design_system_tokens_governance",
+          "ux_conceptual_design.service_blueprint_orchestration"
+        ]
+      }
+    ],
+    "assessment": [
+      {
+        "signal": "Passes conceptual design assessment covering RICE backlog prioritization, Design Tokens tokenomics, Service Blueprinting, and mental model architecture",
+        "strength": 1.0,
+        "maps_to": [
+          "ux_conceptual_design.user_stories",
+          "ux_conceptual_design.ux_principle_short_simple",
+          "ux_conceptual_design.ux_principle_progress_visible",
+          "ux_conceptual_design.product_backlog",
+          "ux_conceptual_design.ux_principle_success_prominent",
+          "ux_conceptual_design.ux_principle_scaffolding",
+          "ux_conceptual_design.mental_model_system_architecture",
+          "ux_conceptual_design.design_system_tokens_governance",
+          "ux_conceptual_design.service_blueprint_orchestration"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "user_stories",
+        "ux_principle_short_simple",
+        "ux_principle_progress_visible"
+      ],
+      "description": "Writes user stories with acceptance criteria, simplifies complex forms, and integrates progress steppers."
+    },
+    "mid": {
+      "expected_subskills": [
+        "product_backlog",
+        "ux_principle_success_prominent",
+        "ux_principle_scaffolding"
+      ],
+      "description": "Prioritizes backlogs with RICE/MoSCoW, creates scaffolding for new users, and crafts clear success confirmations."
+    },
+    "senior": {
+      "expected_subskills": [
+        "mental_model_system_architecture",
+        "design_system_tokens_governance",
+        "service_blueprint_orchestration"
+      ],
+      "description": "Architects enterprise Design Tokens across multi-brand systems, maps comprehensive Service Blueprints, and eliminates mental model dissonance."
+    }
+  }
+}

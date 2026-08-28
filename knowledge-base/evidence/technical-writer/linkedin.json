@@ -1,0 +1,132 @@
+{
+  "source_id": "linkedin",
+  "name": "LinkedIn Profile & Publication Analysis - Technical Writer",
+  "description": "Extraction rules for LinkedIn profiles, featured articles, documentation portfolio links, industry recommendations, and technical communication endorsements.",
+  "profile_sections": {
+    "about": {
+      "weight": 0.6,
+      "signals": [
+        "Specialization in API documentation, Docs-as-Code, Developer Experience (DX), and Information Architecture",
+        "Summary of technical ecosystems documented (Cloud, Kubernetes, REST/GraphQL APIs, FinTech, DevTools)"
+      ]
+    },
+    "featured_and_articles": {
+      "weight": 0.8,
+      "signals": [
+        "Published articles on technical communication, style guide adoption, and API documentation",
+        "Links to open-source docs contributions and public developer hubs",
+        "Conference presentations at Write the Docs, API The Docs, or DevRelCon"
+      ]
+    },
+    "experience": {
+      "weight": 0.7,
+      "signals": [
+        "Roles with titles such as Technical Writer, API Documentation Specialist, Information Architect, Doc Lead",
+        "Descriptions detailing cross-functional engineering partnerships and documentation portal delivery"
+      ]
+    },
+    "skills_and_endorsements": {
+      "weight": 0.4,
+      "high_value_skills": [
+        "Technical Writing",
+        "API Documentation",
+        "OpenAPI / Swagger",
+        "Docs-as-Code",
+        "Information Architecture",
+        "Docusaurus / MkDocs",
+        "Content Strategy",
+        "Git / GitHub",
+        "Developer Experience (DX)"
+      ]
+    }
+  },
+  "signal_mapping": {
+    "patterns": [
+      {
+        "pattern": "LinkedIn experience and endorsements in Technical Writing, Style Guides, Topic-Based Authoring, and Plain Language",
+        "maps_to": [
+          "tw_fundamentals_writing_craft.clarity_conciseness_active_voice",
+          "tw_fundamentals_writing_craft.style_guides_standards",
+          "tw_fundamentals_writing_craft.audience_persona_analysis",
+          "tw_fundamentals_writing_craft.information_architecture_hierarchy",
+          "tw_fundamentals_writing_craft.dita_topic_based_authoring",
+          "tw_fundamentals_writing_craft.terminology_glossary_management",
+          "tw_fundamentals_writing_craft.readability_scoring_editing",
+          "tw_fundamentals_writing_craft.inclusive_accessible_language",
+          "tw_fundamentals_writing_craft.doc_governance_style_creation"
+        ]
+      },
+      {
+        "pattern": "LinkedIn credentials in Content Strategy, SME Collaboration, Information Mapping, and Documentation Auditing",
+        "maps_to": [
+          "tw_content_research_strategy.sme_interviewing_elicitation",
+          "tw_content_research_strategy.source_code_spec_reading",
+          "tw_content_research_strategy.content_gap_analysis",
+          "tw_content_research_strategy.content_lifecycle_management",
+          "tw_content_research_strategy.information_mapping_user_journeys",
+          "tw_content_research_strategy.docs_as_product_strategy",
+          "tw_content_research_strategy.content_reuse_single_sourcing",
+          "tw_content_research_strategy.enterprise_doc_auditing",
+          "tw_content_research_strategy.knowledge_base_federation"
+        ]
+      },
+      {
+        "pattern": "LinkedIn highlights for API Documentation, Developer Quickstarts, OpenAPI/Swagger, SDK References, and Developer Portals",
+        "maps_to": [
+          "tw_developer_documentation.openapi_swagger_spec_authoring",
+          "tw_developer_documentation.api_reference_writing",
+          "tw_developer_documentation.curl_code_sample_authoring",
+          "tw_developer_documentation.developer_quickstarts_tutorials",
+          "tw_developer_documentation.sdk_library_documentation",
+          "tw_developer_documentation.graphql_grpc_asyncapi_docs",
+          "tw_developer_documentation.cli_command_reference",
+          "tw_developer_documentation.api_error_handling_troubleshooting",
+          "tw_developer_documentation.devportal_architecture_experience",
+          "tw_developer_documentation.versioning_breaking_changes_migration"
+        ]
+      },
+      {
+        "pattern": "LinkedIn track record in Product Documentation, Release Notes, Knowledge Management, Troubleshooting Runbooks, and KCS",
+        "maps_to": [
+          "tw_product_support_content.how_to_procedural_guides",
+          "tw_product_support_content.release_notes_changelogs",
+          "tw_product_support_content.faq_self_service_articles",
+          "tw_product_support_content.troubleshooting_root_cause_guides",
+          "tw_product_support_content.admin_configuration_manuals",
+          "tw_product_support_content.ui_ux_microcopy_in_product_help",
+          "tw_product_support_content.support_ticket_deflection_strategy",
+          "tw_product_support_content.disaster_recovery_runbooks",
+          "tw_product_support_content.user_feedback_loops_csat"
+        ]
+      },
+      {
+        "pattern": "LinkedIn publications and endorsements in Technical Content Marketing, Whitepapers, Case Studies, and Technical SEO",
+        "maps_to": [
+          "tw_content_marketing_seo.technical_blog_post_authoring",
+          "tw_content_marketing_seo.metadata_schema_seo_basics",
+          "tw_content_marketing_seo.keyword_research_search_intent",
+          "tw_content_marketing_seo.technical_whitepapers_ebooks",
+          "tw_content_marketing_seo.case_studies_customer_stories",
+          "tw_content_marketing_seo.developer_advocacy_community_content",
+          "tw_content_marketing_seo.technical_seo_information_architecture",
+          "tw_content_marketing_seo.organic_traffic_analytics_conversion",
+          "tw_content_marketing_seo.thought_leadership_industry_reports"
+        ]
+      },
+      {
+        "pattern": "LinkedIn technical endorsements for Docs-as-Code, Docusaurus, MkDocs, Vale, Git/GitHub, and Documentation Analytics",
+        "maps_to": [
+          "tw_tooling_analytics_distribution.markdown_mdx_mastery",
+          "tw_tooling_analytics_distribution.git_github_docs_workflow",
+          "tw_tooling_analytics_distribution.static_site_generators_ssg",
+          "tw_tooling_analytics_distribution.automated_style_linting",
+          "tw_tooling_analytics_distribution.ci_cd_docs_pipelines",
+          "tw_tooling_analytics_distribution.site_search_indexing",
+          "tw_tooling_analytics_distribution.headless_cms_knowledge_tools",
+          "tw_tooling_analytics_distribution.docs_analytics_telemetry",
+          "tw_tooling_analytics_distribution.multi_version_localization_builds"
+        ]
+      }
+    ]
+  }
+}

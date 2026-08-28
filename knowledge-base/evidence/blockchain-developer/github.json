@@ -1,0 +1,177 @@
+{
+  "source_id": "github",
+  "name": "GitHub Repository Analysis - Blockchain Developer",
+  "description": "Global parsing rules for Blockchain and Smart Contract repositories. Analyzes Solidity/Vyper contracts, Foundry/Hardhat configs, security audit tooling, DApp frontends, and cross-chain integrations.",
+  "preprocessing_pipeline": {
+    "steps": [
+      {
+        "step": 1,
+        "name": "contract_and_tooling_scan",
+        "target_files": [
+          {
+            "pattern": "contracts/.*\\.sol|src/.*\\.sol|contracts/.*\\.vy",
+            "skills": [
+              "smart_contract_development",
+              "blockchain_security"
+            ],
+            "priority": "high",
+            "notes": "Smart contract source code in Solidity and Vyper"
+          },
+          {
+            "pattern": "foundry\\.toml|hardhat\\.config\\.(ts|js)|Anchor\\.toml",
+            "skills": [
+              "smart_contract_tooling",
+              "blockchain_networks"
+            ],
+            "priority": "high",
+            "notes": "Smart contract build environments and frameworks"
+          },
+          {
+            "pattern": "slither\\.config\\.json|echidna.*\\.ya?ml|test/invariants/.*|test/fuzz/.*",
+            "skills": [
+              "blockchain_security",
+              "smart_contract_tooling"
+            ],
+            "priority": "high",
+            "notes": "Security audit configurations and invariant fuzz tests"
+          },
+          {
+            "pattern": "subgraph\\.ya?ml|schema\\.graphql|src/mapping\\.ts",
+            "skills": [
+              "dapp_development"
+            ],
+            "priority": "high",
+            "notes": "The Graph decentralized indexing subgraphs"
+          },
+          {
+            "pattern": "openzeppeling|@openzeppelin/contracts|@chainlink/contracts",
+            "skills": [
+              "blockchain_security",
+              "smart_contract_development"
+            ],
+            "priority": "high",
+            "notes": "Audited security contracts and Chainlink Oracle libraries"
+          }
+        ]
+      }
+    ]
+  },
+  "signal_mapping": {
+    "patterns": [
+      {
+        "pattern": "keccak256|sha256|MerkleTree|verifyProof|getMerkleRoot|eth_sendRawTransaction",
+        "maps_to": [
+          "blockchain_fundamentals.what_is_blockchain",
+          "blockchain_fundamentals.decentralization_principles",
+          "blockchain_fundamentals.blockchain_data_structure",
+          "blockchain_fundamentals.utxo_vs_account_model",
+          "blockchain_fundamentals.p2p_network_gossip",
+          "blockchain_fundamentals.transaction_lifecycle_mempool",
+          "blockchain_fundamentals.cryptographic_hashing_merkle_trees",
+          "blockchain_fundamentals.byzantine_fault_tolerance_theory",
+          "blockchain_fundamentals.trilemma_tradeoff_analysis"
+        ]
+      },
+      {
+        "pattern": "ethers\\.Wallet\\.fromMnemonic|bip39\\.mnemonicToSeed|secp256k1|noble/curves|ecrecover\\(|circom|snarkjs",
+        "maps_to": [
+          "blockchain_core_concepts.asymmetric_cryptography_signatures",
+          "blockchain_core_concepts.crypto_wallets_key_management",
+          "blockchain_core_concepts.cryptocurrency_tokenomics_basics",
+          "blockchain_core_concepts.mining_and_validator_incentives",
+          "blockchain_core_concepts.hard_and_soft_forks",
+          "blockchain_core_concepts.sybil_resistance_mechanisms",
+          "blockchain_core_concepts.advanced_consensus_mechanisms",
+          "blockchain_core_concepts.zero_knowledge_primitives_foundations",
+          "blockchain_core_concepts.state_machine_replication"
+        ]
+      },
+      {
+        "pattern": "networks:\\s*\\{\\s*sepolia:|arbitrum:|optimism:|Anchor\\.toml|declare_id!|IRouterClient|ccipReceive|Move\\.toml|Celestia",
+        "maps_to": [
+          "blockchain_networks.evm_based_chains_ethereum_polygon",
+          "blockchain_networks.testnets_faucets_rpc_providers",
+          "blockchain_networks.block_explorers_network_monitoring",
+          "blockchain_networks.l2_rollups_arbitrum_optimism_base",
+          "blockchain_networks.solana_sealevel_architecture",
+          "blockchain_networks.cross_chain_bridges_relayers",
+          "blockchain_networks.interoperability_protocols_ccip_ibc",
+          "blockchain_networks.alt_vm_chains_move_tvm_wasm",
+          "blockchain_networks.modular_blockchains_celestia_avail"
+        ]
+      },
+      {
+        "pattern": "maxFeePerBlobGas|blobVersionedHashes|kzg|proveFault|resolveDispute|verifyProof\\(|PlonkVerifier|starknet|zksync",
+        "maps_to": [
+          "blockchain_scaling.state_and_payment_channels",
+          "blockchain_scaling.data_availability_basics",
+          "blockchain_scaling.gas_optimization_fundamentals",
+          "blockchain_scaling.optimistic_rollups_fraud_proofs",
+          "blockchain_scaling.zk_rollups_validity_proofs",
+          "blockchain_scaling.validium_and_sidechains",
+          "blockchain_scaling.proto_danksharding_eip4844",
+          "blockchain_scaling.zk_evm_architecture_circuits",
+          "blockchain_scaling.sharding_and_parallel_execution"
+        ]
+      },
+      {
+        "pattern": "slither\\.config\\.json|echidna.*\\.ya?ml|test/invariants/.*|test/fuzz/.*|ReentrancyGuard|Ownable2Step|nonReentrant",
+        "maps_to": [
+          "blockchain_security.common_threat_vectors",
+          "blockchain_security.openzeppelin_security_contracts",
+          "blockchain_security.version_control_smart_contracts",
+          "blockchain_security.slither_static_analysis",
+          "blockchain_security.randomness_attacks_frontrunning",
+          "blockchain_security.fuzz_testing_unit_security",
+          "blockchain_security.echidna_property_testing",
+          "blockchain_security.manticore_symbolic_execution",
+          "blockchain_security.mythx_formal_audit_workflows"
+        ]
+      },
+      {
+        "pattern": "createConfig\\(|createPublicClient\\(|subgraph\\.ya?ml|schema\\.graphql|ISwapRouter|IPoolAddressesProvider|getUserOperationHash",
+        "maps_to": [
+          "dapp_development.web3_wallet_integration_wagmi_ethers",
+          "dapp_development.frontend_dapp_frameworks",
+          "dapp_development.node_as_a_service_rpc_infura_alchemy",
+          "dapp_development.defi_protocols_integration_uniswap_aave",
+          "dapp_development.nft_standards_metadata_ipfs",
+          "dapp_development.dao_governance_voting_snapshot",
+          "dapp_development.full_node_client_rpc_architecture",
+          "dapp_development.indexer_subgraphs_the_graph_envio",
+          "dapp_development.account_abstraction_erc4337_bundlers"
+        ]
+      },
+      {
+        "pattern": "contracts/.*\\.sol|src/.*\\.sol|AggregatorV3Interface|VRFConsumerBaseV2|FunctionsClient|UUPSUpgradeable|assembly\\s*\\{|certora/.*\\.spec",
+        "maps_to": [
+          "smart_contract_development.solidity_core_and_advanced_syntax",
+          "smart_contract_development.erc_token_standards_20_721_1155",
+          "smart_contract_development.contract_unit_and_integration_testing",
+          "smart_contract_development.contract_deployment_and_verification",
+          "smart_contract_development.oracle_data_feeds_and_vrf_randomness",
+          "smart_contract_development.upgradeable_contracts_proxy_patterns",
+          "smart_contract_development.vyper_and_alternative_smart_contract_languages",
+          "smart_contract_development.gas_optimization_assembly_yul",
+          "smart_contract_development.rust_smart_contracts_solana_near",
+          "smart_contract_development.hybrid_smart_contracts_offchain_computation",
+          "smart_contract_development.formal_verification_and_invariant_testing"
+        ]
+      },
+      {
+        "pattern": "foundry\\.toml|hardhat\\.config\\.(ts|js)|tenderly|pinata|@irys/sdk|\\.gas-snapshot",
+        "maps_to": [
+          "smart_contract_tooling.hardhat_framework_plugins",
+          "smart_contract_tooling.foundry_forge_cast_anvil",
+          "smart_contract_tooling.crypto_wallets_development_faucets",
+          "smart_contract_tooling.decentralized_storage_ipfs_arweave",
+          "smart_contract_tooling.evm_trace_debuggers_tenderly",
+          "smart_contract_tooling.contract_verification_blockscout_etherscan",
+          "smart_contract_tooling.ci_cd_smart_contract_automation",
+          "smart_contract_tooling.fuzzing_invariant_tooling_echidna_medusa",
+          "smart_contract_tooling.gas_profilers_snapshot_testing"
+        ]
+      }
+    ]
+  }
+}

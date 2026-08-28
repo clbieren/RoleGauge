@@ -1,0 +1,75 @@
+{
+  "role_id": "blockchain_developer",
+  "level": "mid",
+  "title": "Mid-level Blockchain Developer",
+  "description": "Mid-level blockchain engineer capable of building complex DeFi/NFT protocols, designing UUPS upgradeable proxies, integrating Chainlink Data Feeds and VRF randomness, running Slither and fuzz testing suites, authoring The Graph subgraphs, and deploying across EVM L2s and Solana.",
+  "experience_range": "2-5 years",
+  "skills": [
+    {
+      "skill_id": "smart_contract_development",
+      "importance": 0.95,
+      "rationale": "Designing upgradeable proxies, Chainlink Oracle integration, Vyper contracts, and Yul gas optimization."
+    },
+    {
+      "skill_id": "blockchain_security",
+      "importance": 0.95,
+      "rationale": "Running Slither static analysis, property-based fuzz testing, and frontrunning/MEV mitigation."
+    },
+    {
+      "skill_id": "dapp_development",
+      "importance": 0.9,
+      "rationale": "DeFi integrations (Uniswap, Aave), custom The Graph subgraphs, and DAO governance."
+    },
+    {
+      "skill_id": "blockchain_networks",
+      "importance": 0.85,
+      "rationale": "Deploying across OP Stack, Arbitrum Nitro, Solana SVM, and cross-chain bridge mechanisms."
+    },
+    {
+      "skill_id": "blockchain_scaling",
+      "importance": 0.85,
+      "rationale": "Architecting across Optimistic and ZK-Rollups, Validium, and gas profiling."
+    },
+    {
+      "skill_id": "smart_contract_tooling",
+      "importance": 0.8,
+      "rationale": "EVM trace debugging in Tenderly and IPFS/Arweave decentralized storage pinning."
+    },
+    {
+      "skill_id": "blockchain_core_concepts",
+      "importance": 0.75,
+      "rationale": "Validator staking models, network fork mechanics, and Sybil resistance."
+    },
+    {
+      "skill_id": "blockchain_fundamentals",
+      "importance": 0.7,
+      "rationale": "Mempool propagation dynamics and Merkle proof verification."
+    }
+  ],
+  "scoring": {
+    "method": "weighted_average",
+    "description": "Weighted average of skill readiness scores multiplied by importance weights.",
+    "thresholds": {
+      "not_ready": {
+        "min": 0.0,
+        "max": 0.35,
+        "description": "Lacks independent smart contract architecture and security auditing skills."
+      },
+      "partially_ready": {
+        "min": 0.35,
+        "max": 0.6,
+        "description": "Comfortable with basic DeFi, but struggles with proxy patterns, fuzz testing, or cross-chain messaging."
+      },
+      "ready": {
+        "min": 0.6,
+        "max": 0.85,
+        "description": "Meets all mid-level expectations: delivers upgradeable contracts, Slither audits, subgraphs, and L2 deployments."
+      },
+      "exceeds": {
+        "min": 0.85,
+        "max": 1.0,
+        "description": "Exceeds mid-level requirements with deep zk-Rollup knowledge and formal verification skills."
+      }
+    }
+  }
+}

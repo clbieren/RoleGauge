@@ -1,0 +1,317 @@
+{
+  "skill_id": "tw_product_support_content",
+  "name": "Product Documentation & Support Content",
+  "category": "product_support",
+  "description": "Writing end-user product documentation, step-by-step how-to guides, administrative manuals, troubleshooting runbooks, changelogs, release notes, and customer support self-service knowledge bases.",
+  "subskills": [
+    {
+      "id": "how_to_procedural_guides",
+      "name": "How-To Guides & Procedural Documentation",
+      "description": "Writing action-oriented, numbered procedural guides with prerequisite callouts, UI navigation paths, expected outcomes, and verification steps.",
+      "keywords": [
+        "how-to guide",
+        "step-by-step instructions",
+        "prerequisites",
+        "expected result",
+        "UI navigation",
+        "procedural steps",
+        "action-oriented",
+        "verification",
+        "task flow"
+      ]
+    },
+    {
+      "id": "release_notes_changelogs",
+      "name": "Release Notes & Changelog Authoring",
+      "description": "Drafting release notes, changelog entries conforming to Keep a Changelog (Added, Changed, Deprecated, Removed, Fixed, Security), and version announcements.",
+      "keywords": [
+        "release notes",
+        "Keep a Changelog",
+        "CHANGELOG.md",
+        "semantic versioning",
+        "feature announcements",
+        "patch notes",
+        "bug fixes",
+        "deprecations",
+        "version highlights"
+      ]
+    },
+    {
+      "id": "faq_self_service_articles",
+      "name": "FAQ Articles & Support Self-Service Content",
+      "description": "Authoring concise FAQ articles, knowledge base self-service answers, and deflecting repetitive customer support inquiries.",
+      "keywords": [
+        "FAQ",
+        "knowledge base",
+        "support article",
+        "self-service",
+        "ticket deflection",
+        "question and answer",
+        "help center",
+        "Zendesk guide",
+        "Intercom articles"
+      ]
+    },
+    {
+      "id": "troubleshooting_root_cause_guides",
+      "name": "Troubleshooting & Root Cause Diagnostic Guides",
+      "description": "Structuring diagnostic guides: symptoms, root cause explanation, step-by-step remediation, workarounds, and verification commands.",
+      "keywords": [
+        "troubleshooting guide",
+        "root cause",
+        "symptoms",
+        "remediation",
+        "workaround",
+        "error diagnostics",
+        "recovery steps",
+        "debug logs",
+        "diagnostic steps"
+      ]
+    },
+    {
+      "id": "admin_configuration_manuals",
+      "name": "Admin Guides & Enterprise Configuration Manuals",
+      "description": "Authoring enterprise administrator guides: SSO/SAML setup, role-based access control (RBAC), audit logging, network allowlisting, and system configurations.",
+      "keywords": [
+        "admin guide",
+        "SSO configuration",
+        "SAML",
+        "RBAC",
+        "permission matrix",
+        "system settings",
+        "security configuration",
+        "enterprise setup",
+        "audit logs"
+      ]
+    },
+    {
+      "id": "ui_ux_microcopy_in_product_help",
+      "name": "In-Product Microcopy & Embedded Assistance",
+      "description": "Writing UI microcopy, modal dialogues, tooltip text, empty states, error strings, and embedded in-app onboarding walkthroughs.",
+      "keywords": [
+        "microcopy",
+        "UI copy",
+        "tooltips",
+        "empty states",
+        "error messages",
+        "in-app guidance",
+        "WalkMe",
+        "Pendo",
+        "onboarding tours",
+        "button labels"
+      ]
+    },
+    {
+      "id": "support_ticket_deflection_strategy",
+      "name": "Support Ticket Deflection & KCS Strategy",
+      "description": "Analyzing customer support ticket drivers, identifying top deflection opportunities, and structuring knowledge content to reduce MTTR and ticket volume.",
+      "keywords": [
+        "ticket deflection",
+        "MTTR",
+        "support analytics",
+        "ticket volume reduction",
+        "self-serve rate",
+        "knowledge-centered service",
+        "KCS",
+        "call reduction",
+        "support ROI"
+      ]
+    },
+    {
+      "id": "disaster_recovery_runbooks",
+      "name": "Disaster Recovery & Operational Runbooks",
+      "description": "Authoring operational runbooks, disaster recovery procedures, incident response playbooks, and high-severity escalation documentation.",
+      "keywords": [
+        "runbook",
+        "disaster recovery",
+        "incident playbook",
+        "post-mortem docs",
+        "failover procedure",
+        "SLA escalation",
+        "operational playbook",
+        "on-call guide"
+      ]
+    },
+    {
+      "id": "user_feedback_loops_csat",
+      "name": "User Feedback Loops & Documentation CSAT",
+      "description": "Designing in-doc feedback mechanisms ('Was this helpful?'), analyzing CSAT/DSAT ratings, verbatim comments, and driving continuous document enhancement.",
+      "keywords": [
+        "doc CSAT",
+        "DSAT",
+        "in-page feedback",
+        "helpfulness voting",
+        "verbatim comment analysis",
+        "feedback loop",
+        "continuous improvement",
+        "sentiment analysis"
+      ]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "Numbered procedural how-to guides with prerequisite callouts",
+        "detection": "content_analysis",
+        "pattern": "docs/guides/.*\\.md|:::info\\s+Prerequisites|1\\.\\s+Navigate to|2\\.\\s+Click|\\*\\*Expected Result:\\*\\*",
+        "strength": 0.85,
+        "maps_to": [
+          "tw_product_support_content.how_to_procedural_guides"
+        ]
+      },
+      {
+        "signal": "Keep a Changelog formatted CHANGELOG.md file",
+        "detection": "file_presence",
+        "pattern": "CHANGELOG\\.md",
+        "strength": 0.95,
+        "maps_to": [
+          "tw_product_support_content.release_notes_changelogs"
+        ]
+      },
+      {
+        "signal": "Self-service FAQ articles and ticket deflection knowledge bases",
+        "detection": "file_presence",
+        "pattern": "docs/faq\\.md|docs/support/.*\\.md",
+        "strength": 0.8,
+        "maps_to": [
+          "tw_product_support_content.faq_self_service_articles"
+        ]
+      },
+      {
+        "signal": "Root cause troubleshooting guides with diagnostic commands",
+        "detection": "content_analysis",
+        "pattern": "docs/troubleshooting/.*\\.md|Symptoms|Root Cause|Resolution|Diagnostic Steps",
+        "strength": 0.85,
+        "maps_to": [
+          "tw_product_support_content.troubleshooting_root_cause_guides"
+        ]
+      },
+      {
+        "signal": "Enterprise admin guides (SSO, SAML, RBAC, SCIM)",
+        "detection": "content_analysis",
+        "pattern": "docs/admin/.*\\.md|SAML 2\\.0|Single Sign-On|RBAC|SCIM Provisioning|Audit Logs",
+        "strength": 0.85,
+        "maps_to": [
+          "tw_product_support_content.admin_configuration_manuals"
+        ]
+      },
+      {
+        "signal": "In-product UI microcopy, tooltip strings, and error messages",
+        "detection": "content_analysis",
+        "pattern": "locales/en/.*\\.json|messages\\.json|tooltipText|emptyStateMessage",
+        "strength": 0.8,
+        "maps_to": [
+          "tw_product_support_content.ui_ux_microcopy_in_product_help"
+        ]
+      },
+      {
+        "signal": "Disaster recovery runbooks and SEV incident playbooks",
+        "detection": "file_presence",
+        "pattern": "docs/runbooks/.*\\.md|docs/playbooks/.*\\.md|SEV-1|Incident Response",
+        "strength": 0.9,
+        "maps_to": [
+          "tw_product_support_content.disaster_recovery_runbooks"
+        ]
+      },
+      {
+        "signal": "Ticket deflection tracking and documentation CSAT feedback widgets",
+        "detection": "content_analysis",
+        "pattern": "Was this page helpful|feedbackWidget|dsat_reason|posthog\\.capture\\('doc_feedback'",
+        "strength": 0.85,
+        "maps_to": [
+          "tw_product_support_content.support_ticket_deflection_strategy",
+          "tw_product_support_content.user_feedback_loops_csat"
+        ]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "Authored comprehensive product documentation and troubleshooting runbooks, achieving a 35% reduction in support ticket volume",
+        "strength": 0.6,
+        "maps_to": [
+          "tw_product_support_content.how_to_procedural_guides",
+          "tw_product_support_content.troubleshooting_root_cause_guides",
+          "tw_product_support_content.support_ticket_deflection_strategy"
+        ]
+      },
+      {
+        "signal": "Published monthly release notes (Keep a Changelog), admin manuals for SSO/RBAC, and in-product UI microcopy",
+        "strength": 0.5,
+        "maps_to": [
+          "tw_product_support_content.release_notes_changelogs",
+          "tw_product_support_content.admin_configuration_manuals",
+          "tw_product_support_content.ui_ux_microcopy_in_product_help"
+        ]
+      },
+      {
+        "signal": "Implemented Knowledge-Centered Service (KCS), user CSAT feedback loops, and disaster recovery incident playbooks",
+        "strength": 0.5,
+        "maps_to": [
+          "tw_product_support_content.faq_self_service_articles",
+          "tw_product_support_content.disaster_recovery_runbooks",
+          "tw_product_support_content.user_feedback_loops_csat"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Expertise in Knowledge Management, Technical Support Content, Product Documentation, and User Experience Writing",
+        "strength": 0.4,
+        "maps_to": [
+          "tw_product_support_content.how_to_procedural_guides",
+          "tw_product_support_content.release_notes_changelogs",
+          "tw_product_support_content.faq_self_service_articles",
+          "tw_product_support_content.troubleshooting_root_cause_guides",
+          "tw_product_support_content.admin_configuration_manuals",
+          "tw_product_support_content.ui_ux_microcopy_in_product_help",
+          "tw_product_support_content.support_ticket_deflection_strategy",
+          "tw_product_support_content.disaster_recovery_runbooks",
+          "tw_product_support_content.user_feedback_loops_csat"
+        ]
+      }
+    ],
+    "assessment": [
+      {
+        "signal": "Passes practical product support assessment covering procedural how-to guides, changelogs, error diagnostic steps, and admin manuals",
+        "strength": 1.0,
+        "maps_to": [
+          "tw_product_support_content.how_to_procedural_guides",
+          "tw_product_support_content.release_notes_changelogs",
+          "tw_product_support_content.faq_self_service_articles",
+          "tw_product_support_content.troubleshooting_root_cause_guides",
+          "tw_product_support_content.admin_configuration_manuals",
+          "tw_product_support_content.ui_ux_microcopy_in_product_help",
+          "tw_product_support_content.support_ticket_deflection_strategy",
+          "tw_product_support_content.disaster_recovery_runbooks",
+          "tw_product_support_content.user_feedback_loops_csat"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "how_to_procedural_guides",
+        "release_notes_changelogs",
+        "faq_self_service_articles"
+      ],
+      "description": "Drafts step-by-step how-to articles, standard Keep a Changelog entries, and self-service FAQ answers."
+    },
+    "mid": {
+      "expected_subskills": [
+        "troubleshooting_root_cause_guides",
+        "admin_configuration_manuals",
+        "ui_ux_microcopy_in_product_help"
+      ],
+      "description": "Writes diagnostic troubleshooting guides, enterprise admin configuration manuals, and in-product UI microcopy."
+    },
+    "senior": {
+      "expected_subskills": [
+        "support_ticket_deflection_strategy",
+        "disaster_recovery_runbooks",
+        "user_feedback_loops_csat"
+      ],
+      "description": "Drives support ticket deflection strategy via KCS, authors mission-critical disaster recovery runbooks, and analyzes doc CSAT metrics."
+    }
+  }
+}

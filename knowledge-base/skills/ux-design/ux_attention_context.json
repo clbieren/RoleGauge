@@ -1,0 +1,236 @@
+{
+  "skill_id": "ux_attention_context",
+  "name": "Attention Management & Contextual Design",
+  "category": "ux_behavioral_science",
+  "description": "Strategies for capturing and maintaining user attention across fleeting and extended contexts, gamification, status reporting, notifications, multi-device continuity, and cognitive load mitigation.",
+  "subskills": [
+    {
+      "id": "fleeting_attention_cta",
+      "name": "Fleeting Attention & Call-to-Action Design",
+      "description": "Designing high-visibility, single-focus CTAs for low-attention contexts.",
+      "keywords": [
+        "fleeting attention",
+        "CTA",
+        "call to action",
+        "visual contrast",
+        "single action",
+        "above the fold",
+        "glanceable UI"
+      ]
+    },
+    {
+      "id": "fleeting_attention_status_reports",
+      "name": "Status Reports & Progress Snapshots",
+      "description": "Providing lightweight status updates that communicate progress in seconds.",
+      "keywords": [
+        "status reports",
+        "progress update",
+        "dashboard widget",
+        "glanceable",
+        "digest",
+        "summary card"
+      ]
+    },
+    {
+      "id": "fleeting_attention_tips",
+      "name": "Contextual Micro-Tips & Prompt Injection",
+      "description": "Delivering timely, contextual micro-tips without breaking primary task flow.",
+      "keywords": [
+        "micro-tips",
+        "contextual help",
+        "tooltips",
+        "just-in-time info",
+        "onboarding tip",
+        "inline help"
+      ]
+    },
+    {
+      "id": "many_chances_gamification",
+      "name": "Gamification & Progressive Challenges",
+      "description": "Engaging users with repeated interaction loops through gamification, badges, streaks, and progress bars.",
+      "keywords": [
+        "gamification",
+        "streaks",
+        "badges",
+        "progress bar",
+        "points",
+        "leaderboard",
+        "reward schedule"
+      ]
+    },
+    {
+      "id": "many_chances_planners",
+      "name": "Planners, Scheduling & Habit Trackers",
+      "description": "Designing interactive planning tools, calendar integrations, and scheduling helpers.",
+      "keywords": [
+        "planners",
+        "scheduling",
+        "habit tracker",
+        "goal setting",
+        "calendar sync",
+        "task list"
+      ]
+    },
+    {
+      "id": "many_chances_tutorials",
+      "name": "Interactive Onboarding & Progressive Tutorials",
+      "description": "Structuring multi-step walkthroughs, sandboxes, and interactive product tours.",
+      "keywords": [
+        "interactive tutorials",
+        "walkthrough",
+        "product tour",
+        "progressive onboarding",
+        "sandbox"
+      ]
+    },
+    {
+      "id": "many_chances_social_sharing",
+      "name": "Social Proof & Achievement Sharing Loops",
+      "description": "Designing shareable milestone artifacts and peer comparison features.",
+      "keywords": [
+        "social sharing",
+        "milestone card",
+        "peer comparison",
+        "viral loop",
+        "achievement share"
+      ]
+    },
+    {
+      "id": "multi_device_attention_continuity",
+      "name": "Cross-Device State & Attention Continuity",
+      "description": "Preserving user context across mobile, web, and wearable transitions with state persistence.",
+      "keywords": [
+        "cross-device continuity",
+        "state handoff",
+        "context preservation",
+        "interruption recovery",
+        "responsive attention"
+      ]
+    },
+    {
+      "id": "cognitive_overload_mitigation_calm_tech",
+      "name": "Calm Technology & Attention Budgeting",
+      "description": "Mitigating notification fatigue, progressive disclosure of dense enterprise data, and ambient UX.",
+      "keywords": [
+        "calm technology",
+        "attention budget",
+        "notification triage",
+        "cognitive load reduction",
+        "ambient UX",
+        "information density"
+      ]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "CTA components, notification badge managers, and gamified streak counters",
+        "detection": "content_analysis",
+        "pattern": "StreakCounter|BadgeProgress|Gamification|NotificationBell|CallToAction",
+        "strength": 0.85,
+        "maps_to": [
+          "ux_attention_context.fleeting_attention_cta",
+          "ux_attention_context.many_chances_gamification",
+          "ux_attention_context.fleeting_attention_status_reports",
+          "ux_attention_context.fleeting_attention_tips"
+        ]
+      },
+      {
+        "signal": "Cross-device state sync hooks, planner scheduling tools, and onboarding walkthroughs",
+        "detection": "content_analysis",
+        "pattern": "ProductTour|OnboardingTutorial|useDeviceSync|HabitTracker|AttentionManager",
+        "strength": 0.9,
+        "maps_to": [
+          "ux_attention_context.many_chances_planners",
+          "ux_attention_context.many_chances_tutorials",
+          "ux_attention_context.many_chances_social_sharing",
+          "ux_attention_context.multi_device_attention_continuity",
+          "ux_attention_context.cognitive_overload_mitigation_calm_tech"
+        ]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "Designed gamification loops, habit-tracking planners, and reduced notification dropoff by 35%",
+        "strength": 0.6,
+        "maps_to": [
+          "ux_attention_context.fleeting_attention_cta",
+          "ux_attention_context.many_chances_gamification",
+          "ux_attention_context.many_chances_planners",
+          "ux_attention_context.many_chances_tutorials"
+        ]
+      },
+      {
+        "signal": "Architected calm tech notification systems and cross-device contextual continuity for enterprise SaaS",
+        "strength": 0.6,
+        "maps_to": [
+          "ux_attention_context.many_chances_social_sharing",
+          "ux_attention_context.multi_device_attention_continuity",
+          "ux_attention_context.cognitive_overload_mitigation_calm_tech",
+          "ux_attention_context.fleeting_attention_status_reports",
+          "ux_attention_context.fleeting_attention_tips"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Endorsements in Behavioral UX, Gamification Design, User Attention Management, and Onboarding UX",
+        "strength": 0.4,
+        "maps_to": [
+          "ux_attention_context.fleeting_attention_cta",
+          "ux_attention_context.fleeting_attention_status_reports",
+          "ux_attention_context.fleeting_attention_tips",
+          "ux_attention_context.many_chances_gamification",
+          "ux_attention_context.many_chances_planners",
+          "ux_attention_context.many_chances_tutorials",
+          "ux_attention_context.many_chances_social_sharing",
+          "ux_attention_context.multi_device_attention_continuity",
+          "ux_attention_context.cognitive_overload_mitigation_calm_tech"
+        ]
+      }
+    ],
+    "assessment": [
+      {
+        "signal": "Passes attention management and contextual UX assessment covering glanceable CTAs, gamification, cross-device state, and calm tech",
+        "strength": 1.0,
+        "maps_to": [
+          "ux_attention_context.fleeting_attention_cta",
+          "ux_attention_context.fleeting_attention_status_reports",
+          "ux_attention_context.fleeting_attention_tips",
+          "ux_attention_context.many_chances_gamification",
+          "ux_attention_context.many_chances_planners",
+          "ux_attention_context.many_chances_tutorials",
+          "ux_attention_context.many_chances_social_sharing",
+          "ux_attention_context.multi_device_attention_continuity",
+          "ux_attention_context.cognitive_overload_mitigation_calm_tech"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "fleeting_attention_cta",
+        "fleeting_attention_tips",
+        "fleeting_attention_status_reports"
+      ],
+      "description": "Designs high-contrast glanceable CTAs, contextual micro-tips, and lightweight status summary widgets."
+    },
+    "mid": {
+      "expected_subskills": [
+        "many_chances_gamification",
+        "many_chances_planners",
+        "many_chances_tutorials"
+      ],
+      "description": "Builds interactive onboarding walkthroughs, gamification streak systems, and goal planners."
+    },
+    "senior": {
+      "expected_subskills": [
+        "many_chances_social_sharing",
+        "multi_device_attention_continuity",
+        "cognitive_overload_mitigation_calm_tech"
+      ],
+      "description": "Architects cross-device attention preservation, designs calm tech notification hierarchies, and optimizes social sharing loops."
+    }
+  }
+}

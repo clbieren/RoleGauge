@@ -1,0 +1,221 @@
+{
+  "skill_id": "ux_classifying_behavior",
+  "name": "Behavioral Discovery & User Segmentation",
+  "category": "ux_behavioral_science",
+  "description": "Methods for discovering and defining target behaviors: Target Outcome vs Action, Actor profiling, Personas, Jobs-to-be-Done (JTBD), behavioral clustering, and dynamic intent state modeling.",
+  "subskills": [
+    {
+      "id": "clarify_product",
+      "name": "Product Clarification & Value Scope",
+      "description": "Articulating the core value proposition and boundary scope of the product.",
+      "keywords": [
+        "clarify product",
+        "product scope",
+        "value proposition",
+        "core value",
+        "product definition"
+      ]
+    },
+    {
+      "id": "user_personas",
+      "name": "User Personas & Empathy Mapping",
+      "description": "Creating evidence-based personas, empathy maps, and behavioral archetypes.",
+      "keywords": [
+        "personas",
+        "empathy map",
+        "user archetype",
+        "behavioral persona",
+        "demographic vs behavioral"
+      ]
+    },
+    {
+      "id": "jobs_to_be_done_framework",
+      "name": "Jobs-to-be-Done (JTBD) Theory",
+      "description": "Formulating JTBD statements: Situation -> Motivation -> Desired Outcome.",
+      "keywords": [
+        "Jobs to be Done",
+        "JTBD",
+        "customer jobs",
+        "job statement",
+        "functional job",
+        "emotional job",
+        "social job"
+      ]
+    },
+    {
+      "id": "target_outcome",
+      "name": "Target Outcome Definition & Metrics",
+      "description": "Defining the measurable business and user outcomes the product aims to achieve.",
+      "keywords": [
+        "target outcome",
+        "outcome metric",
+        "business goal",
+        "user goal",
+        "success metric"
+      ]
+    },
+    {
+      "id": "target_actor",
+      "name": "Target Actor & Stakeholder Profiling",
+      "description": "Identifying the specific individual or stakeholder who must perform the target action.",
+      "keywords": [
+        "target actor",
+        "actor profiling",
+        "stakeholder",
+        "decision maker",
+        "primary actor"
+      ]
+    },
+    {
+      "id": "target_action",
+      "name": "Target Action Specification & Granularity",
+      "description": "Defining specific, observable, and measurable target actions (when, where, how).",
+      "keywords": [
+        "target action",
+        "observable action",
+        "action specification",
+        "action granularity",
+        "discrete behavior"
+      ]
+    },
+    {
+      "id": "behavioral_segmentation_clustering",
+      "name": "Behavioral Segmentation & Quantitative Clustering",
+      "description": "Segmenting users by usage patterns, frequency, and friction points rather than purely demographic attributes.",
+      "keywords": [
+        "behavioral segmentation",
+        "clustering",
+        "usage frequency",
+        "power users vs casual",
+        "cohort segmentation"
+      ]
+    },
+    {
+      "id": "cross_actor_ecosystem_mapping",
+      "name": "Multi-Sided Platform Actor Ecosystems",
+      "description": "Mapping interconnected behaviors in multi-sided platforms (e.g. buyers, sellers, admins).",
+      "keywords": [
+        "multi-sided platform",
+        "ecosystem mapping",
+        "cross-actor interactions",
+        "two-sided marketplace UX"
+      ]
+    },
+    {
+      "id": "intent_state_modeling",
+      "name": "Dynamic Intent State Modeling",
+      "description": "Modeling dynamic user intent transitions (exploratory, goal-directed, transactional, disengaged).",
+      "keywords": [
+        "intent states",
+        "dynamic intent",
+        "exploratory intent",
+        "transactional intent",
+        "state transition UX"
+      ]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "Persona profiles, JTBD job maps, and behavioral segmentation models in design docs",
+        "detection": "content_analysis",
+        "pattern": "Persona|JTBD|JobsToBeDone|TargetAction|BehavioralSegment|IntentState",
+        "strength": 0.85,
+        "maps_to": [
+          "ux_classifying_behavior.clarify_product",
+          "ux_classifying_behavior.user_personas",
+          "ux_classifying_behavior.jobs_to_be_done_framework",
+          "ux_classifying_behavior.target_outcome",
+          "ux_classifying_behavior.target_actor",
+          "ux_classifying_behavior.target_action",
+          "ux_classifying_behavior.behavioral_segmentation_clustering",
+          "ux_classifying_behavior.cross_actor_ecosystem_mapping",
+          "ux_classifying_behavior.intent_state_modeling"
+        ]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "Conducted user research formulating JTBD frameworks, behavioral personas, and target action specifications",
+        "strength": 0.6,
+        "maps_to": [
+          "ux_classifying_behavior.clarify_product",
+          "ux_classifying_behavior.user_personas",
+          "ux_classifying_behavior.jobs_to_be_done_framework",
+          "ux_classifying_behavior.target_outcome"
+        ]
+      },
+      {
+        "signal": "Designed multi-sided platform actor ecosystems and implemented behavioral clustering with dynamic intent modeling",
+        "strength": 0.6,
+        "maps_to": [
+          "ux_classifying_behavior.target_actor",
+          "ux_classifying_behavior.target_action",
+          "ux_classifying_behavior.behavioral_segmentation_clustering",
+          "ux_classifying_behavior.cross_actor_ecosystem_mapping",
+          "ux_classifying_behavior.intent_state_modeling"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Endorsements in User Personas, Jobs-to-be-Done (JTBD), Behavioral Research, and Customer Discovery",
+        "strength": 0.4,
+        "maps_to": [
+          "ux_classifying_behavior.clarify_product",
+          "ux_classifying_behavior.user_personas",
+          "ux_classifying_behavior.jobs_to_be_done_framework",
+          "ux_classifying_behavior.target_outcome",
+          "ux_classifying_behavior.target_actor",
+          "ux_classifying_behavior.target_action",
+          "ux_classifying_behavior.behavioral_segmentation_clustering",
+          "ux_classifying_behavior.cross_actor_ecosystem_mapping",
+          "ux_classifying_behavior.intent_state_modeling"
+        ]
+      }
+    ],
+    "assessment": [
+      {
+        "signal": "Passes behavioral classification assessment covering JTBD statements, target action definitions, behavioral clustering, and multi-sided actor ecosystems",
+        "strength": 1.0,
+        "maps_to": [
+          "ux_classifying_behavior.clarify_product",
+          "ux_classifying_behavior.user_personas",
+          "ux_classifying_behavior.jobs_to_be_done_framework",
+          "ux_classifying_behavior.target_outcome",
+          "ux_classifying_behavior.target_actor",
+          "ux_classifying_behavior.target_action",
+          "ux_classifying_behavior.behavioral_segmentation_clustering",
+          "ux_classifying_behavior.cross_actor_ecosystem_mapping",
+          "ux_classifying_behavior.intent_state_modeling"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "clarify_product",
+        "user_personas",
+        "jobs_to_be_done_framework"
+      ],
+      "description": "Articulates core product value, creates evidence-based personas, and writes JTBD job statements."
+    },
+    "mid": {
+      "expected_subskills": [
+        "target_outcome",
+        "target_actor",
+        "target_action"
+      ],
+      "description": "Defines discrete target actions, profiles target actors, and sets measurable outcome metrics."
+    },
+    "senior": {
+      "expected_subskills": [
+        "behavioral_segmentation_clustering",
+        "cross_actor_ecosystem_mapping",
+        "intent_state_modeling"
+      ],
+      "description": "Executes quantitative behavioral segmentation, maps multi-sided marketplace ecosystems, and models dynamic intent states."
+    }
+  }
+}

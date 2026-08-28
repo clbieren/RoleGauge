@@ -1,0 +1,314 @@
+{
+  "skill_id": "tw_content_marketing_seo",
+  "name": "Technical Content Marketing & Technical SEO",
+  "category": "content_marketing",
+  "description": "Creating high-impact technical blog posts, architectural case studies, whitepapers, thought leadership, developer evangelism content, and optimizing technical documentation for search engines (SEO).",
+  "subskills": [
+    {
+      "id": "technical_blog_post_authoring",
+      "name": "Technical Blog Post Authoring & Storytelling",
+      "description": "Writing engaging technical blog posts that break down complex engineering concepts, benchmark comparisons, and architectural deep-dives.",
+      "keywords": [
+        "technical blog post",
+        "engineering blog",
+        "architectural breakdown",
+        "benchmarks",
+        "technical storytelling",
+        "dev marketing",
+        "Medium",
+        "Dev.to",
+        "Hashnode"
+      ]
+    },
+    {
+      "id": "metadata_schema_seo_basics",
+      "name": "Doc Metadata, Open Graph & Structured Data",
+      "description": "Structuring doc metadata, title tags, meta descriptions, Open Graph tags, canonical URLs, semantic HTML tags, and schema.org markup for technical docs.",
+      "keywords": [
+        "meta description",
+        "title tag",
+        "Open Graph",
+        "canonical URL",
+        "schema.org",
+        "TechArticle",
+        "semantic HTML",
+        "breadcrumb markup",
+        "rich snippets"
+      ]
+    },
+    {
+      "id": "keyword_research_search_intent",
+      "name": "Technical Keyword Research & Search Intent",
+      "description": "Conducting technical keyword research, search intent mapping (informational, navigational, transactional), and identifying high-volume developer queries.",
+      "keywords": [
+        "keyword research",
+        "search intent",
+        "developer queries",
+        "search volume",
+        "Ahrefs",
+        "Semrush",
+        "Google Search Console",
+        "keyword clustering",
+        "long-tail keywords"
+      ]
+    },
+    {
+      "id": "technical_whitepapers_ebooks",
+      "name": "Technical Whitepapers & In-Depth Ebooks",
+      "description": "Authoring in-depth technical whitepapers, architectural blueprints, enterprise ebooks, and solution briefs for technical decision-makers.",
+      "keywords": [
+        "whitepaper",
+        "technical ebook",
+        "solution brief",
+        "architectural blueprint",
+        "executive summary",
+        "benchmark report",
+        "buyer guide",
+        "enterprise whitepaper"
+      ]
+    },
+    {
+      "id": "case_studies_customer_stories",
+      "name": "Customer Case Studies & Migration Stories",
+      "description": "Interviewing enterprise engineering teams and authoring technical customer success stories, migration case studies, and ROI breakdowns.",
+      "keywords": [
+        "customer story",
+        "case study",
+        "migration story",
+        "customer testimonial",
+        "ROI analysis",
+        "production scale story",
+        "engineering spotlight",
+        "social proof"
+      ]
+    },
+    {
+      "id": "developer_advocacy_community_content",
+      "name": "Developer Advocacy & Community Content",
+      "description": "Authoring community tutorials, Reddit/Hacker News technical announcements, newsletter issues, and open-source contribution guides.",
+      "keywords": [
+        "developer advocacy",
+        "community content",
+        "Hacker News launch",
+        "technical newsletter",
+        "Substack",
+        "open source contributor guide",
+        "evangelism",
+        "Show HN"
+      ]
+    },
+    {
+      "id": "technical_seo_information_architecture",
+      "name": "Technical SEO Architecture & Crawlability",
+      "description": "Architecting docs site SEO: crawl budget optimization, sitemap generation, structured data, indexation strategy, and resolving duplicate content.",
+      "keywords": [
+        "technical SEO",
+        "sitemap.xml",
+        "robots.txt",
+        "canonicalization",
+        "indexation",
+        "crawl budget",
+        "duplicate content",
+        "URL slug design",
+        "core web vitals"
+      ]
+    },
+    {
+      "id": "organic_traffic_analytics_conversion",
+      "name": "Organic Traffic Analytics & Conversion Tracking",
+      "description": "Analyzing organic search traffic growth, keyword rankings, bounce rate on docs, time-on-page, and doc-to-signup conversion attribution.",
+      "keywords": [
+        "Google Analytics 4",
+        "GA4",
+        "Search Console",
+        "organic traffic",
+        "conversion rate",
+        "doc attribution",
+        "bounce rate",
+        "ranking tracking",
+        "traffic growth"
+      ]
+    },
+    {
+      "id": "thought_leadership_industry_reports",
+      "name": "Thought Leadership & Industry Benchmark Reports",
+      "description": "Writing authoritative industry benchmark reports, state-of-the-industry reports, trend analyses, and keynote scripts for executive engineers.",
+      "keywords": [
+        "thought leadership",
+        "industry report",
+        "State of DevOps",
+        "benchmark report",
+        "trend analysis",
+        "keynote script",
+        "whitepaper strategy",
+        "market analysis"
+      ]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "Technical blog posts and architectural deep-dive articles",
+        "detection": "file_presence",
+        "pattern": "blog/.*\\.md|docs/blog/.*\\.md",
+        "strength": 0.9,
+        "maps_to": [
+          "tw_content_marketing_seo.technical_blog_post_authoring"
+        ]
+      },
+      {
+        "signal": "Doc metadata, Open Graph tags, and Schema.org TechArticle markup",
+        "detection": "content_analysis",
+        "pattern": "description:\\s*['\"][^'\"]{30,}['\"]|image:\\s*/img/og-|type:\\s*['\"]TechArticle['\"]|<Head>|meta name=\"keywords\"",
+        "strength": 0.85,
+        "maps_to": [
+          "tw_content_marketing_seo.metadata_schema_seo_basics"
+        ]
+      },
+      {
+        "signal": "Keyword research mapping and search intent targeting",
+        "detection": "content_analysis",
+        "pattern": "keywords:\\s*\\[|search_intent:|target_query:",
+        "strength": 0.75,
+        "maps_to": [
+          "tw_content_marketing_seo.keyword_research_search_intent"
+        ]
+      },
+      {
+        "signal": "Technical whitepapers, architecture blueprints, and solution ebooks",
+        "detection": "file_presence",
+        "pattern": "whitepapers/.*\\.md|docs/whitepapers/.*\\.md|solution-briefs/",
+        "strength": 0.85,
+        "maps_to": [
+          "tw_content_marketing_seo.technical_whitepapers_ebooks"
+        ]
+      },
+      {
+        "signal": "Customer migration case studies with quantifiable ROI metrics",
+        "detection": "content_analysis",
+        "pattern": "docs/case-studies/.*\\.md|Challenge|Solution|Results|Migration Story",
+        "strength": 0.85,
+        "maps_to": [
+          "tw_content_marketing_seo.case_studies_customer_stories"
+        ]
+      },
+      {
+        "signal": "Developer community content, Show HN launch drafts, and newsletters",
+        "detection": "file_presence",
+        "pattern": "community/.*\\.md|newsletter/.*\\.md|Show HN",
+        "strength": 0.8,
+        "maps_to": [
+          "tw_content_marketing_seo.developer_advocacy_community_content"
+        ]
+      },
+      {
+        "signal": "Technical SEO architecture (sitemap, robots.txt, canonicalization)",
+        "detection": "file_presence",
+        "pattern": "static/robots\\.txt|static/sitemap.*\\.xml|canonicalURL",
+        "strength": 0.85,
+        "maps_to": [
+          "tw_content_marketing_seo.technical_seo_information_architecture"
+        ]
+      },
+      {
+        "signal": "Organic traffic conversion attribution and annual benchmark reports",
+        "detection": "content_analysis",
+        "pattern": "gtag\\('event',\\s*'conversion'|State of|Benchmark Report|Survey Methodology",
+        "strength": 0.8,
+        "maps_to": [
+          "tw_content_marketing_seo.organic_traffic_analytics_conversion",
+          "tw_content_marketing_seo.thought_leadership_industry_reports"
+        ]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "Published technical blog posts and whitepapers that drove 150k+ monthly organic visitors to developer documentation portal",
+        "strength": 0.6,
+        "maps_to": [
+          "tw_content_marketing_seo.technical_blog_post_authoring",
+          "tw_content_marketing_seo.technical_whitepapers_ebooks",
+          "tw_content_marketing_seo.organic_traffic_analytics_conversion"
+        ]
+      },
+      {
+        "signal": "Optimized documentation SEO with structured metadata, schema.org markup, and strategic keyword clustering",
+        "strength": 0.5,
+        "maps_to": [
+          "tw_content_marketing_seo.metadata_schema_seo_basics",
+          "tw_content_marketing_seo.keyword_research_search_intent",
+          "tw_content_marketing_seo.technical_seo_information_architecture"
+        ]
+      },
+      {
+        "signal": "Authored high-converting engineering case studies, community launch posts, and annual State of Technology benchmark reports",
+        "strength": 0.5,
+        "maps_to": [
+          "tw_content_marketing_seo.case_studies_customer_stories",
+          "tw_content_marketing_seo.developer_advocacy_community_content",
+          "tw_content_marketing_seo.thought_leadership_industry_reports"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Demonstrated expertise in Technical Content Marketing, Developer Advocacy, Technical SEO, and Whitepaper Authoring",
+        "strength": 0.4,
+        "maps_to": [
+          "tw_content_marketing_seo.technical_blog_post_authoring",
+          "tw_content_marketing_seo.metadata_schema_seo_basics",
+          "tw_content_marketing_seo.keyword_research_search_intent",
+          "tw_content_marketing_seo.technical_whitepapers_ebooks",
+          "tw_content_marketing_seo.case_studies_customer_stories",
+          "tw_content_marketing_seo.developer_advocacy_community_content",
+          "tw_content_marketing_seo.technical_seo_information_architecture",
+          "tw_content_marketing_seo.organic_traffic_analytics_conversion",
+          "tw_content_marketing_seo.thought_leadership_industry_reports"
+        ]
+      }
+    ],
+    "assessment": [
+      {
+        "signal": "Passes technical content marketing and SEO assessment covering technical blog writing, metadata optimization, whitepapers, and analytics",
+        "strength": 1.0,
+        "maps_to": [
+          "tw_content_marketing_seo.technical_blog_post_authoring",
+          "tw_content_marketing_seo.metadata_schema_seo_basics",
+          "tw_content_marketing_seo.keyword_research_search_intent",
+          "tw_content_marketing_seo.technical_whitepapers_ebooks",
+          "tw_content_marketing_seo.case_studies_customer_stories",
+          "tw_content_marketing_seo.developer_advocacy_community_content",
+          "tw_content_marketing_seo.technical_seo_information_architecture",
+          "tw_content_marketing_seo.organic_traffic_analytics_conversion",
+          "tw_content_marketing_seo.thought_leadership_industry_reports"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "technical_blog_post_authoring",
+        "metadata_schema_seo_basics",
+        "keyword_research_search_intent"
+      ],
+      "description": "Writes developer-focused technical blog posts, adds structured metadata/title tags, and conducts keyword research."
+    },
+    "mid": {
+      "expected_subskills": [
+        "technical_whitepapers_ebooks",
+        "case_studies_customer_stories",
+        "developer_advocacy_community_content"
+      ],
+      "description": "Authors technical whitepapers, writes customer architecture migration stories, and drives developer community advocacy."
+    },
+    "senior": {
+      "expected_subskills": [
+        "technical_seo_information_architecture",
+        "organic_traffic_analytics_conversion",
+        "thought_leadership_industry_reports"
+      ],
+      "description": "Architects technical SEO crawl structures, analyzes organic conversion attribution in GA4, and authors industry benchmark reports."
+    }
+  }
+}

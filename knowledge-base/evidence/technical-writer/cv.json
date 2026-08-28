@@ -1,0 +1,146 @@
+{
+  "source_id": "cv",
+  "name": "CV / Resume Analysis - Technical Writer",
+  "description": "Extraction rules and signal mappings for Technical Writer CVs/resumes, focusing on published documentation portals, API references, content strategy audits, style guide governance, and support ticket deflection metrics.",
+  "extraction_rules": {
+    "sections": {
+      "work_experience": {
+        "priority": "critical",
+        "base_strength": 0.7,
+        "quality_indicators": [
+          "Demonstrated authorship of public developer portals and REST/GraphQL API reference docs",
+          "Measurable support ticket deflection metrics (e.g., 'reduced API-related support tickets by 40% through interactive quickstarts')",
+          "Creation and leadership of organizational technical style guides and Vale linter automation",
+          "Implementation of Docs-as-Code CI/CD pipelines (GitHub Actions, Docusaurus, MkDocs)",
+          "Cross-functional collaboration with engineering SMEs to document complex distributed architectures",
+          "Multi-version documentation management and internationalization (Crowdin, Lokalise)"
+        ]
+      },
+      "published_portfolio_links": {
+        "priority": "critical",
+        "base_strength": 0.8,
+        "quality_indicators": [
+          "Live links to public developer documentation hubs (e.g., docs.company.com)",
+          "Published technical articles on Medium, Dev.to, Hashnode, or engineering blogs",
+          "Public GitHub repositories showcasing Docs-as-Code workflows, Markdown/MDX, and OpenAPI YAML files",
+          "Published whitepapers, ebooks, case studies, or Keep a Changelog release notes"
+        ]
+      },
+      "skills_list": {
+        "priority": "medium",
+        "base_strength": 0.4,
+        "notes": "Technical writing skills listed without concrete deliverable context receive lower baseline strength."
+      },
+      "certifications": {
+        "priority": "medium",
+        "base_strength": 0.5,
+        "recognized_certifications": [
+          "Society for Technical Communication (STC) Certified Professional Technical Communicator (CPTC)",
+          "Google Technical Writing Certificate",
+          "DITA / XML Authoring Certification",
+          "OpenAPI / API Design Certification",
+          "AWS Certified Cloud Practitioner / Solutions Architect (Demonstrating technical domain depth)"
+        ]
+      },
+      "education": {
+        "priority": "low",
+        "base_strength": 0.3,
+        "relevant_degrees": [
+          "Technical Writing / Professional Communication",
+          "Computer Science / Software Engineering",
+          "English / Linguistics / Journalism",
+          "Information Management"
+        ]
+      }
+    }
+  },
+  "signal_mapping": {
+    "patterns": [
+      {
+        "pattern": "Authored and maintained comprehensive technical documentation, adhering to Google/Microsoft style guides with active voice and high readability",
+        "maps_to": [
+          "tw_fundamentals_writing_craft.clarity_conciseness_active_voice",
+          "tw_fundamentals_writing_craft.style_guides_standards",
+          "tw_fundamentals_writing_craft.audience_persona_analysis",
+          "tw_fundamentals_writing_craft.information_architecture_hierarchy",
+          "tw_fundamentals_writing_craft.dita_topic_based_authoring",
+          "tw_fundamentals_writing_craft.terminology_glossary_management",
+          "tw_fundamentals_writing_craft.readability_scoring_editing",
+          "tw_fundamentals_writing_craft.inclusive_accessible_language",
+          "tw_fundamentals_writing_craft.doc_governance_style_creation"
+        ]
+      },
+      {
+        "pattern": "Conducted SME interviews with software engineers, parsed PRDs and code diffs, performed content gap analysis and single-sourcing audits",
+        "maps_to": [
+          "tw_content_research_strategy.sme_interviewing_elicitation",
+          "tw_content_research_strategy.source_code_spec_reading",
+          "tw_content_research_strategy.content_gap_analysis",
+          "tw_content_research_strategy.content_lifecycle_management",
+          "tw_content_research_strategy.information_mapping_user_journeys",
+          "tw_content_research_strategy.docs_as_product_strategy",
+          "tw_content_research_strategy.content_reuse_single_sourcing",
+          "tw_content_research_strategy.enterprise_doc_auditing",
+          "tw_content_research_strategy.knowledge_base_federation"
+        ]
+      },
+      {
+        "pattern": "Authored REST/GraphQL/gRPC API reference documentation, OpenAPI 3.0 YAML schemas, multi-language code snippets, quickstarts, and SDK guides",
+        "maps_to": [
+          "tw_developer_documentation.openapi_swagger_spec_authoring",
+          "tw_developer_documentation.api_reference_writing",
+          "tw_developer_documentation.curl_code_sample_authoring",
+          "tw_developer_documentation.developer_quickstarts_tutorials",
+          "tw_developer_documentation.sdk_library_documentation",
+          "tw_developer_documentation.graphql_grpc_asyncapi_docs",
+          "tw_developer_documentation.cli_command_reference",
+          "tw_developer_documentation.api_error_handling_troubleshooting",
+          "tw_developer_documentation.devportal_architecture_experience",
+          "tw_developer_documentation.versioning_breaking_changes_migration"
+        ]
+      },
+      {
+        "pattern": "Authored procedural how-to guides, Keep a Changelog release notes, FAQ articles, diagnostic troubleshooting runbooks, and admin manuals",
+        "maps_to": [
+          "tw_product_support_content.how_to_procedural_guides",
+          "tw_product_support_content.release_notes_changelogs",
+          "tw_product_support_content.faq_self_service_articles",
+          "tw_product_support_content.troubleshooting_root_cause_guides",
+          "tw_product_support_content.admin_configuration_manuals",
+          "tw_product_support_content.ui_ux_microcopy_in_product_help",
+          "tw_product_support_content.support_ticket_deflection_strategy",
+          "tw_product_support_content.disaster_recovery_runbooks",
+          "tw_product_support_content.user_feedback_loops_csat"
+        ]
+      },
+      {
+        "pattern": "Wrote technical blog posts, whitepapers, customer migration case studies, optimized doc SEO metadata, and tracked organic traffic growth",
+        "maps_to": [
+          "tw_content_marketing_seo.technical_blog_post_authoring",
+          "tw_content_marketing_seo.metadata_schema_seo_basics",
+          "tw_content_marketing_seo.keyword_research_search_intent",
+          "tw_content_marketing_seo.technical_whitepapers_ebooks",
+          "tw_content_marketing_seo.case_studies_customer_stories",
+          "tw_content_marketing_seo.developer_advocacy_community_content",
+          "tw_content_marketing_seo.technical_seo_information_architecture",
+          "tw_content_marketing_seo.organic_traffic_analytics_conversion",
+          "tw_content_marketing_seo.thought_leadership_industry_reports"
+        ]
+      },
+      {
+        "pattern": "Implemented Docs-as-Code tooling, Docusaurus/MkDocs SSGs, Vale/markdownlint automated CI/CD, Algolia search, and doc analytics telemetry",
+        "maps_to": [
+          "tw_tooling_analytics_distribution.markdown_mdx_mastery",
+          "tw_tooling_analytics_distribution.git_github_docs_workflow",
+          "tw_tooling_analytics_distribution.static_site_generators_ssg",
+          "tw_tooling_analytics_distribution.automated_style_linting",
+          "tw_tooling_analytics_distribution.ci_cd_docs_pipelines",
+          "tw_tooling_analytics_distribution.site_search_indexing",
+          "tw_tooling_analytics_distribution.headless_cms_knowledge_tools",
+          "tw_tooling_analytics_distribution.docs_analytics_telemetry",
+          "tw_tooling_analytics_distribution.multi_version_localization_builds"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,257 @@
+{
+  "skill_id": "blockchain_networks",
+  "name": "Multi-Chain Networks & Cross-Chain Infrastructure",
+  "category": "blockchain_networks",
+  "description": "Architecture of EVM chains, Layer 2 networks, Solana/SVM, Alt-VMs (Move, WASM, TVM), cross-chain bridges, CCIP/IBC interoperability, and modular data availability networks.",
+  "subskills": [
+    {
+      "id": "evm_based_chains_ethereum_polygon",
+      "name": "EVM Network Architecture (Ethereum, Polygon, BSC)",
+      "description": "EVM architecture, chain IDs, gas token mechanics, JSON-RPC specifications, and differences across EVM-compatible L1s and sidechains.",
+      "keywords": [
+        "EVM",
+        "Ethereum",
+        "Polygon PoS",
+        "BNB Chain",
+        "Chain ID",
+        "JSON-RPC",
+        "eth_call",
+        "gas limits"
+      ]
+    },
+    {
+      "id": "testnets_faucets_rpc_providers",
+      "name": "Testnets, Faucets & RPC Node Providers",
+      "description": "Operating on public testnets (Sepolia, Holesky), managing RPC rate limits, private RPC endpoints (Infura, Alchemy, QuickNode), and fallback providers.",
+      "keywords": [
+        "Sepolia",
+        "Holesky",
+        "testnet",
+        "faucets",
+        "Alchemy",
+        "Infura",
+        "QuickNode",
+        "RPC fallback"
+      ]
+    },
+    {
+      "id": "block_explorers_network_monitoring",
+      "name": "Block Explorers & Network Telemetry",
+      "description": "Navigating and querying block explorers (Etherscan, Blockscout, Solscan), contract verification, internal transaction tracing, and validator telemetry.",
+      "keywords": [
+        "Etherscan",
+        "Blockscout",
+        "Solscan",
+        "internal transactions",
+        "trace_transaction",
+        "gas tracker",
+        "block explorer API"
+      ]
+    },
+    {
+      "id": "l2_rollups_arbitrum_optimism_base",
+      "name": "Layer 2 Rollups Ecosystem (Arbitrum, Optimism, Base)",
+      "description": "Rollup architectures: Arbitrum Nitro, OP Stack (Optimism, Base), sequencer role, L1 batch submission, and L1-L2 message passing.",
+      "keywords": [
+        "Arbitrum Nitro",
+        "OP Stack",
+        "Base",
+        "sequencer",
+        "batch posting",
+        "L1 to L2 bridge",
+        "Optimism Bedrock"
+      ]
+    },
+    {
+      "id": "solana_sealevel_architecture",
+      "name": "Solana Sealevel Runtime & Account Architecture",
+      "description": "Solana runtime architecture: parallel execution (Sealevel), Gulf Stream mempool-less forwarding, Turbine block propagation, and Program Derived Addresses (PDAs).",
+      "keywords": [
+        "Solana",
+        "Sealevel",
+        "parallel execution",
+        "PDA",
+        "Turbine",
+        "Gulf Stream",
+        "SVM",
+        "rent exemption"
+      ]
+    },
+    {
+      "id": "cross_chain_bridges_relayers",
+      "name": "Cross-Chain Bridges & Relayer Security",
+      "description": "Lock-and-mint, burn-and-mint, liquidity pool bridges, relayer incentive networks, and bridge security threat models.",
+      "keywords": [
+        "cross-chain bridge",
+        "lock and mint",
+        "burn and mint",
+        "relayer",
+        "bridge security",
+        "wormhole",
+        "layerzero"
+      ]
+    },
+    {
+      "id": "interoperability_protocols_ccip_ibc",
+      "name": "Cross-Chain Interoperability Protocols (CCIP, IBC)",
+      "description": "Standardized cross-chain communication protocols: Chainlink Cross-Chain Interoperability Protocol (CCIP), Cosmos Inter-Blockchain Communication (IBC), and cross-chain token transfers.",
+      "keywords": [
+        "Chainlink CCIP",
+        "IBC",
+        "Cosmos",
+        "cross-chain messaging",
+        "programmable token transfer",
+        "risk management network"
+      ]
+    },
+    {
+      "id": "alt_vm_chains_move_tvm_wasm",
+      "name": "Alt-VM Ecosystems (Move, TVM, CosmWasm)",
+      "description": "Non-EVM smart contract platforms: Move VM (Aptos, Sui), TON Virtual Machine (TVM), and CosmWasm/Near WASM runtimes.",
+      "keywords": [
+        "Move VM",
+        "Sui",
+        "Aptos",
+        "TVM",
+        "TON blockchain",
+        "CosmWasm",
+        "WASM smart contracts",
+        "resource-oriented programming"
+      ]
+    },
+    {
+      "id": "modular_blockchains_celestia_avail",
+      "name": "Modular Blockchain Architecture & Data Availability",
+      "description": "Decoupling execution, settlement, consensus, and data availability; sovereign rollups; and Data Availability (DA) layers (Celestia, EigenDA, Avail).",
+      "keywords": [
+        "modular blockchain",
+        "Celestia",
+        "EigenDA",
+        "Avail",
+        "Data Availability Sampling",
+        "sovereign rollup",
+        "settlement layer"
+      ]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "Multi-network deployment scripts and RPC configuration matrices",
+        "detection": "content_analysis",
+        "pattern": "networks:\\s*\\{\\s*sepolia:|arbitrum:|optimism:|polygon:|mainnet:",
+        "strength": 0.85,
+        "maps_to": [
+          "blockchain_networks.evm_based_chains_ethereum_polygon",
+          "blockchain_networks.testnets_faucets_rpc_providers",
+          "blockchain_networks.l2_rollups_arbitrum_optimism_base"
+        ]
+      },
+      {
+        "signal": "Solana Anchor program configurations and SVM account deserialization",
+        "detection": "file_presence",
+        "pattern": "Anchor\\.toml|declare_id!|@solana/web3\\.js",
+        "strength": 0.9,
+        "maps_to": [
+          "blockchain_networks.solana_sealevel_architecture",
+          "blockchain_networks.block_explorers_network_monitoring"
+        ]
+      },
+      {
+        "signal": "Chainlink CCIP cross-chain token transfer scripts, IBC configs, and Move/WASM modules",
+        "detection": "content_analysis",
+        "pattern": "IRouterClient|ccipReceive|Move\\.toml|Celestia|EigenDA|IL2ToL1MessagePasser",
+        "strength": 0.9,
+        "maps_to": [
+          "blockchain_networks.cross_chain_bridges_relayers",
+          "blockchain_networks.interoperability_protocols_ccip_ibc",
+          "blockchain_networks.alt_vm_chains_move_tvm_wasm",
+          "blockchain_networks.modular_blockchains_celestia_avail"
+        ]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "Deployed multi-chain smart contracts across Ethereum, Arbitrum, Optimism, Base, and Solana",
+        "strength": 0.6,
+        "maps_to": [
+          "blockchain_networks.evm_based_chains_ethereum_polygon",
+          "blockchain_networks.l2_rollups_arbitrum_optimism_base",
+          "blockchain_networks.solana_sealevel_architecture",
+          "blockchain_networks.testnets_faucets_rpc_providers"
+        ]
+      },
+      {
+        "signal": "Architected cross-chain token transfers with Chainlink CCIP and integrated modular DA layers with Celestia",
+        "strength": 0.6,
+        "maps_to": [
+          "blockchain_networks.cross_chain_bridges_relayers",
+          "blockchain_networks.interoperability_protocols_ccip_ibc",
+          "blockchain_networks.alt_vm_chains_move_tvm_wasm",
+          "blockchain_networks.modular_blockchains_celestia_avail",
+          "blockchain_networks.block_explorers_network_monitoring"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Endorsements in Multi-Chain Architecture, Layer 2 Solutions, Solana Development, and Cross-Chain Protocols",
+        "strength": 0.4,
+        "maps_to": [
+          "blockchain_networks.evm_based_chains_ethereum_polygon",
+          "blockchain_networks.testnets_faucets_rpc_providers",
+          "blockchain_networks.block_explorers_network_monitoring",
+          "blockchain_networks.l2_rollups_arbitrum_optimism_base",
+          "blockchain_networks.solana_sealevel_architecture",
+          "blockchain_networks.cross_chain_bridges_relayers",
+          "blockchain_networks.interoperability_protocols_ccip_ibc",
+          "blockchain_networks.alt_vm_chains_move_tvm_wasm",
+          "blockchain_networks.modular_blockchains_celestia_avail"
+        ]
+      }
+    ],
+    "assessment": [
+      {
+        "signal": "Passes comprehensive multi-chain networks assessment covering OP Stack rollups, Solana Sealevel, CCIP cross-chain messaging, and Celestia modular DA",
+        "strength": 1.0,
+        "maps_to": [
+          "blockchain_networks.evm_based_chains_ethereum_polygon",
+          "blockchain_networks.testnets_faucets_rpc_providers",
+          "blockchain_networks.block_explorers_network_monitoring",
+          "blockchain_networks.l2_rollups_arbitrum_optimism_base",
+          "blockchain_networks.solana_sealevel_architecture",
+          "blockchain_networks.cross_chain_bridges_relayers",
+          "blockchain_networks.interoperability_protocols_ccip_ibc",
+          "blockchain_networks.alt_vm_chains_move_tvm_wasm",
+          "blockchain_networks.modular_blockchains_celestia_avail"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "evm_based_chains_ethereum_polygon",
+        "testnets_faucets_rpc_providers",
+        "block_explorers_network_monitoring"
+      ],
+      "description": "Configures RPC providers for EVM networks, uses testnet faucets, and inspects transactions on block explorers."
+    },
+    "mid": {
+      "expected_subskills": [
+        "l2_rollups_arbitrum_optimism_base",
+        "solana_sealevel_architecture",
+        "cross_chain_bridges_relayers"
+      ],
+      "description": "Deploys onto OP Stack/Arbitrum rollups, builds programs on Solana runtime, and configures bridge relay mechanisms."
+    },
+    "senior": {
+      "expected_subskills": [
+        "interoperability_protocols_ccip_ibc",
+        "alt_vm_chains_move_tvm_wasm",
+        "modular_blockchains_celestia_avail"
+      ],
+      "description": "Architects cross-chain messaging with CCIP/IBC, develops on Move/Alt-VM platforms, and designs modular Celestia/EigenDA stacks."
+    }
+  }
+}

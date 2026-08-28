@@ -1,0 +1,135 @@
+{
+  "source_id": "cv",
+  "name": "CV / Resume Analysis - UX Designer",
+  "description": "Extraction rules for UX Designer and Behavioral Product Designer CVs, analyzing Figma deliverables, user research, Design Systems, and CRO impact.",
+  "signal_mapping": {
+    "patterns": [
+      {
+        "pattern": "Designed gamification loops, habit-tracking planners, and reduced notification dropoff by 35%",
+        "maps_to": [
+          "ux_attention_context.fleeting_attention_cta",
+          "ux_attention_context.fleeting_attention_status_reports",
+          "ux_attention_context.fleeting_attention_tips",
+          "ux_attention_context.many_chances_gamification",
+          "ux_attention_context.many_chances_planners",
+          "ux_attention_context.many_chances_tutorials",
+          "ux_attention_context.many_chances_social_sharing",
+          "ux_attention_context.multi_device_attention_continuity",
+          "ux_attention_context.cognitive_overload_mitigation_calm_tech"
+        ]
+      },
+      {
+        "pattern": "Applied Fogg B=MAP, Hook Model, and CREATE funnels to improve activation and retention metrics",
+        "maps_to": [
+          "ux_behavior_frameworks.fogg_behavior_model",
+          "ux_behavior_frameworks.dual_process_theory",
+          "ux_behavior_frameworks.behavioral_buzzwords",
+          "ux_behavior_frameworks.hook_model",
+          "ux_behavior_frameworks.create_action_funnel",
+          "ux_behavior_frameworks.cue_routine_reward",
+          "ux_behavior_frameworks.fogg_behavior_grid",
+          "ux_behavior_frameworks.spectrum_of_thinking_interventions",
+          "ux_behavior_frameworks.behavioral_ethics_dark_patterns_defense"
+        ]
+      },
+      {
+        "pattern": "Designed smart defaults and choice architecture increasing conversion by 28% while reducing checkout errors",
+        "maps_to": [
+          "ux_behavior_strategies.educate_encourage",
+          "ux_behavior_strategies.defaulting",
+          "ux_behavior_strategies.choice_architecture_framing",
+          "ux_behavior_strategies.help_think_about_action",
+          "ux_behavior_strategies.making_it_incidental",
+          "ux_behavior_strategies.automate_new_behavior",
+          "ux_behavior_strategies.disrupt_existing_habit",
+          "ux_behavior_strategies.systemic_habit_ecosystem_design",
+          "ux_behavior_strategies.friction_engineering_intentional_friction"
+        ]
+      },
+      {
+        "pattern": "Formulated Lean Canvases and mapped Value Proposition Canvases driving product-market fit for B2B SaaS",
+        "maps_to": [
+          "ux_business_model.business_model_canvas",
+          "ux_business_model.competitor_analysis",
+          "ux_business_model.value_proposition_design_canvas",
+          "ux_business_model.lean_canvas",
+          "ux_business_model.inspirator_analysis",
+          "ux_business_model.swot_analysis",
+          "ux_business_model.five_forces",
+          "ux_business_model.unit_economics_ux_monetization",
+          "ux_business_model.product_led_growth_ux_mechanics"
+        ]
+      },
+      {
+        "pattern": "Conducted user research formulating JTBD frameworks, behavioral personas, and target action specifications",
+        "maps_to": [
+          "ux_classifying_behavior.clarify_product",
+          "ux_classifying_behavior.user_personas",
+          "ux_classifying_behavior.jobs_to_be_done_framework",
+          "ux_classifying_behavior.target_outcome",
+          "ux_classifying_behavior.target_actor",
+          "ux_classifying_behavior.target_action",
+          "ux_classifying_behavior.behavioral_segmentation_clustering",
+          "ux_classifying_behavior.cross_actor_ecosystem_mapping",
+          "ux_classifying_behavior.intent_state_modeling"
+        ]
+      },
+      {
+        "pattern": "Wrote user stories with Gherkin acceptance criteria, architected Design Tokens, and mapped Service Blueprints",
+        "maps_to": [
+          "ux_conceptual_design.user_stories",
+          "ux_conceptual_design.ux_principle_short_simple",
+          "ux_conceptual_design.ux_principle_progress_visible",
+          "ux_conceptual_design.product_backlog",
+          "ux_conceptual_design.ux_principle_success_prominent",
+          "ux_conceptual_design.ux_principle_scaffolding",
+          "ux_conceptual_design.mental_model_system_architecture",
+          "ux_conceptual_design.design_system_tokens_governance",
+          "ux_conceptual_design.service_blueprint_orchestration"
+        ]
+      },
+      {
+        "pattern": "Built wireframes, interactive prototypes in Figma with variables, and authored WCAG 2.1 AAA accessibility specs",
+        "maps_to": [
+          "ux_deliverables_prototyping.wireframing_tools",
+          "ux_deliverables_prototyping.simple_flowchart",
+          "ux_deliverables_prototyping.layout_rules",
+          "ux_deliverables_prototyping.customer_experience_map",
+          "ux_deliverables_prototyping.bpmn_diagram",
+          "ux_deliverables_prototyping.interactive_high_fidelity_prototyping",
+          "ux_deliverables_prototyping.epc_diagram",
+          "ux_deliverables_prototyping.design_to_code_handoff_tokens",
+          "ux_deliverables_prototyping.accessibility_wcag_design_specs"
+        ]
+      },
+      {
+        "pattern": "Formulated A/B test hypotheses, conducted SUS usability tests, and measured Google HEART framework ROI",
+        "maps_to": [
+          "ux_measuring_impact.ab_testing",
+          "ux_measuring_impact.ux_metrics",
+          "ux_measuring_impact.usability_testing_heuristics_sus",
+          "ux_measuring_impact.statistical_interpretation",
+          "ux_measuring_impact.integrating_test_results",
+          "ux_measuring_impact.funnel_dropoff_cohort_analytics",
+          "ux_measuring_impact.multivariate_testing",
+          "ux_measuring_impact.longitudinal_ux_impact_heart_framework",
+          "ux_measuring_impact.algorithmic_personalization_impact"
+        ]
+      },
+      {
+        "pattern": "Implemented social proof, peer comparisons, and Peter Gollwitzer if-then implementation intentions",
+        "maps_to": [
+          "ux_patterns_best_practices.get_attention_patterns",
+          "ux_patterns_best_practices.positive_impression_patterns",
+          "ux_patterns_best_practices.social_proof",
+          "ux_patterns_best_practices.authority",
+          "ux_patterns_best_practices.loss_aversion",
+          "ux_patterns_best_practices.peer_comparison",
+          "ux_patterns_best_practices.urgency_scarcity",
+          "ux_patterns_best_practices.implementation_intentions",
+          "ux_patterns_best_practices.friction_reduction_defaulting"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,253 @@
+{
+  "skill_id": "blockchain_core_concepts",
+  "name": "Blockchain Cryptography & Consensus Core",
+  "category": "blockchain_core",
+  "description": "Cryptographic foundations, digital signatures (ECDSA, Ed25519, BLS), key derivation, wallet mechanics, token economics, hard/soft forks, and advanced consensus algorithms.",
+  "subskills": [
+    {
+      "id": "asymmetric_cryptography_signatures",
+      "name": "Asymmetric Cryptography & Digital Signatures",
+      "description": "Elliptic curve cryptography (secp256k1, Ed25519, BLS signature aggregation), public/private key pairs, and signature verification (ecrecover).",
+      "keywords": [
+        "ECDSA",
+        "secp256k1",
+        "Ed25519",
+        "BLS signatures",
+        "ecrecover",
+        "public key",
+        "private key",
+        "signature malleability"
+      ]
+    },
+    {
+      "id": "crypto_wallets_key_management",
+      "name": "Hierarchical Deterministic (HD) Wallets & Key Derivation",
+      "description": "BIP-39 mnemonic seeds, BIP-32/BIP-44 derivation paths, multisig wallet schemes, and Shamir Secret Sharing.",
+      "keywords": [
+        "BIP-39",
+        "BIP-44",
+        "BIP-32",
+        "derivation path",
+        "mnemonic seed",
+        "hardware wallet",
+        "multisig",
+        "key management"
+      ]
+    },
+    {
+      "id": "cryptocurrency_tokenomics_basics",
+      "name": "Tokenomics Fundamentals & Emission Schedules",
+      "description": "Inflationary vs deflationary token models, burn mechanisms (EIP-1559), staking yields, vesting schedules, and supply caps.",
+      "keywords": [
+        "tokenomics",
+        "EIP-1559",
+        "burn mechanism",
+        "emission schedule",
+        "vesting",
+        "inflationary",
+        "deflationary",
+        "circulating supply"
+      ]
+    },
+    {
+      "id": "mining_and_validator_incentives",
+      "name": "Validator Economics, Slashing & Staking",
+      "description": "Proof of Stake validator duties, attestation rewards, slashing conditions (double signing, surround voting), and effective balance mechanics.",
+      "keywords": [
+        "staking",
+        "slashing",
+        "validator rewards",
+        "attestation",
+        "effective balance",
+        "double signing",
+        "inactivity leak"
+      ]
+    },
+    {
+      "id": "hard_and_soft_forks",
+      "name": "Network Forks & Protocol Upgrades",
+      "description": "Hard forks vs soft forks, backward compatibility, chain splits, replay protection, and social consensus governance.",
+      "keywords": [
+        "hard fork",
+        "soft fork",
+        "chain split",
+        "replay protection",
+        "backward compatibility",
+        "network upgrade",
+        "EIP activation"
+      ]
+    },
+    {
+      "id": "sybil_resistance_mechanisms",
+      "name": "Sybil Resistance Mechanisms (PoW, PoS, PoA)",
+      "description": "Comparative analysis of Sybil defenses: Proof of Work hash rate, Proof of Stake capital locking, and Proof of Authority reputation.",
+      "keywords": [
+        "Sybil resistance",
+        "Proof of Work",
+        "Proof of Stake",
+        "Proof of Authority",
+        "energy consumption",
+        "validator quorum"
+      ]
+    },
+    {
+      "id": "advanced_consensus_mechanisms",
+      "name": "Advanced Consensus Algorithms (Tendermint, PoH, Avalanche)",
+      "description": "Tendermint Core (PBFT-derived), Solana Proof of History (VDF sequencing), Avalanche Snow family DAG consensus, and Casper FFG/LMD-GHOST.",
+      "keywords": [
+        "Tendermint",
+        "Proof of History",
+        "Avalanche consensus",
+        "Casper FFG",
+        "LMD-GHOST",
+        "VDF",
+        "deterministic finality"
+      ]
+    },
+    {
+      "id": "zero_knowledge_primitives_foundations",
+      "name": "Zero-Knowledge Proof Foundations (zk-SNARKs & zk-STARKs)",
+      "description": "Cryptographic zero-knowledge foundations: arithmetic circuits, R1CS, QAP, pairing cryptography, trusted setups vs transparent STARKs.",
+      "keywords": [
+        "zk-SNARK",
+        "zk-STARK",
+        "arithmetic circuits",
+        "R1CS",
+        "trusted setup",
+        "transparent proofs",
+        "cryptographic zero knowledge"
+      ]
+    },
+    {
+      "id": "state_machine_replication",
+      "name": "State Machine Replication & Deterministic Execution",
+      "description": "Deterministic state transitions, world state trie transitions, EVM state rollback semantics, and multi-validator state synchronization.",
+      "keywords": [
+        "State Machine Replication",
+        "world state",
+        "deterministic execution",
+        "state synchronization",
+        "snapshot sync",
+        "warp sync"
+      ]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "Elliptic curve signature generation, verification, and BIP-39/44 key derivation",
+        "detection": "content_analysis",
+        "pattern": "ethers\\.Wallet\\.fromMnemonic|bip39\\.mnemonicToSeed|secp256k1|noble/curves|ecrecover\\(",
+        "strength": 0.9,
+        "maps_to": [
+          "blockchain_core_concepts.asymmetric_cryptography_signatures",
+          "blockchain_core_concepts.crypto_wallets_key_management"
+        ]
+      },
+      {
+        "signal": "Token vesting contracts, EIP-1559 baseFee calculations, and staking distribution logic",
+        "detection": "content_analysis",
+        "pattern": "vestingSchedule|calculateBurn|stake\\(|withdrawRewards|slashingPeriod",
+        "strength": 0.85,
+        "maps_to": [
+          "blockchain_core_concepts.cryptocurrency_tokenomics_basics",
+          "blockchain_core_concepts.mining_and_validator_incentives"
+        ]
+      },
+      {
+        "signal": "Zero-knowledge circuit definitions (Circom, Halo2) and consensus simulation algorithms",
+        "detection": "content_analysis",
+        "pattern": "template\\s+[A-Za-z0-9_]+\\s*\\(\\)|circom|snarkjs|groth16|plonk|tendermint",
+        "strength": 0.9,
+        "maps_to": [
+          "blockchain_core_concepts.zero_knowledge_primitives_foundations",
+          "blockchain_core_concepts.advanced_consensus_mechanisms",
+          "blockchain_core_concepts.state_machine_replication",
+          "blockchain_core_concepts.hard_and_soft_forks",
+          "blockchain_core_concepts.sybil_resistance_mechanisms"
+        ]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "Designed cryptographic wallet recovery schemes and implemented signature verification algorithms (ECDSA, BLS)",
+        "strength": 0.6,
+        "maps_to": [
+          "blockchain_core_concepts.asymmetric_cryptography_signatures",
+          "blockchain_core_concepts.crypto_wallets_key_management",
+          "blockchain_core_concepts.cryptocurrency_tokenomics_basics"
+        ]
+      },
+      {
+        "signal": "Engineered custom consensus validators and authored zero-knowledge zk-SNARK circuits for privacy-preserving protocols",
+        "strength": 0.6,
+        "maps_to": [
+          "blockchain_core_concepts.mining_and_validator_incentives",
+          "blockchain_core_concepts.advanced_consensus_mechanisms",
+          "blockchain_core_concepts.zero_knowledge_primitives_foundations",
+          "blockchain_core_concepts.state_machine_replication"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Expertise in Cryptographic Engineering, Zero-Knowledge Proofs, Consensus Mechanisms, and Tokenomics",
+        "strength": 0.4,
+        "maps_to": [
+          "blockchain_core_concepts.asymmetric_cryptography_signatures",
+          "blockchain_core_concepts.crypto_wallets_key_management",
+          "blockchain_core_concepts.cryptocurrency_tokenomics_basics",
+          "blockchain_core_concepts.mining_and_validator_incentives",
+          "blockchain_core_concepts.hard_and_soft_forks",
+          "blockchain_core_concepts.sybil_resistance_mechanisms",
+          "blockchain_core_concepts.advanced_consensus_mechanisms",
+          "blockchain_core_concepts.zero_knowledge_primitives_foundations",
+          "blockchain_core_concepts.state_machine_replication"
+        ]
+      }
+    ],
+    "assessment": [
+      {
+        "signal": "Passes comprehensive blockchain core concepts assessment covering ECDSA, BIP-39 derivation, slashing conditions, Tendermint consensus, and zk-SNARKs",
+        "strength": 1.0,
+        "maps_to": [
+          "blockchain_core_concepts.asymmetric_cryptography_signatures",
+          "blockchain_core_concepts.crypto_wallets_key_management",
+          "blockchain_core_concepts.cryptocurrency_tokenomics_basics",
+          "blockchain_core_concepts.mining_and_validator_incentives",
+          "blockchain_core_concepts.hard_and_soft_forks",
+          "blockchain_core_concepts.sybil_resistance_mechanisms",
+          "blockchain_core_concepts.advanced_consensus_mechanisms",
+          "blockchain_core_concepts.zero_knowledge_primitives_foundations",
+          "blockchain_core_concepts.state_machine_replication"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "asymmetric_cryptography_signatures",
+        "crypto_wallets_key_management",
+        "cryptocurrency_tokenomics_basics"
+      ],
+      "description": "Applies ECDSA signature verification, manages BIP-39/44 HD wallet derivation paths, and understands token emission schedules."
+    },
+    "mid": {
+      "expected_subskills": [
+        "mining_and_validator_incentives",
+        "hard_and_soft_forks",
+        "sybil_resistance_mechanisms"
+      ],
+      "description": "Models validator staking rewards and slashing conditions, manages protocol fork upgrades, and compares PoW/PoS Sybil resistance."
+    },
+    "senior": {
+      "expected_subskills": [
+        "advanced_consensus_mechanisms",
+        "zero_knowledge_primitives_foundations",
+        "state_machine_replication"
+      ],
+      "description": "Designs Tendermint/PBFT consensus state machines, constructs zk-SNARK arithmetic circuits, and orchestrates deterministic state replication."
+    }
+  }
+}

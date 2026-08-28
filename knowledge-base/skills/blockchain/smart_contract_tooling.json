@@ -1,0 +1,254 @@
+{
+  "skill_id": "smart_contract_tooling",
+  "name": "Smart Contract Tooling, Testing & DevOps",
+  "category": "blockchain_tooling",
+  "description": "Development environments, local testnets, and CI/CD automation: Foundry (Forge/Cast/Anvil), Hardhat, Tenderly debuggers, decentralized storage (IPFS/Arweave), and automated fuzz testing tools.",
+  "subskills": [
+    {
+      "id": "hardhat_framework_plugins",
+      "name": "Hardhat Development Environment & Plugins",
+      "description": "Configuring Hardhat (`hardhat.config.ts`), Hardhat Network, typechain bindings, hardhat-deploy, and custom TypeScript tasks.",
+      "keywords": [
+        "Hardhat",
+        "hardhat.config.ts",
+        "typechain",
+        "hardhat-deploy",
+        "Hardhat Network",
+        "npx hardhat",
+        "TypeScript tasks"
+      ]
+    },
+    {
+      "id": "foundry_forge_cast_anvil",
+      "name": "Foundry Toolchain (Forge, Cast, Anvil)",
+      "description": "High-performance Rust-based Ethereum toolkit: fast compiling (`forge build`), script deployments (`forge script`), RPC queries (`cast`), and local node (`anvil`).",
+      "keywords": [
+        "Foundry",
+        "forge",
+        "cast",
+        "anvil",
+        "foundry.toml",
+        "forge test",
+        "cast call",
+        "cast send"
+      ]
+    },
+    {
+      "id": "crypto_wallets_development_faucets",
+      "name": "Developer Wallets & Testnet Tooling",
+      "description": "Managing programmatic signer wallets, private keys in `.env`, mnemonic generation, faucet APIs, and test ether funding strategies.",
+      "keywords": [
+        "signer",
+        "private key management",
+        ".env",
+        "faucet API",
+        "testnet ether",
+        "automated funding",
+        "local accounts"
+      ]
+    },
+    {
+      "id": "decentralized_storage_ipfs_arweave",
+      "name": "Decentralized Storage Tooling (IPFS, Arweave, Filecoin)",
+      "description": "Pinning services (Pinata, Web3.Storage), IPFS CLI node management, Arweave permanent storage upload tools (Irys/Bundlr), and decentralized pinning gateways.",
+      "keywords": [
+        "IPFS",
+        "Pinata",
+        "Arweave",
+        "Irys",
+        "Bundlr",
+        "Web3.Storage",
+        "Filecoin",
+        "CID",
+        "gateway"
+      ]
+    },
+    {
+      "id": "evm_trace_debuggers_tenderly",
+      "name": "EVM Execution Trace Debugging & Tenderly",
+      "description": "Transaction call trace analysis, opcode-by-opcode debugging, Tenderly Virtual TestNets, simulation APIs, and revert reason decoding.",
+      "keywords": [
+        "Tenderly",
+        "trace debugging",
+        "transaction simulation",
+        "revert decoder",
+        "call trace",
+        "Virtual TestNet",
+        "debug_traceTransaction"
+      ]
+    },
+    {
+      "id": "contract_verification_blockscout_etherscan",
+      "name": "Automated Multi-Chain Contract Verification",
+      "description": "Automated sourcify and standard-json-input verification with `forge verify-contract` and hardhat-verify across Etherscan and Blockscout APIs.",
+      "keywords": [
+        "forge verify-contract",
+        "hardhat-verify",
+        "sourcify",
+        "Standard-JSON-Input",
+        "Etherscan API",
+        "Blockscout"
+      ]
+    },
+    {
+      "id": "ci_cd_smart_contract_automation",
+      "name": "Smart Contract CI/CD Pipelines (GitHub Actions)",
+      "description": "Automated GitHub Actions workflows for building, gas snapshot regression testing (`forge snapshot`), linting (solhint, prettier), and automated PR feedback.",
+      "keywords": [
+        "GitHub Actions",
+        "CI/CD smart contract",
+        "forge snapshot",
+        "solhint",
+        "prettier-plugin-solidity",
+        "gas regression",
+        "automated test runner"
+      ]
+    },
+    {
+      "id": "fuzzing_invariant_tooling_echidna_medusa",
+      "name": "Fuzzing Tooling & Automated Test Orchestration (Medusa, Echidna)",
+      "description": "Configuring and running modern smart contract fuzzer tools (Medusa, Echidna) in automated security regression suites.",
+      "keywords": [
+        "Medusa fuzzer",
+        "Echidna",
+        "automated fuzzing",
+        "invariant runner",
+        "security regression",
+        "crytic-compile"
+      ]
+    },
+    {
+      "id": "gas_profilers_snapshot_testing",
+      "name": "Gas Profiling & Snapshot Regression Tooling",
+      "description": "Continuous gas benchmarking using `forge snapshot --diff`, hardhat-gas-reporter, identifying opcode-level gas spikes, and gas budget gating.",
+      "keywords": [
+        "forge snapshot",
+        "hardhat-gas-reporter",
+        "gas benchmark",
+        "gas regression gate",
+        "gas report",
+        "opcode profile"
+      ]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "Foundry config, Hardhat config, and package.json smart contract scripts",
+        "detection": "file_presence",
+        "pattern": "foundry\\.toml|hardhat\\.config\\.(ts|js)|solhint\\.json",
+        "strength": 0.9,
+        "maps_to": [
+          "smart_contract_tooling.foundry_forge_cast_anvil",
+          "smart_contract_tooling.hardhat_framework_plugins",
+          "smart_contract_tooling.crypto_wallets_development_faucets"
+        ]
+      },
+      {
+        "signal": "Tenderly simulation config, Pinata/Arweave pinning scripts, and verification commands",
+        "detection": "content_analysis",
+        "pattern": "tenderly|pinata|@irys/sdk|forge verify-contract|hardhat-verify",
+        "strength": 0.85,
+        "maps_to": [
+          "smart_contract_tooling.evm_trace_debuggers_tenderly",
+          "smart_contract_tooling.decentralized_storage_ipfs_arweave",
+          "smart_contract_tooling.contract_verification_blockscout_etherscan"
+        ]
+      },
+      {
+        "signal": "GitHub Actions workflows running Forge test, Forge snapshot, Medusa, or Echidna",
+        "detection": "file_presence",
+        "pattern": "\\.github/workflows/*test*\\.ya?ml|\\.github/workflows/*foundry*\\.ya?ml|\\.gas-snapshot",
+        "strength": 0.9,
+        "maps_to": [
+          "smart_contract_tooling.ci_cd_smart_contract_automation",
+          "smart_contract_tooling.fuzzing_invariant_tooling_echidna_medusa",
+          "smart_contract_tooling.gas_profilers_snapshot_testing"
+        ]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "Configured Hardhat and Foundry development toolchains with automated unit testing and contract verification",
+        "strength": 0.6,
+        "maps_to": [
+          "smart_contract_tooling.hardhat_framework_plugins",
+          "smart_contract_tooling.foundry_forge_cast_anvil",
+          "smart_contract_tooling.crypto_wallets_development_faucets",
+          "smart_contract_tooling.contract_verification_blockscout_etherscan"
+        ]
+      },
+      {
+        "signal": "Built CI/CD automated testing pipelines with gas regression snapshots, Tenderly simulations, and IPFS pinning",
+        "strength": 0.6,
+        "maps_to": [
+          "smart_contract_tooling.ci_cd_smart_contract_automation",
+          "smart_contract_tooling.gas_profilers_snapshot_testing",
+          "smart_contract_tooling.evm_trace_debuggers_tenderly",
+          "smart_contract_tooling.decentralized_storage_ipfs_arweave",
+          "smart_contract_tooling.fuzzing_invariant_tooling_echidna_medusa"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Expertise in Foundry, Hardhat, Smart Contract Tooling, CI/CD Pipelines, and Tenderly Debugging",
+        "strength": 0.4,
+        "maps_to": [
+          "smart_contract_tooling.hardhat_framework_plugins",
+          "smart_contract_tooling.foundry_forge_cast_anvil",
+          "smart_contract_tooling.crypto_wallets_development_faucets",
+          "smart_contract_tooling.decentralized_storage_ipfs_arweave",
+          "smart_contract_tooling.evm_trace_debuggers_tenderly",
+          "smart_contract_tooling.contract_verification_blockscout_etherscan",
+          "smart_contract_tooling.ci_cd_smart_contract_automation",
+          "smart_contract_tooling.fuzzing_invariant_tooling_echidna_medusa",
+          "smart_contract_tooling.gas_profilers_snapshot_testing"
+        ]
+      }
+    ],
+    "assessment": [
+      {
+        "signal": "Passes smart contract tooling assessment covering Foundry cheatcodes, CI/CD pipeline automation, Tenderly traces, and gas snapshot gates",
+        "strength": 1.0,
+        "maps_to": [
+          "smart_contract_tooling.hardhat_framework_plugins",
+          "smart_contract_tooling.foundry_forge_cast_anvil",
+          "smart_contract_tooling.crypto_wallets_development_faucets",
+          "smart_contract_tooling.decentralized_storage_ipfs_arweave",
+          "smart_contract_tooling.evm_trace_debuggers_tenderly",
+          "smart_contract_tooling.contract_verification_blockscout_etherscan",
+          "smart_contract_tooling.ci_cd_smart_contract_automation",
+          "smart_contract_tooling.fuzzing_invariant_tooling_echidna_medusa",
+          "smart_contract_tooling.gas_profilers_snapshot_testing"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "hardhat_framework_plugins",
+        "foundry_forge_cast_anvil",
+        "crypto_wallets_development_faucets"
+      ],
+      "description": "Uses Foundry (forge/cast/anvil) and Hardhat for compiling, local testing, and managing dev testnet wallets."
+    },
+    "mid": {
+      "expected_subskills": [
+        "decentralized_storage_ipfs_arweave",
+        "evm_trace_debuggers_tenderly",
+        "contract_verification_blockscout_etherscan"
+      ],
+      "description": "Integrates IPFS/Arweave storage, inspects execution traces on Tenderly, and verifies contracts programmatically."
+    },
+    "senior": {
+      "expected_subskills": [
+        "ci_cd_smart_contract_automation",
+        "fuzzing_invariant_tooling_echidna_medusa",
+        "gas_profilers_snapshot_testing"
+      ],
+      "description": "Architects smart contract CI/CD pipelines in GitHub Actions, sets up gas snapshot regression gates, and integrates Medusa/Echidna fuzzer suites."
+    }
+  }
+}

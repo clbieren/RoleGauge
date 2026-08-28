@@ -1,0 +1,227 @@
+{
+  "skill_id": "ux_patterns_best_practices",
+  "name": "Persuasive UX Patterns & Behavioral Best Practices",
+  "category": "ux_patterns",
+  "description": "Evidence-backed persuasive UX patterns: social proof, authority, loss aversion, peer comparisons, urgency/scarcity, implementation intentions, and friction reduction.",
+  "subskills": [
+    {
+      "id": "get_attention_patterns",
+      "name": "Attention-Grabbing Patterns & Visual Saliency",
+      "description": "Using contrast, motion, directional cues, and faces to guide gaze to key interaction points.",
+      "keywords": [
+        "visual saliency",
+        "directional cues",
+        "eye tracking",
+        "motion in UI",
+        "visual contrast",
+        "focal point"
+      ]
+    },
+    {
+      "id": "positive_impression_patterns",
+      "name": "First Impression & Aesthetic-Usability Patterns",
+      "description": "Harnessing the aesthetic-usability effect, micro-animations, and polished visual design for immediate trust.",
+      "keywords": [
+        "aesthetic usability effect",
+        "first impression",
+        "visual polish",
+        "micro-animation",
+        "trust building"
+      ]
+    },
+    {
+      "id": "social_proof",
+      "name": "Social Proof & Testimonial Integration",
+      "description": "Integrating customer testimonials, user counts, real-time activity feeds, and reviews to reduce uncertainty.",
+      "keywords": [
+        "social proof",
+        "testimonials",
+        "user ratings",
+        "reviews",
+        "activity feed",
+        "wisdom of crowds"
+      ]
+    },
+    {
+      "id": "authority",
+      "name": "Authority & Trust Signaling",
+      "description": "Displaying expert endorsements, security badges, certifications, and compliance credentials.",
+      "keywords": [
+        "authority bias",
+        "trust badges",
+        "security certificates",
+        "expert endorsements",
+        "compliance logos"
+      ]
+    },
+    {
+      "id": "loss_aversion",
+      "name": "Loss Aversion & Sunk Cost Framing",
+      "description": "Framing value in terms of what the user stands to lose or save rather than merely gain.",
+      "keywords": [
+        "loss aversion",
+        "sunk cost",
+        "Kahneman Tversky",
+        "loss framing",
+        "protect progress",
+        "streak loss"
+      ]
+    },
+    {
+      "id": "peer_comparison",
+      "name": "Peer Comparison & Social Norms (Cialdini)",
+      "description": "Showing how a user's behavior compares to similar peers (e.g. Opower energy usage comparisons).",
+      "keywords": [
+        "peer comparison",
+        "social norms",
+        "Cialdini",
+        "normative feedback",
+        "descriptive norms",
+        "benchmark against peers"
+      ]
+    },
+    {
+      "id": "urgency_scarcity",
+      "name": "Ethical Urgency & Scarcity Signals",
+      "description": "Authentic, non-deceptive scarcity and deadline indicators that motivate timely completion.",
+      "keywords": [
+        "urgency",
+        "scarcity",
+        "countdown timer",
+        "limited inventory",
+        "deadline",
+        "ethical urgency"
+      ]
+    },
+    {
+      "id": "implementation_intentions",
+      "name": "Implementation Intentions (If-Then Planning)",
+      "description": "Guiding users to pre-commit to exact when/where/how action plans ('When X happens, I will do Y').",
+      "keywords": [
+        "implementation intentions",
+        "if-then planning",
+        "Gollwitzer",
+        "pre-commitment",
+        "action trigger",
+        "behavioral plan"
+      ]
+    },
+    {
+      "id": "friction_reduction_defaulting",
+      "name": "Radical Friction Elimination & 1-Click Flows",
+      "description": "Eliminating every non-essential input field, implementing autocomplete, biometric auth, and 1-click checkout.",
+      "keywords": [
+        "friction reduction",
+        "1-click checkout",
+        "biometric auth",
+        "form auto-fill",
+        "minimal input",
+        "effortless UX"
+      ]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "Social proof carousels, trust badges, urgency countdowns, and 1-click checkout components",
+        "detection": "content_analysis",
+        "pattern": "SocialProof|TrustBadges|CountdownTimer|OneClickCheckout|IfThenPlanner",
+        "strength": 0.85,
+        "maps_to": [
+          "ux_patterns_best_practices.get_attention_patterns",
+          "ux_patterns_best_practices.positive_impression_patterns",
+          "ux_patterns_best_practices.social_proof",
+          "ux_patterns_best_practices.authority",
+          "ux_patterns_best_practices.loss_aversion",
+          "ux_patterns_best_practices.peer_comparison",
+          "ux_patterns_best_practices.urgency_scarcity",
+          "ux_patterns_best_practices.implementation_intentions",
+          "ux_patterns_best_practices.friction_reduction_defaulting"
+        ]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "Implemented social proof and peer comparison patterns increasing conversion rates by 22%",
+        "strength": 0.6,
+        "maps_to": [
+          "ux_patterns_best_practices.get_attention_patterns",
+          "ux_patterns_best_practices.positive_impression_patterns",
+          "ux_patterns_best_practices.social_proof",
+          "ux_patterns_best_practices.authority"
+        ]
+      },
+      {
+        "signal": "Designed Gollwitzer implementation intention if-then flows and 1-click checkout experiences",
+        "strength": 0.6,
+        "maps_to": [
+          "ux_patterns_best_practices.loss_aversion",
+          "ux_patterns_best_practices.peer_comparison",
+          "ux_patterns_best_practices.urgency_scarcity",
+          "ux_patterns_best_practices.implementation_intentions",
+          "ux_patterns_best_practices.friction_reduction_defaulting"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Endorsements in Persuasive Design, Social Proof, Conversion Rate Optimization (CRO), and UX Patterns",
+        "strength": 0.4,
+        "maps_to": [
+          "ux_patterns_best_practices.get_attention_patterns",
+          "ux_patterns_best_practices.positive_impression_patterns",
+          "ux_patterns_best_practices.social_proof",
+          "ux_patterns_best_practices.authority",
+          "ux_patterns_best_practices.loss_aversion",
+          "ux_patterns_best_practices.peer_comparison",
+          "ux_patterns_best_practices.urgency_scarcity",
+          "ux_patterns_best_practices.implementation_intentions",
+          "ux_patterns_best_practices.friction_reduction_defaulting"
+        ]
+      }
+    ],
+    "assessment": [
+      {
+        "signal": "Passes persuasive UX patterns assessment covering visual saliency, ethical urgency, social proof, and implementation intentions",
+        "strength": 1.0,
+        "maps_to": [
+          "ux_patterns_best_practices.get_attention_patterns",
+          "ux_patterns_best_practices.positive_impression_patterns",
+          "ux_patterns_best_practices.social_proof",
+          "ux_patterns_best_practices.authority",
+          "ux_patterns_best_practices.loss_aversion",
+          "ux_patterns_best_practices.peer_comparison",
+          "ux_patterns_best_practices.urgency_scarcity",
+          "ux_patterns_best_practices.implementation_intentions",
+          "ux_patterns_best_practices.friction_reduction_defaulting"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "get_attention_patterns",
+        "positive_impression_patterns",
+        "social_proof"
+      ],
+      "description": "Applies visual saliency, integrates customer reviews/social proof, and crafts polished first impressions."
+    },
+    "mid": {
+      "expected_subskills": [
+        "authority",
+        "loss_aversion",
+        "peer_comparison",
+        "urgency_scarcity"
+      ],
+      "description": "Deploys trust authority badges, frames loss aversion, builds peer benchmarks, and adds ethical scarcity indicators."
+    },
+    "senior": {
+      "expected_subskills": [
+        "implementation_intentions",
+        "friction_reduction_defaulting"
+      ],
+      "description": "Designs Gollwitzer if-then planning commitment devices and re-engineers complex forms into effortless 1-click flows."
+    }
+  }
+}

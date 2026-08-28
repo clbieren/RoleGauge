@@ -1,0 +1,230 @@
+{
+  "skill_id": "ux_deliverables_prototyping",
+  "name": "Prototyping, Flowcharts & Design Specs",
+  "category": "ux_design_craft",
+  "description": "Creating UX deliverables: Customer Experience Maps, flowcharts, BPMN, wireframing in Figma, interactive high-fidelity logic prototyping, Design-to-Code handoff, and WCAG accessibility specs.",
+  "subskills": [
+    {
+      "id": "wireframing_tools",
+      "name": "Wireframing & Low-Fidelity Layouts",
+      "description": "Low-fidelity wireframing in Figma, Balsamiq, or Whimsical to establish structural hierarchy.",
+      "keywords": [
+        "wireframing",
+        "Figma",
+        "low-fidelity",
+        "Balsamiq",
+        "Whimsical",
+        "wireframe",
+        "rapid layout"
+      ]
+    },
+    {
+      "id": "simple_flowchart",
+      "name": "User Flowcharts & Task Flows",
+      "description": "Diagramming user decision points, alternate paths, and task flows.",
+      "keywords": [
+        "user flow",
+        "flowchart",
+        "decision point",
+        "task flow",
+        "branching logic",
+        "swimlanes"
+      ]
+    },
+    {
+      "id": "layout_rules",
+      "name": "Grid Systems, Auto-Layout & Visual Hierarchy",
+      "description": "Applying 8pt grid systems, auto-layout constraints in Figma, and visual hierarchy principles.",
+      "keywords": [
+        "grid system",
+        "8pt grid",
+        "auto-layout",
+        "visual hierarchy",
+        "spacing scale",
+        "Figma constraints"
+      ]
+    },
+    {
+      "id": "customer_experience_map",
+      "name": "Customer Experience (CX) Journey Maps",
+      "description": "End-to-end customer journey mapping including stages, user goals, touchpoints, emotions, and pain points.",
+      "keywords": [
+        "Customer Experience Map",
+        "journey map",
+        "touchpoints",
+        "emotional curve",
+        "pain points",
+        "opportunities"
+      ]
+    },
+    {
+      "id": "bpmn_diagram",
+      "name": "BPMN Process Diagrams",
+      "description": "Business Process Model and Notation (BPMN) diagrams for complex business logic workflows.",
+      "keywords": [
+        "BPMN",
+        "Business Process Model",
+        "gateway",
+        "subprocess",
+        "swimlanes",
+        "process notation"
+      ]
+    },
+    {
+      "id": "interactive_high_fidelity_prototyping",
+      "name": "High-Fidelity Interactive Logic Prototyping",
+      "description": "Advanced prototyping in Figma using component variants, variables, conditional expressions, and micro-interactions.",
+      "keywords": [
+        "Figma Variables",
+        "conditional prototyping",
+        "micro-interactions",
+        "interactive prototype",
+        "high-fidelity",
+        "component variants"
+      ]
+    },
+    {
+      "id": "epc_diagram",
+      "name": "Event-Driven Process Chains (EPC)",
+      "description": "EPC process notation mapping events, functions, and logical connectors (AND, OR, XOR).",
+      "keywords": [
+        "EPC diagram",
+        "Event-Driven Process Chain",
+        "logical connectors",
+        "XOR",
+        "event-function flow"
+      ]
+    },
+    {
+      "id": "design_to_code_handoff_tokens",
+      "name": "Design-to-Code Handoff & Storybook Sync",
+      "description": "Preparing design specs for engineering: redlines, auto-layout tokens, Storybook component synchronizations, and zero-defect handoff.",
+      "keywords": [
+        "design handoff",
+        "Storybook",
+        "Figma Dev Mode",
+        "redlines",
+        "component props alignment",
+        "zero defect handoff"
+      ]
+    },
+    {
+      "id": "accessibility_wcag_design_specs",
+      "name": "WCAG 2.1 AAA Accessibility Design Specs",
+      "description": "Specifying accessible design: color contrast ratios, focus order annotations, screen reader aria-label notes, and tap target sizes.",
+      "keywords": [
+        "WCAG 2.1 AAA",
+        "accessibility specs",
+        "color contrast ratio",
+        "focus order",
+        "aria-label",
+        "tap target size",
+        "screen reader annotations"
+      ]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "Figma design specs, Storybook stories, and WCAG accessibility annotations",
+        "detection": "content_analysis",
+        "pattern": "\\.storybook/|\\.stories\\.(tsx|jsx|js)|aria-label|contrast-ratio|DesignSpecs",
+        "strength": 0.85,
+        "maps_to": [
+          "ux_deliverables_prototyping.wireframing_tools",
+          "ux_deliverables_prototyping.simple_flowchart",
+          "ux_deliverables_prototyping.layout_rules",
+          "ux_deliverables_prototyping.customer_experience_map",
+          "ux_deliverables_prototyping.bpmn_diagram",
+          "ux_deliverables_prototyping.interactive_high_fidelity_prototyping",
+          "ux_deliverables_prototyping.epc_diagram",
+          "ux_deliverables_prototyping.design_to_code_handoff_tokens",
+          "ux_deliverables_prototyping.accessibility_wcag_design_specs"
+        ]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "Built wireframes, user flows, and high-fidelity interactive prototypes in Figma with variables and conditional logic",
+        "strength": 0.6,
+        "maps_to": [
+          "ux_deliverables_prototyping.wireframing_tools",
+          "ux_deliverables_prototyping.simple_flowchart",
+          "ux_deliverables_prototyping.layout_rules",
+          "ux_deliverables_prototyping.interactive_high_fidelity_prototyping"
+        ]
+      },
+      {
+        "signal": "Created CX journey maps, managed Storybook design-to-code handoffs, and authored WCAG 2.1 AAA accessibility specs",
+        "strength": 0.6,
+        "maps_to": [
+          "ux_deliverables_prototyping.customer_experience_map",
+          "ux_deliverables_prototyping.bpmn_diagram",
+          "ux_deliverables_prototyping.epc_diagram",
+          "ux_deliverables_prototyping.design_to_code_handoff_tokens",
+          "ux_deliverables_prototyping.accessibility_wcag_design_specs"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Endorsements in Prototyping, Figma, User Flows, Design Handoff, and Accessibility (WCAG)",
+        "strength": 0.4,
+        "maps_to": [
+          "ux_deliverables_prototyping.wireframing_tools",
+          "ux_deliverables_prototyping.simple_flowchart",
+          "ux_deliverables_prototyping.layout_rules",
+          "ux_deliverables_prototyping.customer_experience_map",
+          "ux_deliverables_prototyping.bpmn_diagram",
+          "ux_deliverables_prototyping.interactive_high_fidelity_prototyping",
+          "ux_deliverables_prototyping.epc_diagram",
+          "ux_deliverables_prototyping.design_to_code_handoff_tokens",
+          "ux_deliverables_prototyping.accessibility_wcag_design_specs"
+        ]
+      }
+    ],
+    "assessment": [
+      {
+        "signal": "Passes deliverables and prototyping assessment covering Figma variables, BPMN/EPC diagrams, Storybook handoff, and WCAG AAA accessibility",
+        "strength": 1.0,
+        "maps_to": [
+          "ux_deliverables_prototyping.wireframing_tools",
+          "ux_deliverables_prototyping.simple_flowchart",
+          "ux_deliverables_prototyping.layout_rules",
+          "ux_deliverables_prototyping.customer_experience_map",
+          "ux_deliverables_prototyping.bpmn_diagram",
+          "ux_deliverables_prototyping.interactive_high_fidelity_prototyping",
+          "ux_deliverables_prototyping.epc_diagram",
+          "ux_deliverables_prototyping.design_to_code_handoff_tokens",
+          "ux_deliverables_prototyping.accessibility_wcag_design_specs"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "wireframing_tools",
+        "simple_flowchart",
+        "layout_rules"
+      ],
+      "description": "Creates wireframes, maps user flowcharts, and applies 8pt grid auto-layout in Figma."
+    },
+    "mid": {
+      "expected_subskills": [
+        "customer_experience_map",
+        "bpmn_diagram",
+        "interactive_high_fidelity_prototyping"
+      ],
+      "description": "Constructs customer journey maps, BPMN process flows, and interactive prototypes with Figma variables/logic."
+    },
+    "senior": {
+      "expected_subskills": [
+        "epc_diagram",
+        "design_to_code_handoff_tokens",
+        "accessibility_wcag_design_specs"
+      ],
+      "description": "Architects EPC diagrams, establishes seamless Storybook design-to-code pipelines, and enforces WCAG 2.1 AAA accessibility."
+    }
+  }
+}

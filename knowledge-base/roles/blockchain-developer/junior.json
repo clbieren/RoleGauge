@@ -1,0 +1,75 @@
+{
+  "role_id": "blockchain_developer",
+  "level": "junior",
+  "title": "Junior Blockchain Developer",
+  "description": "Entry-level blockchain developer focusing on foundational distributed systems, writing and unit-testing standard ERC-20/721 smart contracts in Solidity, using Foundry/Hardhat, integrating wallets via Wagmi/Viem, and testing on public testnets.",
+  "experience_range": "0-2 years",
+  "skills": [
+    {
+      "skill_id": "smart_contract_development",
+      "importance": 0.95,
+      "rationale": "Writing clean Solidity contracts and implementing ERC-20/721 standards is core for daily work."
+    },
+    {
+      "skill_id": "smart_contract_tooling",
+      "importance": 0.9,
+      "rationale": "Using Foundry and Hardhat for compiling, testing, and script deployments."
+    },
+    {
+      "skill_id": "dapp_development",
+      "importance": 0.85,
+      "rationale": "Connecting frontend DApps to Web3 wallets with Wagmi and interacting with RPCs."
+    },
+    {
+      "skill_id": "blockchain_fundamentals",
+      "importance": 0.85,
+      "rationale": "Understanding the blockchain data structure, UTXO/account models, and transaction lifecycle."
+    },
+    {
+      "skill_id": "blockchain_security",
+      "importance": 0.8,
+      "rationale": "Applying OpenZeppelin security contracts and avoiding basic vulnerabilities like reentrancy."
+    },
+    {
+      "skill_id": "blockchain_core_concepts",
+      "importance": 0.75,
+      "rationale": "Grasping asymmetric cryptography, ECDSA signatures, and BIP-39 wallet derivation."
+    },
+    {
+      "skill_id": "blockchain_networks",
+      "importance": 0.7,
+      "rationale": "Navigating EVM testnets, RPC providers, and block explorer verification."
+    },
+    {
+      "skill_id": "blockchain_scaling",
+      "importance": 0.6,
+      "rationale": "Basic gas profiling and understanding Layer 2 rollups concepts."
+    }
+  ],
+  "scoring": {
+    "method": "weighted_average",
+    "description": "Weighted average of skill readiness scores multiplied by importance weights.",
+    "thresholds": {
+      "not_ready": {
+        "min": 0.0,
+        "max": 0.35,
+        "description": "Insufficient Solidity and testing fundamentals."
+      },
+      "partially_ready": {
+        "min": 0.35,
+        "max": 0.6,
+        "description": "Writes basic contracts but struggles with Foundry testing or wallet hooks."
+      },
+      "ready": {
+        "min": 0.6,
+        "max": 0.85,
+        "description": "Competent junior developer delivering tested ERC contracts and Wagmi DApp frontends."
+      },
+      "exceeds": {
+        "min": 0.85,
+        "max": 1.0,
+        "description": "Exceeds junior expectations with strong grasp of L2s and gas optimization."
+      }
+    }
+  }
+}

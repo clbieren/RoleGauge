@@ -1,0 +1,75 @@
+{
+  "role_id": "blockchain_developer",
+  "level": "senior",
+  "title": "Senior Blockchain Developer / Protocol Architect",
+  "description": "Staff/Senior blockchain architect who designs mission-critical DeFi protocols, conducts formal verification (Certora) and Echidna invariant testing, architects EIP-4844/zkEVM scaling solutions, deploys ERC-4337 Account Abstraction paymasters, and directs cross-chain CCIP/IBC interoperability.",
+  "experience_range": "5+ years",
+  "skills": [
+    {
+      "skill_id": "blockchain_security",
+      "importance": 0.95,
+      "rationale": "Leading invariant fuzzing (Echidna), symbolic execution (Manticore), and professional protocol audits."
+    },
+    {
+      "skill_id": "smart_contract_development",
+      "importance": 0.95,
+      "rationale": "Formal verification (Certora), Rust/Solana Anchor programs, and hybrid Chainlink Functions architectures."
+    },
+    {
+      "skill_id": "blockchain_scaling",
+      "importance": 0.9,
+      "rationale": "Proto-Danksharding (EIP-4844), zkEVM circuit evaluation, and parallel EVM execution engines."
+    },
+    {
+      "skill_id": "blockchain_networks",
+      "importance": 0.9,
+      "rationale": "Cross-chain interoperability with CCIP/IBC, Alt-VM architectures (Move/WASM), and modular Celestia DA."
+    },
+    {
+      "skill_id": "dapp_development",
+      "importance": 0.85,
+      "rationale": "ERC-4337 Account Abstraction paymasters, self-hosted node clusters (Geth/Reth), and Envio indexers."
+    },
+    {
+      "skill_id": "smart_contract_tooling",
+      "importance": 0.85,
+      "rationale": "CI/CD smart contract pipelines, automated Medusa fuzzer suites, and gas snapshot gates."
+    },
+    {
+      "skill_id": "blockchain_core_concepts",
+      "importance": 0.85,
+      "rationale": "Advanced consensus (Tendermint/PBFT), zk-SNARK primitives, and deterministic state replication."
+    },
+    {
+      "skill_id": "blockchain_fundamentals",
+      "importance": 0.75,
+      "rationale": "BFT theoretical limits and blockchain trilemma tradeoffs."
+    }
+  ],
+  "scoring": {
+    "method": "weighted_average",
+    "description": "Weighted average of skill readiness scores multiplied by importance weights.",
+    "thresholds": {
+      "not_ready": {
+        "min": 0.0,
+        "max": 0.4,
+        "description": "Lacks protocol-level architectural depth, invariant testing, and multi-chain leadership."
+      },
+      "partially_ready": {
+        "min": 0.4,
+        "max": 0.65,
+        "description": "Strong developer but lacks formal verification, zk-Rollup internals, and Account Abstraction architecture."
+      },
+      "ready": {
+        "min": 0.65,
+        "max": 0.85,
+        "description": "Seasoned blockchain architect delivering formally verified contracts, L2 scaling, and robust DeFi protocols."
+      },
+      "exceeds": {
+        "min": 0.85,
+        "max": 1.0,
+        "description": "Exceptional protocol engineer recognized across the crypto ecosystem for state-of-the-art Web3 architecture."
+      }
+    }
+  }
+}

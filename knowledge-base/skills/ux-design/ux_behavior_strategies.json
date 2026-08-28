@@ -1,0 +1,222 @@
+{
+  "skill_id": "ux_behavior_strategies",
+  "name": "Behavioral Intervention & Nudge Strategies",
+  "category": "ux_behavioral_science",
+  "description": "Selecting and implementing behavioral strategies: defaulting, educational nudges, habit disruption, automation, choice architecture framing, and constructive friction.",
+  "subskills": [
+    {
+      "id": "educate_encourage",
+      "name": "Educational Framing & Encouragement Nudges",
+      "description": "Using informative framing, micro-copy, and timely encouragement to guide user action.",
+      "keywords": [
+        "educate and encourage",
+        "positive framing",
+        "encouragement",
+        "micro-copy",
+        "behavioral nudge"
+      ]
+    },
+    {
+      "id": "defaulting",
+      "name": "Defaulting & Opt-In/Opt-Out Architecture",
+      "description": "Setting smart, ethical pre-selected defaults to harness status quo bias.",
+      "keywords": [
+        "defaulting",
+        "status quo bias",
+        "opt-in",
+        "opt-out",
+        "smart default",
+        "pre-selected choice"
+      ]
+    },
+    {
+      "id": "choice_architecture_framing",
+      "name": "Choice Architecture & Decoy Effects",
+      "description": "Structuring option sets, decoy effects, tier pricing tables, and reducing choice overload.",
+      "keywords": [
+        "choice architecture",
+        "decoy effect",
+        "choice overload",
+        "loss framing",
+        "tier comparison",
+        "anchoring option"
+      ]
+    },
+    {
+      "id": "help_think_about_action",
+      "name": "Reflective Prompting & Cognitive Pauses",
+      "description": "Injecting prompts that encourage users to consciously evaluate options before committing.",
+      "keywords": [
+        "help think about action",
+        "reflective prompt",
+        "cognitive pause",
+        "commitment device",
+        "decision support"
+      ]
+    },
+    {
+      "id": "making_it_incidental",
+      "name": "Incidental Action Pairing & Piggybacking",
+      "description": "Attaching the desired target behavior to an action the user is already routinely performing.",
+      "keywords": [
+        "incidental action",
+        "piggybacking",
+        "habit stacking",
+        "adjacent action",
+        "seamless integration"
+      ]
+    },
+    {
+      "id": "automate_new_behavior",
+      "name": "Automation & Recurring Rules",
+      "description": "Automating recurring behaviors (auto-invest, recurring orders, background sync).",
+      "keywords": [
+        "automate behavior",
+        "recurring rule",
+        "auto-save",
+        "smart automation",
+        "set-and-forget"
+      ]
+    },
+    {
+      "id": "disrupt_existing_habit",
+      "name": "Habit Disruption & Friction Insertion",
+      "description": "Breaking unwanted automatic routines by introducing physical or cognitive friction.",
+      "keywords": [
+        "disrupt existing habit",
+        "break habit",
+        "friction insertion",
+        "habit loop interruption",
+        "pattern interrupt"
+      ]
+    },
+    {
+      "id": "systemic_habit_ecosystem_design",
+      "name": "Systemic Habit Ecosystems & Long-Term Retention",
+      "description": "Designing multi-touchpoint behavioral feedback loops that sustain long-term engagement across lifecycles.",
+      "keywords": [
+        "habit ecosystem",
+        "long-term retention",
+        "multi-touchpoint UX",
+        "behavioral retention",
+        "lifecycle engagement"
+      ]
+    },
+    {
+      "id": "friction_engineering_intentional_friction",
+      "name": "Constructive Friction & High-Stakes Decision UX",
+      "description": "Strategically introducing constructive friction for high-stakes decisions (security, financial confirmation, data deletion).",
+      "keywords": [
+        "constructive friction",
+        "intentional friction",
+        "destructive action confirmation",
+        "speed bump UX",
+        "error prevention"
+      ]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "Smart default form configurations, pricing tier selectors, and confirmation modal speed bumps",
+        "detection": "content_analysis",
+        "pattern": "PricingTier|SmartDefault|ConfirmModal|SpeedBump|HabitLoop|ChoiceArchitecture",
+        "strength": 0.85,
+        "maps_to": [
+          "ux_behavior_strategies.educate_encourage",
+          "ux_behavior_strategies.defaulting",
+          "ux_behavior_strategies.choice_architecture_framing",
+          "ux_behavior_strategies.help_think_about_action",
+          "ux_behavior_strategies.making_it_incidental",
+          "ux_behavior_strategies.automate_new_behavior",
+          "ux_behavior_strategies.disrupt_existing_habit",
+          "ux_behavior_strategies.systemic_habit_ecosystem_design",
+          "ux_behavior_strategies.friction_engineering_intentional_friction"
+        ]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "Designed smart defaults and choice architecture increasing conversion by 28% while reducing checkout errors",
+        "strength": 0.6,
+        "maps_to": [
+          "ux_behavior_strategies.educate_encourage",
+          "ux_behavior_strategies.defaulting",
+          "ux_behavior_strategies.choice_architecture_framing",
+          "ux_behavior_strategies.help_think_about_action"
+        ]
+      },
+      {
+        "signal": "Engineered constructive friction for financial transfers and designed automated recurring habit ecosystems",
+        "strength": 0.6,
+        "maps_to": [
+          "ux_behavior_strategies.making_it_incidental",
+          "ux_behavior_strategies.automate_new_behavior",
+          "ux_behavior_strategies.disrupt_existing_habit",
+          "ux_behavior_strategies.systemic_habit_ecosystem_design",
+          "ux_behavior_strategies.friction_engineering_intentional_friction"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Expertise in Behavioral Nudges, Choice Architecture, Friction Engineering, and Habit Design",
+        "strength": 0.4,
+        "maps_to": [
+          "ux_behavior_strategies.educate_encourage",
+          "ux_behavior_strategies.defaulting",
+          "ux_behavior_strategies.choice_architecture_framing",
+          "ux_behavior_strategies.help_think_about_action",
+          "ux_behavior_strategies.making_it_incidental",
+          "ux_behavior_strategies.automate_new_behavior",
+          "ux_behavior_strategies.disrupt_existing_habit",
+          "ux_behavior_strategies.systemic_habit_ecosystem_design",
+          "ux_behavior_strategies.friction_engineering_intentional_friction"
+        ]
+      }
+    ],
+    "assessment": [
+      {
+        "signal": "Passes behavioral intervention assessment covering defaulting, choice architecture, habit disruption, and constructive friction",
+        "strength": 1.0,
+        "maps_to": [
+          "ux_behavior_strategies.educate_encourage",
+          "ux_behavior_strategies.defaulting",
+          "ux_behavior_strategies.choice_architecture_framing",
+          "ux_behavior_strategies.help_think_about_action",
+          "ux_behavior_strategies.making_it_incidental",
+          "ux_behavior_strategies.automate_new_behavior",
+          "ux_behavior_strategies.disrupt_existing_habit",
+          "ux_behavior_strategies.systemic_habit_ecosystem_design",
+          "ux_behavior_strategies.friction_engineering_intentional_friction"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "educate_encourage",
+        "defaulting",
+        "choice_architecture_framing"
+      ],
+      "description": "Applies smart defaults, educational framing, and structures basic pricing/option comparisons."
+    },
+    "mid": {
+      "expected_subskills": [
+        "help_think_about_action",
+        "making_it_incidental",
+        "automate_new_behavior"
+      ],
+      "description": "Designs reflective decision prompts, pairs actions via habit stacking, and sets up automated recurring user rules."
+    },
+    "senior": {
+      "expected_subskills": [
+        "disrupt_existing_habit",
+        "systemic_habit_ecosystem_design",
+        "friction_engineering_intentional_friction"
+      ],
+      "description": "Architects long-term habit ecosystems, engineers constructive friction for high-risk operations, and disrupts unwanted routines."
+    }
+  }
+}

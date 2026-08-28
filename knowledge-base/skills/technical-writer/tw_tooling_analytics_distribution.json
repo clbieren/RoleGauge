@@ -1,0 +1,327 @@
+{
+  "skill_id": "tw_tooling_analytics_distribution",
+  "name": "Docs-as-Code, Tooling & Distribution",
+  "category": "tooling_distribution",
+  "description": "Operating Docs-as-Code workflows: Git/GitHub version control, static site generators (Docusaurus, MkDocs, Sphinx), Markdown/MDX, automated linting (Vale, markdownlint), CI/CD pipelines, doc search, and documentation analytics.",
+  "subskills": [
+    {
+      "id": "markdown_mdx_mastery",
+      "name": "Markdown, MDX & Frontmatter Mastery",
+      "description": "Expert authoring in Markdown, CommonMark, GitHub Flavored Markdown (GFM), and MDX components (interactive tabs, code blocks, alerts, callouts).",
+      "keywords": [
+        "Markdown",
+        "MDX",
+        "CommonMark",
+        "GFM",
+        "frontmatter",
+        "code blocks",
+        "admonitions",
+        "callouts",
+        "markdown tables",
+        "interactive components"
+      ]
+    },
+    {
+      "id": "git_github_docs_workflow",
+      "name": "Git, GitHub PR Workflows & Version Control",
+      "description": "Managing documentation in Git: branching, pull requests, merge conflict resolution, conventional commits, and collaborative review on GitHub/GitLab.",
+      "keywords": [
+        "Git",
+        "GitHub",
+        "pull request",
+        "branching",
+        "PR review",
+        "conventional commits",
+        "git merge",
+        "git rebase",
+        "docs repo",
+        "GitLab MR"
+      ]
+    },
+    {
+      "id": "static_site_generators_ssg",
+      "name": "Static Site Generators (SSG) Configuration",
+      "description": "Configuring and customizing modern documentation SSGs: Docusaurus, MkDocs (Material), Sphinx (reStructuredText), Astro, Nextra, Hugo, and VitePress.",
+      "keywords": [
+        "Docusaurus",
+        "MkDocs",
+        "Material for MkDocs",
+        "Sphinx",
+        "conf.py",
+        "docusaurus.config.js",
+        "mkdocs.yml",
+        "Nextra",
+        "VitePress",
+        "Hugo"
+      ]
+    },
+    {
+      "id": "automated_style_linting",
+      "name": "Automated Style Linting (Vale, markdownlint)",
+      "description": "Configuring and running automated prose and markdown linters: Vale (.vale.ini), markdownlint (.markdownlint.json), textlint, and proselint.",
+      "keywords": [
+        "Vale",
+        ".vale.ini",
+        "markdownlint",
+        "textlint",
+        "proselint",
+        "prose linter",
+        "style rule automation",
+        "grammar check",
+        "linter config"
+      ]
+    },
+    {
+      "id": "ci_cd_docs_pipelines",
+      "name": "Docs CI/CD Pipelines & Automated Previews",
+      "description": "Building automated CI/CD pipelines (GitHub Actions, GitLab CI) for building docs, running linters, checking broken links (lychee), and deploying preview builds.",
+      "keywords": [
+        "GitHub Actions",
+        "CI/CD pipeline",
+        "broken link checker",
+        "lychee",
+        "automated preview",
+        "Vercel preview",
+        "Netlify deploy",
+        "build validation"
+      ]
+    },
+    {
+      "id": "site_search_indexing",
+      "name": "Documentation Site Search & Algolia Indexing",
+      "description": "Integrating and configuring documentation search engines: Algolia DocSearch, Pagefind, Lunr.js, Meilisearch, and search facet indexing.",
+      "keywords": [
+        "Algolia DocSearch",
+        "Pagefind",
+        "Lunr.js",
+        "Meilisearch",
+        "site search",
+        "search facets",
+        "indexing hierarchy",
+        "search ranking tuning"
+      ]
+    },
+    {
+      "id": "headless_cms_knowledge_tools",
+      "name": "Headless CMS & Enterprise Knowledge Platforms",
+      "description": "Managing enterprise docs via headless CMS and modern knowledge tools: Contentful, Sanity, Strapi, GitBook, ReadMe, Notion, and Confluence.",
+      "keywords": [
+        "headless CMS",
+        "Contentful",
+        "Sanity",
+        "Strapi",
+        "GitBook",
+        "ReadMe.com",
+        "Notion",
+        "Confluence",
+        "structured content platform"
+      ]
+    },
+    {
+      "id": "docs_analytics_telemetry",
+      "name": "Documentation Analytics & Telemetry Tracking",
+      "description": "Setting up documentation telemetry, event tracking, scroll depth tracking, search query analytics (zero-result searches), and heatmaps with GA4 or PostHog.",
+      "keywords": [
+        "docs analytics",
+        "PostHog",
+        "GA4 custom events",
+        "zero-result searches",
+        "scroll depth",
+        "search query analysis",
+        "telemetry",
+        "Hotjar",
+        "user engagement"
+      ]
+    },
+    {
+      "id": "multi_version_localization_builds",
+      "name": "Multi-Version Docs & Translation Pipelines",
+      "description": "Architecting multi-version doc release matrices (semver version dropdowns), translation pipelines (Crowdin, Lokalise), and global CDN distribution.",
+      "keywords": [
+        "multi-version docs",
+        "version switcher",
+        "i18n",
+        "localization pipeline",
+        "Crowdin",
+        "Lokalise",
+        "PO files",
+        "CDN edge distribution",
+        "docs release matrix"
+      ]
+    }
+  ],
+  "evidence": {
+    "github": [
+      {
+        "signal": "Markdown and MDX files with frontmatter and component imports",
+        "detection": "file_presence",
+        "pattern": "docs/.*\\.mdx$",
+        "strength": 0.9,
+        "maps_to": [
+          "tw_tooling_analytics_distribution.markdown_mdx_mastery"
+        ]
+      },
+      {
+        "signal": "Git collaborative documentation workflows (PR templates, conventional commits)",
+        "detection": "file_presence",
+        "pattern": "\\.github/PULL_REQUEST_TEMPLATE/.*\\.md|\\.github/workflows/*doc*\\.ya?ml",
+        "strength": 0.85,
+        "maps_to": [
+          "tw_tooling_analytics_distribution.git_github_docs_workflow"
+        ]
+      },
+      {
+        "signal": "Static site generator (SSG) configuration files",
+        "detection": "file_presence",
+        "pattern": "docusaurus\\.config\\.(js|ts)|mkdocs\\.yml|conf\\.py|astro\\.config\\.(mjs|ts)|nextra\\.config\\.(js|ts)",
+        "strength": 0.95,
+        "maps_to": [
+          "tw_tooling_analytics_distribution.static_site_generators_ssg"
+        ]
+      },
+      {
+        "signal": "Automated style and markdown linter configuration files",
+        "detection": "file_presence",
+        "pattern": "\\.vale\\.ini|\\.markdownlint\\.(json|ya?ml)|\\.textlintrc",
+        "strength": 0.9,
+        "maps_to": [
+          "tw_tooling_analytics_distribution.automated_style_linting"
+        ]
+      },
+      {
+        "signal": "Docs CI/CD build, lint, and broken link verification workflows",
+        "detection": "content_analysis",
+        "pattern": "lychee|vale-action|docusaurus build|mkdocs build|deploy-to-gh-pages",
+        "strength": 0.9,
+        "maps_to": [
+          "tw_tooling_analytics_distribution.ci_cd_docs_pipelines"
+        ]
+      },
+      {
+        "signal": "Algolia DocSearch or Pagefind documentation search integration",
+        "detection": "content_analysis",
+        "pattern": "algolia:\\s*\\{|appId:\\s*['\"][A-Z0-9]+['\"]|apiKey:\\s*['\"][a-f0-9]+['\"]|indexName:|pagefind",
+        "strength": 0.85,
+        "maps_to": [
+          "tw_tooling_analytics_distribution.site_search_indexing"
+        ]
+      },
+      {
+        "signal": "Headless CMS and structured knowledge platform integration",
+        "detection": "content_analysis",
+        "pattern": "contentful|sanity|strapi|gitbook|readme-io",
+        "strength": 0.8,
+        "maps_to": [
+          "tw_tooling_analytics_distribution.headless_cms_knowledge_tools"
+        ]
+      },
+      {
+        "signal": "Documentation telemetry and user interaction event tracking",
+        "detection": "content_analysis",
+        "pattern": "posthog\\.init|googleAnalytics:\\s*\\{|gtag\\('event'|scroll_depth",
+        "strength": 0.8,
+        "maps_to": [
+          "tw_tooling_analytics_distribution.docs_analytics_telemetry"
+        ]
+      },
+      {
+        "signal": "Multi-version release matrices and Crowdin translation configs",
+        "detection": "file_presence",
+        "pattern": "crowdin\\.ya?ml|versions\\.json|i18n/.*\\.json|docusaurus-plugin-content-docs",
+        "strength": 0.9,
+        "maps_to": [
+          "tw_tooling_analytics_distribution.multi_version_localization_builds"
+        ]
+      }
+    ],
+    "cv": [
+      {
+        "signal": "Built and maintained Docs-as-Code CI/CD pipelines using GitHub Actions, Docusaurus, MkDocs, and Vale style linters",
+        "strength": 0.6,
+        "maps_to": [
+          "tw_tooling_analytics_distribution.markdown_mdx_mastery",
+          "tw_tooling_analytics_distribution.static_site_generators_ssg",
+          "tw_tooling_analytics_distribution.automated_style_linting",
+          "tw_tooling_analytics_distribution.ci_cd_docs_pipelines"
+        ]
+      },
+      {
+        "signal": "Integrated Algolia DocSearch, configured GitBook/ReadMe hubs, and managed Git versioning workflows",
+        "strength": 0.5,
+        "maps_to": [
+          "tw_tooling_analytics_distribution.git_github_docs_workflow",
+          "tw_tooling_analytics_distribution.site_search_indexing",
+          "tw_tooling_analytics_distribution.headless_cms_knowledge_tools"
+        ]
+      },
+      {
+        "signal": "Implemented documentation telemetry with GA4/PostHog and architected multi-version localization workflows with Crowdin",
+        "strength": 0.5,
+        "maps_to": [
+          "tw_tooling_analytics_distribution.docs_analytics_telemetry",
+          "tw_tooling_analytics_distribution.multi_version_localization_builds"
+        ]
+      }
+    ],
+    "linkedin": [
+      {
+        "signal": "Recognized for Docs-as-Code, Static Site Generators (Docusaurus/MkDocs), GitHub Actions CI/CD, and Documentation Analytics",
+        "strength": 0.4,
+        "maps_to": [
+          "tw_tooling_analytics_distribution.markdown_mdx_mastery",
+          "tw_tooling_analytics_distribution.git_github_docs_workflow",
+          "tw_tooling_analytics_distribution.static_site_generators_ssg",
+          "tw_tooling_analytics_distribution.automated_style_linting",
+          "tw_tooling_analytics_distribution.ci_cd_docs_pipelines",
+          "tw_tooling_analytics_distribution.site_search_indexing",
+          "tw_tooling_analytics_distribution.headless_cms_knowledge_tools",
+          "tw_tooling_analytics_distribution.docs_analytics_telemetry",
+          "tw_tooling_analytics_distribution.multi_version_localization_builds"
+        ]
+      }
+    ],
+    "assessment": [
+      {
+        "signal": "Passes comprehensive Docs-as-Code assessment covering Markdown/MDX, SSG configs, CI/CD linters, Algolia search, and multi-version builds",
+        "strength": 1.0,
+        "maps_to": [
+          "tw_tooling_analytics_distribution.markdown_mdx_mastery",
+          "tw_tooling_analytics_distribution.git_github_docs_workflow",
+          "tw_tooling_analytics_distribution.static_site_generators_ssg",
+          "tw_tooling_analytics_distribution.automated_style_linting",
+          "tw_tooling_analytics_distribution.ci_cd_docs_pipelines",
+          "tw_tooling_analytics_distribution.site_search_indexing",
+          "tw_tooling_analytics_distribution.headless_cms_knowledge_tools",
+          "tw_tooling_analytics_distribution.docs_analytics_telemetry",
+          "tw_tooling_analytics_distribution.multi_version_localization_builds"
+        ]
+      }
+    ]
+  },
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "markdown_mdx_mastery",
+        "git_github_docs_workflow",
+        "static_site_generators_ssg"
+      ],
+      "description": "Writes MDX/Markdown, uses Git pull request review workflows, and runs local builds on Docusaurus/MkDocs."
+    },
+    "mid": {
+      "expected_subskills": [
+        "automated_style_linting",
+        "ci_cd_docs_pipelines",
+        "site_search_indexing",
+        "headless_cms_knowledge_tools"
+      ],
+      "description": "Configures Vale/markdownlint in CI/CD pipelines, integrates Algolia DocSearch, and manages headless CMS portals."
+    },
+    "senior": {
+      "expected_subskills": [
+        "docs_analytics_telemetry",
+        "multi_version_localization_builds"
+      ],
+      "description": "Architects multi-version documentation matrices, translation pipelines (Crowdin), and analyzes search queries / telemetry in GA4/PostHog."
+    }
+  }
+}
