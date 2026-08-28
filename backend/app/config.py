@@ -1,0 +1,48 @@
+"""
+RoleGauge Backend Configuration.
+Loads settings from environment variables with sensible defaults.
+"""
+
+from pydantic_settings import BaseSettings
+from typing import Optional
+import os
+
+
+class Settings(BaseSettings):
+    """Application settings loaded from environment variables."""
+
+    # --- Application ---
+    APP_NAME: str = "RoleGauge"
+    APP_VERSION: str = "0.1.0"
+    DEBUG: bool = False
+
+    # --- Database ---
+    DATABASE_URL: str = "postgresql+asyncpg://rolegauge:rolegauge@localhost:5432/rolegauge"
+
+    # --- GitHub ---
+    GITHUB_TOKEN: Optional[str] = None  # Optional PAT for higher rate limits (60 -> 5000/hr)
+    GITHUB_API_BASE: str = "https://api.github.com"
+    GITHUB_MAX_REPOS: int = 100  # Max repos to fetch per user
+    GITHUB_MAX_FILE_SIZE: int = 500_000  # Max file size in bytes to fetch content (500KB)
+
+    # --- AI Provider ---
+    AI_PROVIDER: str = "none"  # "openai" | "gemini" | "none" (keyword-only mode)
+    OPENAI_API_KEY: Optional[str] = None
+    OPENAI_MODEL: str = "gpt-4o-mini"
+    GEMINI_API_KEY: Optional[str] = None
+    GEMINI_MODEL: str = "gemini-2.0-flash"
+
+    # --- Knowledge Base ---
+    KB_PATH: str = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), "knowledge-base")
+
+    # --- CORS ---
+    CORS_ORIGINS: list[str] = ["http://localhost:3000", "http://127.0.0.1:3000"]
+
+    model_config = {
+        "env_file": ".env",
+        "env_file_encoding": "utf-8",
+        "case_sensitive": True,
+    }
+
+
+settings = Settings()

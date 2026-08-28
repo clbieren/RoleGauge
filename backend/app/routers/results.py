@@ -1,0 +1,106 @@
+"""
+Results Router.
+GET /api/results/{id} — Retrieve a saved analysis result.
+"""
+
+import uuid
+
+from fastapi import APIRouter, Depends, HTTPException
+from sqlalchemy import select
+from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy.orm import selectinload
+
+from app.database import get_db
+from app.models.db_models import Analysis, SkillResult, SubskillResult, RepoData
+from app.models.schemas import AnalyzeResponse, SkillScore, SubskillEvidence, RepoInfo
+from app.services.kb_loader import kb
+
+router = APIRouter(prefix="/api", tags=["results"])
+
+
+@router.get("/results/{analysis_id}", response_model=AnalyzeResponse)
+async def get_result(
+    analysis_id: str,
+    db: AsyncSession = Depends(get_db),
+) -> AnalyzeResponse:
+    """Retrieve a previously saved analysis result by ID."""
+    try:
+        parsed_id = uuid.UUID(analysis_id)
+    except ValueError:
+        raise HTTPException(status_code=400, detail="Invalid analysis ID format")
+
+    # Load analysis with all relationships
+    stmt = (
+        select(Analysis)
+        .options(
+            selectinload(Analysis.skill_results).selectinload(SkillResult.subskill_results),
+            selectinload(Analysis.repo_data),
+        )
+        .where(Analysis.id == parsed_id)
+    )
+    result = await db.execute(stmt)
+    analysis = result.scalar_one_or_none()
+
+    if not analysis:
+        raise HTTPException(status_code=404, detail="Analysis not found")
+
+    # Build response from DB data
+    role_def = kb.get_role(analysis.role_id, analysis.level)
+    role_title = role_def.get("title", analysis.role_id) if role_def else analysis.role_id
+
+    # Get readiness label
+    from app.services.scoring_engine import ScoringEngine
+    tier_info = ScoringEngine._get_readiness_tier(None, analysis.readiness_score)
+
+    skills = []
+    for sr in analysis.skill_results:
+        subskills = [
+            SubskillEvidence(
+                composite_key=sub.composite_key,
+                subskill_name=sub.subskill_name,
+                confidence=sub.confidence,
+                status=sub.status,
+                evidence_sources=sub.evidence_sources or [],
+            )
+            for sub in sr.subskill_results
+        ]
+        skills.append(SkillScore(
+            skill_id=sr.skill_id,
+            skill_name=sr.skill_name,
+            score=sr.score,
+            importance=sr.importance,
+            subskills=subskills,
+        ))
+
+    repos = [
+        RepoInfo(
+            repo_name=rd.repo_name,
+            repo_url=rd.repo_url,
+            description=rd.description,
+            primary_language=rd.primary_language,
+            languages=rd.languages or {},
+            stars=rd.stars,
+            forks=rd.forks,
+            topics=rd.topics or [],
+            is_relevant=rd.is_relevant,
+            relevant_files_count=rd.relevant_files_count,
+            evidence_found=rd.evidence_found or [],
+        )
+        for rd in analysis.repo_data
+    ]
+
+    return AnalyzeResponse(
+        id=str(analysis.id),
+        github_username=analysis.github_username,
+        role_id=analysis.role_id,
+        role_name=role_title,
+        level=analysis.level,
+        readiness_score=analysis.readiness_score,
+        readiness_tier=analysis.readiness_tier,
+        readiness_label=tier_info["label"],
+        total_repos_scanned=analysis.total_repos_scanned,
+        relevant_repos_found=analysis.relevant_repos_found,
+        skills=skills,
+        repos=repos,
+        created_at=analysis.created_at,
+    )

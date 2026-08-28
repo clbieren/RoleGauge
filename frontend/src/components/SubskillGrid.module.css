@@ -1,0 +1,200 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.skillCard {
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition: border-color var(--transition-base);
+}
+
+.skillCard:hover {
+  border-color: var(--border-accent);
+}
+
+.skillHeader {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  transition: background var(--transition-fast);
+}
+
+.skillHeader:hover {
+  background: var(--bg-glass);
+}
+
+.skillInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+}
+
+.skillName {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--text-primary);
+}
+
+.skillMeta {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.skillRight {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.scoreBar {
+  width: 80px;
+  height: 4px;
+  background: var(--bg-glass);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.scoreBarFill {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 0.8s ease-out;
+}
+
+.scoreValue {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  min-width: 36px;
+  text-align: right;
+}
+
+.chevron {
+  color: var(--text-muted);
+  transition: transform 0.2s ease;
+}
+
+.chevronOpen {
+  transform: rotate(180deg);
+}
+
+/* Subskill list */
+.subskillList {
+  border-top: 1px solid var(--border-subtle);
+  padding: 8px 12px;
+  animation: fadeIn 0.2s ease-out;
+}
+
+.subskillRow {
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  transition: background var(--transition-fast);
+}
+
+.subskillRow:hover {
+  background: var(--bg-glass);
+}
+
+.subskillMain {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.statusIcon {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.statusFound {
+  background: rgba(34, 197, 94, 0.15);
+  color: var(--accent-emerald);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
+.statusMissing {
+  background: rgba(100, 116, 139, 0.1);
+  color: var(--text-muted);
+  border: 1px solid rgba(100, 116, 139, 0.2);
+}
+
+.subskillInfo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.subskillName {
+  font-size: 0.85rem;
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.compositeKey {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+.confidenceValue {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  min-width: 40px;
+  text-align: right;
+}
+
+.confidenceFound {
+  color: var(--accent-emerald);
+}
+
+.evidenceToggle {
+  display: block;
+  margin-top: 6px;
+  margin-left: 36px;
+  background: none;
+  border: none;
+  color: var(--text-accent);
+  font-size: 0.75rem;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  padding: 2px 0;
+}
+
+.evidenceToggle:hover {
+  text-decoration: underline;
+}
+
+.evidenceList {
+  margin-top: 6px;
+  margin-left: 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  animation: fadeIn 0.2s ease-out;
+}
+
+.evidenceItem {
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+  padding: 4px 8px;
+  background: rgba(99, 102, 241, 0.06);
+  border-radius: var(--radius-sm);
+  word-break: break-all;
+}

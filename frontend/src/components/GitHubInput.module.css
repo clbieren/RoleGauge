@@ -1,0 +1,54 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.inputIcon {
+  position: absolute;
+  left: 16px;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.mainInput {
+  padding-left: 48px !important;
+  font-size: 1.05rem !important;
+}
+
+.tokenToggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  cursor: pointer;
+  padding: 4px 0;
+  transition: color var(--transition-fast);
+  font-family: 'Inter', sans-serif;
+}
+
+.tokenToggle:hover {
+  color: var(--text-secondary);
+}
+
+.tokenField {
+  animation: fadeIn 0.3s ease-out;
+}
+
+.tokenHint {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-top: 6px;
+}

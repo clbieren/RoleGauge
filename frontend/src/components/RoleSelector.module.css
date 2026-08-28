@@ -1,0 +1,107 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.roleGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+@media (max-width: 600px) {
+  .roleGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.roleCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 14px 8px;
+  background: var(--bg-glass);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-base);
+  font-family: 'Inter', sans-serif;
+}
+
+.roleCard:hover {
+  background: var(--bg-glass-hover);
+  border-color: var(--border-accent);
+  transform: translateY(-2px);
+}
+
+.roleCardActive {
+  background: rgba(99, 102, 241, 0.12) !important;
+  border-color: var(--accent-indigo) !important;
+  box-shadow: 0 0 16px rgba(99, 102, 241, 0.2);
+}
+
+.roleIcon {
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.roleName {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  text-align: center;
+  line-height: 1.2;
+}
+
+.skillCount {
+  font-size: 0.68rem;
+  color: var(--text-muted);
+}
+
+.levelContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.levelGroup {
+  display: flex;
+  gap: 8px;
+}
+
+.levelBtn {
+  flex: 1;
+  padding: 12px;
+  background: var(--bg-glass);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  color: var(--text-secondary);
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all var(--transition-base);
+}
+
+.levelBtn:hover {
+  background: var(--bg-glass-hover);
+  color: var(--text-primary);
+}
+
+.levelBtnActive {
+  background: color-mix(in srgb, var(--level-color) 12%, transparent) !important;
+  border-color: var(--level-color) !important;
+  color: var(--level-color) !important;
+  box-shadow: 0 0 12px color-mix(in srgb, var(--level-color) 20%, transparent);
+}
