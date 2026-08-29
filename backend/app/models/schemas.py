@@ -16,7 +16,7 @@ class AnalyzeRequest(BaseModel):
     """Request body for POST /api/analyze."""
     github_username: str = Field(..., min_length=1, max_length=255, description="GitHub username or profile URL")
     role_id: str = Field(..., description="Role identifier (e.g. 'game-dev', 'backend')")
-    level: str = Field(..., pattern="^(junior|mid|senior)$", description="Target seniority level")
+    level: str = Field("mid", description="Target seniority level ('junior', 'mid', 'senior')")
     github_token: Optional[str] = Field(None, description="Optional GitHub PAT for higher rate limits")
     use_ai: bool = Field(False, description="Whether to use AI for deeper evidence analysis")
 

@@ -12,6 +12,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.database import get_db
+from app.exceptions import RoleGaugeException, RoleNotFoundError
 from app.models.db_models import Analysis, SkillResult, SubskillResult, RepoData
 from app.models.schemas import AnalyzeRequest, AnalyzeResponse, SkillScore, SubskillEvidence, RepoInfo
 from app.services.github_fetcher import GitHubFetcher, extract_username
@@ -34,20 +35,21 @@ async def analyze_github_profile(
     Analyze a GitHub user's profile for a specific role and level.
 
     Pipeline:
-    1. Extract GitHub username from input
-    2. Fetch all public repos via GitHub REST API
-    3. Filter repos by role relevance
-    4. Fetch content of relevant files
-    5. Detect evidence (keyword + optional AI)
-    6. Calculate scores via scoring engine
-    7. Save results to database
-    8. Return structured response
+    1. Validate role & level parameters
+    2. Extract GitHub username from input
+    3. Fetch public repos via GitHub REST API
+    4. Filter repos by role relevance
+    5. Fetch content of relevant files
+    6. Detect evidence (keyword + optional AI)
+    7. Calculate scores via dynamic scoring engine
+    8. Save results to database
+    9. Return structured response
     """
-    # Validate role exists in KB
+    # 1. Validate role and level in KB
     if request.role_id not in kb.role_categories:
         raise HTTPException(
             status_code=400,
-            detail=f"Unknown role: {request.role_id}. Available: {kb.role_categories}",
+            detail=f"Unknown role: '{request.role_id}'. Available roles: {kb.role_categories}",
         )
 
     role_def = kb.get_role(request.role_id, request.level)
@@ -58,22 +60,26 @@ async def analyze_github_profile(
         )
 
     try:
-        # Step 1: Extract username
-        username = extract_username(request.github_username)
+        # Step 2: Extract username
+        try:
+            username = extract_username(request.github_username)
+        except ValueError as e:
+            raise HTTPException(status_code=400, detail=str(e))
+
         logger.info(f"Starting analysis for {username} as {request.role_id}/{request.level}")
 
-        # Step 2: Fetch repos from GitHub
+        # Step 3: Fetch repos from GitHub
         fetcher = GitHubFetcher(token=request.github_token)
         repos = await fetcher.fetch_user_repos(username)
 
         if not repos:
-            raise HTTPException(status_code=404, detail=f"No public repos found for {username}")
+            raise HTTPException(status_code=404, detail=f"No public repositories found for user '{username}'")
 
-        # Step 3: Filter by role
+        # Step 4: Filter by role
         role_filter = RoleFilter(kb, request.role_id)
         filtered_repos = role_filter.filter_repos(repos)
 
-        # Step 4: Fetch content of relevant files
+        # Step 5: Fetch content of relevant files
         files_to_fetch = role_filter.get_files_to_fetch_content(filtered_repos)
         for repo_full_name, file_paths in files_to_fetch.items():
             contents = await fetcher.fetch_specific_files(repo_full_name, file_paths)
@@ -83,7 +89,7 @@ async def analyze_github_profile(
                     f_repo.file_contents = contents
                     break
 
-        # Step 5: Detect evidence
+        # Step 6: Detect evidence
         detector = EvidenceDetector(kb, request.role_id)
         evidence = detector.detect_all(filtered_repos)
 
@@ -95,34 +101,33 @@ async def analyze_github_profile(
                 if result.status == "not_yet_evidenced"
             ]
             if unevidenced:
-                # Prepare filtered data for AI
                 ai_data = _prepare_ai_data(filtered_repos)
                 ai_results = await ai_provider.analyze_evidence(
                     request.role_id, request.level, unevidenced, ai_data
                 )
-                # Merge AI results into evidence
                 _merge_ai_results(evidence, ai_results)
 
-        # Step 6: Calculate scores
+        # Step 7: Calculate scores via dynamic scoring engine
         engine = ScoringEngine(kb, request.role_id, request.level)
         scoring_result = engine.calculate_all(evidence)
 
-        # Step 7: Save to database
+        # Step 8: Save to database
         analysis = await _save_analysis(
             db, username, request, scoring_result, filtered_repos, evidence
         )
 
-        # Step 8: Build response
+        # Step 9: Build response
         role_title = role_def.get("title", f"{request.level.capitalize()} {request.role_id}")
         return _build_response(analysis.id, username, request, role_title, scoring_result, filtered_repos)
 
-    except ValueError as e:
-        raise HTTPException(status_code=400, detail=str(e))
+    except RoleGaugeException as e:
+        logger.warning(f"Analysis error for {request.github_username}: {e.detail}")
+        raise HTTPException(status_code=e.status_code, detail=e.detail)
     except HTTPException:
         raise
     except Exception as e:
-        logger.exception(f"Analysis failed for {request.github_username}")
-        raise HTTPException(status_code=500, detail=f"Analysis failed: {str(e)}")
+        logger.exception(f"Analysis failed unexpectedly for {request.github_username}")
+        raise HTTPException(status_code=500, detail=f"Analysis pipeline failed: {str(e)}")
 
 
 def _prepare_ai_data(filtered_repos: list) -> dict[str, Any]:

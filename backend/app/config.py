@@ -15,8 +15,14 @@ class Settings(BaseSettings):
     APP_NAME: str = "RoleGauge"
     APP_VERSION: str = "0.1.0"
     DEBUG: bool = False
+    BACKEND_PORT: int = 8000
+    FRONTEND_PORT: int = 3000
 
     # --- Database ---
+    POSTGRES_USER: Optional[str] = "rolegauge"
+    POSTGRES_PASSWORD: Optional[str] = "rolegauge"
+    POSTGRES_DB: Optional[str] = "rolegauge"
+    POSTGRES_PORT: int = 5432
     DATABASE_URL: str = "postgresql+asyncpg://rolegauge:rolegauge@localhost:5432/rolegauge"
 
     # --- GitHub ---
@@ -42,6 +48,7 @@ class Settings(BaseSettings):
         "env_file": ".env",
         "env_file_encoding": "utf-8",
         "case_sensitive": True,
+        "extra": "ignore",
     }
 
 

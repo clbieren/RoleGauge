@@ -6,9 +6,8 @@ SQLAlchemy ORM models for storing analysis results.
 import uuid
 from datetime import datetime, timezone
 
-from sqlalchemy import String, Float, Text, DateTime, ForeignKey, Integer, JSON
+from sqlalchemy import String, Float, Text, DateTime, ForeignKey, Integer, JSON, Uuid
 from sqlalchemy.orm import Mapped, mapped_column, relationship
-from sqlalchemy.dialects.postgresql import UUID
 
 from app.database import Base
 
@@ -17,7 +16,7 @@ class Analysis(Base):
     """Top-level analysis record for a GitHub user + role + level combination."""
     __tablename__ = "analyses"
 
-    id: Mapped[uuid.UUID] = mapped_column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
+    id: Mapped[uuid.UUID] = mapped_column(Uuid(as_uuid=True), primary_key=True, default=uuid.uuid4)
     github_username: Mapped[str] = mapped_column(String(255), nullable=False, index=True)
     role_id: Mapped[str] = mapped_column(String(100), nullable=False)
     level: Mapped[str] = mapped_column(String(50), nullable=False)  # junior | mid | senior
@@ -37,7 +36,7 @@ class SkillResult(Base):
     """Score for a single skill within an analysis."""
     __tablename__ = "skill_results"
 
-    id: Mapped[uuid.UUID] = mapped_column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
+    id: Mapped[uuid.UUID] = mapped_column(Uuid(as_uuid=True), primary_key=True, default=uuid.uuid4)
     analysis_id: Mapped[uuid.UUID] = mapped_column(ForeignKey("analyses.id", ondelete="CASCADE"), nullable=False)
     skill_id: Mapped[str] = mapped_column(String(100), nullable=False)
     skill_name: Mapped[str] = mapped_column(String(255), nullable=False)
@@ -53,7 +52,7 @@ class SubskillResult(Base):
     """Evidence result for a single subskill (composite key: skill_id.subskill_id)."""
     __tablename__ = "subskill_results"
 
-    id: Mapped[uuid.UUID] = mapped_column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
+    id: Mapped[uuid.UUID] = mapped_column(Uuid(as_uuid=True), primary_key=True, default=uuid.uuid4)
     skill_result_id: Mapped[uuid.UUID] = mapped_column(ForeignKey("skill_results.id", ondelete="CASCADE"), nullable=False)
     composite_key: Mapped[str] = mapped_column(String(200), nullable=False)  # e.g. gd_game_engine.physics_system
     subskill_name: Mapped[str] = mapped_column(String(255), nullable=False)
@@ -69,7 +68,7 @@ class RepoData(Base):
     """Metadata about a scanned repository."""
     __tablename__ = "repo_data"
 
-    id: Mapped[uuid.UUID] = mapped_column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
+    id: Mapped[uuid.UUID] = mapped_column(Uuid(as_uuid=True), primary_key=True, default=uuid.uuid4)
     analysis_id: Mapped[uuid.UUID] = mapped_column(ForeignKey("analyses.id", ondelete="CASCADE"), nullable=False)
     repo_name: Mapped[str] = mapped_column(String(255), nullable=False)
     repo_url: Mapped[str] = mapped_column(String(500), nullable=False)

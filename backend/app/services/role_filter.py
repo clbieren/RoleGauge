@@ -171,7 +171,7 @@ class RoleFilter:
                             f_repo.relevant_dependencies[skill_key] = []
                         if dep_name not in f_repo.relevant_dependencies[skill_key]:
                             f_repo.relevant_dependencies[skill_key].append(dep_name)
-                            f_repo.relevance_reasons.append(f"Dependency '{dep_name}' → {skill_key}")
+                            f_repo.relevance_reasons.append(f"Dependency '{dep_name}' -> {skill_key}")
 
     def _check_topic_relevance(self, f_repo: FilteredRepo):
         """Check repo topics and description for role-relevant keywords."""

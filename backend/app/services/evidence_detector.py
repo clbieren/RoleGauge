@@ -46,7 +46,7 @@ class SubskillEvidenceResult:
         sources = []
         for s in self.signals:
             if s.file_path and s.matched_text:
-                sources.append(f"{s.file_path} → {s.matched_text}")
+                sources.append(f"{s.file_path} -> {s.matched_text}")
             elif s.file_path:
                 sources.append(s.file_path)
             else:

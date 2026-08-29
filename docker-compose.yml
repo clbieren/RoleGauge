@@ -1,34 +1,49 @@
 services:
-  # PostgreSQL Database
+  # -------------------------------------------------------------
+  # PostgreSQL Database Service
+  # -------------------------------------------------------------
   db:
     image: postgres:16-alpine
     container_name: rolegauge-db
+    restart: unless-stopped
     environment:
-      POSTGRES_USER: rolegauge
-      POSTGRES_PASSWORD: rolegauge
-      POSTGRES_DB: rolegauge
+      POSTGRES_USER: ${POSTGRES_USER:-rolegauge}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-rolegauge}
+      POSTGRES_DB: ${POSTGRES_DB:-rolegauge}
     ports:
-      - "5432:5432"
+      - "${POSTGRES_PORT:-5432}:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U rolegauge"]
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-rolegauge} -d ${POSTGRES_DB:-rolegauge}"]
       interval: 5s
       timeout: 5s
       retries: 5
+      start_period: 5s
 
-  # FastAPI Backend
+  # -------------------------------------------------------------
+  # FastAPI Backend Service
+  # -------------------------------------------------------------
   backend:
     build:
       context: ./backend
       dockerfile: Dockerfile
     container_name: rolegauge-backend
+    restart: unless-stopped
     ports:
-      - "8000:8000"
+      - "${BACKEND_PORT:-8000}:8000"
     environment:
-      DATABASE_URL: postgresql+asyncpg://rolegauge:rolegauge@db:5432/rolegauge
-      AI_PROVIDER: none
-      DEBUG: "true"
+      DATABASE_URL: postgresql+asyncpg://${POSTGRES_USER:-rolegauge}:${POSTGRES_PASSWORD:-rolegauge}@db:5432/${POSTGRES_DB:-rolegauge}
+      GITHUB_TOKEN: ${GITHUB_TOKEN:-}
+      GITHUB_MAX_REPOS: ${GITHUB_MAX_REPOS:-100}
+      GITHUB_MAX_FILE_SIZE: ${GITHUB_MAX_FILE_SIZE:-500000}
+      AI_PROVIDER: ${AI_PROVIDER:-none}
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      OPENAI_MODEL: ${OPENAI_MODEL:-gpt-4o-mini}
+      GEMINI_API_KEY: ${GEMINI_API_KEY:-}
+      GEMINI_MODEL: ${GEMINI_MODEL:-gemini-2.0-flash}
+      KB_PATH: /app/knowledge-base
+      DEBUG: ${DEBUG:-false}
     volumes:
       - ./knowledge-base:/app/knowledge-base:ro
       - ./backend/app:/app/app
@@ -36,18 +51,6 @@ services:
       db:
         condition: service_healthy
 
-  # Next.js Frontend
-  frontend:
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
-    container_name: rolegauge-frontend
-    ports:
-      - "3000:3000"
-    environment:
-      NEXT_PUBLIC_API_URL: http://localhost:8000
-    depends_on:
-      - backend
-
 volumes:
   pgdata:
+    driver: local

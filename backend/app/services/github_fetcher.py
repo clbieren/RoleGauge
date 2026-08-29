@@ -13,6 +13,7 @@ from dataclasses import dataclass, field
 import httpx
 
 from app.config import settings
+from app.exceptions import GitHubUserNotFoundError, GitHubRateLimitError, GitHubTimeoutError
 
 logger = logging.getLogger(__name__)
 
@@ -74,31 +75,36 @@ class GitHubFetcher:
         Fetch all public repositories for a user and their detailed data.
         Returns a list of FetchedRepo objects with metadata, file trees, READMEs, etc.
         """
-        async with httpx.AsyncClient(
-            base_url=settings.GITHUB_API_BASE,
-            headers=self.headers,
-            timeout=30.0,
-        ) as client:
-            # Step 1: Get repo list
-            repos_meta = await self._fetch_repo_list(client, username)
-            logger.info(f"Found {len(repos_meta)} repos for {username}")
+        try:
+            async with httpx.AsyncClient(
+                base_url=settings.GITHUB_API_BASE,
+                headers=self.headers,
+                timeout=30.0,
+            ) as client:
+                # Step 1: Get repo list
+                repos_meta = await self._fetch_repo_list(client, username)
+                logger.info(f"Found {len(repos_meta)} repos for {username}")
 
-            # Step 2: Fetch details for each repo
-            fetched_repos = []
-            for meta in repos_meta:
-                if self._rate_remaining == 0:
-                    logger.warning("GitHub API rate limit reached, stopping.")
-                    break
+                # Step 2: Fetch details for each repo
+                fetched_repos = []
+                for meta in repos_meta:
+                    if self._rate_remaining == 0:
+                        logger.warning("GitHub API rate limit reached, stopping repo detail fetching.")
+                        break
 
-                try:
-                    repo = await self._fetch_repo_details(client, meta)
-                    fetched_repos.append(repo)
-                except Exception as e:
-                    logger.error(f"Failed to fetch details for {meta.full_name}: {e}")
-                    # Still include with just metadata
-                    fetched_repos.append(FetchedRepo(metadata=meta))
+                    try:
+                        repo = await self._fetch_repo_details(client, meta)
+                        fetched_repos.append(repo)
+                    except httpx.TimeoutException:
+                        logger.warning(f"Timeout fetching details for {meta.full_name}, continuing with metadata.")
+                        fetched_repos.append(FetchedRepo(metadata=meta))
+                    except Exception as e:
+                        logger.error(f"Failed to fetch details for {meta.full_name}: {e}")
+                        fetched_repos.append(FetchedRepo(metadata=meta))
 
-            return fetched_repos
+                return fetched_repos
+        except httpx.TimeoutException:
+            raise GitHubTimeoutError(f"GitHub API timed out while fetching repositories for user '{username}'")
 
     async def _fetch_repo_list(self, client: httpx.AsyncClient, username: str) -> list[RepoMetadata]:
         """Fetch paginated list of public repos."""
@@ -107,20 +113,30 @@ class GitHubFetcher:
         per_page = 100
 
         while len(repos) < settings.GITHUB_MAX_REPOS:
-            response = await client.get(
-                f"/users/{username}/repos",
-                params={
-                    "type": "owner",
-                    "sort": "updated",
-                    "direction": "desc",
-                    "per_page": per_page,
-                    "page": page,
-                },
-            )
+            try:
+                response = await client.get(
+                    f"/users/{username}/repos",
+                    params={
+                        "type": "owner",
+                        "sort": "updated",
+                        "direction": "desc",
+                        "per_page": per_page,
+                        "page": page,
+                    },
+                )
+            except httpx.TimeoutException:
+                raise GitHubTimeoutError(f"GitHub API timed out while fetching repo list for '{username}'")
+
             self._update_rate_info(response)
 
             if response.status_code == 404:
-                raise ValueError(f"GitHub user '{username}' not found")
+                raise GitHubUserNotFoundError(username)
+
+            if response.status_code in (403, 429):
+                body_text = response.text.lower()
+                if "rate limit" in body_text or self._rate_remaining == 0:
+                    raise GitHubRateLimitError(f"GitHub API rate limit exceeded for user '{username}'")
+
             response.raise_for_status()
 
             data = response.json()
@@ -292,12 +308,13 @@ def extract_username(input_str: str) -> str:
     input_str = input_str.strip().rstrip("/")
 
     # URL pattern
-    match = re.match(r"(?:https?://)?github\.com/([a-zA-Z0-9\-]+)", input_str)
+    match = re.match(r"(?:https?://)?github\.com/([a-zA-Z0-9\-_]+)", input_str)
     if match:
         return match.group(1)
 
-    # Plain username (alphanumeric + hyphens)
-    if re.match(r"^[a-zA-Z0-9\-]+$", input_str):
+    # Plain username (alphanumeric + hyphens + underscores)
+    if re.match(r"^[a-zA-Z0-9\-_]+$", input_str):
         return input_str
 
-    raise ValueError(f"Cannot extract GitHub username from: {input_str}")
+    raise ValueError(f"Cannot extract valid GitHub username from: '{input_str}'")
+
