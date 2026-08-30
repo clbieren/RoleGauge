@@ -1,0 +1,176 @@
+{
+  "skill_id": "ml_computer_vision_deep_learning",
+  "name": "Computer Vision & Visual Deep Learning",
+  "description": "Architectures, loss functions, augmentations, and modern neural vision modeling from CNNs to Vision Transformers.",
+  "category": "machine-learning",
+  "subskills": [
+    {
+      "id": "cnn_architectures_resnet_convnext",
+      "name": "CNN Architectures & Modern Backbones (ResNet, ConvNeXt)",
+      "description": "Residual connections, bottleneck blocks, depthwise separable convolutions, and modern ConvNeXt/EfficientNet backbones.",
+      "keywords": [
+        "ResNet",
+        "ConvNeXt",
+        "EfficientNet",
+        "Residual Connections",
+        "Bottleneck",
+        "CNN"
+      ]
+    },
+    {
+      "id": "vision_transformers_vit_swin",
+      "name": "Vision Transformers (ViT, Swin, Patch Embeddings)",
+      "description": "Patch partitioning, linear projection of flattened patches, multi-head self-attention on images, Swin hierarchical shifted windows.",
+      "keywords": [
+        "ViT",
+        "Vision Transformer",
+        "Swin Transformer",
+        "Patch Embedding",
+        "Self-Attention Vision"
+      ]
+    },
+    {
+      "id": "object_detection_yolo_faster_rcnn",
+      "name": "Object Detection & Localization (YOLO, Faster R-CNN)",
+      "description": "Anchor boxes, region proposal networks (RPN), single-stage vs two-stage detectors, Non-Maximum Suppression (NMS), and mAP calculation.",
+      "keywords": [
+        "YOLO",
+        "Faster R-CNN",
+        "RPN",
+        "Non-Maximum Suppression",
+        "NMS",
+        "Object Detection",
+        "mAP"
+      ]
+    },
+    {
+      "id": "semantic_instance_segmentation_unet_mask_rcnn",
+      "name": "Semantic & Instance Segmentation (U-Net, Mask R-CNN)",
+      "description": "Encoder-decoder architectures with skip connections, pixel-level classification, RoIAlign, and mask prediction heads.",
+      "keywords": [
+        "U-Net",
+        "Mask R-CNN",
+        "Semantic Segmentation",
+        "Instance Segmentation",
+        "Skip Connections",
+        "RoIAlign"
+      ]
+    },
+    {
+      "id": "image_data_augmentation_albumentations",
+      "name": "Image Augmentation & Synthetic Perturbation (Albumentations)",
+      "description": "Geometric transformations, color jittering, CutMix, MixUp, AutoAugment, and RandAugment for vision regularization.",
+      "keywords": [
+        "Albumentations",
+        "CutMix",
+        "MixUp",
+        "AutoAugment",
+        "Image Augmentation",
+        "Data Augmentation"
+      ]
+    },
+    {
+      "id": "transfer_learning_feature_extraction",
+      "name": "Vision Transfer Learning & Backbone Fine-Tuning",
+      "description": "Pretrained ImageNet weights, progressive unfreezing, discriminative learning rates, and linear probing vs end-to-end fine-tuning.",
+      "keywords": [
+        "Transfer Learning",
+        "Fine-Tuning",
+        "Pretrained Weights",
+        "Feature Extraction",
+        "Linear Probing"
+      ]
+    },
+    {
+      "id": "loss_functions_focal_dice_iou",
+      "name": "Vision Loss Functions (Focal Loss, Dice Loss, IoU Loss)",
+      "description": "Class imbalance handling in dense prediction, Focal loss for hard examples, Dice loss, and Generalized IoU loss.",
+      "keywords": [
+        "Focal Loss",
+        "Dice Loss",
+        "IoU Loss",
+        "GIoU",
+        "Loss Functions Vision"
+      ]
+    },
+    {
+      "id": "self_supervised_vision_clip_dino",
+      "name": "Self-Supervised & Multimodal Vision (CLIP, DINO, SimCLR)",
+      "description": "Contrastive image-text pretraining, self-distillation without labels (DINO v1/v2), and representation learning.",
+      "keywords": [
+        "CLIP",
+        "DINO",
+        "SimCLR",
+        "Contrastive Learning",
+        "Self-Supervised Vision"
+      ]
+    },
+    {
+      "id": "video_spatial_temporal_modeling",
+      "name": "Spatial-Temporal Video & Sequence Modeling",
+      "description": "3D Convolutions (C3D, I3D), VideoMAE, temporal attention, and action recognition pipelines.",
+      "keywords": [
+        "3D CNN",
+        "VideoMAE",
+        "Action Recognition",
+        "Temporal Modeling",
+        "Optical Flow"
+      ]
+    }
+  ],
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "cnn_architectures_resnet_convnext",
+        "image_data_augmentation_albumentations",
+        "transfer_learning_feature_extraction"
+      ]
+    },
+    "mid": {
+      "expected_subskills": [
+        "vision_transformers_vit_swin",
+        "object_detection_yolo_faster_rcnn",
+        "loss_functions_focal_dice_iou"
+      ]
+    },
+    "senior": {
+      "expected_subskills": [
+        "semantic_instance_segmentation_unet_mask_rcnn",
+        "self_supervised_vision_clip_dino",
+        "video_spatial_temporal_modeling"
+      ]
+    }
+  },
+  "evidence": {
+    "github": [
+      {
+        "signal": "Uses Albumentations and torchvision transforms for image pipeline",
+        "detection": "content_analysis",
+        "pattern": "albumentations|torchvision.transforms|CutMix|MixUp",
+        "strength": 0.6,
+        "maps_to": [
+          "ml_computer_vision_deep_learning.image_data_augmentation_albumentations"
+        ]
+      },
+      {
+        "signal": "Implements ResNet, ConvNeXt, or ViT backbone models",
+        "detection": "content_analysis",
+        "pattern": "timm.create_model|models.resnet|ConvNeXt|ViT|VisionTransformer",
+        "strength": 0.6,
+        "maps_to": [
+          "ml_computer_vision_deep_learning.cnn_architectures_resnet_convnext",
+          "ml_computer_vision_deep_learning.vision_transformers_vit_swin"
+        ]
+      },
+      {
+        "signal": "Trains YOLO or Faster R-CNN object detection pipelines",
+        "detection": "content_analysis",
+        "pattern": "ultralytics|yolov8|yolov5|fasterrcnn_resnet50_fpn",
+        "strength": 0.6,
+        "maps_to": [
+          "ml_computer_vision_deep_learning.object_detection_yolo_faster_rcnn"
+        ]
+      }
+    ]
+  }
+}

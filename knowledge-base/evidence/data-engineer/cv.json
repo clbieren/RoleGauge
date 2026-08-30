@@ -2,133 +2,135 @@
   "source_id": "cv",
   "name": "CV / Resume Parser - Data Engineering",
   "description": "Extraction and scoring rules for Data Engineering CVs/Resumes based on section strengths and keyword associations.",
-  "sections": [
-    {
-      "section_id": "work_experience",
-      "name": "Work Experience",
-      "base_strength": 0.5,
-      "description": "Professional data engineering roles, projects, and impact metrics.",
-      "signal_extractors": [
-        {
-          "pattern": "Apache Spark|PySpark|Scala|Spark SQL",
-          "strength": 0.5,
-          "maps_to": [
-            "de_distributed_computing.spark_architecture_cluster_managers",
-            "de_distributed_computing.rdd_vs_dataframe_dataset",
-            "de_distributed_computing.spark_sql_catalyst_optimizer",
-            "de_distributed_computing.shuffling_skew_repartition"
-          ]
-        },
-        {
-          "pattern": "Snowflake|BigQuery|Redshift|Star Schema|Dimensional Modeling",
-          "strength": 0.5,
-          "maps_to": [
-            "de_data_warehousing.dimensional_star_snowflake",
-            "de_data_warehousing.fact_dimension_design",
-            "de_data_warehousing.scd_type_management",
-            "de_data_warehousing.snowflake_architecture",
-            "de_data_warehousing.bigquery_architecture"
-          ]
-        },
-        {
-          "pattern": "Apache Airflow|Prefect|Dagster|DAG|ETL|ELT",
-          "strength": 0.5,
-          "maps_to": [
-            "de_data_pipelines_orchestration.airflow_dag_design_best_practices",
-            "de_data_pipelines_orchestration.airflow_operators_hooks_sensors",
-            "de_data_pipelines_orchestration.airflow_taskflow_api_xcoms",
-            "de_data_pipelines_orchestration.idempotency_data_reprocessing"
-          ]
-        },
-        {
-          "pattern": "Delta Lake|Apache Iceberg|Apache Hudi|Parquet|Lakehouse",
-          "strength": 0.5,
-          "maps_to": [
-            "de_data_lakes_storage.delta_lake_acid",
-            "de_data_lakes_storage.apache_iceberg_architecture",
-            "de_data_lakes_storage.parquet_orc_file_formats",
-            "de_data_lakes_storage.lakehouse_medallion_architecture"
-          ]
-        },
-        {
-          "pattern": "Apache Kafka|Kafka Streams|Flink|ksqlDB|Streaming",
-          "strength": 0.5,
-          "maps_to": [
-            "de_streaming_realtime.kafka_architecture_topics_partitions",
-            "de_streaming_realtime.producer_consumer_consumer_groups",
-            "de_streaming_realtime.apache_flink_stream_processing",
-            "de_streaming_realtime.exactly_once_semantics_transactions"
-          ]
-        },
-        {
-          "pattern": "dbt|dbt Core|dbt Cloud|Jinja|Data Transformation",
-          "strength": 0.5,
-          "maps_to": [
-            "de_data_modeling_transformation.dbt_models_ref_source",
-            "de_data_modeling_transformation.dbt_jinja_macros_packages",
-            "de_data_modeling_transformation.dbt_materializations_incremental",
-            "de_data_modeling_transformation.dbt_testing_generic_singular"
-          ]
-        },
-        {
-          "pattern": "Great Expectations|Soda|DataHub|OpenLineage|Data Quality",
-          "strength": 0.5,
-          "maps_to": [
-            "de_data_quality_governance.data_validation_great_expectations_soda",
-            "de_data_quality_governance.data_lineage_metadata_openlineage",
-            "de_data_quality_governance.data_catalog_amundsen_datahub",
-            "de_data_quality_governance.gdpr_pii_anonymization_masking"
-          ]
-        },
-        {
-          "pattern": "Terraform|Docker|Kubernetes|GitHub Actions|CI/CD|FinOps",
-          "strength": 0.5,
-          "maps_to": [
-            "de_cloud_infrastructure_dataops.terraform_iac_data_infrastructure",
-            "de_cloud_infrastructure_dataops.docker_containers_for_data",
-            "de_cloud_infrastructure_dataops.ci_cd_pipelines_for_data_github_actions",
-            "de_cloud_infrastructure_dataops.cloud_cost_governance_finops"
-          ]
-        },
-        {
-          "pattern": "Advanced SQL|Window Functions|Query Optimization|PostgreSQL",
-          "strength": 0.5,
-          "maps_to": [
-            "de_sql_advanced.complex_joins_subqueries",
-            "de_sql_advanced.window_functions_analytical",
-            "de_sql_advanced.query_execution_plans",
-            "de_sql_advanced.indexing_b_tree_strategies"
-          ]
-        },
-        {
-          "pattern": "Python|AsyncIO|Concurrency|OOP|Memory Profiling|Scala",
-          "strength": 0.5,
-          "maps_to": [
-            "de_programming.python_core_oop",
-            "de_programming.concurrency_multiprocessing",
-            "de_programming.memory_management_profiling",
-            "de_programming.scala_jvm_ecosystem"
-          ]
-        }
-      ]
-    },
-    {
-      "section_id": "projects",
-      "name": "Projects",
-      "base_strength": 0.5,
-      "description": "Data engineering projects and open-source contributions."
-    },
-    {
-      "section_id": "skills_list",
-      "name": "Skills List",
-      "base_strength": 0.3,
-      "description": "Self-reported technical skill keywords."
-    },
-    {
-      "section_id": "education",
-      "name": "Education & Certifications",
-      "base_strength": 0.3,
-      "description": "Degrees and vendor certifications."
-    }
-  ]
+  "extraction_rules": {
+    "description": "How to extract and weight information from CV content for data-engineer.",
+    "sections": [
+      {
+        "section": "work_experience",
+        "description": "Professional data engineering roles, projects, and impact metrics.",
+        "base_strength": 0.5
+      },
+      {
+        "section": "projects",
+        "description": "Data engineering projects and open-source contributions.",
+        "base_strength": 0.5
+      },
+      {
+        "section": "skills_list",
+        "description": "Self-reported technical skill keywords.",
+        "base_strength": 0.3
+      },
+      {
+        "section": "education",
+        "description": "Degrees and vendor certifications.",
+        "base_strength": 0.3
+      }
+    ]
+  },
+  "signal_mapping": {
+    "description": "How CV mentions map to skill evidence using COMPOSITE KEYS for data-engineer.",
+    "patterns": [
+      {
+        "pattern": "Apache Spark|PySpark|Scala|Spark SQL",
+        "maps_to": [
+          "de_distributed_computing.spark_architecture_cluster_managers",
+          "de_distributed_computing.rdd_vs_dataframe_dataset",
+          "de_distributed_computing.spark_sql_catalyst_optimizer",
+          "de_distributed_computing.shuffling_skew_repartition"
+        ],
+        "strength_modifier": 1.0
+      },
+      {
+        "pattern": "Snowflake|BigQuery|Redshift|Star Schema|Dimensional Modeling",
+        "maps_to": [
+          "de_data_warehousing.dimensional_star_snowflake",
+          "de_data_warehousing.fact_dimension_design",
+          "de_data_warehousing.scd_type_management",
+          "de_data_warehousing.snowflake_architecture",
+          "de_data_warehousing.bigquery_architecture"
+        ],
+        "strength_modifier": 1.0
+      },
+      {
+        "pattern": "Apache Airflow|Prefect|Dagster|DAG|ETL|ELT",
+        "maps_to": [
+          "de_data_pipelines_orchestration.airflow_dag_design_best_practices",
+          "de_data_pipelines_orchestration.airflow_operators_hooks_sensors",
+          "de_data_pipelines_orchestration.airflow_taskflow_api_xcoms",
+          "de_data_pipelines_orchestration.idempotency_data_reprocessing"
+        ],
+        "strength_modifier": 1.0
+      },
+      {
+        "pattern": "Delta Lake|Apache Iceberg|Apache Hudi|Parquet|Lakehouse",
+        "maps_to": [
+          "de_data_lakes_storage.delta_lake_acid",
+          "de_data_lakes_storage.apache_iceberg_architecture",
+          "de_data_lakes_storage.parquet_orc_file_formats",
+          "de_data_lakes_storage.lakehouse_medallion_architecture"
+        ],
+        "strength_modifier": 1.0
+      },
+      {
+        "pattern": "Apache Kafka|Kafka Streams|Flink|ksqlDB|Streaming",
+        "maps_to": [
+          "de_streaming_realtime.kafka_architecture_topics_partitions",
+          "de_streaming_realtime.producer_consumer_consumer_groups",
+          "de_streaming_realtime.apache_flink_stream_processing",
+          "de_streaming_realtime.exactly_once_semantics_transactions"
+        ],
+        "strength_modifier": 1.0
+      },
+      {
+        "pattern": "dbt|dbt Core|dbt Cloud|Jinja|Data Transformation",
+        "maps_to": [
+          "de_data_modeling_transformation.dbt_models_ref_source",
+          "de_data_modeling_transformation.dbt_jinja_macros_packages",
+          "de_data_modeling_transformation.dbt_materializations_incremental",
+          "de_data_modeling_transformation.dbt_testing_generic_singular"
+        ],
+        "strength_modifier": 1.0
+      },
+      {
+        "pattern": "Great Expectations|Soda|DataHub|OpenLineage|Data Quality",
+        "maps_to": [
+          "de_data_quality_governance.data_validation_great_expectations_soda",
+          "de_data_quality_governance.data_lineage_metadata_openlineage",
+          "de_data_quality_governance.data_catalog_amundsen_datahub",
+          "de_data_quality_governance.gdpr_pii_anonymization_masking"
+        ],
+        "strength_modifier": 1.0
+      },
+      {
+        "pattern": "Terraform|Docker|Kubernetes|GitHub Actions|CI/CD|FinOps",
+        "maps_to": [
+          "de_cloud_infrastructure_dataops.terraform_iac_data_infrastructure",
+          "de_cloud_infrastructure_dataops.docker_containers_for_data",
+          "de_cloud_infrastructure_dataops.ci_cd_pipelines_for_data_github_actions",
+          "de_cloud_infrastructure_dataops.cloud_cost_governance_finops"
+        ],
+        "strength_modifier": 1.0
+      },
+      {
+        "pattern": "Advanced SQL|Window Functions|Query Optimization|PostgreSQL",
+        "maps_to": [
+          "de_sql_advanced.complex_joins_subqueries",
+          "de_sql_advanced.window_functions_analytical",
+          "de_sql_advanced.query_execution_plans",
+          "de_sql_advanced.indexing_b_tree_strategies"
+        ],
+        "strength_modifier": 1.0
+      },
+      {
+        "pattern": "Python|AsyncIO|Concurrency|OOP|Memory Profiling|Scala",
+        "maps_to": [
+          "de_programming.python_core_oop",
+          "de_programming.concurrency_multiprocessing",
+          "de_programming.memory_management_profiling",
+          "de_programming.scala_jvm_ecosystem"
+        ],
+        "strength_modifier": 1.0
+      }
+    ]
+  }
 }

@@ -4,7 +4,7 @@ Pydantic models for request/response validation and serialization.
 """
 
 from pydantic import BaseModel, Field
-from typing import Optional
+from typing import Any, Optional
 from datetime import datetime
 
 
@@ -14,7 +14,7 @@ from datetime import datetime
 
 class AnalyzeRequest(BaseModel):
     """Request body for POST /api/analyze."""
-    github_username: str = Field(..., min_length=1, max_length=255, description="GitHub username or profile URL")
+    github_username: Optional[str] = Field(None, max_length=255, description="GitHub username or profile URL")
     role_id: str = Field(..., description="Role identifier (e.g. 'game-dev', 'backend')")
     level: str = Field("mid", description="Target seniority level ('junior', 'mid', 'senior')")
     github_token: Optional[str] = Field(None, description="Optional GitHub PAT for higher rate limits")
@@ -30,8 +30,11 @@ class SubskillEvidence(BaseModel):
     composite_key: str
     subskill_name: str
     confidence: float = Field(..., ge=0.0, le=1.0)
-    status: str  # evidence_found | not_yet_evidenced
+    status: str  # evidence_found | claimed | not_yet_evidenced | verified_gap
     evidence_sources: list[str] = []
+    contributing_sources: list[dict[str, Any]] = []
+    ceiling_applied: Optional[str] = None
+    calculation_trace: Optional[str] = None
 
 
 class SkillScore(BaseModel):
@@ -61,7 +64,7 @@ class RepoInfo(BaseModel):
 class AnalyzeResponse(BaseModel):
     """Full analysis result returned by POST /api/analyze."""
     id: str
-    github_username: str
+    github_username: Optional[str] = ""
     role_id: str
     role_name: str
     level: str
@@ -70,6 +73,7 @@ class AnalyzeResponse(BaseModel):
     readiness_label: str
     total_repos_scanned: int
     relevant_repos_found: int
+    has_cv: bool = False
     skills: list[SkillScore] = []
     repos: list[RepoInfo] = []
     created_at: datetime
@@ -96,3 +100,68 @@ class AnalysisProgress(BaseModel):
     message: str
     progress: float = Field(..., ge=0.0, le=1.0)  # 0.0 to 1.0
     detail: Optional[str] = None
+
+
+# ──────────────────────────────────────────────
+# CV Upload Schemas
+# ──────────────────────────────────────────────
+
+class CVProjectData(BaseModel):
+    """A project entry from the parsed CV."""
+    name: str = ""
+    description: str = ""
+    skills_mentioned: list[str] = []
+
+
+class CVCertificateData(BaseModel):
+    """A certificate entry from the parsed CV."""
+    name: str = ""
+    provider: str = ""
+
+
+class CVParsedData(BaseModel):
+    """Structured data extracted from a CV by the parser."""
+    personal_info: dict[str, str] = {}
+    education: list[dict[str, str]] = []
+    experience: list[dict[str, str]] = []
+    projects: list[CVProjectData] = []
+    skills: list[str] = []
+    certificates: list[CVCertificateData] = []
+    languages: list[str] = []
+    detected_sections: list[str] = []
+
+
+class CVSkillMatch(BaseModel):
+    """A single skill match result from CV analysis."""
+    composite_key: str
+    matched_from: str  # "skills_list" | "project" | "experience" | "signal_pattern"
+    matched_term: str
+    status: str = "claimed"
+    strength: float
+
+
+class CVCertificateMatch(BaseModel):
+    """A single certificate match result from CV analysis."""
+    certificate_name: str
+    classification: str  # "recognized_relevant" | "recognized_no_mapping" | "unrecognized_excluded"
+    matched_composite_keys: Optional[list[str]] = None
+    score_contribution: float = 0.0
+    matched_from_role: Optional[str] = None
+    category_group: Optional[str] = None
+
+
+class CVScoringPreview(BaseModel):
+    """Scoring preview from CV-only evidence."""
+    readiness_score: float = Field(..., ge=0.0, le=1.0)
+    readiness_tier: str
+    readiness_label: str
+    skills: list[SkillScore] = []
+
+
+class CVUploadResponse(BaseModel):
+    """Full response from POST /api/cv/upload."""
+    parsed_cv: CVParsedData
+    skill_matches: list[CVSkillMatch] = []
+    certificate_matches: list[CVCertificateMatch] = []
+    scoring_preview: CVScoringPreview
+

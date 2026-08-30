@@ -21,24 +21,9 @@
       "rationale": "Designing leak-free cross-validation, probability calibration, and business threshold tuning."
     },
     {
-      "skill_id": "ml_model_deployment_serving",
-      "importance": 0.85,
-      "rationale": "Building robust model serving services, TorchScript export, load testing, and Canary deployments."
-    },
-    {
       "skill_id": "ml_hyperparameter_optimization",
       "importance": 0.85,
       "rationale": "Conducting Bayesian optimization with Optuna TPE samplers and pruning unpromising trials."
-    },
-    {
-      "skill_id": "ml_pipelines_orchestration",
-      "importance": 0.85,
-      "rationale": "Building automated training pipelines with Kubeflow/Metaflow and integrating Feast feature stores."
-    },
-    {
-      "skill_id": "ml_monitoring_drift_observability",
-      "importance": 0.8,
-      "rationale": "Implementing Evidently AI drift monitoring, delayed ground truth tracking, and SHAP explainability."
     },
     {
       "skill_id": "ml_feature_engineering_preprocessing",
@@ -54,6 +39,18 @@
       "skill_id": "ml_model_optimization_compression",
       "importance": 0.7,
       "rationale": "Applying Knowledge Distillation, weight pruning, and Quantization-Aware Training (QAT)."
+    },
+    {
+      "skill_id": "ml_computer_vision_deep_learning",
+      "importance": 0.8
+    },
+    {
+      "skill_id": "ml_time_series_forecasting",
+      "importance": 0.8
+    },
+    {
+      "skill_id": "ml_experimentation_research_methodology",
+      "importance": 0.85
     }
   ],
   "scoring": {

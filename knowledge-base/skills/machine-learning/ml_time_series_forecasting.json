@@ -1,0 +1,167 @@
+{
+  "skill_id": "ml_time_series_forecasting",
+  "name": "Time Series Analysis & Forecasting",
+  "description": "Decomposition, stationarity, classical statistical models, tree-based lag engineering, and deep temporal architectures.",
+  "category": "machine-learning",
+  "subskills": [
+    {
+      "id": "time_series_decomposition_trend_seasonality",
+      "name": "Time Series Decomposition & Additive/Multiplicative Components",
+      "description": "Decomposing temporal signals into trend, seasonal, cyclical, and irregular/noise components using classical and STL decomposition.",
+      "keywords": [
+        "STL Decomposition",
+        "Trend",
+        "Seasonality",
+        "Additive Model",
+        "Multiplicative Model"
+      ]
+    },
+    {
+      "id": "stationarity_differencing_unit_root_tests",
+      "name": "Stationarity Transformations & Unit Root Testing (ADF, KPSS)",
+      "description": "Checking covariance stationarity, Augmented Dickey-Fuller (ADF) test, KPSS test, fractional differencing, and Box-Cox transforms.",
+      "keywords": [
+        "ADF Test",
+        "KPSS Test",
+        "Stationarity",
+        "Differencing",
+        "Unit Root",
+        "Box-Cox"
+      ]
+    },
+    {
+      "id": "statistical_forecasting_arima_sarima",
+      "name": "Statistical Univariate Forecasting (ARIMA, SARIMA, Auto-ARIMA)",
+      "description": "Autoregressive (AR), Moving Average (MA), seasonal integration (SARIMA), ACF/PACF interpretation, and Box-Jenkins methodology.",
+      "keywords": [
+        "ARIMA",
+        "SARIMA",
+        "Auto-ARIMA",
+        "ACF",
+        "PACF",
+        "Box-Jenkins"
+      ]
+    },
+    {
+      "id": "exponential_smoothing_holt_winters",
+      "name": "Exponential Smoothing & State Space Models (Holt-Winters, ETS)",
+      "description": "Simple Exponential Smoothing (SES), Holt's linear trend, Holt-Winters seasonal exponential smoothing, and ETS state space formulation.",
+      "keywords": [
+        "Holt-Winters",
+        "Exponential Smoothing",
+        "ETS",
+        "Damped Trend"
+      ]
+    },
+    {
+      "id": "machine_learning_time_series_lag_features",
+      "name": "Tree-Based Forecasting & Lag/Rolling Feature Engineering",
+      "description": "Autoregressive lag creation, rolling mean/std/min/max windows, expanding features, cyclical calendar encodings with LightGBM/XGBoost.",
+      "keywords": [
+        "Lag Features",
+        "Rolling Window",
+        "Expanding Window",
+        "Cyclical Features",
+        "Direct Forecasting",
+        "Recursive Forecasting"
+      ]
+    },
+    {
+      "id": "deep_learning_forecasting_lstm_tcn",
+      "name": "Sequential Neural Forecasting (LSTM, GRU, TCN, N-BEATS)",
+      "description": "Recurrent architectures for temporal modeling, Temporal Convolutional Networks (dilated causal convolutions), and N-BEATS basis expansions.",
+      "keywords": [
+        "LSTM Forecasting",
+        "GRU",
+        "TCN",
+        "Temporal Convolutional Network",
+        "N-BEATS",
+        "NeuralProphet"
+      ]
+    },
+    {
+      "id": "temporal_fusion_transformers_patchtst",
+      "name": "Transformer Forecasting Architectures (TFT, PatchTST, Informer)",
+      "description": "Self-attention on time series, Temporal Fusion Transformer for static/dynamic metadata gating, PatchTST channel independence.",
+      "keywords": [
+        "Temporal Fusion Transformer",
+        "TFT",
+        "PatchTST",
+        "Informer",
+        "Autoformer"
+      ]
+    },
+    {
+      "id": "time_series_cross_validation_backtesting",
+      "name": "Temporal Validation & Backtesting Strategies (TimeSeriesSplit)",
+      "description": "Preventing future data leakage with TimeSeriesSplit, rolling origin evaluation, blocked cross-validation, and expanding window backtesting.",
+      "keywords": [
+        "TimeSeriesSplit",
+        "Rolling Origin",
+        "Backtesting",
+        "Walk-Forward Validation",
+        "Data Leakage Temporal"
+      ]
+    },
+    {
+      "id": "evaluation_metrics_mape_smape_wape",
+      "name": "Forecast Accuracy Metrics & Diagnostics (MAPE, WAPE, Pinball)",
+      "description": "Mean Absolute Percentage Error (MAPE), symmetric MAPE, Weighted Absolute Percentage Error (WAPE), MASE, and Pinball loss for quantiles.",
+      "keywords": [
+        "MAPE",
+        "sMAPE",
+        "WAPE",
+        "MASE",
+        "Pinball Loss",
+        "Quantile Loss"
+      ]
+    }
+  ],
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "time_series_decomposition_trend_seasonality",
+        "stationarity_differencing_unit_root_tests",
+        "evaluation_metrics_mape_smape_wape"
+      ]
+    },
+    "mid": {
+      "expected_subskills": [
+        "statistical_forecasting_arima_sarima",
+        "exponential_smoothing_holt_winters",
+        "machine_learning_time_series_lag_features"
+      ]
+    },
+    "senior": {
+      "expected_subskills": [
+        "deep_learning_forecasting_lstm_tcn",
+        "temporal_fusion_transformers_patchtst",
+        "time_series_cross_validation_backtesting"
+      ]
+    }
+  },
+  "evidence": {
+    "github": [
+      {
+        "signal": "Uses statsmodels or prophet for time series analysis",
+        "detection": "content_analysis",
+        "pattern": "statsmodels.tsa|prophet|Prophet|pmdarima|auto_arima",
+        "strength": 0.6,
+        "maps_to": [
+          "ml_time_series_forecasting.statistical_forecasting_arima_sarima",
+          "ml_time_series_forecasting.stationarity_differencing_unit_root_tests"
+        ]
+      },
+      {
+        "signal": "Implements neural or lag-based time series pipelines with TimeSeriesSplit",
+        "detection": "content_analysis",
+        "pattern": "TimeSeriesSplit|rolling_origin|neuralforecast|darts.models|pytorch_forecasting",
+        "strength": 0.6,
+        "maps_to": [
+          "ml_time_series_forecasting.machine_learning_time_series_lag_features",
+          "ml_time_series_forecasting.time_series_cross_validation_backtesting"
+        ]
+      }
+    ]
+  }
+}

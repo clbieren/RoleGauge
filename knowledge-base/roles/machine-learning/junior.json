@@ -31,29 +31,26 @@
       "rationale": "Understanding gradient descent, linear algebra matrix operations, and probability distributions."
     },
     {
-      "skill_id": "ml_pipelines_orchestration",
-      "importance": 0.7,
-      "rationale": "Tracking runs with MLflow, dataset versioning with DVC, and containerizing with Docker."
-    },
-    {
       "skill_id": "ml_hyperparameter_optimization",
       "importance": 0.65,
       "rationale": "Executing grid/random searches and learning rate schedulers."
     },
     {
-      "skill_id": "ml_model_deployment_serving",
-      "importance": 0.6,
-      "rationale": "Wrapping models into FastAPI prediction endpoints and exporting to ONNX."
-    },
-    {
-      "skill_id": "ml_monitoring_drift_observability",
-      "importance": 0.55,
-      "rationale": "Calculating statistical drift metrics (PSI, KS-test) and generating SHAP feature plots."
-    },
-    {
       "skill_id": "ml_model_optimization_compression",
       "importance": 0.45,
       "rationale": "Applying standard post-training quantization and torch.compile."
+    },
+    {
+      "skill_id": "ml_computer_vision_deep_learning",
+      "importance": 0.8
+    },
+    {
+      "skill_id": "ml_time_series_forecasting",
+      "importance": 0.8
+    },
+    {
+      "skill_id": "ml_experimentation_research_methodology",
+      "importance": 0.85
     }
   ],
   "scoring": {

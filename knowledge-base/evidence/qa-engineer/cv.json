@@ -3,8 +3,9 @@
   "name": "CV / Resume Analysis - QA Engineer",
   "description": "Extraction rules and signal mappings for QA Engineer and Test Automation CVs/resumes. NOTE: Specific evidence mappings (regex patterns and maps_to composite keys) are stored within individual skill files under evidence.cv, NOT here. The validate_composite_keys.py script scans both locations to verify coverage.",
   "extraction_rules": {
-    "sections": {
-      "work_experience": {
+    "sections": [
+      {
+        "section": "work_experience",
         "priority": "high",
         "base_strength": 0.6,
         "quality_indicators": [
@@ -15,12 +16,14 @@
           "Establishing performance testing baselines and SLA/SLO thresholds with k6 or JMeter"
         ]
       },
-      "skills_list": {
+      {
+        "section": "skills_list",
         "priority": "medium",
         "base_strength": 0.3,
         "notes": "Skills listed without project context receive lower strength. Must be corroborated by GitHub or assessment."
       },
-      "projects": {
+      {
+        "section": "projects",
         "priority": "high",
         "base_strength": 0.5,
         "quality_indicators": [
@@ -29,7 +32,8 @@
           "Demonstrated contract testing (Pact) or service virtualization (WireMock)"
         ]
       },
-      "certifications": {
+      {
+        "section": "certifications",
         "priority": "medium",
         "base_strength": 0.4,
         "recognized_certifications": [
@@ -40,7 +44,8 @@
           "Playwright / Cypress Certified Test Automation Specialist"
         ]
       },
-      "education": {
+      {
+        "section": "education",
         "priority": "low",
         "base_strength": 0.2,
         "relevant_degrees": [
@@ -50,7 +55,7 @@
           "Computer Engineering"
         ]
       }
-    }
+    ]
   },
   "signal_mapping": {
     "patterns": [

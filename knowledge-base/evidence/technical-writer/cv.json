@@ -3,8 +3,9 @@
   "name": "CV / Resume Analysis - Technical Writer",
   "description": "Extraction rules and signal mappings for Technical Writer CVs/resumes, focusing on published documentation portals, API references, content strategy audits, style guide governance, and support ticket deflection metrics.",
   "extraction_rules": {
-    "sections": {
-      "work_experience": {
+    "sections": [
+      {
+        "section": "work_experience",
         "priority": "critical",
         "base_strength": 0.7,
         "quality_indicators": [
@@ -16,7 +17,8 @@
           "Multi-version documentation management and internationalization (Crowdin, Lokalise)"
         ]
       },
-      "published_portfolio_links": {
+      {
+        "section": "published_portfolio_links",
         "priority": "critical",
         "base_strength": 0.8,
         "quality_indicators": [
@@ -26,12 +28,14 @@
           "Published whitepapers, ebooks, case studies, or Keep a Changelog release notes"
         ]
       },
-      "skills_list": {
+      {
+        "section": "skills_list",
         "priority": "medium",
         "base_strength": 0.4,
         "notes": "Technical writing skills listed without concrete deliverable context receive lower baseline strength."
       },
-      "certifications": {
+      {
+        "section": "certifications",
         "priority": "medium",
         "base_strength": 0.5,
         "recognized_certifications": [
@@ -42,7 +46,8 @@
           "AWS Certified Cloud Practitioner / Solutions Architect (Demonstrating technical domain depth)"
         ]
       },
-      "education": {
+      {
+        "section": "education",
         "priority": "low",
         "base_strength": 0.3,
         "relevant_degrees": [
@@ -52,7 +57,7 @@
           "Information Management"
         ]
       }
-    }
+    ]
   },
   "signal_mapping": {
     "patterns": [

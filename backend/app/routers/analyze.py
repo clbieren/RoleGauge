@@ -1,132 +1,259 @@
 """
 Analyze Router.
 POST /api/analyze — Main analysis pipeline endpoint.
-Orchestrates: GitHub fetch → Role filter → Evidence detect → Scoring → DB save.
+Orchestrates:
+- GitHub profile fetch & analysis (optional)
+- CV upload & rule-based parsing (optional)
+- Multi-source Evidence Engine fusion
+- Dynamic scoring engine calculation
+- Database persistence & response generation.
 """
 
 import logging
+import os
+import tempfile
 import uuid
-from typing import Any
+from datetime import datetime, timezone
+from typing import Any, Optional
 
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, File, Form, HTTPException, Request, UploadFile
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from app.config import settings
 from app.database import get_db
 from app.exceptions import RoleGaugeException, RoleNotFoundError
 from app.models.db_models import Analysis, SkillResult, SubskillResult, RepoData
-from app.models.schemas import AnalyzeRequest, AnalyzeResponse, SkillScore, SubskillEvidence, RepoInfo
-from app.services.github_fetcher import GitHubFetcher, extract_username
-from app.services.role_filter import RoleFilter
-from app.services.evidence_detector import EvidenceDetector
-from app.services.scoring_engine import ScoringEngine
+from app.models.schemas import (
+    AnalyzeRequest,
+    AnalyzeResponse,
+    RepoInfo,
+    SkillScore,
+    SubskillEvidence,
+)
 from app.services.ai_provider import get_ai_provider
+from app.services.cv_certification_matcher import CertificationMatcher, get_certification_index
+from app.services.cv_parser import parse_cv
+from app.services.cv_skill_matcher import CVSkillMatcher
+from app.services.evidence_detector import EvidenceDetector, SubskillEvidenceResult
+from app.services.evidence_engine import EvidenceEngine, UnifiedSubskillEvidence
+from app.services.github_fetcher import GitHubFetcher, extract_username
 from app.services.kb_loader import kb
+from app.services.role_filter import FilteredRepo, RoleFilter
+from app.services.scoring_engine import ScoringEngine
 
 logger = logging.getLogger(__name__)
 router = APIRouter(prefix="/api", tags=["analyze"])
 
 
 @router.post("/analyze", response_model=AnalyzeResponse)
-async def analyze_github_profile(
-    request: AnalyzeRequest,
+async def analyze_profile(
+    http_request: Request,
     db: AsyncSession = Depends(get_db),
 ) -> AnalyzeResponse:
     """
-    Analyze a GitHub user's profile for a specific role and level.
+    Analyze a candidate's profile for a specific role and level.
+    Supports:
+    - JSON payload (`application/json`) with `github_username`, `role_id`, `level`
+    - Multipart payload (`multipart/form-data`) with `file` (CV), `github_username`, `role_id`, `level`
 
-    Pipeline:
-    1. Validate role & level parameters
-    2. Extract GitHub username from input
-    3. Fetch public repos via GitHub REST API
-    4. Filter repos by role relevance
-    5. Fetch content of relevant files
-    6. Detect evidence (keyword + optional AI)
-    7. Calculate scores via dynamic scoring engine
-    8. Save results to database
-    9. Return structured response
+    At least one of `github_username` or `file` is required.
     """
-    # 1. Validate role and level in KB
-    if request.role_id not in kb.role_categories:
+    content_type = http_request.headers.get("content-type", "").lower()
+    github_username: Optional[str] = None
+    role_id: str = ""
+    level: str = "mid"
+    github_token: Optional[str] = None
+    use_ai: bool = False
+    cv_file: Optional[UploadFile] = None
+    cv_bytes: Optional[bytes] = None
+    cv_filename: Optional[str] = None
+
+    # Step 1: Parse request based on content-type
+    if "multipart/form-data" in content_type:
+        form = await http_request.form()
+        github_username = form.get("github_username")  # type: ignore
+        role_id = form.get("role_id", "")  # type: ignore
+        level = form.get("level", "mid")  # type: ignore
+        github_token = form.get("github_token")  # type: ignore
+        use_ai_raw = form.get("use_ai", "false")  # type: ignore
+        use_ai = str(use_ai_raw).lower() in ("true", "1")
+        
+        file_obj = form.get("file")
+        if file_obj and hasattr(file_obj, "filename") and file_obj.filename:
+            cv_file = file_obj  # type: ignore
+            cv_filename = cv_file.filename
+            cv_bytes = await cv_file.read()
+    else:
+        # JSON body
+        try:
+            body = await http_request.json()
+            req = AnalyzeRequest(**body)
+            github_username = req.github_username
+            role_id = req.role_id
+            level = req.level
+            github_token = req.github_token
+            use_ai = req.use_ai
+        except Exception as e:
+            raise HTTPException(status_code=400, detail=f"Invalid request body: {e}")
+
+    # Step 2: Validate inputs
+    if not github_username and not cv_bytes:
         raise HTTPException(
             status_code=400,
-            detail=f"Unknown role: '{request.role_id}'. Available roles: {kb.role_categories}",
+            detail="At least one evidence source ('github_username' or CV file) is required for analysis.",
         )
 
-    role_def = kb.get_role(request.role_id, request.level)
+    if role_id not in kb.role_categories:
+        raise HTTPException(
+            status_code=400,
+            detail=f"Unknown role: '{role_id}'. Available roles: {kb.role_categories}",
+        )
+
+    role_def = kb.get_role(role_id, level)
     if not role_def:
         raise HTTPException(
             status_code=400,
-            detail=f"Level '{request.level}' not found for role '{request.role_id}'",
+            detail=f"Level '{level}' not found for role '{role_id}'",
         )
+
+    # ── Pipeline Execution ──
+    github_evidence: Optional[dict[str, SubskillEvidenceResult]] = None
+    filtered_repos: list[FilteredRepo] = []
+    username_clean: str = ""
+
+    cv_skills_evidence: Optional[dict[str, SubskillEvidenceResult]] = None
+    cv_cert_matches: Optional[list[dict[str, Any]]] = None
 
     try:
-        # Step 2: Extract username
-        try:
-            username = extract_username(request.github_username)
-        except ValueError as e:
-            raise HTTPException(status_code=400, detail=str(e))
+        # Step 3: Run GitHub pipeline if username provided
+        if github_username and github_username.strip():
+            try:
+                username_clean = extract_username(github_username.strip())
+            except ValueError as e:
+                raise HTTPException(status_code=400, detail=str(e))
 
-        logger.info(f"Starting analysis for {username} as {request.role_id}/{request.level}")
+            logger.info(f"Starting GitHub analysis for {username_clean} as {role_id}/{level}")
+            fetcher = GitHubFetcher(token=github_token)
+            repos = await fetcher.fetch_user_repos(username_clean)
 
-        # Step 3: Fetch repos from GitHub
-        fetcher = GitHubFetcher(token=request.github_token)
-        repos = await fetcher.fetch_user_repos(username)
+            if not repos and not cv_bytes:
+                raise HTTPException(status_code=404, detail=f"No public repositories found for user '{username_clean}'")
 
-        if not repos:
-            raise HTTPException(status_code=404, detail=f"No public repositories found for user '{username}'")
+            if repos:
+                role_filter = RoleFilter(kb, role_id)
+                filtered_repos = role_filter.filter_repos(repos)
 
-        # Step 4: Filter by role
-        role_filter = RoleFilter(kb, request.role_id)
-        filtered_repos = role_filter.filter_repos(repos)
+                files_to_fetch = role_filter.get_files_to_fetch_content(filtered_repos)
+                for repo_full_name, file_paths in files_to_fetch.items():
+                    contents = await fetcher.fetch_specific_files(repo_full_name, file_paths)
+                    for f_repo in filtered_repos:
+                        if f_repo.full_name == repo_full_name:
+                            f_repo.file_contents = contents
+                            break
 
-        # Step 5: Fetch content of relevant files
-        files_to_fetch = role_filter.get_files_to_fetch_content(filtered_repos)
-        for repo_full_name, file_paths in files_to_fetch.items():
-            contents = await fetcher.fetch_specific_files(repo_full_name, file_paths)
-            # Attach contents to the corresponding FilteredRepo
-            for f_repo in filtered_repos:
-                if f_repo.full_name == repo_full_name:
-                    f_repo.file_contents = contents
-                    break
+                detector = EvidenceDetector(kb, role_id)
+                github_evidence = detector.detect_all(filtered_repos)
 
-        # Step 6: Detect evidence
-        detector = EvidenceDetector(kb, request.role_id)
-        evidence = detector.detect_all(filtered_repos)
+                # Optional: AI enrichment for GitHub evidence
+                if use_ai:
+                    ai_provider = get_ai_provider()
+                    unevidenced = [
+                        key for key, result in github_evidence.items()
+                        if result.status == "not_yet_evidenced"
+                    ]
+                    if unevidenced:
+                        ai_data = _prepare_ai_data(filtered_repos)
+                        ai_results = await ai_provider.analyze_evidence(
+                            role_id, level, unevidenced, ai_data
+                        )
+                        _merge_ai_results(github_evidence, ai_results)
 
-        # Optional: AI enrichment
-        if request.use_ai:
-            ai_provider = get_ai_provider()
-            unevidenced = [
-                key for key, result in evidence.items()
-                if result.status == "not_yet_evidenced"
-            ]
-            if unevidenced:
-                ai_data = _prepare_ai_data(filtered_repos)
-                ai_results = await ai_provider.analyze_evidence(
-                    request.role_id, request.level, unevidenced, ai_data
+        # Step 4: Run CV pipeline if file provided
+        if cv_bytes and cv_filename:
+            file_ext = os.path.splitext(cv_filename)[1].lower()
+            if file_ext not in settings.CV_ALLOWED_EXTENSIONS:
+                raise HTTPException(
+                    status_code=400,
+                    detail=f"Unsupported CV format: '{file_ext}'. Only PDF and DOCX are accepted.",
                 )
-                _merge_ai_results(evidence, ai_results)
+            if len(cv_bytes) > settings.CV_MAX_FILE_SIZE:
+                raise HTTPException(
+                    status_code=413,
+                    detail=f"CV file too large: {len(cv_bytes)} bytes (max 10MB).",
+                )
 
-        # Step 7: Calculate scores via dynamic scoring engine
-        engine = ScoringEngine(kb, request.role_id, request.level)
-        scoring_result = engine.calculate_all(evidence)
+            temp_path = None
+            try:
+                with tempfile.NamedTemporaryFile(
+                    suffix=file_ext, delete=False, prefix="rolegauge_cv_"
+                ) as tmp:
+                    tmp.write(cv_bytes)
+                    temp_path = tmp.name
 
-        # Step 8: Save to database
-        analysis = await _save_analysis(
-            db, username, request, scoring_result, filtered_repos, evidence
+                parsed_cv = parse_cv(temp_path)
+            finally:
+                if temp_path and os.path.exists(temp_path):
+                    try:
+                        os.unlink(temp_path)
+                    except OSError:
+                        pass
+
+            skill_matcher = CVSkillMatcher(kb, role_id)
+            cv_skills_evidence = skill_matcher.match_all(parsed_cv)
+
+            cert_index = get_certification_index()
+            if not cert_index._built:
+                cert_index.build(kb)
+            cert_matcher = CertificationMatcher(kb, cert_index, role_id)
+            cv_cert_matches = cert_matcher.match_certificates(parsed_cv.get("certificates", []))
+
+        # Step 5: Multi-source Fusion via Evidence Engine
+        evidence_engine = EvidenceEngine(kb, role_id, level)
+        unified_evidence = evidence_engine.merge_evidence(
+            github_evidence=github_evidence,
+            cv_skills_evidence=cv_skills_evidence,
+            cv_cert_matches=cv_cert_matches,
         )
 
-        # Step 9: Build response
-        role_title = role_def.get("title", f"{request.level.capitalize()} {request.role_id}")
-        return _build_response(analysis.id, username, request, role_title, scoring_result, filtered_repos)
+        # Step 6: Dynamic Scoring Engine
+        scoring_evidence = {
+            ck: u.to_subskill_evidence_result() for ck, u in unified_evidence.items()
+        }
+        scoring_engine = ScoringEngine(kb, role_id, level)
+        scoring_result = scoring_engine.calculate_all(scoring_evidence)
+
+        # Step 7: Save to Database
+        analysis = await _save_analysis(
+            db=db,
+            username=username_clean,
+            role_id=role_id,
+            level=level,
+            use_ai=use_ai,
+            scoring_result=scoring_result,
+            filtered_repos=filtered_repos,
+            scoring_evidence=scoring_evidence,
+        )
+
+        # Step 8: Return Structured Response
+        role_title = role_def.get("title", f"{level.capitalize()} {role_id}")
+        return _build_response(
+            analysis_id=analysis.id,
+            username=username_clean,
+            role_id=role_id,
+            role_title=role_title,
+            level=level,
+            has_cv=bool(cv_bytes),
+            scoring_result=scoring_result,
+            filtered_repos=filtered_repos,
+        )
 
     except RoleGaugeException as e:
-        logger.warning(f"Analysis error for {request.github_username}: {e.detail}")
+        logger.warning(f"Analysis error for {github_username or 'CV'}: {e.detail}")
         raise HTTPException(status_code=e.status_code, detail=e.detail)
     except HTTPException:
         raise
     except Exception as e:
-        logger.exception(f"Analysis failed unexpectedly for {request.github_username}")
+        logger.exception(f"Analysis failed unexpectedly for {github_username or 'CV'}")
         raise HTTPException(status_code=500, detail=f"Analysis pipeline failed: {str(e)}")
 
 
@@ -175,26 +302,27 @@ def _merge_ai_results(evidence: dict, ai_results: dict):
 async def _save_analysis(
     db: AsyncSession,
     username: str,
-    request: AnalyzeRequest,
+    role_id: str,
+    level: str,
+    use_ai: bool,
     scoring_result: dict,
     filtered_repos: list,
-    evidence: dict,
+    scoring_evidence: dict,
 ) -> Analysis:
     """Save analysis results to PostgreSQL."""
     analysis = Analysis(
-        github_username=username,
-        role_id=request.role_id,
-        level=request.level,
+        github_username=username or "cv_upload",
+        role_id=role_id,
+        level=level,
         readiness_score=scoring_result["readiness_score"],
         readiness_tier=scoring_result["readiness_tier"],
         total_repos_scanned=len(filtered_repos),
         relevant_repos_found=sum(1 for r in filtered_repos if r.is_relevant),
-        ai_provider_used=request.use_ai and "openai" or "none",
+        ai_provider_used=use_ai and "openai" or "none",
     )
     db.add(analysis)
-    await db.flush()  # Get the ID
+    await db.flush()
 
-    # Save skill results
     for skill_data in scoring_result["skills"]:
         skill_result = SkillResult(
             analysis_id=analysis.id,
@@ -206,7 +334,6 @@ async def _save_analysis(
         db.add(skill_result)
         await db.flush()
 
-        # Save subskill results
         for sub in skill_data["subskills"]:
             subskill_result = SubskillResult(
                 skill_result_id=skill_result.id,
@@ -218,10 +345,9 @@ async def _save_analysis(
             )
             db.add(subskill_result)
 
-    # Save repo data
     for repo in filtered_repos:
         repo_evidence = []
-        for composite_key, ev in evidence.items():
+        for composite_key, ev in scoring_evidence.items():
             if ev.status == "evidence_found":
                 for signal in ev.signals:
                     if repo.repo_name in signal.file_path:
@@ -248,10 +374,12 @@ async def _save_analysis(
 
 
 def _build_response(
-    analysis_id,
+    analysis_id: Any,
     username: str,
-    request: AnalyzeRequest,
+    role_id: str,
     role_title: str,
+    level: str,
+    has_cv: bool,
     scoring_result: dict,
     filtered_repos: list,
 ) -> AnalyzeResponse:
@@ -265,6 +393,9 @@ def _build_response(
                 confidence=sub["confidence"],
                 status=sub["status"],
                 evidence_sources=sub.get("evidence_sources", []),
+                contributing_sources=sub.get("contributing_sources", []),
+                ceiling_applied=sub.get("ceiling_applied"),
+                calculation_trace=sub.get("calculation_trace"),
             )
             for sub in skill_data["subskills"]
         ]
@@ -293,19 +424,18 @@ def _build_response(
         for r in filtered_repos
     ]
 
-    from datetime import datetime, timezone
-
     return AnalyzeResponse(
         id=str(analysis_id),
         github_username=username,
-        role_id=request.role_id,
+        role_id=role_id,
         role_name=role_title,
-        level=request.level,
+        level=level,
         readiness_score=scoring_result["readiness_score"],
         readiness_tier=scoring_result["readiness_tier"],
         readiness_label=scoring_result["readiness_label"],
         total_repos_scanned=len(filtered_repos),
         relevant_repos_found=sum(1 for r in filtered_repos if r.is_relevant),
+        has_cv=has_cv,
         skills=skills,
         repos=repos,
         created_at=datetime.now(timezone.utc),

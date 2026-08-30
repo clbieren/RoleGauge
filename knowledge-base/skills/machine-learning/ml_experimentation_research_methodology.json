@@ -1,0 +1,160 @@
+{
+  "skill_id": "ml_experimentation_research_methodology",
+  "name": "ML Experimentation & Research Methodology",
+  "description": "Scientific hypothesis testing, experimental design, baseline modeling, ablation studies, error slicing, and reproducible discovery.",
+  "category": "machine-learning",
+  "subskills": [
+    {
+      "id": "hypothesis_formulation_scientific_method",
+      "name": "Scientific Hypothesis Formulation & Problem Structuring",
+      "description": "Translating ambiguous business/scientific problems into testable ML hypotheses with clear dependent/independent variables.",
+      "keywords": [
+        "Hypothesis Testing",
+        "Problem Framing",
+        "Scientific Method",
+        "Research Design"
+      ]
+    },
+    {
+      "id": "ab_testing_design_power_analysis",
+      "name": "Experimental Design & Statistical Power Analysis",
+      "description": "Sample size determination, minimum detectable effect (MDE), significance level (alpha), statistical power (1-beta), and randomized trials.",
+      "keywords": [
+        "Power Analysis",
+        "Sample Size",
+        "MDE",
+        "Randomized Controlled Trial",
+        "A/B Testing Design"
+      ]
+    },
+    {
+      "id": "statistical_significance_p_values_confidence_intervals",
+      "name": "Statistical Significance, P-values & Multiple Testing",
+      "description": "Parametric/non-parametric tests (t-test, Mann-Whitney U, ANOVA), Bonferroni/FDR corrections, and bootstrapping confidence intervals.",
+      "keywords": [
+        "P-value",
+        "Confidence Interval",
+        "T-test",
+        "Mann-Whitney",
+        "Bonferroni",
+        "FDR",
+        "Bootstrapping"
+      ]
+    },
+    {
+      "id": "baseline_model_selection_heuristics",
+      "name": "Baseline Model Formulation & Simple Benchmark Heuristics",
+      "description": "Establishing zero-cost baselines (majority class, mean/median, heuristic rules) to rigorously justify model complexity increases.",
+      "keywords": [
+        "Baseline Model",
+        "Heuristic Benchmark",
+        "DummyClassifier",
+        "DummyRegressor",
+        "Benchmark"
+      ]
+    },
+    {
+      "id": "error_analysis_confusion_matrix_slicing",
+      "name": "Cohort Error Analysis & Data Slicing Diagnostics",
+      "description": "Residual inspection, error taxonomy categorization, slice-based evaluation to identify systemic failure modes in subpopulations.",
+      "keywords": [
+        "Error Analysis",
+        "Data Slicing",
+        "Failure Modes",
+        "Residual Analysis",
+        "Model Diagnostics"
+      ]
+    },
+    {
+      "id": "ablation_studies_feature_attribution",
+      "name": "Ablation Studies & Model Component Isolation",
+      "description": "Systematic removal of architectural components, regularizers, or feature subsets to isolate causal performance drivers.",
+      "keywords": [
+        "Ablation Study",
+        "Component Isolation",
+        "Sensitivity Analysis",
+        "Feature Ablation"
+      ]
+    },
+    {
+      "id": "research_reproducibility_deterministic_seeds",
+      "name": "Research Reproducibility, Deterministic Seeds & Environment Pinning",
+      "description": "Deterministic CUDA execution, random seed management across NumPy/PyTorch/Python, environment pinning for exact replication.",
+      "keywords": [
+        "Reproducibility",
+        "Deterministic Seed",
+        "torch.manual_seed",
+        "CUDNN Deterministic"
+      ]
+    },
+    {
+      "id": "metric_selection_tradeoff_analysis",
+      "name": "Primary vs Guardrail Metrics & Strategic Trade-off Analysis",
+      "description": "Selecting primary optimization objectives vs guardrail/constraint metrics (e.g. latency vs accuracy, precision vs recall trade-offs).",
+      "keywords": [
+        "Guardrail Metrics",
+        "Metric Tradeoff",
+        "Pareto Frontier",
+        "Objective Function"
+      ]
+    },
+    {
+      "id": "literature_review_state_of_the_art_benchmarking",
+      "name": "SOTA Literature Review & Standardized Benchmarking",
+      "description": "Tracking ArXiv research, evaluating models on benchmark suites (GLUE, SuperGLUE, ImageNet, MMLU), and reproducing papers.",
+      "keywords": [
+        "Literature Review",
+        "Benchmark Datasets",
+        "SOTA",
+        "Research Reproduction"
+      ]
+    }
+  ],
+  "levels": {
+    "junior": {
+      "expected_subskills": [
+        "hypothesis_formulation_scientific_method",
+        "baseline_model_selection_heuristics",
+        "research_reproducibility_deterministic_seeds"
+      ]
+    },
+    "mid": {
+      "expected_subskills": [
+        "ab_testing_design_power_analysis",
+        "statistical_significance_p_values_confidence_intervals",
+        "error_analysis_confusion_matrix_slicing"
+      ]
+    },
+    "senior": {
+      "expected_subskills": [
+        "ablation_studies_feature_attribution",
+        "metric_selection_tradeoff_analysis",
+        "literature_review_state_of_the_art_benchmarking"
+      ]
+    }
+  },
+  "evidence": {
+    "github": [
+      {
+        "signal": "Sets deterministic seeds and documents experimental ablations",
+        "detection": "content_analysis",
+        "pattern": "manual_seed|np.random.seed|torch.cuda.manual_seed_all|ablation_study",
+        "strength": 0.6,
+        "maps_to": [
+          "ml_experimentation_research_methodology.research_reproducibility_deterministic_seeds",
+          "ml_experimentation_research_methodology.ablation_studies_feature_attribution"
+        ]
+      },
+      {
+        "signal": "Implements statistical hypothesis testing or power analysis",
+        "detection": "content_analysis",
+        "pattern": "scipy.stats.ttest|statsmodels.stats.power|scipy.stats.mannwhitneyu",
+        "strength": 0.6,
+        "maps_to": [
+          "ml_experimentation_research_methodology.statistical_significance_p_values_confidence_intervals",
+          "ml_experimentation_research_methodology.ab_testing_design_power_analysis"
+        ]
+      }
+    ]
+  }
+}

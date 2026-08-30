@@ -7,7 +7,7 @@ Outputs composite_key → evidence mapping that feeds into the Scoring Engine.
 
 import logging
 import re
-from typing import Any
+from typing import Any, Optional
 from dataclasses import dataclass, field
 
 from app.services.kb_loader import KnowledgeBase
@@ -30,8 +30,11 @@ class SubskillEvidenceResult:
     """Aggregated evidence for a single subskill (composite key)."""
     composite_key: str
     subskill_name: str
-    status: str = "not_yet_evidenced"  # evidence_found | not_yet_evidenced
+    status: str = "not_yet_evidenced"  # evidence_found | claimed | not_yet_evidenced | verified_gap
     signals: list[EvidenceSignal] = field(default_factory=list)
+    contributing_sources: list[dict[str, Any]] = field(default_factory=list)
+    ceiling_applied: Optional[str] = None
+    calculation_trace: Optional[str] = None
 
     @property
     def max_strength(self) -> float:

@@ -848,148 +848,6 @@
         ]
       }
     ],
-    "ml_model_deployment_serving.fastapi_rest_model_microservices": [
-      {
-        "level": "junior",
-        "type": "scenario",
-        "question": "How do you build a high-concurrency async prediction API using FastAPI with Pydantic validation and startup model caching?",
-        "expected_answer_keywords": [
-          "FastAPI",
-          "Pydantic",
-          "lifespan / startup event",
-          "async def",
-          "model in-memory caching",
-          "request validation",
-          "REST API"
-        ]
-      }
-    ],
-    "ml_model_deployment_serving.grpc_protobuf_high_throughput_serving": [
-      {
-        "level": "mid",
-        "type": "scenario",
-        "question": "Why is gRPC over HTTP/2 significantly faster than JSON REST for high-throughput machine learning inference payloads?",
-        "expected_answer_keywords": [
-          "gRPC",
-          "HTTP/2 multiplexing",
-          "Protocol Buffers",
-          "binary serialization",
-          "low CPU serialization overhead",
-          "streaming RPC"
-        ]
-      }
-    ],
-    "ml_model_deployment_serving.triton_inference_server_management": [
-      {
-        "level": "senior",
-        "type": "scenario",
-        "question": "How do you configure dynamic batching and instance groups in a Triton config.pbtxt file to maximize GPU utilization under varying load?",
-        "expected_answer_keywords": [
-          "Triton",
-          "config.pbtxt",
-          "dynamic_batching",
-          "max_queue_delay_microseconds",
-          "instance_group",
-          "KIND_GPU",
-          "GPU saturation"
-        ]
-      }
-    ],
-    "ml_model_deployment_serving.onnx_runtime_export_inference": [
-      {
-        "level": "junior",
-        "type": "conceptual",
-        "question": "How do you export a PyTorch model to ONNX using torch.onnx.export and specify dynamic batch dimensions in dynamic_axes?",
-        "expected_answer_keywords": [
-          "torch.onnx.export",
-          "dynamic_axes",
-          "dynamic batch size",
-          "ONNX Runtime",
-          "InferenceSession",
-          "input_names",
-          "output_names"
-        ]
-      }
-    ],
-    "ml_model_deployment_serving.torchscript_trace_script_deployment": [
-      {
-        "level": "mid",
-        "type": "scenario",
-        "question": "When should you use torch.jit.script over torch.jit.trace to serialize a PyTorch model containing dynamic control flow (if/else, loops)?",
-        "expected_answer_keywords": [
-          "torch.jit.script",
-          "torch.jit.trace",
-          "dynamic control flow",
-          "AST inspection",
-          "tracing fixed control flow",
-          "C++ deployment",
-          "TorchScript"
-        ]
-      }
-    ],
-    "ml_model_deployment_serving.batch_vs_realtime_serving_architectures": [
-      {
-        "level": "junior",
-        "type": "conceptual",
-        "question": "Compare Offline Batch Scoring (Spark/Ray), Online Real-Time Serving (FastAPI/Triton), and Nearline Streaming Inference.",
-        "expected_answer_keywords": [
-          "batch scoring",
-          "real-time serving",
-          "streaming inference",
-          "throughput vs latency trade-off",
-          "pre-computed predictions",
-          "event-driven"
-        ]
-      }
-    ],
-    "ml_model_deployment_serving.dynamic_batching_concurrency_control": [
-      {
-        "level": "senior",
-        "type": "scenario",
-        "question": "How does server-side dynamic batching assemble independent concurrent requests into a single tensor batch without exceeding latency deadlines?",
-        "expected_answer_keywords": [
-          "dynamic batching",
-          "request queuing",
-          "max_queue_delay",
-          "batch dimension concatenation",
-          "tensor splitting",
-          "latency threshold"
-        ]
-      }
-    ],
-    "ml_model_deployment_serving.model_canary_shadow_ab_deployment": [
-      {
-        "level": "mid",
-        "type": "scenario",
-        "question": "Explain how Shadow Deployment (Dark Launch) mirrors live production traffic to a candidate model without affecting client responses.",
-        "expected_answer_keywords": [
-          "Shadow deployment",
-          "dark launch",
-          "mirror live traffic",
-          "fire-and-forget",
-          "zero user impact",
-          "production validation",
-          "Seldon / KServe"
-        ]
-      }
-    ],
-    "ml_model_deployment_serving.latency_profiling_load_testing": [
-      {
-        "level": "mid",
-        "type": "scenario",
-        "question": "How do you use Locust to profile the P95 and P99 latency percentiles of a model microservice under 1,000 concurrent RPS?",
-        "expected_answer_keywords": [
-          "Locust",
-          "P95 latency",
-          "P99 latency",
-          "RPS",
-          "concurrency testing",
-          "cold start spikes",
-          "stress testing",
-          "latency distribution"
-        ]
-      }
-    ],
     "ml_model_optimization_compression.post_training_quantization_ptq": [
       {
         "level": "junior",
@@ -1131,290 +989,343 @@
         ]
       }
     ],
-    "ml_monitoring_drift_observability.data_covariate_drift_detection": [
+    "ml_computer_vision_deep_learning.cnn_architectures_resnet_convnext": [
       {
-        "level": "junior",
-        "type": "conceptual",
-        "question": "How does the Population Stability Index (PSI) quantify covariate shift between baseline training data and production inference data?",
+        "question": "How do residual skip connections in ResNet resolve the vanishing gradient problem in very deep CNNs?",
         "expected_answer_keywords": [
-          "PSI",
-          "Population Stability Index",
-          "covariate shift",
-          "binning distributions",
-          "PSI < 0.1 stable",
-          "distribution divergence"
+          "identity mapping",
+          "residual connection",
+          "vanishing gradient",
+          "gradient highway",
+          "f(x) + x"
         ]
       }
     ],
-    "ml_monitoring_drift_observability.concept_prior_drift_detection": [
+    "ml_computer_vision_deep_learning.vision_transformers_vit_swin": [
       {
-        "level": "mid",
-        "type": "conceptual",
-        "question": "What is the difference between Covariate Shift P(X), Concept Drift P(Y|X), and Prior Probability Shift P(Y)?",
+        "question": "Explain how Vision Transformers (ViT) divide an image into patches and process them using self-attention compared to convolutional inductive bias.",
         "expected_answer_keywords": [
-          "Covariate Shift P(X)",
-          "Concept Drift P(Y|X)",
-          "Prior Shift P(Y)",
-          "relationship change",
-          "input distribution change",
-          "target distribution change"
+          "patch embedding",
+          "linear projection",
+          "self-attention",
+          "inductive bias",
+          "global context"
         ]
       }
     ],
-    "ml_monitoring_drift_observability.evidently_ai_whylogs_monitoring_tooling": [
+    "ml_computer_vision_deep_learning.object_detection_yolo_faster_rcnn": [
       {
-        "level": "mid",
-        "type": "scenario",
-        "question": "How do you integrate Evidently AI or whylogs into an automated pipeline to generate HTML drift reports and trigger Slack alerts on drift detection?",
+        "question": "What is Non-Maximum Suppression (NMS) in object detection and how does IoU thresholding filter overlapping bounding boxes?",
         "expected_answer_keywords": [
-          "Evidently AI",
-          "whylogs",
-          "DataDriftPreset",
-          "statistical tests",
-          "HTML report",
-          "automated test suite",
-          "drift alert"
+          "non-maximum suppression",
+          "nms",
+          "iou",
+          "bounding box",
+          "confidence score",
+          "overlap"
         ]
       }
     ],
-    "ml_monitoring_drift_observability.shap_shapley_feature_attribution": [
+    "ml_computer_vision_deep_learning.semantic_instance_segmentation_unet_mask_rcnn": [
       {
-        "level": "junior",
-        "type": "conceptual",
-        "question": "What game-theoretic properties (efficiency, symmetry, additivity) make SHAP values mathematically sound for local feature attribution?",
+        "question": "How does U-Net's skip connection structure preserve fine-grained spatial localization for pixel-level semantic segmentation?",
         "expected_answer_keywords": [
-          "SHAP",
-          "Shapley values",
-          "game theory",
-          "efficiency",
-          "symmetry",
-          "additivity",
-          "local feature attribution",
-          "TreeSHAP"
+          "skip connections",
+          "encoder-decoder",
+          "spatial resolution",
+          "localization",
+          "pixel classification"
         ]
       }
     ],
-    "ml_monitoring_drift_observability.lime_local_interpretable_explanations": [
+    "ml_computer_vision_deep_learning.image_data_augmentation_albumentations": [
       {
-        "level": "junior",
-        "type": "conceptual",
-        "question": "How does LIME explain a complex black-box model prediction by training an interpretable sparse linear surrogate on perturbed neighborhood samples?",
+        "question": "How do CutMix and MixUp regularization techniques improve vision model generalization and robustness against adversarial perturbations?",
         "expected_answer_keywords": [
-          "LIME",
-          "local surrogate",
-          "perturbed samples",
-          "exponential kernel weighting",
-          "interpretable linear model",
-          "model agnostic"
+          "cutmix",
+          "mixup",
+          "linear interpolation",
+          "regularization",
+          "generalization",
+          "data augmentation"
         ]
       }
     ],
-    "ml_monitoring_drift_observability.performance_decay_ground_truth_delay": [
+    "ml_computer_vision_deep_learning.transfer_learning_feature_extraction": [
       {
-        "level": "mid",
-        "type": "scenario",
-        "question": "In domains where ground truth labels arrive with months of delay (e.g. loan defaults), how can you estimate model performance degradation using confidence scores?",
+        "question": "What is the strategic trade-off between linear probing (frozen backbone) and end-to-end fine-tuning on a small custom dataset?",
         "expected_answer_keywords": [
-          "delayed ground truth",
-          "CBPE",
-          "confidence-based performance estimation",
-          "NannyML",
-          "proxy metrics",
-          "prediction distribution shift"
+          "linear probing",
+          "fine-tuning",
+          "overfitting",
+          "feature extraction",
+          "learning rate",
+          "frozen layers"
         ]
       }
     ],
-    "ml_monitoring_drift_observability.adversarial_anomaly_out_of_distribution_ood": [
+    "ml_computer_vision_deep_learning.loss_functions_focal_dice_iou": [
       {
-        "level": "senior",
-        "type": "scenario",
-        "question": "How do Mahalanobis distance and deep feature embeddings detect Out-of-Distribution (OOD) test samples before generating misleading model predictions?",
+        "question": "How does Focal Loss dynamically down-weight easy examples to address extreme foreground-background class imbalance in dense object detection?",
         "expected_answer_keywords": [
-          "OOD detection",
-          "Mahalanobis distance",
-          "penultimate layer embeddings",
-          "covariance matrix",
-          "anomaly threshold",
-          "reject uncertain inputs"
+          "focal loss",
+          "class imbalance",
+          "modulating factor",
+          "cross entropy",
+          "easy examples",
+          "hard negatives"
         ]
       }
     ],
-    "ml_monitoring_drift_observability.fairness_bias_demographic_parity": [
+    "ml_computer_vision_deep_learning.self_supervised_vision_clip_dino": [
       {
-        "level": "mid",
-        "type": "scenario",
-        "question": "Explain the trade-off between Demographic Parity P(Y_hat=1 | A=0) = P(Y_hat=1 | A=1) and Equalized Odds in algorithmic bias auditing.",
+        "question": "Explain how CLIP uses contrastive learning over image-text pairs to achieve zero-shot visual classification.",
         "expected_answer_keywords": [
-          "Demographic Parity",
-          "Equalized Odds",
-          "TPR and FPR equality",
-          "protected attribute",
-          "Fairlearn",
-          "fairness-accuracy trade-off",
-          "disparate impact"
+          "clip",
+          "contrastive learning",
+          "zero-shot",
+          "cosine similarity",
+          "image-text embedding"
         ]
       }
     ],
-    "ml_monitoring_drift_observability.ml_alerting_automated_incident_response": [
+    "ml_computer_vision_deep_learning.video_spatial_temporal_modeling": [
       {
-        "level": "senior",
-        "type": "scenario",
-        "question": "How do you architect a Prometheus/Grafana alerting rule that automatically redirects production traffic to a heuristic fallback model when inference error spikes?",
+        "question": "How do 3D convolutions (C3D/I3D) capture temporal dynamics across consecutive video frames compared to 2D CNNs?",
         "expected_answer_keywords": [
-          "Prometheus",
-          "Grafana alert",
-          "Alertmanager",
-          "fallback model redirect",
-          "circuit breaker",
-          "automated incident response",
-          "error rate spike"
+          "3d convolution",
+          "temporal dimension",
+          "video frames",
+          "spatial temporal",
+          "action recognition"
         ]
       }
     ],
-    "ml_pipelines_orchestration.mlflow_tracking_model_registry": [
+    "ml_time_series_forecasting.time_series_decomposition_trend_seasonality": [
       {
-        "level": "junior",
-        "type": "scenario",
-        "question": "How do you log parameters, metrics, and PyFunc model artifacts with MLflow, and manage model stage transitions (Staging -> Production)?",
+        "question": "When should an additive decomposition model be chosen over a multiplicative decomposition model for time series data?",
         "expected_answer_keywords": [
-          "MLflow",
-          "mlflow.log_params",
-          "mlflow.log_metrics",
-          "mlflow.pyfunc.log_model",
-          "Model Registry",
-          "transition_model_version_stage",
-          "model signature"
+          "additive",
+          "multiplicative",
+          "seasonal variation",
+          "constant magnitude",
+          "proportional to trend"
         ]
       }
     ],
-    "ml_pipelines_orchestration.dvc_data_version_control": [
+    "ml_time_series_forecasting.stationarity_differencing_unit_root_tests": [
       {
-        "level": "junior",
-        "type": "conceptual",
-        "question": "How does Data Version Control (DVC) link large dataset pointers in Git with remote cloud storage (S3/GCS) using content-addressable hash files?",
+        "question": "How do you interpret conflicting Augmented Dickey-Fuller (ADF) and KPSS unit root test results to establish trend vs difference stationarity?",
         "expected_answer_keywords": [
-          "DVC",
-          "dvc.yaml",
-          ".dvc file",
-          "content-addressable hash",
-          "dvc push",
-          "dvc pull",
-          "S3 remote storage",
-          "Git dataset pointer"
+          "adf test",
+          "kpss test",
+          "null hypothesis",
+          "stationarity",
+          "unit root",
+          "differencing"
         ]
       }
     ],
-    "ml_pipelines_orchestration.feature_store_feast_architecture": [
+    "ml_time_series_forecasting.statistical_forecasting_arima_sarima": [
       {
-        "level": "mid",
-        "type": "scenario",
-        "question": "How does Feast Feature Store provide point-in-time correct historical joins for training while serving low-latency online features from Redis?",
+        "question": "How do Autocorrelation (ACF) and Partial Autocorrelation (PACF) plots guide the selection of AR(p) and MA(q) order parameters in ARIMA modeling?",
         "expected_answer_keywords": [
-          "Feast",
-          "offline store",
-          "online store",
-          "point-in-time join",
-          "time travel join",
-          "prevent training-serving skew",
-          "Redis",
-          "FeatureView"
+          "acf",
+          "pacf",
+          "autoregressive",
+          "moving average",
+          "cut-off",
+          "geometric decay",
+          "arima"
         ]
       }
     ],
-    "ml_pipelines_orchestration.kubeflow_pipelines_kfp_components": [
+    "ml_time_series_forecasting.exponential_smoothing_holt_winters": [
       {
-        "level": "mid",
-        "type": "scenario",
-        "question": "How do you author containerized ML pipeline components in Kubeflow Pipelines (KFP) using the @dsl.component decorator and pass artifacts?",
+        "question": "Explain the role of level, trend, and seasonal smoothing parameters (alpha, beta, gamma) in the Holt-Winters exponential smoothing model.",
         "expected_answer_keywords": [
-          "Kubeflow Pipelines",
-          "KFP",
-          "@dsl.component",
-          "@dsl.pipeline",
-          "Input[Artifact]",
-          "Output[Model]",
-          "containerized execution",
-          "kfp compiler"
+          "holt-winters",
+          "level",
+          "trend",
+          "seasonality",
+          "smoothing parameters",
+          "alpha beta gamma"
         ]
       }
     ],
-    "ml_pipelines_orchestration.metaflow_human_centric_ml_workflows": [
+    "ml_time_series_forecasting.machine_learning_time_series_lag_features": [
       {
-        "level": "mid",
-        "type": "conceptual",
-        "question": "How does Netflix Metaflow structure DAG steps with @step, foreach branch parallelism, and artifact persistence across AWS batch jobs?",
+        "question": "How do you engineer lag and rolling window features for tabular gradient boosting without causing future data leakage in multi-step forecasting?",
         "expected_answer_keywords": [
-          "Metaflow",
-          "FlowSpec",
-          "@step",
-          "foreach",
-          "artifact persistence",
-          "self.next",
-          "cloud compute offloading"
+          "lag features",
+          "rolling window",
+          "data leakage",
+          "direct forecasting",
+          "recursive forecasting",
+          "lightgbm"
         ]
       }
     ],
-    "ml_pipelines_orchestration.ci_cd_cml_continuous_machine_learning": [
+    "ml_time_series_forecasting.deep_learning_forecasting_lstm_tcn": [
       {
-        "level": "mid",
-        "type": "scenario",
-        "question": "How do you configure Continuous Machine Learning (CML) and GitHub Actions to train a benchmark model on pull requests and post performance metrics as a PR comment?",
+        "question": "Why do Temporal Convolutional Networks (TCNs) with dilated causal convolutions often outperform standard RNNs/LSTMs in long-range sequence modeling?",
         "expected_answer_keywords": [
-          "CML",
-          "Continuous Machine Learning",
-          "GitHub Actions",
-          "cml send-comment",
-          "PR benchmark report",
-          "automated model test in CI",
-          "markdown report"
+          "tcn",
+          "dilated convolution",
+          "causal convolution",
+          "receptive field",
+          "vanishing gradient",
+          "parallel training"
         ]
       }
     ],
-    "ml_pipelines_orchestration.automated_continuous_training_ct_triggers": [
+    "ml_time_series_forecasting.temporal_fusion_transformers_patchtst": [
       {
-        "level": "senior",
-        "type": "scenario",
-        "question": "How do you design a Continuous Training (CT) pipeline with Champion/Challenger validation gates before promoting a newly retrained model to production?",
+        "question": "How does the Temporal Fusion Transformer (TFT) utilize variable selection networks and gated residual networks to incorporate static metadata alongside dynamic time series?",
         "expected_answer_keywords": [
-          "Continuous Training",
-          "CT",
-          "Champion-Challenger",
-          "validation gate",
-          "automated retraining",
-          "production promotion",
-          "statistically superior metric"
+          "temporal fusion transformer",
+          "tft",
+          "variable selection",
+          "gated residual",
+          "static metadata",
+          "self-attention"
         ]
       }
     ],
-    "ml_pipelines_orchestration.docker_gpu_containers_cuda_drivers": [
+    "ml_time_series_forecasting.time_series_cross_validation_backtesting": [
       {
-        "level": "junior",
-        "type": "scenario",
-        "question": "How do you write a multi-stage Dockerfile utilizing NVIDIA CUDA base images and NVIDIA Container Toolkit for secure GPU-accelerated model training?",
+        "question": "Why is standard k-fold cross-validation invalid for time series forecasting, and how does expanding window TimeSeriesSplit prevent lookahead bias?",
         "expected_answer_keywords": [
-          "NVIDIA Container Toolkit",
-          "Dockerfile for ML",
-          "CUDA base image",
-          "multi-stage build",
-          "non-root user",
-          "cuDNN",
-          "--gpus all"
+          "timeseriessplit",
+          "rolling origin",
+          "lookahead bias",
+          "temporal ordering",
+          "backtesting"
         ]
       }
     ],
-    "ml_pipelines_orchestration.model_catalog_governance_lineage": [
+    "ml_time_series_forecasting.evaluation_metrics_mape_smape_wape": [
       {
-        "level": "senior",
-        "type": "conceptual",
-        "question": "What components must be included in a standardized Model Card (intended use, training dataset provenance, quantitative metrics, ethical limitations) for regulatory compliance?",
+        "question": "Why is Mean Absolute Percentage Error (MAPE) problematic when actual values are close to zero, and how does WAPE resolve this issue?",
         "expected_answer_keywords": [
-          "Model Card",
-          "training data provenance",
-          "intended use",
-          "limitations",
-          "ethical audit",
-          "model governance",
-          "reproducibility lineage"
+          "mape",
+          "wape",
+          "division by zero",
+          "asymmetry",
+          "weighted absolute percentage error"
+        ]
+      }
+    ],
+    "ml_experimentation_research_methodology.hypothesis_formulation_scientific_method": [
+      {
+        "question": "How do you translate a vague business objective (e.g. 'improve user retention') into a testable machine learning research hypothesis?",
+        "expected_answer_keywords": [
+          "hypothesis",
+          "independent variable",
+          "dependent variable",
+          "objective function",
+          "measurable metric"
+        ]
+      }
+    ],
+    "ml_experimentation_research_methodology.ab_testing_design_power_analysis": [
+      {
+        "question": "How does statistical power analysis calculate the minimum sample size needed given an expected Minimum Detectable Effect (MDE) and alpha level?",
+        "expected_answer_keywords": [
+          "power analysis",
+          "sample size",
+          "mde",
+          "alpha",
+          "type i error",
+          "type ii error",
+          "statistical power"
+        ]
+      }
+    ],
+    "ml_experimentation_research_methodology.statistical_significance_p_values_confidence_intervals": [
+      {
+        "question": "Why is Bonferroni or False Discovery Rate (FDR) correction necessary when conducting multiple simultaneous hypothesis tests on ML model cohorts?",
+        "expected_answer_keywords": [
+          "bonferroni",
+          "false discovery rate",
+          "fdr",
+          "multiple testing",
+          "family-wise error rate",
+          "p-value"
+        ]
+      }
+    ],
+    "ml_experimentation_research_methodology.baseline_model_selection_heuristics": [
+      {
+        "question": "Why is evaluating against zero-cost heuristic or dummy baselines critical before committing to training complex deep neural architectures?",
+        "expected_answer_keywords": [
+          "heuristic baseline",
+          "dummy classifier",
+          "model complexity",
+          "benchmark",
+          "occams razor",
+          "roi"
+        ]
+      }
+    ],
+    "ml_experimentation_research_methodology.error_analysis_confusion_matrix_slicing": [
+      {
+        "question": "How does data slicing and subgroup error taxonomy analysis uncover critical model blind spots that aggregate accuracy metrics mask?",
+        "expected_answer_keywords": [
+          "data slicing",
+          "error analysis",
+          "subgroups",
+          "disaggregated metrics",
+          "failure modes",
+          "confusion matrix"
+        ]
+      }
+    ],
+    "ml_experimentation_research_methodology.ablation_studies_feature_attribution": [
+      {
+        "question": "What is an ablation study in empirical ML research, and how does systematically removing components isolate causal performance gains?",
+        "expected_answer_keywords": [
+          "ablation study",
+          "component isolation",
+          "causal attribution",
+          "feature removal",
+          "empirical validation"
+        ]
+      }
+    ],
+    "ml_experimentation_research_methodology.research_reproducibility_deterministic_seeds": [
+      {
+        "question": "How do you ensure full bitwise reproducibility in PyTorch experiments across random seeds, cuDNN non-deterministic algorithms, and multi-GPU workers?",
+        "expected_answer_keywords": [
+          "torch.manual_seed",
+          "cudnn.deterministic",
+          "reproducibility",
+          "random seed",
+          "dataloader worker_init_fn"
+        ]
+      }
+    ],
+    "ml_experimentation_research_methodology.metric_selection_tradeoff_analysis": [
+      {
+        "question": "How do you balance primary optimization metrics against guardrail and operational constraints (such as inference latency and memory footprint)?",
+        "expected_answer_keywords": [
+          "primary metric",
+          "guardrail metric",
+          "pareto frontier",
+          "latency constraint",
+          "trade-off analysis"
+        ]
+      }
+    ],
+    "ml_experimentation_research_methodology.literature_review_state_of_the_art_benchmarking": [
+      {
+        "question": "How do you rigorously benchmark a novel architecture against published SOTA papers while avoiding benchmark overfitting and dataset contamination?",
+        "expected_answer_keywords": [
+          "sota benchmark",
+          "dataset contamination",
+          "generalization",
+          "leaderboard",
+          "peer review"
         ]
       }
     ]

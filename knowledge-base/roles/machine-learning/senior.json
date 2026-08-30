@@ -11,24 +11,9 @@
       "rationale": "Architecting Transformer self-attention mechanisms and scaling multi-GPU distributed training (DDP/FSDP)."
     },
     {
-      "skill_id": "ml_model_deployment_serving",
-      "importance": 0.95,
-      "rationale": "Architecting Triton multi-model inference clusters with dynamic batching and sub-10ms P99 latency."
-    },
-    {
       "skill_id": "ml_model_optimization_compression",
       "importance": 0.95,
       "rationale": "Building TensorRT engines, memory bandwidth kernel tuning, and hardware acceleration."
-    },
-    {
-      "skill_id": "ml_pipelines_orchestration",
-      "importance": 0.9,
-      "rationale": "Establishing enterprise Continuous Training loops, champion/challenger gates, and model governance."
-    },
-    {
-      "skill_id": "ml_monitoring_drift_observability",
-      "importance": 0.9,
-      "rationale": "Architecting Out-of-Distribution (OOD) protection gates, model bias auditing, and automated incident response."
     },
     {
       "skill_id": "ml_hyperparameter_optimization",
@@ -54,6 +39,18 @@
       "skill_id": "ml_feature_engineering_preprocessing",
       "importance": 0.8,
       "rationale": "Designing automated feature selection engines and high-dimensional interaction pipelines."
+    },
+    {
+      "skill_id": "ml_computer_vision_deep_learning",
+      "importance": 0.8
+    },
+    {
+      "skill_id": "ml_time_series_forecasting",
+      "importance": 0.8
+    },
+    {
+      "skill_id": "ml_experimentation_research_methodology",
+      "importance": 0.85
     }
   ],
   "scoring": {

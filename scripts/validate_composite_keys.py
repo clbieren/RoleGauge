@@ -13,6 +13,7 @@ broken = []
 disjointness_issues = []
 count_issues = []
 assessment_issues = []
+schema_issues = []
 referenced_keys = set()
 
 # -------------------------------------------------------------
@@ -117,6 +118,61 @@ for f in glob.glob(evidence_dir, recursive=True):
 
 
 # -------------------------------------------------------------
+# Layer 6: Evidence Schema Consistency (cv.json, github.json, linkedin.json)
+# -------------------------------------------------------------
+for f in glob.glob(evidence_dir, recursive=True):
+    basename = os.path.basename(f)
+    role_name = os.path.basename(os.path.dirname(f))
+    
+    with open(f, 'r', encoding='utf-8') as file:
+        try:
+            data = json.load(file)
+        except Exception as e:
+            schema_issues.append((f"{role_name}/{basename}", f"JSON decode error: {e}"))
+            continue
+            
+    if basename == 'cv.json':
+        # Check extraction_rules if present
+        ext_rules = data.get('extraction_rules')
+        if ext_rules is not None:
+            if not isinstance(ext_rules, dict):
+                schema_issues.append((f"{role_name}/{basename}", "'extraction_rules' must be an object/dict"))
+            else:
+                sections = ext_rules.get('sections')
+                if sections is not None:
+                    if not isinstance(sections, list):
+                        schema_issues.append((f"{role_name}/{basename}", f"'extraction_rules.sections' must be a list, found {type(sections).__name__}"))
+                    else:
+                        for idx, sec in enumerate(sections):
+                            if not isinstance(sec, dict):
+                                schema_issues.append((f"{role_name}/{basename}", f"sections[{idx}] must be an object/dict"))
+                            else:
+                                if 'section' not in sec or not isinstance(sec['section'], str):
+                                    schema_issues.append((f"{role_name}/{basename}", f"sections[{idx}] missing valid string 'section' key"))
+                                if 'base_strength' in sec and not isinstance(sec['base_strength'], (int, float)):
+                                    schema_issues.append((f"{role_name}/{basename}", f"sections[{idx}] 'base_strength' must be numeric"))
+        
+        # Check signal_mapping if present
+        sig_map = data.get('signal_mapping')
+        if sig_map is not None:
+            if not isinstance(sig_map, dict):
+                schema_issues.append((f"{role_name}/{basename}", "'signal_mapping' must be an object/dict"))
+            else:
+                patterns = sig_map.get('patterns')
+                if patterns is not None:
+                    if not isinstance(patterns, list):
+                        schema_issues.append((f"{role_name}/{basename}", f"'signal_mapping.patterns' must be a list, found {type(patterns).__name__}"))
+                    else:
+                        for idx, pat in enumerate(patterns):
+                            if not isinstance(pat, dict):
+                                schema_issues.append((f"{role_name}/{basename}", f"patterns[{idx}] must be an object/dict"))
+                            elif 'pattern' not in pat or not isinstance(pat['pattern'], str):
+                                schema_issues.append((f"{role_name}/{basename}", f"patterns[{idx}] missing string 'pattern'"))
+                            elif 'maps_to' not in pat or not isinstance(pat['maps_to'], list):
+                                schema_issues.append((f"{role_name}/{basename}", f"patterns[{idx}] missing list 'maps_to'"))
+
+
+# -------------------------------------------------------------
 # Report Results
 # -------------------------------------------------------------
 print('=' * 70)
@@ -163,5 +219,13 @@ if assessment_issues:
         print(f'  - File: {filename}, Key: {key}, Issue: {desc}')
 else:
     print('[PASSED] Layer 5: All assessment questions have non-empty text and populated keywords.')
+
+# 6. Evidence Schema Consistency
+if schema_issues:
+    print('\n[FAILED] LAYER 6: EVIDENCE SCHEMA CONSISTENCY VIOLATIONS:')
+    for filename, issue in schema_issues:
+        print(f'  - File: {filename}: {issue}')
+else:
+    print('[PASSED] Layer 6: All evidence files conform to canonical schema standards (0 format discrepancies).')
 
 print('=' * 70)

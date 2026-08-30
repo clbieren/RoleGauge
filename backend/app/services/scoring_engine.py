@@ -280,6 +280,9 @@ class ScoringEngine:
                     "confidence": round(confidence, 4),
                     "status": evidence_result.status if evidence_result else "not_yet_evidenced",
                     "evidence_sources": evidence_result.evidence_sources[:10] if evidence_result else [],
+                    "contributing_sources": getattr(evidence_result, "contributing_sources", []) if evidence_result else [],
+                    "ceiling_applied": getattr(evidence_result, "ceiling_applied", None) if evidence_result else None,
+                    "calculation_trace": getattr(evidence_result, "calculation_trace", None) if evidence_result else None,
                     "is_expected": is_expected,
                     "is_bonus": is_bonus,
                 })

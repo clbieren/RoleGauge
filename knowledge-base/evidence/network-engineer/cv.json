@@ -1,5 +1,39 @@
 {
   "source_id": "cv",
   "name": "CV Analysis",
-  "description": "CV parsing for Network Engineer. Specific keyword mappings are maintained inside the individual skill JSONs."
+  "description": "CV parsing for Network Engineer. Specific keyword mappings are maintained inside the individual skill JSONs.",
+  "extraction_rules": {
+    "description": "How to extract and weight information from CV content for network-engineer.",
+    "sections": [
+      {
+        "section": "skills_list",
+        "description": "Explicit list of technologies and tools in skills section.",
+        "base_strength": 0.3
+      },
+      {
+        "section": "work_experience",
+        "description": "Job descriptions describing technical achievements and responsibilities.",
+        "base_strength": 0.5
+      },
+      {
+        "section": "projects",
+        "description": "Personal or open-source projects demonstrating domain depth.",
+        "base_strength": 0.4
+      },
+      {
+        "section": "education",
+        "description": "Relevant academic degrees.",
+        "base_strength": 0.2
+      },
+      {
+        "section": "certifications",
+        "description": "Professional certifications relevant to the role.",
+        "base_strength": 0.2
+      }
+    ]
+  },
+  "signal_mapping": {
+    "description": "How CV mentions map to skill evidence using COMPOSITE KEYS for network-engineer.",
+    "patterns": []
+  }
 }

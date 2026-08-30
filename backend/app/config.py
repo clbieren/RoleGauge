@@ -41,6 +41,10 @@ class Settings(BaseSettings):
     # --- Knowledge Base ---
     KB_PATH: str = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), "knowledge-base")
 
+    # --- CV Upload ---
+    CV_MAX_FILE_SIZE: int = 10 * 1024 * 1024  # 10 MB
+    CV_ALLOWED_EXTENSIONS: list[str] = [".pdf", ".docx"]
+
     # --- CORS ---
     CORS_ORIGINS: list[str] = ["http://localhost:3000", "http://127.0.0.1:3000"]
 
