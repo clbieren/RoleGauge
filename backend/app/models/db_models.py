@@ -1,15 +1,31 @@
 """
 RoleGauge Database Models.
-SQLAlchemy ORM models for storing analysis results.
+SQLAlchemy ORM models for storing users, analysis results, and assessment sessions.
 """
 
 import uuid
 from datetime import datetime, timezone
 
-from sqlalchemy import String, Float, Text, DateTime, ForeignKey, Integer, JSON, Uuid
+from sqlalchemy import Boolean, DateTime, Float, ForeignKey, Integer, JSON, String, Text, Uuid
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.database import Base
+
+
+class User(Base):
+    """User account model for authentication and analysis history."""
+    __tablename__ = "users"
+
+    id: Mapped[uuid.UUID] = mapped_column(Uuid(as_uuid=True), primary_key=True, default=uuid.uuid4)
+    email: Mapped[str] = mapped_column(String(255), unique=True, index=True, nullable=False)
+    hashed_password: Mapped[str] = mapped_column(String(255), nullable=False)
+    full_name: Mapped[str | None] = mapped_column(String(255), nullable=True)
+    is_active: Mapped[bool] = mapped_column(Boolean, default=True, nullable=False)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=lambda: datetime.now(timezone.utc))
+
+    # Relationships
+    analyses: Mapped[list["Analysis"]] = relationship(back_populates="user", cascade="all, delete-orphan")
+    assessment_sessions: Mapped[list["AssessmentSession"]] = relationship(back_populates="user", cascade="all, delete-orphan")
 
 
 class Analysis(Base):
@@ -17,6 +33,7 @@ class Analysis(Base):
     __tablename__ = "analyses"
 
     id: Mapped[uuid.UUID] = mapped_column(Uuid(as_uuid=True), primary_key=True, default=uuid.uuid4)
+    user_id: Mapped[uuid.UUID | None] = mapped_column(ForeignKey("users.id", ondelete="SET NULL"), nullable=True, index=True)
     github_username: Mapped[str] = mapped_column(String(255), nullable=False, index=True)
     role_id: Mapped[str] = mapped_column(String(100), nullable=False)
     level: Mapped[str] = mapped_column(String(50), nullable=False)  # junior | mid | senior
@@ -28,6 +45,7 @@ class Analysis(Base):
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=lambda: datetime.now(timezone.utc))
 
     # Relationships
+    user: Mapped["User | None"] = relationship(back_populates="analyses")
     skill_results: Mapped[list["SkillResult"]] = relationship(back_populates="analysis", cascade="all, delete-orphan")
     repo_data: Mapped[list["RepoData"]] = relationship(back_populates="analysis", cascade="all, delete-orphan")
     assessment_sessions: Mapped[list["AssessmentSession"]] = relationship(back_populates="analysis", cascade="all, delete-orphan")
@@ -95,6 +113,7 @@ class AssessmentSession(Base):
     __tablename__ = "assessment_sessions"
 
     id: Mapped[uuid.UUID] = mapped_column(Uuid(as_uuid=True), primary_key=True, default=uuid.uuid4)
+    user_id: Mapped[uuid.UUID | None] = mapped_column(ForeignKey("users.id", ondelete="SET NULL"), nullable=True, index=True)
     analysis_id: Mapped[uuid.UUID] = mapped_column(ForeignKey("analyses.id", ondelete="CASCADE"), nullable=False)
     role_id: Mapped[str] = mapped_column(String(100), nullable=False)
     level: Mapped[str] = mapped_column(String(50), nullable=False)
@@ -104,5 +123,5 @@ class AssessmentSession(Base):
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=lambda: datetime.now(timezone.utc))
 
     # Relationships
+    user: Mapped["User | None"] = relationship(back_populates="assessment_sessions")
     analysis: Mapped["Analysis"] = relationship(back_populates="assessment_sessions")
-

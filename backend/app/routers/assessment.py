@@ -18,8 +18,9 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import selectinload
 
 from app.database import get_db
+from app.dependencies.auth import get_optional_user
 from app.exceptions import AnalysisNotFoundError, RoleGaugeException
-from app.models.db_models import Analysis, AssessmentSession, RepoData, SkillResult, SubskillResult
+from app.models.db_models import Analysis, AssessmentSession, RepoData, SkillResult, SubskillResult, User
 from app.models.schemas import (
     AnalyzeResponse,
     AssessmentAnswerItem,
@@ -48,6 +49,7 @@ router = APIRouter(prefix="/api/assessment", tags=["assessment"])
 async def start_assessment(
     req: AssessmentStartRequest,
     db: AsyncSession = Depends(get_db),
+    current_user: Optional[User] = Depends(get_optional_user),
 ) -> AssessmentStartResponse:
     """
     Start an adaptive assessment session.
@@ -197,7 +199,9 @@ async def start_assessment(
         )
 
     # Persist AssessmentSession
+    session_user_id = current_user.id if current_user else analysis.user_id
     session = AssessmentSession(
+        user_id=session_user_id,
         analysis_id=analysis.id,
         role_id=role_id,
         level=level,
@@ -234,6 +238,7 @@ async def start_assessment(
 async def submit_assessment(
     req: AssessmentSubmitRequest,
     db: AsyncSession = Depends(get_db),
+    current_user: Optional[User] = Depends(get_optional_user),
 ) -> AssessmentSubmitResponse:
     """
     Submit candidate answers for an active assessment session.

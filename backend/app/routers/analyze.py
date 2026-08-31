@@ -21,8 +21,9 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.config import settings
 from app.database import get_db
+from app.dependencies.auth import get_optional_user
 from app.exceptions import RoleGaugeException, RoleNotFoundError
-from app.models.db_models import Analysis, SkillResult, SubskillResult, RepoData
+from app.models.db_models import Analysis, RepoData, SkillResult, SubskillResult, User
 from app.models.schemas import (
     AnalyzeRequest,
     AnalyzeResponse,
@@ -38,6 +39,7 @@ from app.services.evidence_detector import EvidenceDetector, SubskillEvidenceRes
 from app.services.evidence_engine import EvidenceEngine, UnifiedSubskillEvidence
 from app.services.github_fetcher import GitHubFetcher, extract_username
 from app.services.kb_loader import kb
+from app.services.linkedin_skill_matcher import LinkedInSkillMatcher
 from app.services.role_filter import FilteredRepo, RoleFilter
 from app.services.scoring_engine import ScoringEngine
 
@@ -49,6 +51,7 @@ router = APIRouter(prefix="/api", tags=["analyze"])
 async def analyze_profile(
     http_request: Request,
     db: AsyncSession = Depends(get_db),
+    current_user: Optional[User] = Depends(get_optional_user),
 ) -> AnalyzeResponse:
     """
     Analyze a candidate's profile for a specific role and level.
@@ -67,6 +70,9 @@ async def analyze_profile(
     cv_file: Optional[UploadFile] = None
     cv_bytes: Optional[bytes] = None
     cv_filename: Optional[str] = None
+    linkedin_file: Optional[UploadFile] = None
+    linkedin_bytes: Optional[bytes] = None
+    linkedin_filename: Optional[str] = None
 
     # Step 1: Parse request based on content-type
     if "multipart/form-data" in content_type:
@@ -83,6 +89,12 @@ async def analyze_profile(
             cv_file = file_obj  # type: ignore
             cv_filename = cv_file.filename
             cv_bytes = await cv_file.read()
+
+        li_file_obj = form.get("linkedin_file")
+        if li_file_obj and hasattr(li_file_obj, "filename") and li_file_obj.filename:
+            linkedin_file = li_file_obj  # type: ignore
+            linkedin_filename = linkedin_file.filename
+            linkedin_bytes = await linkedin_file.read()
     else:
         # JSON body
         try:
@@ -97,10 +109,10 @@ async def analyze_profile(
             raise HTTPException(status_code=400, detail=f"Invalid request body: {e}")
 
     # Step 2: Validate inputs
-    if not github_username and not cv_bytes:
+    if not github_username and not cv_bytes and not linkedin_bytes:
         raise HTTPException(
             status_code=400,
-            detail="At least one evidence source ('github_username' or CV file) is required for analysis.",
+            detail="At least one evidence source ('github_username', CV file, or LinkedIn file) is required for analysis.",
         )
 
     if role_id not in kb.role_categories:
@@ -124,6 +136,9 @@ async def analyze_profile(
     cv_skills_evidence: Optional[dict[str, SubskillEvidenceResult]] = None
     cv_cert_matches: Optional[list[dict[str, Any]]] = None
 
+    linkedin_evidence: Optional[dict[str, SubskillEvidenceResult]] = None
+    linkedin_cert_matches: Optional[list[dict[str, Any]]] = None
+
     try:
         # Step 3: Run GitHub pipeline if username provided
         if github_username and github_username.strip():
@@ -136,7 +151,7 @@ async def analyze_profile(
             fetcher = GitHubFetcher(token=github_token)
             repos = await fetcher.fetch_user_repos(username_clean)
 
-            if not repos and not cv_bytes:
+            if not repos and not cv_bytes and not linkedin_bytes:
                 raise HTTPException(status_code=404, detail=f"No public repositories found for user '{username_clean}'")
 
             if repos:
@@ -190,7 +205,7 @@ async def analyze_profile(
                     tmp.write(cv_bytes)
                     temp_path = tmp.name
 
-                parsed_cv = parse_cv(temp_path)
+                parsed_cv = parse_cv(temp_path, source_type="cv")
             finally:
                 if temp_path and os.path.exists(temp_path):
                     try:
@@ -207,24 +222,67 @@ async def analyze_profile(
             cert_matcher = CertificationMatcher(kb, cert_index, role_id)
             cv_cert_matches = cert_matcher.match_certificates(parsed_cv.get("certificates", []))
 
-        # Step 5: Multi-source Fusion via Evidence Engine
+        # Step 5: Run LinkedIn pipeline if LinkedIn file provided
+        if linkedin_bytes and linkedin_filename:
+            li_ext = os.path.splitext(linkedin_filename)[1].lower()
+            if li_ext != ".pdf":
+                raise HTTPException(
+                    status_code=400,
+                    detail=f"Unsupported LinkedIn format: '{li_ext}'. Only PDF is accepted.",
+                )
+            if len(linkedin_bytes) > settings.CV_MAX_FILE_SIZE:
+                raise HTTPException(
+                    status_code=413,
+                    detail=f"LinkedIn file too large: {len(linkedin_bytes)} bytes (max 10MB).",
+                )
+
+            temp_li_path = None
+            try:
+                with tempfile.NamedTemporaryFile(
+                    suffix=li_ext, delete=False, prefix="rolegauge_li_"
+                ) as tmp:
+                    tmp.write(linkedin_bytes)
+                    temp_li_path = tmp.name
+
+                parsed_li = parse_cv(temp_li_path, source_type="linkedin")
+            finally:
+                if temp_li_path and os.path.exists(temp_li_path):
+                    try:
+                        os.unlink(temp_li_path)
+                    except OSError:
+                        pass
+
+            li_matcher = LinkedInSkillMatcher(kb, role_id)
+            linkedin_evidence = li_matcher.match_all(parsed_li)
+
+            cert_index = get_certification_index()
+            if not cert_index._built:
+                cert_index.build(kb)
+            cert_matcher = CertificationMatcher(kb, cert_index, role_id)
+            linkedin_cert_matches = cert_matcher.match_certificates(parsed_li.get("certificates", []))
+
+        # Step 6: Multi-source Fusion via Evidence Engine
         evidence_engine = EvidenceEngine(kb, role_id, level)
         unified_evidence = evidence_engine.merge_evidence(
             github_evidence=github_evidence,
             cv_skills_evidence=cv_skills_evidence,
             cv_cert_matches=cv_cert_matches,
+            linkedin_evidence=linkedin_evidence,
+            linkedin_cert_matches=linkedin_cert_matches,
         )
 
-        # Step 6: Dynamic Scoring Engine
+        # Step 7: Dynamic Scoring Engine
         scoring_evidence = {
             ck: u.to_subskill_evidence_result() for ck, u in unified_evidence.items()
         }
         scoring_engine = ScoringEngine(kb, role_id, level)
         scoring_result = scoring_engine.calculate_all(scoring_evidence)
 
-        # Step 7: Save to Database
+        # Step 8: Save to Database
+        user_id = current_user.id if current_user else None
         analysis = await _save_analysis(
             db=db,
+            user_id=user_id,
             username=username_clean,
             role_id=role_id,
             level=level,
@@ -234,7 +292,7 @@ async def analyze_profile(
             scoring_evidence=scoring_evidence,
         )
 
-        # Step 8: Return Structured Response
+        # Step 9: Return Structured Response
         role_title = role_def.get("title", f"{level.capitalize()} {role_id}")
         return _build_response(
             analysis_id=analysis.id,
@@ -243,6 +301,7 @@ async def analyze_profile(
             role_title=role_title,
             level=level,
             has_cv=bool(cv_bytes),
+            has_linkedin=bool(linkedin_bytes),
             scoring_result=scoring_result,
             filtered_repos=filtered_repos,
         )
@@ -301,6 +360,7 @@ def _merge_ai_results(evidence: dict, ai_results: dict):
 
 async def _save_analysis(
     db: AsyncSession,
+    user_id: Optional[uuid.UUID],
     username: str,
     role_id: str,
     level: str,
@@ -311,6 +371,7 @@ async def _save_analysis(
 ) -> Analysis:
     """Save analysis results to PostgreSQL."""
     analysis = Analysis(
+        user_id=user_id,
         github_username=username or "cv_upload",
         role_id=role_id,
         level=level,
@@ -380,6 +441,7 @@ def _build_response(
     role_title: str,
     level: str,
     has_cv: bool,
+    has_linkedin: bool,
     scoring_result: dict,
     filtered_repos: list,
 ) -> AnalyzeResponse:
@@ -436,6 +498,7 @@ def _build_response(
         total_repos_scanned=len(filtered_repos),
         relevant_repos_found=sum(1 for r in filtered_repos if r.is_relevant),
         has_cv=has_cv,
+        has_linkedin=has_linkedin,
         skills=skills,
         repos=repos,
         created_at=datetime.now(timezone.utc),

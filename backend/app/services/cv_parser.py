@@ -16,7 +16,7 @@ logger = logging.getLogger(__name__)
 
 # ──────────────────────────────────────────────
 # Section Heading Aliases
-# Flexible list to handle CV heading variations.
+# Flexible list to handle CV and LinkedIn heading variations.
 # ──────────────────────────────────────────────
 SECTION_ALIASES: dict[str, list[str]] = {
     "personal_info": [
@@ -24,6 +24,7 @@ SECTION_ALIASES: dict[str, list[str]] = {
         "contact info", "contact information", "contact details",
         "about me", "about", "profile", "summary", "objective",
         "professional summary", "career objective", "personal details",
+        "headline", "headline & summary", "summary/about", "summary & about",
     ],
     "education": [
         "education", "academic", "academic background", "degrees",
@@ -46,7 +47,8 @@ SECTION_ALIASES: dict[str, list[str]] = {
         "competencies", "core competencies", "tools", "tools & technologies",
         "tools and technologies", "programming languages", "frameworks",
         "technical competencies", "areas of expertise", "expertise",
-        "proficiencies",
+        "proficiencies", "top skills", "skills & endorsements",
+        "skills and endorsements",
     ],
     "certificates": [
         "certifications", "certificates", "credentials",
@@ -57,6 +59,18 @@ SECTION_ALIASES: dict[str, list[str]] = {
     "languages": [
         "languages", "language skills", "spoken languages",
         "language proficiency", "foreign languages",
+    ],
+    "volunteering": [
+        "volunteering", "volunteer experience", "volunteer",
+        "community service", "volunteer work",
+    ],
+    "honors_awards": [
+        "honors & awards", "honors and awards", "honors-awards",
+        "honors", "awards", "achievements", "honors & achievements",
+    ],
+    "recommendations": [
+        "recommendations", "recommendations received",
+        "letters of recommendation",
     ],
 }
 
@@ -151,7 +165,7 @@ def _detect_section(line: str) -> str | None:
 
 def _split_into_sections(raw_text: str) -> dict[str, str]:
     """
-    Split raw CV text into named sections based on heading detection.
+    Split raw CV/LinkedIn text into named sections based on heading detection.
     Returns: {section_key: section_text_content}
     """
     lines = raw_text.split("\n")
@@ -180,15 +194,16 @@ def _split_into_sections(raw_text: str) -> dict[str, str]:
     return {k: "\n".join(v).strip() for k, v in sections.items() if v}
 
 
-def _parse_personal_info(text: str) -> dict[str, str]:
+def _parse_personal_info(text: str, source_type: str = "cv") -> dict[str, str]:
     """Extract personal info fields from preamble/contact text."""
     info: dict[str, str] = {}
 
     # Try to extract name (usually first non-empty line)
     lines = [l.strip() for l in text.split("\n") if l.strip()]
     if lines:
-        # First substantial line is likely the name
         info["name"] = lines[0]
+        if len(lines) > 1 and not re.search(r'[@\d]|linkedin\.com|github\.com', lines[1], re.IGNORECASE):
+            info["headline"] = lines[1]
 
     # Email
     email_match = re.search(r'[\w.+-]+@[\w-]+\.[\w.-]+', text)
@@ -217,6 +232,16 @@ def _parse_personal_info(text: str) -> dict[str, str]:
     location_match = re.search(r'(?:location|address|city|based in)[:\s]+(.+)', text, re.IGNORECASE)
     if location_match:
         info["location"] = location_match.group(1).strip()
+    elif len(lines) > 2 and ("," in lines[2] or any(c in lines[2] for c in ["Turkey", "United States", "Germany", "United Kingdom"])):
+        info["location"] = lines[2]
+
+    # Summary text from personal_info block if present
+    summary_candidates = []
+    for line in lines[2:]:
+        if not any(k in line.lower() for k in ["@", "linkedin.com", "github.com", "http", "phone"]):
+            summary_candidates.append(line)
+    if summary_candidates:
+        info["summary"] = " ".join(summary_candidates)
 
     return info
 
@@ -312,7 +337,7 @@ def _parse_projects(text: str) -> list[dict[str, Any]]:
         )
         if tech_pattern:
             tech_text = tech_pattern.group(1)
-            skills = [s.strip() for s in re.split(r'[,;|&]', tech_text) if s.strip()]
+            skills = [s.strip() for s in re.split(r'[,;|&•·]', tech_text) if s.strip()]
             project["skills_mentioned"] = skills
         else:
             # Fallback: extract bracketed or parenthesized tech lists
@@ -333,20 +358,23 @@ def _parse_skills(text: str) -> list[str]:
 
     skills: list[str] = []
 
-    # Split by common delimiters: comma, semicolon, pipe, bullet, newline
+    # Split by common delimiters: comma, semicolon, pipe, bullet, newline, tab
     for line in text.split("\n"):
         line = line.strip()
         if not line:
             continue
         # Remove leading bullets/dashes
-        line = re.sub(r'^[\-•*▪◦]\s*', '', line)
+        line = re.sub(r'^[\-•*▪◦·]\s*', '', line)
 
-        # Split by commas, semicolons, pipes
-        parts = re.split(r'[,;|]', line)
+        # Split by commas, semicolons, pipes, bullets, tabs
+        parts = re.split(r'[,;|•·\t]', line)
         for part in parts:
             cleaned = part.strip()
             # Remove category prefixes like "Languages:" or "Databases:"
             cleaned = re.sub(r'^[\w\s]+:\s*', '', cleaned) if ':' in cleaned else cleaned
+            # Remove endorsement counts e.g. "(12)" or "12 endorsements"
+            cleaned = re.sub(r'\s*\(\d+\)\s*$', '', cleaned)
+            cleaned = re.sub(r'\s*\d+\s+endorsements?\s*$', '', cleaned, flags=re.IGNORECASE)
             if cleaned and len(cleaned) > 1 and len(cleaned) < 80:
                 skills.append(cleaned)
 
@@ -359,12 +387,30 @@ def _parse_certificates(text: str) -> list[dict[str, str]]:
     if not text.strip():
         return entries
 
+    blocks = re.split(r'\n\s*\n', text)
+    # If text has multiple separated blocks and multi-line items (common in LinkedIn PDF)
+    if len(blocks) > 1 and any("\n" in b.strip() for b in blocks if b.strip()):
+        for block in blocks:
+            block = block.strip()
+            if not block:
+                continue
+            lines = [re.sub(r'^[\d.\-•*▪◦·)\]]+\s*', '', l).strip() for l in block.split("\n") if l.strip()]
+            if not lines or len(lines[0]) < 3:
+                continue
+            cert_name = lines[0]
+            provider = ""
+            if len(lines) > 1 and not re.search(r'^(issued|expires|credential\s*id|see\s*credential)', lines[1], re.IGNORECASE):
+                provider = lines[1]
+            entries.append({"name": cert_name, "provider": provider})
+        if entries:
+            return entries
+
     for line in text.split("\n"):
         line = line.strip()
         if not line:
             continue
         # Remove leading bullets/dashes/numbers
-        line = re.sub(r'^[\d.\-•*▪◦)\]]+\s*', '', line).strip()
+        line = re.sub(r'^[\d.\-•*▪◦·)\]]+\s*', '', line).strip()
         if not line or len(line) < 3:
             continue
 
@@ -397,9 +443,9 @@ def _parse_languages(text: str) -> list[str]:
         line = line.strip()
         if not line:
             continue
-        line = re.sub(r'^[\-•*▪◦]\s*', '', line)
+        line = re.sub(r'^[\-•*▪◦·]\s*', '', line)
         # Split by commas
-        parts = re.split(r'[,;]', line)
+        parts = re.split(r'[,;•·]', line)
         for part in parts:
             cleaned = part.strip()
             if cleaned and len(cleaned) > 1:
@@ -411,11 +457,98 @@ def _parse_languages(text: str) -> list[str]:
     return languages
 
 
-def parse_cv(file_path: str) -> dict[str, Any]:
+def _parse_volunteering(text: str) -> list[dict[str, str]]:
+    """Parse volunteering section into structured entries."""
+    entries: list[dict[str, str]] = []
+    if not text.strip():
+        return entries
+
+    blocks = re.split(r'\n\s*\n', text)
+    for block in blocks:
+        block = block.strip()
+        if not block:
+            continue
+        lines = [l.strip() for l in block.split("\n") if l.strip()]
+        entry: dict[str, str] = {"raw": block}
+        if lines:
+            entry["role"] = lines[0]
+        if len(lines) > 1:
+            entry["organization"] = lines[1]
+        if len(lines) > 2:
+            entry["description"] = " ".join(lines[2:])
+        entries.append(entry)
+
+    return entries
+
+
+def _parse_honors_awards(text: str) -> list[dict[str, str]]:
+    """Parse honors and awards section into structured entries."""
+    entries: list[dict[str, str]] = []
+    if not text.strip():
+        return entries
+
+    for line in text.split("\n"):
+        line = line.strip()
+        if not line:
+            continue
+        line = re.sub(r'^[\d.\-•*▪◦·)\]]+\s*', '', line).strip()
+        if line and len(line) > 2:
+            entries.append({"title": line})
+
+    return entries
+
+
+def _parse_publications(text: str) -> list[dict[str, str]]:
+    """Parse publications / posts / articles section into structured entries."""
+    entries: list[dict[str, str]] = []
+    if not text.strip():
+        return entries
+
+    blocks = re.split(r'\n\s*\n', text)
+    for block in blocks:
+        block = block.strip()
+        if not block:
+            continue
+        lines = [l.strip() for l in block.split("\n") if l.strip()]
+        entry: dict[str, str] = {
+            "title": lines[0] if lines else "",
+            "description": " ".join(lines[1:]) if len(lines) > 1 else "",
+        }
+        entries.append(entry)
+
+    return entries
+
+
+def _parse_recommendations(text: str) -> list[dict[str, str]]:
+    """Parse recommendations section into structured entries."""
+    entries: list[dict[str, str]] = []
+    if not text.strip():
+        return entries
+
+    blocks = re.split(r'\n\s*\n', text)
+    for block in blocks:
+        block = block.strip()
+        if not block:
+            continue
+        lines = [l.strip() for l in block.split("\n") if l.strip()]
+        entry: dict[str, str] = {
+            "recommender": lines[0] if lines else "",
+            "text": " ".join(lines[1:]) if len(lines) > 1 else lines[0] if lines else "",
+        }
+        entries.append(entry)
+
+    return entries
+
+
+def parse_cv(file_path: str, source_type: str = "cv") -> dict[str, Any]:
     """
-    Full CV parsing pipeline.
+    Full CV / LinkedIn parsing pipeline.
 
     Pipeline: File → Raw text → Section detection → Structured JSON
+
+    Args:
+        file_path: Path to PDF or DOCX file.
+        source_type: "cv" or "linkedin".
 
     Returns:
         {
@@ -426,16 +559,21 @@ def parse_cv(file_path: str) -> dict[str, Any]:
             "skills": [],
             "certificates": [{"name": "", "provider": ""}],
             "languages": [],
+            "volunteering": [],
+            "honors_awards": [],
+            "publications": [],
+            "recommendations": [],
             "raw_text": str,
             "detected_sections": [str],
+            "source_type": str,
         }
     """
-    logger.info(f"Parsing CV file: {file_path}")
+    logger.info(f"Parsing document ({source_type}): {file_path}")
 
     # Step 1: Extract raw text
     raw_text = extract_text(file_path)
     if not raw_text.strip():
-        raise ValueError("CV file appears to be empty or could not be read.")
+        raise ValueError(f"{source_type.upper()} file appears to be empty or could not be read.")
 
     logger.debug(f"Extracted {len(raw_text)} chars of raw text")
 
@@ -446,22 +584,29 @@ def parse_cv(file_path: str) -> dict[str, Any]:
 
     # Step 3: Parse each section into structured data
     result: dict[str, Any] = {
-        "personal_info": _parse_personal_info(sections.get("personal_info", "")),
+        "personal_info": _parse_personal_info(sections.get("personal_info", ""), source_type=source_type),
         "education": _parse_education(sections.get("education", "")),
         "experience": _parse_experience(sections.get("experience", "")),
         "projects": _parse_projects(sections.get("projects", "")),
         "skills": _parse_skills(sections.get("skills", "")),
         "certificates": _parse_certificates(sections.get("certificates", "")),
         "languages": _parse_languages(sections.get("languages", "")),
+        "volunteering": _parse_volunteering(sections.get("volunteering", "")),
+        "honors_awards": _parse_honors_awards(sections.get("honors_awards", "")),
+        "publications": _parse_publications(sections.get("publications", "")),
+        "recommendations": _parse_recommendations(sections.get("recommendations", "")),
         "raw_text": raw_text,
         "detected_sections": detected_section_keys,
+        "source_type": source_type,
     }
 
     logger.info(
-        f"CV parsed: {len(result['skills'])} skills, "
+        f"{source_type.upper()} parsed: {len(result['skills'])} skills, "
         f"{len(result['certificates'])} certs, "
         f"{len(result['projects'])} projects, "
-        f"{len(result['experience'])} exp entries"
+        f"{len(result['experience'])} exp entries, "
+        f"{len(result['recommendations'])} recommendations, "
+        f"sections={detected_section_keys}"
     )
 
     return result

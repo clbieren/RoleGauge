@@ -1,11 +1,9 @@
-"""
-RoleGauge API Schemas.
-Pydantic models for request/response validation and serialization.
-"""
-
-from pydantic import BaseModel, Field
+import re
+from pydantic import BaseModel, Field, field_validator
 from typing import Any, Optional
 from datetime import datetime
+
+EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$')
 
 
 # ──────────────────────────────────────────────
@@ -74,6 +72,7 @@ class AnalyzeResponse(BaseModel):
     total_repos_scanned: int
     relevant_repos_found: int
     has_cv: bool = False
+    has_linkedin: bool = False
     skills: list[SkillScore] = []
     repos: list[RepoInfo] = []
     created_at: datetime
@@ -128,6 +127,10 @@ class CVParsedData(BaseModel):
     skills: list[str] = []
     certificates: list[CVCertificateData] = []
     languages: list[str] = []
+    volunteering: list[dict[str, str]] = []
+    honors_awards: list[dict[str, str]] = []
+    publications: list[dict[str, str]] = []
+    recommendations: list[dict[str, str]] = []
     detected_sections: list[str] = []
 
 
@@ -164,6 +167,61 @@ class CVUploadResponse(BaseModel):
     skill_matches: list[CVSkillMatch] = []
     certificate_matches: list[CVCertificateMatch] = []
     scoring_preview: CVScoringPreview
+
+
+# ──────────────────────────────────────────────
+# LinkedIn Upload Schemas
+# ──────────────────────────────────────────────
+
+class LinkedInParsedData(BaseModel):
+    """Structured data extracted from a LinkedIn PDF export."""
+    personal_info: dict[str, str] = {}
+    education: list[dict[str, str]] = []
+    experience: list[dict[str, str]] = []
+    projects: list[CVProjectData] = []
+    skills: list[str] = []
+    certificates: list[CVCertificateData] = []
+    languages: list[str] = []
+    volunteering: list[dict[str, str]] = []
+    honors_awards: list[dict[str, str]] = []
+    publications: list[dict[str, str]] = []
+    recommendations: list[dict[str, str]] = []
+    detected_sections: list[str] = []
+
+
+class LinkedInSkillMatch(BaseModel):
+    """A single skill match result from LinkedIn analysis."""
+    composite_key: str
+    matched_from: str  # "skills" | "experience" | "summary" | "project" | "signal_pattern" | "posts_articles" | "recommendations"
+    matched_term: str
+    status: str = "claimed"
+    strength: float
+
+
+class LinkedInCertificateMatch(BaseModel):
+    """A single certificate match result from LinkedIn analysis."""
+    certificate_name: str
+    classification: str  # "recognized_relevant" | "recognized_no_mapping" | "unrecognized_excluded"
+    matched_composite_keys: Optional[list[str]] = None
+    score_contribution: float = 0.0
+    matched_from_role: Optional[str] = None
+    category_group: Optional[str] = None
+
+
+class LinkedInScoringPreview(BaseModel):
+    """Scoring preview from LinkedIn-only evidence."""
+    readiness_score: float = Field(..., ge=0.0, le=1.0)
+    readiness_tier: str
+    readiness_label: str
+    skills: list[SkillScore] = []
+
+
+class LinkedInUploadResponse(BaseModel):
+    """Full response from POST /api/linkedin/upload."""
+    parsed_linkedin: LinkedInParsedData
+    skill_matches: list[LinkedInSkillMatch] = []
+    certificate_matches: list[LinkedInCertificateMatch] = []
+    scoring_preview: LinkedInScoringPreview
 
 
 # ──────────────────────────────────────────────
@@ -236,5 +294,80 @@ class AssessmentSubmitResponse(BaseModel):
     evaluations: list[AssessmentQuestionEvaluation]
     summary: dict[str, int]
     updated_analysis: AnalyzeResponse
+
+
+# ──────────────────────────────────────────────
+# Authentication & User Schemas
+# ──────────────────────────────────────────────
+
+class UserRegisterRequest(BaseModel):
+    """Request body for POST /api/auth/register."""
+    email: str = Field(..., description="Valid email address")
+    password: str = Field(..., min_length=8, description="Password (min 8 characters)")
+    full_name: Optional[str] = Field(None, max_length=255, description="Optional display name")
+
+    @field_validator("email")
+    @classmethod
+    def validate_email_format(cls, v: str) -> str:
+        v = v.strip().lower()
+        if not EMAIL_REGEX.match(v):
+            raise ValueError("Invalid email address format")
+        return v
+
+
+class UserLoginRequest(BaseModel):
+    """Request body for POST /api/auth/login."""
+    email: str = Field(..., description="Registered email address")
+    password: str = Field(..., description="User password")
+
+    @field_validator("email")
+    @classmethod
+    def validate_email_format(cls, v: str) -> str:
+        v = v.strip().lower()
+        if not EMAIL_REGEX.match(v):
+            raise ValueError("Invalid email address format")
+        return v
+
+
+class TokenRefreshRequest(BaseModel):
+    """Request body for POST /api/auth/refresh."""
+    refresh_token: str = Field(..., description="Valid refresh token")
+
+
+class UserResponse(BaseModel):
+    """Public user profile response."""
+    id: str
+    email: str
+    full_name: Optional[str] = None
+    is_active: bool = True
+    created_at: datetime
+
+
+class TokenResponse(BaseModel):
+    """Access and refresh token response upon login/registration."""
+    access_token: str
+    refresh_token: str
+    token_type: str = "bearer"
+    user: UserResponse
+
+
+class TokenRefreshResponse(BaseModel):
+    """Fresh access token response upon refresh."""
+    access_token: str
+    token_type: str = "bearer"
+
+
+class UserAnalysisSummary(BaseModel):
+    """Summary item for a user's past analysis history."""
+    id: str
+    github_username: str
+    role_id: str
+    role_name: str
+    level: str
+    readiness_score: float
+    readiness_tier: str
+    readiness_label: str
+    created_at: datetime
+
 
 

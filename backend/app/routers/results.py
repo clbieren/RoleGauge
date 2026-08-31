@@ -6,15 +6,18 @@ GET /api/results/{id} — Retrieve a saved analysis result.
 import uuid
 import logging
 
-from fastapi import APIRouter, Depends, HTTPException
+from typing import Optional
+
+from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import selectinload
 
 from app.database import get_db
+from app.dependencies.auth import get_optional_user
 from app.exceptions import AnalysisNotFoundError, RoleGaugeException
-from app.models.db_models import Analysis, SkillResult, SubskillResult, RepoData
-from app.models.schemas import AnalyzeResponse, SkillScore, SubskillEvidence, RepoInfo
+from app.models.db_models import Analysis, RepoData, SkillResult, SubskillResult, User
+from app.models.schemas import AnalyzeResponse, RepoInfo, SkillScore, SubskillEvidence
 from app.services.kb_loader import kb
 from app.services.scoring_engine import ScoringEngine
 
@@ -26,6 +29,7 @@ router = APIRouter(prefix="/api", tags=["results"])
 async def get_result(
     analysis_id: str,
     db: AsyncSession = Depends(get_db),
+    current_user: Optional[User] = Depends(get_optional_user),
 ) -> AnalyzeResponse:
     """Retrieve a previously saved analysis result by UUID."""
     try:
@@ -51,6 +55,20 @@ async def get_result(
 
         if not analysis:
             raise AnalysisNotFoundError(analysis_id)
+
+        # Authorization check: private analyses are only visible to their creator
+        if analysis.user_id is not None:
+            if not current_user:
+                raise HTTPException(
+                    status_code=status.HTTP_401_UNAUTHORIZED,
+                    detail="Authentication required to view this analysis.",
+                    headers={"WWW-Authenticate": "Bearer"},
+                )
+            if current_user.id != analysis.user_id:
+                raise HTTPException(
+                    status_code=status.HTTP_403_FORBIDDEN,
+                    detail="You do not have permission to view this analysis.",
+                )
 
         # Build response from DB data
         role_def = kb.get_role(analysis.role_id, analysis.level)

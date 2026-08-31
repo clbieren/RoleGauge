@@ -113,6 +113,8 @@ class EvidenceEngine:
         cv_skills_evidence: Optional[dict[str, SubskillEvidenceResult]] = None,
         cv_cert_matches: Optional[list[dict[str, Any]]] = None,
         assessment_evidence: Optional[dict[str, Any]] = None,
+        linkedin_evidence: Optional[dict[str, SubskillEvidenceResult]] = None,
+        linkedin_cert_matches: Optional[list[dict[str, Any]]] = None,
     ) -> dict[str, UnifiedSubskillEvidence]:
         """
         Merge all evidence sources into unified subskill results.
@@ -120,8 +122,10 @@ class EvidenceEngine:
         Args:
             github_evidence: Results from EvidenceDetector
             cv_skills_evidence: Results from CVSkillMatcher
-            cv_cert_matches: Results from CertificationMatcher
+            cv_cert_matches: Results from CertificationMatcher for CV
             assessment_evidence: Optional assessment verification signals
+            linkedin_evidence: Results from LinkedInSkillMatcher
+            linkedin_cert_matches: Results from CertificationMatcher for LinkedIn
 
         Returns:
             dict[composite_key, UnifiedSubskillEvidence]
@@ -186,7 +190,42 @@ class EvidenceEngine:
                                 file_path="cv/certifications",
                             ))
 
-        # Step 5: Ingest Assessment signals (if any)
+        # Step 5: Ingest LinkedIn Skill & Profile signals
+        if linkedin_evidence:
+            for ck, result in linkedin_evidence.items():
+                if ck in unified:
+                    for sig in result.signals:
+                        unified[ck].signals.append(sig)
+                        unified[ck].contributing_sources.append(ContributingSource(
+                            source=sig.source,
+                            strength=sig.strength,
+                            signal=sig.matched_text,
+                            file_path=sig.file_path,
+                        ))
+
+        # Step 6: Ingest LinkedIn Certification signals
+        if linkedin_cert_matches:
+            for cert in linkedin_cert_matches:
+                if cert.get("classification") == "recognized_relevant" and cert.get("matched_composite_keys"):
+                    cert_name = cert.get("certificate_name", "Certification")
+                    strength = float(cert.get("strength", 0.2))
+                    for ck in cert["matched_composite_keys"]:
+                        if ck in unified:
+                            sig = EvidenceSignal(
+                                source="linkedin_certification",
+                                file_path="linkedin/certifications",
+                                matched_text=cert_name,
+                                strength=strength,
+                            )
+                            unified[ck].signals.append(sig)
+                            unified[ck].contributing_sources.append(ContributingSource(
+                                source="linkedin_certification",
+                                strength=strength,
+                                signal=cert_name,
+                                file_path="linkedin/certifications",
+                            ))
+
+        # Step 7: Ingest Assessment signals (if any)
         assessment_signals_map: dict[str, list[dict[str, Any]]] = {}
         if assessment_evidence:
             for ck, signals in assessment_evidence.items():
@@ -210,7 +249,7 @@ class EvidenceEngine:
                                 file_path="assessment/session",
                             ))
 
-        # Step 6: Execute multi-signal confidence math & assessment override per composite key
+        # Step 8: Execute multi-signal confidence math & assessment override per composite key
         for ck, item in unified.items():
             self._calculate_subskill_confidence(item, assessment_signals_map.get(ck, []))
 
@@ -327,12 +366,20 @@ class EvidenceEngine:
             return "github_present", self.source_ceilings.get("github_present", 1.0)
 
         # Verified work experience / projects from CV or LinkedIn
-        work_exp_sources = {"cv_experience", "cv_project", "linkedin_experience"}
+        work_exp_sources = {
+            "cv_experience", "cv_project", "linkedin_experience", "linkedin_project",
+        }
         if any(s in sources for s in work_exp_sources):
             return "verified_work_experience", self.source_ceilings.get("verified_work_experience", 0.5)
 
-        # Self-reported skills list, summary, or education
-        self_reported_sources = {"cv_skills_list", "cv_education", "readme", "linkedin_summary"}
+        # Self-reported skills list, summary, or education (including LinkedIn skills/endorsements/summary/posts/recommendations)
+        self_reported_sources = {
+            "cv_skills_list", "cv_education", "readme", "cv_signal_pattern",
+            "linkedin_summary", "linkedin_skills", "linkedin_skills_endorsements",
+            "linkedin_post", "linkedin_posts_articles", "linkedin_article",
+            "linkedin_recommendation", "linkedin_recommendations",
+            "linkedin_signal_pattern",
+        }
         if any(s in sources for s in self_reported_sources):
             return "self_reported_skills_and_summary", self.source_ceilings.get("self_reported_skills_and_summary", 0.3)
 

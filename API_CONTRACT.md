@@ -36,19 +36,158 @@ All error responses strictly adhere to FastAPI's standard JSON structure:
 
 | Status Code | Reason / Condition | Example Detail Payload |
 |:---|:---|:---|
-| **400 Bad Request** | Unknown role, invalid level, or invalid GitHub username/URL syntax. | `{"detail": "Unknown role: 'unknown-role'. Available roles: ['backend', 'frontend', ...]"}` |
+| **400 Bad Request** | Unknown role, invalid level, invalid email format, or invalid UUID syntax. | `{"detail": "Unknown role: 'unknown-role'. Available roles: ['backend', 'frontend', ...]"}` |
+| **401 Unauthorized** | Missing, expired, or invalid JWT Bearer token, or incorrect login password. | `{"detail": "Invalid or expired authentication token."}` |
+| **403 Forbidden** | Attempting to access a private analysis created by another user. | `{"detail": "You do not have permission to view this analysis."}` |
 | **404 Not Found** | GitHub user does not exist, or analysis result ID does not exist in DB. | `{"detail": "GitHub user 'nonexistent_user_999' was not found on GitHub."}` |
+| **409 Conflict** | Attempting to register an email that already exists. | `{"detail": "An account with this email address already exists."}` |
+| **422 Unprocessable** | Request validation error (e.g. password < 8 chars, malformed email). | `{"detail": [{"loc": ["body", "password"], "msg": "String should have at least 8 characters"}]}` |
 | **429 Too Many Requests** | GitHub REST API rate limit reached (60/hr unauthenticated, 5000/hr with token). | `{"detail": "GitHub API rate limit exceeded. Please provide a GITHUB_TOKEN or try again later."}` |
 | **504 Gateway Timeout** | GitHub REST API request timed out (after 30s). | `{"detail": "GitHub API request timed out. Please check network connectivity or try again later."}` |
 | **500 Internal Server Error** | Unexpected pipeline failure or database connection loss. | `{"detail": "Analysis pipeline failed: <error message>"}` |
 
 ---
 
-## 3. Endpoints
+## 3. Authentication & Authorization Matrix
+
+RoleGauge uses standard **JWT Bearer Authentication** (HS256):
+- **Access Token:** Short-lived (30 minutes), carried in `Authorization: Bearer <access_token>` header.
+- **Refresh Token:** Long-lived (7 days), used at `POST /api/auth/refresh` to obtain a new access token.
+
+> [!NOTE]
+> **Token Revocation (MVP Architectural Scope):**
+> RoleGauge MVP adopts standard stateless JWT tokens. Currently, logout is handled on the client side by discarding the stored tokens (client-side disposal); there is no server-side token revocation/blacklisting database table. A Redis-backed token revocation list (or refresh token rotation/family tracking) is scoped for future production iterations.
+
+### Endpoint Authentication Matrix
+
+| Endpoint | Method | Auth Requirement | Description |
+|:---|:---|:---|:---|
+| `/api/auth/register` | POST | **Public** | Register a new account; returns tokens and user profile. |
+| `/api/auth/login` | POST | **Public** | Login with email/password; returns access + refresh tokens. |
+| `/api/auth/refresh` | POST | **Public** | Refresh access token using valid refresh token. |
+| `/api/auth/me` | GET | **Required** | Get current authenticated user profile. |
+| `/api/users/me/analyses` | GET | **Required** | Retrieve user's historical analysis records. |
+| `/api/analyze` | POST | **Optional** | If token present, associates analysis with user account. |
+| `/api/cv/upload` | POST | **Optional** | Open to guests and authenticated users. |
+| `/api/linkedin/upload` | POST | **Optional** | Open to guests and authenticated users. |
+| `/api/assessment/start` | POST | **Optional** | If token present, links session to user. |
+| `/api/assessment/submit` | POST | **Optional** | Evaluates answers and recalculates analysis. |
+| `/api/results/{id}` | GET | **Conditional** | Public for guest analyses (`user_id=None`); restricted to owner for user analyses. |
+| `/api/roles` | GET | **Public** | List all available roles and levels. |
+| `/api/health` | GET | **Public** | System liveness and loaded roles count. |
 
 ---
 
-### 3.1. `POST /api/analyze` — Execute Role & Skill Analysis
+## 4. Endpoints
+
+---
+
+### 4.1. `POST /api/auth/register` — Register User Account
+
+#### Request Body Schema
+```json
+{
+  "email": "developer@example.com",
+  "password": "StrongPassword123!",
+  "full_name": "Jane Doe"
+}
+```
+
+#### Response (201 Created)
+```json
+{
+  "access_token": "eyJhbGciOi...",
+  "refresh_token": "eyJhbGciOi...",
+  "token_type": "bearer",
+  "user": {
+    "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "email": "developer@example.com",
+    "full_name": "Jane Doe",
+    "is_active": true,
+    "created_at": "2026-09-01T00:00:00Z"
+  }
+}
+```
+
+---
+
+### 4.2. `POST /api/auth/login` — User Login
+
+#### Request Body Schema
+```json
+{
+  "email": "developer@example.com",
+  "password": "StrongPassword123!"
+}
+```
+
+#### Response (200 OK)
+Returns identical JSON schema to `POST /api/auth/register`.
+
+---
+
+### 4.3. `POST /api/auth/refresh` — Refresh Access Token
+
+#### Request Body Schema
+```json
+{
+  "refresh_token": "eyJhbGciOi..."
+}
+```
+
+#### Response (200 OK)
+```json
+{
+  "access_token": "eyJhbGciOi...",
+  "token_type": "bearer"
+}
+```
+
+---
+
+### 4.4. `GET /api/auth/me` — Current User Profile
+
+#### Request Headers
+- `Authorization: Bearer <access_token>`
+
+#### Response (200 OK)
+```json
+{
+  "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+  "email": "developer@example.com",
+  "full_name": "Jane Doe",
+  "is_active": true,
+  "created_at": "2026-09-01T00:00:00Z"
+}
+```
+
+---
+
+### 4.5. `GET /api/users/me/analyses` — User Analysis History
+
+#### Request Headers
+- `Authorization: Bearer <access_token>`
+
+#### Response (200 OK)
+```json
+[
+  {
+    "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "github_username": "tiangolo",
+    "role_id": "backend",
+    "role_name": "Backend Developer",
+    "level": "mid",
+    "readiness_score": 0.8125,
+    "readiness_tier": "ready",
+    "readiness_label": "Ready",
+    "created_at": "2026-09-01T00:00:00Z"
+  }
+]
+```
+
+---
+
+### 4.6. `POST /api/analyze` — Execute Role & Skill Analysis
 
 Performs the full pipeline: extracts username, scans public repositories, filters role-relevant code and dependencies, detects evidence for subskills, evaluates mathematical scoring formulas, saves results to PostgreSQL, and returns the full assessment breakdown.
 
@@ -281,7 +420,121 @@ Evaluates candidate answers against `engine.json` keyword matching thresholds (c
 
 ---
 
-### 3.6. `GET /api/health` — Health & KB Status
+### 3.6. `POST /api/cv/upload` — Upload & Parse CV (PDF/DOCX)
+
+Rule-based extraction and scoring preview for resume documents (.pdf, .docx, <= 10MB).
+
+#### Request Form Data (Multipart)
+- `file` (File, required): CV file (.pdf or .docx).
+- `role_id` (string, required): Role ID (e.g. `"backend"`).
+- `level` (string, optional, default `"mid"`): `"junior"`, `"mid"`, or `"senior"`.
+
+#### Response Body Schema
+```json
+{
+  "parsed_cv": {
+    "personal_info": {"name": "...", "email": "..."},
+    "education": [...],
+    "experience": [...],
+    "projects": [...],
+    "skills": ["Python", "FastAPI"],
+    "certificates": [{"name": "AWS Certified Solutions Architect", "provider": "AWS"}],
+    "languages": ["English"],
+    "detected_sections": ["personal_info", "experience", "skills", "certificates"]
+  },
+  "skill_matches": [
+    {
+      "composite_key": "be_api_design.rest_principles",
+      "matched_from": "skills_list",
+      "matched_term": "FastAPI",
+      "status": "claimed",
+      "strength": 0.30
+    }
+  ],
+  "certificate_matches": [
+    {
+      "certificate_name": "AWS Certified Solutions Architect",
+      "classification": "recognized_relevant",
+      "matched_composite_keys": ["be_architecture_patterns.cloud_native"],
+      "score_contribution": 0.20
+    }
+  ],
+  "scoring_preview": {
+    "readiness_score": 0.4500,
+    "readiness_tier": "developing",
+    "readiness_label": "Developing",
+    "skills": [...]
+  }
+}
+```
+
+---
+
+### 3.7. `POST /api/linkedin/upload` — Upload & Parse LinkedIn Profile PDF
+
+Extracts structured profile data from LinkedIn "Save to PDF" exports, applies role-specific base strengths from `knowledge-base/evidence/{role}/linkedin.json` (skills_endorsements: 0.15, headline_summary: 0.20, experience: 0.40, projects: 0.30, recommendations: 0.30), matches certifications against the allowlist, and calculates a scoring preview.
+
+> [!NOTE]
+> LinkedIn PDF export aktivite/gönderileri içermez, bu yüzden `posts_articles` kaynağı şu an aktif değildir.
+
+#### Request Form Data (Multipart)
+- `file` (File, required): LinkedIn PDF export (.pdf only, <= 10MB).
+- `role_id` (string, required): Role ID (e.g. `"backend"`).
+- `level` (string, optional, default `"mid"`): `"junior"`, `"mid"`, or `"senior"`.
+
+#### Response Body Schema
+```json
+{
+  "parsed_linkedin": {
+    "personal_info": {"name": "...", "headline": "...", "summary": "..."},
+    "education": [...],
+    "experience": [...],
+    "projects": [...],
+    "skills": ["Python", "FastAPI", "PostgreSQL", "Kafka"],
+    "certificates": [{"name": "AWS Certified Solutions Architect - Associate", "provider": "AWS"}],
+    "languages": ["English"],
+    "volunteering": [...],
+    "honors_awards": [...],
+    "publications": [...],
+    "recommendations": [{"recommender": "...", "text": "..."}],
+    "detected_sections": ["personal_info", "experience", "education", "certificates", "skills", "recommendations"]
+  },
+  "skill_matches": [
+    {
+      "composite_key": "be_databases.sql_querying",
+      "matched_from": "skills",
+      "matched_term": "PostgreSQL",
+      "status": "claimed",
+      "strength": 0.15
+    },
+    {
+      "composite_key": "be_architecture_patterns.event_driven_architecture",
+      "matched_from": "experience",
+      "matched_term": "Kafka",
+      "status": "claimed",
+      "strength": 0.40
+    }
+  ],
+  "certificate_matches": [
+    {
+      "certificate_name": "AWS Certified Solutions Architect - Associate",
+      "classification": "recognized_relevant",
+      "matched_composite_keys": ["be_architecture_patterns.cloud_native"],
+      "score_contribution": 0.20
+    }
+  ],
+  "scoring_preview": {
+    "readiness_score": 0.5200,
+    "readiness_tier": "approaching",
+    "readiness_label": "Approaching",
+    "skills": [...]
+  }
+}
+```
+
+---
+
+### 3.8. `GET /api/health` — Health & KB Status
 
 Verifies backend liveness, loaded role counts, and AI provider status.
 
@@ -353,6 +606,7 @@ export interface AnalyzeResponse {
   total_repos_scanned: number;
   relevant_repos_found: number;
   has_cv?: boolean;
+  has_linkedin?: boolean;
   skills: SkillScore[];
   repos: RepoInfo[];
   created_at: string;          // ISO 8601 UTC
@@ -364,6 +618,50 @@ export interface AnalyzeRequest {
   level?: SeniorityLevel;
   github_token?: string;
   use_ai?: boolean;
+}
+
+export interface LinkedInParsedData {
+  personal_info: Record<string, string>;
+  education: Array<Record<string, string>>;
+  experience: Array<Record<string, string>>;
+  projects: Array<{ name: string; description: string; skills_mentioned: string[] }>;
+  skills: string[];
+  certificates: Array<{ name: string; provider: string }>;
+  languages: string[];
+  volunteering: Array<Record<string, string>>;
+  honors_awards: Array<Record<string, string>>;
+  publications: Array<Record<string, string>>;
+  recommendations: Array<{ recommender: string; text: string }>;
+  detected_sections: string[];
+}
+
+export interface LinkedInSkillMatch {
+  composite_key: string;
+  matched_from: string;
+  matched_term: string;
+  status: string;
+  strength: number;
+}
+
+export interface LinkedInCertificateMatch {
+  certificate_name: string;
+  classification: 'recognized_relevant' | 'recognized_no_mapping' | 'unrecognized_excluded';
+  matched_composite_keys?: string[];
+  score_contribution: number;
+  matched_from_role?: string;
+  category_group?: string;
+}
+
+export interface LinkedInUploadResponse {
+  parsed_linkedin: LinkedInParsedData;
+  skill_matches: LinkedInSkillMatch[];
+  certificate_matches: LinkedInCertificateMatch[];
+  scoring_preview: {
+    readiness_score: number;
+    readiness_tier: ReadinessTier;
+    readiness_label: string;
+    skills: SkillScore[];
+  };
 }
 
 export interface AssessmentQuestionPublic {
@@ -407,6 +705,53 @@ export interface AssessmentSubmitResponse {
     incorrect: number;
   };
   updated_analysis: AnalyzeResponse;
+}
+
+export interface UserRegisterRequest {
+  email: string;
+  password: string;
+  full_name?: string;
+}
+
+export interface UserLoginRequest {
+  email: string;
+  password: string;
+}
+
+export interface TokenRefreshRequest {
+  refresh_token: string;
+}
+
+export interface UserResponse {
+  id: string;
+  email: string;
+  full_name?: string;
+  is_active: boolean;
+  created_at: string;
+}
+
+export interface TokenResponse {
+  access_token: string;
+  refresh_token: string;
+  token_type: string;
+  user: UserResponse;
+}
+
+export interface TokenRefreshResponse {
+  access_token: string;
+  token_type: string;
+}
+
+export interface UserAnalysisSummary {
+  id: string;
+  github_username: string;
+  role_id: string;
+  role_name: string;
+  level: SeniorityLevel;
+  readiness_score: number;
+  readiness_tier: ReadinessTier;
+  readiness_label: string;
+  created_at: string;
 }
 
 export interface ApiError {

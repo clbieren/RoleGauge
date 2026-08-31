@@ -59,12 +59,15 @@ app.add_middleware(
 )
 
 # Register routers
-from app.routers import analyze, roles, results, cv_upload, assessment  # noqa: E402
+from app.routers import analyze, roles, results, cv_upload, linkedin_upload, assessment, auth, users  # noqa: E402
 
+app.include_router(auth.router)
+app.include_router(users.router)
 app.include_router(analyze.router)
 app.include_router(roles.router)
 app.include_router(results.router)
 app.include_router(cv_upload.router)
+app.include_router(linkedin_upload.router)
 app.include_router(assessment.router)
 
 

@@ -3,6 +3,7 @@ RoleGauge Backend Configuration.
 Loads settings from environment variables with sensible defaults.
 """
 
+from pydantic import field_validator
 from pydantic_settings import BaseSettings
 from typing import Optional
 import os
@@ -45,8 +46,25 @@ class Settings(BaseSettings):
     CV_MAX_FILE_SIZE: int = 10 * 1024 * 1024  # 10 MB
     CV_ALLOWED_EXTENSIONS: list[str] = [".pdf", ".docx"]
 
+    # --- Authentication & JWT ---
+    JWT_SECRET_KEY: str = "rolegauge-insecure-secret-key-change-in-production-32bytes"
+    JWT_ALGORITHM: str = "HS256"
+    ACCESS_TOKEN_EXPIRE_MINUTES: int = 30  # 30 minutes
+    REFRESH_TOKEN_EXPIRE_DAYS: int = 7     # 7 days
+
+    @field_validator("JWT_SECRET_KEY")
+    @classmethod
+    def validate_jwt_secret_key(cls, v: str) -> str:
+        if not v or len(v.strip()) < 16:
+            raise ValueError("JWT_SECRET_KEY must be at least 16 characters long for security.")
+        return v
+
     # --- CORS ---
     CORS_ORIGINS: list[str] = ["http://localhost:3000", "http://127.0.0.1:3000"]
+
+    @classmethod
+    def settings_customise_sources(cls, settings_cls, init_settings, env_settings, dotenv_settings, file_secret_settings):
+        return init_settings, env_settings, dotenv_settings, file_secret_settings
 
     model_config = {
         "env_file": ".env",
