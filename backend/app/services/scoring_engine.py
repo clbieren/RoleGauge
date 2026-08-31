@@ -158,10 +158,16 @@ class ScoringEngine:
         """
         Step 1: Transform evidence signals into subskill confidence (0.0 - 1.0).
         Formula: confidence = min(max_primary + sum(secondary × diminishing_factor), source_type_ceiling)
+        Respects assessment override: verified_gap hard-resets confidence to 0.0.
         """
         confidences: dict[str, float] = {}
 
         for composite_key, result in evidence.items():
+            # Check for assessment override / verified gap
+            if result.status in ("verified_gap", "incorrect_answer", "gap"):
+                confidences[composite_key] = 0.0
+                continue
+
             if not result.signals:
                 confidences[composite_key] = 0.0
                 continue
@@ -203,13 +209,25 @@ class ScoringEngine:
         max_strength = signals[0].strength if signals else 0.0
         source_types = {s.source for s in signals}
 
+        # Assessment present with sufficient strength (>= 0.5)
+        if "assessment" in source_types and max_strength >= 0.5:
+            return self.source_ceilings.get("assessment_present", 1.0)
+
         # GitHub code/file evidence with sufficient strength (>= 0.5)
-        if max_strength >= 0.5 and any(s in source_types for s in {"file_presence", "content_match", "dependency"}):
+        if max_strength >= 0.5 and any(s in source_types for s in {"github", "file_presence", "content_match", "dependency"}):
             return self.source_ceilings.get("github_present", 1.0)
 
-        # README only
-        if source_types == {"readme"}:
+        # Verified work experience / projects from CV or LinkedIn
+        if any(s in source_types for s in {"cv_experience", "cv_project", "linkedin_experience"}):
+            return self.source_ceilings.get("verified_work_experience", 0.5)
+
+        # README only or self-reported
+        if source_types == {"readme"} or any(s in source_types for s in {"cv_skills_list", "cv_education", "linkedin_summary"}):
             return self.source_ceilings.get("self_reported_skills_and_summary", 0.3)
+
+        # Certifications only
+        if any(s in source_types for s in {"cv_certification", "linkedin_certification"}):
+            return self.source_ceilings.get("certifications_only", 0.2)
 
         # Weak github signals (< 0.5)
         if max_strength < 0.5:

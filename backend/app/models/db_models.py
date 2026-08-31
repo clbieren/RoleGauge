@@ -30,6 +30,7 @@ class Analysis(Base):
     # Relationships
     skill_results: Mapped[list["SkillResult"]] = relationship(back_populates="analysis", cascade="all, delete-orphan")
     repo_data: Mapped[list["RepoData"]] = relationship(back_populates="analysis", cascade="all, delete-orphan")
+    assessment_sessions: Mapped[list["AssessmentSession"]] = relationship(back_populates="analysis", cascade="all, delete-orphan")
 
 
 class SkillResult(Base):
@@ -57,8 +58,11 @@ class SubskillResult(Base):
     composite_key: Mapped[str] = mapped_column(String(200), nullable=False)  # e.g. gd_game_engine.physics_system
     subskill_name: Mapped[str] = mapped_column(String(255), nullable=False)
     confidence: Mapped[float] = mapped_column(Float, nullable=False)
-    status: Mapped[str] = mapped_column(String(50), nullable=False)  # evidence_found | not_yet_evidenced
-    evidence_sources: Mapped[dict | None] = mapped_column(JSON, nullable=True)  # List of files/patterns found
+    status: Mapped[str] = mapped_column(String(50), nullable=False)  # evidence_found | not_yet_evidenced | claimed | verified_gap
+    evidence_sources: Mapped[dict | None] = mapped_column(JSON, nullable=True)  # List of files/patterns/signals found
+    contributing_sources: Mapped[dict | None] = mapped_column(JSON, nullable=True)
+    ceiling_applied: Mapped[str | None] = mapped_column(String(255), nullable=True)
+    calculation_trace: Mapped[str | None] = mapped_column(Text, nullable=True)
 
     # Relationships
     skill_result: Mapped["SkillResult"] = relationship(back_populates="subskill_results")
@@ -84,3 +88,21 @@ class RepoData(Base):
 
     # Relationships
     analysis: Mapped["Analysis"] = relationship(back_populates="repo_data")
+
+
+class AssessmentSession(Base):
+    """Adaptive Assessment Q&A Session."""
+    __tablename__ = "assessment_sessions"
+
+    id: Mapped[uuid.UUID] = mapped_column(Uuid(as_uuid=True), primary_key=True, default=uuid.uuid4)
+    analysis_id: Mapped[uuid.UUID] = mapped_column(ForeignKey("analyses.id", ondelete="CASCADE"), nullable=False)
+    role_id: Mapped[str] = mapped_column(String(100), nullable=False)
+    level: Mapped[str] = mapped_column(String(50), nullable=False)
+    questions_data: Mapped[dict] = mapped_column(JSON, nullable=False)  # questions & expected keywords (server-side only)
+    answers_data: Mapped[dict | None] = mapped_column(JSON, nullable=True)  # user answers submitted
+    status: Mapped[str] = mapped_column(String(50), default="active")  # active | completed
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=lambda: datetime.now(timezone.utc))
+
+    # Relationships
+    analysis: Mapped["Analysis"] = relationship(back_populates="assessment_sessions")
+

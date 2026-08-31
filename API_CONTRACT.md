@@ -188,7 +188,100 @@ Returns all active role categories loaded in the Knowledge Base.
 
 ---
 
-### 3.4. `GET /api/health` — Health & KB Status
+### 3.4. `POST /api/assessment/start` — Start Adaptive Assessment Session
+
+Initiates an adaptive Q&A assessment for a candidate. Selects prioritized questions based on `trigger_conditions` in `assessment.json` (`not_yet_evidenced` expected subskills, low confidence, critical skills, or voluntary requests).
+
+> [!IMPORTANT]
+> `expected_answer_keywords` are strictly kept server-side to prevent cheating and are omitted from all client responses.
+
+#### Request Body
+```json
+{
+  "analysis_id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+  "voluntary_composite_keys": ["be_databases.sql_querying"],
+  "max_questions": 10
+}
+```
+
+#### Response Body
+```json
+{
+  "assessment_session_id": "550e8400-e29b-41d4-a716-446655440000",
+  "analysis_id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+  "role_id": "backend",
+  "level": "mid",
+  "total_questions": 3,
+  "questions": [
+    {
+      "composite_key": "be_databases.sql_querying",
+      "subskill_name": "SQL Querying & Window Functions",
+      "question": "Write a SQL query using window functions to retrieve the top 3 highest-earning employees in each department.",
+      "type": "scenario",
+      "level": "mid"
+    }
+  ]
+}
+```
+
+---
+
+### 3.5. `POST /api/assessment/submit` — Submit Assessment Answers
+
+Evaluates candidate answers against `engine.json` keyword matching thresholds (correct >= 60%, partial 30%-59%, incorrect < 30%), feeds verified signals into `EvidenceEngine`, recalculates scoring via `ScoringEngine`, updates the database record, and returns question evaluations and the updated analysis.
+
+#### Request Body
+```json
+{
+  "assessment_session_id": "550e8400-e29b-41d4-a716-446655440000",
+  "answers": {
+    "be_databases.sql_querying": "I would use DENSE_RANK() OVER (PARTITION BY department_id ORDER BY salary DESC) in a CTE, then filter WHERE rank <= 3."
+  }
+}
+```
+
+#### Response Body
+```json
+{
+  "assessment_session_id": "550e8400-e29b-41d4-a716-446655440000",
+  "analysis_id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+  "evaluations": [
+    {
+      "composite_key": "be_databases.sql_querying",
+      "subskill_name": "SQL Querying & Window Functions",
+      "verdict": "correct",
+      "status": "evidence_found",
+      "score": 1.0,
+      "strength": 0.8,
+      "match_ratio": 0.8333,
+      "matched_keywords_count": 5,
+      "total_keywords_count": 6,
+      "feedback": "Correct answer: matched 5/6 keywords (83.3% >= 60%). Status: evidence_found (signal strength: 0.80)."
+    }
+  ],
+  "summary": {
+    "total": 1,
+    "correct": 1,
+    "partial": 0,
+    "incorrect": 0
+  },
+  "updated_analysis": {
+    "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "github_username": "tiangolo",
+    "role_id": "backend",
+    "role_name": "Backend Developer",
+    "level": "mid",
+    "readiness_score": 0.8125,
+    "readiness_tier": "ready",
+    "readiness_label": "Ready",
+    "skills": [...]
+  }
+}
+```
+
+---
+
+### 3.6. `GET /api/health` — Health & KB Status
 
 Verifies backend liveness, loaded role counts, and AI provider status.
 
@@ -213,7 +306,7 @@ export type SeniorityLevel = 'junior' | 'mid' | 'senior';
 
 export type ReadinessTier = 'not_ready' | 'developing' | 'approaching' | 'ready' | 'exceeds';
 
-export type EvidenceStatus = 'evidence_found' | 'not_yet_evidenced' | 'verified_gap';
+export type EvidenceStatus = 'evidence_found' | 'claimed' | 'not_yet_evidenced' | 'verified_gap';
 
 export interface SubskillEvidence {
   composite_key: string;       // e.g. "be_api_design.rest_principles"
@@ -221,6 +314,9 @@ export interface SubskillEvidence {
   confidence: number;          // 0.0 to 1.0
   status: EvidenceStatus;
   evidence_sources: string[];
+  contributing_sources?: Array<{ source: string; strength: number; signal: string }>;
+  ceiling_applied?: string;
+  calculation_trace?: string;
 }
 
 export interface SkillScore {
@@ -234,8 +330,8 @@ export interface SkillScore {
 export interface RepoInfo {
   repo_name: string;
   repo_url: string;
-  description: string | null;
-  primary_language: string | null;
+  description?: string;
+  primary_language?: string;
   languages: Record<string, number>;
   stars: number;
   forks: number;
@@ -256,17 +352,61 @@ export interface AnalyzeResponse {
   readiness_label: string;
   total_repos_scanned: number;
   relevant_repos_found: number;
+  has_cv?: boolean;
   skills: SkillScore[];
   repos: RepoInfo[];
   created_at: string;          // ISO 8601 UTC
 }
 
 export interface AnalyzeRequest {
-  github_username: string;
+  github_username?: string;
   role_id: string;
   level?: SeniorityLevel;
   github_token?: string;
   use_ai?: boolean;
+}
+
+export interface AssessmentQuestionPublic {
+  composite_key: string;
+  subskill_name: string;
+  question: string;
+  type: 'conceptual' | 'scenario' | 'practical_task';
+  level: SeniorityLevel;
+}
+
+export interface AssessmentStartResponse {
+  assessment_session_id: string;
+  analysis_id: string;
+  role_id: string;
+  level: SeniorityLevel;
+  total_questions: number;
+  questions: AssessmentQuestionPublic[];
+}
+
+export interface AssessmentQuestionEvaluation {
+  composite_key: string;
+  subskill_name: string;
+  verdict: 'correct' | 'partial' | 'incorrect';
+  status: 'evidence_found' | 'partial_answer' | 'verified_gap';
+  score: number;
+  strength: number;
+  match_ratio: number;
+  matched_keywords_count: number;
+  total_keywords_count: number;
+  feedback: string;
+}
+
+export interface AssessmentSubmitResponse {
+  assessment_session_id: string;
+  analysis_id: string;
+  evaluations: AssessmentQuestionEvaluation[];
+  summary: {
+    total: number;
+    correct: number;
+    partial: number;
+    incorrect: number;
+  };
+  updated_analysis: AnalyzeResponse;
 }
 
 export interface ApiError {

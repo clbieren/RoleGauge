@@ -119,6 +119,12 @@
       },
       "assessment_scoring_and_override_rules": {
         "description": "Rules for direct verification via assessment.",
+        "keyword_match_thresholds": {
+          "correct_answer": 0.6,
+          "partial_answer": 0.3,
+          "incorrect_answer": 0.0,
+          "notes": "Ratio of expected keywords present in candidate answer text. >= 0.60 triggers correct_answer strength, 0.30 to 0.59 triggers partial_answer strength, < 0.30 triggers incorrect_answer verified_gap."
+        },
         "correct_answer": {
           "practical_task": 1.0,
           "scenario": 0.8,

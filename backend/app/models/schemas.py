@@ -165,3 +165,76 @@ class CVUploadResponse(BaseModel):
     certificate_matches: list[CVCertificateMatch] = []
     scoring_preview: CVScoringPreview
 
+
+# ──────────────────────────────────────────────
+# Assessment Schemas
+# ──────────────────────────────────────────────
+
+class AssessmentStartRequest(BaseModel):
+    """Request body for POST /api/assessment/start."""
+    analysis_id: Optional[str] = Field(None, description="Existing analysis ID (UUID)")
+    github_username: Optional[str] = Field(None, description="GitHub username if starting fresh")
+    role_id: Optional[str] = Field(None, description="Role identifier (e.g. 'backend', 'devops')")
+    level: str = Field("mid", description="Target seniority level ('junior', 'mid', 'senior')")
+    voluntary_composite_keys: Optional[list[str]] = Field(None, description="Optional voluntary subskills to test")
+    max_questions: int = Field(10, ge=1, le=25, description="Maximum number of questions to select")
+
+
+class AssessmentQuestionPublic(BaseModel):
+    """Public question payload sent to client (expected_answer_keywords strictly omitted)."""
+    composite_key: str
+    subskill_name: str
+    question: str
+    type: str  # conceptual | scenario | practical_task
+    level: str  # junior | mid | senior
+
+
+class AssessmentStartResponse(BaseModel):
+    """Response body from POST /api/assessment/start."""
+    assessment_session_id: str
+    analysis_id: str
+    role_id: str
+    level: str
+    total_questions: int
+    questions: list[AssessmentQuestionPublic]
+
+
+class AssessmentAnswerItem(BaseModel):
+    """A single submitted answer for a subskill question."""
+    composite_key: str
+    answer: str
+
+
+class AssessmentSubmitRequest(BaseModel):
+    """Request body for POST /api/assessment/submit."""
+    assessment_session_id: str = Field(..., description="ID of active assessment session")
+    answers: dict[str, str] | list[AssessmentAnswerItem] = Field(
+        ..., description="Map of {composite_key: answer_text} or list of answer items"
+    )
+
+
+class AssessmentQuestionEvaluation(BaseModel):
+    """Evaluation result for an individual question answer."""
+    composite_key: str
+    subskill_name: str
+    question: str = ""
+    type: str = ""
+    verdict: str  # correct | partial | incorrect
+    status: str  # evidence_found | partial_answer | verified_gap
+    score: float
+    strength: float
+    match_ratio: float
+    matched_keywords_count: int
+    total_keywords_count: int
+    feedback: str
+
+
+class AssessmentSubmitResponse(BaseModel):
+    """Response body from POST /api/assessment/submit."""
+    assessment_session_id: str
+    analysis_id: str
+    evaluations: list[AssessmentQuestionEvaluation]
+    summary: dict[str, int]
+    updated_analysis: AnalyzeResponse
+
+
