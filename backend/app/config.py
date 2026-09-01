@@ -65,6 +65,16 @@ class Settings(BaseSettings):
             raise ValueError("JWT_SECRET_KEY must be at least 16 characters long for security.")
         return v
 
+    # --- Rate Limiting & Redis ---
+    REDIS_URL: Optional[str] = None  # e.g., "redis://localhost:6379/0" for production
+    RATE_LIMIT_GUEST_ANALYZE: str = "5/hour"
+    RATE_LIMIT_GUEST_AI_ANALYZE: str = "2/hour"
+    RATE_LIMIT_AUTH_ANALYZE: str = "20/hour"
+    RATE_LIMIT_AUTH_AI_ANALYZE: str = "10/hour"
+    RATE_LIMIT_AUTH_BRUTE_FORCE: str = "5/15minute"
+    RATE_LIMIT_GUEST_UPLOAD: str = "10/hour"
+    RATE_LIMIT_AUTH_UPLOAD: str = "30/hour"
+
     # --- CORS ---
     CORS_ORIGINS: list[str] = ["http://localhost:3000", "http://127.0.0.1:3000"]
 

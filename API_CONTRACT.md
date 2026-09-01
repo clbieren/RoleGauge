@@ -20,6 +20,12 @@
 > - AI Providers (OpenAI/Gemini) **never generate scores directly**; they only detect evidence signals for unevidenced subskills.
 > - All scoring formulas (signal ceilings, diminishing factor for secondary signals, target level vs. lower prerequisite weights, and denominator isolation) are dynamically read from `knowledge-base/scoring/engine.json`.
 
+> [!WARNING]
+> **Production Rate Limiter & Redis Mandate:**
+> - In development and isolated test suites, an in-memory storage (`memory://`) is used for convenience.
+> - **In production environments, REDIS IS STRICTLY MANDATORY (`REDIS_URL=redis://...`).**
+> - *Why?* Even on a single server, worker restarts wipe in-memory counters. In multi-worker (e.g. Gunicorn/Uvicorn cluster) or containerized replica (Kubernetes pods) architectures, in-memory counters are isolated per process, allowing clients to bypass limits by distributing requests across workers. Production deployments **MUST** provide a shared Redis instance.
+
 ---
 
 ## 2. Global Error Handling Contract
@@ -42,9 +48,30 @@ All error responses strictly adhere to FastAPI's standard JSON structure:
 | **404 Not Found** | GitHub user does not exist, or analysis result ID does not exist in DB. | `{"detail": "GitHub user 'nonexistent_user_999' was not found on GitHub."}` |
 | **409 Conflict** | Attempting to register an email that already exists. | `{"detail": "An account with this email address already exists."}` |
 | **422 Unprocessable** | Request validation error (e.g. password < 8 chars, malformed email). | `{"detail": [{"loc": ["body", "password"], "msg": "String should have at least 8 characters"}]}` |
-| **429 Too Many Requests** | GitHub REST API rate limit reached (60/hr unauthenticated, 5000/hr with token). | `{"detail": "GitHub API rate limit exceeded. Please provide a GITHUB_TOKEN or try again later."}` |
+| **429 Too Many Requests** | RoleGauge rate limit or GitHub REST API rate limit reached. Includes `Retry-After` header. | `{"detail": "Rate limit exceeded. Try again in 3600 seconds."}` |
 | **504 Gateway Timeout** | GitHub REST API request timed out (after 30s). | `{"detail": "GitHub API request timed out. Please check network connectivity or try again later."}` |
 | **500 Internal Server Error** | Unexpected pipeline failure or database connection loss. | `{"detail": "Analysis pipeline failed: <error message>"}` |
+
+---
+
+## 2.1 Tiered Rate Limiting Specification
+
+RoleGauge protects backend resources, protects against brute-force attacks, and controls OpenAI API costs via layered rate limits:
+
+| Endpoint | Guest Limit (IP-based) | Auth User Limit (`user_id`) | Scope & Purpose |
+|:---|:---|:---|:---|
+| `POST /api/analyze` (Standard) | **5 / hour** | **20 / hour** | Standard GitHub/CV profile analysis |
+| `POST /api/analyze` (`use_ai: true`) | **2 / hour** | **10 / hour** | High-cost OpenAI GPT-4o-mini evidence detection |
+| `POST /api/auth/register` | **5 / 15 minutes (IP)** | **5 / 15 minutes (IP)** | Anti-spam & registration bot prevention |
+| `POST /api/auth/login` | **5 / 15 minutes (IP)** | **5 / 15 minutes (IP)** | Brute-force & credential stuffing defense |
+| `POST /api/cv/upload` | **10 / hour** | **30 / hour** | PDF/DOCX file parsing & skill extraction |
+| `POST /api/linkedin/upload` | **10 / hour** | **30 / hour** | LinkedIn PDF parsing & certification matching |
+
+**429 Response Headers:**
+- `Retry-After`: Number of seconds until the current rate limit window resets.
+- `X-RateLimit-Limit`: Maximum requests permitted in the window.
+- `X-RateLimit-Remaining`: Remaining requests permitted (`0` when rate limited).
+- `X-RateLimit-Reset`: Unix timestamp when the window resets.
 
 ---
 

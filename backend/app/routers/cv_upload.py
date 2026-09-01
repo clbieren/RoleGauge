@@ -17,7 +17,7 @@ import os
 import tempfile
 from typing import Any
 
-from fastapi import APIRouter, File, Form, HTTPException, UploadFile
+from fastapi import APIRouter, File, Form, HTTPException, Request, UploadFile
 
 from app.config import settings
 from app.models.schemas import (
@@ -39,6 +39,7 @@ from app.services.cv_certification_matcher import (
 from app.services.cv_parser import parse_cv
 from app.services.cv_skill_matcher import CVSkillMatcher
 from app.services.kb_loader import kb
+from app.services.rate_limiter import get_rate_limit_key, get_upload_limit, limiter
 from app.services.scoring_engine import ScoringEngine
 
 logger = logging.getLogger(__name__)
@@ -55,7 +56,9 @@ def _ensure_cert_index_built() -> CertificationIndex:
 
 
 @router.post("/cv/upload", response_model=CVUploadResponse)
+@limiter.limit(get_upload_limit, key_func=get_rate_limit_key)
 async def upload_cv(
+    request: Request,
     file: UploadFile = File(..., description="CV file (PDF or DOCX, max 10MB)"),
     role_id: str = Form(..., description="Target role category (e.g. 'backend', 'devops')"),
     level: str = Form("mid", description="Target seniority level ('junior', 'mid', 'senior')"),

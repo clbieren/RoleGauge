@@ -40,6 +40,13 @@ from app.services.evidence_engine import EvidenceEngine, UnifiedSubskillEvidence
 from app.services.github_fetcher import GitHubFetcher, extract_username
 from app.services.kb_loader import kb
 from app.services.linkedin_skill_matcher import LinkedInSkillMatcher
+from app.services.rate_limiter import (
+    get_ai_analyze_limit,
+    get_analyze_limit,
+    get_rate_limit_key,
+    is_not_ai_request,
+    limiter,
+)
 from app.services.role_filter import FilteredRepo, RoleFilter
 from app.services.scoring_engine import ScoringEngine
 
@@ -48,8 +55,10 @@ router = APIRouter(prefix="/api", tags=["analyze"])
 
 
 @router.post("/analyze", response_model=AnalyzeResponse)
+@limiter.limit(get_analyze_limit, key_func=get_rate_limit_key)
+@limiter.limit(get_ai_analyze_limit, key_func=get_rate_limit_key, exempt_when=is_not_ai_request)
 async def analyze_profile(
-    http_request: Request,
+    request: Request,
     db: AsyncSession = Depends(get_db),
     current_user: Optional[User] = Depends(get_optional_user),
 ) -> AnalyzeResponse:
@@ -61,7 +70,7 @@ async def analyze_profile(
 
     At least one of `github_username` or `file` is required.
     """
-    content_type = http_request.headers.get("content-type", "").lower()
+    content_type = request.headers.get("content-type", "").lower()
     github_username: Optional[str] = None
     role_id: str = ""
     level: str = "mid"
@@ -76,7 +85,7 @@ async def analyze_profile(
 
     # Step 1: Parse request based on content-type
     if "multipart/form-data" in content_type:
-        form = await http_request.form()
+        form = await request.form()
         github_username = form.get("github_username")  # type: ignore
         role_id = form.get("role_id", "")  # type: ignore
         level = form.get("level", "mid")  # type: ignore
@@ -98,7 +107,7 @@ async def analyze_profile(
     else:
         # JSON body
         try:
-            body = await http_request.json()
+            body = await request.json()
             req = AnalyzeRequest(**body)
             github_username = req.github_username
             role_id = req.role_id

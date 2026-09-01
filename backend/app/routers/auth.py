@@ -13,11 +13,12 @@ import logging
 import uuid
 from typing import Any
 
-from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi import APIRouter, Depends, HTTPException, Request, status
 from jose import JWTError
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from app.config import settings
 from app.database import get_db
 from app.dependencies.auth import get_current_user
 from app.models.db_models import User
@@ -36,6 +37,7 @@ from app.services.auth_service import (
     hash_password,
     verify_password,
 )
+from app.services.rate_limiter import get_ip_key, limiter
 
 logger = logging.getLogger(__name__)
 router = APIRouter(prefix="/api/auth", tags=["auth"])
@@ -47,7 +49,9 @@ router = APIRouter(prefix="/api/auth", tags=["auth"])
     status_code=status.HTTP_201_CREATED,
     summary="Register a new user account",
 )
+@limiter.limit(settings.RATE_LIMIT_AUTH_BRUTE_FORCE, key_func=get_ip_key)
 async def register(
+    request: Request,
     req: UserRegisterRequest,
     db: AsyncSession = Depends(get_db),
 ) -> TokenResponse:
@@ -104,7 +108,9 @@ async def register(
     response_model=TokenResponse,
     summary="Login with email and password",
 )
+@limiter.limit(settings.RATE_LIMIT_AUTH_BRUTE_FORCE, key_func=get_ip_key)
 async def login(
+    request: Request,
     req: UserLoginRequest,
     db: AsyncSession = Depends(get_db),
 ) -> TokenResponse:

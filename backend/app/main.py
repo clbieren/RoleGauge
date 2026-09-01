@@ -6,12 +6,14 @@ Entry point for the backend server.
 import logging
 from contextlib import asynccontextmanager
 
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
+from slowapi.errors import RateLimitExceeded
 
 from app.config import settings
 from app.database import create_tables, dispose_engine
 from app.services.kb_loader import kb
+from app.services.rate_limiter import limiter, rate_limit_exceeded_handler
 
 # Configure logging
 logging.basicConfig(
@@ -48,6 +50,33 @@ app = FastAPI(
     description="GitHub profile analysis for role-based skill assessment",
     lifespan=lifespan,
 )
+
+# Rate Limiter setup
+app.state.limiter = limiter
+app.add_exception_handler(RateLimitExceeded, rate_limit_exceeded_handler)
+
+
+@app.middleware("http")
+async def rate_limit_context_middleware(request: Request, call_next):
+    """Pre-parse use_ai flag for analyze endpoint to support synchronous rate limiting."""
+    if request.url.path.endswith("/analyze") and request.method == "POST":
+        content_type = request.headers.get("content-type", "").lower()
+        if "application/json" in content_type:
+            try:
+                body_bytes = await request.body()
+                if body_bytes:
+                    import json
+                    data = json.loads(body_bytes)
+                    if data.get("use_ai") in (True, "true", "True", 1, "1"):
+                        request.state.use_ai = True
+            except Exception:
+                pass
+        elif "multipart/form-data" in content_type:
+            if request.query_params.get("use_ai", "").lower() in ("true", "1") or request.headers.get("x-use-ai", "").lower() in ("true", "1"):
+                request.state.use_ai = True
+
+    return await call_next(request)
+
 
 # CORS
 app.add_middleware(
