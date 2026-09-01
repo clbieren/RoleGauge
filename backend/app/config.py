@@ -38,6 +38,12 @@ class Settings(BaseSettings):
     OPENAI_MODEL: str = "gpt-4o-mini"
     GEMINI_API_KEY: Optional[str] = None
     GEMINI_MODEL: str = "gemini-2.0-flash"
+    AI_REQUEST_TIMEOUT: int = 60           # Seconds per API call
+    AI_MAX_RETRIES: int = 3                # Retry count for 429 / 500 / timeout
+    AI_MAX_INPUT_TOKENS: int = 12000       # Max input tokens per prompt
+    AI_MAX_OUTPUT_TOKENS: int = 4096       # Max response tokens
+    AI_SUBSKILL_CHUNK_SIZE: int = 15       # Chunk subskills if exceeding this
+    AI_COST_TRACKING: bool = True          # Log token usage & estimated cost
 
     # --- Knowledge Base ---
     KB_PATH: str = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), "knowledge-base")

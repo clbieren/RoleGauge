@@ -178,8 +178,10 @@ async def analyze_profile(
                     ]
                     if unevidenced:
                         ai_data = _prepare_ai_data(filtered_repos)
+                        subskill_defs = _get_subskill_definitions(kb, role_id, unevidenced)
                         ai_results = await ai_provider.analyze_evidence(
-                            role_id, level, unevidenced, ai_data
+                            role_id, level, unevidenced, ai_data,
+                            subskill_definitions=subskill_defs,
                         )
                         _merge_ai_results(github_evidence, ai_results)
 
@@ -339,23 +341,53 @@ def _prepare_ai_data(filtered_repos: list) -> dict[str, Any]:
     }
 
 
+def _get_subskill_definitions(
+    knowledge_base: Any, role_id: str, composite_keys: list[str]
+) -> dict[str, dict[str, Any]]:
+    """Extract subskill name, description, keywords from KB for AI context."""
+    defs: dict[str, dict[str, Any]] = {}
+    for skill_id, skill_data in knowledge_base.get_skills_for_role(role_id).items():
+        for subskill in skill_data.get("subskills", []):
+            ck = f"{skill_id}.{subskill['id']}"
+            if ck in composite_keys:
+                defs[ck] = {
+                    "name": subskill.get("name", subskill["id"]),
+                    "description": subskill.get("description", ""),
+                    "keywords": subskill.get("keywords", []),
+                }
+    return defs
+
+
 def _merge_ai_results(evidence: dict, ai_results: dict):
-    """Merge AI detection results into the evidence map."""
+    """Merge AI detection results into the evidence map with gradual strength."""
     from app.services.evidence_detector import EvidenceSignal
 
+    merged_count = 0
     for composite_key, ai_data in ai_results.items():
         if composite_key not in evidence:
             continue
         if ai_data.get("status") == "evidence_found":
             sources = ai_data.get("evidence_sources", [])
+            quality = ai_data.get("quality_notes", "")
+
+            # Gradual AI signal strength based on evidence quality
+            strength = 0.7  # Default: code-level evidence
+            quality_lower = quality.lower() if quality else ""
+            if any(w in quality_lower for w in ("config", "trivial", "basic", "readme", "mention")):
+                strength = 0.5  # Weaker config/mention-level evidence
+
             for source in sources:
                 evidence[composite_key].signals.append(EvidenceSignal(
                     source="ai",
                     file_path=source,
-                    matched_text=ai_data.get("quality_notes", "AI detected"),
-                    strength=0.7,
+                    matched_text=f"[AI] {quality}" if quality else "AI detected",
+                    strength=strength,
                 ))
             evidence[composite_key].status = "evidence_found"
+            merged_count += 1
+
+    if merged_count:
+        logger.info(f"AI enrichment: {merged_count} subskills newly evidenced")
 
 
 async def _save_analysis(
@@ -379,7 +411,7 @@ async def _save_analysis(
         readiness_tier=scoring_result["readiness_tier"],
         total_repos_scanned=len(filtered_repos),
         relevant_repos_found=sum(1 for r in filtered_repos if r.is_relevant),
-        ai_provider_used=use_ai and "openai" or "none",
+        ai_provider_used=settings.AI_PROVIDER if use_ai else "none",
     )
     db.add(analysis)
     await db.flush()
