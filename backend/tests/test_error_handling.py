@@ -138,3 +138,73 @@ def test_roles_endpoint():
         assert "roles" in data
         role_ids = [r["category"] for r in data["roles"]]
         assert "backend" in role_ids
+
+
+def test_use_ai_true_gracefully_ignored_with_ad_placements_returned(caplog):
+    """
+    When use_ai: true is sent, the backend logs the disabled status,
+    ignores the AI flag, completes normal analysis pipeline,
+    and returns advertising placement signals with ai_enrichment_available: false.
+    """
+    import logging
+    from app.services.github_fetcher import FetchedRepo, RepoMetadata
+
+    fake_meta = RepoMetadata(
+        name="my-fastapi-app",
+        full_name="testuser/my-fastapi-app",
+        url="https://github.com/testuser/my-fastapi-app",
+        description="FastAPI REST API",
+        primary_language="Python",
+        languages={"Python": 1000},
+        stars=10,
+        forks=2,
+        topics=["api", "fastapi"],
+    )
+    fake_repo = FetchedRepo(
+        metadata=fake_meta,
+        file_tree=["main.py", "requirements.txt"],
+        file_contents={
+            "main.py": "from fastapi import FastAPI, APIRouter\napp = FastAPI()\nrouter = APIRouter()",
+            "requirements.txt": "fastapi==0.110.0\npydantic==2.6.0\npytest==8.0.0",
+        },
+        dependency_files={
+            "requirements.txt": "fastapi==0.110.0\npydantic==2.6.0\npytest==8.0.0",
+        },
+    )
+
+    with patch("app.routers.analyze.GitHubFetcher.fetch_user_repos", new_callable=AsyncMock) as mock_fetch, \
+         patch("app.routers.analyze.GitHubFetcher.fetch_specific_files", new_callable=AsyncMock) as mock_fetch_files:
+        mock_fetch.return_value = [fake_repo]
+        mock_fetch_files.return_value = {
+            "main.py": "from fastapi import FastAPI, APIRouter\napp = FastAPI()\nrouter = APIRouter()",
+            "requirements.txt": "fastapi==0.110.0\npydantic==2.6.0\npytest==8.0.0",
+        }
+
+        with caplog.at_level(logging.INFO):
+            with TestClient(app) as client:
+                response = client.post(
+                    "/api/analyze",
+                    json={
+                        "github_username": "testuser",
+                        "role_id": "backend",
+                        "level": "mid",
+                        "use_ai": True,
+                    },
+                )
+
+        assert response.status_code == 200, f"Expected 200, got {response.status_code}: {response.text}"
+        data = response.json()
+
+        # Verify AI enrichment is flagged as not available
+        assert data["ai_enrichment_available"] is False
+        assert data["analysis_tier"] == "standard"
+
+        # Verify advertisement placement signals
+        assert "ad_placements" in data
+        assert data["ad_placements"]["loading_screen"] is True
+        assert data["ad_placements"]["results_sidebar_left"] is True
+        assert data["ad_placements"]["results_sidebar_right"] is True
+
+        # Verify log output confirmed AI enrichment was disabled and ignored
+        assert any("AI enrichment requested but currently disabled" in record.message for record in caplog.records)
+

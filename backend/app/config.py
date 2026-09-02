@@ -33,7 +33,10 @@ class Settings(BaseSettings):
     GITHUB_MAX_FILE_SIZE: int = 500_000  # Max file size in bytes to fetch content (500KB)
 
     # --- AI Provider ---
-    AI_PROVIDER: str = "none"  # "openai" | "gemini" | "none" (keyword-only mode)
+    # AI enrichment is currently disabled platform-wide (cost/business decision).
+    # Default is "none" (keyword-only mode). The infrastructure remains intact
+    # (ai_provider.py, test_ai_provider.py) for future re-activation ("openai" | "gemini" | "none").
+    AI_PROVIDER: str = "none"
     OPENAI_API_KEY: Optional[str] = None
     OPENAI_MODEL: str = "gpt-4o-mini"
     GEMINI_API_KEY: Optional[str] = None

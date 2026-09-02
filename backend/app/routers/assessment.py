@@ -33,6 +33,7 @@ from app.models.schemas import (
     RepoInfo,
     SkillScore,
     SubskillEvidence,
+    resolve_ad_placements,
 )
 from app.services.assessment_evaluator import AssessmentEvaluator
 from app.services.assessment_selector import AssessmentSelector
@@ -470,6 +471,8 @@ async def submit_assessment(
         for r in (analysis.repo_data or [])
     ]
 
+    analysis_tier, ad_placements = resolve_ad_placements(current_user)
+
     updated_analysis = AnalyzeResponse(
         id=str(analysis.id),
         github_username=analysis.github_username,
@@ -482,6 +485,10 @@ async def submit_assessment(
         total_repos_scanned=analysis.total_repos_scanned,
         relevant_repos_found=analysis.relevant_repos_found,
         has_cv=analysis.github_username == "cv_upload",
+        has_linkedin=False,
+        ai_enrichment_available=False,
+        analysis_tier=analysis_tier,
+        ad_placements=ad_placements,
         skills=skills_response,
         repos=repos_response,
         created_at=analysis.created_at,

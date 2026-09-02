@@ -17,7 +17,13 @@ from app.database import get_db
 from app.dependencies.auth import get_optional_user
 from app.exceptions import AnalysisNotFoundError, RoleGaugeException
 from app.models.db_models import Analysis, RepoData, SkillResult, SubskillResult, User
-from app.models.schemas import AnalyzeResponse, RepoInfo, SkillScore, SubskillEvidence
+from app.models.schemas import (
+    AnalyzeResponse,
+    RepoInfo,
+    SkillScore,
+    SubskillEvidence,
+    resolve_ad_placements,
+)
 from app.services.kb_loader import kb
 from app.services.scoring_engine import ScoringEngine
 
@@ -115,6 +121,8 @@ async def get_result(
             for rd in analysis.repo_data
         ]
 
+        analysis_tier, ad_placements = resolve_ad_placements(current_user)
+
         return AnalyzeResponse(
             id=str(analysis.id),
             github_username=analysis.github_username,
@@ -126,6 +134,11 @@ async def get_result(
             readiness_label=tier_info["label"],
             total_repos_scanned=analysis.total_repos_scanned,
             relevant_repos_found=analysis.relevant_repos_found,
+            has_cv=analysis.github_username == "cv_upload",
+            has_linkedin=False,
+            ai_enrichment_available=False,
+            analysis_tier=analysis_tier,
+            ad_placements=ad_placements,
             skills=skills,
             repos=repos,
             created_at=analysis.created_at,

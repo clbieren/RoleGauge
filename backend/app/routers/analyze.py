@@ -25,11 +25,13 @@ from app.dependencies.auth import get_optional_user
 from app.exceptions import RoleGaugeException, RoleNotFoundError
 from app.models.db_models import Analysis, RepoData, SkillResult, SubskillResult, User
 from app.models.schemas import (
+    AdPlacements,
     AnalyzeRequest,
     AnalyzeResponse,
     RepoInfo,
     SkillScore,
     SubskillEvidence,
+    resolve_ad_placements,
 )
 from app.services.ai_provider import get_ai_provider
 from app.services.cv_certification_matcher import CertificationMatcher, get_certification_index
@@ -116,6 +118,12 @@ async def analyze_profile(
             use_ai = req.use_ai
         except Exception as e:
             raise HTTPException(status_code=400, detail=f"Invalid request body: {e}")
+
+    # Step 1b: Check AI enrichment status (disabled platform-wide by default)
+    if use_ai:
+        if settings.AI_PROVIDER == "none":
+            logger.info("AI enrichment requested but currently disabled")
+            use_ai = False
 
     # Step 2: Validate inputs
     if not github_username and not cv_bytes and not linkedin_bytes:
@@ -315,6 +323,7 @@ async def analyze_profile(
             has_linkedin=bool(linkedin_bytes),
             scoring_result=scoring_result,
             filtered_repos=filtered_repos,
+            user=current_user,
         )
 
     except RoleGaugeException as e:
@@ -485,6 +494,7 @@ def _build_response(
     has_linkedin: bool,
     scoring_result: dict,
     filtered_repos: list,
+    user: Optional[User] = None,
 ) -> AnalyzeResponse:
     """Build the API response from scoring results."""
     skills = []
@@ -527,6 +537,8 @@ def _build_response(
         for r in filtered_repos
     ]
 
+    analysis_tier, ad_placements = resolve_ad_placements(user)
+
     return AnalyzeResponse(
         id=str(analysis_id),
         github_username=username,
@@ -540,6 +552,9 @@ def _build_response(
         relevant_repos_found=sum(1 for r in filtered_repos if r.is_relevant),
         has_cv=has_cv,
         has_linkedin=has_linkedin,
+        ai_enrichment_available=False,
+        analysis_tier=analysis_tier,
+        ad_placements=ad_placements,
         skills=skills,
         repos=repos,
         created_at=datetime.now(timezone.utc),

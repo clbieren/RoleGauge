@@ -20,6 +20,12 @@
 > - AI Providers (OpenAI/Gemini) **never generate scores directly**; they only detect evidence signals for unevidenced subskills.
 > - All scoring formulas (signal ceilings, diminishing factor for secondary signals, target level vs. lower prerequisite weights, and denominator isolation) are dynamically read from `knowledge-base/scoring/engine.json`.
 
+> [!IMPORTANT]
+> **AI Enrichment Platform Status:**
+> - AI enrichment is currently disabled platform-wide (cost/business decision).
+> - The infrastructure remains intact (`ai_provider.py`, `test_ai_provider.py`) for future re-activation.
+> - Requests with `use_ai: true` are gracefully logged and handled via deterministic heuristic keyword matching without external API invocations.
+
 > [!WARNING]
 > **Production Rate Limiter & Redis Mandate:**
 > - In development and isolated test suites, an in-memory storage (`memory://`) is used for convenience.
@@ -61,7 +67,7 @@ RoleGauge protects backend resources, protects against brute-force attacks, and 
 | Endpoint | Guest Limit (IP-based) | Auth User Limit (`user_id`) | Scope & Purpose |
 |:---|:---|:---|:---|
 | `POST /api/analyze` (Standard) | **5 / hour** | **20 / hour** | Standard GitHub/CV profile analysis |
-| `POST /api/analyze` (`use_ai: true`) | **2 / hour** | **10 / hour** | High-cost OpenAI GPT-4o-mini evidence detection |
+| `POST /api/analyze` (`use_ai: true`) | *Dormant* (Standard 5/hr applies) | *Dormant* (Standard 20/hr applies) | AI enrichment disabled platform-wide; limit dormant until AI re-activation |
 | `POST /api/auth/register` | **5 / 15 minutes (IP)** | **5 / 15 minutes (IP)** | Anti-spam & registration bot prevention |
 | `POST /api/auth/login` | **5 / 15 minutes (IP)** | **5 / 15 minutes (IP)** | Brute-force & credential stuffing defense |
 | `POST /api/cv/upload` | **10 / hour** | **30 / hour** | PDF/DOCX file parsing & skill extraction |
@@ -229,7 +235,7 @@ Performs the full pipeline: extracts username, scans public repositories, filter
 | `role_id` | `string` | **Yes** | — | Target role category ID (e.g. `"backend"`, `"frontend"`, `"game-dev"`, `"ai-engineer"`) |
 | `level` | `string` | No | `"mid"` | Target seniority level: `"junior"`, `"mid"`, or `"senior"` |
 | `github_token` | `string` | No | `null` | Optional GitHub Personal Access Token to avoid rate limits |
-| `use_ai` | `boolean` | No | `false` | If `true`, runs AI enrichment for unevidenced subskills using configured AI provider |
+| `use_ai` | `boolean` | No | `false` | Accepted for forward-compatibility. Currently ignored as AI enrichment is disabled platform-wide (falls back to standard heuristic pipeline without error). |
 
 #### Example Request
 ```json
@@ -255,6 +261,15 @@ Performs the full pipeline: extracts username, scans public repositories, filter
   "readiness_label": "Ready",
   "total_repos_scanned": 30,
   "relevant_repos_found": 8,
+  "has_cv": false,
+  "has_linkedin": false,
+  "ai_enrichment_available": false,
+  "analysis_tier": "standard",
+  "ad_placements": {
+    "loading_screen": true,
+    "results_sidebar_left": true,
+    "results_sidebar_right": true
+  },
   "skills": [
     {
       "skill_id": "be_api_design",
@@ -621,6 +636,12 @@ export interface RepoInfo {
   evidence_found: string[];
 }
 
+export interface AdPlacements {
+  loading_screen: boolean;
+  results_sidebar_left: boolean;
+  results_sidebar_right: boolean;
+}
+
 export interface AnalyzeResponse {
   id: string;                  // UUID
   github_username: string;
@@ -634,6 +655,9 @@ export interface AnalyzeResponse {
   relevant_repos_found: number;
   has_cv?: boolean;
   has_linkedin?: boolean;
+  ai_enrichment_available: boolean;
+  analysis_tier: string;
+  ad_placements: AdPlacements;
   skills: SkillScore[];
   repos: RepoInfo[];
   created_at: string;          // ISO 8601 UTC
@@ -788,9 +812,56 @@ export interface ApiError {
 
 ---
 
-## 5. AI Integration Contract (For AI Provider Developers)
+---
 
-When `use_ai: true` is passed:
+## 5. Advertising Integration Notes
+
+This section outlines frontend guidelines and contract specifications for rendering display ads within the RoleGauge application.
+
+### 5.1 Ad Placement Points & Layout Rules
+
+Monetization occurs strictly across three dedicated locations:
+
+| Ad Slot Key | Location | Placement Details | Display Trigger |
+|:---|:---|:---|:---|
+| `loading_screen` | **Loading Screen** | Single banner ad (e.g. 728x90 or 300x250) positioned within or below the analysis progress bar. | Rendered exclusively while analysis is in progress. |
+| `results_sidebar_left` | **Results Page (Left Rail)** | Vertical skyscraper / rail banner (e.g. 160x600 or 300x600) on the left sidebar of the results dashboard. | Rendered on `/results/{id}` if `results_sidebar_left == true`. |
+| `results_sidebar_right` | **Results Page (Right Rail)** | Vertical skyscraper / rail banner (e.g. 160x600 or 300x600) on the right sidebar of the results dashboard. | Rendered on `/results/{id}` if `results_sidebar_right == true`. |
+
+> [!IMPORTANT]
+> **Ad-Free Landing & Input Guarantee:**
+> The **Home / Landing Page** (pre-analysis input forms, repo selectors, CV upload area) must remain strictly **100% ad-free**. Advertisements must never interfere with the primary candidate evaluation input experience.
+
+### 5.2 Dynamic Slot Rendering Contract
+
+All analysis responses (`POST /api/analyze`, `GET /api/results/{id}`, `POST /api/assessment/submit`) return the following control fields:
+
+```json
+{
+  "ai_enrichment_available": false,
+  "analysis_tier": "standard",
+  "ad_placements": {
+    "loading_screen": true,
+    "results_sidebar_left": true,
+    "results_sidebar_right": true
+  }
+}
+```
+
+- **Slot Conditionality**: The frontend advertising component MUST check `response.ad_placements[slot_name]` before mounting or requesting ad creatives. If the slot value is `false`, the container must collapse cleanly without whitespace.
+- **Account Tiers**:
+  - `analysis_tier: "standard"`: Guest and regular authenticated users. All ad slots default to `true`.
+  - `analysis_tier: "premium"`: Future premium users. All ad slots return `false` (ad-free experience).
+- **AI Enrichment State**: AI enrichment is currently disabled platform-wide (`ai_enrichment_available: false`). When AI enrichment is re-enabled in a future update, this document and response payload will be updated.
+
+---
+
+## 6. AI Integration Contract (For AI Provider Developers)
+
+> [!NOTE]
+> AI enrichment is currently disabled platform-wide (cost/business decision). The infrastructure below is kept fully operational for future re-activation by configuring `AI_PROVIDER=openai` or `AI_PROVIDER=gemini`.
+
+When `use_ai: true` is passed and AI provider is active:
 1. The backend collects all subskills with `status: "not_yet_evidenced"`.
 2. A filtered bundle containing `file_contents`, `dependencies`, and `readme` is passed to the AI provider.
 3. The AI provider **only** returns evidence classifications and candidate source locations:

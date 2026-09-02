@@ -62,8 +62,15 @@ def get_analyze_limit(key: str) -> str:
     return settings.RATE_LIMIT_GUEST_ANALYZE
 
 
+# NOTE: AI enrichment is currently disabled platform-wide (AI_PROVIDER="none").
+# The AI-specific analyze rate limits (RATE_LIMIT_GUEST_AI_ANALYZE, RATE_LIMIT_AUTH_AI_ANALYZE)
+# and is_not_ai_request exemption logic are kept intact for seamless re-activation when AI is re-enabled.
 def get_ai_analyze_limit(key: str) -> str:
-    """Return AI-specific analyze rate limit based on caller tier."""
+    """
+    Return AI-specific analyze rate limit based on caller tier.
+    (Currently dormant while AI enrichment is disabled platform-wide;
+    preserved for future re-activation).
+    """
     if key.startswith("user:"):
         return settings.RATE_LIMIT_AUTH_AI_ANALYZE
     return settings.RATE_LIMIT_GUEST_AI_ANALYZE
@@ -81,6 +88,10 @@ def is_not_ai_request(request: Request) -> bool:
     Exemption check for AI rate limit:
     Returns True if request does NOT use AI (exempt from AI limit).
     Returns False if request DOES use AI (AI limit will be enforced).
+
+    NOTE: Currently dormant while AI enrichment is disabled platform-wide
+    (requests are processed without AI and exempt from AI-specific quotas).
+    Preserved intact for future AI re-activation.
     """
     # Check request state populated by middleware
     if getattr(request.state, "use_ai", False):

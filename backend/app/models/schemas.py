@@ -59,6 +59,34 @@ class RepoInfo(BaseModel):
     evidence_found: list[str] = []  # Composite keys found
 
 
+class AdPlacements(BaseModel):
+    """Signals indicating active advertisement slots for client rendering."""
+    loading_screen: bool = True
+    results_sidebar_left: bool = True
+    results_sidebar_right: bool = True
+
+
+def resolve_ad_placements(user: Optional[Any] = None) -> tuple[str, AdPlacements]:
+    """
+    Determine analysis_tier and ad_placements based on user status.
+    Prepared for future user.is_premium attribute:
+    - Standard/Guest users: analysis_tier='standard', all ad slots active (True).
+    - Premium users: analysis_tier='premium', all ad slots disabled (False).
+    """
+    is_premium = getattr(user, "is_premium", False) if user else False
+    if is_premium:
+        return "premium", AdPlacements(
+            loading_screen=False,
+            results_sidebar_left=False,
+            results_sidebar_right=False,
+        )
+    return "standard", AdPlacements(
+        loading_screen=True,
+        results_sidebar_left=True,
+        results_sidebar_right=True,
+    )
+
+
 class AnalyzeResponse(BaseModel):
     """Full analysis result returned by POST /api/analyze."""
     id: str
@@ -73,6 +101,9 @@ class AnalyzeResponse(BaseModel):
     relevant_repos_found: int
     has_cv: bool = False
     has_linkedin: bool = False
+    ai_enrichment_available: bool = False
+    analysis_tier: str = "standard"
+    ad_placements: AdPlacements = Field(default_factory=AdPlacements)
     skills: list[SkillScore] = []
     repos: list[RepoInfo] = []
     created_at: datetime

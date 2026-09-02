@@ -59,7 +59,9 @@ app.add_exception_handler(RateLimitExceeded, rate_limit_exceeded_handler)
 @app.middleware("http")
 async def rate_limit_context_middleware(request: Request, call_next):
     """Pre-parse use_ai flag for analyze endpoint to support synchronous rate limiting."""
-    if request.url.path.endswith("/analyze") and request.method == "POST":
+    # Inactive while AI is disabled platform-wide (AI_PROVIDER == "none").
+    # If AI is re-enabled in config, this flags requests for strict AI rate limits.
+    if settings.AI_PROVIDER != "none" and request.url.path.endswith("/analyze") and request.method == "POST":
         content_type = request.headers.get("content-type", "").lower()
         if "application/json" in content_type:
             try:

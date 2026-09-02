@@ -363,3 +363,24 @@ class TestStorageConfiguration:
         with patch.object(settings, "REDIS_URL", None):
             lim = Limiter(key_func=get_rate_limit_key, storage_uri=settings.REDIS_URL or "memory://")
             assert lim._storage_uri == "memory://"
+
+
+# ═══════════════════════════════════════════════════════════════════
+# 9. Disabled AI Platform-wide Rate Limit Behavior
+# ═══════════════════════════════════════════════════════════════════
+
+class TestDisabledAIRateLimiting:
+
+    def test_when_ai_disabled_platform_wide_ai_provider_is_none(self):
+        """
+        When AI_PROVIDER='none', the platform runs in keyword-only mode
+        and requests with use_ai=True do not trigger AI provider API calls.
+        """
+        from app.main import app as main_app
+        client = TestClient(main_app, base_url="http://192.168.1.120")
+
+        # Health endpoint confirms ai_provider is "none"
+        res = client.get("/api/health")
+        assert res.status_code == 200
+        assert res.json()["ai_provider"] == "none"
+
