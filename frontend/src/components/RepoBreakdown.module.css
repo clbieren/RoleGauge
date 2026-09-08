@@ -1,127 +1,215 @@
-.container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-  gap: 12px;
-}
+/* RepoBreakdown.module.css */
 
-.repoCard {
+.container {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  padding: 16px 20px;
-  border-radius: var(--radius-md);
-  border: 1px solid var(--border-subtle);
-  text-decoration: none;
-  color: inherit;
-  transition: all var(--transition-base);
 }
 
-.repoCard:hover {
-  background: var(--bg-glass-hover);
-  border-color: var(--border-accent);
-  transform: translateY(-2px);
+/* ── Table header ─────────────────────────────── */
+.tableHead {
+  display: grid;
+  grid-template-columns: 1fr 80px 200px 100px;
+  gap: 12px;
+  padding: 8px 0 10px;
+  border-bottom: 1px solid var(--border);
 }
 
-.relevant {
-  border-left: 3px solid var(--accent-indigo);
+.thCell {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
-.irrelevant {
-  opacity: 0.5;
+/* ── Row ──────────────────────────────────────── */
+.row {
+  border-bottom: 1px solid var(--border);
 }
 
-.repoHeader {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 8px;
+.row:last-child {
+  border-bottom: none;
 }
 
-.repoTitle {
+.rowMain {
+  display: grid;
+  grid-template-columns: 1fr 80px 200px 100px;
+  gap: 12px;
+  align-items: center;
+  padding: 12px 0;
+  cursor: pointer;
+  transition: none;
+}
+
+.rowMain:hover .repoName {
+  color: var(--accent);
+}
+
+.repoNameCell {
   display: flex;
   align-items: center;
-  gap: 8px;
-  color: var(--text-accent);
+  gap: 7px;
   min-width: 0;
 }
 
+.repoIcon {
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
 .repoName {
-  font-weight: 600;
-  font-size: 0.92rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: color var(--t-fast);
+  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.stars {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.starIcon {
+  color: var(--warning);
+}
+
+.langs {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.relevance {
+  display: flex;
+  align-items: center;
+}
+
+.relevanceBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 9px;
+  border-radius: var(--r-badge);
+  font-size: 0.75rem;
+  font-weight: 500;
 }
 
 .relevantBadge {
-  font-size: 0.65rem;
-  padding: 2px 8px;
-  background: rgba(99, 102, 241, 0.15);
-  color: var(--accent-indigo);
-  border-radius: var(--radius-full);
-  flex-shrink: 0;
+  background: var(--success-bg);
+  color: var(--success);
+  border: 1px solid rgba(63, 185, 80, 0.2);
+}
+
+.irrelevantBadge {
+  background: var(--bg-elevated);
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+}
+
+.chevron {
+  color: var(--text-muted);
+  transition: transform 0.2s ease;
+  margin-left: auto;
+}
+
+.chevronOpen {
+  transform: rotate(180deg);
+}
+
+/* ── Expanded detail ──────────────────────────── */
+.detail {
+  padding: 0 0 16px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.detailSection {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.detailLabel {
+  font-size: 0.75rem;
   font-weight: 600;
-}
-
-.repoStats {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  flex-shrink: 0;
-}
-
-.stat {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  font-size: 0.78rem;
   color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
 }
 
-.repoDesc {
-  font-size: 0.82rem;
+.detailDesc {
+  font-size: 0.875rem;
   color: var(--text-secondary);
-  line-height: 1.5;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
+  line-height: 1.55;
 }
 
-.langBar {
+.evidenceList {
   display: flex;
-  height: 6px;
-  border-radius: 3px;
-  overflow: hidden;
-  gap: 1px;
+  flex-direction: column;
+  gap: 4px;
 }
 
-.langSegment {
-  min-width: 3px;
-  transition: width 0.5s ease-out;
-}
-
-.langList {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.langTag {
+.evidenceItem {
   display: flex;
   align-items: center;
-  gap: 4px;
-  font-size: 0.72rem;
+  gap: 7px;
+  font-size: 0.8rem;
   color: var(--text-secondary);
 }
 
-.langDot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
+.evidenceCheck {
+  color: var(--success);
   flex-shrink: 0;
 }
 
-.langPercent {
-  color: var(--text-muted);
+.githubLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.825rem;
+  color: var(--accent);
+  text-decoration: none;
+  transition: opacity var(--t-fast);
+}
+
+.githubLink:hover {
+  opacity: 0.8;
+}
+
+/* ── Mobile cards ─────────────────────────────── */
+@media (max-width: 640px) {
+  .tableHead { display: none; }
+
+  .rowMain {
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto;
+    gap: 6px;
+    padding: 14px 0;
+  }
+
+  .stars { font-size: 0.78rem; }
+
+  .langs {
+    grid-column: 1;
+    grid-row: 2;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+  }
+
+  .relevance {
+    grid-column: 2;
+    grid-row: 1 / 3;
+    align-items: flex-start;
+    padding-top: 2px;
+  }
 }

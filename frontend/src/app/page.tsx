@@ -2,58 +2,99 @@
 
 import { useState, useEffect } from 'react';
 import { RoleInfo, AnalyzeResponse, fetchRoles, analyzeProfile } from '@/lib/api';
-import GitHubInput from '@/components/GitHubInput';
-import RoleSelector from '@/components/RoleSelector';
+import { useLocale } from '@/lib/useLocale';
+import { initLocale } from '@/lib/i18n';
+import { SAMPLE_ANALYSIS } from '@/lib/sampleAnalysis';
+
 import AnalysisProgress from '@/components/AnalysisProgress';
 import ResultsDashboard from '@/components/ResultsDashboard';
+
+import LandingNav from '@/components/landing/LandingNav';
+import HeroSection from '@/components/landing/HeroSection';
+import HowItWorks from '@/components/landing/HowItWorks';
+import WhatWeAnalyze from '@/components/landing/WhatWeAnalyze';
+import EvidenceSection from '@/components/landing/EvidenceSection';
+import RoleComparison from '@/components/landing/RoleComparison';
+import MissingSkills from '@/components/landing/MissingSkills';
+import SampleAnalysisSection from '@/components/landing/SampleAnalysisSection';
+import PersonasSection from '@/components/landing/PersonasSection';
+import TrustSection from '@/components/landing/TrustSection';
+import FinalCTA from '@/components/landing/FinalCTA';
+import LandingFooter from '@/components/landing/LandingFooter';
+
 import styles from './page.module.css';
 
 type AppState = 'input' | 'analyzing' | 'results';
 
 export default function HomePage() {
+  const { locale, toggle, t } = useLocale();
   const [state, setState] = useState<AppState>('input');
   const [roles, setRoles] = useState<RoleInfo[]>([]);
   const [username, setUsername] = useState('');
   const [selectedRole, setSelectedRole] = useState('');
-  const [selectedLevel, setSelectedLevel] = useState('junior');
+  const [selectedLevel, setSelectedLevel] = useState<'junior' | 'mid' | 'senior'>('mid');
   const [githubToken, setGithubToken] = useState('');
+  const [showToken, setShowToken] = useState(false);
   const [result, setResult] = useState<AnalyzeResponse | null>(null);
   const [error, setError] = useState('');
-  const [progress, setProgress] = useState(0);
-  const [progressMessage, setProgressMessage] = useState('');
+  const [analysisStep, setAnalysisStep] = useState(0);
+  const [isHydrated, setIsHydrated] = useState(false);
 
   useEffect(() => {
-    fetchRoles()
-      .then(setRoles)
-      .catch(() => setRoles([]));
+    initLocale();
+    fetchRoles().then(setRoles);
+
+    // Restore last analysis result or saved username across page refreshes
+    try {
+      const savedUser = localStorage.getItem('skilllens_username');
+      if (savedUser) setUsername(savedUser);
+
+      const savedResult = localStorage.getItem('skilllens_last_result');
+      if (savedResult) {
+        const parsed = JSON.parse(savedResult);
+        if (parsed && parsed.id && parsed.skills) {
+          setResult(parsed);
+          setState('results');
+          if (parsed.github_username) setUsername(parsed.github_username);
+          if (parsed.role_id) setSelectedRole(parsed.role_id);
+          if (parsed.level) setSelectedLevel(parsed.level);
+        }
+      }
+    } catch {
+      // ignore
+    } finally {
+      setIsHydrated(true);
+    }
   }, []);
+
+  const STEPS = [
+    t('loadingStep1'),
+    t('loadingStep2'),
+    t('loadingStep3'),
+    t('loadingStep4'),
+    t('loadingStep5'),
+  ];
 
   const handleAnalyze = async () => {
     if (!username.trim() || !selectedRole) return;
 
     setState('analyzing');
     setError('');
-    setProgress(0);
-    setProgressMessage('GitHub repolar taranıyor...');
+    setAnalysisStep(0);
 
-    // Simulate progress
-    const progressInterval = setInterval(() => {
-      setProgress(prev => {
-        if (prev >= 0.9) {
-          clearInterval(progressInterval);
-          return 0.9;
-        }
-        const step = prev < 0.3 ? 0.05 : prev < 0.6 ? 0.03 : 0.01;
-        const newProgress = prev + step;
+    // Step progression timer
+    let step = 0;
+    const stepIntervals = [800, 1400, 1800, 1000];
+    const timers: ReturnType<typeof setTimeout>[] = [];
 
-        if (newProgress > 0.25 && prev <= 0.25) setProgressMessage('Dosya yapıları analiz ediliyor...');
-        if (newProgress > 0.45 && prev <= 0.45) setProgressMessage('Roller filtreleniyor...');
-        if (newProgress > 0.6 && prev <= 0.6) setProgressMessage('Kanıtlar tespit ediliyor...');
-        if (newProgress > 0.8 && prev <= 0.8) setProgressMessage('Puanlar hesaplanıyor...');
-
-        return newProgress;
-      });
-    }, 300);
+    stepIntervals.forEach((delay, i) => {
+      const accumulated = stepIntervals.slice(0, i + 1).reduce((a, b) => a + b, 0);
+      const timer = setTimeout(() => {
+        step = i + 1;
+        setAnalysisStep(step);
+      }, accumulated);
+      timers.push(timer);
+    });
 
     try {
       const response = await analyzeProfile({
@@ -64,100 +105,134 @@ export default function HomePage() {
         use_ai: false,
       });
 
-      clearInterval(progressInterval);
-      setProgress(1);
-      setProgressMessage('Tamamlandı!');
+      // Clear pending timers
+      timers.forEach(clearTimeout);
+      setAnalysisStep(5);
 
       setTimeout(() => {
         setResult(response);
         setState('results');
-      }, 600);
+        try {
+          localStorage.setItem('skilllens_username', username);
+          localStorage.setItem('skilllens_last_result', JSON.stringify(response));
+        } catch {
+          // ignore
+        }
+      }, 400);
     } catch (err) {
-      clearInterval(progressInterval);
-      setError(err instanceof Error ? err.message : 'Analiz başarısız');
+      timers.forEach(clearTimeout);
+      setError(err instanceof Error ? err.message : t('errorGeneral'));
       setState('input');
+    }
+  };
+
+  const handleViewSample = () => {
+    setResult(SAMPLE_ANALYSIS);
+    setState('results');
+  };
+
+  const scrollToFormAndFocus = () => {
+    const el = document.getElementById('hero-section');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+      setTimeout(() => {
+        const input = document.getElementById('hero-github-input');
+        if (input) {
+          (input as HTMLInputElement).focus();
+        }
+      }, 400);
     }
   };
 
   const handleReset = () => {
     setState('input');
     setResult(null);
-    setProgress(0);
+    setAnalysisStep(0);
     setError('');
+    try {
+      localStorage.removeItem('skilllens_last_result');
+    } catch {
+      // ignore
+    }
   };
 
+  const selectedRoleInfo = roles.find(r => r.role_id === selectedRole);
+
+  if (!isHydrated) {
+    return <div style={{ minHeight: '100vh', background: 'var(--bg-base)' }} />;
+  }
+
   return (
-    <main>
+    <>
       {state === 'input' && (
-        <div className="page-hero">
-          <div className="hero-content animate-fade-in">
-            <h1 className="hero-title">
-              <span className="gradient-text">RoleGauge</span>
-            </h1>
-            <p className="hero-subtitle">
-              GitHub profilinizi analiz edin, hedeflediğiniz role ne kadar hazır olduğunuzu öğrenin.
-              AI destekli kanıt tespiti ve deterministik puanlama.
-            </p>
+        <div className={styles.page}>
+          <LandingNav
+            locale={locale}
+            toggleLocale={toggle}
+            t={t}
+            onLogoClick={() => setState('input')}
+          />
 
-            <div className={styles.formContainer}>
-              <GitHubInput
-                value={username}
-                onChange={setUsername}
-                token={githubToken}
-                onTokenChange={setGithubToken}
-              />
+          <main>
+            <HeroSection
+              username={username}
+              setUsername={setUsername}
+              selectedRole={selectedRole}
+              setSelectedRole={setSelectedRole}
+              selectedLevel={selectedLevel}
+              setSelectedLevel={setSelectedLevel}
+              githubToken={githubToken}
+              setGithubToken={setGithubToken}
+              showToken={showToken}
+              setShowToken={setShowToken}
+              roles={roles}
+              error={error}
+              onAnalyze={handleAnalyze}
+              onViewSample={handleViewSample}
+              t={t}
+              locale={locale}
+            />
 
-              {roles.length > 0 && (
-                <RoleSelector
-                  roles={roles}
-                  selectedRole={selectedRole}
-                  onRoleSelect={setSelectedRole}
-                  selectedLevel={selectedLevel}
-                  onLevelSelect={setSelectedLevel}
-                />
-              )}
+            <HowItWorks t={t} />
+            <WhatWeAnalyze t={t} />
+            <EvidenceSection t={t} />
+            <RoleComparison t={t} />
+            <MissingSkills t={t} />
+            <SampleAnalysisSection t={t} onViewSample={handleViewSample} />
+            <PersonasSection t={t} />
+            <TrustSection t={t} />
+            <FinalCTA
+              t={t}
+              onStartAnalysis={scrollToFormAndFocus}
+              onViewSample={handleViewSample}
+            />
+          </main>
 
-              {error && (
-                <div className={styles.errorBanner}>
-                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                    <circle cx="10" cy="10" r="9" stroke="currentColor" strokeWidth="1.5"/>
-                    <path d="M10 6v5M10 13.5v.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-                  </svg>
-                  {error}
-                </div>
-              )}
-
-              <button
-                className="btn btn-primary"
-                onClick={handleAnalyze}
-                disabled={!username.trim() || !selectedRole}
-                style={{ width: '100%', padding: '16px', fontSize: '1.1rem', marginTop: '8px' }}
-              >
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
-                </svg>
-                Analizi Başlat
-              </button>
-            </div>
-          </div>
+          <LandingFooter t={t} />
         </div>
       )}
 
       {state === 'analyzing' && (
-        <div className="page-hero">
-          <AnalysisProgress
-            progress={progress}
-            message={progressMessage}
-            username={username}
-            role={selectedRole}
-            level={selectedLevel}
-          />
-        </div>
+        <AnalysisProgress
+          currentStep={analysisStep}
+          steps={STEPS}
+          username={username}
+          roleName={
+            selectedRoleInfo
+              ? selectedRoleInfo.title.replace(/^(Junior|Mid|Senior)\s+/i, '')
+              : selectedRole
+          }
+          level={selectedLevel}
+          locale={locale}
+        />
       )}
 
       {state === 'results' && result && (
-        <ResultsDashboard result={result} onReset={handleReset} />
+        <ResultsDashboard
+          result={result}
+          onReset={handleReset}
+        />
       )}
-    </main>
+    </>
   );
 }

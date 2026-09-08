@@ -2,9 +2,16 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "RoleGauge — GitHub Skill Assessment",
-  description: "Analyze GitHub profiles to assess developer skills for specific roles. AI-powered evidence detection with deterministic scoring.",
-  keywords: ["github", "skill assessment", "developer evaluation", "role analysis"],
+  title: "SkillLens — Geliştirici Profil Değerlendirme",
+  description:
+    "GitHub projelerinin hedeflediğin role beklenen becerilerle ne kadar örtüştüğünü gör. Kanıt tabanlı değerlendirme.",
+  keywords: [
+    "github",
+    "beceri değerlendirme",
+    "developer assessment",
+    "profil analizi",
+    "yazılımcı",
+  ],
 };
 
 export default function RootLayout({
@@ -13,7 +20,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="tr">
       <body>{children}</body>
     </html>
   );

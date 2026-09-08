@@ -1,0 +1,398 @@
+.showcaseWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+  font-family: 'Inter', sans-serif;
+  width: 100%;
+}
+
+/* Header bar above cascading windows */
+.showcaseHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.demoTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--accent);
+  background: var(--accent-subtle);
+  padding: 4px 10px;
+  border-radius: var(--r-badge);
+  letter-spacing: 0.02em;
+}
+
+.tabsGroup {
+  display: flex;
+  align-items: center;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-btn);
+  padding: 3px;
+  gap: 4px;
+}
+
+.tabBtn {
+  background: transparent;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all var(--t-fast);
+  white-space: nowrap;
+}
+
+.tabBtn:hover {
+  color: var(--text-secondary);
+}
+
+.tabBtnActive {
+  background: var(--bg-elevated);
+  color: var(--text-primary);
+  font-weight: 600;
+  border: 1px solid var(--border);
+}
+
+/* ── Cascading Windows Stage ──────────────────── */
+.stage {
+  position: relative;
+  width: 100%;
+  height: 490px;
+}
+
+/* Individual Mini Window */
+.windowCard {
+  position: absolute;
+  width: calc(100% - 36px);
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.7);
+  transition: transform 320ms cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 320ms ease,
+              box-shadow 320ms ease,
+              border-color 200ms ease;
+  overflow: hidden;
+  user-select: none;
+}
+
+/* Slot 0: In Front (Bottom-Left) */
+.slotFront {
+  top: 32px;
+  left: 0px;
+  z-index: 3;
+  opacity: 1;
+  filter: none;
+  cursor: default;
+  border-color: rgba(139, 124, 246, 0.3);
+  box-shadow: 0 20px 44px -12px rgba(0, 0, 0, 0.8);
+}
+
+/* Slot 1: Middle (Offset right and up) */
+.slotMid {
+  top: 16px;
+  left: 18px;
+  z-index: 2;
+  opacity: 0.88;
+  filter: brightness(0.92);
+  cursor: pointer;
+  box-shadow: 0 14px 30px -10px rgba(0, 0, 0, 0.6);
+}
+
+.slotMid:hover {
+  filter: brightness(1.05);
+  border-color: var(--border-focus);
+  transform: translateY(-3px);
+}
+
+/* Slot 2: Back (Furthest offset right and up) */
+.slotBack {
+  top: 0px;
+  left: 36px;
+  z-index: 1;
+  opacity: 0.72;
+  filter: brightness(0.82);
+  cursor: pointer;
+  box-shadow: 0 10px 24px -10px rgba(0, 0, 0, 0.5);
+}
+
+.slotBack:hover {
+  filter: brightness(1.05);
+  border-color: var(--border-focus);
+  transform: translateY(-3px);
+}
+
+/* Window Title Bar */
+.windowHeader {
+  background: var(--bg-elevated);
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.windowControls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.dotRed {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #EF4444;
+  opacity: 0.85;
+}
+
+.dotYellow {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #F59E0B;
+  opacity: 0.85;
+}
+
+.dotGreen {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #10B981;
+  opacity: 0.85;
+}
+
+.windowTitle {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.windowPill {
+  font-size: 0.725rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: var(--r-badge);
+  white-space: nowrap;
+}
+
+.pillReady {
+  background: var(--success-bg);
+  color: var(--success);
+  border: 1px solid rgba(63, 185, 80, 0.25);
+}
+
+.pillExceeds {
+  background: rgba(139, 124, 246, 0.12);
+  color: var(--accent);
+  border: 1px solid rgba(139, 124, 246, 0.25);
+}
+
+/* Window Body */
+.windowBody {
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.profileRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #25282C 0%, #17191C 100%);
+  border: 1px solid var(--border-focus);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 0.8rem;
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+.userMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.username {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.liveDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--success);
+  display: inline-block;
+}
+
+.roleLevel {
+  font-size: 0.775rem;
+  color: var(--text-muted);
+}
+
+.scoreBanner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 10px 14px;
+}
+
+.scoreLabel {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-weight: 600;
+}
+
+.reposScanned {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  font-family: 'JetBrains Mono', monospace;
+  margin-top: 1px;
+}
+
+.scoreNumber {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  font-family: 'JetBrains Mono', monospace;
+  display: flex;
+  align-items: baseline;
+}
+
+.scorePercent {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.skillsList {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.skillRow {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.skillTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.78rem;
+}
+
+.skillTitle {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.skillScore {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+.barTrack {
+  height: 5px;
+  background: var(--bg-elevated);
+  border-radius: 3px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.barFill {
+  height: 100%;
+  border-radius: 3px;
+  background: var(--accent);
+}
+
+.windowFooter {
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.codeBadge {
+  font-family: 'JetBrains Mono', monospace;
+  background: rgba(139, 124, 246, 0.08);
+  border: 1px solid rgba(139, 124, 246, 0.2);
+  color: var(--accent);
+  padding: 2px 7px;
+  border-radius: 4px;
+  font-size: 0.725rem;
+}
+
+.openSampleBtn {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 0.78rem;
+  font-weight: 500;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: color var(--t-fast);
+  padding: 0;
+}
+
+.openSampleBtn:hover {
+  color: var(--accent);
+}
+
+@media (max-width: 640px) {
+  .stage {
+    height: 460px;
+  }
+  .windowCard {
+    width: 100%;
+  }
+  .slotMid,
+  .slotBack {
+    display: none;
+  }
+  .slotFront {
+    top: 0;
+    left: 0;
+  }
+}

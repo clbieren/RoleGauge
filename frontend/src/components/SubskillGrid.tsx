@@ -2,63 +2,72 @@
 
 import { useState } from 'react';
 import { SkillScore, SubskillEvidence } from '@/lib/api';
+import { tSkillName, tSubskillName } from '@/lib/skillTranslations';
+import { useLocale } from '@/lib/useLocale';
+import { TranslationKey } from '@/lib/i18n';
 import styles from './SubskillGrid.module.css';
 
 interface SubskillGridProps {
   skills: SkillScore[];
+  onProveSkill?: (compositeKey: string, subskillName: string) => void;
 }
 
-export default function SubskillGrid({ skills }: SubskillGridProps) {
-  const [expandedSkill, setExpandedSkill] = useState<string | null>(null);
+export default function SubskillGrid({ skills, onProveSkill }: SubskillGridProps) {
+  const { locale, t } = useLocale();
+  const [openSkill, setOpenSkill] = useState<string | null>(
+    skills.length > 0 ? skills[0].skill_id : null
+  );
 
   return (
     <div className={styles.container}>
-      {skills.map((skill) => {
-        const isExpanded = expandedSkill === skill.skill_id;
-        const foundCount = skill.subskills.filter(s => s.status === 'evidence_found').length;
-        const totalCount = skill.subskills.length;
-        const scorePercent = Math.round(skill.score * 100);
+      {skills.map(skill => {
+        const isOpen = openSkill === skill.skill_id;
+        const pct = Math.round(skill.score * 100);
+        const evidencedCount = skill.subskills.filter(
+          s => s.status === 'evidence_found'
+        ).length;
+        const skillDisplayName = tSkillName(skill.skill_name, locale);
 
         return (
-          <div key={skill.skill_id} className={styles.skillCard}>
+          <div key={skill.skill_id} className={styles.skillRow}>
             <button
-              className={styles.skillHeader}
-              onClick={() => setExpandedSkill(isExpanded ? null : skill.skill_id)}
               type="button"
+              className={styles.skillHeader}
+              onClick={() => setOpenSkill(isOpen ? null : skill.skill_id)}
+              aria-expanded={isOpen}
             >
-              <div className={styles.skillInfo}>
-                <span className={styles.skillName}>{skill.skill_name}</span>
+              <div className={styles.skillLeft}>
+                <span className={styles.skillName}>{skillDisplayName}</span>
                 <span className={styles.skillMeta}>
-                  {foundCount}/{totalCount} subskill kanıtlandı
+                  {evidencedCount}/{skill.subskills.length} {t('skillsEvidenced')}
                 </span>
               </div>
               <div className={styles.skillRight}>
-                <div className={styles.scoreBar}>
-                  <div
-                    className={styles.scoreBarFill}
-                    style={{
-                      width: `${scorePercent}%`,
-                      background: scorePercent >= 70 ? 'var(--accent-emerald)' :
-                                  scorePercent >= 40 ? 'var(--accent-amber)' :
-                                  'var(--accent-rose)',
-                    }}
-                  />
-                </div>
-                <span className={`${styles.scoreValue} mono`}>{scorePercent}%</span>
+                <span className={styles.skillScore}>{pct}%</span>
                 <svg
-                  width="16" height="16" viewBox="0 0 24 24"
-                  fill="none" stroke="currentColor" strokeWidth="2"
-                  className={`${styles.chevron} ${isExpanded ? styles.chevronOpen : ''}`}
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  className={`${styles.chevron} ${isOpen ? styles.chevronOpen : ''}`}
                 >
-                  <polyline points="6 9 12 15 18 9"/>
+                  <polyline points="6 9 12 15 18 9" />
                 </svg>
               </div>
             </button>
 
-            {isExpanded && (
+            {isOpen && (
               <div className={styles.subskillList}>
-                {skill.subskills.map((sub) => (
-                  <SubskillRow key={sub.composite_key} subskill={sub} />
+                {skill.subskills.map(sub => (
+                  <SubskillRow
+                    key={sub.composite_key}
+                    sub={sub}
+                    locale={locale}
+                    t={t}
+                    onProveSkill={onProveSkill}
+                  />
                 ))}
               </div>
             )}
@@ -69,45 +78,111 @@ export default function SubskillGrid({ skills }: SubskillGridProps) {
   );
 }
 
-function SubskillRow({ subskill }: { subskill: SubskillEvidence }) {
-  const [showEvidence, setShowEvidence] = useState(false);
-  const isFound = subskill.status === 'evidence_found';
-  const confidence = Math.round(subskill.confidence * 100);
+function SubskillRow({
+  sub,
+  locale,
+  t,
+  onProveSkill,
+}: {
+  sub: SubskillEvidence;
+  locale: string;
+  t: (key: TranslationKey) => string;
+  onProveSkill?: (compositeKey: string, subskillName: string) => void;
+}) {
+  const isFound   = sub.status === 'evidence_found';
+  const isClaimed = sub.status === 'claimed';
+  // anything else → not yet evidenced
+  const isNotYet  = !isFound && !isClaimed;
+
+  const pct = Math.round(sub.confidence * 100);
+  const MAX_SOURCES = 6;
+  const subskillDisplayName = tSubskillName(sub.subskill_name, locale);
 
   return (
-    <div className={styles.subskillRow}>
+    <div className={styles.subskill}>
       <div className={styles.subskillMain}>
-        <span className={`${styles.statusIcon} ${isFound ? styles.statusFound : styles.statusMissing}`}>
-          {isFound ? '✓' : '—'}
-        </span>
-        <div className={styles.subskillInfo}>
-          <span className={styles.subskillName}>{subskill.subskill_name}</span>
-          <span className={`${styles.compositeKey} mono`}>{subskill.composite_key}</span>
+        <div className={styles.subskillNameWrap}>
+          <span className={styles.subskillName}>{subskillDisplayName}</span>
+
+          {/* Status line */}
+          <div className={styles.statusLine}>
+            {isFound && (
+              <>
+                <svg
+                  width="13" height="13" viewBox="0 0 24 24"
+                  fill="none" stroke="var(--success)" strokeWidth="2.5"
+                  className={styles.statusIcon}
+                >
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+                <span className={styles.statusFound}>{t('evidenceFound')}</span>
+              </>
+            )}
+            {isClaimed && (
+              <>
+                <svg
+                  width="13" height="13" viewBox="0 0 24 24"
+                  fill="none" stroke="var(--info)" strokeWidth="2"
+                  className={styles.statusIcon}
+                >
+                  <circle cx="12" cy="12" r="10" />
+                  <line x1="12" y1="8" x2="12" y2="12" />
+                  <line x1="12" y1="16" x2="12.01" y2="16" />
+                </svg>
+                <span className={styles.statusClaimed}>{t('evidenceClaimed')}</span>
+              </>
+            )}
+            {isNotYet && (
+              <>
+                <span className={styles.statusNotYet} style={{ fontSize: '1rem', lineHeight: 1 }}>—</span>
+                <span className={styles.statusNotYet}>{t('evidenceNotYet')}</span>
+              </>
+            )}
+          </div>
+
+          {/* Extra description for claimed / not-yet */}
+          {isClaimed && (
+            <p className={styles.statusDesc}>{t('evidenceClaimedDesc')}</p>
+          )}
+          {isNotYet && (
+            <p className={styles.statusDesc}>{t('evidenceNotYetDesc')}</p>
+          )}
         </div>
-        <span className={`${styles.confidenceValue} mono ${isFound ? styles.confidenceFound : ''}`}>
-          {confidence}%
-        </span>
+
+        {/* Score */}
+        <span className={styles.subskillScore}>{pct}%</span>
       </div>
 
-      {isFound && subskill.evidence_sources.length > 0 && (
-        <>
-          <button
-            className={styles.evidenceToggle}
-            onClick={() => setShowEvidence(!showEvidence)}
-            type="button"
-          >
-            {showEvidence ? 'Kanıtları gizle' : `${subskill.evidence_sources.length} kanıt göster`}
-          </button>
-          {showEvidence && (
-            <div className={styles.evidenceList}>
-              {subskill.evidence_sources.slice(0, 8).map((source, i) => (
-                <div key={i} className={`${styles.evidenceItem} mono`}>
-                  {source}
-                </div>
-              ))}
-            </div>
+      {/* Evidence sources (only for found) */}
+      {isFound && sub.evidence_sources.length > 0 && (
+        <div className={styles.evidenceSources}>
+          <p className={styles.evidenceLabel}>{t('evidenceSources')}</p>
+          {sub.evidence_sources.slice(0, MAX_SOURCES).map((src, i) => (
+            <span key={i} className={styles.evidenceSource}>
+              {src}
+            </span>
+          ))}
+          {sub.evidence_sources.length > MAX_SOURCES && (
+            <span className={styles.evidenceMore}>
+              +{sub.evidence_sources.length - MAX_SOURCES} {t('evidenceMore')}
+            </span>
           )}
-        </>
+        </div>
+      )}
+
+      {/* Prove skill CTA for not-yet-evidenced */}
+      {isNotYet && (
+        <button
+          type="button"
+          className={styles.proveBtn}
+          onClick={() => onProveSkill?.(sub.composite_key, sub.subskill_name)}
+        >
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <path d="M9 12l2 2 4-4"/>
+            <path d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/>
+          </svg>
+          {t('evidenceProveSkill')}
+        </button>
       )}
     </div>
   );

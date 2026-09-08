@@ -1,0 +1,98 @@
+.footer {
+  border-top: 1px solid var(--border);
+  background: var(--bg-base);
+  padding: 48px 24px 36px;
+}
+
+.inner {
+  max-width: 1160px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.topRow {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.brandCol {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 360px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--text-primary);
+  text-decoration: none;
+}
+
+.logoMark {
+  color: var(--accent);
+  font-size: 1.15rem;
+}
+
+.tagline {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.linksRow {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.footerLink {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 0.825rem;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 4px 0;
+  transition: color var(--t-fast);
+}
+
+.footerLink:hover {
+  color: var(--text-primary);
+}
+
+.bottomRow {
+  border-top: 1px solid var(--border);
+  padding-top: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  flex-wrap: wrap;
+}
+
+.privacyNote {
+  max-width: 600px;
+  line-height: 1.4;
+}
+
+@media (max-width: 768px) {
+  .topRow {
+    flex-direction: column;
+  }
+  .bottomRow {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

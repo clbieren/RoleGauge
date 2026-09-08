@@ -3,6 +3,7 @@ Roles Router.
 GET /api/roles — Lists all available roles from the knowledge base.
 """
 
+import re
 from fastapi import APIRouter
 
 from app.models.schemas import RolesListResponse, RoleInfo
@@ -36,9 +37,13 @@ async def list_roles() -> RolesListResponse:
         # Available levels
         levels = list(kb.roles.get(category, {}).keys())
 
+        raw_title = role_def.get("title", category.replace("-", " ").title())
+        # Strip level prefix (Junior, Mid, Senior) so roles are presented cleanly
+        clean_title = re.sub(r"^(junior|mid|senior)\s+", "", raw_title, flags=re.IGNORECASE)
+
         roles.append(RoleInfo(
             role_id=category,
-            title=role_def.get("title", category.replace("-", " ").title()),
+            title=clean_title,
             description=role_def.get("description", ""),
             category=category,
             levels=sorted(levels),
