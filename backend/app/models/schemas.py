@@ -107,6 +107,9 @@ class AnalyzeResponse(BaseModel):
     skills: list[SkillScore] = []
     repos: list[RepoInfo] = []
     created_at: datetime
+    # Tier-based summary (always present; summary_type indicates generation method)
+    summary_text: str = ""
+    summary_type: str = "template"  # "template" | "ai_generated"
 
 
 class RoleInfo(BaseModel):

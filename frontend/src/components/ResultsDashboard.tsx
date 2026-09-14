@@ -25,6 +25,16 @@ export default function ResultsDashboard({ result, onReset }: ResultsDashboardPr
     subskillName: string;
   } | null>(null);
 
+  // Tier accent colour + icon for the summary banner
+  const TIER_META: Record<string, { color: string; icon: string }> = {
+    not_ready:  { color: '#ef4444', icon: '○' },
+    developing: { color: '#f97316', icon: '◑' },
+    approaching:{ color: '#3b82f6', icon: '◕' },
+    ready:      { color: '#22c55e', icon: '●' },
+    exceeds:    { color: '#a855f7', icon: '★' },
+  };
+  const tierMeta = TIER_META[dashboardResult.readiness_tier] ?? { color: 'var(--accent)', icon: '●' };
+
   const totalFiles = dashboardResult.repos.reduce(
     (sum, r) => sum + r.relevant_files_count,
     0
@@ -212,6 +222,20 @@ export default function ResultsDashboard({ result, onReset }: ResultsDashboardPr
             <span className={styles.summaryLabel}>{t('summaryCoreSkills')}</span>
           </div>
         </div>
+
+        {/* Tier-based summary banner */}
+        {dashboardResult.summary_text && (
+          <div
+            className={styles.tierSummary}
+            style={{ ['--tier-accent' as string]: tierMeta.color }}
+          >
+            <span className={styles.tierSummaryIcon}>{tierMeta.icon}</span>
+            <p className={styles.tierSummaryText}>{dashboardResult.summary_text}</p>
+            <span className={styles.tierSummaryBadge}>
+              {dashboardResult.summary_type === 'ai_generated' ? 'AI' : locale === 'tr' ? 'Özet' : 'Summary'}
+            </span>
+          </div>
+        )}
 
         {/* Skills Overview */}
         <div className={styles.sectionBlock}>

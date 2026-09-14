@@ -51,6 +51,7 @@ from app.services.rate_limiter import (
 )
 from app.services.role_filter import FilteredRepo, RoleFilter
 from app.services.scoring_engine import ScoringEngine
+from app.services.summary_generator import generate_summary
 
 logger = logging.getLogger(__name__)
 router = APIRouter(prefix="/api", tags=["analyze"])
@@ -542,6 +543,16 @@ def _build_response(
 
     analysis_tier, ad_placements = resolve_ad_placements(user)
 
+    # Generate tier-based summary (deterministic, no AI)
+    summary_text, summary_type = generate_summary(
+        tier=scoring_result["readiness_tier"],
+        role_name=role_title,
+        readiness_score=scoring_result["readiness_score"],
+        skills=scoring_result["skills"],
+        analysis_tier=analysis_tier,
+        locale="tr",
+    )
+
     return AnalyzeResponse(
         id=str(analysis_id),
         github_username=username,
@@ -561,4 +572,6 @@ def _build_response(
         skills=skills,
         repos=repos,
         created_at=datetime.now(timezone.utc),
+        summary_text=summary_text,
+        summary_type=summary_type,
     )

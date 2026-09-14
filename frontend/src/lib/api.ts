@@ -80,7 +80,11 @@ export interface AnalyzeResponse {
   skills: SkillScore[];
   repos: RepoInfo[];
   created_at: string;          // ISO 8601 UTC
+  // Tier-based summary (generated deterministically by summary_generator.py)
+  summary_text?: string;
+  summary_type?: 'template' | 'ai_generated';
 }
+
 
 export interface RoleInfo {
   role_id: string;
