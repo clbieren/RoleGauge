@@ -28,23 +28,25 @@ async def list_roles() -> RolesListResponse:
             or kb.get_role(category, "senior")
         )
 
-        if not role_def:
-            continue
-
         # Count skills
         skills_count = len(kb.get_skills_for_role(category))
 
         # Available levels
-        levels = list(kb.roles.get(category, {}).keys())
+        levels = list(kb.roles.get(category, {}).keys()) or ["junior", "mid", "senior"]
 
-        raw_title = role_def.get("title", category.replace("-", " ").title())
+        raw_title = (
+            role_def.get("title", category.replace("-", " ").title())
+            if role_def
+            else category.replace("-", " ").title()
+        )
         # Strip level prefix (Junior, Mid, Senior) so roles are presented cleanly
         clean_title = re.sub(r"^(junior|mid|senior)\s+", "", raw_title, flags=re.IGNORECASE)
+        description = role_def.get("description", "") if role_def else f"{clean_title} skills and competencies"
 
         roles.append(RoleInfo(
             role_id=category,
             title=clean_title,
-            description=role_def.get("description", ""),
+            description=description,
             category=category,
             levels=sorted(levels),
             skill_count=skills_count,

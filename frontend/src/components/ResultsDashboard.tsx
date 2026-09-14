@@ -7,6 +7,7 @@ import SkillsOverview from './SkillsOverview';
 import SubskillGrid from './SubskillGrid';
 import RepoBreakdown from './RepoBreakdown';
 import AssessmentModal from './AssessmentModal';
+import AdPlacement from './AdPlacement';
 import styles from './ResultsDashboard.module.css';
 import { useLocale } from '@/lib/useLocale';
 import { formatDate, tLevelLabel } from '@/lib/i18n';
@@ -31,6 +32,13 @@ export default function ResultsDashboard({ result, onReset }: ResultsDashboardPr
   const coreSkillsEvidenced = dashboardResult.skills.filter(
     s => s.subskills.some(sub => sub.status === 'evidence_found')
   ).length;
+
+  const isCvUpload =
+    dashboardResult.github_username === 'cv_upload' ||
+    dashboardResult.github_username === 'linkedin_upload';
+
+  const showLeftAd = Boolean(dashboardResult.ad_placements?.results_sidebar_left);
+  const showRightAd = Boolean(dashboardResult.ad_placements?.results_sidebar_right);
 
   return (
     <div className={styles.page}>
@@ -82,23 +90,45 @@ export default function ResultsDashboard({ result, onReset }: ResultsDashboardPr
           </p>
         </div>
 
-        {/* Hero card — profile left / readiness right */}
-        <div className={styles.heroCard}>
+        {/* Main Content Layout with Ad Sidebars */}
+        <div className={styles.layoutWithAds}>
+          {showLeftAd && (
+            <div className={styles.sidebarCol}>
+              <AdPlacement
+                slot="results_sidebar_left"
+                enabled={showLeftAd}
+                locale={locale}
+              />
+            </div>
+          )}
+
+          <div className={styles.mainCol}>
+            {/* Hero card — profile left / readiness right */}
+            <div className={styles.heroCard}>
           {/* Left: profile + stats */}
           <div className={styles.heroLeft}>
             <div className={styles.profileRow}>
-              <div className={styles.avatar}>
-                <img
-                  src={`https://github.com/${dashboardResult.github_username}.png?size=80`}
-                  alt={dashboardResult.github_username}
-                  className={styles.avatarImg}
-                  onError={e => {
-                    (e.target as HTMLImageElement).style.display = 'none';
-                  }}
-                />
-              </div>
+              {isCvUpload ? (
+                <div className={styles.cvAvatar}>📄</div>
+              ) : (
+                <div className={styles.avatar}>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={`https://github.com/${dashboardResult.github_username}.png?size=80`}
+                    alt={dashboardResult.github_username}
+                    className={styles.avatarImg}
+                    onError={e => {
+                      (e.target as HTMLImageElement).style.display = 'none';
+                    }}
+                  />
+                </div>
+              )}
               <div>
-                <p className={styles.profileName}>@{dashboardResult.github_username}</p>
+                <p className={styles.profileName}>
+                  {isCvUpload
+                    ? (locale === 'tr' ? 'Özgeçmiş / Profil Dosyası' : 'Uploaded Profile / CV')
+                    : `@${dashboardResult.github_username}`}
+                </p>
                 <p className={styles.profileRole}>
                   {dashboardResult.role_name.replace(/^(Junior|Mid|Senior)\s+/i, '')}
                 </p>
@@ -106,24 +136,51 @@ export default function ResultsDashboard({ result, onReset }: ResultsDashboardPr
             </div>
 
             <div className={styles.heroStats}>
-              <div className={styles.heroStat}>
-                <span className={styles.heroStatVal}>{dashboardResult.total_repos_scanned}</span>
-                <span className={styles.heroStatLabel}>{t('dashboardRepoCount')}</span>
-              </div>
-              {totalFiles > 0 && (
-                <div className={styles.heroStat}>
-                  <span className={styles.heroStatVal}>
-                    {totalFiles.toLocaleString()}
-                  </span>
-                  <span className={styles.heroStatLabel}>{t('dashboardFilesReviewed')}</span>
-                </div>
+              {dashboardResult.total_repos_scanned > 0 ? (
+                <>
+                  <div className={styles.heroStat}>
+                    <span className={styles.heroStatVal}>{dashboardResult.total_repos_scanned}</span>
+                    <span className={styles.heroStatLabel}>{t('dashboardRepoCount')}</span>
+                  </div>
+                  {totalFiles > 0 && (
+                    <div className={styles.heroStat}>
+                      <span className={styles.heroStatVal}>
+                        {totalFiles.toLocaleString()}
+                      </span>
+                      <span className={styles.heroStatLabel}>{t('dashboardFilesReviewed')}</span>
+                    </div>
+                  )}
+                  <div className={styles.heroStat}>
+                    <span className={styles.heroStatVal}>{dashboardResult.relevant_repos_found}</span>
+                    <span className={styles.heroStatLabel}>
+                      {t('dashboardRelevantRepos')}
+                    </span>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className={styles.heroStat}>
+                    <span className={styles.heroStatVal}>{dashboardResult.skills.length}</span>
+                    <span className={styles.heroStatLabel}>
+                      {locale === 'tr' ? 'Değerlendirilen Beceri' : 'Skills Assessed'}
+                    </span>
+                  </div>
+                  <div className={styles.heroStat}>
+                    <span className={styles.heroStatVal}>{coreSkillsEvidenced}</span>
+                    <span className={styles.heroStatLabel}>
+                      {locale === 'tr' ? 'Kanıtlanan Beceri' : 'Skills Evidenced'}
+                    </span>
+                  </div>
+                  <div className={styles.heroStat}>
+                    <span className={styles.heroStatVal}>
+                      {dashboardResult.github_username === 'linkedin_upload' ? 'LinkedIn' : 'CV / Resume'}
+                    </span>
+                    <span className={styles.heroStatLabel}>
+                      {locale === 'tr' ? 'Veri Kaynağı' : 'Data Source'}
+                    </span>
+                  </div>
+                </>
               )}
-              <div className={styles.heroStat}>
-                <span className={styles.heroStatVal}>{dashboardResult.relevant_repos_found}</span>
-                <span className={styles.heroStatLabel}>
-                  {t('dashboardRelevantRepos')}
-                </span>
-              </div>
             </div>
           </div>
 
@@ -192,6 +249,18 @@ export default function ResultsDashboard({ result, onReset }: ResultsDashboardPr
             </div>
           </div>
         )}
+          </div>
+
+          {showRightAd && (
+            <div className={styles.sidebarCol}>
+              <AdPlacement
+                slot="results_sidebar_right"
+                enabled={showRightAd}
+                locale={locale}
+              />
+            </div>
+          )}
+        </div>
       </div>
 
       {/* Interactive Assessment Modal */}
@@ -200,6 +269,7 @@ export default function ResultsDashboard({ result, onReset }: ResultsDashboardPr
           analysisId={dashboardResult.id}
           compositeKey={activeAssessment.compositeKey}
           subskillName={activeAssessment.subskillName}
+          currentReadinessScore={dashboardResult.readiness_score}
           locale={locale}
           onClose={() => setActiveAssessment(null)}
           onSuccess={updated => {

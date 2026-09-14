@@ -68,9 +68,34 @@
 
 /* ── Content ──────────────────────────────────── */
 .content {
-  max-width: 1120px;
+  max-width: 1380px;
   margin: 0 auto;
   padding: 32px 24px 64px;
+}
+
+.layoutWithAds {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.mainCol {
+  flex: 1;
+  min-width: 0;
+}
+
+.sidebarCol {
+  width: 220px;
+  flex-shrink: 0;
+  position: sticky;
+  top: 80px;
+}
+
+@media (max-width: 1200px) {
+  .sidebarCol {
+    display: none;
+  }
 }
 
 /* ── Demo banner ─────────────────────────────── */
@@ -149,6 +174,19 @@
   flex-shrink: 0;
   overflow: hidden;
   background: var(--bg-elevated);
+}
+
+.cvAvatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  border: 1px solid rgba(59, 130, 246, 0.4);
+  background: rgba(59, 130, 246, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  flex-shrink: 0;
 }
 
 .avatarImg {

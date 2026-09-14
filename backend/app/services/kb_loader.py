@@ -25,6 +25,24 @@ class KnowledgeBase:
         self.scoring_engine: dict[str, Any] = {}           # engine.json
         self._role_categories: list[str] = []
 
+    ROLE_ALIASES: dict[str, list[str]] = {
+        "devops": ["devops", "devops-engineer"],
+        "devops-engineer": ["devops", "devops-engineer"],
+        "blockchain": ["blockchain", "blockchain-developer"],
+        "blockchain-developer": ["blockchain", "blockchain-developer"],
+        "ux-design": ["ux-design", "ux-designer"],
+        "ux-designer": ["ux-design", "ux-designer"],
+    }
+
+    def _resolve_dir(self, base_path: str, subfolder: str, category: str) -> str | None:
+        """Find the directory for a category under subfolder, checking direct match and aliases."""
+        candidates = [category] + self.ROLE_ALIASES.get(category, [])
+        for name in candidates:
+            d = os.path.join(base_path, subfolder, name)
+            if os.path.isdir(d):
+                return d
+        return None
+
     def load(self, kb_path: str | None = None):
         """Load all knowledge base files from disk."""
         base_path = kb_path or settings.KB_PATH
@@ -49,6 +67,16 @@ class KnowledgeBase:
             self._load_evidence(base_path, category)
             self._load_roles(base_path, category)
 
+        # Mirror aliases so queries under either name (e.g. devops or devops-engineer) resolve identically
+        for primary, aliases in self.ROLE_ALIASES.items():
+            for alias in aliases:
+                if primary in self.skills and alias not in self.skills:
+                    self.skills[alias] = self.skills[primary]
+                if primary in self.evidence and alias not in self.evidence:
+                    self.evidence[alias] = self.evidence[primary]
+                if primary in self.roles and alias not in self.roles:
+                    self.roles[alias] = self.roles[primary]
+
         logger.info(
             f"Knowledge base loaded: {len(self._role_categories)} roles, "
             f"{sum(len(s) for s in self.skills.values())} skills"
@@ -56,8 +84,8 @@ class KnowledgeBase:
 
     def _load_skills(self, base_path: str, category: str):
         """Load all skill definitions for a role category."""
-        skills_dir = os.path.join(base_path, "skills", category)
-        if not os.path.isdir(skills_dir):
+        skills_dir = self._resolve_dir(base_path, "skills", category)
+        if not skills_dir:
             return
 
         self.skills[category] = {}
@@ -70,8 +98,8 @@ class KnowledgeBase:
 
     def _load_evidence(self, base_path: str, category: str):
         """Load all evidence source definitions for a role category."""
-        evidence_dir = os.path.join(base_path, "evidence", category)
-        if not os.path.isdir(evidence_dir):
+        evidence_dir = self._resolve_dir(base_path, "evidence", category)
+        if not evidence_dir:
             return
 
         self.evidence[category] = {}
@@ -86,8 +114,8 @@ class KnowledgeBase:
 
     def _load_roles(self, base_path: str, category: str):
         """Load role level definitions (junior, mid, senior)."""
-        roles_dir = os.path.join(base_path, "roles", category)
-        if not os.path.isdir(roles_dir):
+        roles_dir = self._resolve_dir(base_path, "roles", category)
+        if not roles_dir:
             return
 
         self.roles[category] = {}

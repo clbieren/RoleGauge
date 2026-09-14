@@ -453,6 +453,9 @@ async def _save_analysis(
                 confidence=sub["confidence"],
                 status=sub["status"],
                 evidence_sources=sub.get("evidence_sources", []),
+                contributing_sources=sub.get("contributing_sources", []),
+                ceiling_applied=sub.get("ceiling_applied"),
+                calculation_trace=sub.get("calculation_trace"),
             )
             db.add(subskill_result)
 

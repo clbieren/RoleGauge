@@ -1,0 +1,15 @@
+{
+  "name": "rolegauge",
+  "version": "0.1.0",
+  "private": true,
+  "description": "RoleGauge — Developer skill assessment and role readiness platform",
+  "scripts": {
+    "dev": "npm --prefix frontend run dev",
+    "dev:frontend": "npm --prefix frontend run dev",
+    "dev:backend": "powershell -Command \".venv\\Scripts\\python.exe -m uvicorn app.main:app --app-dir backend --port 8000 --reload\"",
+    "build": "npm --prefix frontend run build",
+    "start": "npm --prefix frontend run start",
+    "lint": "npm --prefix frontend run lint",
+    "test:backend": ".venv\\Scripts\\pytest backend\\tests"
+  }
+}

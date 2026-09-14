@@ -1,6 +1,7 @@
 'use client';
 
 import { Locale, tLevelLabel } from '@/lib/i18n';
+import AdPlacement from './AdPlacement';
 import styles from './AnalysisProgress.module.css';
 
 interface AnalysisProgressProps {
@@ -41,7 +42,6 @@ export default function AnalysisProgress({
           {steps.map((label, i) => {
             const isDone   = i < currentStep;
             const isActive = i === currentStep;
-            const isPending = i > currentStep;
 
             return (
               <div key={i} className={styles.step}>
@@ -77,6 +77,8 @@ export default function AnalysisProgress({
           })}
         </div>
       </div>
+
+      <AdPlacement slot="loading_screen" enabled={true} locale={locale} />
     </div>
   );
 }

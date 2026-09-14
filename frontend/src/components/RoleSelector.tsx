@@ -28,6 +28,11 @@ const ROLE_ICONS: Record<string, string> = {
   'network-engineer': '🌐',
   'qa-engineer': '✅',
   'api-design': '🔌',
+  'blockchain': '⛓️',
+  'blockchain-developer': '⛓️',
+  'ux-design': '✨',
+  'ux-designer': '✨',
+  'technical-writer': '📝',
 };
 
 const LEVEL_LABELS: Record<string, { label: string; color: string }> = {

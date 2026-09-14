@@ -1,0 +1,93 @@
+.container {
+  min-height: 100vh;
+  background-color: var(--color-bg, #090d16);
+  color: var(--color-text, #f1f5f9);
+  display: flex;
+  flex-direction: column;
+}
+
+.centerState {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1.5rem;
+  text-align: center;
+}
+
+.spinner {
+  width: 48px;
+  height: 48px;
+  border: 3px solid rgba(255, 255, 255, 0.1);
+  border-top-color: #3b82f6;
+  border-right-color: #6366f1;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1.5rem;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loadingText {
+  font-size: 1.1rem;
+  color: #94a3b8;
+  font-weight: 500;
+}
+
+.errorCard {
+  max-width: 440px;
+  width: 100%;
+  background: rgba(30, 41, 59, 0.6);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: 16px;
+  padding: 2.5rem 2rem;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(12px);
+}
+
+.errorIcon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.errorTitle {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #f87171;
+  margin-bottom: 0.5rem;
+}
+
+.errorDetail {
+  font-size: 0.95rem;
+  color: #cbd5e1;
+  margin-bottom: 2rem;
+  line-height: 1.5;
+}
+
+.homeBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.75rem;
+  background: linear-gradient(135deg, #3b82f6, #6366f1);
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.homeBtn:hover {
+  opacity: 0.92;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(59, 130, 246, 0.4);
+}

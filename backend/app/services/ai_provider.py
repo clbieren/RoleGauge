@@ -1,7 +1,7 @@
 """
 AI Provider Abstraction Layer.
 Provides a unified interface for AI-assisted evidence detection.
-Production-ready OpenAI implementation with:
+Production-ready OpenAI & Groq implementations with:
 - Retry logic (exponential backoff for 429/500/timeout)
 - Token budget control & prompt truncation
 - Subskill chunking for large roles (>15 subskills per request)
@@ -355,6 +355,210 @@ class OpenAIProvider(AIProvider):
             pass
 
 
+class GroqProvider(AIProvider):
+    """
+    Groq LPU implementation using OpenAI-compatible API.
+    Features: sub-second inference, retry, chunking, validation, cost tracking.
+    """
+
+    def __init__(self):
+        try:
+            from openai import AsyncOpenAI
+            self.client = AsyncOpenAI(
+                api_key=settings.GROQ_API_KEY,
+                base_url="https://api.groq.com/openai/v1",
+                timeout=settings.AI_REQUEST_TIMEOUT,
+            )
+            self.model = settings.GROQ_MODEL
+        except ImportError:
+            raise RuntimeError("openai package not installed. Run: pip install openai")
+
+    async def analyze_evidence(
+        self,
+        role_category: str,
+        level: str,
+        target_subskills: list[str],
+        filtered_data: dict[str, Any],
+        subskill_definitions: dict[str, dict[str, Any]] | None = None,
+    ) -> dict[str, dict[str, Any]]:
+        """
+        Analyze with automatic chunking for large subskill lists.
+        Chunks ensure we stay within output token limits.
+        """
+        if not target_subskills:
+            return {}
+
+        chunk_size = settings.AI_SUBSKILL_CHUNK_SIZE
+
+        # If within chunk size, single call
+        if len(target_subskills) <= chunk_size:
+            return await self._analyze_chunk(
+                role_category, level, target_subskills, filtered_data, subskill_definitions
+            )
+
+        # Chunk and merge results
+        logger.info(
+            f"[Groq] Chunking {len(target_subskills)} subskills into "
+            f"{math.ceil(len(target_subskills) / chunk_size)} chunks of {chunk_size}"
+        )
+        merged: dict[str, dict[str, Any]] = {}
+        for i in range(0, len(target_subskills), chunk_size):
+            chunk = target_subskills[i : i + chunk_size]
+            chunk_result = await self._analyze_chunk(
+                role_category, level, chunk, filtered_data, subskill_definitions
+            )
+            merged.update(chunk_result)
+
+        return merged
+
+    async def _analyze_chunk(
+        self,
+        role_category: str,
+        level: str,
+        target_subskills: list[str],
+        filtered_data: dict[str, Any],
+        subskill_definitions: dict[str, dict[str, Any]] | None = None,
+    ) -> dict[str, dict[str, Any]]:
+        """Analyze a single chunk of subskills with retry logic."""
+        system_prompt = self._build_system_prompt(role_category, level)
+        user_prompt = self._build_user_prompt(target_subskills, filtered_data, subskill_definitions)
+
+        # Token budget check — truncate file contents if needed
+        total_estimate = _estimate_tokens(system_prompt + user_prompt)
+        if total_estimate > settings.AI_MAX_INPUT_TOKENS:
+            logger.warning(
+                f"[Groq] Prompt too large ({total_estimate} est. tokens > {settings.AI_MAX_INPUT_TOKENS}). "
+                f"Truncating file contents."
+            )
+            filtered_data = _truncate_data_to_budget(
+                filtered_data, settings.AI_MAX_INPUT_TOKENS, system_prompt, target_subskills
+            )
+            user_prompt = self._build_user_prompt(target_subskills, filtered_data, subskill_definitions)
+
+        messages = [
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": user_prompt},
+        ]
+
+        response = await self._call_with_retry(messages)
+        if response is None:
+            return {}
+
+        # Parse and validate
+        raw = self._parse_response(response)
+        validated = self._validate_response(raw, target_subskills)
+
+        # Cost tracking
+        self._log_cost(response)
+
+        return validated
+
+    async def _call_with_retry(self, messages: list[dict]) -> Any:
+        """Call Groq OpenAI-compatible API with exponential backoff retry."""
+        from openai import (
+            RateLimitError,
+            APITimeoutError,
+            APIConnectionError,
+            InternalServerError,
+        )
+        from tenacity import (
+            retry,
+            stop_after_attempt,
+            wait_exponential,
+            retry_if_exception_type,
+        )
+
+        @retry(
+            stop=stop_after_attempt(settings.AI_MAX_RETRIES),
+            wait=wait_exponential(multiplier=1, min=2, max=30),
+            retry=retry_if_exception_type(
+                (RateLimitError, APITimeoutError, APIConnectionError, InternalServerError)
+            ),
+            before_sleep=lambda rs: logger.warning(
+                f"Groq retry #{rs.attempt_number} after {type(rs.outcome.exception()).__name__}"
+            ),
+        )
+        async def _do_call():
+            return await self.client.chat.completions.create(
+                model=self.model,
+                messages=messages,
+                response_format={"type": "json_object"},
+                temperature=0.1,
+                max_tokens=settings.AI_MAX_OUTPUT_TOKENS,
+            )
+
+        try:
+            return await _do_call()
+        except Exception as e:
+            logger.error(f"Groq call failed after retries: {type(e).__name__}: {e}")
+            return None
+
+    def _parse_response(self, response: Any) -> dict:
+        """Extract and parse JSON from Groq response."""
+        try:
+            content = response.choices[0].message.content
+            if not content:
+                logger.warning("Groq returned empty content")
+                return {}
+            return json.loads(content)
+        except (json.JSONDecodeError, IndexError, AttributeError) as e:
+            logger.error(f"Failed to parse Groq response: {e}")
+            return {}
+
+    def _validate_response(
+        self, raw: dict, expected_keys: list[str]
+    ) -> dict[str, dict[str, Any]]:
+        """Validate AI response structure — filter invalid entries."""
+        validated: dict[str, dict[str, Any]] = {}
+        for key in expected_keys:
+            if key not in raw:
+                continue
+            item = raw[key]
+            if not isinstance(item, dict):
+                continue
+
+            status = item.get("status")
+            if status not in ("evidence_found", "not_yet_evidenced"):
+                logger.warning(f"Groq returned invalid status for {key}: {status}")
+                continue
+
+            # evidence_found must have at least one source
+            if status == "evidence_found":
+                sources = item.get("evidence_sources", [])
+                if not sources or not isinstance(sources, list):
+                    logger.warning(f"Groq found evidence for {key} but no valid sources")
+                    continue
+
+            validated[key] = item
+
+        skipped = len(expected_keys) - len(validated)
+        if skipped > 0:
+            logger.info(f"Groq response: {len(validated)} valid, {skipped} skipped/missing")
+
+        return validated
+
+    def _log_cost(self, response: Any) -> None:
+        """Log token usage and estimated cost."""
+        if not settings.AI_COST_TRACKING:
+            return
+        try:
+            usage = response.usage
+            if not usage:
+                return
+            prompt_tokens = usage.prompt_tokens
+            completion_tokens = usage.completion_tokens
+            total_tokens = usage.total_tokens
+            # Llama-3.3-70b: ~$0.59/1M input, $0.79/1M output (free tier $0)
+            cost = (prompt_tokens * 0.59 / 1_000_000) + (completion_tokens * 0.79 / 1_000_000)
+            logger.info(
+                f"[AI Cost] provider=groq model={self.model} "
+                f"prompt={prompt_tokens} completion={completion_tokens} total={total_tokens} "
+                f"est_cost=${cost:.6f}"
+            )
+        except Exception:
+            pass
+
+
 class GeminiProvider(AIProvider):
     """Google Gemini implementation (kept for future use)."""
 
@@ -417,6 +621,11 @@ def get_ai_provider() -> AIProvider:
 
     if provider == "openai":
         return OpenAIProvider()
+    elif provider == "groq":
+        if not settings.GROQ_API_KEY or "BURAYA" in settings.GROQ_API_KEY:
+            logger.warning("AI_PROVIDER is set to 'groq', but GROQ_API_KEY is not configured. Falling back to keyword-only detection.")
+            return NoOpProvider()
+        return GroqProvider()
     elif provider == "gemini":
         return GeminiProvider()
     else:

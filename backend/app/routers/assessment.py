@@ -315,6 +315,7 @@ async def submit_assessment(
     # Step 3: Reconstruct existing non-assessment evidence signals from DB
     existing_github_signals: dict[str, SubskillEvidenceResult] = {}
     existing_cv_signals: dict[str, SubskillEvidenceResult] = {}
+    existing_linkedin_signals: dict[str, SubskillEvidenceResult] = {}
 
     for sk_res in analysis.skill_results:
         for sub_res in sk_res.subskill_results:
@@ -323,6 +324,7 @@ async def submit_assessment(
             
             gh_sigs: list[EvidenceSignal] = []
             cv_sigs: list[EvidenceSignal] = []
+            li_sigs: list[EvidenceSignal] = []
 
             if isinstance(sources, list):
                 for src in sources:
@@ -337,8 +339,10 @@ async def submit_assessment(
                             matched_text=src.get("signal", src.get("matched_text", "")),
                             strength=float(src.get("strength", 0.5)),
                         )
-                        if s_name in ("cv_skills_list", "cv_experience", "cv_project", "cv_education"):
+                        if s_name in ("cv_skills_list", "cv_experience", "cv_project", "cv_education", "cv_certification"):
                             cv_sigs.append(sig)
+                        elif s_name.startswith("linkedin_"):
+                            li_sigs.append(sig)
                         else:
                             gh_sigs.append(sig)
 
@@ -356,12 +360,20 @@ async def submit_assessment(
                     status="claimed",
                     signals=cv_sigs,
                 )
+            if li_sigs:
+                existing_linkedin_signals[ck] = SubskillEvidenceResult(
+                    composite_key=ck,
+                    subskill_name=sub_res.subskill_name,
+                    status="claimed",
+                    signals=li_sigs,
+                )
 
     # Step 4: Multi-source Fusion via EvidenceEngine (feeding REAL assessment_evidence)
     evidence_engine = EvidenceEngine(kb, analysis.role_id, analysis.level)
     unified_evidence = evidence_engine.merge_evidence(
         github_evidence=existing_github_signals or None,
         cv_skills_evidence=existing_cv_signals or None,
+        linkedin_evidence=existing_linkedin_signals or None,
         assessment_evidence=assessment_evidence,
     )
 

@@ -35,10 +35,12 @@ class Settings(BaseSettings):
     # --- AI Provider ---
     # AI enrichment is currently disabled platform-wide (cost/business decision).
     # Default is "none" (keyword-only mode). The infrastructure remains intact
-    # (ai_provider.py, test_ai_provider.py) for future re-activation ("openai" | "gemini" | "none").
+    # (ai_provider.py, test_ai_provider.py) for future re-activation ("openai" | "groq" | "gemini" | "none").
     AI_PROVIDER: str = "none"
     OPENAI_API_KEY: Optional[str] = None
     OPENAI_MODEL: str = "gpt-4o-mini"
+    GROQ_API_KEY: Optional[str] = None
+    GROQ_MODEL: str = "llama-3.3-70b-versatile"
     GEMINI_API_KEY: Optional[str] = None
     GEMINI_MODEL: str = "gemini-2.0-flash"
     AI_REQUEST_TIMEOUT: int = 60           # Seconds per API call
@@ -68,6 +70,29 @@ class Settings(BaseSettings):
             raise ValueError("JWT_SECRET_KEY must be at least 16 characters long for security.")
         return v
 
+    @field_validator("DATABASE_URL")
+    @classmethod
+    def validate_database_url(cls, v: str) -> str:
+        if v.startswith("sqlite+aiosqlite:///./"):
+            rel_file = v.replace("sqlite+aiosqlite:///./", "")
+            backend_file = os.path.join(
+                os.path.dirname(os.path.dirname(os.path.abspath(__file__))), rel_file
+            ).replace("\\", "/")
+            return f"sqlite+aiosqlite:///{backend_file}"
+        return v
+
+    @field_validator("KB_PATH")
+    @classmethod
+    def validate_kb_path(cls, v: str) -> str:
+        if not os.path.exists(v):
+            local_fallback = os.path.join(
+                os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))),
+                "knowledge-base",
+            )
+            if os.path.exists(local_fallback):
+                return local_fallback
+        return v
+
     # --- Rate Limiting & Redis ---
     REDIS_URL: Optional[str] = None  # e.g., "redis://localhost:6379/0" for production
     RATE_LIMIT_GUEST_ANALYZE: str = "5/hour"
@@ -85,8 +110,14 @@ class Settings(BaseSettings):
     def settings_customise_sources(cls, settings_cls, init_settings, env_settings, dotenv_settings, file_secret_settings):
         return init_settings, env_settings, dotenv_settings, file_secret_settings
 
+    _BACKEND_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    _ROOT_DIR = os.path.dirname(_BACKEND_DIR)
+
     model_config = {
-        "env_file": ".env",
+        "env_file": (
+            os.path.join(_ROOT_DIR, ".env"),
+            os.path.join(_BACKEND_DIR, ".env"),
+        ),
         "env_file_encoding": "utf-8",
         "case_sensitive": True,
         "extra": "ignore",

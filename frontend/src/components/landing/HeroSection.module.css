@@ -154,42 +154,115 @@
   border: 1px solid var(--border);
 }
 
-.uploadZone {
+.uploadDropzone {
   position: relative;
   background: var(--bg-base);
   border: 1px dashed var(--border);
   border-radius: var(--r-input);
-  padding: 12px 14px;
+  padding: 14px 16px;
   text-align: center;
-  cursor: not-allowed;
-  opacity: 0.65;
+  cursor: pointer;
+  transition: all var(--t-fast);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
 }
 
-.uploadSoon {
-  position: absolute;
-  top: 8px;
-  right: 8px;
+.uploadDropzone:hover,
+.uploadDropzoneDragOver {
+  border-color: #3b82f6;
+  background: rgba(59, 130, 246, 0.05);
+}
+
+.uploadIcon {
+  color: #60a5fa;
+  margin-bottom: 2px;
+}
+
+.uploadBadge {
   font-size: 0.65rem;
-  font-weight: 600;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  background: var(--bg-elevated);
-  border: 1px solid var(--border);
-  color: var(--text-muted);
-  padding: 2px 6px;
+  background: rgba(59, 130, 246, 0.15);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  color: #60a5fa;
+  padding: 2px 8px;
   border-radius: var(--r-badge);
+  margin-bottom: 4px;
 }
 
 .uploadTitle {
-  font-size: 0.825rem;
-  font-weight: 500;
-  color: var(--text-secondary);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-primary);
 }
 
 .uploadDesc {
   font-size: 0.75rem;
   color: var(--text-muted);
-  margin-top: 2px;
+}
+
+.fileChip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(59, 130, 246, 0.1);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  border-radius: var(--r-input);
+  padding: 10px 14px;
+}
+
+.fileChipLeft {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  overflow: hidden;
+}
+
+.fileIcon {
+  font-size: 1.25rem;
+  color: #60a5fa;
+  flex-shrink: 0;
+}
+
+.fileMeta {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  text-align: left;
+}
+
+.fileName {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px;
+}
+
+.fileSize {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+.fileRemoveBtn {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  transition: all 0.15s;
+}
+
+.fileRemoveBtn:hover {
+  color: #f87171;
+  background: rgba(239, 68, 68, 0.1);
 }
 
 .tokenToggle {

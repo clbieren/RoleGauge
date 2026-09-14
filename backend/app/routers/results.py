@@ -93,6 +93,9 @@ async def get_result(
                     confidence=sub.confidence,
                     status=sub.status,
                     evidence_sources=sub.evidence_sources or [],
+                    contributing_sources=sub.contributing_sources or [],
+                    ceiling_applied=sub.ceiling_applied,
+                    calculation_trace=sub.calculation_trace,
                 )
                 for sub in sr.subskill_results
             ]

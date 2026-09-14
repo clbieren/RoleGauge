@@ -1,0 +1,311 @@
+.page {
+  min-height: 100vh;
+  background-color: var(--color-bg, #090d16);
+  color: var(--color-text, #f1f5f9);
+  display: flex;
+  flex-direction: column;
+}
+
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(9, 13, 22, 0.85);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.navInner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0.85rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: none;
+  border: none;
+  color: #ffffff;
+  font-size: 1.15rem;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.logoMark {
+  color: #3b82f6;
+  font-size: 1.3rem;
+}
+
+.navRight {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.newAnalysisBtn {
+  padding: 0.5rem 1rem;
+  background: rgba(59, 130, 246, 0.15);
+  border: 1px solid rgba(59, 130, 246, 0.35);
+  color: #60a5fa;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-decoration: none;
+}
+
+.newAnalysisBtn:hover {
+  background: rgba(59, 130, 246, 0.25);
+  border-color: #3b82f6;
+}
+
+.userBadge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.75rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  font-size: 0.82rem;
+  color: #cbd5e1;
+}
+
+.userDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: #10b981;
+}
+
+.logoutBtn {
+  background: none;
+  border: none;
+  color: #94a3b8;
+  font-size: 0.82rem;
+  cursor: pointer;
+  padding: 0.35rem 0.5rem;
+  transition: color 0.15s;
+}
+
+.logoutBtn:hover {
+  color: #f87171;
+}
+
+.container {
+  max-width: 1000px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 5rem;
+  flex: 1;
+}
+
+.header {
+  margin-bottom: 2.5rem;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.02em;
+}
+
+.subtitle {
+  font-size: 1rem;
+  color: #94a3b8;
+}
+
+.cardGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.analysisCard {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 1.5rem;
+  background: rgba(15, 23, 42, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  color: inherit;
+}
+
+.analysisCard:hover {
+  border-color: rgba(59, 130, 246, 0.4);
+  background: rgba(30, 41, 59, 0.55);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.cardLeft {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.sourceIcon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  color: #94a3b8;
+  flex-shrink: 0;
+}
+
+.cardDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.roleTitle {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #f8fafc;
+}
+
+.cardMeta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.82rem;
+  color: #94a3b8;
+}
+
+.metaCandidate {
+  color: #38bdf8;
+  font-weight: 500;
+}
+
+.metaDot {
+  opacity: 0.4;
+}
+
+.cardRight {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.scoreGroup {
+  text-align: right;
+}
+
+.scoreVal {
+  font-size: 1.35rem;
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.tierLabel {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.tier_ready {
+  color: #10b981;
+}
+
+.tier_almost_ready {
+  color: #f59e0b;
+}
+
+.tier_development_needed {
+  color: #f97316;
+}
+
+.tier_not_recommended {
+  color: #ef4444;
+}
+
+.arrow {
+  color: #64748b;
+  font-size: 1.25rem;
+  transition: transform 0.2s, color 0.2s;
+}
+
+.analysisCard:hover .arrow {
+  color: #60a5fa;
+  transform: translateX(4px);
+}
+
+.emptyState {
+  padding: 4rem 2rem;
+  text-align: center;
+  background: rgba(15, 23, 42, 0.4);
+  border: 1px dashed rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+}
+
+.emptyIcon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  opacity: 0.6;
+}
+
+.emptyTitle {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+}
+
+.emptyText {
+  color: #94a3b8;
+  font-size: 0.95rem;
+  margin-bottom: 1.5rem;
+}
+
+.authPrompt {
+  max-width: 480px;
+  margin: 4rem auto;
+  padding: 2.5rem 2rem;
+  text-align: center;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 18px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.primaryBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.75rem;
+  background: linear-gradient(135deg, #3b82f6, #6366f1);
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.primaryBtn:hover {
+  opacity: 0.92;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(59, 130, 246, 0.4);
+}

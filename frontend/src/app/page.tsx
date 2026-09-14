@@ -8,6 +8,7 @@ import { SAMPLE_ANALYSIS } from '@/lib/sampleAnalysis';
 
 import AnalysisProgress from '@/components/AnalysisProgress';
 import ResultsDashboard from '@/components/ResultsDashboard';
+import AuthModal from '@/components/AuthModal';
 
 import LandingNav from '@/components/landing/LandingNav';
 import HeroSection from '@/components/landing/HeroSection';
@@ -22,12 +23,14 @@ import TrustSection from '@/components/landing/TrustSection';
 import FinalCTA from '@/components/landing/FinalCTA';
 import LandingFooter from '@/components/landing/LandingFooter';
 
+import { useAuth } from '@/context/AuthContext';
 import styles from './page.module.css';
 
 type AppState = 'input' | 'analyzing' | 'results';
 
 export default function HomePage() {
   const { locale, toggle, t } = useLocale();
+  const { token } = useAuth();
   const [state, setState] = useState<AppState>('input');
   const [roles, setRoles] = useState<RoleInfo[]>([]);
   const [username, setUsername] = useState('');
@@ -35,6 +38,7 @@ export default function HomePage() {
   const [selectedLevel, setSelectedLevel] = useState<'junior' | 'mid' | 'senior'>('mid');
   const [githubToken, setGithubToken] = useState('');
   const [showToken, setShowToken] = useState(false);
+  const [uploadedFile, setUploadedFile] = useState<File | null>(null);
   const [result, setResult] = useState<AnalyzeResponse | null>(null);
   const [error, setError] = useState('');
   const [analysisStep, setAnalysisStep] = useState(0);
@@ -45,26 +49,30 @@ export default function HomePage() {
     fetchRoles().then(setRoles);
 
     // Restore last analysis result or saved username across page refreshes
-    try {
-      const savedUser = localStorage.getItem('skilllens_username');
-      if (savedUser) setUsername(savedUser);
+    const timer = setTimeout(() => {
+      try {
+        const savedUser = localStorage.getItem('skilllens_username');
+        if (savedUser) setUsername(savedUser);
 
-      const savedResult = localStorage.getItem('skilllens_last_result');
-      if (savedResult) {
-        const parsed = JSON.parse(savedResult);
-        if (parsed && parsed.id && parsed.skills) {
-          setResult(parsed);
-          setState('results');
-          if (parsed.github_username) setUsername(parsed.github_username);
-          if (parsed.role_id) setSelectedRole(parsed.role_id);
-          if (parsed.level) setSelectedLevel(parsed.level);
+        const savedResult = localStorage.getItem('skilllens_last_result');
+        if (savedResult) {
+          const parsed = JSON.parse(savedResult);
+          if (parsed && parsed.id && parsed.skills) {
+            setResult(parsed);
+            setState('results');
+            if (parsed.github_username) setUsername(parsed.github_username);
+            if (parsed.role_id) setSelectedRole(parsed.role_id);
+            if (parsed.level) setSelectedLevel(parsed.level);
+          }
         }
+      } catch {
+        // ignore
+      } finally {
+        setIsHydrated(true);
       }
-    } catch {
-      // ignore
-    } finally {
-      setIsHydrated(true);
-    }
+    }, 0);
+
+    return () => clearTimeout(timer);
   }, []);
 
   const STEPS = [
@@ -76,7 +84,7 @@ export default function HomePage() {
   ];
 
   const handleAnalyze = async () => {
-    if (!username.trim() || !selectedRole) return;
+    if ((!username.trim() && !uploadedFile) || !selectedRole) return;
 
     setState('analyzing');
     setError('');
@@ -97,13 +105,25 @@ export default function HomePage() {
     });
 
     try {
-      const response = await analyzeProfile({
-        github_username: username,
-        role_id: selectedRole,
-        level: selectedLevel,
-        github_token: githubToken || undefined,
-        use_ai: false,
-      });
+      let response: AnalyzeResponse;
+      if (uploadedFile) {
+        const formData = new FormData();
+        formData.append('role_id', selectedRole);
+        formData.append('level', selectedLevel);
+        if (username.trim()) formData.append('github_username', username.trim());
+        if (githubToken) formData.append('github_token', githubToken);
+        formData.append('file', uploadedFile);
+        formData.append('use_ai', 'false');
+        response = await analyzeProfile(formData, token || undefined);
+      } else {
+        response = await analyzeProfile({
+          github_username: username.trim(),
+          role_id: selectedRole,
+          level: selectedLevel,
+          github_token: githubToken || undefined,
+          use_ai: false,
+        }, token || undefined);
+      }
 
       // Clear pending timers
       timers.forEach(clearTimeout);
@@ -112,8 +132,11 @@ export default function HomePage() {
       setTimeout(() => {
         setResult(response);
         setState('results');
+        if (typeof window !== 'undefined' && response.id) {
+          window.history.pushState(null, '', `/results/${response.id}`);
+        }
         try {
-          localStorage.setItem('skilllens_username', username);
+          if (username.trim()) localStorage.setItem('skilllens_username', username);
           localStorage.setItem('skilllens_last_result', JSON.stringify(response));
         } catch {
           // ignore
@@ -149,6 +172,9 @@ export default function HomePage() {
     setResult(null);
     setAnalysisStep(0);
     setError('');
+    if (typeof window !== 'undefined') {
+      window.history.pushState(null, '', '/');
+    }
     try {
       localStorage.removeItem('skilllens_last_result');
     } catch {
@@ -185,6 +211,8 @@ export default function HomePage() {
               setGithubToken={setGithubToken}
               showToken={showToken}
               setShowToken={setShowToken}
+              uploadedFile={uploadedFile}
+              setUploadedFile={setUploadedFile}
               roles={roles}
               error={error}
               onAnalyze={handleAnalyze}
@@ -216,7 +244,7 @@ export default function HomePage() {
         <AnalysisProgress
           currentStep={analysisStep}
           steps={STEPS}
-          username={username}
+          username={username || uploadedFile?.name || 'Candidate'}
           roleName={
             selectedRoleInfo
               ? selectedRoleInfo.title.replace(/^(Junior|Mid|Senior)\s+/i, '')
@@ -233,6 +261,8 @@ export default function HomePage() {
           onReset={handleReset}
         />
       )}
+
+      <AuthModal locale={locale} />
     </>
   );
 }

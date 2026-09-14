@@ -259,6 +259,253 @@ class TestOpenAIProvider:
 
 
 # ═══════════════════════════════════════════════════════════════════
+# GroqProvider Tests
+# ═══════════════════════════════════════════════════════════════════
+
+class TestGroqProvider:
+    """Tests for GroqProvider with mocked openai client."""
+
+    @pytest.fixture
+    def provider(self):
+        """Create GroqProvider with mocked client."""
+        with patch.dict(os.environ, {"AI_PROVIDER": "groq", "GROQ_API_KEY": "test-groq-key"}):
+            with patch("app.services.ai_provider.settings") as mock_settings:
+                mock_settings.GROQ_API_KEY = "test-groq-key"
+                mock_settings.GROQ_MODEL = "llama-3.3-70b-versatile"
+                mock_settings.AI_REQUEST_TIMEOUT = 10
+                mock_settings.AI_MAX_RETRIES = 2
+                mock_settings.AI_MAX_INPUT_TOKENS = 12000
+                mock_settings.AI_MAX_OUTPUT_TOKENS = 4096
+                mock_settings.AI_SUBSKILL_CHUNK_SIZE = 15
+                mock_settings.AI_COST_TRACKING = False
+                mock_settings.AI_PROVIDER = "groq"
+
+                from app.services.ai_provider import GroqProvider
+                prov = GroqProvider.__new__(GroqProvider)
+                prov.client = AsyncMock()
+                prov.model = "llama-3.3-70b-versatile"
+                return prov
+
+    def test_init_configures_groq_endpoint(self):
+        """Test GroqProvider.__init__ configures OpenAI client with Groq base_url."""
+        with patch.dict(os.environ, {"AI_PROVIDER": "groq", "GROQ_API_KEY": "gsk_test_key"}):
+            with patch("app.services.ai_provider.settings") as mock_settings:
+                mock_settings.GROQ_API_KEY = "gsk_test_key"
+                mock_settings.GROQ_MODEL = "llama-3.3-70b-versatile"
+                mock_settings.AI_REQUEST_TIMEOUT = 25
+
+                with patch("openai.AsyncOpenAI") as mock_openai:
+                    from app.services.ai_provider import GroqProvider
+                    gp = GroqProvider()
+                    mock_openai.assert_called_once_with(
+                        api_key="gsk_test_key",
+                        base_url="https://api.groq.com/openai/v1",
+                        timeout=25,
+                    )
+                    assert gp.model == "llama-3.3-70b-versatile"
+
+    @pytest.mark.asyncio
+    async def test_successful_evidence_detection(self, provider):
+        """Groq returns valid evidence_found → parsed correctly."""
+        ai_response = {
+            "be_api_design.rest_principles": {
+                "status": "evidence_found",
+                "evidence_sources": ["fastapi/main.py → APIRouter usage"],
+                "quality_notes": "Clear REST API implementation",
+            },
+            "be_api_design.graphql_apis": {
+                "status": "not_yet_evidenced",
+                "evidence_sources": [],
+                "quality_notes": "No GraphQL usage found",
+            },
+        }
+        provider.client.chat.completions.create = AsyncMock(
+            return_value=_mock_response(ai_response)
+        )
+
+        result = await provider.analyze_evidence(
+            "backend", "mid",
+            ["be_api_design.rest_principles", "be_api_design.graphql_apis"],
+            {"file_contents": {"main.py": "from fastapi import APIRouter"}, "dependencies": {}, "readme": ""},
+        )
+
+        assert "be_api_design.rest_principles" in result
+        assert result["be_api_design.rest_principles"]["status"] == "evidence_found"
+        assert len(result["be_api_design.rest_principles"]["evidence_sources"]) >= 1
+        assert "be_api_design.graphql_apis" in result
+        assert result["be_api_design.graphql_apis"]["status"] == "not_yet_evidenced"
+
+    @pytest.mark.asyncio
+    async def test_invalid_status_filtered(self, provider):
+        """Groq returns invalid status → entry filtered out."""
+        ai_response = {
+            "be_api_design.rest_principles": {
+                "status": "maybe_found",  # Invalid
+                "evidence_sources": ["some/file.py"],
+                "quality_notes": "Invalid status",
+            },
+        }
+        provider.client.chat.completions.create = AsyncMock(
+            return_value=_mock_response(ai_response)
+        )
+
+        result = await provider.analyze_evidence(
+            "backend", "mid",
+            ["be_api_design.rest_principles"],
+            {"file_contents": {}, "dependencies": {}, "readme": ""},
+        )
+
+        assert "be_api_design.rest_principles" not in result
+
+    @pytest.mark.asyncio
+    async def test_evidence_without_sources_filtered(self, provider):
+        """Groq says evidence_found but provides no sources → filtered."""
+        ai_response = {
+            "be_api_design.rest_principles": {
+                "status": "evidence_found",
+                "evidence_sources": [],  # Empty!
+                "quality_notes": "Found but no details",
+            },
+        }
+        provider.client.chat.completions.create = AsyncMock(
+            return_value=_mock_response(ai_response)
+        )
+
+        result = await provider.analyze_evidence(
+            "backend", "mid",
+            ["be_api_design.rest_principles"],
+            {"file_contents": {}, "dependencies": {}, "readme": ""},
+        )
+
+        assert "be_api_design.rest_principles" not in result
+
+    @pytest.mark.asyncio
+    async def test_timeout_returns_empty(self, provider):
+        """API timeout → returns empty dict (graceful degradation)."""
+        from openai import APITimeoutError
+        provider.client.chat.completions.create = AsyncMock(
+            side_effect=APITimeoutError(request=MagicMock())
+        )
+
+        result = await provider.analyze_evidence(
+            "backend", "mid",
+            ["be_api_design.rest_principles"],
+            {"file_contents": {}, "dependencies": {}, "readme": ""},
+        )
+
+        assert result == {}
+
+    @pytest.mark.asyncio
+    async def test_rate_limit_error_handled_gracefully(self, provider):
+        """Groq rate limit (429) → returns empty dict without crashing."""
+        from openai import RateLimitError
+        response_mock = MagicMock()
+        response_mock.status_code = 429
+        provider.client.chat.completions.create = AsyncMock(
+            side_effect=RateLimitError(
+                message="Rate limit reached",
+                response=response_mock,
+                body={"error": {"message": "Rate limit reached", "type": "tokens"}},
+            )
+        )
+
+        result = await provider.analyze_evidence(
+            "backend", "mid",
+            ["be_api_design.rest_principles"],
+            {"file_contents": {}, "dependencies": {}, "readme": ""},
+        )
+
+        assert result == {}
+
+    @pytest.mark.asyncio
+    async def test_malformed_json_returns_empty(self, provider):
+        """Malformed JSON response → returns empty dict."""
+        bad_response = _mock_response("invalid json response from groq <<>>")
+        provider.client.chat.completions.create = AsyncMock(return_value=bad_response)
+
+        result = await provider.analyze_evidence(
+            "backend", "mid",
+            ["be_api_design.rest_principles"],
+            {"file_contents": {}, "dependencies": {}, "readme": ""},
+        )
+
+        assert result == {}
+
+    @pytest.mark.asyncio
+    async def test_empty_subskills_returns_empty(self, provider):
+        """Empty target_subskills list → returns empty immediately without API call."""
+        result = await provider.analyze_evidence(
+            "backend", "mid", [], {"file_contents": {}, "dependencies": {}, "readme": ""},
+        )
+        assert result == {}
+        provider.client.chat.completions.create.assert_not_called()
+
+    @pytest.mark.asyncio
+    async def test_subskill_chunking(self, provider):
+        """More subskills than chunk_size → multiple API calls merged."""
+        with patch("app.services.ai_provider.settings") as mock_s:
+            mock_s.AI_SUBSKILL_CHUNK_SIZE = 3
+            mock_s.AI_MAX_INPUT_TOKENS = 50000
+            mock_s.AI_MAX_OUTPUT_TOKENS = 4096
+            mock_s.AI_MAX_RETRIES = 1
+            mock_s.AI_REQUEST_TIMEOUT = 10
+            mock_s.AI_COST_TRACKING = False
+
+            subskills = [f"skill.sub_{i}" for i in range(7)]  # 7 subskills, chunk_size=3
+
+            def make_chunk_response(*args, **kwargs):
+                return _mock_response(
+                    {sk: {"status": "not_yet_evidenced", "evidence_sources": [], "quality_notes": ""}
+                     for sk in subskills}
+                )
+
+            provider.client.chat.completions.create = AsyncMock(side_effect=make_chunk_response)
+
+            result = await provider.analyze_evidence(
+                "backend", "mid", subskills,
+                {"file_contents": {}, "dependencies": {}, "readme": ""},
+            )
+
+            assert provider.client.chat.completions.create.call_count == 3
+            assert len(result) == 7
+
+    @pytest.mark.asyncio
+    async def test_subskill_definitions_in_prompt(self, provider):
+        """Subskill definitions are included in the prompt."""
+        ai_response = {
+            "be_api_design.rest_principles": {
+                "status": "not_yet_evidenced",
+                "evidence_sources": [],
+                "quality_notes": "",
+            },
+        }
+        provider.client.chat.completions.create = AsyncMock(
+            return_value=_mock_response(ai_response)
+        )
+
+        defs = {
+            "be_api_design.rest_principles": {
+                "name": "RESTful Principles",
+                "description": "Resource-oriented URL design",
+                "keywords": ["REST", "HTTP methods"],
+            }
+        }
+
+        await provider.analyze_evidence(
+            "backend", "mid",
+            ["be_api_design.rest_principles"],
+            {"file_contents": {}, "dependencies": {}, "readme": ""},
+            subskill_definitions=defs,
+        )
+
+        call_args = provider.client.chat.completions.create.call_args
+        messages = call_args.kwargs.get("messages", call_args[1].get("messages", []))
+        user_msg = messages[1]["content"]
+        assert "RESTful Principles" in user_msg
+        assert "REST" in user_msg
+
+
+# ═══════════════════════════════════════════════════════════════════
 # NoOpProvider Tests
 # ═══════════════════════════════════════════════════════════════════
 
@@ -297,6 +544,17 @@ class TestAIProviderFactory:
             from app.services.ai_provider import get_ai_provider, OpenAIProvider
             provider = get_ai_provider()
             assert isinstance(provider, OpenAIProvider)
+
+    def test_factory_returns_groq(self):
+        with patch("app.services.ai_provider.settings") as mock_s:
+            mock_s.AI_PROVIDER = "groq"
+            mock_s.GROQ_API_KEY = "test-groq-key"
+            mock_s.GROQ_MODEL = "llama-3.3-70b-versatile"
+            mock_s.AI_REQUEST_TIMEOUT = 60
+            from app.services.ai_provider import get_ai_provider, GroqProvider
+            provider = get_ai_provider()
+            assert isinstance(provider, GroqProvider)
+            assert provider.model == "llama-3.3-70b-versatile"
 
 # ═══════════════════════════════════════════════════════════════════
 # Merge AI Results Tests

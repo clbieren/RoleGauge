@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import { RoleInfo } from '@/lib/api';
 import { Locale, TranslationKey } from '@/lib/i18n';
 import DashboardPreview from './DashboardPreview';
@@ -17,6 +17,8 @@ interface HeroSectionProps {
   setGithubToken: (val: string) => void;
   showToken: boolean;
   setShowToken: React.Dispatch<React.SetStateAction<boolean>>;
+  uploadedFile?: File | null;
+  setUploadedFile?: (file: File | null) => void;
   roles: RoleInfo[];
   error: string;
   onAnalyze: () => void;
@@ -38,6 +40,8 @@ export default function HeroSection({
   setGithubToken,
   showToken,
   setShowToken,
+  uploadedFile,
+  setUploadedFile,
   roles,
   error,
   onAnalyze,
@@ -45,6 +49,44 @@ export default function HeroSection({
   t,
   locale,
 }: HeroSectionProps) {
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const [isDragging, setIsDragging] = useState(false);
+
+  const formatSize = (bytes: number) => {
+    if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
+    return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
+  };
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file && setUploadedFile) {
+      setUploadedFile(file);
+    }
+  };
+
+  const handleDragOver = (e: React.DragEvent) => {
+    e.preventDefault();
+    setIsDragging(true);
+  };
+
+  const handleDragLeave = () => {
+    setIsDragging(false);
+  };
+
+  const handleDrop = (e: React.DragEvent) => {
+    e.preventDefault();
+    setIsDragging(false);
+    const file = e.dataTransfer.files?.[0];
+    if (file && setUploadedFile) {
+      setUploadedFile(file);
+    }
+  };
+
+  const handleRemoveFile = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (setUploadedFile) setUploadedFile(null);
+    if (fileInputRef.current) fileInputRef.current.value = '';
+  };
   return (
     <section className={styles.hero} id="hero-section">
       {/* Top Header: Badge, Title, Subtitle */}
@@ -134,13 +176,60 @@ export default function HeroSection({
               </div>
             </div>
 
-            {/* CV / LinkedIn upload placeholder */}
+            {/* CV / LinkedIn upload dropzone */}
             <div className={styles.formField}>
-              <div className={styles.uploadZone}>
-                <span className={styles.uploadSoon}>{t('formUploadComingSoon')}</span>
-                <p className={styles.uploadTitle}>{t('formUploadLabel')}</p>
-                <p className={styles.uploadDesc}>{t('formUploadDesc')}</p>
-              </div>
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept=".pdf,.docx"
+                style={{ display: 'none' }}
+                onChange={handleFileChange}
+              />
+
+              {uploadedFile ? (
+                <div className={styles.fileChip}>
+                  <div className={styles.fileChipLeft}>
+                    <span className={styles.fileIcon}>📄</span>
+                    <div className={styles.fileMeta}>
+                      <span className={styles.fileName} title={uploadedFile.name}>
+                        {uploadedFile.name}
+                      </span>
+                      <span className={styles.fileSize}>{formatSize(uploadedFile.size)}</span>
+                    </div>
+                  </div>
+                  <button
+                    type="button"
+                    className={styles.fileRemoveBtn}
+                    onClick={handleRemoveFile}
+                    title={locale === 'tr' ? 'Dosyayı kaldır' : 'Remove file'}
+                  >
+                    ✕
+                  </button>
+                </div>
+              ) : (
+                <div
+                  className={`${styles.uploadDropzone} ${isDragging ? styles.uploadDropzoneDragOver : ''}`}
+                  onClick={() => fileInputRef.current?.click()}
+                  onDragOver={handleDragOver}
+                  onDragLeave={handleDragLeave}
+                  onDrop={handleDrop}
+                >
+                  <span className={styles.uploadBadge}>PDF / DOCX</span>
+                  <div className={styles.uploadIcon}>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                      <polyline points="17 8 12 3 7 8" />
+                      <line x1="12" y1="3" x2="12" y2="15" />
+                    </svg>
+                  </div>
+                  <p className={styles.uploadTitle}>
+                    {locale === 'tr' ? 'CV veya LinkedIn Profili Yükle' : 'Upload CV or LinkedIn Profile'}
+                  </p>
+                  <p className={styles.uploadDesc}>
+                    {locale === 'tr' ? 'Dosya seçin veya buraya sürükleyin' : 'Choose a file or drag & drop here'}
+                  </p>
+                </div>
+              )}
             </div>
 
             {/* Optional GitHub Token Accordion */}
@@ -219,9 +308,11 @@ export default function HeroSection({
               type="button"
               className={`btn btn-primary ${styles.analyzeBtn}`}
               onClick={onAnalyze}
-              disabled={!username.trim() || !selectedRole}
+              disabled={(!username.trim() && !uploadedFile) || !selectedRole}
             >
-              {t('formAnalyzeBtn')}
+              {uploadedFile && !username.trim()
+                ? (locale === 'tr' ? 'CV ve Profili Analiz Et' : 'Analyze CV & Profile')
+                : t('formAnalyzeBtn')}
             </button>
 
             {/* Quick Demo Analysis Link */}

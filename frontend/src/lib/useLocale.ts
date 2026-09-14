@@ -7,12 +7,15 @@ import { useState, useEffect, useCallback } from 'react';
 import { Locale, getLocale, setLocale, initLocale, t, TranslationKey } from './i18n';
 
 export function useLocale() {
-  const [locale, setLocaleState] = useState<Locale>('tr');
+  const [locale, setLocaleState] = useState<Locale>(() => {
+    if (typeof window !== 'undefined') {
+      initLocale();
+      return getLocale();
+    }
+    return 'tr';
+  });
 
   useEffect(() => {
-    initLocale();
-    setLocaleState(getLocale());
-
     const handler = (e: Event) => {
       setLocaleState((e as CustomEvent<Locale>).detail);
     };

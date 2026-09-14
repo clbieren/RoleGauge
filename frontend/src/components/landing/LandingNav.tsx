@@ -1,7 +1,9 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
 import { Locale, TranslationKey } from '@/lib/i18n';
+import { useAuth } from '@/context/AuthContext';
 import styles from './LandingNav.module.css';
 
 interface LandingNavProps {
@@ -12,6 +14,8 @@ interface LandingNavProps {
 }
 
 export default function LandingNav({ locale, toggleLocale, t, onLogoClick }: LandingNavProps) {
+  const { user, isAuthenticated, logout, openAuthModal } = useAuth();
+
   const scrollTo = (id: string) => {
     const el = document.getElementById(id);
     if (el) {
@@ -46,9 +50,33 @@ export default function LandingNav({ locale, toggleLocale, t, onLogoClick }: Lan
         </div>
 
         <div className={styles.navRight}>
-          <button className={styles.signInBtn} type="button">
-            {t('navSignIn')}
-          </button>
+          {isAuthenticated ? (
+            <div className={styles.userWrap}>
+              <Link href="/history" className={styles.historyBtn}>
+                <span>📊</span>
+                <span>{locale === 'tr' ? 'Analizlerim' : 'My Analyses'}</span>
+              </Link>
+              <span className={styles.userBadge} title={user?.email}>
+                {user?.full_name || user?.email.split('@')[0]}
+              </span>
+              <button
+                className={styles.logoutBtn}
+                type="button"
+                onClick={logout}
+                title={locale === 'tr' ? 'Çıkış Yap' : 'Sign Out'}
+              >
+                {locale === 'tr' ? 'Çıkış' : 'Sign Out'}
+              </button>
+            </div>
+          ) : (
+            <button
+              className={styles.signInBtn}
+              type="button"
+              onClick={() => openAuthModal('login')}
+            >
+              {t('navSignIn')}
+            </button>
+          )}
 
           <div className={styles.localePill} role="group" aria-label="Language selector">
             <button

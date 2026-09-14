@@ -16,6 +16,7 @@ interface AssessmentModalProps {
   analysisId: string;
   compositeKey: string;
   subskillName: string;
+  currentReadinessScore?: number;
   onClose: () => void;
   onSuccess: (updatedAnalysis: AnalyzeResponse) => void;
   locale: string;
@@ -25,6 +26,7 @@ export default function AssessmentModal({
   analysisId,
   compositeKey,
   subskillName,
+  currentReadinessScore,
   onClose,
   onSuccess,
   locale,
@@ -42,8 +44,6 @@ export default function AssessmentModal({
 
   useEffect(() => {
     let isMounted = true;
-    setLoading(true);
-    setError('');
 
     startAssessment(analysisId, compositeKey)
       .then(res => {
@@ -89,17 +89,15 @@ export default function AssessmentModal({
         [question.composite_key]: answer.trim(),
       });
 
-      if (res.evaluation_results && res.evaluation_results.length > 0) {
-        setEvaluation(res.evaluation_results[0]);
+      if (res.evaluations && res.evaluations.length > 0) {
+        setEvaluation(res.evaluations[0]);
       }
-
-      setScoreDelta({
-        prev: Math.round(res.previous_score * 100),
-        updated: Math.round(res.updated_score * 100),
-      });
 
       if (res.updated_analysis) {
         setUpdatedAnalysis(res.updated_analysis);
+        const prev = Math.round((currentReadinessScore ?? res.updated_analysis.readiness_score) * 100);
+        const updated = Math.round(res.updated_analysis.readiness_score * 100);
+        setScoreDelta({ prev, updated });
       }
     } catch (err) {
       setError(
@@ -232,17 +230,17 @@ export default function AssessmentModal({
           {!loading && evaluation && (
             <div className={styles.resultCard}>
               <div className={styles.resultOutcomeRow}>
-                {evaluation.result === 'correct' && (
+                {evaluation.verdict === 'correct' && (
                   <span className="badge tier-ready">
                     ✓ {locale === 'tr' ? 'Doğrulandı · Başarılı' : 'Verified · Correct'}
                   </span>
                 )}
-                {evaluation.result === 'partially_correct' && (
+                {evaluation.verdict === 'partial' && (
                   <span className="badge tier-developing">
                     ⚠ {locale === 'tr' ? 'Kısmen Doğru' : 'Partially Correct'}
                   </span>
                 )}
-                {evaluation.result === 'incorrect' && (
+                {evaluation.verdict === 'incorrect' && (
                   <span className="badge tier-not_ready">
                     ✕ {locale === 'tr' ? 'Henüz Yetersiz' : 'Not Sufficient'}
                   </span>
